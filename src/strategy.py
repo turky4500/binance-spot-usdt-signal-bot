@@ -81,6 +81,8 @@ def rsi(series: pd.Series, length: int) -> pd.Series:
     rs = avg_gain / avg_loss.replace(0, np.nan)
     output = 100 - (100 / (1 + rs))
     output = output.where(avg_loss != 0, 100)
+    output = output.where(avg_gain != 0, 0)
+    output = output.where(~((avg_gain == 0) & (avg_loss == 0)), 50)
     return output
 
 
@@ -155,11 +157,14 @@ def pivot_low_series(low: pd.Series, left: int, right: int) -> pd.Series:
     arr = low.to_numpy(dtype=float)
     for t in range(left + right, len(arr)):
         candidate_idx = t - right
-        window = arr[candidate_idx - left : candidate_idx + right + 1]
-        if np.isnan(window).any():
-            continue
         candidate = arr[candidate_idx]
-        if candidate == np.min(window):
+        left_window = arr[candidate_idx - left : candidate_idx]
+        right_window = arr[candidate_idx + 1 : candidate_idx + right + 1]
+        if np.isnan(candidate) or np.isnan(left_window).any() or np.isnan(right_window).any():
+            continue
+        left_ok = np.all(left_window >= candidate)
+        right_ok = np.all(right_window > candidate)
+        if left_ok and right_ok:
             values[t] = candidate
     return pd.Series(values, index=low.index)
 
@@ -169,24 +174,19 @@ def pivot_high_series(high: pd.Series, left: int, right: int) -> pd.Series:
     arr = high.to_numpy(dtype=float)
     for t in range(left + right, len(arr)):
         candidate_idx = t - right
-        window = arr[candidate_idx - left : candidate_idx + right + 1]
-        if np.isnan(window).any():
-            continue
         candidate = arr[candidate_idx]
-        if candidate == np.max(window):
+        left_window = arr[candidate_idx - left : candidate_idx]
+        right_window = arr[candidate_idx + 1 : candidate_idx + right + 1]
+        if np.isnan(candidate) or np.isnan(left_window).any() or np.isnan(right_window).any():
+            continue
+        left_ok = np.all(left_window <= candidate)
+        right_ok = np.all(right_window < candidate)
+        if left_ok and right_ok:
             values[t] = candidate
     return pd.Series(values, index=high.index)
 
 
-def compute_entry_signal(
-    df: pd.DataFrame,
-    settings: StrategySettings,
-    has_open_trade: bool,
-    last_exit_bar_time: int | None,
-) -> dict[str, Any] | None:
-    if df.empty or len(df) < settings.ema_slow_len + settings.pivot_left + settings.pivot_right + 20:
-        return None
-
+def prepare_strategy_frame(df: pd.DataFrame, settings: StrategySettings) -> pd.DataFrame:
     data = df.copy().reset_index(drop=True)
 
     data["ema_fast"] = ema(data["close"], settings.ema_fast_len)
@@ -298,11 +298,19 @@ def compute_entry_signal(
         + data["bullish_momentum_now"].astype(int)
         + data["volume_confirm"].astype(int)
     )
+    data["sell_score"] = (
+        data["overbought_at_pivot"].astype(int)
+        + data["bearish_divergence"].astype(int)
+        + data["bearish_candle_now"].astype(int)
+        + data["bearish_momentum_now"].astype(int)
+        + data["volume_confirm"].astype(int)
+    )
 
     data["pivot_low_atr"] = data["atr"].shift(settings.pivot_right)
     data["pivot_stop_candidate"] = data["pivot_low"] - (data["pivot_low_atr"] * settings.stop_buffer_atr)
     data["buy_risk_pct"] = ((data["close"] - data["pivot_stop_candidate"]) / data["close"]) * 100.0
-    data["reward_risk_ratio"] = max(settings.target_pct - (2.0 * settings.commission_per_side_pct), 0.0) / data["buy_risk_pct"]
+    net_target_pct = max(settings.target_pct - (2.0 * settings.commission_per_side_pct), 0.0)
+    data["reward_risk_ratio"] = net_target_pct / data["buy_risk_pct"]
     data["buy_risk_ok"] = (
         data["buy_risk_pct"].notna()
         & (data["buy_risk_pct"] > 0)
@@ -317,7 +325,9 @@ def compute_entry_signal(
     ) & data["rsi"].shift(settings.pivot_right).notna() & data["atr"].shift(settings.pivot_right).notna()
 
     data["bullish_trend_ok"] = data["close"] > data["ema_slow"]
+    data["bearish_trend_ok"] = data["close"] < data["ema_slow"]
     data["adx_buy_ok"] = (data["adx"] < settings.adx_threshold) | (data["plus_di"] > data["minus_di"])
+    data["adx_sell_ok"] = (data["adx"] < settings.adx_threshold) | (data["minus_di"] > data["plus_di"])
 
     data["buy_setup"] = (
         data["enough_history"]
@@ -328,35 +338,84 @@ def compute_entry_signal(
         & data["bullish_trend_ok"]
         & data["adx_buy_ok"]
     )
+    data["top_setup"] = (
+        data["enough_history"]
+        & data["liquidity_ok"]
+        & data["pivot_high"].notna()
+        & (data["sell_score"] >= settings.minimum_score)
+        & data["bearish_trend_ok"]
+        & data["adx_sell_ok"]
+    )
+    return data
 
-    last = data.iloc[-1]
-    current_bar_open_time = int(last["open_time"])
 
+def compute_entry_signal(
+    df: pd.DataFrame,
+    settings: StrategySettings,
+    has_open_trade: bool,
+    last_exit_bar_time: int | None,
+) -> dict[str, Any] | None:
     if has_open_trade:
         return None
 
-    if last_exit_bar_time is not None:
-        bars_since_exit = (current_bar_open_time - int(last_exit_bar_time)) // (60 * 60 * 1000)
-        cooldown_ok = bars_since_exit > 2
-    else:
-        cooldown_ok = True
-
-    if not cooldown_ok or not bool(last["buy_setup"]):
+    if df.empty or len(df) < settings.ema_slow_len + settings.pivot_left + settings.pivot_right + 20:
         return None
 
-    entry_price = float(last["close"])
-    stop_price = float(last["pivot_stop_candidate"])
-    target_price = entry_price * (1.0 + settings.target_pct / 100.0)
-    strong = bool(last["buy_score"] >= settings.minimum_score + 1)
+    data = prepare_strategy_frame(df, settings)
+    current_last_index = len(data) - 1
 
-    return {
-        "symbol": str(last.get("symbol", "")),
-        "bar_open_time": current_bar_open_time,
-        "bar_close_time": int(last["close_time"]),
-        "entry_price": entry_price,
-        "stop_price": stop_price,
-        "target_price": target_price,
-        "strong": strong,
-        "buy_score": int(last["buy_score"]),
-        "mode": settings.reversal_mode,
-    }
+    in_trade = False
+    entry_price = np.nan
+    stop_price = np.nan
+    target_price = np.nan
+    entry_bar_index: int | None = None
+    replay_last_exit_bar_time: int | None = None
+    latest_signal: dict[str, Any] | None = None
+
+    for i, row in data.iterrows():
+        current_bar_open_time = int(row["open_time"])
+
+        if replay_last_exit_bar_time is not None:
+            replay_cooldown_ok = ((current_bar_open_time - replay_last_exit_bar_time) // (60 * 60 * 1000)) > 2
+        else:
+            replay_cooldown_ok = True
+
+        if not in_trade:
+            if bool(row["buy_setup"]) and replay_cooldown_ok:
+                entry_price = float(row["close"])
+                stop_price = float(row["pivot_stop_candidate"])
+                target_price = entry_price * (1.0 + settings.target_pct / 100.0)
+                entry_bar_index = i
+                in_trade = True
+
+                if i == current_last_index:
+                    latest_signal = {
+                        "symbol": str(row.get("symbol", "")),
+                        "bar_open_time": current_bar_open_time,
+                        "bar_close_time": int(row["close_time"]),
+                        "entry_price": entry_price,
+                        "stop_price": stop_price,
+                        "target_price": target_price,
+                        "strong": bool(row["buy_score"] >= settings.minimum_score + 1),
+                        "buy_score": int(row["buy_score"]),
+                        "mode": settings.reversal_mode,
+                    }
+        else:
+            if entry_bar_index is not None and i > entry_bar_index:
+                stop_was_hit = float(row["low"]) <= stop_price
+                target_was_hit = float(row["high"]) >= target_price
+                if stop_was_hit or target_was_hit:
+                    in_trade = False
+                    entry_bar_index = None
+                    replay_last_exit_bar_time = current_bar_open_time
+
+    if latest_signal is None:
+        return None
+
+    current_bar_open_time = int(data.iloc[-1]["open_time"])
+    if last_exit_bar_time is not None:
+        external_cooldown_ok = ((current_bar_open_time - int(last_exit_bar_time)) // (60 * 60 * 1000)) > 2
+        if not external_cooldown_ok:
+            return None
+
+    return latest_signal
