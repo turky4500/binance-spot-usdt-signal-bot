@@ -15,12 +15,12 @@ class BinanceClient:
         self.session = requests.Session()
 
     def get_server_time(self) -> int:
-        response = self.session.get(f"{self.BASE_URL}/api/v3/time", timeout=self.timeout)
+        response = self.session.get(f"{self.base_url}/api/v3/time", timeout=self.timeout)
         response.raise_for_status()
         return int(response.json()["serverTime"])
 
     def get_spot_usdt_symbols(self, quote_asset: str = "USDT") -> list[str]:
-        response = self.session.get(f"{self.BASE_URL}/api/v3/exchangeInfo", timeout=self.timeout)
+        response = self.session.get(f"{self.base_url}/api/v3/exchangeInfo", timeout=self.timeout)
         response.raise_for_status()
         payload = response.json()
         symbols: list[str] = []
@@ -35,14 +35,14 @@ class BinanceClient:
         return sorted(symbols)
 
     def get_all_prices(self) -> dict[str, float]:
-        response = self.session.get(f"{self.BASE_URL}/api/v3/ticker/price", timeout=self.timeout)
+        response = self.session.get(f"{self.base_url}/api/v3/ticker/price", timeout=self.timeout)
         response.raise_for_status()
         data = response.json()
         return {row["symbol"]: float(row["price"]) for row in data}
 
     def get_klines(self, symbol: str, interval: str = "1h", limit: int = 260) -> pd.DataFrame:
         response = self.session.get(
-            f"{self.BASE_URL}/api/v3/klines",
+            f"{self.base_url}/api/v3/klines",
             params={"symbol": symbol, "interval": interval, "limit": limit},
             timeout=self.timeout,
         )
