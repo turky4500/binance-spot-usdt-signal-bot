@@ -28,6 +28,8 @@
 - `tools/get_telegram_chat_id.py` استخراج Chat ID
 - `tools/create_github_repo.py` إنشاء مستودع GitHub عبر توكن مؤقت
 
+> ملاحظة: في هذا المشروع تم اعتماد `https://data-api.binance.vision` كمصدر بيانات Binance لأنه في بعض البيئات قد يكون `api.binance.com` محجوبًا جغرافيًا، بينما `binance.vision` يوفّر بيانات السوق الرسمية المطلوبة للمتابعة.
+
 ## الرسائل المرسلة
 ### 1) الدخول
 - الزوج

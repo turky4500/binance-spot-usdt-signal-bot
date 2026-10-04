@@ -19,7 +19,11 @@ class SpotSignalBot:
     def __init__(self, config: AppConfig) -> None:
         self.config = config
         self.logger = logging.getLogger("spot-signal-bot")
-        self.binance = BinanceClient(timeout=config.request_timeout, max_workers=config.max_workers)
+        self.binance = BinanceClient(
+            timeout=config.request_timeout,
+            max_workers=config.max_workers,
+            base_url=config.binance_base_url,
+        )
         self.telegram = TelegramClient(
             token=config.telegram_bot_token,
             chat_id=config.telegram_chat_id,

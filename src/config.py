@@ -9,6 +9,7 @@ class AppConfig:
     telegram_bot_token: str
     telegram_chat_id: str
     timezone_name: str = os.getenv("TIMEZONE", "Asia/Riyadh")
+    binance_base_url: str = os.getenv("BINANCE_BASE_URL", "https://data-api.binance.vision")
     quote_asset: str = os.getenv("BINANCE_QUOTE_ASSET", "USDT")
     interval: str = os.getenv("BINANCE_INTERVAL", "1h")
     poll_seconds: int = int(os.getenv("POLL_SECONDS", "60"))

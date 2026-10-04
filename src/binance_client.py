@@ -8,11 +8,10 @@ import requests
 
 
 class BinanceClient:
-    BASE_URL = "https://api.binance.com"
-
-    def __init__(self, timeout: int = 20, max_workers: int = 10) -> None:
+    def __init__(self, timeout: int = 20, max_workers: int = 10, base_url: str = "https://data-api.binance.vision") -> None:
         self.timeout = timeout
         self.max_workers = max_workers
+        self.base_url = base_url.rstrip("/")
         self.session = requests.Session()
 
     def get_server_time(self) -> int:
