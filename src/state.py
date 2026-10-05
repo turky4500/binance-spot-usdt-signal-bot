@@ -11,6 +11,10 @@ def _default_state() -> dict[str, Any]:
         "last_entry_bar_time": {},
         "last_exit_bar_time": {},
         "open_trades": {},
+        "event_log": [],
+        "daily_report": {
+            "last_reported_for_date": ""
+        },
     }
 
 

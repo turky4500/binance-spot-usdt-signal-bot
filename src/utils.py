@@ -33,3 +33,13 @@ def humanize_duration_ar(start_ms: int, end_ms: int) -> str:
     if seconds and not parts:
         parts.append(f"{seconds} ثانية")
     return " و ".join(parts) if parts else "أقل من دقيقة"
+
+
+def local_date_key_from_ms(ms: int, tz_name: str) -> str:
+    dt = datetime.fromtimestamp(ms / 1000, tz=timezone.utc).astimezone(ZoneInfo(tz_name))
+    return dt.strftime("%Y-%m-%d")
+
+
+def weekday_ar_from_ms(ms: int, tz_name: str) -> str:
+    dt = datetime.fromtimestamp(ms / 1000, tz=timezone.utc).astimezone(ZoneInfo(tz_name))
+    return WEEKDAY_AR.get(dt.weekday(), "")
