@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1791212400000,
+  "last_processed_open_time": 1791216000000,
   "last_entry_bar_time": {
     "ESPUSDT": 1791169200000,
     "GMXUSDT": 1791169200000,
@@ -34,7 +34,29 @@
     "USDEUSDT": 1791208800000,
     "INITUSDT": 1791212400000,
     "LITEBUSDT": 1791212400000,
-    "TRXUSDT": 1791212400000
+    "TRXUSDT": 1791212400000,
+    "ACEUSDT": 1791216000000,
+    "ACTUSDT": 1791216000000,
+    "ARPAUSDT": 1791216000000,
+    "ASTERUSDT": 1791216000000,
+    "AUCTIONUSDT": 1791216000000,
+    "AVNTUSDT": 1791216000000,
+    "AXLUSDT": 1791216000000,
+    "BNCBUSDT": 1791216000000,
+    "CELOUSDT": 1791216000000,
+    "GALAUSDT": 1791216000000,
+    "GMTUSDT": 1791216000000,
+    "HUMAUSDT": 1791216000000,
+    "HYPEUSDT": 1791216000000,
+    "KGSTUSDT": 1791216000000,
+    "LDOUSDT": 1791216000000,
+    "OPUSDT": 1791216000000,
+    "RENDERUSDT": 1791216000000,
+    "RONINUSDT": 1791216000000,
+    "SKLUSDT": 1791216000000,
+    "TIAUSDT": 1791216000000,
+    "ZKCUSDT": 1791216000000,
+    "币安人生USDT": 1791216000000
   },
   "last_exit_bar_time": {
     "ESPUSDT": 1791176400000,
@@ -55,20 +77,13 @@
     "RSRUSDT": 1791208800000,
     "RADUSDT": 1791212400000,
     "GMXUSDT": 1791212400000,
-    "CFGUSDT": 1791212400000
+    "CFGUSDT": 1791212400000,
+    "RLUSDUSDT": 1791216000000,
+    "CHZUSDT": 1791216000000,
+    "ETHFIUSDT": 1791216000000,
+    "SUPERUSDT": 1791216000000
   },
   "open_trades": {
-    "RLUSDUSDT": {
-      "symbol": "RLUSDUSDT",
-      "entry_price": 1.0004,
-      "target_price": 1.020408,
-      "stop_price": 1.0000768128702398,
-      "entry_time": 1791176399999,
-      "entry_bar_open_time": 1791172800000,
-      "last_target_check_ms": 1791219480000,
-      "strong": true,
-      "mode": "متوازن"
-    },
     "KORUBUSDT": {
       "symbol": "KORUBUSDT",
       "entry_price": 22.7,
@@ -76,7 +91,7 @@
       "stop_price": 22.4076753805383,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791219480000,
+      "last_target_check_ms": 1791219780000,
       "strong": false,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم"
@@ -88,7 +103,7 @@
       "stop_price": 767.9245502743319,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791219480000,
+      "last_target_check_ms": 1791219780000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم"
@@ -100,7 +115,7 @@
       "stop_price": 0.03700342813852405,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791219480000,
+      "last_target_check_ms": 1791219780000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم"
@@ -112,19 +127,7 @@
       "stop_price": 0.0035476471386482653,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791219480000,
-      "strong": false,
-      "mode": "متوازن",
-      "halal_verdict": "✅ مباح"
-    },
-    "CHZUSDT": {
-      "symbol": "CHZUSDT",
-      "entry_price": 0.01704,
-      "target_price": 0.0173808,
-      "stop_price": 0.01688994355721818,
-      "entry_time": 1791208799999,
-      "entry_bar_open_time": 1791205200000,
-      "last_target_check_ms": 1791219480000,
+      "last_target_check_ms": 1791219780000,
       "strong": false,
       "mode": "متوازن",
       "halal_verdict": "✅ مباح"
@@ -136,22 +139,10 @@
       "stop_price": 354.2113003766454,
       "entry_time": 1791212399999,
       "entry_bar_open_time": 1791208800000,
-      "last_target_check_ms": 1791219480000,
+      "last_target_check_ms": 1791219780000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
-    "ETHFIUSDT": {
-      "symbol": "ETHFIUSDT",
-      "entry_price": 0.7615,
-      "target_price": 0.7767299999999999,
-      "stop_price": 0.7514350853155444,
-      "entry_time": 1791212399999,
-      "entry_bar_open_time": 1791208800000,
-      "last_target_check_ms": 1791219480000,
-      "strong": true,
-      "mode": "متوازن",
-      "halal_verdict": "⛔ غير مباح"
     },
     "GOOGLBUSDT": {
       "symbol": "GOOGLBUSDT",
@@ -160,7 +151,7 @@
       "stop_price": 342.22527179721885,
       "entry_time": 1791212399999,
       "entry_bar_open_time": 1791208800000,
-      "last_target_check_ms": 1791219480000,
+      "last_target_check_ms": 1791219780000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم"
@@ -172,20 +163,8 @@
       "stop_price": 142.08809734585213,
       "entry_time": 1791212399999,
       "entry_bar_open_time": 1791208800000,
-      "last_target_check_ms": 1791219480000,
+      "last_target_check_ms": 1791219780000,
       "strong": true,
-      "mode": "متوازن",
-      "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
-    "SUPERUSDT": {
-      "symbol": "SUPERUSDT",
-      "entry_price": 0.2355,
-      "target_price": 0.24020999999999998,
-      "stop_price": 0.23410155499236282,
-      "entry_time": 1791212399999,
-      "entry_bar_open_time": 1791208800000,
-      "last_target_check_ms": 1791219480000,
-      "strong": false,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم"
     },
@@ -196,7 +175,7 @@
       "stop_price": 0.9998743066361778,
       "entry_time": 1791212399999,
       "entry_bar_open_time": 1791208800000,
-      "last_target_check_ms": 1791219480000,
+      "last_target_check_ms": 1791219780000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم"
@@ -208,7 +187,7 @@
       "stop_price": 0.11094857093012055,
       "entry_time": 1791215999999,
       "entry_bar_open_time": 1791212400000,
-      "last_target_check_ms": 1791219480000,
+      "last_target_check_ms": 1791219780000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم"
@@ -220,7 +199,7 @@
       "stop_price": 1067.151288509008,
       "entry_time": 1791215999999,
       "entry_bar_open_time": 1791212400000,
-      "last_target_check_ms": 1791219480000,
+      "last_target_check_ms": 1791219780000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم"
@@ -232,10 +211,274 @@
       "stop_price": 0.33570060843863303,
       "entry_time": 1791215999999,
       "entry_bar_open_time": 1791212400000,
-      "last_target_check_ms": 1791219480000,
+      "last_target_check_ms": 1791219780000,
       "strong": false,
       "mode": "متوازن",
       "halal_verdict": "✅ مباح"
+    },
+    "ACEUSDT": {
+      "symbol": "ACEUSDT",
+      "entry_price": 0.1896,
+      "target_price": 0.19339199999999998,
+      "stop_price": 0.18670851375864267,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": true,
+      "mode": "متوازن",
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "ACTUSDT": {
+      "symbol": "ACTUSDT",
+      "entry_price": 0.01088,
+      "target_price": 0.0110976,
+      "stop_price": 0.01070410936720003,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": false,
+      "mode": "متوازن",
+      "halal_verdict": "✅ مباح"
+    },
+    "ARPAUSDT": {
+      "symbol": "ARPAUSDT",
+      "entry_price": 0.01151,
+      "target_price": 0.0117402,
+      "stop_price": 0.011311398506547282,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": true,
+      "mode": "متوازن",
+      "halal_verdict": "✅ مباح"
+    },
+    "ASTERUSDT": {
+      "symbol": "ASTERUSDT",
+      "entry_price": 0.7314,
+      "target_price": 0.746028,
+      "stop_price": 0.7222750453537488,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": false,
+      "mode": "متوازن",
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "AUCTIONUSDT": {
+      "symbol": "AUCTIONUSDT",
+      "entry_price": 3.775,
+      "target_price": 3.8505,
+      "stop_price": 3.73426803621741,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": false,
+      "mode": "متوازن",
+      "halal_verdict": "⛔ غير مباح"
+    },
+    "AVNTUSDT": {
+      "symbol": "AVNTUSDT",
+      "entry_price": 0.1338,
+      "target_price": 0.13647600000000001,
+      "stop_price": 0.13113211128087707,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": true,
+      "mode": "متوازن",
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "AXLUSDT": {
+      "symbol": "AXLUSDT",
+      "entry_price": 0.0543,
+      "target_price": 0.055386000000000005,
+      "stop_price": 0.05338509782355296,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": false,
+      "mode": "متوازن",
+      "halal_verdict": "✅ مباح"
+    },
+    "BNCBUSDT": {
+      "symbol": "BNCBUSDT",
+      "entry_price": 6.1,
+      "target_price": 6.2219999999999995,
+      "stop_price": 6.050309728294017,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": true,
+      "mode": "متوازن",
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "CELOUSDT": {
+      "symbol": "CELOUSDT",
+      "entry_price": 0.10487,
+      "target_price": 0.1069674,
+      "stop_price": 0.10247548663744711,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": true,
+      "mode": "متوازن",
+      "halal_verdict": "✅ مباح"
+    },
+    "GALAUSDT": {
+      "symbol": "GALAUSDT",
+      "entry_price": 0.002462,
+      "target_price": 0.00251124,
+      "stop_price": 0.0024340534752604207,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": true,
+      "mode": "متوازن",
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "GMTUSDT": {
+      "symbol": "GMTUSDT",
+      "entry_price": 0.00884,
+      "target_price": 0.0090168,
+      "stop_price": 0.008748006547738671,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": true,
+      "mode": "متوازن",
+      "halal_verdict": "✅ مباح"
+    },
+    "HUMAUSDT": {
+      "symbol": "HUMAUSDT",
+      "entry_price": 0.03303,
+      "target_price": 0.033690599999999994,
+      "stop_price": 0.03250854058757762,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": true,
+      "mode": "متوازن",
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "HYPEUSDT": {
+      "symbol": "HYPEUSDT",
+      "entry_price": 93.59,
+      "target_price": 95.46180000000001,
+      "stop_price": 91.93025474101796,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": true,
+      "mode": "متوازن",
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "KGSTUSDT": {
+      "symbol": "KGSTUSDT",
+      "entry_price": 0.011426,
+      "target_price": 0.01165452,
+      "stop_price": 0.01129629225600411,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": true,
+      "mode": "متوازن",
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "LDOUSDT": {
+      "symbol": "LDOUSDT",
+      "entry_price": 0.4609,
+      "target_price": 0.470118,
+      "stop_price": 0.4545958029696301,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": false,
+      "mode": "متوازن",
+      "halal_verdict": "⛔ غير مباح"
+    },
+    "OPUSDT": {
+      "symbol": "OPUSDT",
+      "entry_price": 0.1341,
+      "target_price": 0.136782,
+      "stop_price": 0.1315080020663548,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": true,
+      "mode": "متوازن",
+      "halal_verdict": "✅ مباح"
+    },
+    "RENDERUSDT": {
+      "symbol": "RENDERUSDT",
+      "entry_price": 1.996,
+      "target_price": 2.03592,
+      "stop_price": 1.949839062050027,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": true,
+      "mode": "متوازن",
+      "halal_verdict": "✅ مباح"
+    },
+    "RONINUSDT": {
+      "symbol": "RONINUSDT",
+      "entry_price": 0.066,
+      "target_price": 0.06732,
+      "stop_price": 0.06555393034984117,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": false,
+      "mode": "متوازن",
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "SKLUSDT": {
+      "symbol": "SKLUSDT",
+      "entry_price": 0.00469,
+      "target_price": 0.0047837999999999995,
+      "stop_price": 0.004610913081306203,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": true,
+      "mode": "متوازن",
+      "halal_verdict": "✅ مباح"
+    },
+    "TIAUSDT": {
+      "symbol": "TIAUSDT",
+      "entry_price": 0.4663,
+      "target_price": 0.475626,
+      "stop_price": 0.45744274403443547,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": false,
+      "mode": "متوازن",
+      "halal_verdict": "✅ مباح"
+    },
+    "ZKCUSDT": {
+      "symbol": "ZKCUSDT",
+      "entry_price": 0.0428,
+      "target_price": 0.043656,
+      "stop_price": 0.04209865804248021,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": true,
+      "mode": "متوازن",
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "币安人生USDT": {
+      "symbol": "币安人生USDT",
+      "entry_price": 0.5097,
+      "target_price": 0.5198940000000001,
+      "stop_price": 0.5011832895495909,
+      "entry_time": 1791219599999,
+      "entry_bar_open_time": 1791216000000,
+      "last_target_check_ms": 1791219659999,
+      "strong": true,
+      "mode": "متوازن",
+      "halal_verdict": "ℹ️ لا يوجد حكم"
     }
   },
   "event_log": [
@@ -443,6 +686,136 @@
       "type": "entry",
       "symbol": "TRXUSDT",
       "time_ms": 1791215999999
+    },
+    {
+      "type": "stop",
+      "symbol": "RLUSDUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "stop",
+      "symbol": "CHZUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "stop",
+      "symbol": "ETHFIUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "stop",
+      "symbol": "SUPERUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "ACEUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "ACTUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "ARPAUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "ASTERUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "AUCTIONUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "AVNTUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "AXLUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "BNCBUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "CELOUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "GALAUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "GMTUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "HUMAUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "HYPEUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "KGSTUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "LDOUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "OPUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "RENDERUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "RONINUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "SKLUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "TIAUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "ZKCUSDT",
+      "time_ms": 1791219599999
+    },
+    {
+      "type": "entry",
+      "symbol": "币安人生USDT",
+      "time_ms": 1791219599999
     }
   ],
   "daily_report": {
