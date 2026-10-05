@@ -54,4 +54,5 @@ jobs:
             exit 0
           fi
           git commit -m "chore: update bot state [skip ci]"
+          git pull --rebase origin main || true
           git push

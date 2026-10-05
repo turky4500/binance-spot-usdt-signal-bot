@@ -94,6 +94,7 @@ class SpotSignalBot:
             f"الزوج: {trade['symbol']}\n"
             f"سعر الدخول: {format_price(trade['entry_price'])}\n"
             f"سعر وقف الخسارة: {format_price(trade['stop_price'])}\n"
+            f"وقت التفعيل: {ms_to_local_text(event_time_ms, self.config.timezone_name)}\n"
             f"المدة: {duration}\n"
             f"السبب: إغلاق شمعة 1H أسفل وقف الخسارة\n"
             f"─────────────\n"

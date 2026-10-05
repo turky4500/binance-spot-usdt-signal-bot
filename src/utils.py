@@ -13,7 +13,11 @@ def format_price(value: float) -> str:
 
 def ms_to_local_text(ms: int, tz_name: str) -> str:
     dt = datetime.fromtimestamp(ms / 1000, tz=timezone.utc).astimezone(ZoneInfo(tz_name))
-    return dt.strftime("%Y-%m-%d %H:%M:%S")
+    period = "مساءً" if dt.hour >= 12 else "صباحًا"
+    hour12 = dt.hour % 12
+    if hour12 == 0:
+        hour12 = 12
+    return f"{dt:%Y-%m-%d} {hour12}:{dt:%M:%S} {period}"
 
 
 def humanize_duration_ar(start_ms: int, end_ms: int) -> str:
