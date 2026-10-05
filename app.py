@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import logging
 import time
+from collections import Counter
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -22,7 +23,8 @@ from src.utils import (
 
 HOUR_MS = 60 * 60 * 1000
 MINUTE_MS = 60 * 1000
-EVENT_RETENTION_DAYS = 45
+EVENT_RETENTION_DAYS = 120
+WEEKLY_REPORT_WEEKDAY = 6  # الأحد بحسب weekday() في بايثون حيث الاثنين=0
 
 
 class SpotSignalBot:
@@ -77,6 +79,12 @@ class SpotSignalBot:
         self.state["event_log"] = [e for e in events if int(e.get("time_ms", 0)) >= cutoff_ms]
         self.store.save(self.state)
 
+    def _format_ranked_symbols(self, counts: Counter, empty_text: str) -> str:
+        if not counts:
+            return empty_text
+        top = counts.most_common(3)
+        return " • ".join(f"{symbol} ({count})" for symbol, count in top)
+
     def send_entry_message(self, trade: dict) -> None:
         strength = "قوية" if trade.get("strong") else "عادية"
         verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
@@ -104,7 +112,7 @@ class SpotSignalBot:
             f"سعر الدخول: {format_price(trade['entry_price'])}\n"
             f"سعر تحقيق الهدف: {format_price(hit_price)}\n"
             f"وقت تحقيق الهدف: {ms_to_local_text(event_time_ms, self.config.timezone_name)}\n"
-            f"المدة: {duration}\n"
+            f"المدة المستغرقة: {duration}\n"
             f"─────────────\n"
             f"الحكم الشرعي: {verdict}"
         )
@@ -120,7 +128,7 @@ class SpotSignalBot:
             f"سعر الدخول: {format_price(trade['entry_price'])}\n"
             f"سعر وقف الخسارة: {format_price(trade['stop_price'])}\n"
             f"وقت التفعيل: {ms_to_local_text(event_time_ms, self.config.timezone_name)}\n"
-            f"المدة: {duration}\n"
+            f"المدة المستغرقة: {duration}\n"
             f"السبب: إغلاق شمعة 1H أسفل وقف الخسارة\n"
             f"─────────────\n"
             f"الحكم الشرعي: {verdict}"
@@ -292,6 +300,77 @@ class SpotSignalBot:
         self.store.save(self.state)
         self.logger.info("Daily report sent for %s", report_day)
 
+    def send_weekly_report_if_due(self, now_ms: int) -> None:
+        now_local = datetime.fromtimestamp(now_ms / 1000, tz=timezone.utc).astimezone(ZoneInfo(self.config.timezone_name))
+        if now_local.hour != 0 or now_local.weekday() != WEEKLY_REPORT_WEEKDAY:
+            return
+
+        report_end_date = now_local.date() - timedelta(days=1)
+        report_start_date = report_end_date - timedelta(days=6)
+        report_start_key = report_start_date.isoformat()
+        report_end_key = report_end_date.isoformat()
+
+        weekly_state = self.state.setdefault("weekly_report", {})
+        if weekly_state.get("last_reported_week_start") == report_start_key:
+            return
+
+        entries = 0
+        targets = 0
+        stops = 0
+        target_symbols: Counter[str] = Counter()
+        stop_symbols: Counter[str] = Counter()
+
+        for event in self.state.get("event_log", []):
+            event_time_ms = int(event.get("time_ms", 0))
+            event_day = local_date_key_from_ms(event_time_ms, self.config.timezone_name)
+            if not (report_start_key <= event_day <= report_end_key):
+                continue
+
+            event_type = event.get("type")
+            symbol = str(event.get("symbol") or "")
+            if event_type == "entry":
+                entries += 1
+            elif event_type == "target":
+                targets += 1
+                if symbol:
+                    target_symbols[symbol] += 1
+            elif event_type == "stop":
+                stops += 1
+                if symbol:
+                    stop_symbols[symbol] += 1
+
+        closed_count = targets + stops
+        success_rate = (targets / closed_count * 100.0) if closed_count else 0.0
+        open_count = len(self.state.get("open_trades", {}))
+
+        tz = ZoneInfo(self.config.timezone_name)
+        start_anchor_ms = int(datetime(report_start_date.year, report_start_date.month, report_start_date.day, tzinfo=tz).astimezone(timezone.utc).timestamp() * 1000)
+        end_anchor_ms = int(datetime(report_end_date.year, report_end_date.month, report_end_date.day, tzinfo=tz).astimezone(timezone.utc).timestamp() * 1000)
+        start_weekday = weekday_ar_from_ms(start_anchor_ms, self.config.timezone_name)
+        end_weekday = weekday_ar_from_ms(end_anchor_ms, self.config.timezone_name)
+
+        best_symbols = self._format_ranked_symbols(target_symbols, "لا توجد أهداف محققة هذا الأسبوع")
+        stop_symbols_text = self._format_ranked_symbols(stop_symbols, "لا توجد صفقات متوقفة هذا الأسبوع")
+
+        text = (
+            f"🗂️ التقرير الأسبوعي للإشارات\n"
+            f"🗓️ الفترة: {start_weekday} {report_start_key} ← {end_weekday} {report_end_key}\n"
+            f"🕛 وقت التقرير: {ms_to_local_text(now_ms, self.config.timezone_name)}\n"
+            f"═════════════\n"
+            f"📥 إجمالي الصفقات المرسلة: {entries}\n"
+            f"✅ إجمالي النجاح: {targets}\n"
+            f"🛑 إجمالي الخسارة: {stops}\n"
+            f"📌 المفتوحة حاليًا: {open_count}\n"
+            f"📈 نسبة النجاح: {success_rate:.1f}%\n"
+            f"═════════════\n"
+            f"🏆 أكثر العملات نجاحًا: {best_symbols}\n"
+            f"⚠️ أكثر العملات وصولًا للوقف: {stop_symbols_text}"
+        )
+        self.telegram.send_message(text)
+        weekly_state["last_reported_week_start"] = report_start_key
+        self.store.save(self.state)
+        self.logger.info("Weekly report sent for %s -> %s", report_start_key, report_end_key)
+
     def run_cycle(self) -> None:
         self.refresh_symbols(force=not self.symbols)
         self.refresh_halal_verdicts()
@@ -299,6 +378,7 @@ class SpotSignalBot:
         self.monitor_open_trades_intrabar_targets(server_time)
         self.process_new_closed_hour(server_time)
         self.send_daily_report_if_due(server_time)
+        self.send_weekly_report_if_due(server_time)
 
     def run(self) -> None:
         self.refresh_symbols(force=True)
