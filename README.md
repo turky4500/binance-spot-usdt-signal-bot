@@ -94,9 +94,15 @@ export GITHUB_TOKEN=replace_me
 python tools/create_github_repo.py my-repo-name
 ```
 
-## تشغيله عبر GitHub Actions Cron
+## تشغيله عبر GitHub Actions + Google Apps Script
 تم تجهيز Workflow جاهز داخل:
 `/.github/workflows/signal-bot-cron.yml`
+
+الـ Workflow الآن يعمل عبر:
+- `workflow_dispatch` فقط
+
+ويتم استدعاؤه كل 5 دقائق من **Google Apps Script** باستخدام الملف:
+- `google_apps_script_trigger.js`
 
 ### ماذا يفعل؟
 - يشغّل البوت **مرة واحدة كل 5 دقائق**
@@ -109,6 +115,21 @@ python tools/create_github_repo.py my-repo-name
 أضف في Secrets الخاصة بالمستودع:
 - `TELEGRAM_BOT_TOKEN`
 - `TELEGRAM_CHAT_ID`
+
+### إعداد Google Apps Script
+1. افتح `script.google.com`
+2. أنشئ مشروعًا جديدًا
+3. الصق محتوى `google_apps_script_trigger.js`
+4. من **Project Settings > Script properties** أضف:
+   - `GITHUB_TOKEN`
+   - `GITHUB_OWNER=turky4500`
+   - `GITHUB_REPO=binance-spot-usdt-signal-bot`
+   - `GITHUB_WORKFLOW=signal-bot-cron.yml`
+   - `GITHUB_REF=main`
+5. شغّل الدالة `createFiveMinuteTrigger` مرة واحدة
+6. وافق على الصلاحيات
+
+بعد ذلك سيقوم Google Apps Script بإرسال تشغيل للـ workflow كل 5 دقائق.
 
 ## ملاحظات مهمة
 - البوت يحفظ حالة الصفقات في `data/state.json`
