@@ -6,6 +6,7 @@ from pathlib import Path
 
 from src.binance_client import BinanceClient
 from src.config import AppConfig
+from src.halal import ensure_verdict, refresh_if_stale
 from src.state import StateStore
 from src.strategy import StrategySettings, compute_entry_signal
 from src.telegram_client import TelegramClient
@@ -45,8 +46,18 @@ class SpotSignalBot:
         self.last_symbols_refresh = now
         self.logger.info("Loaded %s spot symbols with quote asset %s", len(self.symbols), self.config.quote_asset)
 
+    def refresh_halal_verdicts(self) -> None:
+        self.halal_verdicts = refresh_if_stale(
+            self.data_dir,
+            max_age_hours=self.config.halal_refresh_hours,
+        )
+
+    def get_halal_verdict(self, symbol: str) -> str:
+        return ensure_verdict(self.data_dir, symbol, self.halal_verdicts)
+
     def send_entry_message(self, trade: dict) -> None:
         strength = "قوية" if trade.get("strong") else "عادية"
+        verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
         text = (
             f"📥 إشارة دخول شراء\n"
             f"الزوج: {trade['symbol']}\n"
@@ -55,30 +66,38 @@ class SpotSignalBot:
             f"سعر الدخول: {format_price(trade['entry_price'])}\n"
             f"الهدف: {format_price(trade['target_price'])}\n"
             f"وقف الخسارة: {format_price(trade['stop_price'])}\n"
-            f"وقت الإشارة: {ms_to_local_text(trade['entry_time'], self.config.timezone_name)}"
+            f"وقت الإشارة: {ms_to_local_text(trade['entry_time'], self.config.timezone_name)}\n"
+            f"─────────────\n"
+            f"الحكم الشرعي: {verdict}"
         )
         self.telegram.send_message(text)
 
     def send_target_message(self, trade: dict, hit_price: float, event_time_ms: int) -> None:
         duration = humanize_duration_ar(trade["entry_time"], event_time_ms)
+        verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
         text = (
             f"✅ تم تحقيق الهدف\n"
             f"الزوج: {trade['symbol']}\n"
             f"سعر الدخول: {format_price(trade['entry_price'])}\n"
             f"سعر تحقيق الهدف: {format_price(hit_price)}\n"
-            f"المدة: {duration}"
+            f"المدة: {duration}\n"
+            f"─────────────\n"
+            f"الحكم الشرعي: {verdict}"
         )
         self.telegram.send_message(text)
 
     def send_stop_message(self, trade: dict, event_time_ms: int) -> None:
         duration = humanize_duration_ar(trade["entry_time"], event_time_ms)
+        verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
         text = (
             f"🛑 تم تفعيل وقف الخسارة\n"
             f"الزوج: {trade['symbol']}\n"
             f"سعر الدخول: {format_price(trade['entry_price'])}\n"
             f"سعر وقف الخسارة: {format_price(trade['stop_price'])}\n"
             f"المدة: {duration}\n"
-            f"السبب: إغلاق شمعة 1H أسفل وقف الخسارة"
+            f"السبب: إغلاق شمعة 1H أسفل وقف الخسارة\n"
+            f"─────────────\n"
+            f"الحكم الشرعي: {verdict}"
         )
         self.telegram.send_message(text)
 
@@ -192,6 +211,7 @@ class SpotSignalBot:
                 "last_target_check_ms": signal["bar_close_time"] + MINUTE_MS,
                 "strong": signal["strong"],
                 "mode": signal["mode"],
+                "halal_verdict": self.get_halal_verdict(symbol),
             }
             self.state["open_trades"][symbol] = trade
             self.state["last_entry_bar_time"][symbol] = signal["bar_open_time"]
@@ -204,6 +224,7 @@ class SpotSignalBot:
 
     def run_cycle(self) -> None:
         self.refresh_symbols(force=not self.symbols)
+        self.refresh_halal_verdicts()
         self.monitor_open_trades_intrabar_targets()
         self.process_new_closed_hour()
 
@@ -221,6 +242,7 @@ class SpotSignalBot:
 
     def run_once(self) -> None:
         self.refresh_symbols(force=True)
+        self.refresh_halal_verdicts()
         self.logger.info("Bot one-shot run started.")
         self.run_cycle()
         self.logger.info("Bot one-shot run completed.")
