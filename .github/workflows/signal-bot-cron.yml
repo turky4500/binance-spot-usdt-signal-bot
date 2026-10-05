@@ -1,0 +1,59 @@
+name: Signal Bot Cron
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: signal-bot-cron
+  cancel-in-progress: false
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TIMEZONE: Asia/Riyadh
+      BINANCE_BASE_URL: https://data-api.binance.vision
+      BINANCE_QUOTE_ASSET: USDT
+      BINANCE_INTERVAL: 1h
+      POLL_SECONDS: 60
+      KLINE_LIMIT: 260
+      REQUEST_TIMEOUT: 20
+      MAX_WORKERS: 10
+      STATE_FILE: data/state.json
+      LOG_LEVEL: INFO
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run bot once
+        run: python run_once.py
+
+      - name: Commit state updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/state.json
+          if git diff --cached --quiet; then
+            echo "No state changes to commit"
+            exit 0
+          fi
+          git commit -m "chore: update bot state [skip ci]"
+          git push

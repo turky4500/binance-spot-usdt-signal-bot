@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import logging
 import time
-from datetime import datetime, timezone
 from pathlib import Path
 
 from src.binance_client import BinanceClient
@@ -13,6 +12,7 @@ from src.telegram_client import TelegramClient
 from src.utils import format_price, humanize_duration_ar, ms_to_local_text
 
 HOUR_MS = 60 * 60 * 1000
+MINUTE_MS = 60 * 1000
 
 
 class SpotSignalBot:
@@ -86,19 +86,42 @@ class SpotSignalBot:
         self.store.save(self.state)
         self.logger.info("Closed %s بسبب %s", symbol, reason)
 
-    def monitor_open_trades_live(self) -> None:
+    def monitor_open_trades_intrabar_targets(self, now_ms: int | None = None) -> None:
         open_trades = self.state.get("open_trades", {})
         if not open_trades:
             return
-        prices = self.binance.get_all_prices()
-        now_ms = int(datetime.now(tz=timezone.utc).timestamp() * 1000)
+
+        if now_ms is None:
+            now_ms = self.binance.get_server_time()
+
+        state_changed = False
         for symbol, trade in list(open_trades.items()):
-            current_price = prices.get(symbol)
-            if current_price is None:
+            start_ms = int(trade.get("last_target_check_ms", int(trade["entry_time"]) + 1))
+            if start_ms > now_ms:
                 continue
-            if current_price >= float(trade["target_price"]):
-                self.send_target_message(trade, float(trade["target_price"]), now_ms)
-                self.close_trade(symbol, int(now_ms // HOUR_MS * HOUR_MS), "target_live")
+
+            klines = self.binance.get_klines_range(
+                symbol=symbol,
+                interval="1m",
+                start_time=start_ms,
+                end_time=now_ms,
+            )
+            if klines.empty:
+                continue
+
+            hit_rows = klines[klines["high"] >= float(trade["target_price"])]
+            if not hit_rows.empty:
+                first_hit = hit_rows.iloc[0]
+                event_time_ms = int(first_hit["close_time"])
+                self.send_target_message(trade, float(trade["target_price"]), event_time_ms)
+                self.close_trade(symbol, int(event_time_ms // HOUR_MS * HOUR_MS), "target_intrabar")
+                continue
+
+            trade["last_target_check_ms"] = int(klines.iloc[-1]["close_time"]) + 1
+            state_changed = True
+
+        if state_changed:
+            self.store.save(self.state)
 
     def process_new_closed_hour(self) -> None:
         server_time = self.binance.get_server_time()
@@ -121,10 +144,12 @@ class SpotSignalBot:
             candle_high = float(row["high"])
             candle_close = float(row["close"])
             candle_close_time = int(row["close_time"])
+
             if candle_high >= float(trade["target_price"]):
                 self.send_target_message(trade, float(trade["target_price"]), candle_close_time)
                 self.close_trade(symbol, last_closed_open_time, "target_hour_recovery")
                 continue
+
             if candle_close < float(trade["stop_price"]):
                 self.send_stop_message(trade, candle_close_time)
                 self.close_trade(symbol, last_closed_open_time, "stop_close")
@@ -132,6 +157,7 @@ class SpotSignalBot:
         for symbol in self.symbols:
             if symbol in self.state["open_trades"]:
                 continue
+
             df = klines_map.get(symbol)
             if df is None or df.empty:
                 continue
@@ -142,6 +168,7 @@ class SpotSignalBot:
             last_bar_open_time = int(closed_df.iloc[-1]["open_time"])
             if last_bar_open_time != last_closed_open_time:
                 continue
+
             signal = compute_entry_signal(
                 closed_df,
                 self.settings,
@@ -160,6 +187,7 @@ class SpotSignalBot:
                 "stop_price": signal["stop_price"],
                 "entry_time": signal["bar_close_time"],
                 "entry_bar_open_time": signal["bar_open_time"],
+                "last_target_check_ms": signal["bar_close_time"] + MINUTE_MS,
                 "strong": signal["strong"],
                 "mode": signal["mode"],
             }
@@ -172,19 +200,34 @@ class SpotSignalBot:
         self.state["last_processed_open_time"] = last_closed_open_time
         self.store.save(self.state)
 
+    def run_cycle(self) -> None:
+        self.refresh_symbols(force=not self.symbols)
+        self.monitor_open_trades_intrabar_targets()
+        self.process_new_closed_hour()
+
     def run(self) -> None:
         self.refresh_symbols(force=True)
         self.logger.info("Bot started.")
         while True:
             try:
-                self.refresh_symbols()
-                self.monitor_open_trades_live()
-                self.process_new_closed_hour()
+                self.run_cycle()
             except KeyboardInterrupt:
                 raise
             except Exception:
                 self.logger.exception("Unhandled error in main loop")
             time.sleep(self.config.poll_seconds)
+
+    def run_once(self) -> None:
+        self.refresh_symbols(force=True)
+        self.logger.info("Bot one-shot run started.")
+        self.run_cycle()
+        self.logger.info("Bot one-shot run completed.")
+
+
+def build_bot() -> SpotSignalBot:
+    config = AppConfig.from_env()
+    Path(config.state_file).parent.mkdir(parents=True, exist_ok=True)
+    return SpotSignalBot(config)
 
 
 def main() -> None:
@@ -192,9 +235,7 @@ def main() -> None:
         level=getattr(logging, AppConfig.from_env().log_level.upper(), logging.INFO),
         format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
     )
-    config = AppConfig.from_env()
-    Path(config.state_file).parent.mkdir(parents=True, exist_ok=True)
-    bot = SpotSignalBot(config)
+    bot = build_bot()
     bot.run()
 
 

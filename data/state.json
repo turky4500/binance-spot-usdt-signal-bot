@@ -1,0 +1,44 @@
+{
+  "last_processed_open_time": 1791169200000,
+  "last_entry_bar_time": {
+    "ESPUSDT": 1791169200000,
+    "GMXUSDT": 1791169200000,
+    "QNTUSDT": 1791169200000
+  },
+  "last_exit_bar_time": {},
+  "open_trades": {
+    "ESPUSDT": {
+      "symbol": "ESPUSDT",
+      "entry_price": 0.10577,
+      "target_price": 0.1078854,
+      "stop_price": 0.10416485009595894,
+      "entry_time": 1791172799999,
+      "entry_bar_open_time": 1791169200000,
+      "last_target_check_ms": 1791172859999,
+      "strong": true,
+      "mode": "متوازن"
+    },
+    "GMXUSDT": {
+      "symbol": "GMXUSDT",
+      "entry_price": 8.51,
+      "target_price": 8.6802,
+      "stop_price": 8.319834500117345,
+      "entry_time": 1791172799999,
+      "entry_bar_open_time": 1791169200000,
+      "last_target_check_ms": 1791172859999,
+      "strong": false,
+      "mode": "متوازن"
+    },
+    "QNTUSDT": {
+      "symbol": "QNTUSDT",
+      "entry_price": 250.28,
+      "target_price": 255.28560000000002,
+      "stop_price": 247.46094245695173,
+      "entry_time": 1791172799999,
+      "entry_bar_open_time": 1791169200000,
+      "last_target_check_ms": 1791172859999,
+      "strong": false,
+      "mode": "متوازن"
+    }
+  }
+}
