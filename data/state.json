@@ -1,9 +1,10 @@
 {
-  "last_processed_open_time": 1791169200000,
+  "last_processed_open_time": 1791172800000,
   "last_entry_bar_time": {
     "ESPUSDT": 1791169200000,
     "GMXUSDT": 1791169200000,
-    "QNTUSDT": 1791169200000
+    "QNTUSDT": 1791169200000,
+    "RLUSDUSDT": 1791172800000
   },
   "last_exit_bar_time": {},
   "open_trades": {
@@ -14,7 +15,7 @@
       "stop_price": 0.10416485009595894,
       "entry_time": 1791172799999,
       "entry_bar_open_time": 1791169200000,
-      "last_target_check_ms": 1791175020000,
+      "last_target_check_ms": 1791177060000,
       "strong": true,
       "mode": "متوازن"
     },
@@ -25,7 +26,7 @@
       "stop_price": 8.319834500117345,
       "entry_time": 1791172799999,
       "entry_bar_open_time": 1791169200000,
-      "last_target_check_ms": 1791175020000,
+      "last_target_check_ms": 1791177060000,
       "strong": false,
       "mode": "متوازن"
     },
@@ -36,8 +37,19 @@
       "stop_price": 247.46094245695173,
       "entry_time": 1791172799999,
       "entry_bar_open_time": 1791169200000,
-      "last_target_check_ms": 1791175020000,
+      "last_target_check_ms": 1791177060000,
       "strong": false,
+      "mode": "متوازن"
+    },
+    "RLUSDUSDT": {
+      "symbol": "RLUSDUSDT",
+      "entry_price": 1.0004,
+      "target_price": 1.020408,
+      "stop_price": 1.0000768128702398,
+      "entry_time": 1791176399999,
+      "entry_bar_open_time": 1791172800000,
+      "last_target_check_ms": 1791176459999,
+      "strong": true,
       "mode": "متوازن"
     }
   }
