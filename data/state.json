@@ -14,7 +14,7 @@
       "stop_price": 0.10416485009595894,
       "entry_time": 1791172799999,
       "entry_bar_open_time": 1791169200000,
-      "last_target_check_ms": 1791173760000,
+      "last_target_check_ms": 1791175020000,
       "strong": true,
       "mode": "متوازن"
     },
@@ -25,7 +25,7 @@
       "stop_price": 8.319834500117345,
       "entry_time": 1791172799999,
       "entry_bar_open_time": 1791169200000,
-      "last_target_check_ms": 1791173760000,
+      "last_target_check_ms": 1791175020000,
       "strong": false,
       "mode": "متوازن"
     },
@@ -36,7 +36,7 @@
       "stop_price": 247.46094245695173,
       "entry_time": 1791172799999,
       "entry_bar_open_time": 1791169200000,
-      "last_target_check_ms": 1791173760000,
+      "last_target_check_ms": 1791175020000,
       "strong": false,
       "mode": "متوازن"
     }
