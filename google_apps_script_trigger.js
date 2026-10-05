@@ -10,20 +10,40 @@ function triggerCryptoSignalWorkflow() {
     throw new Error('Missing Script Property: GITHUB_TOKEN');
   }
 
-  const url = `https://api.github.com/repos/${owner}/${repo}/actions/workflows/${workflow}/dispatches`;
-  const options = {
+  const commonHeaders = {
+    Authorization: `Bearer ${token}`,
+    Accept: 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+  };
+
+  const runsUrl = `https://api.github.com/repos/${owner}/${repo}/actions/workflows/${workflow}/runs?branch=${encodeURIComponent(ref)}&per_page=5`;
+  const runsResp = UrlFetchApp.fetch(runsUrl, {
+    method: 'get',
+    headers: commonHeaders,
+    muteHttpExceptions: true,
+  });
+
+  if (runsResp.getResponseCode() !== 200) {
+    throw new Error(`GitHub runs check failed (${runsResp.getResponseCode()}): ${runsResp.getContentText()}`);
+  }
+
+  const runsPayload = JSON.parse(runsResp.getContentText() || '{}');
+  const runs = runsPayload.workflow_runs || [];
+  const hasActiveRun = runs.some((run) => run.status === 'queued' || run.status === 'in_progress');
+
+  if (hasActiveRun) {
+    console.log(`Skip dispatch: workflow already active at ${new Date().toISOString()}`);
+    return;
+  }
+
+  const dispatchUrl = `https://api.github.com/repos/${owner}/${repo}/actions/workflows/${workflow}/dispatches`;
+  const response = UrlFetchApp.fetch(dispatchUrl, {
     method: 'post',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: 'application/vnd.github+json',
-      'X-GitHub-Api-Version': '2022-11-28',
-    },
+    headers: commonHeaders,
     contentType: 'application/json',
     payload: JSON.stringify({ ref }),
     muteHttpExceptions: true,
-  };
-
-  const response = UrlFetchApp.fetch(url, options);
+  });
   const code = response.getResponseCode();
   const body = response.getContentText();
 
