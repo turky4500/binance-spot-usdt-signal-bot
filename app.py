@@ -32,6 +32,8 @@ class SpotSignalBot:
         self.settings = StrategySettings()
         self.store = StateStore(config.state_file)
         self.state = self.store.load()
+        self.data_dir = str(Path(config.state_file).parent)
+        self.halal_verdicts: dict[str, int] = {}
         self.symbols: list[str] = []
         self.last_symbols_refresh = 0.0
 

@@ -16,6 +16,7 @@ class AppConfig:
     kline_limit: int = int(os.getenv("KLINE_LIMIT", "260"))
     request_timeout: int = int(os.getenv("REQUEST_TIMEOUT", "20"))
     max_workers: int = int(os.getenv("MAX_WORKERS", "10"))
+    halal_refresh_hours: int = int(os.getenv("HALAL_REFRESH_HOURS", "6"))
     state_file: str = os.getenv("STATE_FILE", "data/state.json")
     log_level: str = os.getenv("LOG_LEVEL", "INFO")
 
