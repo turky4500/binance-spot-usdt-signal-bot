@@ -13,6 +13,16 @@ from src.halal import ensure_verdict, refresh_if_stale
 from src.state import StateStore
 from src.strategy import StrategySettings, compute_entry_signal
 from src.telegram_client import TelegramClient
+from src.trade_analysis import (
+    avg_metric,
+    build_daily_observations,
+    load_trade_rows,
+    rows_for_entry_day,
+    rows_for_exit_day,
+    strong_vs_normal_stats,
+    success_rate_percent,
+    top_symbols,
+)
 from src.trade_journal import append_trade_entry, update_trade_exit
 from src.utils import (
     format_price,
@@ -386,6 +396,70 @@ class SpotSignalBot:
         self.store.save(self.state)
         self.logger.info("Daily report sent for %s", report_day)
 
+    def send_daily_analysis_if_due(self, now_ms: int) -> None:
+        now_local = datetime.fromtimestamp(now_ms / 1000, tz=timezone.utc).astimezone(ZoneInfo(self.config.timezone_name))
+        if now_local.hour != 0:
+            return
+
+        report_day = (now_local.date() - timedelta(days=1)).isoformat()
+        analysis_state = self.state.setdefault("daily_analysis", {})
+        if analysis_state.get("last_reported_for_date") == report_day:
+            return
+
+        rows = load_trade_rows(self.data_dir)
+        entry_rows = rows_for_entry_day(rows, report_day)
+        closed_rows = rows_for_exit_day(rows, report_day, self.config.timezone_name)
+        win_rows = [row for row in closed_rows if row.get("outcome") == "target"]
+        loss_rows = [row for row in closed_rows if row.get("outcome") == "stop"]
+
+        wins = len(win_rows)
+        losses = len(loss_rows)
+        closed_count = wins + losses
+        open_count = len(self.state.get("open_trades", {}))
+        success_rate = success_rate_percent(wins, losses)
+        strong_stats = strong_vs_normal_stats(closed_rows)
+        observations = build_daily_observations(win_rows, loss_rows, closed_rows)
+
+        avg_win_buy = avg_metric(win_rows, "buy_score")
+        avg_loss_buy = avg_metric(loss_rows, "buy_score")
+        avg_win_rvol = avg_metric(win_rows, "relative_volume")
+        avg_loss_rvol = avg_metric(loss_rows, "relative_volume")
+
+        report_anchor_ms = int(datetime(now_local.year, now_local.month, now_local.day, tzinfo=ZoneInfo(self.config.timezone_name)).astimezone(timezone.utc).timestamp() * 1000)
+        weekday_name = weekday_ar_from_ms(report_anchor_ms - 1000, self.config.timezone_name)
+
+        lines = [
+            "🧠 التحليل اليومي للإشارات",
+            f"🗓️ اليوم المشمول: {weekday_name} {report_day}",
+            f"🕛 وقت التحليل: {ms_to_local_text(now_ms, self.config.timezone_name)}",
+            "═════════════",
+            f"📥 صفقات الدخول المسجلة: {len(entry_rows)}",
+            f"✅ الصفقات المغلقة على الهدف: {wins}",
+            f"🛑 الصفقات المغلقة على الوقف: {losses}",
+            f"📌 ما زال مفتوحًا: {open_count}",
+            f"📈 نسبة النجاح للصفقات المغلقة: {success_rate:.1f}%",
+            "═════════════",
+            f"🏆 أكثر العملات نجاحًا: {top_symbols(win_rows, 'لا توجد أهداف محققة اليوم')}",
+            f"⚠️ أكثر العملات خسارة: {top_symbols(loss_rows, 'لا توجد صفقات خاسرة اليوم')}",
+            f"💪 أداء الإشارات القوية: {float(strong_stats['strong_rate']):.1f}% من {int(strong_stats['strong_count'])} صفقة مغلقة",
+            f"📎 أداء الإشارات العادية: {float(strong_stats['normal_rate']):.1f}% من {int(strong_stats['normal_count'])} صفقة مغلقة",
+            "═════════════",
+            f"📊 متوسط Buy Score — رابحة: {avg_win_buy:.2f}" if avg_win_buy is not None else "📊 متوسط Buy Score — رابحة: —",
+            f"📊 متوسط Buy Score — خاسرة: {avg_loss_buy:.2f}" if avg_loss_buy is not None else "📊 متوسط Buy Score — خاسرة: —",
+            f"🔊 متوسط الحجم النسبي — رابحة: {avg_win_rvol:.2f}x" if avg_win_rvol is not None else "🔊 متوسط الحجم النسبي — رابحة: —",
+            f"🔊 متوسط الحجم النسبي — خاسرة: {avg_loss_rvol:.2f}x" if avg_loss_rvol is not None else "🔊 متوسط الحجم النسبي — خاسرة: —",
+            "═════════════",
+            "📝 ملاحظات تحليلية:",
+        ]
+        lines.extend([f"• {note}" for note in observations])
+        if closed_count == 0:
+            lines.append("• لا توجد صفقات مغلقة كافية لهذا اليوم بعد، لذلك التحليل النوعي ما زال محدودًا.")
+
+        self.telegram.send_message("\n".join(lines))
+        analysis_state["last_reported_for_date"] = report_day
+        self.store.save(self.state)
+        self.logger.info("Daily analysis sent for %s", report_day)
+
     def send_weekly_report_if_due(self, now_ms: int) -> None:
         now_local = datetime.fromtimestamp(now_ms / 1000, tz=timezone.utc).astimezone(ZoneInfo(self.config.timezone_name))
         if now_local.hour != 0 or now_local.weekday() != WEEKLY_REPORT_WEEKDAY:
@@ -465,6 +539,7 @@ class SpotSignalBot:
         self.monitor_open_trades_intrabar_targets(server_time)
         self.process_new_closed_hour(server_time)
         self.send_daily_report_if_due(server_time)
+        self.send_daily_analysis_if_due(server_time)
         self.send_weekly_report_if_due(server_time)
 
     def run(self) -> None:
