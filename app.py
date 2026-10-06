@@ -154,6 +154,16 @@ class SpotSignalBot:
             },
         )
 
+    def sync_open_trades_to_journal(self) -> None:
+        changed = False
+        for symbol, trade in self.state.get("open_trades", {}).items():
+            if not trade.get("trade_id"):
+                trade["trade_id"] = f"{symbol}-{trade.get('entry_bar_open_time', trade.get('entry_time', ''))}"
+                changed = True
+            append_trade_entry(self.data_dir, self._build_trade_log_record(trade))
+        if changed:
+            self.store.save(self.state)
+
     def send_entry_message(self, trade: dict) -> None:
         strength = "قوية" if trade.get("strong") else "عادية"
         verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
