@@ -65,6 +65,9 @@
     "STRK": 1,
     "BAND": 0,
     "CYBER": 0,
-    "UMA": 1
+    "UMA": 1,
+    "DIA": 0,
+    "IO": 0,
+    "OGN": 0
   }
 }
