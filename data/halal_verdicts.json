@@ -70,6 +70,9 @@
     "SCR": 0,
     "SC": 0,
     "SEI": 0,
-    "STX": 0
+    "STX": 0,
+    "NEXO": 1,
+    "RUNE": 1,
+    "STRK": 1
   }
 }
