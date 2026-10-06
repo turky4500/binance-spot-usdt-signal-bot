@@ -62,6 +62,9 @@
     "TIA": 0,
     "CTSI": 0,
     "DODO": 1,
-    "STRK": 1
+    "STRK": 1,
+    "BAND": 0,
+    "CYBER": 0,
+    "UMA": 1
   }
 }
