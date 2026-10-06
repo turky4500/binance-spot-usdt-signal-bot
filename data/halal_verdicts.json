@@ -56,6 +56,10 @@
     "VET": 0,
     "JUP": 1,
     "ADX": 0,
-    "SKY": 0
+    "SKY": 0,
+    "ONT": 1,
+    "PYTH": 0,
+    "THETA": 0,
+    "WOO": 1
   }
 }
