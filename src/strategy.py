@@ -389,6 +389,8 @@ def compute_entry_signal(
                 in_trade = True
 
                 if i == current_last_index:
+                    ema_slow = float(row["ema_slow"]) if pd.notna(row["ema_slow"]) else np.nan
+                    distance_from_ema200_pct = ((entry_price - ema_slow) / ema_slow * 100.0) if ema_slow and not np.isnan(ema_slow) else np.nan
                     latest_signal = {
                         "symbol": str(row.get("symbol", "")),
                         "bar_open_time": current_bar_open_time,
@@ -399,6 +401,24 @@ def compute_entry_signal(
                         "strong": bool(row["buy_score"] >= settings.minimum_score + 1),
                         "buy_score": int(row["buy_score"]),
                         "mode": settings.reversal_mode,
+                        "metrics": {
+                            "rsi": float(row["rsi"]) if pd.notna(row["rsi"]) else None,
+                            "stoch": float(row["stoch"]) if pd.notna(row["stoch"]) else None,
+                            "adx": float(row["adx"]) if pd.notna(row["adx"]) else None,
+                            "plus_di": float(row["plus_di"]) if pd.notna(row["plus_di"]) else None,
+                            "minus_di": float(row["minus_di"]) if pd.notna(row["minus_di"]) else None,
+                            "relative_volume": float(row["relative_volume"]) if pd.notna(row["relative_volume"]) else None,
+                            "reward_risk_ratio": float(row["reward_risk_ratio"]) if pd.notna(row["reward_risk_ratio"]) else None,
+                            "buy_risk_pct": float(row["buy_risk_pct"]) if pd.notna(row["buy_risk_pct"]) else None,
+                            "distance_from_ema200_pct": float(distance_from_ema200_pct) if not np.isnan(distance_from_ema200_pct) else None,
+                            "quote_volume": float(row["quote_volume"]) if pd.notna(row["quote_volume"]) else None,
+                            "bullish_divergence": bool(row["bullish_divergence"]),
+                            "oversold_at_pivot": bool(row["oversold_at_pivot"]),
+                            "volume_confirm": bool(row["volume_confirm"]),
+                            "bullish_trend_ok": bool(row["bullish_trend_ok"]),
+                            "adx_buy_ok": bool(row["adx_buy_ok"]),
+                            "liquidity_ok": bool(row["liquidity_ok"]),
+                        },
                     }
         else:
             if entry_bar_index is not None and i > entry_bar_index:

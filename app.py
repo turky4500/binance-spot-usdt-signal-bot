@@ -13,6 +13,7 @@ from src.halal import ensure_verdict, refresh_if_stale
 from src.state import StateStore
 from src.strategy import StrategySettings, compute_entry_signal
 from src.telegram_client import TelegramClient
+from src.trade_journal import append_trade_entry, update_trade_exit
 from src.utils import (
     format_price,
     humanize_duration_ar,
@@ -24,7 +25,7 @@ from src.utils import (
 HOUR_MS = 60 * 60 * 1000
 MINUTE_MS = 60 * 1000
 EVENT_RETENTION_DAYS = 120
-WEEKLY_REPORT_WEEKDAY = 6  # الأحد بحسب weekday() في بايثون حيث الاثنين=0
+WEEKLY_REPORT_WEEKDAY = 6  # الأحد، حيث الاثنين = 0
 
 
 class SpotSignalBot:
@@ -85,6 +86,74 @@ class SpotSignalBot:
         top = counts.most_common(3)
         return " • ".join(f"{symbol} ({count})" for symbol, count in top)
 
+    def _build_trade_log_record(self, trade: dict) -> dict[str, object]:
+        entry_time_ms = int(trade["entry_time"])
+        metrics = trade.get("metrics", {})
+        entry_local_text = ms_to_local_text(entry_time_ms, self.config.timezone_name)
+        entry_date = local_date_key_from_ms(entry_time_ms, self.config.timezone_name)
+        weekday = weekday_ar_from_ms(entry_time_ms, self.config.timezone_name)
+        return {
+            "trade_id": trade["trade_id"],
+            "symbol": trade["symbol"],
+            "entry_time_ms": entry_time_ms,
+            "entry_time_local": entry_local_text,
+            "entry_date_local": entry_date,
+            "entry_weekday_ar": weekday,
+            "entry_price": trade["entry_price"],
+            "target_price": trade["target_price"],
+            "stop_price": trade["stop_price"],
+            "strong_signal": int(bool(trade.get("strong"))),
+            "buy_score": trade.get("buy_score", ""),
+            "mode": trade.get("mode", ""),
+            "rsi": metrics.get("rsi", ""),
+            "stoch": metrics.get("stoch", ""),
+            "adx": metrics.get("adx", ""),
+            "plus_di": metrics.get("plus_di", ""),
+            "minus_di": metrics.get("minus_di", ""),
+            "relative_volume": metrics.get("relative_volume", ""),
+            "reward_risk_ratio": metrics.get("reward_risk_ratio", ""),
+            "buy_risk_pct": metrics.get("buy_risk_pct", ""),
+            "distance_from_ema200_pct": metrics.get("distance_from_ema200_pct", ""),
+            "quote_volume": metrics.get("quote_volume", ""),
+            "bullish_divergence": int(bool(metrics.get("bullish_divergence", False))),
+            "oversold_at_pivot": int(bool(metrics.get("oversold_at_pivot", False))),
+            "volume_confirm": int(bool(metrics.get("volume_confirm", False))),
+            "bullish_trend_ok": int(bool(metrics.get("bullish_trend_ok", False))),
+            "adx_buy_ok": int(bool(metrics.get("adx_buy_ok", False))),
+            "liquidity_ok": int(bool(metrics.get("liquidity_ok", False))),
+            "outcome": "",
+            "exit_reason": "",
+            "exit_time_ms": "",
+            "exit_time_local": "",
+            "exit_price": "",
+            "duration_minutes": "",
+            "duration_text": "",
+            "gross_return_pct": "",
+            "net_return_pct": "",
+        }
+
+    def _record_trade_exit(self, trade: dict, outcome: str, exit_reason: str, exit_time_ms: int, exit_price: float) -> None:
+        trade_id = str(trade.get("trade_id") or f"{trade['symbol']}-{trade['entry_bar_open_time']}")
+        duration_minutes = max(int((int(exit_time_ms) - int(trade["entry_time"])) // 60000), 0)
+        duration_text = humanize_duration_ar(int(trade["entry_time"]), int(exit_time_ms))
+        gross_return_pct = ((float(exit_price) / float(trade["entry_price"])) - 1.0) * 100.0
+        net_return_pct = gross_return_pct - (2.0 * self.settings.commission_per_side_pct)
+        update_trade_exit(
+            self.data_dir,
+            trade_id,
+            {
+                "outcome": outcome,
+                "exit_reason": exit_reason,
+                "exit_time_ms": int(exit_time_ms),
+                "exit_time_local": ms_to_local_text(int(exit_time_ms), self.config.timezone_name),
+                "exit_price": float(exit_price),
+                "duration_minutes": duration_minutes,
+                "duration_text": duration_text,
+                "gross_return_pct": round(gross_return_pct, 6),
+                "net_return_pct": round(net_return_pct, 6),
+            },
+        )
+
     def send_entry_message(self, trade: dict) -> None:
         strength = "قوية" if trade.get("strong") else "عادية"
         verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
@@ -102,6 +171,7 @@ class SpotSignalBot:
         )
         self.telegram.send_message(text)
         self.append_event("entry", trade["symbol"], int(trade["entry_time"]))
+        append_trade_entry(self.data_dir, self._build_trade_log_record(trade))
 
     def send_target_message(self, trade: dict, hit_price: float, event_time_ms: int) -> None:
         duration = humanize_duration_ar(trade["entry_time"], event_time_ms)
@@ -118,6 +188,7 @@ class SpotSignalBot:
         )
         self.telegram.send_message(text)
         self.append_event("target", trade["symbol"], int(event_time_ms))
+        self._record_trade_exit(trade, "target", "take_profit", int(event_time_ms), float(hit_price))
 
     def send_stop_message(self, trade: dict, event_time_ms: int) -> None:
         duration = humanize_duration_ar(trade["entry_time"], event_time_ms)
@@ -135,6 +206,7 @@ class SpotSignalBot:
         )
         self.telegram.send_message(text)
         self.append_event("stop", trade["symbol"], int(event_time_ms))
+        self._record_trade_exit(trade, "stop", "stop_loss", int(event_time_ms), float(trade["stop_price"]))
 
     def close_trade(self, symbol: str, exit_bar_open_time: int, reason: str) -> None:
         self.state["open_trades"].pop(symbol, None)
@@ -232,7 +304,9 @@ class SpotSignalBot:
             if int(self.state["last_entry_bar_time"].get(symbol, 0)) == signal["bar_open_time"]:
                 continue
 
+            trade_id = f"{symbol}-{signal['bar_open_time']}"
             trade = {
+                "trade_id": trade_id,
                 "symbol": symbol,
                 "entry_price": signal["entry_price"],
                 "target_price": signal["target_price"],
@@ -241,7 +315,9 @@ class SpotSignalBot:
                 "entry_bar_open_time": signal["bar_open_time"],
                 "last_target_check_ms": signal["bar_close_time"] + MINUTE_MS,
                 "strong": signal["strong"],
+                "buy_score": signal.get("buy_score"),
                 "mode": signal["mode"],
+                "metrics": signal.get("metrics", {}),
                 "halal_verdict": self.get_halal_verdict(symbol),
             }
             self.state["open_trades"][symbol] = trade
@@ -374,6 +450,7 @@ class SpotSignalBot:
     def run_cycle(self) -> None:
         self.refresh_symbols(force=not self.symbols)
         self.refresh_halal_verdicts()
+        self.sync_open_trades_to_journal()
         server_time = self.binance.get_server_time()
         self.monitor_open_trades_intrabar_targets(server_time)
         self.process_new_closed_hour(server_time)

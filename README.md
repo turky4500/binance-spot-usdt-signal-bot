@@ -28,6 +28,8 @@
 - `src/binance_client.py` جلب بيانات Binance
 - `src/telegram_client.py` إرسال رسائل تيليجرام
 - `src/state.py` حفظ حالة الصفقات المفتوحة
+- `src/trade_journal.py` تسجيل تحليلي لكل صفقة في CSV
+- `tools/analyze_trades.py` تحليل أولي لسجل الصفقات
 - `tools/get_telegram_chat_id.py` استخراج Chat ID
 - `tools/create_github_repo.py` إنشاء مستودع GitHub عبر توكن مؤقت
 
