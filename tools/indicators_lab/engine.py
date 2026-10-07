@@ -29,8 +29,15 @@ def simulate(
     stop_pct_series: pd.Series | None = None,
     same_bar_rule: str = "stop_first",
     exit_mode: str = "intrabar",
+    exit_signal: pd.Series | None = None,
+    target_pct: float = TARGET_PCT,
+    atr_stop_mult: float = ATR_STOP_MULT,
 ) -> pd.DataFrame:
-    """يحاكي نظامًا واحدًا على عملة واحدة. entries = إشارات دخول (نعم/لا) لكل شمعة."""
+    """يحاكي نظامًا واحدًا على عملة واحدة. entries = إشارات دخول (نعم/لا) لكل شمعة.
+
+    exit_mode="signal" + exit_signal: الخروج بإشارة مخصصة (مثل: الإغلاق نزل تحت المتوسط).
+    الوقف/الهدف يبقيان شبكة أمان تحفظ رأس المال، ويُسجَّل سبب الخروج في exit_reason.
+    """
     close = df["close"].to_numpy(dtype=float)
     high = df["high"].to_numpy(dtype=float)
     low = df["low"].to_numpy(dtype=float)
@@ -56,9 +63,9 @@ def simulate(
                 continue
             stop_pct = float(np.clip(raw, MIN_STOP_PCT, MAX_STOP_PCT))
         else:
-            stop_pct = float(np.clip(ATR_STOP_MULT * atr_v[i] / entry * 100.0, MIN_STOP_PCT, MAX_STOP_PCT))
+            stop_pct = float(np.clip(atr_stop_mult * atr_v[i] / entry * 100.0, MIN_STOP_PCT, MAX_STOP_PCT))
         stop = entry * (1 - stop_pct / 100.0)
-        target = entry * (1 + TARGET_PCT / 100.0)
+        target = entry * (1 + target_pct / 100.0)
 
         outcome = None
         exit_price = None
@@ -79,9 +86,37 @@ def simulate(
             trades.append({
                 "entry_index": i, "entry_time": int(open_ms[i]), "exit_time": int(open_ms[exit_index]),
                 "entry_price": entry, "exit_price": float(exit_price),
-                "stop_pct": ATR_STOP_MULT * float(atr_v[i]) / entry * 100.0,
+                "stop_pct": atr_stop_mult * float(atr_v[i]) / entry * 100.0,
                 "outcome": outcome, "gross_pct": gross, "net_pct": gross - 2.0 * FEE_PER_SIDE_PCT,
                 "bars_held": exit_index - i,
+            })
+            last_exit = exit_index
+            i = exit_index + 1
+            continue
+
+        if exit_mode == "signal" and exit_signal is not None:
+            ex = exit_signal.fillna(False).to_numpy(dtype=bool)
+            exit_reason = None
+            for j in range(i + 1, n):
+                if low[j] <= stop:
+                    outcome, exit_price, exit_index, exit_reason = "stop", stop, j, "stop_loss"
+                    break
+                if high[j] >= target:
+                    outcome, exit_price, exit_index, exit_reason = "target", target, j, "take_profit"
+                    break
+                if ex[j]:  # إشارة الخروج — تتحقق على الإغلاق، بعد فحص الوقف/الهدف داخل الشمعة
+                    price = float(close[j])
+                    outcome = "signal_win" if price > entry else "signal_loss"
+                    exit_price, exit_index, exit_reason = price, j, "signal"
+                    break
+            if outcome is None:
+                outcome, exit_price, exit_index, exit_reason = "open", float(close[n - 1]), n - 1, "open"
+            gross = (exit_price / entry - 1.0) * 100.0
+            trades.append({
+                "entry_index": i, "entry_time": int(open_ms[i]), "exit_time": int(open_ms[exit_index]),
+                "entry_price": entry, "exit_price": float(exit_price), "stop_pct": stop_pct,
+                "outcome": outcome, "exit_reason": exit_reason,
+                "gross_pct": gross, "net_pct": gross - 2.0 * FEE_PER_SIDE_PCT, "bars_held": exit_index - i,
             })
             last_exit = exit_index
             i = exit_index + 1

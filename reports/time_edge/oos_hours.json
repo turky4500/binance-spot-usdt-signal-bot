@@ -24,22 +24,22 @@
   },
   "test_period": {
     "all": {
-      "n": 39251,
-      "win_rate": 52.63,
-      "avg_net": -0.098,
+      "n": 39256,
+      "win_rate": 52.62,
+      "avg_net": -0.0982,
       "median": 1.8,
-      "t": -9.61
+      "t": -9.62
     },
     "good_hours": {
-      "n": 10911,
-      "win_rate": 56.6,
-      "avg_net": 0.0606,
+      "n": 10915,
+      "win_rate": 56.57,
+      "avg_net": 0.06,
       "median": 1.8,
-      "t": 3.15
+      "t": 3.12
     },
     "bad_hours": {
-      "n": 28340,
-      "win_rate": 51.09,
+      "n": 28341,
+      "win_rate": 51.1,
       "avg_net": -0.1591,
       "median": 1.8,
       "t": -13.24
