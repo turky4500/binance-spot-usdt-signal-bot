@@ -19,6 +19,8 @@ from src.strategy import StrategySettings, compute_entry_signal
 from src.telegram_client import TelegramClient
 from src.trade_analysis import (
     avg_metric,
+    rows_for_entry_day_range,
+    rows_for_exit_day_range,
     build_daily_observations,
     is_loss,
     is_win,
@@ -839,10 +841,103 @@ class SpotSignalBot:
         if closed_count == 0:
             lines.append("• لا توجد صفقات مغلقة كافية لهذا اليوم بعد، لذلك التحليل النوعي ما زال محدودًا.")
 
+        target_rows = [row for row in closed_rows if is_win(row.get("outcome"))]
+        stop_rows = [row for row in closed_rows if is_loss(row.get("outcome"))]
+        target_dur = self._exit_duration_summary(target_rows)
+        stop_dur = self._exit_duration_summary(stop_rows)
+        lines.extend([
+            f"⏱️ متوسط مدة الوصول للهدف: {self._duration_h_text(target_dur['avg_h'])}"
+            + (f" (أسرع {self._duration_h_text(target_dur['min_h'])} • أبطأ {self._duration_h_text(target_dur['max_h'])})" if target_dur["count"] else ""),
+            f"⏱️ متوسط مدة ضرب الوقف: {self._duration_h_text(stop_dur['avg_h'])}"
+            + (f" (أسرع {self._duration_h_text(stop_dur['min_h'])} • أبطأ {self._duration_h_text(stop_dur['max_h'])})" if stop_dur["count"] else ""),
+            "═════════════",
+        ])
+
         self.telegram.send_message("\n".join(lines))
         analysis_state["last_reported_for_date"] = report_day
         self.store.save(self.state)
         self.logger.info("Daily analysis sent for %s", report_day)
+
+
+    @staticmethod
+    def _exit_duration_summary(rows: list[dict]) -> dict:
+        """متوسط/أسرع/أبطأ مدة حتى الإغلاق (هدف أو وقف) — بالساعات، من دفتر الصفقات."""
+        durations = []
+        for row in rows:
+            minutes = None
+            try:
+                minutes = float(row.get("duration_minutes"))
+            except (TypeError, ValueError):
+                minutes = None
+            if minutes is None or minutes <= 0:
+                try:
+                    start_ms = int(float(row.get("entry_time_ms") or 0))
+                    end_ms = int(float(row.get("exit_time_ms") or 0))
+                except (TypeError, ValueError):
+                    continue
+                if start_ms > 0 and end_ms > start_ms:
+                    minutes = (end_ms - start_ms) / 60_000.0
+                else:
+                    continue
+            durations.append(minutes / 60.0)
+        if not durations:
+            return {"count": 0, "avg_h": None, "min_h": None, "max_h": None}
+        return {
+            "count": len(durations),
+            "avg_h": sum(durations) / len(durations),
+            "min_h": min(durations),
+            "max_h": max(durations),
+        }
+
+    @staticmethod
+    def _ar_count(n: int, one: str, two: str, few: str, many: str) -> str:
+        """صياغة عربية سليمة للعدد: 1 ساعة • ساعتان • 5 ساعات • 15 ساعة."""
+        if n == 1:
+            return one
+        if n == 2:
+            return two
+        if 3 <= n <= 10:
+            return f"{n} {few}"
+        return f"{n} {many}"
+
+    @classmethod
+    def _duration_h_text(cls, hours: float | None) -> str:
+        if hours is None:
+            return "—"
+        total_minutes = int(round(hours * 60))
+        if total_minutes < 60:
+            return cls._ar_count(total_minutes, "دقيقة", "دقيقتان", "دقائق", "دقيقة")
+        h, m = divmod(total_minutes, 60)
+        if h < 24:
+            text = cls._ar_count(h, "ساعة", "ساعتان", "ساعات", "ساعة")
+            if m:
+                text += " و" + cls._ar_count(m, "دقيقة", "دقيقتان", "دقائق", "دقيقة")
+            return text
+        d, h = divmod(h, 24)
+        text = cls._ar_count(d, "يوم", "يومان", "أيام", "يومًا")
+        if h:
+            text += " و" + cls._ar_count(h, "ساعة", "ساعتان", "ساعات", "ساعة")
+        return text
+
+    @staticmethod
+    def _outcome_metrics(rows: list[dict]) -> dict:
+        """صافي النسبة والنتيجة لكل صفقة مغلقة (للتقرير الأسبوعي)."""
+        nets = []
+        for row in rows:
+            value = row.get("net_return_pct")
+            try:
+                nets.append(float(value))
+            except (TypeError, ValueError):
+                continue
+        if not nets:
+            return {"count": 0, "avg": None, "best": None, "worst": None}
+        return {"count": len(nets), "avg": sum(nets) / len(nets), "best": max(nets), "worst": min(nets)}
+
+    @staticmethod
+    def _smart_window_stats(rows: list[dict], hours: list[int]) -> dict:
+        total = len(rows)
+        inside = sum(1 for r in rows if int(float(r.get("entry_hour_local") or -1)) in hours) if total else 0
+        return {"total": total, "inside": inside}
 
     def send_weekly_report_if_due(self, now_ms: int) -> None:
         now_local = datetime.fromtimestamp(now_ms / 1000, tz=timezone.utc).astimezone(ZoneInfo(self.config.timezone_name))
@@ -896,6 +991,60 @@ class SpotSignalBot:
         best_symbols = self._format_ranked_symbols(target_symbols, "لا توجد أهداف محققة هذا الأسبوع")
         stop_symbols_text = self._format_ranked_symbols(stop_symbols, "لا توجد صفقات متوقفة هذا الأسبوع")
 
+        # ---- تحليل من دفتر الصفقات الحقيقي (نفس مصدر التحليل اليومي) ----
+        rows = load_trade_rows(self.data_dir)
+        entry_rows = rows_for_entry_day_range(rows, report_start_key, report_end_key)
+        closed_rows = rows_for_exit_day_range(rows, report_start_key, report_end_key, self.config.timezone_name)
+        win_rows = [row for row in closed_rows if is_win(row.get("outcome"))]
+        loss_rows = [row for row in closed_rows if is_loss(row.get("outcome"))]
+        win_count, loss_count = len(win_rows), len(loss_rows)
+        file_rate = success_rate_percent(win_count, loss_count)
+        outcome = self._outcome_metrics(closed_rows)
+        strong_stats = strong_vs_normal_stats(closed_rows)
+        target_dur = self._exit_duration_summary(win_rows)
+        stop_dur = self._exit_duration_summary(loss_rows)
+        target_dur_all = self._exit_duration_summary(closed_rows)
+
+        # ---- أداء الدخول الذكي: هل التزمت الصفقات بالنافذة الزمنية؟ ----
+        allowed_hours = self.smart_entry.allowed_hours
+        window = self._smart_window_stats(entry_rows, allowed_hours)
+        inside_rows = [r for r in entry_rows if int(float(r.get("entry_hour_local") or -1)) in allowed_hours] if allowed_hours else entry_rows
+        inside_win = sum(1 for r in inside_rows if is_win(r.get("outcome")))
+        inside_loss = sum(1 for r in inside_rows if is_loss(r.get("outcome")))
+        window_rate = success_rate_percent(inside_win, inside_loss)
+
+        # ---- أفضل وأسوأ ساعات الدخول هذا الأسبوع ----
+        hour_stats: dict[int, list[float]] = {}
+        for row in closed_rows:
+            try:
+                hour = int(float(row.get("entry_hour_local")))
+            except (TypeError, ValueError):
+                continue
+            try:
+                hour_stats.setdefault(hour, []).append(float(row.get("net_return_pct")))
+            except (TypeError, ValueError):
+                continue
+        ranked_hours = sorted(
+            ((h, sum(v) / len(v), len(v)) for h, v in hour_stats.items() if len(v) >= 2),
+            key=lambda item: item[1],
+            reverse=True,
+        )
+        hours_text = " • ".join(f"{h:02d}:00 ({avg:+.2f}% / {n})" for h, avg, n in ranked_hours[:3]) or "لا توجد بيانات كافية"
+        topped = {h for h, _, _ in ranked_hours[:3]}
+        worst_pool = [item for item in ranked_hours[::-1] if item[0] not in topped]
+        worst_hours_text = (
+            " • ".join(f"{h:02d}:00 ({avg:+.2f}% / {n})" for h, avg, n in worst_pool[:2])
+            if worst_pool else "لا توجد ساعات كافية للمقارنة بعد"
+        )
+
+        shadow_all = load_shadow_rows(self.data_dir)
+        shadow_week_rows = [
+            r for r in shadow_all
+            if report_start_key <= str(r.get("rejected_date_local") or "") <= report_end_key
+        ]
+        shadow_week = shadow_stats(shadow_week_rows)
+        week_reject_reasons = Counter(str(r.get("reject_reason") or "") for r in shadow_week_rows)
+
         text = (
             f"🗂️ التقرير الأسبوعي للإشارات\n"
             f"🗓️ الفترة: {start_weekday} {report_start_key} ← {end_weekday} {report_end_key}\n"
@@ -907,6 +1056,41 @@ class SpotSignalBot:
             f"📌 المفتوحة حاليًا: {open_count}\n"
             f"📈 نسبة النجاح: {success_rate:.1f}%\n"
             f"═════════════\n"
+            f"📒 تحليل دفتر الصفقات (نفس مصدر التحليل اليومي)\n"
+            f"   • صفقات دخلت هذا الأسبوع: {len(entry_rows)}\n"
+            f"   • أُغلقت على هدف: {win_count} • أُغلقت على وقف: {loss_count} • ما زالت مفتوحة: {open_count}\n"
+            f"   • نسبة نجاح المغلقة: {file_rate:.1f}%\n"
+            + (
+                f"   • متوسط نتيجة الصفقة المغلقة: {outcome['avg']:+.2f}% (أفضل {outcome['best']:+.2f}% • أسوأ {outcome['worst']:+.2f}%)\n"
+                if outcome["count"] else "   • متوسط نتيجة الصفقة المغلقة: —\n"
+            )
+            + (
+                f"   • 💪 الإشارات القوية: {float(strong_stats['strong_rate']):.1f}% من {int(strong_stats['strong_count'])}\n"
+                f"   • 📎 الإشارات العادية: {float(strong_stats['normal_rate']):.1f}% من {int(strong_stats['normal_count'])}\n"
+                if (int(strong_stats["strong_count"]) + int(strong_stats["normal_count"])) else ""
+            )
+            + f"═════════════\n"
+            f"⏱️ المدد\n"
+            f"   • متوسط مدة الوصول للهدف: {self._duration_h_text(target_dur['avg_h'])}"
+            + (f" (أسرع {self._duration_h_text(target_dur['min_h'])} • أبطأ {self._duration_h_text(target_dur['max_h'])})\n" if target_dur["count"] else "\n")
+            + f"   • متوسط مدة ضرب الوقف: {self._duration_h_text(stop_dur['avg_h'])}"
+            + (f" (أسرع {self._duration_h_text(stop_dur['min_h'])} • أبطأ {self._duration_h_text(stop_dur['max_h'])})\n" if stop_dur["count"] else "\n")
+            + f"   • متوسط مدة الصفقة المغلقة عمومًا: {self._duration_h_text(target_dur_all['avg_h'])}\n"
+            f"═════════════\n"
+            f"⏰ الدخول الذكي: {self.smart_entry.describe()}\n"
+            f"   • الصفقات داخل النافذة الزمنية: {window['inside']} من {window['total']}"
+            + (f" • نسبة نجاحها: {window_rate:.1f}%\n" if (inside_win + inside_loss) else "\n")
+            + f"   • 🟢 أفضل ساعات الدخول: {hours_text}\n"
+            f"   • 🔴 أسوأ ساعات الدخول: {worst_hours_text}\n"
+            f"   • 🕵️ مرشحون مستبعدون هذا الأسبوع: {int(shadow_week['total'])}"
+            + (f" (هدف {int(shadow_week['wins'])} / وقف {int(shadow_week['losses'])} = {float(shadow_week['rate']):.1f}%)\n" if int(shadow_week["total"]) else "\n")
+            + (
+                "   • أسباب الاستبعاد: "
+                + " • ".join(f"{k}={v}" for k, v in week_reject_reasons.most_common(4)) + "\n"
+                if week_reject_reasons else ""
+            )
+            + f"═════════════\n"
+            f"🧭 قاعدة الخروج المفعّلة: {self.exit_rules.describe()}\n"
             f"🏆 أكثر العملات نجاحًا: {best_symbols}\n"
             f"⚠️ أكثر العملات وصولًا للوقف: {stop_symbols_text}"
         )

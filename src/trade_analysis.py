@@ -67,6 +67,26 @@ def rows_for_exit_day(rows: Iterable[dict[str, str]], report_day: str, tz_name: 
     return out
 
 
+def rows_for_entry_day_range(rows: Iterable[dict[str, str]], start_day: str, end_day: str) -> list[dict[str, str]]:
+    """صفقات دخلت خلال فترة (شامل الطرفين) بحسب يوم الدخول المحلي."""
+    return [row for row in rows if start_day <= str(row.get("entry_date_local") or "") <= end_day]
+
+
+def rows_for_exit_day_range(rows: Iterable[dict[str, str]], start_day: str, end_day: str, tz_name: str) -> list[dict[str, str]]:
+    """صفقات أُغلقت خلال فترة (شامل الطرفين) بحسب يوم الإغلاق المحلي."""
+    selected = []
+    for row in rows:
+        try:
+            exit_ms = int(float(row.get("exit_time_ms") or 0))
+        except (TypeError, ValueError):
+            continue
+        if exit_ms <= 0:
+            continue
+        if start_day <= local_date_key_from_ms(exit_ms, tz_name) <= end_day:
+            selected.append(row)
+    return selected
+
+
 def avg_metric(rows: Iterable[dict[str, str]], key: str) -> float | None:
     vals = [_to_float(row.get(key)) for row in rows]
     vals = [v for v in vals if v is not None]
