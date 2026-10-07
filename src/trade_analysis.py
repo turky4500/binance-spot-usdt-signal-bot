@@ -5,6 +5,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Iterable
 
+from .shadow_journal import SHADOW_LOG_FILE
 from .trade_journal import TRADE_LOG_FILE
 from .utils import local_date_key_from_ms
 
@@ -26,8 +27,33 @@ def load_trade_rows(data_dir: str) -> list[dict[str, str]]:
         return list(csv.DictReader(f))
 
 
+def load_shadow_rows(data_dir: str) -> list[dict[str, str]]:
+    path = Path(data_dir) / SHADOW_LOG_FILE
+    if not path.exists():
+        return []
+    with path.open("r", encoding="utf-8", newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def shadow_stats(rows: Iterable[dict[str, str]]) -> dict[str, float | int]:
+    rows = list(rows)
+    wins = sum(1 for row in rows if row.get("outcome") == "target")
+    losses = sum(1 for row in rows if row.get("outcome") == "stop")
+    return {
+        "total": len(rows),
+        "wins": wins,
+        "losses": losses,
+        "pending": sum(1 for row in rows if row.get("outcome") in ("", None)),
+        "rate": success_rate_percent(wins, losses),
+    }
+
+
 def rows_for_entry_day(rows: Iterable[dict[str, str]], report_day: str) -> list[dict[str, str]]:
     return [row for row in rows if (row.get("entry_date_local") or "") == report_day]
+
+
+def shadow_rows_for_day(rows: Iterable[dict[str, str]], report_day: str) -> list[dict[str, str]]:
+    return [row for row in rows if (row.get("rejected_date_local") or "") == report_day]
 
 
 def rows_for_exit_day(rows: Iterable[dict[str, str]], report_day: str, tz_name: str) -> list[dict[str, str]]:

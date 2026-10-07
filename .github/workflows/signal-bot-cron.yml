@@ -28,6 +28,11 @@ jobs:
       HALAL_REFRESH_HOURS: 6
       STATE_FILE: data/state.json
       LOG_LEVEL: INFO
+      # بوابات جودة الدخول (يمكن تعديلها من هنا بدون تعديل الكود)
+      GATE_MIN_REL_VOLUME: 1.2
+      GATE_MAX_REL_VOLUME: 2.5
+      GATE_REQUIRE_DI_POSITIVE: "true"
+      GATE_MIN_DI_SPREAD: 0.0
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -49,7 +54,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/state.json data/halal_verdicts.json data/trades_log.csv
+          git add data/state.json data/halal_verdicts.json data/trades_log.csv data/rejected_candidates.csv
           if git diff --cached --quiet; then
             echo "No state changes to commit"
             exit 0

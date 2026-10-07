@@ -5,6 +5,7 @@ from collections import Counter
 from pathlib import Path
 
 DATA_FILE = Path("data/trades_log.csv")
+SHADOW_FILE = Path("data/rejected_candidates.csv")
 
 
 def _to_float(value: str) -> float | None:
@@ -63,6 +64,23 @@ def main() -> None:
         val = _avg(losses, key)
         print(f"- {key}: {val:.3f}" if val is not None else f"- {key}: —")
     print(f"- top symbols: {_top_symbols(losses)}")
+
+    # قياس أثر الفلاتر الجديدة: مقارنة المأخوذ مقابل المستبعد
+    if SHADOW_FILE.exists():
+        with SHADOW_FILE.open("r", encoding="utf-8", newline="") as f:
+            shadow = list(csv.DictReader(f))
+        s_closed = [r for r in shadow if r.get("outcome") in {"target", "stop"}]
+        s_wins = sum(1 for r in s_closed if r.get("outcome") == "target")
+        s_losses = sum(1 for r in s_closed if r.get("outcome") == "stop")
+        by_reason = Counter(r.get("reject_reason", "") for r in shadow)
+        print()
+        print("## Filter impact (taken vs rejected)")
+        print(f"- rejected candidates: {len(shadow)} (closed: {len(s_closed)}, pending: {len(shadow) - len(s_closed)})")
+        if s_closed:
+            print(f"- rejected wins/losses: {s_wins}/{s_losses} = {s_wins / len(s_closed) * 100:.1f}%")
+        if closed:
+            print(f"- taken wins/losses: {len(wins)}/{len(losses)} = {len(wins) / len(closed) * 100:.1f}%")
+        print(f"- rejections by reason: {dict(by_reason)}")
 
 
 if __name__ == "__main__":

@@ -9,16 +9,21 @@ from zoneinfo import ZoneInfo
 
 from src.binance_client import BinanceClient
 from src.config import AppConfig
+from src.entry_filters import EntryGateSettings, evaluate_entry_gates
 from src.halal import ensure_verdict, refresh_if_stale
+from src.shadow_journal import append_shadow_candidate, resolve_shadow_candidate
 from src.state import StateStore
 from src.strategy import StrategySettings, compute_entry_signal
 from src.telegram_client import TelegramClient
 from src.trade_analysis import (
     avg_metric,
     build_daily_observations,
+    load_shadow_rows,
     load_trade_rows,
     rows_for_entry_day,
     rows_for_exit_day,
+    shadow_rows_for_day,
+    shadow_stats,
     strong_vs_normal_stats,
     success_rate_percent,
     top_symbols,
@@ -36,6 +41,8 @@ HOUR_MS = 60 * 60 * 1000
 MINUTE_MS = 60 * 1000
 EVENT_RETENTION_DAYS = 120
 WEEKLY_REPORT_WEEKDAY = 6  # الأحد، حيث الاثنين = 0
+SHADOW_MAX_ACTIVE = 400  # حد أقصى للمرشحات المتابعة في وقت واحد
+SHADOW_MAX_AGE_MS = 48 * HOUR_MS  # بعدها تُعتبر منتهية بدون نتيجة
 
 
 class SpotSignalBot:
@@ -53,6 +60,7 @@ class SpotSignalBot:
             timeout=config.request_timeout,
         )
         self.settings = StrategySettings()
+        self.entry_gates = EntryGateSettings()
         self.store = StateStore(config.state_file)
         self.state = self.store.load()
         self.data_dir = str(Path(config.state_file).parent)
@@ -268,6 +276,125 @@ class SpotSignalBot:
         if state_changed:
             self.store.save(self.state)
 
+    def register_rejected_candidate(self, symbol: str, signal: dict, reason: str, reason_ar: str) -> None:
+        """يسجّل الإشارة التي رفضتها البوابات الجديدة لمتابعتها لاحقًا (قياس مضاد للواقع)."""
+        bar_open_time = int(signal["bar_open_time"])
+        if int(self.state["last_rejected_bar_time"].get(symbol, 0)) == bar_open_time:
+            return
+        self.state["last_rejected_bar_time"][symbol] = bar_open_time
+
+        candidate_id = f"{symbol}-{bar_open_time}"
+        metrics = signal.get("metrics", {}) or {}
+        rejected_ms = int(signal["bar_close_time"])
+
+        record = {
+            "candidate_id": candidate_id,
+            "symbol": symbol,
+            "rejected_time_ms": rejected_ms,
+            "rejected_time_local": ms_to_local_text(rejected_ms, self.config.timezone_name),
+            "rejected_date_local": local_date_key_from_ms(rejected_ms, self.config.timezone_name),
+            "entry_bar_open_time": bar_open_time,
+            "reject_reason": reason,
+            "reject_reason_ar": reason_ar,
+            "entry_price": signal["entry_price"],
+            "target_price": signal["target_price"],
+            "stop_price": signal["stop_price"],
+            "strong_signal": 1 if signal.get("strong") else 0,
+            "buy_score": signal.get("buy_score"),
+            **{key: metrics.get(key) for key in (
+                "rsi",
+                "stoch",
+                "adx",
+                "plus_di",
+                "minus_di",
+                "relative_volume",
+                "reward_risk_ratio",
+                "buy_risk_pct",
+                "distance_from_ema200_pct",
+            )},
+        }
+        append_shadow_candidate(self.data_dir, record)
+
+        shadow = self.state.setdefault("shadow_candidates", {})
+        if len(shadow) >= SHADOW_MAX_ACTIVE:
+            self.expire_oldest_shadow_candidates(needed=1)
+        shadow[candidate_id] = {
+            "candidate_id": candidate_id,
+            "symbol": symbol,
+            "entry_price": float(signal["entry_price"]),
+            "target_price": float(signal["target_price"]),
+            "stop_price": float(signal["stop_price"]),
+            "entry_time": int(signal["bar_close_time"]),
+            "entry_bar_open_time": bar_open_time,
+            "reason": reason,
+        }
+        self.store.save(self.state)
+        self.logger.info("Rejected candidate %s بسبب %s", symbol, reason)
+
+    def expire_oldest_shadow_candidates(self, needed: int = 1) -> None:
+        shadow = self.state.get("shadow_candidates", {})
+        if not shadow:
+            return
+        ordered = sorted(shadow.values(), key=lambda item: int(item.get("entry_bar_open_time", 0)))
+        for candidate in ordered[:needed]:
+            self.resolve_shadow(candidate, outcome="expired", exit_reason="age_limit", exit_time_ms=0, exit_price=None)
+        self.store.save(self.state)
+
+    def resolve_shadow(self, candidate: dict, outcome: str, exit_reason: str, exit_time_ms: int, exit_price: float | None) -> None:
+        candidate_id = str(candidate.get("candidate_id"))
+        duration_minutes = 0
+        if exit_time_ms:
+            duration_minutes = max(int((int(exit_time_ms) - int(candidate["entry_time"])) // 60000), 0)
+        updates = {
+            "outcome": outcome,
+            "exit_reason": exit_reason,
+            "exit_time_ms": int(exit_time_ms) if exit_time_ms else "",
+            "exit_time_local": ms_to_local_text(int(exit_time_ms), self.config.timezone_name) if exit_time_ms else "",
+            "exit_price": "" if exit_price is None else float(exit_price),
+            "duration_minutes": duration_minutes,
+            "resolution_method": "hourly_approx",
+        }
+        resolve_shadow_candidate(self.data_dir, candidate_id, updates)
+        self.state.get("shadow_candidates", {}).pop(candidate_id, None)
+
+    def monitor_shadow_candidates(self, klines_map: dict, last_closed_open_time: int) -> None:
+        """يتابع المرشحات المستبعدة بنفس قواعد الصفقات الحقيقية لتقيس أثر الفلاتر."""
+        shadow = self.state.get("shadow_candidates", {})
+        if not shadow:
+            return
+
+        changed = False
+        for candidate in list(shadow.values()):
+            candidate_id = str(candidate.get("candidate_id"))
+            entry_bar_open_time = int(candidate.get("entry_bar_open_time", 0))
+            if entry_bar_open_time >= last_closed_open_time:
+                continue
+
+            age_ms = (last_closed_open_time + HOUR_MS) - int(candidate["entry_time"])
+            if age_ms > SHADOW_MAX_AGE_MS:
+                self.resolve_shadow(candidate, "expired", "age_limit", 0, None)
+                changed = True
+                continue
+
+            df = klines_map.get(candidate["symbol"])
+            if df is None or df.empty:
+                continue
+            candle = df[df["open_time"] == last_closed_open_time]
+            if candle.empty:
+                continue
+
+            row = candle.iloc[-1]
+            close_time = int(row["close_time"])
+            if float(row["high"]) >= float(candidate["target_price"]):
+                self.resolve_shadow(candidate, "target", "take_profit_simulated", close_time, float(candidate["target_price"]))
+                changed = True
+            elif float(row["close"]) < float(candidate["stop_price"]):
+                self.resolve_shadow(candidate, "stop", "stop_loss_simulated", close_time, float(candidate["stop_price"]))
+                changed = True
+
+        if changed:
+            self.store.save(self.state)
+
     def process_new_closed_hour(self, server_time: int) -> None:
         last_closed_open_time = ((server_time // HOUR_MS) - 1) * HOUR_MS
         if int(self.state.get("last_processed_open_time", 0)) >= last_closed_open_time:
@@ -275,6 +402,8 @@ class SpotSignalBot:
 
         self.logger.info("Processing closed hour at open_time=%s", last_closed_open_time)
         klines_map = self.binance.get_klines_for_symbols(self.symbols, self.config.interval, self.config.kline_limit)
+
+        self.monitor_shadow_candidates(klines_map, last_closed_open_time)
 
         open_trades = self.state.get("open_trades", {})
         for symbol, trade in list(open_trades.items()):
@@ -322,6 +451,11 @@ class SpotSignalBot:
             if not signal:
                 continue
             if int(self.state["last_entry_bar_time"].get(symbol, 0)) == signal["bar_open_time"]:
+                continue
+
+            allowed, reject_reason, reject_reason_ar = evaluate_entry_gates(signal.get("metrics", {}), self.entry_gates)
+            if not allowed:
+                self.register_rejected_candidate(symbol, signal, reject_reason, reject_reason_ar)
                 continue
 
             trade_id = f"{symbol}-{signal['bar_open_time']}"
@@ -444,13 +578,33 @@ class SpotSignalBot:
             f"💪 أداء الإشارات القوية: {float(strong_stats['strong_rate']):.1f}% من {int(strong_stats['strong_count'])} صفقة مغلقة",
             f"📎 أداء الإشارات العادية: {float(strong_stats['normal_rate']):.1f}% من {int(strong_stats['normal_count'])} صفقة مغلقة",
             "═════════════",
+        ]
+
+        shadow_all = load_shadow_rows(self.data_dir)
+        shadow_day = shadow_stats(shadow_rows_for_day(shadow_all, report_day))
+        shadow_total = shadow_stats(shadow_all)
+        lines.extend([
+            f"🕵️ مرشحات استبعدتها الفلاتر اليوم: {int(shadow_day['total'])}",
+            (
+                f"   • من المستبعد اليوم: هدف {int(shadow_day['wins'])} / وقف {int(shadow_day['losses'])}"
+                f" → نسبة {float(shadow_day['rate']):.1f}%"
+            ),
+            (
+                f"   • إجمالي المستبعد منذ التفعيل: {int(shadow_total['total'])}"
+                f" (هدف {int(shadow_total['wins'])} / وقف {int(shadow_total['losses'])} = {float(shadow_total['rate']):.1f}%)"
+            ),
+            "   • القاعدة: إذا كانت نسبة المستبعد أقل من نسبة الصفقات المأخوذة فالفلاتر تعمل لصالحنا",
+            "═════════════",
+        ])
+
+        lines.extend([
             f"📊 متوسط Buy Score — رابحة: {avg_win_buy:.2f}" if avg_win_buy is not None else "📊 متوسط Buy Score — رابحة: —",
             f"📊 متوسط Buy Score — خاسرة: {avg_loss_buy:.2f}" if avg_loss_buy is not None else "📊 متوسط Buy Score — خاسرة: —",
             f"🔊 متوسط الحجم النسبي — رابحة: {avg_win_rvol:.2f}x" if avg_win_rvol is not None else "🔊 متوسط الحجم النسبي — رابحة: —",
             f"🔊 متوسط الحجم النسبي — خاسرة: {avg_loss_rvol:.2f}x" if avg_loss_rvol is not None else "🔊 متوسط الحجم النسبي — خاسرة: —",
             "═════════════",
             "📝 ملاحظات تحليلية:",
-        ]
+        ])
         lines.extend([f"• {note}" for note in observations])
         if closed_count == 0:
             lines.append("• لا توجد صفقات مغلقة كافية لهذا اليوم بعد، لذلك التحليل النوعي ما زال محدودًا.")

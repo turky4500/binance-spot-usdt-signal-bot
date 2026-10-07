@@ -21,6 +21,8 @@ def _default_state() -> dict[str, Any]:
         "weekly_report": {
             "last_reported_week_start": ""
         },
+        "last_rejected_bar_time": {},
+        "shadow_candidates": {},
     }
 
 
