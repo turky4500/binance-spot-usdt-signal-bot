@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 .env
 .venv/
+
+# مختبر المؤشرات: كاش البيانات الخام (كبير الحجم، يُعاد جلبه تلقائيًا)
+tools/indicators_lab/data_cache/
