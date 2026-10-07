@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1791396000000,
+  "last_processed_open_time": 1791399600000,
   "last_entry_bar_time": {
     "ESPUSDT": 1791349200000,
     "GMXUSDT": 1791306000000,
@@ -384,7 +384,8 @@
     "NFLXBUSDT": 1791370800000,
     "JSTUSDT": 1791374400000,
     "AGPUBUSDT": 1791378000000,
-    "FDUSDUSDT": 1791378000000
+    "FDUSDUSDT": 1791378000000,
+    "SOXSBUSDT": 1791399600000
   },
   "open_trades": {
     "SPYBUSDT": {
@@ -394,13 +395,13 @@
       "stop_price": 767.9245502743319,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791403080000,
+      "last_target_check_ms": 1791403380000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "trade_id": "SPYBUSDT-1791201600000",
-      "peak_price": 777.72,
-      "max_favorable_pct": 1.12342,
+      "peak_price": 777.95,
+      "max_favorable_pct": 1.153326,
       "reference_target_hit": false
     },
     "GOOGLBUSDT": {
@@ -410,13 +411,13 @@
       "stop_price": 342.22527179721885,
       "entry_time": 1791212399999,
       "entry_bar_open_time": 1791208800000,
-      "last_target_check_ms": 1791403080000,
+      "last_target_check_ms": 1791403380000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "trade_id": "GOOGLBUSDT-1791208800000",
-      "peak_price": 350.81,
-      "max_favorable_pct": 1.908552,
+      "peak_price": 350.87,
+      "max_favorable_pct": 1.925982,
       "reference_target_hit": false
     },
     "RLUSDUSDT": {
@@ -426,13 +427,13 @@
       "stop_price": 0.999964774076438,
       "entry_time": 1791259199999,
       "entry_bar_open_time": 1791255600000,
-      "last_target_check_ms": 1791403080000,
+      "last_target_check_ms": 1791403380000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "trade_id": "RLUSDUSDT-1791255600000",
-      "peak_price": 1.0005,
-      "max_favorable_pct": 0.019994,
+      "peak_price": 1.0006,
+      "max_favorable_pct": 0.029991,
       "reference_target_hit": false
     },
     "XUSDUSDT": {
@@ -442,13 +443,13 @@
       "stop_price": 1.0002745356386218,
       "entry_time": 1791262799999,
       "entry_bar_open_time": 1791259200000,
-      "last_target_check_ms": 1791403080000,
+      "last_target_check_ms": 1791403380000,
       "strong": false,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "trade_id": "XUSDUSDT-1791259200000",
-      "peak_price": 1.0005,
-      "max_favorable_pct": 0.0,
+      "peak_price": 1.0006,
+      "max_favorable_pct": 0.009995,
       "reference_target_hit": false
     },
     "AMZNBUSDT": {
@@ -459,7 +460,7 @@
       "stop_price": 251.387866379407,
       "entry_time": 1791302399999,
       "entry_bar_open_time": 1791298800000,
-      "last_target_check_ms": 1791403080000,
+      "last_target_check_ms": 1791403380000,
       "strong": true,
       "buy_score": 3,
       "mode": "متوازن",
@@ -494,7 +495,7 @@
       "stop_price": 333.37633324761555,
       "entry_time": 1791345599999,
       "entry_bar_open_time": 1791342000000,
-      "last_target_check_ms": 1791403080000,
+      "last_target_check_ms": 1791403380000,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
@@ -517,43 +518,8 @@
         "liquidity_ok": true
       },
       "halal_verdict": "ℹ️ لا يوجد حكم",
-      "peak_price": 336.78,
-      "max_favorable_pct": 0.771993,
-      "reference_target_hit": false
-    },
-    "SOXSBUSDT": {
-      "trade_id": "SOXSBUSDT-1791388800000",
-      "symbol": "SOXSBUSDT",
-      "entry_price": 31.09,
-      "target_price": 31.7118,
-      "stop_price": 30.80603243279103,
-      "entry_time": 1791392399999,
-      "entry_bar_open_time": 1791388800000,
-      "last_target_check_ms": 1791403080000,
-      "strong": false,
-      "buy_score": 2,
-      "mode": "متوازن",
-      "metrics": {
-        "rsi": 68.55045466659772,
-        "stoch": 63.888888888888886,
-        "adx": 35.59351630893651,
-        "plus_di": 32.014550957813,
-        "minus_di": 9.890954209710776,
-        "relative_volume": 1.2160030608913461,
-        "reward_risk_ratio": 1.9707180136814089,
-        "buy_risk_pct": 0.913372683206717,
-        "distance_from_ema200_pct": 1.67571783386077,
-        "quote_volume": 122918.6676,
-        "bullish_divergence": false,
-        "oversold_at_pivot": false,
-        "volume_confirm": true,
-        "bullish_trend_ok": true,
-        "adx_buy_ok": true,
-        "liquidity_ok": true
-      },
-      "halal_verdict": "ℹ️ لا يوجد حكم",
-      "peak_price": 31.09,
-      "max_favorable_pct": 0.0,
+      "peak_price": 337.49,
+      "max_favorable_pct": 0.98444,
       "reference_target_hit": false
     }
   },
@@ -2982,6 +2948,11 @@
       "type": "stop",
       "symbol": "SPCXBUSDT",
       "time_ms": 1791395999999
+    },
+    {
+      "type": "stop",
+      "symbol": "SOXSBUSDT",
+      "time_ms": 1791403199999
     }
   ],
   "daily_report": {
