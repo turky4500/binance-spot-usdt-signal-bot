@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1791381600000,
+  "last_processed_open_time": 1791385200000,
   "last_entry_bar_time": {
     "ESPUSDT": 1791349200000,
     "GMXUSDT": 1791306000000,
@@ -144,7 +144,7 @@
     "GRAMUSDT": 1791295200000,
     "AMZNBUSDT": 1791298800000,
     "CRCLBUSDT": 1791298800000,
-    "SPCXBUSDT": 1791298800000,
+    "SPCXBUSDT": 1791385200000,
     "ALPINEUSDT": 1791302400000,
     "EULUSDT": 1791302400000,
     "HAEDALUSDT": 1791302400000,
@@ -393,7 +393,7 @@
       "stop_price": 767.9245502743319,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791388680000,
+      "last_target_check_ms": 1791388980000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -406,7 +406,7 @@
       "stop_price": 342.22527179721885,
       "entry_time": 1791212399999,
       "entry_bar_open_time": 1791208800000,
-      "last_target_check_ms": 1791388680000,
+      "last_target_check_ms": 1791388980000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -419,7 +419,7 @@
       "stop_price": 0.999964774076438,
       "entry_time": 1791259199999,
       "entry_bar_open_time": 1791255600000,
-      "last_target_check_ms": 1791388680000,
+      "last_target_check_ms": 1791388980000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -432,7 +432,7 @@
       "stop_price": 1.0002745356386218,
       "entry_time": 1791262799999,
       "entry_bar_open_time": 1791259200000,
-      "last_target_check_ms": 1791388680000,
+      "last_target_check_ms": 1791388980000,
       "strong": false,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -446,7 +446,7 @@
       "stop_price": 251.387866379407,
       "entry_time": 1791302399999,
       "entry_bar_open_time": 1791298800000,
-      "last_target_check_ms": 1791388680000,
+      "last_target_check_ms": 1791388980000,
       "strong": true,
       "buy_score": 3,
       "mode": "متوازن",
@@ -478,7 +478,7 @@
       "stop_price": 333.37633324761555,
       "entry_time": 1791345599999,
       "entry_bar_open_time": 1791342000000,
-      "last_target_check_ms": 1791388680000,
+      "last_target_check_ms": 1791388980000,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
@@ -495,6 +495,38 @@
         "quote_volume": 30767.4546,
         "bullish_divergence": false,
         "oversold_at_pivot": false,
+        "volume_confirm": true,
+        "bullish_trend_ok": true,
+        "adx_buy_ok": true,
+        "liquidity_ok": true
+      },
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "SPCXBUSDT": {
+      "trade_id": "SPCXBUSDT-1791385200000",
+      "symbol": "SPCXBUSDT",
+      "entry_price": 169.63,
+      "target_price": 173.0226,
+      "stop_price": 167.27100961258685,
+      "entry_time": 1791388799999,
+      "entry_bar_open_time": 1791385200000,
+      "last_target_check_ms": 1791388859999,
+      "strong": true,
+      "buy_score": 5,
+      "mode": "متوازن",
+      "metrics": {
+        "rsi": 50.88305959917705,
+        "stoch": 36.63194444444415,
+        "adx": 26.585237105900525,
+        "plus_di": 27.400932254352707,
+        "minus_di": 16.427199981645302,
+        "relative_volume": 1.890633245082347,
+        "reward_risk_ratio": 1.2943418575555437,
+        "buy_risk_pct": 1.3906681526930047,
+        "distance_from_ema200_pct": 5.500151454162651,
+        "quote_volume": 1965843.08778,
+        "bullish_divergence": true,
+        "oversold_at_pivot": true,
         "volume_confirm": true,
         "bullish_trend_ok": true,
         "adx_buy_ok": true,
@@ -2913,6 +2945,11 @@
       "type": "stop",
       "symbol": "FDUSDUSDT",
       "time_ms": 1791381599999
+    },
+    {
+      "type": "entry",
+      "symbol": "SPCXBUSDT",
+      "time_ms": 1791388799999
     }
   ],
   "daily_report": {
@@ -2927,7 +2964,11 @@
   "last_rejected_bar_time": {
     "AVAXUSDT": 1791374400000,
     "VTHOUSDT": 1791378000000,
-    "ZROUSDT": 1791378000000
+    "ZROUSDT": 1791378000000,
+    "AMDBUSDT": 1791385200000,
+    "AVGOBUSDT": 1791385200000,
+    "JSTUSDT": 1791385200000,
+    "SENTUSDT": 1791385200000
   },
   "shadow_candidates": {
     "ZROUSDT-1791378000000": {
@@ -2939,6 +2980,46 @@
       "entry_time": 1791381599999,
       "entry_bar_open_time": 1791378000000,
       "reason": "di_trend_negative"
+    },
+    "AMDBUSDT-1791385200000": {
+      "candidate_id": "AMDBUSDT-1791385200000",
+      "symbol": "AMDBUSDT",
+      "entry_price": 644.65,
+      "target_price": 657.543,
+      "stop_price": 633.3796772218993,
+      "entry_time": 1791388799999,
+      "entry_bar_open_time": 1791385200000,
+      "reason": "volume_blowoff"
+    },
+    "AVGOBUSDT-1791385200000": {
+      "candidate_id": "AVGOBUSDT-1791385200000",
+      "symbol": "AVGOBUSDT",
+      "entry_price": 375.12,
+      "target_price": 382.6224,
+      "stop_price": 368.5268326636993,
+      "entry_time": 1791388799999,
+      "entry_bar_open_time": 1791385200000,
+      "reason": "volume_blowoff"
+    },
+    "JSTUSDT-1791385200000": {
+      "candidate_id": "JSTUSDT-1791385200000",
+      "symbol": "JSTUSDT",
+      "entry_price": 0.14053,
+      "target_price": 0.14334059999999998,
+      "stop_price": 0.13786443549245303,
+      "entry_time": 1791388799999,
+      "entry_bar_open_time": 1791385200000,
+      "reason": "volume_too_low"
+    },
+    "SENTUSDT-1791385200000": {
+      "candidate_id": "SENTUSDT-1791385200000",
+      "symbol": "SENTUSDT",
+      "entry_price": 0.02476,
+      "target_price": 0.025255200000000002,
+      "stop_price": 0.024362538660355745,
+      "entry_time": 1791388799999,
+      "entry_bar_open_time": 1791385200000,
+      "reason": "volume_too_low"
     }
   }
 }
