@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1791374400000,
+  "last_processed_open_time": 1791378000000,
   "last_entry_bar_time": {
     "ESPUSDT": 1791349200000,
     "GMXUSDT": 1791306000000,
@@ -381,7 +381,9 @@
     "KAIAUSDT": 1791370800000,
     "API3USDT": 1791370800000,
     "NFLXBUSDT": 1791370800000,
-    "JSTUSDT": 1791374400000
+    "JSTUSDT": 1791374400000,
+    "AGPUBUSDT": 1791378000000,
+    "FDUSDUSDT": 1791378000000
   },
   "open_trades": {
     "SPYBUSDT": {
@@ -391,7 +393,7 @@
       "stop_price": 767.9245502743319,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791381480000,
+      "last_target_check_ms": 1791381780000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -404,7 +406,7 @@
       "stop_price": 342.22527179721885,
       "entry_time": 1791212399999,
       "entry_bar_open_time": 1791208800000,
-      "last_target_check_ms": 1791381480000,
+      "last_target_check_ms": 1791381780000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -417,7 +419,7 @@
       "stop_price": 0.999964774076438,
       "entry_time": 1791259199999,
       "entry_bar_open_time": 1791255600000,
-      "last_target_check_ms": 1791381480000,
+      "last_target_check_ms": 1791381780000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -430,7 +432,7 @@
       "stop_price": 1.0002745356386218,
       "entry_time": 1791262799999,
       "entry_bar_open_time": 1791259200000,
-      "last_target_check_ms": 1791381480000,
+      "last_target_check_ms": 1791381780000,
       "strong": false,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -444,7 +446,7 @@
       "stop_price": 251.387866379407,
       "entry_time": 1791302399999,
       "entry_bar_open_time": 1791298800000,
-      "last_target_check_ms": 1791381480000,
+      "last_target_check_ms": 1791381780000,
       "strong": true,
       "buy_score": 3,
       "mode": "متوازن",
@@ -468,38 +470,6 @@
       },
       "halal_verdict": "ℹ️ لا يوجد حكم"
     },
-    "AGPUBUSDT": {
-      "trade_id": "AGPUBUSDT-1791313200000",
-      "symbol": "AGPUBUSDT",
-      "entry_price": 12.26,
-      "target_price": 12.5052,
-      "stop_price": 12.061765489033112,
-      "entry_time": 1791316799999,
-      "entry_bar_open_time": 1791313200000,
-      "last_target_check_ms": 1791381480000,
-      "strong": false,
-      "buy_score": 2,
-      "mode": "متوازن",
-      "metrics": {
-        "rsi": 41.69132025905919,
-        "stoch": 22.916666666666714,
-        "adx": 22.808763533990923,
-        "plus_di": 16.3176411988029,
-        "minus_di": 26.46035795708742,
-        "relative_volume": 2.0175722307458774,
-        "reward_risk_ratio": 1.1132269498566851,
-        "buy_risk_pct": 1.6169209703661314,
-        "distance_from_ema200_pct": 0.11174263977862554,
-        "quote_volume": 69824.7458,
-        "bullish_divergence": false,
-        "oversold_at_pivot": true,
-        "volume_confirm": true,
-        "bullish_trend_ok": true,
-        "adx_buy_ok": true,
-        "liquidity_ok": true
-      },
-      "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
     "AAPLBUSDT": {
       "trade_id": "AAPLBUSDT-1791342000000",
       "symbol": "AAPLBUSDT",
@@ -508,7 +478,7 @@
       "stop_price": 333.37633324761555,
       "entry_time": 1791345599999,
       "entry_bar_open_time": 1791342000000,
-      "last_target_check_ms": 1791381480000,
+      "last_target_check_ms": 1791381780000,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
@@ -525,38 +495,6 @@
         "quote_volume": 30767.4546,
         "bullish_divergence": false,
         "oversold_at_pivot": false,
-        "volume_confirm": true,
-        "bullish_trend_ok": true,
-        "adx_buy_ok": true,
-        "liquidity_ok": true
-      },
-      "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
-    "FDUSDUSDT": {
-      "trade_id": "FDUSDUSDT-1791342000000",
-      "symbol": "FDUSDUSDT",
-      "entry_price": 0.9991,
-      "target_price": 1.019082,
-      "stop_price": 0.9987595479643039,
-      "entry_time": 1791345599999,
-      "entry_bar_open_time": 1791342000000,
-      "last_target_check_ms": 1791381480000,
-      "strong": true,
-      "buy_score": 4,
-      "mode": "متوازن",
-      "metrics": {
-        "rsi": 56.097152631055025,
-        "stoch": 41.666666666666686,
-        "adx": 11.986132102003896,
-        "plus_di": 12.237056001278798,
-        "minus_di": 8.53512549316072,
-        "relative_volume": 2.478343377196671,
-        "reward_risk_ratio": 52.82329994952005,
-        "buy_risk_pct": 0.03407587185427924,
-        "distance_from_ema200_pct": 0.0028193820403318815,
-        "quote_volume": 2410055.9957,
-        "bullish_divergence": false,
-        "oversold_at_pivot": true,
         "volume_confirm": true,
         "bullish_trend_ok": true,
         "adx_buy_ok": true,
@@ -2965,6 +2903,16 @@
       "type": "stop",
       "symbol": "JSTUSDT",
       "time_ms": 1791377999999
+    },
+    {
+      "type": "stop",
+      "symbol": "AGPUBUSDT",
+      "time_ms": 1791381599999
+    },
+    {
+      "type": "stop",
+      "symbol": "FDUSDUSDT",
+      "time_ms": 1791381599999
     }
   ],
   "daily_report": {
@@ -2977,18 +2925,30 @@
     "last_reported_week_start": ""
   },
   "last_rejected_bar_time": {
-    "AVAXUSDT": 1791374400000
+    "AVAXUSDT": 1791374400000,
+    "VTHOUSDT": 1791378000000,
+    "ZROUSDT": 1791378000000
   },
   "shadow_candidates": {
-    "AVAXUSDT-1791374400000": {
-      "candidate_id": "AVAXUSDT-1791374400000",
-      "symbol": "AVAXUSDT",
-      "entry_price": 11.107,
-      "target_price": 11.329139999999999,
-      "stop_price": 10.916275789456007,
-      "entry_time": 1791377999999,
-      "entry_bar_open_time": 1791374400000,
+    "VTHOUSDT-1791378000000": {
+      "candidate_id": "VTHOUSDT-1791378000000",
+      "symbol": "VTHOUSDT",
+      "entry_price": 0.000708,
+      "target_price": 0.00072216,
+      "stop_price": 0.0006988942001491377,
+      "entry_time": 1791381599999,
+      "entry_bar_open_time": 1791378000000,
       "reason": "volume_too_low"
+    },
+    "ZROUSDT-1791378000000": {
+      "candidate_id": "ZROUSDT-1791378000000",
+      "symbol": "ZROUSDT",
+      "entry_price": 2.131,
+      "target_price": 2.1736199999999997,
+      "stop_price": 2.090845698140665,
+      "entry_time": 1791381599999,
+      "entry_bar_open_time": 1791378000000,
+      "reason": "di_trend_negative"
     }
   }
 }
