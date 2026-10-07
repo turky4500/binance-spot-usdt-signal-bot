@@ -35,6 +35,8 @@ FIELDNAMES = [
     "max_favorable_pct",
     "reference_target_hit",
     "exit_mode",
+    "smart_score",
+    "entry_hour_local",
     "bullish_divergence",
     "oversold_at_pivot",
     "volume_confirm",

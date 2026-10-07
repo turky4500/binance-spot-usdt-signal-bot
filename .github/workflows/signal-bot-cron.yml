@@ -33,6 +33,12 @@ jobs:
       GATE_MAX_REL_VOLUME: 2.5
       GATE_REQUIRE_DI_POSITIVE: "true"
       GATE_MIN_DI_SPREAD: 0.0
+      # الدخول الذكي: بوابة زمنية مُتحقَّق منها + حد أقصى للصفقات المتزامنة
+      SMART_ENTRY: "1"
+      # نافذة 00:00–03:00 الرياض: أفضل نافذة في القياس (t=+7.58 داخليًا، +4.37 خارج العينة)
+      # خيار أوسع: "0,2,5,6,14,21,23" (أكبر عددًا وأضعف أثرًا)
+      ENTRY_HOURS: "0,1,2"
+      MAX_OPEN_TRADES: "15"
       # قاعدة الخروج: hybrid | trailing | fixed_target
       # hybrid = وقف الإشارة الأصلي حتى +2%، ثم وقف متحرك 2×ATR بأرضية التعادل
       EXIT_MODE: hybrid

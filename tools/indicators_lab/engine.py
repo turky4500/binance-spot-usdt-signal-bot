@@ -63,6 +63,30 @@ def simulate(
         outcome = None
         exit_price = None
         exit_index = None
+        peak = entry
+        if exit_mode == "trailing_atr":
+            for j in range(i + 1, n):
+                peak = max(peak, float(high[j]))
+                if np.isnan(atr_v[j]):
+                    continue
+                trail = peak - ATR_STOP_MULT * float(atr_v[j])
+                if float(close[j]) <= trail:
+                    outcome, exit_price, exit_index = ("win" if close[j] > entry else "loss"), float(close[j]), j
+                    break
+            if outcome is None:
+                outcome, exit_price, exit_index = "open", float(close[n - 1]), n - 1
+            gross = (exit_price / entry - 1.0) * 100.0
+            trades.append({
+                "entry_index": i, "entry_time": int(open_ms[i]), "exit_time": int(open_ms[exit_index]),
+                "entry_price": entry, "exit_price": float(exit_price),
+                "stop_pct": ATR_STOP_MULT * float(atr_v[i]) / entry * 100.0,
+                "outcome": outcome, "gross_pct": gross, "net_pct": gross - 2.0 * FEE_PER_SIDE_PCT,
+                "bars_held": exit_index - i,
+            })
+            last_exit = exit_index
+            i = exit_index + 1
+            continue
+
         for j in range(i + 1, n):
             if exit_mode == "close":
                 # قرار على إغلاق الشمعة فقط — بلا أي غموض داخل الشمعة

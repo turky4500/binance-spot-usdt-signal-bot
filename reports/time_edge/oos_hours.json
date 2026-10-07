@@ -1,0 +1,57 @@
+{
+  "train_period": {
+    "all": {
+      "n": 39386,
+      "win_rate": 50.75,
+      "avg_net": -0.1298,
+      "median": 1.8,
+      "t": -12.92
+    },
+    "good_hours": {
+      "n": 11184,
+      "win_rate": 56.02,
+      "avg_net": 0.0812,
+      "median": 1.8,
+      "t": 4.36
+    },
+    "bad_hours": {
+      "n": 28202,
+      "win_rate": 48.67,
+      "avg_net": -0.2135,
+      "median": -1.4,
+      "t": -17.95
+    }
+  },
+  "test_period": {
+    "all": {
+      "n": 39251,
+      "win_rate": 52.63,
+      "avg_net": -0.098,
+      "median": 1.8,
+      "t": -9.61
+    },
+    "good_hours": {
+      "n": 10911,
+      "win_rate": 56.6,
+      "avg_net": 0.0606,
+      "median": 1.8,
+      "t": 3.15
+    },
+    "bad_hours": {
+      "n": 28340,
+      "win_rate": 51.09,
+      "avg_net": -0.1591,
+      "median": 1.8,
+      "t": -13.24
+    }
+  },
+  "good_hours_selected": [
+    0,
+    2,
+    5,
+    6,
+    14,
+    21,
+    23
+  ]
+}

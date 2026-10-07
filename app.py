@@ -13,6 +13,7 @@ from src.entry_filters import EntryGateSettings, evaluate_entry_gates
 from src.exit_rules import ExitSettings
 from src.halal import ensure_verdict, refresh_if_stale
 from src.shadow_journal import append_shadow_candidate, resolve_shadow_candidate
+from src.smart_entry import REJECTION_REASONS_AR as SMART_REJECTION_REASONS_AR, SmartEntrySettings
 from src.state import StateStore
 from src.strategy import StrategySettings, compute_entry_signal
 from src.telegram_client import TelegramClient
@@ -65,6 +66,7 @@ class SpotSignalBot:
         self.settings = StrategySettings()
         self.entry_gates = EntryGateSettings()
         self.exit_rules = ExitSettings()
+        self.smart_entry = SmartEntrySettings(timezone_name=config.timezone_name)
         self.store = StateStore(config.state_file)
         self.state = self.store.load()
         self.data_dir = str(Path(config.state_file).parent)
@@ -144,6 +146,8 @@ class SpotSignalBot:
             "max_favorable_pct": trade.get("max_favorable_pct", ""),
             "reference_target_hit": int(bool(trade.get("reference_target_hit", False))),
             "exit_mode": self.exit_rules.mode,
+            "smart_score": trade.get("smart_score", ""),
+            "entry_hour_local": trade.get("entry_hour_local", self.smart_entry.local_hour(int(trade["entry_time"]))),
             "bullish_divergence": int(bool(metrics.get("bullish_divergence", False))),
             "oversold_at_pivot": int(bool(metrics.get("oversold_at_pivot", False))),
             "volume_confirm": int(bool(metrics.get("volume_confirm", False))),
@@ -596,6 +600,7 @@ class SpotSignalBot:
                 self.send_stop_message(trade, candle_close_time)
                 self.close_trade(symbol, last_closed_open_time, "stop_close")
 
+        candidates: list[dict] = []
         for symbol in self.symbols:
             if symbol in self.state["open_trades"]:
                 continue
@@ -627,6 +632,26 @@ class SpotSignalBot:
                 self.register_rejected_candidate(symbol, signal, reject_reason, reject_reason_ar)
                 continue
 
+            # البوابة الزمنية: أقوى مكوّن مُتحقَّق منه في القياس
+            if not self.smart_entry.is_hour_allowed(signal["bar_close_time"]):
+                self.register_rejected_candidate(
+                    symbol, signal, "outside_time_window", SMART_REJECTION_REASONS_AR["outside_time_window"]
+                )
+                continue
+
+            candidates.append({"symbol": symbol, "signal": signal})
+
+        # ترتيب المرشحين وتطبيق الحد الأقصى للصفقات المتزامنة
+        selected, dropped = self.smart_entry.select(candidates, len(self.state["open_trades"]))
+        for candidate in dropped:
+            self.register_rejected_candidate(
+                candidate["symbol"], candidate["signal"], "concurrency_cap",
+                SMART_REJECTION_REASONS_AR["concurrency_cap"],
+            )
+
+        for candidate in selected:
+            symbol = candidate["symbol"]
+            signal = candidate["signal"]
             trade_id = f"{symbol}-{signal['bar_open_time']}"
             metrics = signal.get("metrics", {}) or {}
             atr_at_entry = metrics.get("atr")
@@ -657,6 +682,8 @@ class SpotSignalBot:
                 "reference_target_hit": False,
                 "trail_stop_price": trail_stop_price,
                 "trail_initial_stop_pct": trail_initial_stop_pct,
+                "smart_score": self.smart_entry.quality_score(metrics, signal.get("buy_score")),
+                "entry_hour_local": self.smart_entry.local_hour(signal["bar_close_time"]),
                 "halal_verdict": self.get_halal_verdict(symbol),
             }
             self.state["open_trades"][symbol] = trade
@@ -788,6 +815,11 @@ class SpotSignalBot:
         extended = [row for row in reference_hits if is_win(row.get("outcome"))]
         lines.extend([
             f"🧭 قاعدة الخروج المفعّلة: {self.exit_rules.describe()}",
+            f"⏰ الدخول الذكي: {self.smart_entry.describe()}",
+            (lambda counts: "   • المرشحون المرفوضون اليوم — خارج النافذة الزمنية: %d • تجاوز حد التزامن: %d"
+             % (counts.get("outside_time_window", 0), counts.get("concurrency_cap", 0)))(
+                Counter(r.get("reject_reason", "") for r in shadow_rows_for_day(shadow_all, report_day))
+            ),
             f"🔁 صفقات مغلقة بلغت الهدف المرجعي +{self.exit_rules.reference_target_pct:.1f}%: {len(reference_hits)}",
             f"   • أكملت ربحًا بعد ذلك: {len(extended)}",
             f"   • ارتدت وأُغلقت خسارة بعد بلوغه: {len(reverted)}",

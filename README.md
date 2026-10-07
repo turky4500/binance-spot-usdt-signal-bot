@@ -31,6 +31,7 @@
 - `src/trade_journal.py` تسجيل تحليلي لكل صفقة في CSV
 - `src/entry_filters.py` بوابات جودة الدخول (الحجم النسبي + اتجاه DI)
 - `src/exit_rules.py` قواعد الخروج الثلاث (hybrid / trailing / fixed_target)
+- `src/smart_entry.py` البوابة الزمنية + حد الصفقات المتزامنة + درجة الجودة
 - `tests/` اختبارات لقواعد الخروج ووضع الهجينة
 - `src/shadow_journal.py` سجل المرشحات المستبعدة لقياس أثر الفلاتر
 - `tools/analyze_trades.py` تحليل أولي لسجل الصفقات
