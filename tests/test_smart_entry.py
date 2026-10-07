@@ -60,7 +60,47 @@ print("[OK] عند بلوغ الحد الأقصى تُرفض كل المرشحا
 os.environ["SMART_ENTRY"] = "0"
 s_off = SmartEntrySettings()
 assert s_off.is_hour_allowed(ms_at_local_hour(12)), "عند التعطيل يجب السماح بكل الساعات"
-assert len(s_off.select(candidates, open_trades_count=99)[0]) == 4
-print("[OK] تعطيل الدخول الذكي يعيد السلوك القديم")
+# البوابة الزمنية والسقف مستقلان: تعطيل البوابة لا يلغي السقف
+sel_off, dropped_off = s_off.select(candidates, open_trades_count=99)
+assert sel_off == [] and len(dropped_off) == 4, "مع سقف 3 و99 صفقة مفتوحة لا يُفتح جديد"
+sel_off2, _ = s_off.select(candidates, open_trades_count=0)
+assert len(sel_off2) == 3, "السقف 3 يسمح بثلاث صفقات"
+print("[OK] تعطيل البوابة الزمنية لا يلغي سقف الصفقات (مستقلان)")
+
+# ============ الوضع الافتراضي الجديد: 24 ساعة وبلا سقف (قرار المستخدم) ============
+for key in ("SMART_ENTRY", "ENTRY_HOURS", "MAX_OPEN_TRADES"):
+    os.environ.pop(key, None)
+s_def = SmartEntrySettings()
+print("\nالافتراضي:", s_def.describe())
+assert s_def.enabled is False, "البوابة الزمنية يجب أن تكون معطّلة افتراضيًا"
+assert s_def.has_open_trade_cap is False, "السقف يجب أن يكون مفتوحًا افتراضيًا (0)"
+for h in range(24):
+    assert s_def.is_hour_allowed(ms_at_local_hour(h)), f"الساعة {h} يجب أن تُسمح في وضع 24 ساعة"
+print("[OK] الوضع الافتراضي: 24 ساعة كاملة مسموحة (لا تفويت لإشارات النوم)")
+
+selected_all, dropped_all = s_def.select(candidates, open_trades_count=50)
+assert len(selected_all) == 4 and dropped_all == [], "مع سقف مفتوح: لا يُرفض أي مرشح"
+assert [c["symbol"] for c in selected_all][0] == "TOP", "يُرتَّب الأقوى أولًا (للقراءة والترتيب)"
+print("[OK] مع سقف مفتوح: كل المرشحات تُقبل ولا يُرفض أحد (الترتيب بالجودة يبقى)")
+
+os.environ["MAX_OPEN_TRADES"] = "3"
+s_cap = SmartEntrySettings()
+sel, drp = s_cap.select(candidates, open_trades_count=1)
+assert len(sel) == 2 and len(drp) == 2, "السقف يعمل عند تحديده برقم"
+os.environ.pop("MAX_OPEN_TRADES", None)
+
+# ============ تصنيف الساعات تاريخيًا (يظهر في كل رسالة دخول) ============
+expect = {0: "strong", 2: "strong", 5: "strong", 22: "strong", 23: "strong",
+          19: "weak", 9: "weak", 16: "weak", 1: "normal", 6: "normal", 18: "normal"}
+for hour, want in expect.items():
+    got = SmartEntrySettings.hour_verdict(hour)
+    assert got == want, f"الساعة {hour}: توقعت {want} وحصلت {got}"
+note = s_def.hour_note_ar(0)
+assert "🟢" in note and "قوية" in note and "+0.327" in note, note
+note_weak = s_def.hour_note_ar(19)
+assert "🔴" in note_weak and "ضعيفة" in note_weak and "-0.388" in note_weak, note_weak
+print(f"[OK] تصنيف الساعات: 0/2/5/22/23 قوية • 1/6/18 متوسطة • 19/9/16 ضعيفة")
+print(f"     مثال رسالة: {note}")
+print(f"     مثال رسالة: {note_weak}")
 
 print("\nALL SMART ENTRY TESTS PASSED")

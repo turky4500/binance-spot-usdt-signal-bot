@@ -231,6 +231,12 @@ class SpotSignalBot:
                 if trail_stop is not None and initial_pct is not None
                 else "الوقف المتحرك: يُحسب بعد أول شمعة"
             )
+        try:
+            entry_hour = int(trade.get("entry_hour_local"))
+        except (TypeError, ValueError):
+            entry_hour = self.smart_entry.local_hour(int(trade["entry_time"]))
+        hour_note = self.smart_entry.hour_note_ar(entry_hour)
+
         text = (
             f"📥 إشارة دخول شراء\n"
             f"الزوج: {trade['symbol']}\n"
@@ -240,7 +246,8 @@ class SpotSignalBot:
             f"الهدف المرجعي: {format_price(trade['target_price'])}\n"
             f"{stop_line}\n"
             f"وقت الإشارة: {ms_to_local_text(trade['entry_time'], self.config.timezone_name)}\n"
-            f"─────────────\n"
+            + (f"{hour_note}\n" if hour_note else "")
+            + f"─────────────\n"
             f"الحكم الشرعي: {verdict}"
         )
         self.telegram.send_message(text)

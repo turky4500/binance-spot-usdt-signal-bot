@@ -146,4 +146,33 @@ row = list(csv.DictReader(open(Path(bot5.data_dir) / "trades_log.csv")))[-1]
 assert row["smart_score"] != "" and row["entry_hour_local"] == "0", row
 print(f"[OK] السجل يحتوي smart_score={row['smart_score']} و entry_hour_local={row['entry_hour_local']}")
 
+# ============ F) وضع 24 ساعة (قرار المستخدم): لا رفض زمني ولا سقف ============
+os.environ["SMART_ENTRY"] = "0"
+os.environ["ENTRY_HOURS"] = ""
+os.environ["MAX_OPEN_TRADES"] = "0"
+app_module.compute_entry_signal = lambda df, *a, **k: fake_signal(df.iloc[-1]["symbol"], int(df.iloc[-1]["open_time"]))
+bot24, sent24 = new_bot("F")
+syms24 = [f"ALL{i}USDT" for i in range(12)]
+bar24 = run_hour(bot24, syms24, hour_local=15)   # ساعة كان البوت سيرفضها سابقًا
+assert len(bot24.state["open_trades"]) == 12, bot24.state["open_trades"].keys()
+assert len(sent24) == 12, len(sent24)
+assert not rejections(bot24), rejections(bot24)
+print(f"[OK] وضع 24 ساعة: الساعة 15:00 (كانت ممنوعة) → فُتحت {len(sent24)} صفقة بلا أي رفض")
+
+# رسالة الدخول تحمل تقييم الساعة
+assert "تقييم الساعة" in sent24[0], sent24[0]
+tag = [ln for ln in sent24[0].splitlines() if "تقييم الساعة" in ln][0]
+print(f"[OK] الرسالة تحمل التصنيف: {tag.strip()}")
+assert "🔴" in tag, "الساعة 15:00 مصنفة ضعيفة تاريخيًا"
+assert "صفقة سابقة" in tag
+
+# تراكم الصفقات بلا سقف: 12 ثم 12 أخرى في ساعة أخرى
+bot24.binance.get_klines_for_symbols = lambda s, interval="1h", limit=260: {
+    sym: pd.DataFrame([{"open_time": 0, "open": 1, "high": 1, "low": 1, "close": 1, "close_time": 1}]) for sym in []}
+run_hour(bot24, [f"NEW{i}USDT" for i in range(3)], hour_local=19)  # 19:00 = أسوأ ساعة مقيسة
+assert len(bot24.state["open_trades"]) == 15, len(bot24.state["open_trades"])
+last_msg = sent24[-1]
+tag19 = [ln for ln in last_msg.splitlines() if "تقييم الساعة" in ln][0]
+print(f"[OK] تراكم بلا سقف: {len(bot24.state['open_trades'])} صفقة مفتوحة معًا | تصنيف 19:00: {tag19.strip()}")
+
 print("\nALL SMART ENTRY INTEGRATION TESTS PASSED")
