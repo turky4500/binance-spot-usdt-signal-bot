@@ -35,7 +35,8 @@ jobs:
       GATE_MIN_DI_SPREAD: 0.0
       # الدخول الذكي: بوابة زمنية مُتحقَّق منها + حد أقصى للصفقات المتزامنة
       SMART_ENTRY: "1"
-      # نافذة 00:00–03:00 الرياض: أفضل نافذة في القياس (t=+7.58 داخليًا، +4.37 خارج العينة)
+      # شموع 00:00/01:00/02:00 الرياض: أفضل نافذة اختيرت من نصف التدريب (t=+5.90)
+      # وصمدت خارج العينة (58.4% نجاح، +0.1336%/صفقة، t=+4.37)
       # خيار أوسع: "0,2,5,6,14,21,23" (أكبر عددًا وأضعف أثرًا)
       ENTRY_HOURS: "0,1,2"
       MAX_OPEN_TRADES: "15"
@@ -73,5 +74,19 @@ jobs:
             exit 0
           fi
           git commit -m "chore: update bot state [skip ci]"
-          git pull --rebase origin main || true
-          git push
+
+          # تشغيلان متزامنان قد يتصادمان على data/state.json. عند التعارض نُبقي
+          # نسختنا (الأحدث) عبر -X theirs داخل الـrebase، مع إعادة محاولة 3 مرات.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase -X theirs origin/main; then
+              if git push origin HEAD:main; then
+                echo "State pushed on attempt $attempt"
+                exit 0
+              fi
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "Retry $attempt: another run updated the state first, retrying..."
+            sleep $((attempt * 5))
+          done
+          echo "::warning::Could not push state after 5 attempts; next run will pick it up."
