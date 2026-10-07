@@ -19,6 +19,7 @@ class AppConfig:
     halal_refresh_hours: int = int(os.getenv("HALAL_REFRESH_HOURS", "6"))
     state_file: str = os.getenv("STATE_FILE", "data/state.json")
     log_level: str = os.getenv("LOG_LEVEL", "INFO")
+    exit_mode: str = os.getenv("EXIT_MODE", "trailing").strip().lower()
 
     @classmethod
     def from_env(cls) -> "AppConfig":

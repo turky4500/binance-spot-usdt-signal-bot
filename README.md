@@ -30,6 +30,8 @@
 - `src/state.py` حفظ حالة الصفقات المفتوحة
 - `src/trade_journal.py` تسجيل تحليلي لكل صفقة في CSV
 - `src/entry_filters.py` بوابات جودة الدخول (الحجم النسبي + اتجاه DI)
+- `src/exit_rules.py` قواعد الخروج الثلاث (hybrid / trailing / fixed_target)
+- `tests/` اختبارات لقواعد الخروج ووضع الهجينة
 - `src/shadow_journal.py` سجل المرشحات المستبعدة لقياس أثر الفلاتر
 - `tools/analyze_trades.py` تحليل أولي لسجل الصفقات
 - `tools/get_telegram_chat_id.py` استخراج Chat ID

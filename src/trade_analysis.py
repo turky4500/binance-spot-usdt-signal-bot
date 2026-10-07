@@ -37,8 +37,8 @@ def load_shadow_rows(data_dir: str) -> list[dict[str, str]]:
 
 def shadow_stats(rows: Iterable[dict[str, str]]) -> dict[str, float | int]:
     rows = list(rows)
-    wins = sum(1 for row in rows if row.get("outcome") == "target")
-    losses = sum(1 for row in rows if row.get("outcome") == "stop")
+    wins = sum(1 for row in rows if is_win(row.get("outcome")))
+    losses = sum(1 for row in rows if is_loss(row.get("outcome")))
     return {
         "total": len(rows),
         "wins": wins,
@@ -82,6 +82,18 @@ def success_rate_percent(wins: int, losses: int) -> float:
     return wins / total * 100.0
 
 
+WIN_OUTCOMES = {"target", "win", "reference_target"}
+LOSS_OUTCOMES = {"stop", "loss"}
+
+
+def is_win(outcome: str | None) -> bool:
+    return (outcome or "") in WIN_OUTCOMES
+
+
+def is_loss(outcome: str | None) -> bool:
+    return (outcome or "") in LOSS_OUTCOMES
+
+
 def top_symbols(rows: Iterable[dict[str, str]], empty_text: str, limit: int = 3) -> str:
     counts = Counter(row.get("symbol", "") for row in rows if row.get("symbol"))
     if not counts:
@@ -92,10 +104,10 @@ def top_symbols(rows: Iterable[dict[str, str]], empty_text: str, limit: int = 3)
 def strong_vs_normal_stats(rows: Iterable[dict[str, str]]) -> dict[str, float | int]:
     strong = [r for r in rows if str(r.get("strong_signal", "0")) == "1"]
     normal = [r for r in rows if str(r.get("strong_signal", "0")) != "1"]
-    strong_wins = sum(1 for r in strong if r.get("outcome") == "target")
-    strong_losses = sum(1 for r in strong if r.get("outcome") == "stop")
-    normal_wins = sum(1 for r in normal if r.get("outcome") == "target")
-    normal_losses = sum(1 for r in normal if r.get("outcome") == "stop")
+    strong_wins = sum(1 for r in strong if is_win(r.get("outcome")))
+    strong_losses = sum(1 for r in strong if is_loss(r.get("outcome")))
+    normal_wins = sum(1 for r in normal if is_win(r.get("outcome")))
+    normal_losses = sum(1 for r in normal if is_loss(r.get("outcome")))
     return {
         "strong_count": len(strong),
         "normal_count": len(normal),

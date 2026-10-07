@@ -10,6 +10,7 @@ from zoneinfo import ZoneInfo
 from src.binance_client import BinanceClient
 from src.config import AppConfig
 from src.entry_filters import EntryGateSettings, evaluate_entry_gates
+from src.exit_rules import ExitSettings
 from src.halal import ensure_verdict, refresh_if_stale
 from src.shadow_journal import append_shadow_candidate, resolve_shadow_candidate
 from src.state import StateStore
@@ -18,6 +19,8 @@ from src.telegram_client import TelegramClient
 from src.trade_analysis import (
     avg_metric,
     build_daily_observations,
+    is_loss,
+    is_win,
     load_shadow_rows,
     load_trade_rows,
     rows_for_entry_day,
@@ -61,6 +64,7 @@ class SpotSignalBot:
         )
         self.settings = StrategySettings()
         self.entry_gates = EntryGateSettings()
+        self.exit_rules = ExitSettings()
         self.store = StateStore(config.state_file)
         self.state = self.store.load()
         self.data_dir = str(Path(config.state_file).parent)
@@ -133,6 +137,13 @@ class SpotSignalBot:
             "buy_risk_pct": metrics.get("buy_risk_pct", ""),
             "distance_from_ema200_pct": metrics.get("distance_from_ema200_pct", ""),
             "quote_volume": metrics.get("quote_volume", ""),
+            "atr_at_entry": trade.get("atr_at_entry", metrics.get("atr", "")),
+            "trail_atr_mult": self.exit_rules.trail_atr_mult if self.exit_rules.uses_trailing_stop else "",
+            "trail_initial_stop_pct": trade.get("trail_initial_stop_pct", ""),
+            "reference_target_pct": self.exit_rules.reference_target_pct,
+            "max_favorable_pct": trade.get("max_favorable_pct", ""),
+            "reference_target_hit": int(bool(trade.get("reference_target_hit", False))),
+            "exit_mode": self.exit_rules.mode,
             "bullish_divergence": int(bool(metrics.get("bullish_divergence", False))),
             "oversold_at_pivot": int(bool(metrics.get("oversold_at_pivot", False))),
             "volume_confirm": int(bool(metrics.get("volume_confirm", False))),
@@ -169,6 +180,9 @@ class SpotSignalBot:
                 "duration_text": duration_text,
                 "gross_return_pct": round(gross_return_pct, 6),
                 "net_return_pct": round(net_return_pct, 6),
+                "max_favorable_pct": round(float(trade.get("max_favorable_pct", 0.0)), 6),
+                "reference_target_hit": int(bool(trade.get("reference_target_hit", False))),
+                "exit_mode": self.exit_rules.mode,
             },
         )
 
@@ -178,6 +192,16 @@ class SpotSignalBot:
             if not trade.get("trade_id"):
                 trade["trade_id"] = f"{symbol}-{trade.get('entry_bar_open_time', trade.get('entry_time', ''))}"
                 changed = True
+            # تهيئة حقول قواعد الخروج للصفقات التي فُتحت قبل تفعيلها
+            if "peak_price" not in trade:
+                trade["peak_price"] = float(trade["entry_price"])
+                changed = True
+            if "max_favorable_pct" not in trade:
+                trade["max_favorable_pct"] = 0.0
+                changed = True
+            if "reference_target_hit" not in trade:
+                trade["reference_target_hit"] = False
+                changed = True
             append_trade_entry(self.data_dir, self._build_trade_log_record(trade))
         if changed:
             self.store.save(self.state)
@@ -185,14 +209,30 @@ class SpotSignalBot:
     def send_entry_message(self, trade: dict) -> None:
         strength = "قوية" if trade.get("strong") else "عادية"
         verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
+        stop_line = f"وقف الخسارة: {format_price(trade['stop_price'])}"
+        if self.exit_rules.is_hybrid:
+            stop_line = (
+                f"وقف الخسارة: {format_price(trade['stop_price'])}\n"
+                f"خطة الخروج: عند +{self.exit_rules.reference_target_pct:.1f}% يتحول الوقف إلى متحرك "
+                f"({self.exit_rules.trail_atr_mult:.1f}×ATR) بأرضية {self.exit_rules.hybrid_lock_pct:+.2f}%"
+            )
+        elif self.exit_rules.uses_trailing_stop:
+            trail_stop = trade.get("trail_stop_price")
+            initial_pct = trade.get("trail_initial_stop_pct")
+            stop_line = (
+                f"الوقف المتحرك: {format_price(trail_stop)}"
+                f" ({initial_pct:.2f}% تحت الدخول — يرتفع مع الصعود)"
+                if trail_stop is not None and initial_pct is not None
+                else "الوقف المتحرك: يُحسب بعد أول شمعة"
+            )
         text = (
             f"📥 إشارة دخول شراء\n"
             f"الزوج: {trade['symbol']}\n"
             f"الفريم: 1H\n"
             f"قوة الإشارة: {strength}\n"
             f"سعر الدخول: {format_price(trade['entry_price'])}\n"
-            f"الهدف: {format_price(trade['target_price'])}\n"
-            f"وقف الخسارة: {format_price(trade['stop_price'])}\n"
+            f"الهدف المرجعي: {format_price(trade['target_price'])}\n"
+            f"{stop_line}\n"
             f"وقت الإشارة: {ms_to_local_text(trade['entry_time'], self.config.timezone_name)}\n"
             f"─────────────\n"
             f"الحكم الشرعي: {verdict}"
@@ -200,6 +240,52 @@ class SpotSignalBot:
         self.telegram.send_message(text)
         self.append_event("entry", trade["symbol"], int(trade["entry_time"]))
         append_trade_entry(self.data_dir, self._build_trade_log_record(trade))
+
+    def send_reference_target_message(self, trade: dict, event_time_ms: int) -> None:
+        """تنبيه فقط: السعر بلغ الهدف المرجعي والصفقة مستمرة بقاعدة الوقف المتحرك."""
+        duration = humanize_duration_ar(trade["entry_time"], event_time_ms)
+        verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
+        trail_stop = trade.get("trail_stop_price")
+        text = (
+            f"🎯 بلوغ الهدف المرجعي (+{self.exit_rules.reference_target_pct:.1f}%)\n"
+            f"الزوج: {trade['symbol']}\n"
+            f"سعر الدخول: {format_price(trade['entry_price'])}\n"
+            f"سعر الإشارة: {format_price(trade['target_price'])}\n"
+            f"وقت البلاغ: {ms_to_local_text(event_time_ms, self.config.timezone_name)}\n"
+            f"المدة المستغرقة: {duration}\n"
+            f"─────────────\n"
+            f"ℹ️ الصفقة مستمرة — الخروج بقاعدة الوقف المتحرك\n"
+            f"الوقف المتحرك الحالي: {format_price(trail_stop) if trail_stop is not None else '—'}\n"
+            f"─────────────\n"
+            f"الحكم الشرعي: {verdict}"
+        )
+        self.telegram.send_message(text)
+        self.append_event("reference_target", trade["symbol"], int(event_time_ms))
+
+    def send_trail_exit_message(self, trade: dict, event_time_ms: int, exit_price: float) -> None:
+        duration = humanize_duration_ar(trade["entry_time"], event_time_ms)
+        verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
+        gross = (float(exit_price) / float(trade["entry_price"]) - 1.0) * 100.0
+        net = gross - (2.0 * self.settings.commission_per_side_pct)
+        peak = float(trade.get("peak_price", trade["entry_price"]))
+        peak_gain = (peak / float(trade["entry_price"]) - 1.0) * 100.0
+        emoji = "✅" if net > 0 else "🛑"
+        headline = "إغلاق على ربح (وقف متحرك)" if net > 0 else "إغلاق على خسارة (وقف متحرك)"
+        text = (
+            f"{emoji} {headline}\n"
+            f"الزوج: {trade['symbol']}\n"
+            f"سعر الدخول: {format_price(trade['entry_price'])}\n"
+            f"سعر الخروج: {format_price(exit_price)}\n"
+            f"أعلى سعر تحقق: {format_price(peak)} (+{peak_gain:.2f}%)\n"
+            f"النتيجة الصافية: {net:+.2f}%\n"
+            f"وقت الخروج: {ms_to_local_text(event_time_ms, self.config.timezone_name)}\n"
+            f"المدة المستغرقة: {duration}\n"
+            f"─────────────\n"
+            f"الحكم الشرعي: {verdict}"
+        )
+        self.telegram.send_message(text)
+        self.append_event("exit_win" if net > 0 else "exit_loss", trade["symbol"], int(event_time_ms))
+        self._record_trade_exit(trade, "win" if net > 0 else "loss", "trail_stop", int(event_time_ms), float(exit_price))
 
     def send_target_message(self, trade: dict, hit_price: float, event_time_ms: int) -> None:
         duration = humanize_duration_ar(trade["entry_time"], event_time_ms)
@@ -243,6 +329,11 @@ class SpotSignalBot:
         self.logger.info("Closed %s بسبب %s", symbol, reason)
 
     def monitor_open_trades_intrabar_targets(self, now_ms: int) -> None:
+        """متابعة دقيقة‑بدقيقة لكل صفقة مفتوحة.
+
+        - fixed_target: إغلاق فوري عند بلوغ الهدف (السلوك القديم).
+        - trailing: تحديث أعلى سعر + الوقف المتحرك، وتنبيه عند بلوغ الهدف المرجعي دون إغلاق.
+        """
         open_trades = self.state.get("open_trades", {})
         if not open_trades:
             return
@@ -262,19 +353,56 @@ class SpotSignalBot:
             if klines.empty:
                 continue
 
-            hit_rows = klines[klines["high"] >= float(trade["target_price"])]
-            if not hit_rows.empty:
-                first_hit = hit_rows.iloc[0]
-                event_time_ms = int(first_hit["close_time"])
-                self.send_target_message(trade, float(trade["target_price"]), event_time_ms)
-                self.close_trade(symbol, int(event_time_ms // HOUR_MS * HOUR_MS), "target_intrabar")
-                continue
+            peak_price = max(float(trade.get("peak_price", trade["entry_price"])), float(klines["high"].max()))
+            trade["peak_price"] = peak_price
+            trade["max_favorable_pct"] = round((peak_price / float(trade["entry_price"]) - 1.0) * 100.0, 6)
+
+            if not self.exit_rules.uses_trailing_stop:
+                hit_rows = klines[klines["high"] >= float(trade["target_price"])]
+                if not hit_rows.empty:
+                    first_hit = hit_rows.iloc[0]
+                    event_time_ms = int(first_hit["close_time"])
+                    self.send_target_message(trade, float(trade["target_price"]), event_time_ms)
+                    self.close_trade(symbol, int(event_time_ms // HOUR_MS * HOUR_MS), "target_intrabar")
+                    continue
+            else:
+                if (
+                    not trade.get("reference_target_hit")
+                    and float(trade["target_price"]) <= peak_price
+                ):
+                    hit_rows = klines[klines["high"] >= float(trade["target_price"])]
+                    event_time_ms = int(hit_rows.iloc[0]["close_time"]) if not hit_rows.empty else now_ms
+                    trade["reference_target_hit"] = True
+                    self.send_reference_target_message(trade, event_time_ms)
 
             trade["last_target_check_ms"] = int(klines.iloc[-1]["close_time"]) + 1
             state_changed = True
 
         if state_changed:
             self.store.save(self.state)
+
+    def _atr_value_for(self, df, settings_atr_len: int = 14) -> float | None:
+        """آخر قيمة ATR محسوبة على الشموع المتاحة (تُستخدم لمسافة الوقف المتحرك)."""
+        if df is None or df.empty or len(df) < settings_atr_len + 1:
+            return None
+        from src.strategy import atr as compute_atr
+
+        series = compute_atr(df, settings_atr_len)
+        value = series.iloc[-1]
+        if value is None or value != value:  # NaN
+            return None
+        return float(value)
+
+    def _record_peak_fields(self, trade: dict) -> None:
+        """يثبّت أعلى سعر وبلوغ الهدف المرجعي في سجل الصفقات عند الخروج."""
+        update_trade_exit(
+            self.data_dir,
+            str(trade.get("trade_id")),
+            {
+                "max_favorable_pct": round(float(trade.get("max_favorable_pct", 0.0)), 6),
+                "reference_target_hit": int(bool(trade.get("reference_target_hit", False))),
+            },
+        )
 
     def register_rejected_candidate(self, symbol: str, signal: dict, reason: str, reason_ar: str) -> None:
         """يسجّل الإشارة التي رفضتها البوابات الجديدة لمتابعتها لاحقًا (قياس مضاد للواقع)."""
@@ -418,6 +546,47 @@ class SpotSignalBot:
             candle_close = float(row["close"])
             candle_close_time = int(row["close_time"])
 
+            peak_price = max(float(trade.get("peak_price", trade["entry_price"])), candle_high)
+            trade["peak_price"] = peak_price
+            trade["max_favorable_pct"] = round((peak_price / float(trade["entry_price"]) - 1.0) * 100.0, 6)
+
+            if self.exit_rules.uses_trailing_stop:
+                # بلوغ الهدف المرجعي = لحظة التحول إلى الوقف المتحرك، ولا يُغلق الصفقة
+                reached_now = False
+                if not trade.get("reference_target_hit") and candle_high >= float(trade["target_price"]):
+                    trade["reference_target_hit"] = True
+                    reached_now = True
+                    self.send_reference_target_message(trade, candle_close_time)
+
+                atr_now = self._atr_value_for(df, settings_atr_len=self.exit_rules.trail_atr_len)
+                if self.exit_rules.is_hybrid and not trade.get("reference_target_hit"):
+                    # الطور الأول: وقف الإشارة الأصلي كما هو
+                    if candle_close < float(trade["stop_price"]):
+                        self.send_stop_message(trade, candle_close_time)
+                        self.close_trade(symbol, last_closed_open_time, "stop_close")
+                    continue
+
+                if atr_now is not None:
+                    trail = self.exit_rules.trail_level(peak_price, atr_now)
+                    if self.exit_rules.is_hybrid:
+                        trail = max(trail, self.exit_rules.hybrid_lock_level(float(trade["entry_price"])))
+                    trade["trail_stop_price"] = round(trail, 10)
+                    if trade.get("trail_initial_stop_pct") in (None, ""):
+                        trade["trail_initial_stop_pct"] = round(
+                            (float(trade["entry_price"]) - self.exit_rules.trail_level(
+                                float(trade["entry_price"]), atr_now)) / float(trade["entry_price"]) * 100.0,
+                            6,
+                        )
+                if reached_now:
+                    continue  # نبدأ تقييم الوقف المتحرك من الشمعة التالية (مطابق للمحاكاة)
+
+                trail_stop = trade.get("trail_stop_price")
+                if trail_stop is not None and candle_close <= float(trail_stop):
+                    self.send_trail_exit_message(trade, candle_close_time, candle_close)
+                    self._record_peak_fields(trade)
+                    self.close_trade(symbol, last_closed_open_time, "trail_stop")
+                continue
+
             if candle_high >= float(trade["target_price"]):
                 self.send_target_message(trade, float(trade["target_price"]), candle_close_time)
                 self.close_trade(symbol, last_closed_open_time, "target_hour_recovery")
@@ -459,6 +628,16 @@ class SpotSignalBot:
                 continue
 
             trade_id = f"{symbol}-{signal['bar_open_time']}"
+            metrics = signal.get("metrics", {}) or {}
+            atr_at_entry = metrics.get("atr")
+            trail_stop_price = None
+            trail_initial_stop_pct = None
+            if self.exit_rules.uses_trailing_stop and atr_at_entry:
+                trail_stop_price = round(self.exit_rules.trail_level(float(signal["entry_price"]), float(atr_at_entry)), 10)
+                trail_initial_stop_pct = round(
+                    (float(signal["entry_price"]) - trail_stop_price) / float(signal["entry_price"]) * 100.0, 6
+                )
+
             trade = {
                 "trade_id": trade_id,
                 "symbol": symbol,
@@ -471,7 +650,13 @@ class SpotSignalBot:
                 "strong": signal["strong"],
                 "buy_score": signal.get("buy_score"),
                 "mode": signal["mode"],
-                "metrics": signal.get("metrics", {}),
+                "metrics": metrics,
+                "atr_at_entry": atr_at_entry,
+                "peak_price": float(signal["entry_price"]),
+                "max_favorable_pct": 0.0,
+                "reference_target_hit": False,
+                "trail_stop_price": trail_stop_price,
+                "trail_initial_stop_pct": trail_initial_stop_pct,
                 "halal_verdict": self.get_halal_verdict(symbol),
             }
             self.state["open_trades"][symbol] = trade
@@ -503,9 +688,9 @@ class SpotSignalBot:
             event_type = event.get("type")
             if event_type == "entry":
                 entries += 1
-            elif event_type == "target":
+            elif event_type in ("target", "exit_win"):
                 targets += 1
-            elif event_type == "stop":
+            elif event_type in ("stop", "exit_loss"):
                 stops += 1
 
         open_count = len(self.state.get("open_trades", {}))
@@ -543,8 +728,8 @@ class SpotSignalBot:
         rows = load_trade_rows(self.data_dir)
         entry_rows = rows_for_entry_day(rows, report_day)
         closed_rows = rows_for_exit_day(rows, report_day, self.config.timezone_name)
-        win_rows = [row for row in closed_rows if row.get("outcome") == "target"]
-        loss_rows = [row for row in closed_rows if row.get("outcome") == "stop"]
+        win_rows = [row for row in closed_rows if is_win(row.get("outcome"))]
+        loss_rows = [row for row in closed_rows if is_loss(row.get("outcome"))]
 
         wins = len(win_rows)
         losses = len(loss_rows)
@@ -597,6 +782,19 @@ class SpotSignalBot:
             "═════════════",
         ])
 
+        # مقارنة قواعد الخروج على نفس الصفقات: الوقف المتحرك مقابل الهدف الثابت +2%
+        reference_hits = [row for row in closed_rows if str(row.get("reference_target_hit") or "0") == "1"]
+        reverted = [row for row in reference_hits if is_loss(row.get("outcome"))]
+        extended = [row for row in reference_hits if is_win(row.get("outcome"))]
+        lines.extend([
+            f"🧭 قاعدة الخروج المفعّلة: {self.exit_rules.describe()}",
+            f"🔁 صفقات مغلقة بلغت الهدف المرجعي +{self.exit_rules.reference_target_pct:.1f}%: {len(reference_hits)}",
+            f"   • أكملت ربحًا بعد ذلك: {len(extended)}",
+            f"   • ارتدت وأُغلقت خسارة بعد بلوغه: {len(reverted)}",
+            "   • القاعدة القديمة كانت ستغلق كلها بربح +1.8% صافي عند بلوغ الهدف",
+            "═════════════",
+        ])
+
         lines.extend([
             f"📊 متوسط Buy Score — رابحة: {avg_win_buy:.2f}" if avg_win_buy is not None else "📊 متوسط Buy Score — رابحة: —",
             f"📊 متوسط Buy Score — خاسرة: {avg_loss_buy:.2f}" if avg_loss_buy is not None else "📊 متوسط Buy Score — خاسرة: —",
@@ -644,11 +842,11 @@ class SpotSignalBot:
             symbol = str(event.get("symbol") or "")
             if event_type == "entry":
                 entries += 1
-            elif event_type == "target":
+            elif event_type in ("target", "exit_win"):
                 targets += 1
                 if symbol:
                     target_symbols[symbol] += 1
-            elif event_type == "stop":
+            elif event_type in ("stop", "exit_loss"):
                 stops += 1
                 if symbol:
                     stop_symbols[symbol] += 1

@@ -33,6 +33,13 @@ jobs:
       GATE_MAX_REL_VOLUME: 2.5
       GATE_REQUIRE_DI_POSITIVE: "true"
       GATE_MIN_DI_SPREAD: 0.0
+      # قاعدة الخروج: hybrid | trailing | fixed_target
+      # hybrid = وقف الإشارة الأصلي حتى +2%، ثم وقف متحرك 2×ATR بأرضية التعادل
+      EXIT_MODE: hybrid
+      TRAIL_ATR_MULT: 2.0
+      TRAIL_ATR_LEN: 14
+      REFERENCE_TARGET_PCT: 2.0
+      HYBRID_LOCK_PCT: 0.0
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

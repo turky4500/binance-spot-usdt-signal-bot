@@ -410,6 +410,7 @@ def compute_entry_signal(
                             "relative_volume": float(row["relative_volume"]) if pd.notna(row["relative_volume"]) else None,
                             "reward_risk_ratio": float(row["reward_risk_ratio"]) if pd.notna(row["reward_risk_ratio"]) else None,
                             "buy_risk_pct": float(row["buy_risk_pct"]) if pd.notna(row["buy_risk_pct"]) else None,
+                            "atr": float(row["atr"]) if pd.notna(row["atr"]) else None,
                             "distance_from_ema200_pct": float(distance_from_ema200_pct) if not np.isnan(distance_from_ema200_pct) else None,
                             "quote_volume": float(row["quote_volume"]) if pd.notna(row["quote_volume"]) else None,
                             "bullish_divergence": bool(row["bullish_divergence"]),

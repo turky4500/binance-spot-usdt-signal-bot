@@ -37,9 +37,9 @@ def main() -> None:
     with DATA_FILE.open("r", encoding="utf-8", newline="") as f:
         rows = list(csv.DictReader(f))
 
-    closed = [r for r in rows if r.get("outcome") in {"target", "stop"}]
-    wins = [r for r in closed if r.get("outcome") == "target"]
-    losses = [r for r in closed if r.get("outcome") == "stop"]
+    closed = [r for r in rows if r.get("outcome") in {"target", "stop", "win", "loss"}]
+    wins = [r for r in closed if r.get("outcome") in {"target", "win"}]
+    losses = [r for r in closed if r.get("outcome") in {"stop", "loss"}]
 
     print("# Trade Analysis Snapshot")
     print()
@@ -69,9 +69,9 @@ def main() -> None:
     if SHADOW_FILE.exists():
         with SHADOW_FILE.open("r", encoding="utf-8", newline="") as f:
             shadow = list(csv.DictReader(f))
-        s_closed = [r for r in shadow if r.get("outcome") in {"target", "stop"}]
-        s_wins = sum(1 for r in s_closed if r.get("outcome") == "target")
-        s_losses = sum(1 for r in s_closed if r.get("outcome") == "stop")
+        s_closed = [r for r in shadow if r.get("outcome") in {"target", "stop", "win", "loss"}]
+        s_wins = sum(1 for r in s_closed if r.get("outcome") in {"target", "win"})
+        s_losses = sum(1 for r in s_closed if r.get("outcome") in {"stop", "loss"})
         by_reason = Counter(r.get("reject_reason", "") for r in shadow)
         print()
         print("## Filter impact (taken vs rejected)")
