@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1791478800000,
+  "last_processed_open_time": 1791482400000,
   "last_entry_bar_time": {
     "ESPUSDT": 1791349200000,
     "GMXUSDT": 1791306000000,
@@ -397,7 +397,7 @@
       "stop_price": 767.9245502743319,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791485880000,
+      "last_target_check_ms": 1791486180000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -414,7 +414,7 @@
       "stop_price": 333.37633324761555,
       "entry_time": 1791345599999,
       "entry_bar_open_time": 1791342000000,
-      "last_target_check_ms": 1791485880000,
+      "last_target_check_ms": 1791486180000,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
@@ -437,9 +437,11 @@
         "liquidity_ok": true
       },
       "halal_verdict": "ℹ️ لا يوجد حكم",
-      "peak_price": 341.46,
-      "max_favorable_pct": 2.172352,
-      "reference_target_hit": true
+      "peak_price": 341.69,
+      "max_favorable_pct": 2.241173,
+      "reference_target_hit": true,
+      "trail_stop_price": 339.6295813964,
+      "trail_initial_stop_pct": 0.616523
     }
   },
   "event_log": [
@@ -3069,16 +3071,6 @@
       "entry_time": 1791475199999,
       "entry_bar_open_time": 1791471600000,
       "reason": "volume_blowoff"
-    },
-    "NMRUSDT-1791478800000": {
-      "candidate_id": "NMRUSDT-1791478800000",
-      "symbol": "NMRUSDT",
-      "entry_price": 13.73,
-      "target_price": 14.0046,
-      "stop_price": 13.516143403797397,
-      "entry_time": 1791482399999,
-      "entry_bar_open_time": 1791478800000,
-      "reason": "volume_too_low"
     }
   },
   "strategy_shadow": {
@@ -4172,6 +4164,32 @@
       "d1_sma50": 0.0040808,
       "d1_gap_pct": 10.762596,
       "exit_time_ms": 1791467999999
+    },
+    "AVNTUSDT-1791482400000-pullback": {
+      "symbol": "AVNTUSDT",
+      "entry_time_ms": 1791485999999,
+      "in_focus_hours": 0,
+      "entry_hour_local": 21,
+      "entry_price": 0.1298,
+      "target_price": 0.132396,
+      "stop_price": 0.126555,
+      "stop_pct": 2.5,
+      "atr_at_entry": 0.0035099975,
+      "rsi2": 31.9576,
+      "rsi14": 50.1982,
+      "distance_from_ema20_pct": -0.32978,
+      "lane": "pullback",
+      "outcome": "",
+      "exit_reason": "",
+      "shadow_id": "AVNTUSDT-1791482400000-pullback",
+      "entry_bar_open_time": 1791482400000,
+      "entry_time_local": "2026-10-08 9:59:59 مساءً",
+      "entry_date_local": "2026-10-08",
+      "peak_price": 0.1298,
+      "max_favorable_pct": 0.0,
+      "d1_close": 0.1298,
+      "d1_sma50": 0.109656,
+      "d1_gap_pct": 18.370176
     }
   },
   "strategy_pdh": {
@@ -4402,8 +4420,8 @@
       "atr_at_entry": 0.9021549053,
       "gap_pct": 0.2985,
       "d1_trend_ok": 1,
-      "peak_price": 339.68,
-      "max_favorable_pct": 0.085447
+      "peak_price": 341.69,
+      "max_favorable_pct": 0.677686
     },
     "AVNTUSDT-1791478800000": {
       "signal_id": "AVNTUSDT-1791478800000",
@@ -4420,7 +4438,15 @@
       "target_price": 0.1331792,
       "atr_at_entry": 0.0035338435,
       "gap_pct": 0.458,
-      "d1_trend_ok": 1
+      "d1_trend_ok": 1,
+      "peak_price": 0.132,
+      "max_favorable_pct": 0.303951,
+      "outcome_main": "loss",
+      "exit_reason_main": "below_level",
+      "exit_time_ms_main": 1791485999999,
+      "exit_price_main": 0.1298,
+      "net_main_pct": -1.567781,
+      "duration_minutes_main": 60
     }
   }
 }
