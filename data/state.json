@@ -394,7 +394,7 @@
       "stop_price": 767.9245502743319,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791461280000,
+      "last_target_check_ms": 1791461580000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -410,14 +410,14 @@
       "stop_price": 342.22527179721885,
       "entry_time": 1791212399999,
       "entry_bar_open_time": 1791208800000,
-      "last_target_check_ms": 1791461280000,
+      "last_target_check_ms": 1791461580000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "trade_id": "GOOGLBUSDT-1791208800000",
-      "peak_price": 350.91,
-      "max_favorable_pct": 1.937602,
-      "reference_target_hit": false
+      "peak_price": 351.83,
+      "max_favorable_pct": 2.204857,
+      "reference_target_hit": true
     },
     "AAPLBUSDT": {
       "trade_id": "AAPLBUSDT-1791342000000",
@@ -427,7 +427,7 @@
       "stop_price": 333.37633324761555,
       "entry_time": 1791345599999,
       "entry_bar_open_time": 1791342000000,
-      "last_target_check_ms": 1791461280000,
+      "last_target_check_ms": 1791461580000,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
@@ -2910,6 +2910,11 @@
       "type": "pdh_entry",
       "symbol": "DIAUSDT",
       "time_ms": 1791460799999
+    },
+    {
+      "type": "reference_target",
+      "symbol": "GOOGLBUSDT",
+      "time_ms": 1791461519999
     }
   ],
   "daily_report": {
