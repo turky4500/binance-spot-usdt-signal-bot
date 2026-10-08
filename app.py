@@ -14,19 +14,6 @@ from src.entry_filters import EntryGateSettings, evaluate_entry_gates
 from src.exit_rules import ExitSettings
 from src.halal import ensure_verdict, refresh_if_stale
 from src.shadow_journal import append_shadow_candidate, resolve_shadow_candidate
-from src.strategy_pdh import (
-    SYSTEM_EMOJI as PDH_EMOJI,
-    SYSTEM_NAME as PDH_NAME,
-    build_entry_message as build_pdh_entry_message,
-    build_exit_message as build_pdh_exit_message,
-    build_pdh_signal,
-    load_rows as load_pdh_rows,
-    append_row as append_pdh_row,
-    update_row as update_pdh_row,
-    settle_record as settle_pdh_record,
-    both_closed as pdh_both_closed,
-    EXIT_REASONS_AR as PDH_EXIT_REASONS_AR,
-)
 from src.smart_entry import REJECTION_REASONS_AR as SMART_REJECTION_REASONS_AR, SmartEntrySettings
 from src.strategy_shadow import (
     GOOD_HOURS as SHADOW_GOOD_HOURS,
@@ -130,9 +117,6 @@ class SpotSignalBot:
         # الافتراضي معطّل — يُفعَّل بـ QUIET_ENTRY_SIGNALS=1 بعد قرار المستخدم.
         self.quiet_entry_signals = os.getenv("QUIET_ENTRY_SIGNALS", "0").strip().lower() not in ("0", "false", "no", "off")
         self.quiet_entry_count_today = 0
-        # نظام «فوق قمة الأمس»: مستقل — تسجيل ظلّي دائمًا، ورسائل فقط إذا PDH_LIVE=1
-        self.pdh_enabled = os.getenv("PDH_BREAKOUT", "1").strip().lower() not in ("0", "false", "no", "off")
-        self.pdh_live = os.getenv("PDH_LIVE", "0").strip().lower() not in ("0", "false", "no", "off")
         self._daily_trend_cache: dict[str, tuple[str, bool, float, float]] = {}
         self.store = StateStore(config.state_file)
         self.state = self.store.load()
@@ -785,7 +769,6 @@ class SpotSignalBot:
             self.logger.info("New trade opened for %s", symbol)
 
         self.process_strategy_shadow(klines_map, last_closed_open_time)
-        self.process_strategy_pdh(klines_map, last_closed_open_time)
         self.state["last_processed_open_time"] = last_closed_open_time
         self.store.save(self.state)
 
@@ -963,15 +946,6 @@ class SpotSignalBot:
             _lane_line("ج) IBS<0.2 + ساعات مركّزة (يوتيوب)", shadow_ibs),
             "   • لا اعتماد قبل ≥100 صفقة مغلقة ومتوسط ≥ +0.05% (القاعدة مُسجَّلة مسبقًا في reports/shadow_watch_plan.md)",
         ])
-        pdh = self._pdh_stats(load_pdh_rows(self.data_dir), report_day, report_day)
-        if pdh["signals"]:
-            def _avg(key):
-                return f"{pdh[key]:+.3f}%" if pdh[key] is not None else "—"
-            lines.extend([
-                f"🚀 «فوق قمة الأمس» (نظام مستقل — ظلّي): {int(pdh['signals'])} إشارة اليوم",
-                f"   • أ) خروج تحت الخط: مغلقة {int(pdh['main_closed'])} (رابحة {int(pdh['main_wins'])}) • متوسط {_avg('main_avg')}",
-                f"   • ب) هدف +1.2%: مغلقة {int(pdh['b_closed'])} (رابحة {int(pdh['b_wins'])}) • متوسط {_avg('b_avg')}",
-            ])
         lines.append("═════════════")
 
         target_rows = [row for row in closed_rows if is_win(row.get("outcome"))]
@@ -1114,76 +1088,6 @@ class SpotSignalBot:
                     "duration_text": "أُزيلت (عملة مستقرة مربوطة)",
                 })
             self.append_event("removed_pegged", symbol, int(trade.get("entry_time") or 0))
-            self.logger.info("أُزيلت صفقة %s (عملة مستقرة مربوطة) من قائمة المفتوحة", symbol)
-        self.store.save(self.state)
-
-    def process_strategy_pdh(self, klines_map: dict, last_closed_open_time: int) -> None:
-        """نظام «فوق قمة الأمس»: تسوية مسارَي القياس ثم تسجيل اختراقات جديدة (ورسائل إن PDH_LIVE)."""
-        if not self.pdh_enabled:
-            return
-        from src.strategy_pdh import prev_day_levels
-
-        pdh_state = self.state.setdefault("strategy_pdh", {})
-        today_key = local_date_key_from_ms(last_closed_open_time, self.config.timezone_name)
-
-        # 1) تسوية المفتوحة على الشمعة المغلقة الجديدة
-        for signal_id, record in list(pdh_state.items()):
-            if pdh_both_closed(record):
-                continue
-            df = klines_map.get(record["symbol"])
-            if df is None or df.empty:
-                continue
-            candle = df[df["open_time"] == last_closed_open_time]
-            if candle.empty:
-                continue
-            row = candle.iloc[-1]
-            levels = prev_day_levels(df.reset_index(drop=True))
-            last_level = levels.iloc[-1]
-            level_now = float(last_level) if last_level == last_level else float("nan")  # NaN check بلا pandas
-            before = {k: record.get(k) for k in ("outcome_main", "outcome_b")}
-            updates = settle_pdh_record(record, {
-                "open_time": int(row["open_time"]), "close_time": int(row["close_time"]),
-                "high": float(row["high"]), "low": float(row["low"]), "close": float(row["close"]),
-            }, level_now)
-            if updates:
-                updates["entry_date_local"] = record.get("entry_date_local", "")
-                update_pdh_row(self.data_dir, signal_id, updates)
-                self.store.save(self.state)
-                if self.pdh_live:
-                    for lane_key, lane_ar in (("main", "أ) خروج تحت قمة الأمس"), ("b", "ب) هدف ثابت")):
-                        if before.get(f"outcome_{lane_key}") is None and record.get(f"outcome_{lane_key}"):
-                            minutes = int(record.get(f"duration_minutes_{lane_key}") or 0)
-                            self.telegram.send_message(build_pdh_exit_message(
-                                record, lane_ar,
-                                float(record.get(f"net_{lane_key}_pct") or 0.0),
-                                float(record.get(f"exit_price_{lane_key}") or 0.0),
-                                PDH_EXIT_REASONS_AR.get(record.get(f"exit_reason_{lane_key}", ""), "—"),
-                                f"{minutes // 60} ساعة و{minutes % 60} دقيقة",
-                            ))
-
-        # 2) تسجيل اختراقات جديدة
-        open_symbols = {r["symbol"] for r in pdh_state.values() if not pdh_both_closed(r)}
-        for symbol, df in klines_map.items():
-            if df is None or df.empty or symbol in open_symbols:
-                continue
-            closed = df[df["open_time"] <= last_closed_open_time]
-            if closed.empty or int(closed.iloc[-1]["open_time"]) != last_closed_open_time:
-                continue
-            try:
-                candidate = build_pdh_signal(closed, symbol, self.config.timezone_name)
-            except Exception as exc:  # لا نُسقط التشغيل بسبب عملة واحدة
-                self.logger.debug("PDH build failed for %s: %s", symbol, exc)
-                continue
-            if not candidate:
-                continue
-            pdh_state[candidate["signal_id"]] = dict(candidate)
-            append_pdh_row(self.data_dir, {**candidate, "entry_date_local": candidate["entry_date_local"]})
-            self.append_event("pdh_entry", symbol, candidate["entry_time_ms"])
-            self.store.save(self.state)
-            self.logger.info("PDH signal: %s @ %s (فوق قمة الأمس %s)", symbol, candidate["entry_price"], candidate["level_price"])
-            if self.pdh_live:
-                self.telegram.send_message(build_pdh_entry_message(candidate))
-        _ = today_key
 
     def process_strategy_shadow(self, klines_map: dict, last_closed_open_time: int) -> None:
         """يسجّل إشارات النظام المرشح ظلّيًا (بلا رسائل) ويسوّي المفتوحة منها."""
@@ -1283,21 +1187,6 @@ class SpotSignalBot:
         if added:
             self.store.save(self.state)
             self.logger.info("Strategy shadow: %d new signal(s) recorded", added)
-
-    @staticmethod
-    def _pdh_stats(rows: list[dict], start_key: str, end_key: str) -> dict:
-        """إحصاء مسارَي نظام «فوق قمة الأمس» في نطاق تواريخ محلي."""
-        in_range = between_keys_ok(start_key, end_key)
-        picked = [r for r in rows if in_range(str(r.get("entry_date_local") or ""))]
-        out: dict = {"signals": len(picked)}
-        for lane in ("main", "b"):
-            closed = [r for r in picked if (r.get(f"outcome_{lane}") or "").strip()]
-            nets = [float(r[f"net_{lane}_pct"]) for r in closed if (r.get(f"net_{lane}_pct") or "").strip() not in ("", None)]
-            wins = [r for r in closed if r.get(f"outcome_{lane}") in ("target", "win")]
-            out[f"{lane}_closed"] = len(closed)
-            out[f"{lane}_wins"] = len(wins)
-            out[f"{lane}_avg"] = (sum(nets) / len(nets)) if nets else None
-        return out
 
     @staticmethod
     def _strategy_shadow_stats(rows: list[dict], start_day: str | None = None, end_day: str | None = None) -> dict:
@@ -1488,16 +1377,6 @@ class SpotSignalBot:
                 )
                 + "   • القاعدة: لا اعتماد قبل ≥100 صفقة مغلقة ومتوسط ≥ +0.05% (مُسجَّلة مسبقًا)\n"
             ))(load_strategy_shadow_rows(self.data_dir))
-            + (lambda pstats: (
-                "🚀 «فوق قمة الأمس» (نظام مستقل — ظلّي)\n"
-                f"   • الإشارات: {int(pstats['signals'])}"
-                + (f"\n   • أ) خروج تحت الخط: مغلقة {int(pstats['main_closed'])} (رابحة {int(pstats['main_wins'])})"
-                   + (f" • متوسط {pstats['main_avg']:+.3f}%" if pstats['main_avg'] is not None else "") if pstats['signals'] else "")
-                + (f"\n   • ب) هدف +1.2%: مغلقة {int(pstats['b_closed'])} (رابحة {int(pstats['b_wins'])})"
-                   + (f" • متوسط {pstats['b_avg']:+.3f}%" if pstats['b_avg'] is not None else "") if pstats['signals'] else "")
-                + "\n   • الحكم: قياس حي لاختراق قمة الأمس — لا اعتماد قبل ≥100 صفقة مغلقة\n"
-                f"═════════════\n"
-            ))(self._pdh_stats(load_pdh_rows(self.data_dir), report_start_key, report_end_key))
             + f"🧭 قاعدة الخروج المفعّلة: {self.exit_rules.describe()}\n"
             f"🏆 أكثر العملات نجاحًا: {best_symbols}\n"
             f"⚠️ أكثر العملات وصولًا للوقف: {stop_symbols_text}"

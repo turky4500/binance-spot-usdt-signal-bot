@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1791486000000,
+  "last_processed_open_time": 1791460800000,
   "last_entry_bar_time": {
     "ESPUSDT": 1791349200000,
     "GMXUSDT": 1791306000000,
@@ -181,7 +181,7 @@
     "OGNUSDT": 1791324000000,
     "SENTUSDT": 1791324000000,
     "JSTUSDT": 1791327600000,
-    "LPTUSDT": 1791468000000,
+    "LPTUSDT": 1791327600000,
     "MITOUSDT": 1791327600000,
     "METISUSDT": 1791331200000,
     "AAPLBUSDT": 1791342000000,
@@ -192,8 +192,7 @@
     "API3USDT": 1791356400000,
     "MSFTBUSDT": 1791360000000,
     "NFLXBUSDT": 1791360000000,
-    "SOXSBUSDT": 1791388800000,
-    "PLTRBUSDT": 1791471600000
+    "SOXSBUSDT": 1791388800000
   },
   "last_exit_bar_time": {
     "ESPUSDT": 1791360000000,
@@ -328,7 +327,7 @@
     "STXUSDT": 1791327600000,
     "EULUSDT": 1791327600000,
     "LUMIAUSDT": 1791327600000,
-    "LPTUSDT": 1791471600000,
+    "LPTUSDT": 1791331200000,
     "USDEUSDT": 1791331200000,
     "ENJUSDT": 1791334800000,
     "MANAUSDT": 1791334800000,
@@ -386,8 +385,7 @@
     "FDUSDUSDT": 1791378000000,
     "SOXSBUSDT": 1791399600000,
     "AMZNBUSDT": 1791442800000,
-    "GOOGLBUSDT": 1791460800000,
-    "PLTRBUSDT": 1791478800000
+    "GOOGLBUSDT": 1791460800000
   },
   "open_trades": {
     "SPYBUSDT": {
@@ -397,7 +395,7 @@
       "stop_price": 767.9245502743319,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791490980000,
+      "last_target_check_ms": 1791466380000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -414,7 +412,7 @@
       "stop_price": 333.37633324761555,
       "entry_time": 1791345599999,
       "entry_bar_open_time": 1791342000000,
-      "last_target_check_ms": 1791490980000,
+      "last_target_check_ms": 1791466380000,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
@@ -437,11 +435,9 @@
         "liquidity_ok": true
       },
       "halal_verdict": "ℹ️ لا يوجد حكم",
-      "peak_price": 341.71,
-      "max_favorable_pct": 2.247157,
-      "reference_target_hit": true,
-      "trail_stop_price": 339.560121504,
-      "trail_initial_stop_pct": 0.616523
+      "peak_price": 337.68,
+      "max_favorable_pct": 1.041293,
+      "reference_target_hit": false
     }
   },
   "event_log": [
@@ -2896,11 +2892,6 @@
       "time_ms": 1791262799999
     },
     {
-      "type": "pdh_entry",
-      "symbol": "DIAUSDT",
-      "time_ms": 1791460799999
-    },
-    {
       "type": "reference_target",
       "symbol": "GOOGLBUSDT",
       "time_ms": 1791461519999
@@ -2909,71 +2900,6 @@
       "type": "exit_win",
       "symbol": "GOOGLBUSDT",
       "time_ms": 1791464399999
-    },
-    {
-      "type": "pdh_entry",
-      "symbol": "GOOGLBUSDT",
-      "time_ms": 1791464399999
-    },
-    {
-      "type": "pdh_entry",
-      "symbol": "SENTUSDT",
-      "time_ms": 1791464399999
-    },
-    {
-      "type": "pdh_entry",
-      "symbol": "BOMEUSDT",
-      "time_ms": 1791467999999
-    },
-    {
-      "type": "pdh_entry",
-      "symbol": "MSFTBUSDT",
-      "time_ms": 1791467999999
-    },
-    {
-      "type": "entry",
-      "symbol": "LPTUSDT",
-      "time_ms": 1791471599999
-    },
-    {
-      "type": "pdh_entry",
-      "symbol": "DELLBUSDT",
-      "time_ms": 1791471599999
-    },
-    {
-      "type": "pdh_entry",
-      "symbol": "GMEBUSDT",
-      "time_ms": 1791471599999
-    },
-    {
-      "type": "stop",
-      "symbol": "LPTUSDT",
-      "time_ms": 1791475199999
-    },
-    {
-      "type": "entry",
-      "symbol": "PLTRBUSDT",
-      "time_ms": 1791475199999
-    },
-    {
-      "type": "pdh_entry",
-      "symbol": "AAPLBUSDT",
-      "time_ms": 1791478799999
-    },
-    {
-      "type": "stop",
-      "symbol": "PLTRBUSDT",
-      "time_ms": 1791482399999
-    },
-    {
-      "type": "pdh_entry",
-      "symbol": "AVNTUSDT",
-      "time_ms": 1791482399999
-    },
-    {
-      "type": "reference_target",
-      "symbol": "AAPLBUSDT",
-      "time_ms": 1791485399999
     }
   ],
   "daily_report": {
@@ -2991,7 +2917,7 @@
     "ZROUSDT": 1791378000000,
     "AMDBUSDT": 1791385200000,
     "AVGOBUSDT": 1791385200000,
-    "JSTUSDT": 1791468000000,
+    "JSTUSDT": 1791385200000,
     "SENTUSDT": 1791385200000,
     "NIGHTUSDT": 1791388800000,
     "TSLABUSDT": 1791388800000,
@@ -3000,7 +2926,7 @@
     "BARUSDT": 1791396000000,
     "UUSDT": 1791396000000,
     "MUBARAKUSDT": 1791442800000,
-    "NVDABUSDT": 1791471600000,
+    "NVDABUSDT": 1791450000000,
     "CHIPUSDT": 1791414000000,
     "QNTUSDT": 1791414000000,
     "RENDERUSDT": 1791414000000,
@@ -3014,16 +2940,41 @@
     "DIAUSDT": 1791439200000,
     "KAIAUSDT": 1791439200000,
     "WALUSDT": 1791439200000,
-    "NMRUSDT": 1791478800000,
+    "NMRUSDT": 1791442800000,
     "CRVUSDT": 1791446400000,
-    "MRVLBUSDT": 1791460800000,
-    "MAGICUSDT": 1791464400000,
-    "OPGUSDT": 1791464400000,
-    "NFLXBUSDT": 1791471600000,
-    "AVNTUSDT": 1791486000000,
-    "DELLBUSDT": 1791486000000
+    "MRVLBUSDT": 1791460800000
   },
   "shadow_candidates": {
+    "AMDBUSDT-1791385200000": {
+      "candidate_id": "AMDBUSDT-1791385200000",
+      "symbol": "AMDBUSDT",
+      "entry_price": 644.65,
+      "target_price": 657.543,
+      "stop_price": 633.3796772218993,
+      "entry_time": 1791388799999,
+      "entry_bar_open_time": 1791385200000,
+      "reason": "volume_blowoff"
+    },
+    "AVGOBUSDT-1791385200000": {
+      "candidate_id": "AVGOBUSDT-1791385200000",
+      "symbol": "AVGOBUSDT",
+      "entry_price": 375.12,
+      "target_price": 382.6224,
+      "stop_price": 368.5268326636993,
+      "entry_time": 1791388799999,
+      "entry_bar_open_time": 1791385200000,
+      "reason": "volume_blowoff"
+    },
+    "BARUSDT-1791396000000": {
+      "candidate_id": "BARUSDT-1791396000000",
+      "symbol": "BARUSDT",
+      "entry_price": 0.284,
+      "target_price": 0.28968,
+      "stop_price": 0.27949934483940286,
+      "entry_time": 1791399599999,
+      "entry_bar_open_time": 1791396000000,
+      "reason": "volume_too_low"
+    },
     "UUSDT-1791396000000": {
       "candidate_id": "UUSDT-1791396000000",
       "symbol": "UUSDT",
@@ -3044,45 +2995,45 @@
       "entry_bar_open_time": 1791417600000,
       "reason": "volume_too_low"
     },
-    "OPGUSDT-1791464400000": {
-      "candidate_id": "OPGUSDT-1791464400000",
-      "symbol": "OPGUSDT",
-      "entry_price": 0.1377,
-      "target_price": 0.140454,
-      "stop_price": 0.13551867190844855,
-      "entry_time": 1791467999999,
-      "entry_bar_open_time": 1791464400000,
-      "reason": "volume_too_low"
-    },
-    "NFLXBUSDT-1791471600000": {
-      "candidate_id": "NFLXBUSDT-1791471600000",
-      "symbol": "NFLXBUSDT",
-      "entry_price": 71.18,
-      "target_price": 72.60360000000001,
-      "stop_price": 69.79042172364818,
-      "entry_time": 1791475199999,
-      "entry_bar_open_time": 1791471600000,
+    "API3USDT-1791439200000": {
+      "candidate_id": "API3USDT-1791439200000",
+      "symbol": "API3USDT",
+      "entry_price": 0.3039,
+      "target_price": 0.30997800000000003,
+      "stop_price": 0.2978303399994026,
+      "entry_time": 1791442799999,
+      "entry_bar_open_time": 1791439200000,
       "reason": "volume_blowoff"
     },
-    "AVNTUSDT-1791486000000": {
-      "candidate_id": "AVNTUSDT-1791486000000",
-      "symbol": "AVNTUSDT",
-      "entry_price": 0.13,
-      "target_price": 0.1326,
-      "stop_price": 0.1269932313015296,
-      "entry_time": 1791489599999,
-      "entry_bar_open_time": 1791486000000,
+    "MUBARAKUSDT-1791442800000": {
+      "candidate_id": "MUBARAKUSDT-1791442800000",
+      "symbol": "MUBARAKUSDT",
+      "entry_price": 0.07255,
+      "target_price": 0.07400100000000001,
+      "stop_price": 0.07126424143131044,
+      "entry_time": 1791446399999,
+      "entry_bar_open_time": 1791442800000,
       "reason": "volume_too_low"
     },
-    "DELLBUSDT-1791486000000": {
-      "candidate_id": "DELLBUSDT-1791486000000",
-      "symbol": "DELLBUSDT",
-      "entry_price": 575.07,
-      "target_price": 586.5714,
-      "stop_price": 566.4288067880606,
-      "entry_time": 1791489599999,
-      "entry_bar_open_time": 1791486000000,
-      "reason": "volume_blowoff"
+    "TRXUSDT-1791453600000": {
+      "candidate_id": "TRXUSDT-1791453600000",
+      "symbol": "TRXUSDT",
+      "entry_price": 0.336,
+      "target_price": 0.34272,
+      "stop_price": 0.3345659828192358,
+      "entry_time": 1791457199999,
+      "entry_bar_open_time": 1791453600000,
+      "reason": "volume_too_low"
+    },
+    "MRVLBUSDT-1791460800000": {
+      "candidate_id": "MRVLBUSDT-1791460800000",
+      "symbol": "MRVLBUSDT",
+      "entry_price": 278.42,
+      "target_price": 283.9884,
+      "stop_price": 275.9481352097566,
+      "entry_time": 1791464399999,
+      "entry_bar_open_time": 1791460800000,
+      "reason": "di_trend_negative"
     }
   },
   "strategy_shadow": {
@@ -3099,18 +3050,17 @@
       "rsi2": 26.1344,
       "rsi14": 45.5209,
       "distance_from_ema20_pct": -0.275095,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "ANIMEUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.00315,
-      "max_favorable_pct": 1.286174,
+      "peak_price": 0.00312,
+      "max_favorable_pct": 0.321543,
       "d1_close": 0.00314,
       "d1_sma50": 0.0030316,
-      "d1_gap_pct": 3.57567,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 3.57567
     },
     "ARBUSDT-1791457200000": {
       "symbol": "ARBUSDT",
@@ -3125,18 +3075,17 @@
       "rsi2": 23.4176,
       "rsi14": 44.0743,
       "distance_from_ema20_pct": -0.749096,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "ARBUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.1845,
-      "max_favorable_pct": 0.162866,
+      "peak_price": 0.1844,
+      "max_favorable_pct": 0.108578,
       "d1_close": 0.1858,
       "d1_sma50": 0.159608,
-      "d1_gap_pct": 16.410205,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 16.410205
     },
     "ARKMUSDT-1791457200000": {
       "symbol": "ARKMUSDT",
@@ -3151,18 +3100,17 @@
       "rsi2": 38.3275,
       "rsi14": 47.8952,
       "distance_from_ema20_pct": -0.051331,
-      "outcome": "target",
-      "exit_reason": "take_profit",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "ARKMUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.1309,
+      "peak_price": 0.1271,
       "max_favorable_pct": 0.236593,
       "d1_close": 0.1278,
       "d1_sma50": 0.115538,
-      "d1_gap_pct": 10.612959,
-      "exit_time_ms": 1791471599999
+      "d1_gap_pct": 10.612959
     },
     "ASTRUSDT-1791457200000": {
       "symbol": "ASTRUSDT",
@@ -3177,18 +3125,17 @@
       "rsi2": 33.3396,
       "rsi14": 45.0884,
       "distance_from_ema20_pct": -0.133704,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "ASTRUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.007026,
-      "max_favorable_pct": 0.948276,
+      "peak_price": 0.00696,
+      "max_favorable_pct": 0.0,
       "d1_close": 0.006992,
       "d1_sma50": 0.00637448,
-      "d1_gap_pct": 9.687378,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 9.687378
     },
     "AUCTIONUSDT-1791457200000": {
       "symbol": "AUCTIONUSDT",
@@ -3203,18 +3150,17 @@
       "rsi2": 30.9259,
       "rsi14": 43.8572,
       "distance_from_ema20_pct": -0.512343,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "AUCTIONUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 3.722,
-      "max_favorable_pct": 1.916758,
+      "peak_price": 3.659,
+      "max_favorable_pct": 0.191676,
       "d1_close": 3.705,
       "d1_sma50": 3.48104,
-      "d1_gap_pct": 6.433709,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 6.433709
     },
     "AXLUSDT-1791457200000": {
       "symbol": "AXLUSDT",
@@ -3229,18 +3175,17 @@
       "rsi2": 26.8694,
       "rsi14": 48.7614,
       "distance_from_ema20_pct": -0.134036,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "AXLUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.0522,
-      "max_favorable_pct": 1.953125,
+      "peak_price": 0.0517,
+      "max_favorable_pct": 0.976562,
       "d1_close": 0.0518,
       "d1_sma50": 0.046348,
-      "d1_gap_pct": 11.763183,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 11.763183
     },
     "BERAUSDT-1791457200000": {
       "symbol": "BERAUSDT",
@@ -3255,8 +3200,8 @@
       "rsi2": 35.3073,
       "rsi14": 46.6288,
       "distance_from_ema20_pct": -0.266695,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "BERAUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3265,8 +3210,7 @@
       "max_favorable_pct": 0.317749,
       "d1_close": 0.2229,
       "d1_sma50": 0.200094,
-      "d1_gap_pct": 11.397643,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 11.397643
     },
     "BIGTIMEUSDT-1791457200000": {
       "symbol": "BIGTIMEUSDT",
@@ -3281,18 +3225,17 @@
       "rsi2": 17.117,
       "rsi14": 44.491,
       "distance_from_ema20_pct": -0.274592,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "BIGTIMEUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.00839,
-      "max_favorable_pct": 1.084337,
+      "peak_price": 0.00832,
+      "max_favorable_pct": 0.240964,
       "d1_close": 0.00828,
       "d1_sma50": 0.0075152,
-      "d1_gap_pct": 10.176709,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 10.176709
     },
     "BLURUSDT-1791457200000": {
       "symbol": "BLURUSDT",
@@ -3307,18 +3250,17 @@
       "rsi2": 17.291,
       "rsi14": 37.8854,
       "distance_from_ema20_pct": -1.438416,
-      "outcome": "target",
-      "exit_reason": "take_profit",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "BLURUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.01943,
-      "max_favorable_pct": 1.424051,
+      "peak_price": 0.0191,
+      "max_favorable_pct": 0.738397,
       "d1_close": 0.01936,
       "d1_sma50": 0.0180084,
-      "d1_gap_pct": 7.505386,
-      "exit_time_ms": 1791471599999
+      "d1_gap_pct": 7.505386
     },
     "BREVUSDT-1791457200000": {
       "symbol": "BREVUSDT",
@@ -3333,8 +3275,8 @@
       "rsi2": 21.6304,
       "rsi14": 44.4398,
       "distance_from_ema20_pct": -0.934653,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "BREVUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3343,8 +3285,7 @@
       "max_favorable_pct": 0.0,
       "d1_close": 0.0857,
       "d1_sma50": 0.07965,
-      "d1_gap_pct": 7.595731,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 7.595731
     },
     "CELOUSDT-1791457200000": {
       "symbol": "CELOUSDT",
@@ -3359,18 +3300,17 @@
       "rsi2": 36.6553,
       "rsi14": 44.8475,
       "distance_from_ema20_pct": -0.147215,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "CELOUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.09629,
-      "max_favorable_pct": 1.657517,
+      "peak_price": 0.09501,
+      "max_favorable_pct": 0.306166,
       "d1_close": 0.09513,
       "d1_sma50": 0.0842998,
-      "d1_gap_pct": 12.847243,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 12.847243
     },
     "CFGUSDT-1791457200000": {
       "symbol": "CFGUSDT",
@@ -3385,18 +3325,17 @@
       "rsi2": 14.6495,
       "rsi14": 44.2256,
       "distance_from_ema20_pct": -0.660434,
-      "outcome": "target",
-      "exit_reason": "take_profit",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "CFGUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.1418,
-      "max_favorable_pct": 1.224784,
+      "peak_price": 0.1391,
+      "max_favorable_pct": 0.216138,
       "d1_close": 0.1411,
       "d1_sma50": 0.130592,
-      "d1_gap_pct": 8.046435,
-      "exit_time_ms": 1791471599999
+      "d1_gap_pct": 8.046435
     },
     "CGPTUSDT-1791457200000": {
       "symbol": "CGPTUSDT",
@@ -3437,18 +3376,17 @@
       "rsi2": 70.3386,
       "rsi14": 47.1694,
       "distance_from_ema20_pct": -0.094281,
-      "outcome": "target",
-      "exit_reason": "take_profit",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "CHRUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.02226,
+      "peak_price": 0.02183,
       "max_favorable_pct": 1.018047,
       "d1_close": 0.02204,
       "d1_sma50": 0.0177586,
-      "d1_gap_pct": 24.108882,
-      "exit_time_ms": 1791467999999
+      "d1_gap_pct": 24.108882
     },
     "COOKIEUSDT-1791457200000": {
       "symbol": "COOKIEUSDT",
@@ -3463,8 +3401,8 @@
       "rsi2": 41.9219,
       "rsi14": 45.7997,
       "distance_from_ema20_pct": -0.233582,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "COOKIEUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3473,8 +3411,7 @@
       "max_favorable_pct": 0.0,
       "d1_close": 0.0122,
       "d1_sma50": 0.0115958,
-      "d1_gap_pct": 5.210507,
-      "exit_time_ms": 1791467999999
+      "d1_gap_pct": 5.210507
     },
     "DCRUSDT-1791457200000": {
       "symbol": "DCRUSDT",
@@ -3489,8 +3426,8 @@
       "rsi2": 23.8719,
       "rsi14": 47.3882,
       "distance_from_ema20_pct": -0.150857,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "DCRUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3499,8 +3436,7 @@
       "max_favorable_pct": 0.560224,
       "d1_close": 17.78,
       "d1_sma50": 16.1658,
-      "d1_gap_pct": 9.985278,
-      "exit_time_ms": 1791467999999
+      "d1_gap_pct": 9.985278
     },
     "FETUSDT-1791457200000": {
       "symbol": "FETUSDT",
@@ -3515,18 +3451,17 @@
       "rsi2": 33.2259,
       "rsi14": 48.8478,
       "distance_from_ema20_pct": -0.06554,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "FETUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.2351,
-      "max_favorable_pct": 1.951431,
+      "peak_price": 0.2323,
+      "max_favorable_pct": 0.737207,
       "d1_close": 0.2299,
       "d1_sma50": 0.185662,
-      "d1_gap_pct": 23.82717,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 23.82717
     },
     "FTTUSDT-1791457200000": {
       "symbol": "FTTUSDT",
@@ -3541,18 +3476,17 @@
       "rsi2": 28.9888,
       "rsi14": 46.9237,
       "distance_from_ema20_pct": -0.312816,
-      "outcome": "target",
-      "exit_reason": "take_profit",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "FTTUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.3099,
+      "peak_price": 0.244,
       "max_favorable_pct": 0.328947,
       "d1_close": 0.2463,
       "d1_sma50": 0.233536,
-      "d1_gap_pct": 5.465539,
-      "exit_time_ms": 1791471599999
+      "d1_gap_pct": 5.465539
     },
     "GLMUSDT-1791457200000": {
       "symbol": "GLMUSDT",
@@ -3567,18 +3501,17 @@
       "rsi2": 26.0733,
       "rsi14": 48.4885,
       "distance_from_ema20_pct": -0.018987,
-      "outcome": "target",
-      "exit_reason": "take_profit",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "GLMUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.1301,
-      "max_favorable_pct": 0.785546,
+      "peak_price": 0.1273,
+      "max_favorable_pct": 0.0,
       "d1_close": 0.1278,
       "d1_sma50": 0.115932,
-      "d1_gap_pct": 10.237036,
-      "exit_time_ms": 1791471599999
+      "d1_gap_pct": 10.237036
     },
     "GNOUSDT-1791457200000": {
       "symbol": "GNOUSDT",
@@ -3619,18 +3552,17 @@
       "rsi2": 35.0738,
       "rsi14": 45.048,
       "distance_from_ema20_pct": -0.398036,
-      "outcome": "target",
-      "exit_reason": "take_profit",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "ILVUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 3.92,
-      "max_favorable_pct": 0.520833,
+      "peak_price": 3.85,
+      "max_favorable_pct": 0.260417,
       "d1_close": 3.88,
       "d1_sma50": 3.485,
-      "d1_gap_pct": 11.33429,
-      "exit_time_ms": 1791471599999
+      "d1_gap_pct": 11.33429
     },
     "IMXUSDT-1791457200000": {
       "symbol": "IMXUSDT",
@@ -3645,18 +3577,17 @@
       "rsi2": 22.3139,
       "rsi14": 46.2059,
       "distance_from_ema20_pct": -0.622844,
-      "outcome": "target",
-      "exit_reason": "take_profit",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "IMXUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.1793,
+      "peak_price": 0.1753,
       "max_favorable_pct": 0.979263,
       "d1_close": 0.1758,
       "d1_sma50": 0.140972,
-      "d1_gap_pct": 24.705615,
-      "exit_time_ms": 1791467999999
+      "d1_gap_pct": 24.705615
     },
     "IOUSDT-1791457200000": {
       "symbol": "IOUSDT",
@@ -3671,18 +3602,17 @@
       "rsi2": 13.4638,
       "rsi14": 43.4788,
       "distance_from_ema20_pct": -1.276126,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "IOUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.1592,
-      "max_favorable_pct": 1.336728,
+      "peak_price": 0.1572,
+      "max_favorable_pct": 0.063654,
       "d1_close": 0.1577,
       "d1_sma50": 0.143304,
-      "d1_gap_pct": 10.045777,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 10.045777
     },
     "JSTUSDT-1791457200000": {
       "symbol": "JSTUSDT",
@@ -3703,8 +3633,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.14067,
-      "max_favorable_pct": 1.420332,
+      "peak_price": 0.13929,
+      "max_favorable_pct": 0.425379,
       "d1_close": 0.14189,
       "d1_sma50": 0.1138758,
       "d1_gap_pct": 24.600661
@@ -3722,18 +3652,17 @@
       "rsi2": 10.7493,
       "rsi14": 40.5977,
       "distance_from_ema20_pct": -1.768174,
-      "outcome": "target",
-      "exit_reason": "take_profit",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "LSKUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.2438,
-      "max_favorable_pct": 1.576481,
+      "peak_price": 0.2347,
+      "max_favorable_pct": 0.0,
       "d1_close": 0.2358,
       "d1_sma50": 0.2331,
-      "d1_gap_pct": 1.158301,
-      "exit_time_ms": 1791471599999
+      "d1_gap_pct": 1.158301
     },
     "MANTRAUSDT-1791457200000": {
       "symbol": "MANTRAUSDT",
@@ -3748,18 +3677,17 @@
       "rsi2": 20.8069,
       "rsi14": 46.6081,
       "distance_from_ema20_pct": -0.381175,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "MANTRAUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.00449,
-      "max_favorable_pct": 1.354402,
+      "peak_price": 0.00443,
+      "max_favorable_pct": 0.0,
       "d1_close": 0.00447,
       "d1_sma50": 0.0043862,
-      "d1_gap_pct": 1.910538,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 1.910538
     },
     "MEMEUSDT-1791457200000": {
       "symbol": "MEMEUSDT",
@@ -3774,18 +3702,17 @@
       "rsi2": 21.235,
       "rsi14": 44.8011,
       "distance_from_ema20_pct": -0.483551,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "MEMEUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.000573,
-      "max_favorable_pct": 0.880282,
+      "peak_price": 0.000569,
+      "max_favorable_pct": 0.176056,
       "d1_close": 0.000572,
       "d1_sma50": 0.0005623,
-      "d1_gap_pct": 1.725058,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 1.725058
     },
     "MEUSDT-1791457200000": {
       "symbol": "MEUSDT",
@@ -3800,8 +3727,8 @@
       "rsi2": 27.1034,
       "rsi14": 47.0316,
       "distance_from_ema20_pct": -0.347075,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "MEUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3810,8 +3737,7 @@
       "max_favorable_pct": 0.013955,
       "d1_close": 0.07183,
       "d1_sma50": 0.0688242,
-      "d1_gap_pct": 4.367359,
-      "exit_time_ms": 1791467999999
+      "d1_gap_pct": 4.367359
     },
     "MIRAUSDT-1791457200000": {
       "symbol": "MIRAUSDT",
@@ -3826,8 +3752,8 @@
       "rsi2": 28.9702,
       "rsi14": 45.6131,
       "distance_from_ema20_pct": -0.29944,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "MIRAUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3836,8 +3762,7 @@
       "max_favorable_pct": 0.342742,
       "d1_close": 0.04992,
       "d1_sma50": 0.0481778,
-      "d1_gap_pct": 3.616188,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 3.616188
     },
     "NEWTUSDT-1791457200000": {
       "symbol": "NEWTUSDT",
@@ -3852,18 +3777,17 @@
       "rsi2": 23.8136,
       "rsi14": 43.6959,
       "distance_from_ema20_pct": -0.433789,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "NEWTUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.04678,
-      "max_favorable_pct": 0.645439,
+      "peak_price": 0.04661,
+      "max_favorable_pct": 0.27969,
       "d1_close": 0.04704,
       "d1_sma50": 0.04506,
-      "d1_gap_pct": 4.394141,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 4.394141
     },
     "PENDLEUSDT-1791457200000": {
       "symbol": "PENDLEUSDT",
@@ -3878,18 +3802,17 @@
       "rsi2": 18.1145,
       "rsi14": 45.7356,
       "distance_from_ema20_pct": -0.608007,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "PENDLEUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 2.255,
-      "max_favorable_pct": 0.579839,
+      "peak_price": 2.244,
+      "max_favorable_pct": 0.089206,
       "d1_close": 2.245,
       "d1_sma50": 2.1442,
-      "d1_gap_pct": 4.701054,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 4.701054
     },
     "PORTALUSDT-1791457200000": {
       "symbol": "PORTALUSDT",
@@ -3904,18 +3827,17 @@
       "rsi2": 14.6188,
       "rsi14": 47.5456,
       "distance_from_ema20_pct": -0.319007,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "PORTALUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.01734,
-      "max_favorable_pct": 1.344243,
+      "peak_price": 0.0172,
+      "max_favorable_pct": 0.526008,
       "d1_close": 0.01706,
       "d1_sma50": 0.0167336,
-      "d1_gap_pct": 1.950567,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 1.950567
     },
     "PUNDIXUSDT-1791457200000": {
       "symbol": "PUNDIXUSDT",
@@ -3930,18 +3852,17 @@
       "rsi2": 34.1301,
       "rsi14": 46.4255,
       "distance_from_ema20_pct": -0.051537,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "PUNDIXUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.114,
-      "max_favorable_pct": 0.974314,
+      "peak_price": 0.1129,
+      "max_favorable_pct": 0.0,
       "d1_close": 0.1133,
       "d1_sma50": 0.104886,
-      "d1_gap_pct": 8.022043,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 8.022043
     },
     "QIUSDT-1791457200000": {
       "symbol": "QIUSDT",
@@ -3956,8 +3877,8 @@
       "rsi2": 22.6149,
       "rsi14": 47.4546,
       "distance_from_ema20_pct": -0.803026,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "QIUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3966,8 +3887,7 @@
       "max_favorable_pct": 0.481431,
       "d1_close": 0.002949,
       "d1_sma50": 0.00175768,
-      "d1_gap_pct": 67.77798,
-      "exit_time_ms": 1791467999999
+      "d1_gap_pct": 67.77798
     },
     "QKCUSDT-1791457200000": {
       "symbol": "QKCUSDT",
@@ -3982,18 +3902,17 @@
       "rsi2": 21.5988,
       "rsi14": 42.7503,
       "distance_from_ema20_pct": -1.09327,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "QKCUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.002729,
-      "max_favorable_pct": 1.600894,
+      "peak_price": 0.002724,
+      "max_favorable_pct": 1.414743,
       "d1_close": 0.002673,
       "d1_sma50": 0.00248998,
-      "d1_gap_pct": 7.35026,
-      "exit_time_ms": 1791478799999
+      "d1_gap_pct": 7.35026
     },
     "ROSEUSDT-1791457200000": {
       "symbol": "ROSEUSDT",
@@ -4008,18 +3927,17 @@
       "rsi2": 33.3042,
       "rsi14": 44.9992,
       "distance_from_ema20_pct": -0.393371,
-      "outcome": "target",
-      "exit_reason": "take_profit",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "ROSEUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.00796,
-      "max_favorable_pct": 0.646831,
+      "peak_price": 0.00774,
+      "max_favorable_pct": 0.129366,
       "d1_close": 0.00782,
       "d1_sma50": 0.0071476,
-      "d1_gap_pct": 9.407354,
-      "exit_time_ms": 1791471599999
+      "d1_gap_pct": 9.407354
     },
     "RPLUSDT-1791457200000": {
       "symbol": "RPLUSDT",
@@ -4034,18 +3952,17 @@
       "rsi2": 32.0745,
       "rsi14": 45.6711,
       "distance_from_ema20_pct": -0.206177,
-      "outcome": "target",
-      "exit_reason": "take_profit",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "RPLUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 1.837,
-      "max_favorable_pct": 1.785714,
+      "peak_price": 1.799,
+      "max_favorable_pct": 0.390625,
       "d1_close": 1.805,
       "d1_sma50": 1.77546,
-      "d1_gap_pct": 1.663794,
-      "exit_time_ms": 1791471599999
+      "d1_gap_pct": 1.663794
     },
     "SANTOSUSDT-1791457200000": {
       "symbol": "SANTOSUSDT",
@@ -4060,8 +3977,8 @@
       "rsi2": 7.8283,
       "rsi14": 43.0224,
       "distance_from_ema20_pct": -0.979089,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "SANTOSUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -4070,8 +3987,7 @@
       "max_favorable_pct": 0.579151,
       "d1_close": 0.525,
       "d1_sma50": 0.52034,
-      "d1_gap_pct": 0.895568,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 0.895568
     },
     "USUALUSDT-1791457200000": {
       "symbol": "USUALUSDT",
@@ -4086,18 +4002,17 @@
       "rsi2": 28.6052,
       "rsi14": 44.3493,
       "distance_from_ema20_pct": -0.361496,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "USUALUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.01242,
-      "max_favorable_pct": 1.470588,
+      "peak_price": 0.01226,
+      "max_favorable_pct": 0.163399,
       "d1_close": 0.01233,
       "d1_sma50": 0.0122328,
-      "d1_gap_pct": 0.794585,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 0.794585
     },
     "WCTUSDT-1791457200000": {
       "symbol": "WCTUSDT",
@@ -4112,18 +4027,17 @@
       "rsi2": 22.6883,
       "rsi14": 43.8272,
       "distance_from_ema20_pct": -0.633276,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "WCTUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.04079,
-      "max_favorable_pct": 1.215881,
+      "peak_price": 0.0404,
+      "max_favorable_pct": 0.248139,
       "d1_close": 0.04106,
       "d1_sma50": 0.0395576,
-      "d1_gap_pct": 3.798006,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 3.798006
     },
     "XAIUSDT-1791457200000": {
       "symbol": "XAIUSDT",
@@ -4138,8 +4052,8 @@
       "rsi2": 36.3273,
       "rsi14": 45.2984,
       "distance_from_ema20_pct": -0.293002,
-      "outcome": "loss",
-      "exit_reason": "stop_loss",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "XAIUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -4148,8 +4062,7 @@
       "max_favorable_pct": 0.221484,
       "d1_close": 0.00914,
       "d1_sma50": 0.008057,
-      "d1_gap_pct": 13.441728,
-      "exit_time_ms": 1791475199999
+      "d1_gap_pct": 13.441728
     },
     "SKLUSDT-1791457200000": {
       "symbol": "SKLUSDT",
@@ -4164,44 +4077,17 @@
       "rsi2": 52.2245,
       "rsi14": 47.3825,
       "distance_from_ema20_pct": -0.027255,
-      "outcome": "target",
-      "exit_reason": "take_profit",
+      "outcome": "",
+      "exit_reason": "",
       "shadow_id": "SKLUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.00529,
+      "peak_price": 0.00452,
       "max_favorable_pct": 1.118568,
       "d1_close": 0.00452,
       "d1_sma50": 0.0040808,
-      "d1_gap_pct": 10.762596,
-      "exit_time_ms": 1791467999999
-    },
-    "AVNTUSDT-1791482400000-pullback": {
-      "symbol": "AVNTUSDT",
-      "entry_time_ms": 1791485999999,
-      "in_focus_hours": 0,
-      "entry_hour_local": 21,
-      "entry_price": 0.1298,
-      "target_price": 0.132396,
-      "stop_price": 0.126555,
-      "stop_pct": 2.5,
-      "atr_at_entry": 0.0035099975,
-      "rsi2": 31.9576,
-      "rsi14": 50.1982,
-      "distance_from_ema20_pct": -0.32978,
-      "lane": "pullback",
-      "outcome": "",
-      "exit_reason": "",
-      "shadow_id": "AVNTUSDT-1791482400000-pullback",
-      "entry_bar_open_time": 1791482400000,
-      "entry_time_local": "2026-10-08 9:59:59 مساءً",
-      "entry_date_local": "2026-10-08",
-      "peak_price": 0.1322,
-      "max_favorable_pct": 1.848998,
-      "d1_close": 0.1298,
-      "d1_sma50": 0.109656,
-      "d1_gap_pct": 18.370176
+      "d1_gap_pct": 10.762596
     }
   }
 }
