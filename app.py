@@ -61,6 +61,33 @@ SHADOW_MAX_ACTIVE = 400  # حد أقصى للمرشحات المتابعة في 
 SHADOW_MAX_AGE_MS = 48 * HOUR_MS  # بعدها تُعتبر منتهية بدون نتيجة
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# استثناء أزواج العملات المستقرة المربوطة (دولار/يورو)
+# السبب (دليل حي 2026-10-08): FDUSDUSDT دخلت وأخذت وقفًا وهميًا، وRLUSDUSDT/XUSDUSDT
+# مفتوحتان بهدف +2% مستحيل رياضيًا (1.0003 → 1.0203)، وUSDCUSDT/UUSDT/USD1USDT ظهرت
+# كمرشحات. هذه الأزواج مثبّتة فهدف +2% شبه مستحيل بينما وقف 1.5×ATR (بمقدار 0.03–0.05%)
+# يتحول إلى مصيدة ضجيج. القائمة مبنية على فحص حي لأسعار الـ506 زوجًا (كلها ≈ 1.00
+# باستثناء FRAXUSDT/USDEBUSDT فقد ثبت أنهما غير مثبّتين وبقيا داخل المسح).
+# الإيقاف: اضبط EXCLUDE_PEGGED_STABLES=0 في بيئة التشغيل.
+EXCLUDE_PEGGED_STABLES = os.getenv("EXCLUDE_PEGGED_STABLES", "1").strip().lower() not in ("0", "false", "no", "off")
+
+PEGGED_STABLE_BASES = frozenset({
+    # موجودة فعليًا في قائمة Binance Spot USDT (فُحصت حيًّا اليوم)
+    "USDC", "FDUSD", "TUSD", "RLUSD", "XUSD", "USD1", "USDE", "USDS", "BFUSD", "U", "EUR", "EURI",
+    # شائعة وقد تُضاف مستقبلًا
+    "BUSD", "USDP", "DAI", "PYUSD", "GUSD", "LUSD", "AEUR", "EURC", "USDY", "USDD", "USDF",
+})
+
+
+def is_pegged_stable_symbol(symbol: str, quote_asset: str = "USDT") -> bool:
+    """هل الزوج مبني على عملة مستقرة مربوطة؟ (هدف +2% عليه غير منطقي)"""
+    symbol = (symbol or "").upper()
+    quote = (quote_asset or "USDT").upper()
+    if not symbol.endswith(quote):
+        return False
+    return symbol[: -len(quote)] in PEGGED_STABLE_BASES
+
+
 class SpotSignalBot:
     def __init__(self, config: AppConfig) -> None:
         self.config = config
@@ -92,9 +119,18 @@ class SpotSignalBot:
         now = time.time()
         if not force and self.symbols and (now - self.last_symbols_refresh) < 6 * 60 * 60:
             return
-        self.symbols = self.binance.get_spot_usdt_symbols(self.config.quote_asset)
+        all_symbols = self.binance.get_spot_usdt_symbols(self.config.quote_asset)
+        if EXCLUDE_PEGGED_STABLES:
+            self.symbols = [s for s in all_symbols if not is_pegged_stable_symbol(s, self.config.quote_asset)]
+        else:
+            self.symbols = list(all_symbols)
         self.last_symbols_refresh = now
-        self.logger.info("Loaded %s spot symbols with quote asset %s", len(self.symbols), self.config.quote_asset)
+        excluded = len(all_symbols) - len(self.symbols)
+        self.logger.info(
+            "Loaded %s spot symbols with quote asset %s%s",
+            len(self.symbols), self.config.quote_asset,
+            f" (استُثني {excluded} زوجًا لعملات مستقرة مربوطة)" if excluded else "",
+        )
 
     def refresh_halal_verdicts(self) -> None:
         self.halal_verdicts = refresh_if_stale(

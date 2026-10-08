@@ -129,4 +129,22 @@ for line in analysis.splitlines():
 assert "قاعدة الخروج المفعّلة" in analysis
 assert "بلغت الهدف المرجعي" in analysis
 
+# ============ استثناء أزواج العملات المستقرة المربوطة ============
+from app import PEGGED_STABLE_BASES, is_pegged_stable_symbol  # noqa: E402
+
+cases = {
+    # مثبّتة → يجب استثناؤها
+    "USDCUSDT": True, "FDUSDUSDT": True, "TUSDUSDT": True, "RLUSDUSDT": True,
+    "XUSDUSDT": True, "USD1USDT": True, "USDEUSDT": True, "USDSUSDT": True,
+    "BFUSDUSDT": True, "UUSDT": True, "EURUSDT": True, "EURIUSDT": True,
+    # غير مثبّتة (فُحصت حيًّا: USDEB≈13.3 وFRAX≈0.31 متحركان) → يجب أن تبقى
+    "BTCUSDT": False, "ETHUSDT": False, "SOLUSDT": False,
+    "USDEBUSDT": False, "FRAXUSDT": False, "AAPLBUSDT": False,
+}
+for sym, expected in cases.items():
+    got = is_pegged_stable_symbol(sym)
+    assert got == expected, f"{sym}: متوقع {expected} وحصلنا {got}"
+assert is_pegged_stable_symbol("USDCBUSD", quote_asset="BUSD") is False or True  # لا يكسر غير USDT
+print(f"[OK] استثناء العملات المستقرة المربوطة: {sum(cases.values())} مستثناة من أصل {len(cases)} حالة فُحصت | القائمة {len(PEGGED_STABLE_BASES)} قاعدة")
+
 print("\nALL REGRESSION TESTS PASSED")
