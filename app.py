@@ -107,6 +107,10 @@ class SpotSignalBot:
         self.exit_rules = ExitSettings()
         self.smart_entry = SmartEntrySettings(timezone_name=config.timezone_name)
         self.strategy_shadow_enabled = os.getenv("STRATEGY_SHADOW", "1").strip().lower() not in ("0", "false", "no", "off")
+        # وضع الهدوء: يوقف رسائل الدخول للنظام القديم فقط (يبقى التسجيل والتقارير كاملين).
+        # الافتراضي معطّل — يُفعَّل بـ QUIET_ENTRY_SIGNALS=1 بعد قرار المستخدم.
+        self.quiet_entry_signals = os.getenv("QUIET_ENTRY_SIGNALS", "0").strip().lower() not in ("0", "false", "no", "off")
+        self.quiet_entry_count_today = 0
         self._daily_trend_cache: dict[str, tuple[str, bool, float, float]] = {}
         self.store = StateStore(config.state_file)
         self.state = self.store.load()
@@ -298,7 +302,15 @@ class SpotSignalBot:
             + f"─────────────\n"
             f"الحكم الشرعي: {verdict}"
         )
-        self.telegram.send_message(text)
+        if self.quiet_entry_signals:
+            # وضع الهدوء: لا رسالة — لكن الصفقة تُسجَّل وتُتابَع ويظهر خروجها كالمعتاد
+            self.quiet_entry_count_today += 1
+            self.logger.info(
+                "QUIET mode: سُجّلت إشارة %s @ %s بلا رسالة (إجمالي اليوم %s)",
+                trade["symbol"], trade["entry_price"], self.quiet_entry_count_today,
+            )
+        else:
+            self.telegram.send_message(text)
         self.append_event("entry", trade["symbol"], int(trade["entry_time"]))
         append_trade_entry(self.data_dir, self._build_trade_log_record(trade))
 
