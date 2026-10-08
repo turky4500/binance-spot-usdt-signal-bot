@@ -72,7 +72,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/state.json data/halal_verdicts.json data/trades_log.csv data/rejected_candidates.csv data/strategy_shadow.csv
+          # git add data/ : يضيف كل ملفات الحالة الموجودة (وتتجاهل غير الموجود مثل دفتر الظلّي قبل أول إشارة)
+          git add data/
           if git diff --cached --quiet; then
             echo "No state changes to commit"
             exit 0
