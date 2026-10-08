@@ -96,10 +96,17 @@ def main() -> None:
 
     top_test = np.average(top["avg_test"], weights=top["n_test"]) if len(top) else float("nan")
     low_test = np.average(low["avg_test"], weights=low["n_test"]) if len(low) else float("nan")
-    if top_test > low_test:
-        lines.append("→ الترتيب **يتنبأ جزئيًا**: العملات الأفضل في التدريب أفضل فعليًا في الاختبار. أي أن اختيار **مجموعة** من العملات قد يفيد (مع أن الأرقام نفسها تنخفض خارج العينة).")
+    spearman = both["avg_train"].corr(both["avg_test"], method="spearman")
+    # الحكم: يجب أن يكون الارتباط موجبًا معقولًا **وأن** يتفوّق الربع الأعلى فعليًا بهامش غير تافه
+    if spearman > 0.15 and top_test - low_test > 0.10:
+        lines.append(f"→ الترتيب **يتنبأ جزئيًا** (ارتباط {spearman:+.2f} وفرق {top_test - low_test:+.3f}%): اختيار مجموعة عملات قد يفيد.")
     else:
-        lines.append("→ ⚠️ الترتيب **لا يتنبأ**: العملات الأفضل سابقًا ليست أفضل لاحقًا. **لا تستخدم هذا الترتيب كفلتر** — استخدمه كمعلومة فقط.")
+        lines.append(
+            f"→ ⚠️ **الترتيب لا يتنبأ** (ارتباط {spearman:+.2f} فقط، والفرق بين الربع الأعلى والأسفل "
+            f"{top_test - low_test:+.3f}% = لا فرق عملي). "
+            "**لا تستخدم هذا الترتيب كفلتر** — اختيار «العملات الرابحة سابقًا» يعطي نتائج كاختيار العشوائي. "
+            "استخدم الجدولين أدناه كمعلومة عامة فقط."
+        )
 
     lines += [
         "",
