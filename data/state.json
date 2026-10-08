@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1791428400000,
+  "last_processed_open_time": 1791432000000,
   "last_entry_bar_time": {
     "ESPUSDT": 1791349200000,
     "GMXUSDT": 1791306000000,
@@ -395,7 +395,7 @@
       "stop_price": 767.9245502743319,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791435480000,
+      "last_target_check_ms": 1791435780000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -411,7 +411,7 @@
       "stop_price": 342.22527179721885,
       "entry_time": 1791212399999,
       "entry_bar_open_time": 1791208800000,
-      "last_target_check_ms": 1791435480000,
+      "last_target_check_ms": 1791435780000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -427,7 +427,7 @@
       "stop_price": 0.999964774076438,
       "entry_time": 1791259199999,
       "entry_bar_open_time": 1791255600000,
-      "last_target_check_ms": 1791435480000,
+      "last_target_check_ms": 1791435780000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -443,7 +443,7 @@
       "stop_price": 1.0002745356386218,
       "entry_time": 1791262799999,
       "entry_bar_open_time": 1791259200000,
-      "last_target_check_ms": 1791435480000,
+      "last_target_check_ms": 1791435780000,
       "strong": false,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -460,7 +460,7 @@
       "stop_price": 251.387866379407,
       "entry_time": 1791302399999,
       "entry_bar_open_time": 1791298800000,
-      "last_target_check_ms": 1791435480000,
+      "last_target_check_ms": 1791435780000,
       "strong": true,
       "buy_score": 3,
       "mode": "متوازن",
@@ -486,7 +486,7 @@
       "peak_price": 260.7,
       "max_favorable_pct": 2.147167,
       "reference_target_hit": true,
-      "trail_stop_price": 259.2380393526,
+      "trail_stop_price": 259.315016137,
       "trail_initial_stop_pct": 0.673674
     },
     "AAPLBUSDT": {
@@ -497,7 +497,7 @@
       "stop_price": 333.37633324761555,
       "entry_time": 1791345599999,
       "entry_bar_open_time": 1791342000000,
-      "last_target_check_ms": 1791435480000,
+      "last_target_check_ms": 1791435780000,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
@@ -3028,16 +3028,6 @@
       "entry_bar_open_time": 1791388800000,
       "reason": "volume_too_low"
     },
-    "USD1USDT-1791392400000": {
-      "candidate_id": "USD1USDT-1791392400000",
-      "symbol": "USD1USDT",
-      "entry_price": 0.99974,
-      "target_price": 1.0197348,
-      "stop_price": 0.9994171617714983,
-      "entry_time": 1791395999999,
-      "entry_bar_open_time": 1791392400000,
-      "reason": "volume_too_low"
-    },
     "BARUSDT-1791396000000": {
       "candidate_id": "BARUSDT-1791396000000",
       "symbol": "BARUSDT",
@@ -3066,26 +3056,6 @@
       "stop_price": 236.2787953152334,
       "entry_time": 1791410399999,
       "entry_bar_open_time": 1791406800000,
-      "reason": "volume_too_low"
-    },
-    "AVAXUSDT-1791414000000": {
-      "candidate_id": "AVAXUSDT-1791414000000",
-      "symbol": "AVAXUSDT",
-      "entry_price": 11.13,
-      "target_price": 11.3526,
-      "stop_price": 10.912452209804067,
-      "entry_time": 1791417599999,
-      "entry_bar_open_time": 1791414000000,
-      "reason": "volume_too_low"
-    },
-    "QNTUSDT-1791414000000": {
-      "candidate_id": "QNTUSDT-1791414000000",
-      "symbol": "QNTUSDT",
-      "entry_price": 253.4,
-      "target_price": 258.468,
-      "stop_price": 248.90073122884874,
-      "entry_time": 1791417599999,
-      "entry_bar_open_time": 1791414000000,
       "reason": "volume_too_low"
     },
     "USDCUSDT-1791417600000": {
@@ -3128,5 +3098,6 @@
       "entry_bar_open_time": 1791424800000,
       "reason": "volume_too_low"
     }
-  }
+  },
+  "strategy_shadow": {}
 }
