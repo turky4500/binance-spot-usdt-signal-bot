@@ -5,4 +5,3 @@ __pycache__/
 
 # مختبر المؤشرات: كاش البيانات الخام (كبير الحجم، يُعاد جلبه تلقائيًا)
 tools/indicators_lab/data_cache/
-data/tv_inbox/

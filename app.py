@@ -769,100 +769,86 @@ class SpotSignalBot:
             self.logger.info("New trade opened for %s", symbol)
 
         self.process_strategy_shadow(klines_map, last_closed_open_time)
+        if os.getenv("PIVOT_STRATEGY", "1").strip().lower() not in ("0", "false", "no", "off"):
+            self.process_pivot_strategy(klines_map, last_closed_open_time)
         self.state["last_processed_open_time"] = last_closed_open_time
         self.store.save(self.state)
 
-    def process_tv_alerts(self) -> None:
-        """سحب تنبيهات TradingView من data/tv_inbox/ ومعالجتها (دخول/خروج).
+    def process_pivot_strategy(self, klines_map: dict, last_closed_open_time: int) -> None:
+        """استراتيجية قمم وقيعان مؤكدة (نسخة محسّنة) — تُحسب محليًا من شموع Binance.
 
-        القواعد:
-          • buy/strong_buy  → فتح صفقة + رسالة دخول (هدف واحد من المؤشر + وقف + حكم شرعي).
-          • take_profit/stop_loss/exit/sell → إغلاق الصفقة + رسالة إغلاق بنتيجة.
-          • لا رسالة ما دامت الصفقة مفتوحة على نفس العملة (التنبيه يُحفظ دون تأثير).
+        نفس بنية المؤشرات الأخرى في البوت: compute → evaluate → record. رسائل الدخول/الهدف/
+        الوقف تُرسل فور تحقق الإشارة على شمعة مغلقة. لا رسائل إضافية طالما الصفقة مفتوحة.
         """
-        from src.tv_alerts import iter_inbox, parse_alert, archive_file  # noqa: PLC0415
-
-        processed = 0
-        for path in iter_inbox(self.data_dir):
-            alert = parse_alert(path)
-            if alert is None:
-                archive_file(path)
-                continue
-            symbol = alert.symbol
-            if not symbol:
-                archive_file(path)
-                continue
-            if alert.action in ("buy", "strong_buy"):
-                if symbol in self.state.get("open_trades", {}):
-                    # القاعدة: لا رسالة ما دامت الصفقة مفتوحة على نفس العملة
-                    self.logger.info("TV buy ignored (trade already open): %s", symbol)
-                    archive_file(path)
-                    continue
-                self._tv_open_trade(symbol, alert)
-            else:  # take_profit / stop_loss / exit / sell
-                if symbol not in self.state.get("open_trades", {}):
-                    # لا صفقة مفتوحة لتُغلق — لا رسالة (تنبيه متأخر/مكرّر)
-                    self.logger.info("TV %s ignored (no open trade): %s", alert.action, symbol)
-                    archive_file(path)
-                    continue
-                self._tv_close_trade(symbol, alert)
-            archive_file(path)
-            processed += 1
-        if processed:
-            self.logger.info("TV alerts processed: %d", processed)
-
-    def _tv_open_trade(self, symbol: str, alert) -> None:
-        """فتح صفقة من تنبيه شراء TradingView + إرسال رسالة الدخول."""
-        entry = alert.price
-        target = alert.target
-        stop = alert.stop
-        if not entry or entry <= 0:
-            self.logger.warning("TV buy missing price: %s", symbol)
-            return
-        if not target or target <= entry:
-            # المؤشر يرسل target = entry*(1+2%) — لو غاب نضع الافتراضي
-            target = entry * 1.02
-        if not stop or stop >= entry:
-            stop = entry * 0.985  # 1.5% وقف افتراضي
-
-        verdict = self.get_halal_verdict(symbol)
+        from src.strategy_pivots import (  # noqa: PLC0415
+            compute_pivot_signals,
+            DEFAULT_MODE as PIVOT_MODE,
+        )
         now_ms = int(time.time() * 1000)
+        open_trades = self.state.setdefault("open_trades", {})
+        for symbol, df in klines_map.items():
+            if df is None or df.empty:
+                continue
+            closed = df[df["open_time"] <= last_closed_open_time]
+            if closed.empty or int(closed.iloc[-1]["open_time"]) != last_closed_open_time:
+                continue
+            result = compute_pivot_signals(closed, symbol, mode=PIVOT_MODE)
+            if result is None:
+                continue
+            if result["action"] == "buy" and symbol not in open_trades:
+                self._pivot_open_trade(symbol, result, now_ms)
+            elif result["action"] != "buy" and symbol in open_trades:
+                self._pivot_close_trade(symbol, result, now_ms)
+
+    def _pivot_open_trade(self, symbol: str, result: dict, now_ms: int) -> None:
+        entry = result["price"]; target = result["target"]; stop = result["stop"]
+        verdict = self.get_halal_verdict(symbol)
+        strong = " قوي" if result.get("strong") else ""
         trade = {
-            "trade_id": f"TV-{symbol}-{now_ms}",
+            "trade_id": f"PV-{symbol}-{now_ms}",
             "symbol": symbol,
             "entry_price": round(entry, 10),
             "target_price": round(target, 10),
             "stop_price": round(stop, 10),
             "entry_time": now_ms,
-            "entry_bar_open_time": now_ms,
+            "entry_bar_open_time": result["bar_open_time"],
             "last_target_check_ms": now_ms,
-            "strong": alert.action == "strong_buy",
-            "buy_score": 5 if alert.action == "strong_buy" else 3,
-            "mode": f"TV-{alert.mode or 'متوازن'}",
+            "strong": bool(result.get("strong")),
+            "buy_score": int(result.get("score", 0)),
+            "mode": f"PV-{result.get('mode', 'متوازن')}",
             "halal_verdict": verdict,
             "peak_price": entry,
             "max_favorable_pct": 0.0,
             "reference_target_hit": False,
             "trail_stop_price": stop,
             "trail_initial_stop_pct": round((entry - stop) / entry * 100.0, 6),
-            "source": "tv_alert",
+            "source": "pivots",
         }
         self.state.setdefault("open_trades", {})[symbol] = trade
-        self.append_event("tv_entry", symbol, now_ms)
+        self.append_event("pivot_entry", symbol, now_ms)
         self.store.save(self.state)
-        self._send_tv_entry_message(trade, alert)
-        self.logger.info("TV trade opened: %s @ %s (target %s, stop %s)", symbol, entry, target, stop)
+        text = (
+            f"📊 إشارة شراء{strong} (قمم وقيعان مؤكدة)\n"
+            f"العملة: {symbol}\n"
+            f"سعر الدخول: {format_price(entry)}\n"
+            f"الهدف: {format_price(target)} (+{result['target_pct']:.2f}%)\n"
+            f"وقف الخسارة: {format_price(stop)} (-{result['stop_pct']:.2f}%)\n"
+            f"درجة القوة: {result.get('score', 0)}/5\n"
+            f"الحكم الشرعي: {verdict}\n"
+            f"─────────────\n"
+            f"القرار لك."
+        )
+        self.telegram.send_message(text)
+        self.logger.info("Pivot trade opened: %s @ %s", symbol, entry)
 
-    def _tv_close_trade(self, symbol: str, alert) -> None:
-        """إغلاق صفقة من تنبيه TradingView + إرسال رسالة الإغلاق بنتيجة (ناجحة/خاسرة)."""
+    def _pivot_close_trade(self, symbol: str, result: dict, now_ms: int) -> None:
         trade = self.state.get("open_trades", {}).get(symbol)
         if not trade:
             return
         entry = float(trade["entry_price"])
         target = float(trade["target_price"])
         stop = float(trade["stop_price"])
-        # سعر الخروج: من التنبيه إن وُصف، وإلا من الهدف/الوقف/السعر الحالي
-        action = alert.action
+        action = result["action"]
         reason_map = {
             "take_profit": "تحقق الهدف",
             "stop_loss": "وقف الخسارة",
@@ -871,51 +857,24 @@ class SpotSignalBot:
         }
         reason = reason_map.get(action, "إغلاق")
         if action == "take_profit":
-            exit_price = alert.price if alert.price else target
+            exit_price = result.get("price") or target
         elif action == "stop_loss":
-            exit_price = alert.price if alert.price else stop
+            exit_price = result.get("price") or stop
         else:
-            exit_price = alert.price if alert.price else float(trade.get("peak_price") or entry)
+            exit_price = result.get("price") or float(trade.get("peak_price") or entry)
         net_pct = (exit_price / entry - 1.0) * 100.0
         won = net_pct > 0
         outcome = "target" if won else "stop"
-        event_ms = int(time.time() * 1000)
-        # سجّل في الدفتر
         update_trade_exit(self.data_dir, trade["trade_id"], {
             "exit_price": round(exit_price, 10),
             "outcome": outcome,
             "exit_reason": reason,
-            "exit_time": event_ms,
+            "exit_time": now_ms,
             "net_return_pct": round(net_pct, 6),
         })
-        # أزل من المفتوحة
         self.state["open_trades"].pop(symbol, None)
-        self.append_event(f"tv_{action}", symbol, event_ms)
+        self.append_event(f"pivot_{action}", symbol, now_ms)
         self.store.save(self.state)
-        # أرسل رسالة الإغلاق بنتيجة
-        self._send_tv_close_message(symbol, trade, exit_price, reason, won, net_pct, action)
-        self.logger.info("TV trade closed: %s @ %s (net %+.2f%%) reason=%s", symbol, exit_price, net_pct, reason)
-
-    def _send_tv_entry_message(self, trade: dict, alert) -> None:
-        verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
-        strong = " قوي" if trade.get("strong") else ""
-        text = (
-            f"📊 إشارة شراء{strong} (مؤشر TradingView)\n"
-            f"العملة: {trade['symbol']}\n"
-            f"سعر الدخول: {format_price(trade['entry_price'])}\n"
-            f"الهدف: {format_price(trade['target_price'])} (+{((trade['target_price']/trade['entry_price'])-1)*100:.2f}%)\n"
-            f"وقف الخسارة: {format_price(trade['stop_price'])} (-{((1-trade['stop_price']/trade['entry_price']))*100:.2f}%)\n"
-            f"الحكم الشرعي: {verdict}\n"
-            f"النمط: {alert.mode or 'متوازن'}\n"
-            f"─────────────\n"
-            f"القرار لك."
-        )
-        self.telegram.send_message(text)
-
-    def _send_tv_close_message(self, symbol: str, trade: dict, exit_price: float,
-                                reason: str, won: bool, net_pct: float, action: str) -> None:
-        entry = float(trade["entry_price"])
-        target = float(trade["target_price"])
         verdict = trade.get("halal_verdict") or self.get_halal_verdict(symbol)
         status = "✅ ناجحة" if won else "❌ خاسرة"
         text = (
@@ -929,6 +888,7 @@ class SpotSignalBot:
             f"القرار لك."
         )
         self.telegram.send_message(text)
+        self.logger.info("Pivot trade closed: %s @ %s (net %+.2f%%) reason=%s", symbol, exit_price, net_pct, reason)
 
     def send_daily_report_if_due(self, now_ms: int) -> None:
         now_local = datetime.fromtimestamp(now_ms / 1000, tz=timezone.utc).astimezone(ZoneInfo(self.config.timezone_name))
@@ -1549,7 +1509,6 @@ class SpotSignalBot:
         self.refresh_halal_verdicts()
         self.sync_open_trades_to_journal()
         server_time = self.binance.get_server_time()
-        self.process_tv_alerts()  # تنبيهات TradingView أولاً (لا تعتمد على السعر اللحظي)
         self.monitor_open_trades_intrabar_targets(server_time)
         self.process_new_closed_hour(server_time)
         self.send_daily_report_if_due(server_time)
