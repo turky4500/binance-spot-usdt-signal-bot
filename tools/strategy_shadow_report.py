@@ -19,6 +19,47 @@ from src.strategy_shadow import FOCUS_HOURS, GOOD_HOURS, load_rows  # noqa: E402
 DATA_DIR = Path("data")
 
 
+def print_pdh_section(args) -> None:
+    """يطبع ملخص نظام «فوق قمة الأمس» (مسار أ: خروج تحت الخط — مسار ب: هدف ثابت)."""
+    try:
+        from src.strategy_pdh import MAX_HOLD_BARS, TARGET_B_PCT, load_rows as load_pdh
+        pdh_rows = load_pdh(args.data_dir)
+    except Exception:
+        pdh_rows = []
+    print("\n" + "=" * 74)
+    print("🚀 «فوق قمة الأمس» (اختراق قمة الأمس اليومية) — نظام مستقل")
+    print("=" * 74)
+    if not pdh_rows:
+        print("لا إشارات بعد — الدفتر data/strategy_pdh.csv يُنشأ عند أول اختراق.")
+        print("تذكير من الاختبار التاريخي: الهدف الثابت 1–1.5% كان سلبيًا (−0.14%/صفقة)، ولذلك نسجّل مسارَين.")
+        return
+
+    def pdh_lane(rows_, lane: str, label: str) -> None:
+        closed = [r for r in rows_ if (r.get(f"outcome_{lane}") or "").strip()]
+        nets = []
+        for r in closed:
+            try:
+                nets.append(float(r[f"net_{lane}_pct"]))
+            except (TypeError, ValueError, KeyError):
+                pass
+        wins = sum(1 for r in closed if r.get(f"outcome_{lane}") in ("target", "win"))
+        avg = (sum(nets) / len(nets)) if nets else None
+        rate = (wins / len(closed) * 100.0) if closed else 0.0
+        print(f"  • {label}: إشارات {len(rows_)} | مغلقة {len(closed)} (رابحة {wins} = {rate:.1f}%)"
+              + (f" | متوسط {avg:+.3f}%" if avg is not None else " | لا صفقات مغلقة بعد"))
+        if len(closed) >= 100 and avg is not None:
+            print("      " + ("🟢 مؤهَّل للترقية" if (avg >= 0.05 and rate >= 52) else "🔴 غير مؤهَّل للترقية")
+                  + " (قاعدة ≥100 مغلقة + متوسط ≥+0.05% + نجاح ≥52%)")
+        elif len(closed) >= 50 and avg is not None and avg <= -0.15:
+            print("      ⚠️ إنذار مبكر: متوسط ≤ −0.15% بعد 50+ صفقة")
+        else:
+            print(f"      ⏳ قيد القياس: {len(closed)}/100")
+
+    pdh_lane(pdh_rows, "main", f"أ) خروج عند إغلاق تحت قمة الأمس (وقف 1.5×ATR • مهلة {MAX_HOLD_BARS}س)")
+    pdh_lane(pdh_rows, "b", f"ب) هدف ثابت +{TARGET_B_PCT:.1f}% (مواصفة المستخدم)")
+    print("\nالمرجع: reports/pdh_breakout.md (نتائج الاختبار التاريخي الكامل)")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--data-dir", default=str(DATA_DIR))
@@ -29,6 +70,7 @@ def main() -> None:
     rows = load_rows(args.data_dir)
     if not rows:
         print("لا توجد إشارات ظلّية بعد — الدفتر يُنشأ عند أول إشارة تحقق الشروط.")
+        print_pdh_section(args)
         return
 
     if args.days:
@@ -78,6 +120,8 @@ def main() -> None:
 
     print("\nللمقارنة (المختبر): شامل +0.057%/صفقة (t=+2.52) • مركّز 0+5+6 = +0.212%/صفقة ونجاح 58.9%")
     print("القاعدة الكاملة: reports/shadow_watch_plan.md")
+
+    print_pdh_section(args)
 
     if args.symbols:
         per: dict[str, list[float]] = {}
