@@ -397,7 +397,7 @@
       "stop_price": 767.9245502743319,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791485280000,
+      "last_target_check_ms": 1791485580000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -414,7 +414,7 @@
       "stop_price": 333.37633324761555,
       "entry_time": 1791345599999,
       "entry_bar_open_time": 1791342000000,
-      "last_target_check_ms": 1791485280000,
+      "last_target_check_ms": 1791485580000,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
@@ -437,9 +437,9 @@
         "liquidity_ok": true
       },
       "halal_verdict": "ℹ️ لا يوجد حكم",
-      "peak_price": 340.69,
-      "max_favorable_pct": 1.941951,
-      "reference_target_hit": false
+      "peak_price": 341.46,
+      "max_favorable_pct": 2.172352,
+      "reference_target_hit": true
     }
   },
   "event_log": [
@@ -2967,6 +2967,11 @@
       "type": "pdh_entry",
       "symbol": "AVNTUSDT",
       "time_ms": 1791482399999
+    },
+    {
+      "type": "reference_target",
+      "symbol": "AAPLBUSDT",
+      "time_ms": 1791485399999
     }
   ],
   "daily_report": {
