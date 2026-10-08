@@ -112,13 +112,20 @@ def main() -> None:
         else:
             print(f"⏳ قيد القياس: {st['closed']}/100 صفقة مغلقة — لا حكم قبل اكتمال العيّنة")
 
-    print("=" * 74)
-    print("النظام التجريبي (ظلّي): ارتداد الاتجاه اليومي — مسارَان")
-    print("=" * 74)
-    show(f"أ) المسار الشامل — ساعات {sorted(GOOD_HOURS)}", lane_stats(rows))
-    show(f"ب) المسار المركّز — ساعات {sorted(FOCUS_HOURS)} (موجبة في نصفَي العينة)", lane_stats([r for r in rows if str(r.get("in_focus_hours")) == "1"]))
+    pull_rows = [r for r in rows if str(r.get("lane") or "pullback") != "ibs"]
+    ibs_rows = [r for r in rows if str(r.get("lane") or "pullback") == "ibs"]
 
-    print("\nللمقارنة (المختبر): شامل +0.057%/صفقة (t=+2.52) • مركّز 0+5+6 = +0.212%/صفقة ونجاح 58.9%")
+    print("=" * 74)
+    print("النظام التجريبي (ظلّي) — ثلاثة مسارات")
+    print("=" * 74)
+    show(f"أ) ارتداد — شامل ساعات {sorted(GOOD_HOURS)}", lane_stats(pull_rows))
+    show(f"ب) ارتداد — مركّز ساعات {sorted(FOCUS_HOURS)}", lane_stats([r for r in pull_rows if str(r.get("in_focus_hours")) == "1"]))
+    if ibs_rows:
+        show("ج) IBS<0.2 + ساعات مركّزة (من استراتيجيات يوتيوب)", lane_stats(ibs_rows))
+    else:
+        print("\n(ج) مسار IBS: لا إشارات بعد — يُسجَّل عند أول تحقق (ساعات 0/5/6 فقط).")
+
+    print("\nللمقارنة (المختبر): ارتداد شامل +0.057% • ارتداد مركّز +0.212% (t=+2.52) • IBS مركّز +0.202% (t=+10.58، اتساع 66% من العملات)")
     print("القاعدة الكاملة: reports/shadow_watch_plan.md")
 
     print_pdh_section(args)

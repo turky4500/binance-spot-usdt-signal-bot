@@ -170,4 +170,53 @@ b = SpotSignalBot._strategy_shadow_stats([r for r in all_rows if r["in_focus_hou
 assert a["total"] == 3 and b["total"] == 2 and b["wins"] == 1 and b["rate"] == 50.0
 print(f"[OK] إحصاء المسارين: شامل {a['total']} إشارة (متوسط {a['avg_net']:+.3f}%) | مركّز {b['total']} إشارة (متوسط {b['avg_net']:+.3f}%)")
 
+# ============ 8) مسار IBS (من دفعة يوتيوب) ============
+from src.strategy_shadow import build_ibs_candidate, ibs_value  # noqa: E402
+
+H = 3_600_000
+# يوم كامل يبدأ منتصف ليل UTC + 4 شمعات من اليوم التالي (آخرها 03:00 UTC = 06:00 الرياض)
+day0 = 1781136000000          # 2026-… منتصف ليل UTC
+rows_ibs = []
+for i in range(96):
+    t = day0 - (96 - i) * H
+    c = 105 + (i % 5) * 0.1
+    rows_ibs.append({"open_time": t, "close_time": t + H - 1, "open": c, "high": c + 0.3, "low": c - 0.3, "close": c, "volume": 1000.0})
+next_day = [
+    {"open_time": day0 + 0 * H, "close": 105.0, "high": 106.0, "low": 100.0},   # القاع يكون هنا
+    {"open_time": day0 + 1 * H, "close": 105.0, "high": 110.0, "low": 104.0},   # القمة تكون هنا
+    {"open_time": day0 + 2 * H, "close": 105.0, "high": 106.0, "low": 104.0},
+    {"open_time": day0 + 3 * H, "close": 101.0, "high": 106.0, "low": 104.0},   # الإغلاق الأخير
+]
+for b in next_day:
+    rows_ibs.append({"open_time": b["open_time"], "close_time": b["open_time"] + H - 1,
+                     "open": b["close"], "high": b["high"], "low": b["low"], "close": b["close"], "volume": 1000.0})
+df_ibs = pd.DataFrame(rows_ibs)
+ibs = ibs_value(df_ibs)
+assert ibs is not None and abs(ibs - 0.1) < 1e-9, f"IBS يجب أن تكون 0.1 وليست {ibs}"
+print(f"[OK] حساب IBS: نطاق اليوم 100→110 وإغلاق 101 → IBS={ibs:.2f}")
+
+hour_local = ((int(df_ibs.iloc[-1]["open_time"]) + 3 * H) // H) % 24
+assert hour_local == 6, f"الساعة المحلية يجب أن تكون 6 وليست {hour_local}"
+cand_ibs = build_ibs_candidate(df_ibs, "IBSTEST", daily_trend_ok=True)
+assert cand_ibs is not None, "يجب أن يُبنى مرشح IBS"
+assert cand_ibs["lane"] == "ibs" and cand_ibs["in_focus_hours"] == 1
+assert 1.2 <= cand_ibs["stop_pct"] <= 2.5
+assert abs(cand_ibs["target_price"] / cand_ibs["entry_price"] - 1.02) < 1e-9
+print(f"[OK] مرشح IBS: دخول {cand_ibs['entry_price']} | وقف {cand_ibs['stop_pct']}% | هدف +2% | ساعة 6 | المسار ibs")
+
+df_bad = df_ibs.copy()
+df_bad.loc[df_bad.index[-1], "close"] = 109.5   # IBS = 0.95
+assert build_ibs_candidate(df_bad, "IBSTEST", daily_trend_ok=True) is None
+print("[OK] IBS≥0.2 → لا إشارة")
+
+assert build_ibs_candidate(df_ibs, "IBSTEST", daily_trend_ok=False) is None
+print("[OK] اتجاه يومي غير صاعد → لا إشارة IBS")
+
+# آخر شمعة عند 10:00 UTC = 13:00 الرياض → خارج الساعات المركّزة
+df_ibs3 = df_ibs.copy()
+df_ibs3.loc[df_ibs3.index[-1], "open_time"] = day0 + 10 * H
+df_ibs3.loc[df_ibs3.index[-1], "close_time"] = day0 + 11 * H - 1
+assert build_ibs_candidate(df_ibs3, "IBSTEST", daily_trend_ok=True) is None
+print("[OK] ساعة 13 (خارج 0/5/6) → لا إشارة IBS")
+
 print("\nALL STRATEGY SHADOW TESTS PASSED")

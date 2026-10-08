@@ -32,6 +32,7 @@ from src.strategy_shadow import (
     GOOD_HOURS as SHADOW_GOOD_HOURS,
     append_row as append_strategy_shadow,
     build_candidate as build_strategy_shadow_candidate,
+    build_ibs_candidate as build_ibs_shadow_candidate,
     daily_trend_from_daily_klines,
     load_rows as load_strategy_shadow_rows,
     update_row as update_strategy_shadow_row,
@@ -938,8 +939,11 @@ class SpotSignalBot:
             lines.append("• لا توجد صفقات مغلقة كافية لهذا اليوم بعد، لذلك التحليل النوعي ما زال محدودًا.")
 
         shadow_rows = load_strategy_shadow_rows(self.data_dir)
-        shadow_strategy = self._strategy_shadow_stats(shadow_rows, report_day, report_day)
-        shadow_focus = self._strategy_shadow_stats([r for r in shadow_rows if str(r.get("in_focus_hours")) == "1"], report_day, report_day)
+        pull_rows = [r for r in shadow_rows if str(r.get("lane") or "pullback") != "ibs"]
+        ibs_rows = [r for r in shadow_rows if str(r.get("lane") or "pullback") == "ibs"]
+        shadow_strategy = self._strategy_shadow_stats(pull_rows, report_day, report_day)
+        shadow_focus = self._strategy_shadow_stats([r for r in pull_rows if str(r.get("in_focus_hours")) == "1"], report_day, report_day)
+        shadow_ibs = self._strategy_shadow_stats(ibs_rows, report_day, report_day)
 
         def _lane_line(label: str, st: dict) -> str:
             text = (
@@ -954,8 +958,9 @@ class SpotSignalBot:
 
         lines.extend([
             f"🧪 النظام التجريبي (ظلّي — بلا رسائل) — مسارَان يُقاسان بالتوازي:",
-            _lane_line("أ) شامل [0,2,5,6,14,21,23]", shadow_strategy),
-            _lane_line("ب) مركّز [0,5,6] — ساعات موجبة في نصفَي العينة", shadow_focus),
+            _lane_line("أ) ارتداد — شامل [0,2,5,6,14,21,23]", shadow_strategy),
+            _lane_line("ب) ارتداد — مركّز [0,5,6]", shadow_focus),
+            _lane_line("ج) IBS<0.2 + ساعات مركّزة (يوتيوب)", shadow_ibs),
             "   • لا اعتماد قبل ≥100 صفقة مغلقة ومتوسط ≥ +0.05% (القاعدة مُسجَّلة مسبقًا في reports/shadow_watch_plan.md)",
         ])
         pdh = self._pdh_stats(load_pdh_rows(self.data_dir), report_day, report_day)
@@ -1231,28 +1236,34 @@ class SpotSignalBot:
             })
             self.store.save(self.state)
 
-        # 2) تسجيل إشارات جديدة (بلا أي رسالة تيليجرام)
+        # 2) تسجيل إشارات جديدة (بلا أي رسالة تيليجرام) — مساران: pullback + ibs
         added = 0
+        open_by_lane: dict[str, set] = {"pullback": set(), "ibs": set()}
+        for rec in shadow_state.values():
+            if not rec.get("outcome"):
+                open_by_lane.setdefault(str(rec.get("lane") or "pullback"), set()).add(rec["symbol"])
+        hour = ((last_closed_open_time + TZ_OFFSET_MS) // HOUR_MS) % 24
+
         for symbol, df in klines_map.items():
             if df is None or df.empty:
                 continue
             closed = df[df["open_time"] <= last_closed_open_time]
             if closed.empty or int(closed.iloc[-1]["open_time"]) != last_closed_open_time:
                 continue
-            if str(symbol) in {r["symbol"] for r in shadow_state.values() if not r.get("outcome")}:
-                continue
-            # فحص سريع أولًا (بلا طلب شبكة): هل تحقق شرط الارتداد والساعة؟
-            hour = ((last_closed_open_time + TZ_OFFSET_MS) // HOUR_MS) % 24
-            if hour not in SHADOW_GOOD_HOURS:
-                continue
-            snapshot = build_strategy_shadow_candidate(closed, symbol, daily_trend_ok=True)
+            # ── مسار الارتداد (pullback) ──
+            snapshot = None
+            if str(symbol) not in open_by_lane["pullback"] and hour in SHADOW_GOOD_HOURS:
+                snapshot = build_strategy_shadow_candidate(closed, symbol, daily_trend_ok=True)
+            # ── مسار IBS (من دفعة استراتيجيات يوتيوب، ساعات مركّزة فقط) ──
+            if snapshot is None and str(symbol) not in open_by_lane["ibs"]:
+                snapshot = build_ibs_shadow_candidate(closed, symbol, daily_trend_ok=True)
             if snapshot is None:
                 continue
             # الآن فقط نطلب بيانات اليوم للتحقق من الاتجاه اليومي (عدد قليل لكل ساعة)
             trend_ok, d1_close, d1_sma = self._shadow_daily_trend(symbol, today_key)
             if not trend_ok:
                 continue
-            shadow_id = f"{symbol}-{last_closed_open_time}"
+            shadow_id = f"{symbol}-{last_closed_open_time}-{snapshot.get('lane', 'pullback')}"
             if shadow_id in shadow_state:
                 continue
             snapshot.update({
@@ -1470,8 +1481,9 @@ class SpotSignalBot:
                     + (f" • متوسط الصفقة {st['avg_net']:+.3f}%" if st["avg_net"] is not None else "")
                     + f" • مفتوحة {int(st['open'])}\n"
                     for label, st in (
-                        ("أ) شامل [0,2,5,6,14,21,23]", self._strategy_shadow_stats(rows, report_start_key, report_end_key)),
-                        ("ب) مركّز [0,5,6]", self._strategy_shadow_stats([r for r in rows if str(r.get("in_focus_hours")) == "1"], report_start_key, report_end_key)),
+                        ("أ) ارتداد — شامل [0,2,5,6,14,21,23]", self._strategy_shadow_stats([r for r in rows if str(r.get("lane") or "pullback") != "ibs"], report_start_key, report_end_key)),
+                        ("ب) ارتداد — مركّز [0,5,6]", self._strategy_shadow_stats([r for r in rows if str(r.get("lane") or "pullback") != "ibs" and str(r.get("in_focus_hours")) == "1"], report_start_key, report_end_key)),
+                        ("ج) IBS<0.2 + ساعات مركّزة (يوتيوب)", self._strategy_shadow_stats([r for r in rows if str(r.get("lane") or "pullback") == "ibs"], report_start_key, report_end_key)),
                     )
                 )
                 + "   • القاعدة: لا اعتماد قبل ≥100 صفقة مغلقة ومتوسط ≥ +0.05% (مُسجَّلة مسبقًا)\n"

@@ -36,6 +36,7 @@ FIELDNAMES = [
     "atr_at_entry", "rsi2", "rsi14", "distance_from_ema20_pct", "d1_close", "d1_sma50",
     "d1_gap_pct", "outcome", "exit_reason", "exit_time_ms", "exit_price",
     "duration_minutes", "net_return_pct", "max_favorable_pct",
+    "ibs", "lane",  # ibs = قوة الشمعة الداخلية | lane: pullback (الافتراضي) | ibs
 ]
 
 
@@ -127,6 +128,69 @@ def build_candidate(df_closed: pd.DataFrame, symbol: str, daily_trend_ok: bool) 
         "rsi2": round(rsi2, 4) if pd.notna(rsi2) else "",
         "rsi14": round(rsi14, 4) if pd.notna(rsi14) else "",
         "distance_from_ema20_pct": round((entry - ema20) / ema20 * 100.0, 6) if ema20 else "",
+        "lane": "pullback",
+        "outcome": "",
+        "exit_reason": "",
+    }
+
+
+def ibs_value(df_closed: pd.DataFrame) -> float | None:
+    """قوة الشمعة الداخلية لنطاق اليوم الجاري: (إغلاق − أدنى اليوم) / (أعلى اليوم − أدنى اليوم).
+
+    تُحسب من الشمعات **المغلقة** فقط من نفس اليوم (UTC) — بلا أي نظر للمستقبل.
+    """
+    if df_closed.empty:
+        return None
+    last = df_closed.iloc[-1]
+    day = int(last["open_time"]) // 86_400_000
+    opens = df_closed["open_time"].astype("int64") // 86_400_000
+    today = df_closed[opens == day]
+    if today.empty:
+        return None
+    hi, lo = float(today["high"].max()), float(today["low"].min())
+    close = float(last["close"])
+    if hi <= lo:
+        return None
+    return (close - lo) / (hi - lo)
+
+
+def build_ibs_candidate(df_closed: pd.DataFrame, symbol: str, daily_trend_ok: bool) -> dict | None:
+    """مرشح مسار IBS (من دفعة استراتيجيات يوتيوب): IBS<0.2 + اتجاه يومي صاعد + ساعات 0/5/6."""
+    if df_closed.empty or len(df_closed) < 60 or not daily_trend_ok:
+        return None
+    settings = StrategySettings()
+    last = df_closed.iloc[-1]
+    open_ms = int(last["open_time"])
+    hour = ((open_ms + TZ_OFFSET_MS) // 3_600_000) % 24
+    if hour not in FOCUS_HOURS:
+        return None
+    ibs = ibs_value(df_closed)
+    if ibs is None or ibs >= 0.2:
+        return None
+    entry = float(last["close"])
+    frame = prepare_strategy_frame(df_closed, settings)
+    atr_value = frame["atr"].iloc[-1]
+    if pd.isna(atr_value) or entry <= 0:
+        return None
+    stop_pct = float(min(max(STOP_ATR_MULT * float(atr_value) / entry * 100.0, MIN_STOP_PCT), MAX_STOP_PCT))
+    ema20 = float(ema(df_closed["close"], 20).iloc[-1])
+    rsi2 = float(rsi(df_closed["close"], 2).iloc[-1])
+    rsi14 = float(frame["rsi"].iloc[-1])
+    return {
+        "symbol": symbol,
+        "entry_time_ms": open_ms + 3_600_000 - 1,
+        "in_focus_hours": 1,
+        "entry_hour_local": int(hour),
+        "entry_price": round(entry, 10),
+        "target_price": round(entry * (1 + TARGET_PCT / 100.0), 10),
+        "stop_price": round(entry * (1 - stop_pct / 100.0), 10),
+        "stop_pct": round(stop_pct, 6),
+        "atr_at_entry": round(float(atr_value), 10),
+        "rsi2": round(rsi2, 4) if pd.notna(rsi2) else "",
+        "rsi14": round(rsi14, 4) if pd.notna(rsi14) else "",
+        "distance_from_ema20_pct": round((entry - ema20) / ema20 * 100.0, 6) if ema20 else "",
+        "ibs": round(ibs, 6),
+        "lane": "ibs",
         "outcome": "",
         "exit_reason": "",
     }

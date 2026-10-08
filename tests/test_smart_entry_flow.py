@@ -34,9 +34,12 @@ def bar_open_for_local_hour(hour: int) -> int:
     return int(d.timestamp() * 1000)
 
 
-def run_hour(bot, symbols, hour_local, open_count=0, kline_builder=None):
-    """يشغّل معالجة شمعة مغلقة واحدة بساعة محلية محددة على عملات مركّبة."""
-    bar = bar_open_for_local_hour(hour_local)
+def run_hour(bot, symbols, hour_local, open_count=0, kline_builder=None, bar_ms=None):
+    """يشغّل معالجة شمعة مغلقة واحدة بساعة محلية محددة على عملات مركّبة.
+
+    bar_ms: وقت شمعة ثابت (للحتمية بدل الاعتماد على الساعة الحالية).
+    """
+    bar = int(bar_ms) if bar_ms is not None else bar_open_for_local_hour(hour_local)
     last = bar + HOUR
     frames = {}
     for sym in symbols:
@@ -153,7 +156,11 @@ os.environ["MAX_OPEN_TRADES"] = "0"
 app_module.compute_entry_signal = lambda df, *a, **k: fake_signal(df.iloc[-1]["symbol"], int(df.iloc[-1]["open_time"]))
 bot24, sent24 = new_bot("F")
 syms24 = [f"ALL{i}USDT" for i in range(12)]
-bar24 = run_hour(bot24, syms24, hour_local=15)   # ساعة كان البوت سيرفضها سابقًا
+# شمعة ثابتة: 2026-10-01 12:00 UTC = 15:00 الرياض (حتمية بلا اعتماد على الساعة الحالية)
+FIXED_DAY = int(datetime(2026, 10, 1, tzinfo=timezone.utc).timestamp() * 1000)
+B15 = FIXED_DAY + 12 * HOUR            # 15:00 الرياض
+B19 = B15 + 4 * HOUR                   # 19:00 الرياض
+bar24 = run_hour(bot24, syms24, hour_local=15, bar_ms=B15)   # ساعة كان البوت سيرفضها سابقًا
 assert len(bot24.state["open_trades"]) == 12, bot24.state["open_trades"].keys()
 assert len(sent24) == 12, len(sent24)
 assert not rejections(bot24), rejections(bot24)
@@ -169,7 +176,7 @@ assert "صفقة سابقة" in tag
 # تراكم الصفقات بلا سقف: 12 ثم 12 أخرى في ساعة أخرى
 bot24.binance.get_klines_for_symbols = lambda s, interval="1h", limit=260: {
     sym: pd.DataFrame([{"open_time": 0, "open": 1, "high": 1, "low": 1, "close": 1, "close_time": 1}]) for sym in []}
-run_hour(bot24, [f"NEW{i}USDT" for i in range(3)], hour_local=19)  # 19:00 = أسوأ ساعة مقيسة
+run_hour(bot24, [f"NEW{i}USDT" for i in range(3)], hour_local=19, bar_ms=B19)  # 19:00 = أسوأ ساعة مقيسة
 assert len(bot24.state["open_trades"]) == 15, len(bot24.state["open_trades"])
 last_msg = sent24[-1]
 tag19 = [ln for ln in last_msg.splitlines() if "تقييم الساعة" in ln][0]
