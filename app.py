@@ -828,14 +828,15 @@ class SpotSignalBot:
         self.append_event("pivot_entry", symbol, now_ms)
         self.store.save(self.state)
         text = (
-            f"📊 إشارة شراء{strong} (قمم وقيعان مؤكدة)\n"
-            f"العملة: {symbol}\n"
-            f"سعر الدخول: {format_price(entry)}\n"
-            f"الهدف: {format_price(target)} (+{result['target_pct']:.2f}%)\n"
-            f"وقف الخسارة: {format_price(stop)} (-{result['stop_pct']:.2f}%)\n"
-            f"درجة القوة: {result.get('score', 0)}/5\n"
-            f"الحكم الشرعي: {verdict}\n"
-            f"─────────────\n"
+            f"🟣📊 [قمم وقيعان مؤكدة] إشارة شراء{strong}\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"🔹 العملة: {symbol}\n"
+            f"🔹 سعر الدخول: {format_price(entry)}\n"
+            f"🔹 الهدف: {format_price(target)} (+{result['target_pct']:.2f}%)\n"
+            f"🔹 وقف الخسارة: {format_price(stop)} (-{result['stop_pct']:.2f}%)\n"
+            f"🔹 درجة القوة: {result.get('score', 0)}/5\n"
+            f"🔹 الحكم الشرعي: {verdict}\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
             f"القرار لك."
         )
         self.telegram.send_message(text)
@@ -877,14 +878,16 @@ class SpotSignalBot:
         self.store.save(self.state)
         verdict = trade.get("halal_verdict") or self.get_halal_verdict(symbol)
         status = "✅ ناجحة" if won else "❌ خاسرة"
+        header_icon = "🟢" if won else "🔴"
         text = (
-            f"{'✅' if won else '⚠️'} إغلاق صفقة {symbol}\n"
-            f"السبب: {reason}\n"
-            f"دخول: {format_price(entry)} • خروج: {format_price(exit_price)}\n"
-            f"الهدف كان: {format_price(target)} • الصافي: {net_pct:+.2f}%\n"
-            f"الحكم الشرعي: {verdict}\n"
-            f"النتيجة: {status}\n"
-            f"─────────────\n"
+            f"🟣{header_icon} [قمم وقيعان مؤكدة] إغلاق صفقة {symbol}\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
+            f"🔹 السبب: {reason}\n"
+            f"🔹 دخول: {format_price(entry)} • خروج: {format_price(exit_price)}\n"
+            f"🔹 الهدف كان: {format_price(target)} • الصافي: {net_pct:+.2f}%\n"
+            f"🔹 الحكم الشرعي: {verdict}\n"
+            f"🔹 النتيجة: {status}\n"
+            f"━━━━━━━━━━━━━━━━━━\n"
             f"القرار لك."
         )
         self.telegram.send_message(text)
