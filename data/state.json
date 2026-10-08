@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1791446400000,
+  "last_processed_open_time": 1791450000000,
   "last_entry_bar_time": {
     "ESPUSDT": 1791349200000,
     "GMXUSDT": 1791306000000,
@@ -396,7 +396,7 @@
       "stop_price": 767.9245502743319,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791453480000,
+      "last_target_check_ms": 1791453780000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -412,7 +412,7 @@
       "stop_price": 342.22527179721885,
       "entry_time": 1791212399999,
       "entry_bar_open_time": 1791208800000,
-      "last_target_check_ms": 1791453480000,
+      "last_target_check_ms": 1791453780000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -428,7 +428,7 @@
       "stop_price": 0.999964774076438,
       "entry_time": 1791259199999,
       "entry_bar_open_time": 1791255600000,
-      "last_target_check_ms": 1791453480000,
+      "last_target_check_ms": 1791453780000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -444,7 +444,7 @@
       "stop_price": 1.0002745356386218,
       "entry_time": 1791262799999,
       "entry_bar_open_time": 1791259200000,
-      "last_target_check_ms": 1791453480000,
+      "last_target_check_ms": 1791453780000,
       "strong": false,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -461,7 +461,7 @@
       "stop_price": 333.37633324761555,
       "entry_time": 1791345599999,
       "entry_bar_open_time": 1791342000000,
-      "last_target_check_ms": 1791453480000,
+      "last_target_check_ms": 1791453780000,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
@@ -2955,7 +2955,7 @@
     "BARUSDT": 1791396000000,
     "UUSDT": 1791396000000,
     "MUBARAKUSDT": 1791442800000,
-    "NVDABUSDT": 1791406800000,
+    "NVDABUSDT": 1791450000000,
     "CHIPUSDT": 1791414000000,
     "QNTUSDT": 1791414000000,
     "RENDERUSDT": 1791414000000,
@@ -3063,16 +3063,6 @@
       "entry_bar_open_time": 1791439200000,
       "reason": "volume_blowoff"
     },
-    "KAIAUSDT-1791439200000": {
-      "candidate_id": "KAIAUSDT-1791439200000",
-      "symbol": "KAIAUSDT",
-      "entry_price": 0.038,
-      "target_price": 0.03876,
-      "stop_price": 0.03729563282882711,
-      "entry_time": 1791442799999,
-      "entry_bar_open_time": 1791439200000,
-      "reason": "volume_too_low"
-    },
     "WALUSDT-1791439200000": {
       "candidate_id": "WALUSDT-1791439200000",
       "symbol": "WALUSDT",
@@ -3111,6 +3101,16 @@
       "stop_price": 0.38117000328833833,
       "entry_time": 1791449999999,
       "entry_bar_open_time": 1791446400000,
+      "reason": "volume_too_low"
+    },
+    "NVDABUSDT-1791450000000": {
+      "candidate_id": "NVDABUSDT-1791450000000",
+      "symbol": "NVDABUSDT",
+      "entry_price": 236.02,
+      "target_price": 240.74040000000002,
+      "stop_price": 235.45817527927352,
+      "entry_time": 1791453599999,
+      "entry_bar_open_time": 1791450000000,
       "reason": "volume_too_low"
     }
   },
