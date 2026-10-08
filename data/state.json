@@ -4,7 +4,6 @@
     "ESPUSDT": 1791349200000,
     "GMXUSDT": 1791306000000,
     "QNTUSDT": 1791284400000,
-    "RLUSDUSDT": 1791255600000,
     "DYMUSDT": 1791194400000,
     "GMEBUSDT": 1791194400000,
     "NMRUSDT": 1791194400000,
@@ -103,7 +102,6 @@
     "PYTHUSDT": 1791259200000,
     "THETAUSDT": 1791259200000,
     "WOOUSDT": 1791259200000,
-    "XUSDUSDT": 1791259200000,
     "ACMUSDT": 1791262800000,
     "ARUSDT": 1791262800000,
     "BIOUSDT": 1791302400000,
@@ -396,7 +394,7 @@
       "stop_price": 767.9245502743319,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791460080000,
+      "last_target_check_ms": 1791460380000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -412,45 +410,13 @@
       "stop_price": 342.22527179721885,
       "entry_time": 1791212399999,
       "entry_bar_open_time": 1791208800000,
-      "last_target_check_ms": 1791460080000,
+      "last_target_check_ms": 1791460380000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "trade_id": "GOOGLBUSDT-1791208800000",
       "peak_price": 350.91,
       "max_favorable_pct": 1.937602,
-      "reference_target_hit": false
-    },
-    "RLUSDUSDT": {
-      "symbol": "RLUSDUSDT",
-      "entry_price": 1.0003,
-      "target_price": 1.020306,
-      "stop_price": 0.999964774076438,
-      "entry_time": 1791259199999,
-      "entry_bar_open_time": 1791255600000,
-      "last_target_check_ms": 1791460080000,
-      "strong": true,
-      "mode": "متوازن",
-      "halal_verdict": "ℹ️ لا يوجد حكم",
-      "trade_id": "RLUSDUSDT-1791255600000",
-      "peak_price": 1.0008,
-      "max_favorable_pct": 0.049985,
-      "reference_target_hit": false
-    },
-    "XUSDUSDT": {
-      "symbol": "XUSDUSDT",
-      "entry_price": 1.0005,
-      "target_price": 1.02051,
-      "stop_price": 1.0002745356386218,
-      "entry_time": 1791262799999,
-      "entry_bar_open_time": 1791259200000,
-      "last_target_check_ms": 1791460080000,
-      "strong": false,
-      "mode": "متوازن",
-      "halal_verdict": "ℹ️ لا يوجد حكم",
-      "trade_id": "XUSDUSDT-1791259200000",
-      "peak_price": 1.0007,
-      "max_favorable_pct": 0.01999,
       "reference_target_hit": false
     },
     "AAPLBUSDT": {
@@ -461,7 +427,7 @@
       "stop_price": 333.37633324761555,
       "entry_time": 1791345599999,
       "entry_bar_open_time": 1791342000000,
-      "last_target_check_ms": 1791460080000,
+      "last_target_check_ms": 1791460380000,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
@@ -2929,6 +2895,16 @@
       "type": "exit_win",
       "symbol": "AMZNBUSDT",
       "time_ms": 1791446399999
+    },
+    {
+      "type": "removed_pegged",
+      "symbol": "RLUSDUSDT",
+      "time_ms": 1791259199999
+    },
+    {
+      "type": "removed_pegged",
+      "symbol": "XUSDUSDT",
+      "time_ms": 1791262799999
     }
   ],
   "daily_report": {
