@@ -396,7 +396,7 @@
       "stop_price": 767.9245502743319,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791475680000,
+      "last_target_check_ms": 1791475980000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -413,7 +413,7 @@
       "stop_price": 333.37633324761555,
       "entry_time": 1791345599999,
       "entry_bar_open_time": 1791342000000,
-      "last_target_check_ms": 1791475680000,
+      "last_target_check_ms": 1791475980000,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
@@ -436,8 +436,8 @@
         "liquidity_ok": true
       },
       "halal_verdict": "ℹ️ لا يوجد حكم",
-      "peak_price": 338.43,
-      "max_favorable_pct": 1.265709,
+      "peak_price": 338.88,
+      "max_favorable_pct": 1.400359,
       "reference_target_hit": false
     },
     "PLTRBUSDT": {
@@ -448,7 +448,7 @@
       "stop_price": 197.02453910910592,
       "entry_time": 1791475199999,
       "entry_bar_open_time": 1791471600000,
-      "last_target_check_ms": 1791475680000,
+      "last_target_check_ms": 1791475980000,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
@@ -472,8 +472,8 @@
         "liquidity_ok": true
       },
       "atr_at_entry": 1.5851247592117947,
-      "peak_price": 198.81,
-      "max_favorable_pct": 0.0,
+      "peak_price": 198.97,
+      "max_favorable_pct": 0.080479,
       "reference_target_hit": false,
       "trail_stop_price": 195.6397504816,
       "trail_initial_stop_pct": 1.594613,
