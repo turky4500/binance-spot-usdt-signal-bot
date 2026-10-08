@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1791460800000,
+  "last_processed_open_time": 1791464400000,
   "last_entry_bar_time": {
     "ESPUSDT": 1791349200000,
     "GMXUSDT": 1791306000000,
@@ -395,7 +395,7 @@
       "stop_price": 767.9245502743319,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791467880000,
+      "last_target_check_ms": 1791468180000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -412,7 +412,7 @@
       "stop_price": 333.37633324761555,
       "entry_time": 1791345599999,
       "entry_bar_open_time": 1791342000000,
-      "last_target_check_ms": 1791467880000,
+      "last_target_check_ms": 1791468180000,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
@@ -2915,6 +2915,16 @@
       "type": "pdh_entry",
       "symbol": "SENTUSDT",
       "time_ms": 1791464399999
+    },
+    {
+      "type": "pdh_entry",
+      "symbol": "BOMEUSDT",
+      "time_ms": 1791467999999
+    },
+    {
+      "type": "pdh_entry",
+      "symbol": "MSFTBUSDT",
+      "time_ms": 1791467999999
     }
   ],
   "daily_report": {
@@ -2957,7 +2967,9 @@
     "WALUSDT": 1791439200000,
     "NMRUSDT": 1791442800000,
     "CRVUSDT": 1791446400000,
-    "MRVLBUSDT": 1791460800000
+    "MRVLBUSDT": 1791460800000,
+    "MAGICUSDT": 1791464400000,
+    "OPGUSDT": 1791464400000
   },
   "shadow_candidates": {
     "AMDBUSDT-1791385200000": {
@@ -2966,16 +2978,6 @@
       "entry_price": 644.65,
       "target_price": 657.543,
       "stop_price": 633.3796772218993,
-      "entry_time": 1791388799999,
-      "entry_bar_open_time": 1791385200000,
-      "reason": "volume_blowoff"
-    },
-    "AVGOBUSDT-1791385200000": {
-      "candidate_id": "AVGOBUSDT-1791385200000",
-      "symbol": "AVGOBUSDT",
-      "entry_price": 375.12,
-      "target_price": 382.6224,
-      "stop_price": 368.5268326636993,
       "entry_time": 1791388799999,
       "entry_bar_open_time": 1791385200000,
       "reason": "volume_blowoff"
@@ -3040,15 +3042,25 @@
       "entry_bar_open_time": 1791453600000,
       "reason": "volume_too_low"
     },
-    "MRVLBUSDT-1791460800000": {
-      "candidate_id": "MRVLBUSDT-1791460800000",
-      "symbol": "MRVLBUSDT",
-      "entry_price": 278.42,
-      "target_price": 283.9884,
-      "stop_price": 275.9481352097566,
-      "entry_time": 1791464399999,
-      "entry_bar_open_time": 1791460800000,
-      "reason": "di_trend_negative"
+    "MAGICUSDT-1791464400000": {
+      "candidate_id": "MAGICUSDT-1791464400000",
+      "symbol": "MAGICUSDT",
+      "entry_price": 0.0649,
+      "target_price": 0.066198,
+      "stop_price": 0.06376803785577566,
+      "entry_time": 1791467999999,
+      "entry_bar_open_time": 1791464400000,
+      "reason": "volume_too_low"
+    },
+    "OPGUSDT-1791464400000": {
+      "candidate_id": "OPGUSDT-1791464400000",
+      "symbol": "OPGUSDT",
+      "entry_price": 0.1377,
+      "target_price": 0.140454,
+      "stop_price": 0.13551867190844855,
+      "entry_time": 1791467999999,
+      "entry_bar_open_time": 1791464400000,
+      "reason": "volume_too_low"
     }
   },
   "strategy_shadow": {
@@ -3071,8 +3083,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.00312,
-      "max_favorable_pct": 0.321543,
+      "peak_price": 0.00313,
+      "max_favorable_pct": 0.643087,
       "d1_close": 0.00314,
       "d1_sma50": 0.0030316,
       "d1_gap_pct": 3.57567
@@ -3146,8 +3158,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.00696,
-      "max_favorable_pct": 0.0,
+      "peak_price": 0.006993,
+      "max_favorable_pct": 0.474138,
       "d1_close": 0.006992,
       "d1_sma50": 0.00637448,
       "d1_gap_pct": 9.687378
@@ -3171,8 +3183,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 3.659,
-      "max_favorable_pct": 0.191676,
+      "peak_price": 3.679,
+      "max_favorable_pct": 0.739321,
       "d1_close": 3.705,
       "d1_sma50": 3.48104,
       "d1_gap_pct": 6.433709
@@ -3196,8 +3208,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.0517,
-      "max_favorable_pct": 0.976562,
+      "peak_price": 0.052,
+      "max_favorable_pct": 1.5625,
       "d1_close": 0.0518,
       "d1_sma50": 0.046348,
       "d1_gap_pct": 11.763183
@@ -3246,8 +3258,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.00832,
-      "max_favorable_pct": 0.240964,
+      "peak_price": 0.00833,
+      "max_favorable_pct": 0.361446,
       "d1_close": 0.00828,
       "d1_sma50": 0.0075152,
       "d1_gap_pct": 10.176709
@@ -3271,8 +3283,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.0191,
-      "max_favorable_pct": 0.738397,
+      "peak_price": 0.01923,
+      "max_favorable_pct": 1.424051,
       "d1_close": 0.01936,
       "d1_sma50": 0.0180084,
       "d1_gap_pct": 7.505386
@@ -3321,8 +3333,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.09501,
-      "max_favorable_pct": 0.306166,
+      "peak_price": 0.09516,
+      "max_favorable_pct": 0.464527,
       "d1_close": 0.09513,
       "d1_sma50": 0.0842998,
       "d1_gap_pct": 12.847243
@@ -3346,8 +3358,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.1391,
-      "max_favorable_pct": 0.216138,
+      "peak_price": 0.1405,
+      "max_favorable_pct": 1.224784,
       "d1_close": 0.1411,
       "d1_sma50": 0.130592,
       "d1_gap_pct": 8.046435
@@ -3391,17 +3403,18 @@
       "rsi2": 70.3386,
       "rsi14": 47.1694,
       "distance_from_ema20_pct": -0.094281,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "target",
+      "exit_reason": "take_profit",
       "shadow_id": "CHRUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.02183,
+      "peak_price": 0.02226,
       "max_favorable_pct": 1.018047,
       "d1_close": 0.02204,
       "d1_sma50": 0.0177586,
-      "d1_gap_pct": 24.108882
+      "d1_gap_pct": 24.108882,
+      "exit_time_ms": 1791467999999
     },
     "COOKIEUSDT-1791457200000": {
       "symbol": "COOKIEUSDT",
@@ -3416,8 +3429,8 @@
       "rsi2": 41.9219,
       "rsi14": 45.7997,
       "distance_from_ema20_pct": -0.233582,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "COOKIEUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3426,7 +3439,8 @@
       "max_favorable_pct": 0.0,
       "d1_close": 0.0122,
       "d1_sma50": 0.0115958,
-      "d1_gap_pct": 5.210507
+      "d1_gap_pct": 5.210507,
+      "exit_time_ms": 1791467999999
     },
     "DCRUSDT-1791457200000": {
       "symbol": "DCRUSDT",
@@ -3441,8 +3455,8 @@
       "rsi2": 23.8719,
       "rsi14": 47.3882,
       "distance_from_ema20_pct": -0.150857,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "DCRUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3451,7 +3465,8 @@
       "max_favorable_pct": 0.560224,
       "d1_close": 17.78,
       "d1_sma50": 16.1658,
-      "d1_gap_pct": 9.985278
+      "d1_gap_pct": 9.985278,
+      "exit_time_ms": 1791467999999
     },
     "FETUSDT-1791457200000": {
       "symbol": "FETUSDT",
@@ -3522,8 +3537,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.1273,
-      "max_favorable_pct": 0.0,
+      "peak_price": 0.1283,
+      "max_favorable_pct": 0.785546,
       "d1_close": 0.1278,
       "d1_sma50": 0.115932,
       "d1_gap_pct": 10.237036
@@ -3573,8 +3588,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 3.85,
-      "max_favorable_pct": 0.260417,
+      "peak_price": 3.86,
+      "max_favorable_pct": 0.520833,
       "d1_close": 3.88,
       "d1_sma50": 3.485,
       "d1_gap_pct": 11.33429
@@ -3592,17 +3607,18 @@
       "rsi2": 22.3139,
       "rsi14": 46.2059,
       "distance_from_ema20_pct": -0.622844,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "target",
+      "exit_reason": "take_profit",
       "shadow_id": "IMXUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.1753,
+      "peak_price": 0.1793,
       "max_favorable_pct": 0.979263,
       "d1_close": 0.1758,
       "d1_sma50": 0.140972,
-      "d1_gap_pct": 24.705615
+      "d1_gap_pct": 24.705615,
+      "exit_time_ms": 1791467999999
     },
     "IOUSDT-1791457200000": {
       "symbol": "IOUSDT",
@@ -3648,8 +3664,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.13929,
-      "max_favorable_pct": 0.425379,
+      "peak_price": 0.13939,
+      "max_favorable_pct": 0.497477,
       "d1_close": 0.14189,
       "d1_sma50": 0.1138758,
       "d1_gap_pct": 24.600661
@@ -3673,8 +3689,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.2347,
-      "max_favorable_pct": 0.0,
+      "peak_price": 0.2384,
+      "max_favorable_pct": 1.576481,
       "d1_close": 0.2358,
       "d1_sma50": 0.2331,
       "d1_gap_pct": 1.158301
@@ -3698,8 +3714,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.00443,
-      "max_favorable_pct": 0.0,
+      "peak_price": 0.00444,
+      "max_favorable_pct": 0.225734,
       "d1_close": 0.00447,
       "d1_sma50": 0.0043862,
       "d1_gap_pct": 1.910538
@@ -3742,8 +3758,8 @@
       "rsi2": 27.1034,
       "rsi14": 47.0316,
       "distance_from_ema20_pct": -0.347075,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "MEUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3752,7 +3768,8 @@
       "max_favorable_pct": 0.013955,
       "d1_close": 0.07183,
       "d1_sma50": 0.0688242,
-      "d1_gap_pct": 4.367359
+      "d1_gap_pct": 4.367359,
+      "exit_time_ms": 1791467999999
     },
     "MIRAUSDT-1791457200000": {
       "symbol": "MIRAUSDT",
@@ -3848,8 +3865,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.0172,
-      "max_favorable_pct": 0.526008,
+      "peak_price": 0.01734,
+      "max_favorable_pct": 1.344243,
       "d1_close": 0.01706,
       "d1_sma50": 0.0167336,
       "d1_gap_pct": 1.950567
@@ -3873,8 +3890,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.1129,
-      "max_favorable_pct": 0.0,
+      "peak_price": 0.1134,
+      "max_favorable_pct": 0.44287,
       "d1_close": 0.1133,
       "d1_sma50": 0.104886,
       "d1_gap_pct": 8.022043
@@ -3892,8 +3909,8 @@
       "rsi2": 22.6149,
       "rsi14": 47.4546,
       "distance_from_ema20_pct": -0.803026,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "QIUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3902,7 +3919,8 @@
       "max_favorable_pct": 0.481431,
       "d1_close": 0.002949,
       "d1_sma50": 0.00175768,
-      "d1_gap_pct": 67.77798
+      "d1_gap_pct": 67.77798,
+      "exit_time_ms": 1791467999999
     },
     "QKCUSDT-1791457200000": {
       "symbol": "QKCUSDT",
@@ -3923,8 +3941,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.002724,
-      "max_favorable_pct": 1.414743,
+      "peak_price": 0.002729,
+      "max_favorable_pct": 1.600894,
       "d1_close": 0.002673,
       "d1_sma50": 0.00248998,
       "d1_gap_pct": 7.35026
@@ -3948,8 +3966,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.00774,
-      "max_favorable_pct": 0.129366,
+      "peak_price": 0.00778,
+      "max_favorable_pct": 0.646831,
       "d1_close": 0.00782,
       "d1_sma50": 0.0071476,
       "d1_gap_pct": 9.407354
@@ -3973,8 +3991,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 1.799,
-      "max_favorable_pct": 0.390625,
+      "peak_price": 1.824,
+      "max_favorable_pct": 1.785714,
       "d1_close": 1.805,
       "d1_sma50": 1.77546,
       "d1_gap_pct": 1.663794
@@ -4023,8 +4041,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.01226,
-      "max_favorable_pct": 0.163399,
+      "peak_price": 0.01237,
+      "max_favorable_pct": 1.062092,
       "d1_close": 0.01233,
       "d1_sma50": 0.0122328,
       "d1_gap_pct": 0.794585
@@ -4048,8 +4066,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.0404,
-      "max_favorable_pct": 0.248139,
+      "peak_price": 0.04048,
+      "max_favorable_pct": 0.44665,
       "d1_close": 0.04106,
       "d1_sma50": 0.0395576,
       "d1_gap_pct": 3.798006
@@ -4092,17 +4110,18 @@
       "rsi2": 52.2245,
       "rsi14": 47.3825,
       "distance_from_ema20_pct": -0.027255,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "target",
+      "exit_reason": "take_profit",
       "shadow_id": "SKLUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.00452,
+      "peak_price": 0.00529,
       "max_favorable_pct": 1.118568,
       "d1_close": 0.00452,
       "d1_sma50": 0.0040808,
-      "d1_gap_pct": 10.762596
+      "d1_gap_pct": 10.762596,
+      "exit_time_ms": 1791467999999
     }
   },
   "strategy_pdh": {
@@ -4122,14 +4141,20 @@
       "atr_at_entry": 0.0036017521,
       "gap_pct": 0.1144,
       "d1_trend_ok": 1,
-      "peak_price": 0.1751,
-      "max_favorable_pct": 0.0,
+      "peak_price": 0.1844,
+      "max_favorable_pct": 5.311251,
       "outcome_main": "loss",
       "exit_reason_main": "below_level",
       "exit_time_ms_main": 1791464399999,
       "exit_price_main": 0.1741,
       "net_main_pct": -0.771102,
-      "duration_minutes_main": 60
+      "duration_minutes_main": 60,
+      "outcome_b": "target",
+      "exit_reason_b": "take_profit",
+      "exit_time_ms_b": 1791467999999,
+      "exit_price_b": 0.1772012,
+      "net_b_pct": 1.0,
+      "duration_minutes_b": 120
     },
     "GOOGLBUSDT-1791460800000": {
       "signal_id": "GOOGLBUSDT-1791460800000",
@@ -4146,7 +4171,15 @@
       "target_price": 355.53584,
       "atr_at_entry": 1.5247914672,
       "gap_pct": 0.1283,
-      "d1_trend_ok": 1
+      "d1_trend_ok": 1,
+      "peak_price": 357.0,
+      "max_favorable_pct": 1.61676,
+      "outcome_b": "target",
+      "exit_reason_b": "take_profit",
+      "exit_time_ms_b": 1791467999999,
+      "exit_price_b": 355.53584,
+      "net_b_pct": 1.0,
+      "duration_minutes_b": 60
     },
     "SENTUSDT-1791460800000": {
       "signal_id": "SENTUSDT-1791460800000",
@@ -4163,6 +4196,54 @@
       "target_price": 0.02684836,
       "atr_at_entry": 0.0004863817,
       "gap_pct": 0.3784,
+      "d1_trend_ok": 1,
+      "peak_price": 0.02712,
+      "max_favorable_pct": 2.223897,
+      "outcome_main": "loss",
+      "exit_reason_main": "below_level",
+      "exit_time_ms_main": 1791467999999,
+      "exit_price_main": 0.02622,
+      "net_main_pct": -1.368489,
+      "duration_minutes_main": 60,
+      "outcome_b": "target",
+      "exit_reason_b": "take_profit",
+      "exit_time_ms_b": 1791467999999,
+      "exit_price_b": 0.02684836,
+      "net_b_pct": 1.0,
+      "duration_minutes_b": 60
+    },
+    "BOMEUSDT-1791464400000": {
+      "signal_id": "BOMEUSDT-1791464400000",
+      "symbol": "BOMEUSDT",
+      "entry_bar_open_time": 1791464400000,
+      "entry_time_ms": 1791467999999,
+      "entry_time_local": "2026-10-08 16:59",
+      "entry_date_local": "2026-10-08",
+      "entry_hour_local": 16,
+      "level_price": 0.0010447,
+      "entry_price": 0.0010473,
+      "stop_price": 0.0010211175,
+      "stop_pct": 2.5,
+      "target_price": 0.0010598676,
+      "atr_at_entry": 2.41176e-05,
+      "gap_pct": 0.2489,
+      "d1_trend_ok": 1
+    },
+    "MSFTBUSDT-1791464400000": {
+      "signal_id": "MSFTBUSDT-1791464400000",
+      "symbol": "MSFTBUSDT",
+      "entry_bar_open_time": 1791464400000,
+      "entry_time_ms": 1791467999999,
+      "entry_time_local": "2026-10-08 16:59",
+      "entry_date_local": "2026-10-08",
+      "entry_hour_local": 16,
+      "level_price": 532.17,
+      "entry_price": 532.37,
+      "stop_price": 525.98156,
+      "stop_pct": 1.2,
+      "target_price": 538.75844,
+      "atr_at_entry": 1.8957460981,
+      "gap_pct": 0.0376,
       "d1_trend_ok": 1
     }
   }
