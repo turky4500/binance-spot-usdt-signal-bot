@@ -827,18 +827,7 @@ class SpotSignalBot:
         self.state.setdefault("open_trades", {})[symbol] = trade
         self.append_event("pivot_entry", symbol, now_ms)
         self.store.save(self.state)
-        text = (
-            f"🟣📊 [قمم وقيعان مؤكدة] إشارة شراء{strong}\n"
-            f"━━━━━━━━━━━━━━━━━━\n"
-            f"🔹 العملة: {symbol}\n"
-            f"🔹 سعر الدخول: {format_price(entry)}\n"
-            f"🔹 الهدف: {format_price(target)} (+{result['target_pct']:.2f}%)\n"
-            f"🔹 وقف الخسارة: {format_price(stop)} (-{result['stop_pct']:.2f}%)\n"
-            f"🔹 درجة القوة: {result.get('score', 0)}/5\n"
-            f"🔹 الحكم الشرعي: {verdict}\n"
-            f"━━━━━━━━━━━━━━━━━━\n"
-            f"القرار لك."
-        )
+        text = self._rtl_pivot_entry(strong, symbol, entry, target, stop, result, verdict)
         self.telegram.send_message(text)
         self.logger.info("Pivot trade opened: %s @ %s", symbol, entry)
 
@@ -879,19 +868,46 @@ class SpotSignalBot:
         verdict = trade.get("halal_verdict") or self.get_halal_verdict(symbol)
         status = "✅ ناجحة" if won else "❌ خاسرة"
         header_icon = "🟢" if won else "🔴"
-        text = (
-            f"🟣{header_icon} [قمم وقيعان مؤكدة] إغلاق صفقة {symbol}\n"
-            f"━━━━━━━━━━━━━━━━━━\n"
-            f"🔹 السبب: {reason}\n"
-            f"🔹 دخول: {format_price(entry)} • خروج: {format_price(exit_price)}\n"
-            f"🔹 الهدف كان: {format_price(target)} • الصافي: {net_pct:+.2f}%\n"
-            f"🔹 الحكم الشرعي: {verdict}\n"
-            f"🔹 النتيجة: {status}\n"
-            f"━━━━━━━━━━━━━━━━━━\n"
-            f"القرار لك."
-        )
+        text = self._rtl_pivot_close(symbol, header_icon, reason, entry, exit_price, target, net_pct, verdict, status)
         self.telegram.send_message(text)
         self.logger.info("Pivot trade closed: %s @ %s (net %+.2f%%) reason=%s", symbol, exit_price, net_pct, reason)
+
+    @staticmethod
+    def _rtl_pivot_entry(strong: str, symbol: str, entry: float, target: float, stop: float,
+                         result: dict, verdict: str) -> str:
+        """رسالة دخول بصيغة RTL: كل سطر يُعكس ويُسبَق بعلامة U+200F."""
+        R = "\u200f"  # RTL mark — يُجبر محاذاة من اليمين لليسار في Telegram
+        lines = [
+            f"🟣📊 إشارة شراء{strong}",
+            "━━━━━━━━━━━━━━━━━━",
+            f"🔹 العملة: {symbol}",
+            f"🔹 سعر الدخول: {format_price(entry)}",
+            f"🔹 الهدف: {format_price(target)} (+{result['target_pct']:.2f}%)",
+            f"🔹 وقف الخسارة: {format_price(stop)} (-{result['stop_pct']:.2f}%)",
+            f"🔹 درجة القوة: {result.get('score', 0)}/5",
+            f"🔹 الحكم الشرعي: {verdict}",
+            "━━━━━━━━━━━━━━━━━━",
+            "القرار لك.",
+        ]
+        return "\n".join(R + line[::-1] if line and not line.startswith("━━") else line for line in lines)
+
+    @staticmethod
+    def _rtl_pivot_close(symbol: str, header_icon: str, reason: str, entry: float,
+                         exit_price: float, target: float, net_pct: float,
+                         verdict: str, status: str) -> str:
+        R = "\u200f"
+        lines = [
+            f"🟣{header_icon} إغلاق صفقة {symbol}",
+            "━━━━━━━━━━━━━━━━━━",
+            f"🔹 السبب: {reason}",
+            f"🔹 دخول: {format_price(entry)} • خروج: {format_price(exit_price)}",
+            f"🔹 الهدف كان: {format_price(target)} • الصافي: {net_pct:+.2f}%",
+            f"🔹 الحكم الشرعي: {verdict}",
+            f"🔹 النتيجة: {status}",
+            "━━━━━━━━━━━━━━━━━━",
+            "القرار لك.",
+        ]
+        return "\n".join(R + line[::-1] if line and not line.startswith("━━") else line for line in lines)
 
     def send_daily_report_if_due(self, now_ms: int) -> None:
         now_local = datetime.fromtimestamp(now_ms / 1000, tz=timezone.utc).astimezone(ZoneInfo(self.config.timezone_name))
