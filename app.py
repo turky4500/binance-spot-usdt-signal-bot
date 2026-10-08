@@ -796,8 +796,13 @@ class SpotSignalBot:
         report_anchor_ms = int(datetime(now_local.year, now_local.month, now_local.day, tzinfo=ZoneInfo(self.config.timezone_name)).astimezone(timezone.utc).timestamp() * 1000)
         weekday_name = weekday_ar_from_ms(report_anchor_ms - 1000, self.config.timezone_name)
 
+        quiet_note = (
+            "🔇 وضع الهدوء مفعّل: إشارات الدخول تُسجَّل وتُتابَع بلا رسائل (حتى حسم النظام التجريبي)\n"
+            if getattr(self, "quiet_entry_signals", False) else ""
+        )
         text = (
-            f"📊 التقرير اليومي للإشارات\n"
+            quiet_note
+            + f"📊 التقرير اليومي للإشارات\n"
             f"🗓️ اليوم المشمول: {weekday_name} {report_day}\n"
             f"🕛 وقت التقرير: {ms_to_local_text(now_ms, self.config.timezone_name)}\n"
             f"─────────────\n"
