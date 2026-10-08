@@ -1,0 +1,2 @@
+signal_id,symbol,entry_bar_open_time,entry_time_ms,entry_time_local,entry_date_local,entry_hour_local,level_price,entry_price,stop_price,stop_pct,target_price,atr_at_entry,gap_pct,d1_trend_ok,outcome_main,exit_reason_main,exit_time_ms_main,exit_price_main,net_main_pct,duration_minutes_main,outcome_b,exit_reason_b,exit_time_ms_b,exit_price_b,net_b_pct,duration_minutes_b,max_favorable_pct
+DIAUSDT-1791457200000,DIAUSDT,1791457200000,1791460799999,2026-10-08 14:59,2026-10-08,14,0.1749,0.1751,0.1707225,2.5,0.1772012,0.0036017521,0.1144,1,,,,,,,,,,,,,
