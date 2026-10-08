@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1791475200000,
+  "last_processed_open_time": 1791478800000,
   "last_entry_bar_time": {
     "ESPUSDT": 1791349200000,
     "GMXUSDT": 1791306000000,
@@ -386,7 +386,8 @@
     "FDUSDUSDT": 1791378000000,
     "SOXSBUSDT": 1791399600000,
     "AMZNBUSDT": 1791442800000,
-    "GOOGLBUSDT": 1791460800000
+    "GOOGLBUSDT": 1791460800000,
+    "PLTRBUSDT": 1791478800000
   },
   "open_trades": {
     "SPYBUSDT": {
@@ -396,7 +397,7 @@
       "stop_price": 767.9245502743319,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791482280000,
+      "last_target_check_ms": 1791482580000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -413,7 +414,7 @@
       "stop_price": 333.37633324761555,
       "entry_time": 1791345599999,
       "entry_bar_open_time": 1791342000000,
-      "last_target_check_ms": 1791482280000,
+      "last_target_check_ms": 1791482580000,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
@@ -439,47 +440,6 @@
       "peak_price": 340.38,
       "max_favorable_pct": 1.849192,
       "reference_target_hit": false
-    },
-    "PLTRBUSDT": {
-      "trade_id": "PLTRBUSDT-1791471600000",
-      "symbol": "PLTRBUSDT",
-      "entry_price": 198.81,
-      "target_price": 202.7862,
-      "stop_price": 197.02453910910592,
-      "entry_time": 1791475199999,
-      "entry_bar_open_time": 1791471600000,
-      "last_target_check_ms": 1791482280000,
-      "strong": false,
-      "buy_score": 2,
-      "mode": "متوازن",
-      "metrics": {
-        "rsi": 66.67766572862914,
-        "stoch": 61.31511528608022,
-        "adx": 48.35214971592794,
-        "plus_di": 42.776014219994266,
-        "minus_di": 5.787419966419229,
-        "relative_volume": 2.381627604234198,
-        "reward_risk_ratio": 2.0042892108423573,
-        "buy_risk_pct": 0.8980739856617302,
-        "atr": 1.5851247592117947,
-        "distance_from_ema200_pct": 3.9929908761567408,
-        "quote_volume": 22823.58681,
-        "bullish_divergence": false,
-        "oversold_at_pivot": false,
-        "volume_confirm": true,
-        "bullish_trend_ok": true,
-        "adx_buy_ok": true,
-        "liquidity_ok": true
-      },
-      "atr_at_entry": 1.5851247592117947,
-      "peak_price": 198.97,
-      "max_favorable_pct": 0.080479,
-      "reference_target_hit": false,
-      "trail_stop_price": 195.6397504816,
-      "trail_initial_stop_pct": 1.594613,
-      "smart_score": 3,
-      "entry_hour_local": 18,
-      "halal_verdict": "ℹ️ لا يوجد حكم"
     }
   },
   "event_log": [
@@ -2997,6 +2957,16 @@
       "type": "pdh_entry",
       "symbol": "AAPLBUSDT",
       "time_ms": 1791478799999
+    },
+    {
+      "type": "stop",
+      "symbol": "PLTRBUSDT",
+      "time_ms": 1791482399999
+    },
+    {
+      "type": "pdh_entry",
+      "symbol": "AVNTUSDT",
+      "time_ms": 1791482399999
     }
   ],
   "daily_report": {
@@ -3037,7 +3007,7 @@
     "DIAUSDT": 1791439200000,
     "KAIAUSDT": 1791439200000,
     "WALUSDT": 1791439200000,
-    "NMRUSDT": 1791442800000,
+    "NMRUSDT": 1791478800000,
     "CRVUSDT": 1791446400000,
     "MRVLBUSDT": 1791460800000,
     "MAGICUSDT": 1791464400000,
@@ -3094,6 +3064,16 @@
       "entry_time": 1791475199999,
       "entry_bar_open_time": 1791471600000,
       "reason": "volume_blowoff"
+    },
+    "NMRUSDT-1791478800000": {
+      "candidate_id": "NMRUSDT-1791478800000",
+      "symbol": "NMRUSDT",
+      "entry_price": 13.73,
+      "target_price": 14.0046,
+      "stop_price": 13.516143403797397,
+      "entry_time": 1791482399999,
+      "entry_bar_open_time": 1791478800000,
+      "reason": "volume_too_low"
     }
   },
   "strategy_shadow": {
@@ -4416,6 +4396,25 @@
       "target_price": 343.46268,
       "atr_at_entry": 0.9021549053,
       "gap_pct": 0.2985,
+      "d1_trend_ok": 1,
+      "peak_price": 339.68,
+      "max_favorable_pct": 0.085447
+    },
+    "AVNTUSDT-1791478800000": {
+      "signal_id": "AVNTUSDT-1791478800000",
+      "symbol": "AVNTUSDT",
+      "entry_bar_open_time": 1791478800000,
+      "entry_time_ms": 1791482399999,
+      "entry_time_local": "2026-10-08 20:59",
+      "entry_date_local": "2026-10-08",
+      "entry_hour_local": 20,
+      "level_price": 0.131,
+      "entry_price": 0.1316,
+      "stop_price": 0.12831,
+      "stop_pct": 2.5,
+      "target_price": 0.1331792,
+      "atr_at_entry": 0.0035338435,
+      "gap_pct": 0.458,
       "d1_trend_ok": 1
     }
   }
