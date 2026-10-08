@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1791442800000,
+  "last_processed_open_time": 1791446400000,
   "last_entry_bar_time": {
     "ESPUSDT": 1791349200000,
     "GMXUSDT": 1791306000000,
@@ -396,7 +396,7 @@
       "stop_price": 767.9245502743319,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791449880000,
+      "last_target_check_ms": 1791450180000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -412,7 +412,7 @@
       "stop_price": 342.22527179721885,
       "entry_time": 1791212399999,
       "entry_bar_open_time": 1791208800000,
-      "last_target_check_ms": 1791449880000,
+      "last_target_check_ms": 1791450180000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -428,7 +428,7 @@
       "stop_price": 0.999964774076438,
       "entry_time": 1791259199999,
       "entry_bar_open_time": 1791255600000,
-      "last_target_check_ms": 1791449880000,
+      "last_target_check_ms": 1791450180000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -444,7 +444,7 @@
       "stop_price": 1.0002745356386218,
       "entry_time": 1791262799999,
       "entry_bar_open_time": 1791259200000,
-      "last_target_check_ms": 1791449880000,
+      "last_target_check_ms": 1791450180000,
       "strong": false,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -461,7 +461,7 @@
       "stop_price": 333.37633324761555,
       "entry_time": 1791345599999,
       "entry_bar_open_time": 1791342000000,
-      "last_target_check_ms": 1791449880000,
+      "last_target_check_ms": 1791450180000,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
@@ -2969,7 +2969,8 @@
     "DIAUSDT": 1791439200000,
     "KAIAUSDT": 1791439200000,
     "WALUSDT": 1791439200000,
-    "NMRUSDT": 1791442800000
+    "NMRUSDT": 1791442800000,
+    "CRVUSDT": 1791446400000
   },
   "shadow_candidates": {
     "AMDBUSDT-1791385200000": {
@@ -3062,16 +3063,6 @@
       "entry_bar_open_time": 1791439200000,
       "reason": "volume_blowoff"
     },
-    "DIAUSDT-1791439200000": {
-      "candidate_id": "DIAUSDT-1791439200000",
-      "symbol": "DIAUSDT",
-      "entry_price": 0.1662,
-      "target_price": 0.16952399999999998,
-      "stop_price": 0.16266329234344198,
-      "entry_time": 1791442799999,
-      "entry_bar_open_time": 1791439200000,
-      "reason": "volume_too_low"
-    },
     "KAIAUSDT-1791439200000": {
       "candidate_id": "KAIAUSDT-1791439200000",
       "symbol": "KAIAUSDT",
@@ -3110,6 +3101,16 @@
       "stop_price": 13.637917612228799,
       "entry_time": 1791446399999,
       "entry_bar_open_time": 1791442800000,
+      "reason": "volume_too_low"
+    },
+    "CRVUSDT-1791446400000": {
+      "candidate_id": "CRVUSDT-1791446400000",
+      "symbol": "CRVUSDT",
+      "entry_price": 0.3894,
+      "target_price": 0.39718800000000004,
+      "stop_price": 0.38117000328833833,
+      "entry_time": 1791449999999,
+      "entry_bar_open_time": 1791446400000,
       "reason": "volume_too_low"
     }
   },
