@@ -147,4 +147,27 @@ assert stats["total"] == 3 and stats["closed"] == 2 and stats["wins"] == 1 and s
 assert abs(stats["avg_net"] - 0.25) < 1e-9
 print(f"[OK] الإحصاءات: {stats['total']} إشارة | مغلقة {stats['closed']} (نجاح {stats['rate']:.0f}%) | متوسط {stats['avg_net']:+.3f}%")
 
+# ============ 7) وسم المسار (مركّز 0/5/6 مقابل شامل) ============
+from src.strategy_shadow import FOCUS_HOURS  # noqa: E402
+bar_focus = hour_bar(5, days_back=2)
+df_f = build_series(bar_focus, down_then_cross)
+cand_f = build_candidate(df_f, "PBUSDT", daily_trend_ok=True)
+assert cand_f is not None and cand_f["in_focus_hours"] == 1, "الساعة 5 يجب أن تُوسم مركّزة"
+bar_wide = hour_bar(14, days_back=2)
+df_w = build_series(bar_wide, down_then_cross)
+cand_w = build_candidate(df_w, "PBUSDT", daily_trend_ok=True)
+assert cand_w is not None and cand_w["in_focus_hours"] == 0, "الساعة 14 يجب أن تكون شاملة فقط"
+print(f"[OK] وسم المسار: ساعة 5 → مركّز ({sorted(FOCUS_HOURS)}) | ساعة 14 → شامل فقط")
+
+# الإحصاءات تفصل المسارين
+all_rows = [
+    {"entry_date_local": "2026-10-08", "outcome": "target", "net_return_pct": "1.8", "in_focus_hours": "1"},
+    {"entry_date_local": "2026-10-08", "outcome": "loss", "net_return_pct": "-1.4", "in_focus_hours": "1"},
+    {"entry_date_local": "2026-10-08", "outcome": "loss", "net_return_pct": "-1.3", "in_focus_hours": "0"},
+]
+a = SpotSignalBot._strategy_shadow_stats(all_rows)
+b = SpotSignalBot._strategy_shadow_stats([r for r in all_rows if r["in_focus_hours"] == "1"])
+assert a["total"] == 3 and b["total"] == 2 and b["wins"] == 1 and b["rate"] == 50.0
+print(f"[OK] إحصاء المسارين: شامل {a['total']} إشارة (متوسط {a['avg_net']:+.3f}%) | مركّز {b['total']} إشارة (متوسط {b['avg_net']:+.3f}%)")
+
 print("\nALL STRATEGY SHADOW TESTS PASSED")

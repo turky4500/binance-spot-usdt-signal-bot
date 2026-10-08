@@ -861,13 +861,26 @@ class SpotSignalBot:
         if closed_count == 0:
             lines.append("• لا توجد صفقات مغلقة كافية لهذا اليوم بعد، لذلك التحليل النوعي ما زال محدودًا.")
 
-        shadow_strategy = self._strategy_shadow_stats(load_strategy_shadow_rows(self.data_dir), report_day, report_day)
+        shadow_rows = load_strategy_shadow_rows(self.data_dir)
+        shadow_strategy = self._strategy_shadow_stats(shadow_rows, report_day, report_day)
+        shadow_focus = self._strategy_shadow_stats([r for r in shadow_rows if str(r.get("in_focus_hours")) == "1"], report_day, report_day)
+
+        def _lane_line(label: str, st: dict) -> str:
+            text = (
+                f"   • {label}: {int(st['total'])} إشارة • أُغلقت {int(st['closed'])}"
+                f" (هدف {int(st['wins'])} / وقف {int(st['losses'])}"
+                + (f" = {float(st['rate']):.1f}%" if int(st["closed"]) else "")
+                + f") • مفتوحة {int(st['open'])}"
+            )
+            if st["avg_net"] is not None:
+                text += f" • متوسط {st['avg_net']:+.3f}%"
+            return text
+
         lines.extend([
-            f"🧪 النظام التجريبي (ظلّي — بلا رسائل): {int(shadow_strategy['total'])} إشارة اليوم"
-            f" • أُغلقت {int(shadow_strategy['closed'])} (هدف {int(shadow_strategy['wins'])} / وقف {int(shadow_strategy['losses'])} = {float(shadow_strategy['rate']):.1f}%)"
-            f" • مفتوحة {int(shadow_strategy['open'])}"
-            + (f" • متوسط {shadow_strategy['avg_net']:+.3f}%" if shadow_strategy["avg_net"] is not None else ""),
-            "   • هذا قياس حي لنظام «ارتداد الاتجاه اليومي» — يُقارن بنسبة الصفقات الفعلية أعلاه قبل أي اعتماد",
+            f"🧪 النظام التجريبي (ظلّي — بلا رسائل) — مسارَان يُقاسان بالتوازي:",
+            _lane_line("أ) شامل [0,2,5,6,14,21,23]", shadow_strategy),
+            _lane_line("ب) مركّز [0,5,6] — ساعات موجبة في نصفَي العينة", shadow_focus),
+            "   • لا اعتماد قبل ≥100 صفقة مغلقة ومتوسط ≥ +0.05% (القاعدة مُسجَّلة مسبقًا في reports/shadow_watch_plan.md)",
             "═════════════",
         ])
 
@@ -1252,15 +1265,21 @@ class SpotSignalBot:
                 if week_reject_reasons else ""
             )
             + f"═════════════\n"
-            + (lambda sw: (
-                f"🧪 النظام التجريبي (ظلّي — بلا رسائل)\n"
-                f"   • الإشارات: {int(sw['total'])} • أُغلقت: {int(sw['closed'])} (هدف {int(sw['wins'])} / وقف {int(sw['losses'])})"
-                + (f" • نسبة نجاح: {float(sw['rate']):.1f}%" if int(sw["closed"]) else "")
-                + (f" • متوسط الصفقة: {sw['avg_net']:+.3f}%" if sw["avg_net"] is not None else "")
-                + f"\n   • مفتوحة: {int(sw['open'])} • القاعدة: نظام يُعتمد فقط إذا سبق الصفقات الفعلية في عينة حيّة\n"
-                f"   • ملاحظة: هذا قياس حي لنظام «ارتداد الاتجاه اليومي» من المختبر الكمي\n"
+            + (lambda rows: (
+                "🧪 النظام التجريبي (ظلّي — بلا رسائل) — مسارَان\n"
+                + "".join(
+                    f"   • {label}: {int(st['total'])} إشارة • أُغلقت {int(st['closed'])} (هدف {int(st['wins'])} / وقف {int(st['losses'])})"
+                    + (f" • نجاح {float(st['rate']):.1f}%" if int(st["closed"]) else "")
+                    + (f" • متوسط الصفقة {st['avg_net']:+.3f}%" if st["avg_net"] is not None else "")
+                    + f" • مفتوحة {int(st['open'])}\n"
+                    for label, st in (
+                        ("أ) شامل [0,2,5,6,14,21,23]", self._strategy_shadow_stats(rows, report_start_key, report_end_key)),
+                        ("ب) مركّز [0,5,6]", self._strategy_shadow_stats([r for r in rows if str(r.get("in_focus_hours")) == "1"], report_start_key, report_end_key)),
+                    )
+                )
+                + "   • القاعدة: لا اعتماد قبل ≥100 صفقة مغلقة ومتوسط ≥ +0.05% (مُسجَّلة مسبقًا)\n"
                 f"═════════════\n"
-            ))(self._strategy_shadow_stats(load_strategy_shadow_rows(self.data_dir), report_start_key, report_end_key))
+            ))(load_strategy_shadow_rows(self.data_dir))
             + f"🧭 قاعدة الخروج المفعّلة: {self.exit_rules.describe()}\n"
             f"🏆 أكثر العملات نجاحًا: {best_symbols}\n"
             f"⚠️ أكثر العملات وصولًا للوقف: {stop_symbols_text}"

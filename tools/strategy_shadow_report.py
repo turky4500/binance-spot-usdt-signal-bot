@@ -14,7 +14,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from src.strategy_shadow import load_rows  # noqa: E402
+from src.strategy_shadow import FOCUS_HOURS, GOOD_HOURS, load_rows  # noqa: E402
 
 DATA_DIR = Path("data")
 
@@ -35,38 +35,53 @@ def main() -> None:
         cutoff = (datetime.now(timezone.utc) - timedelta(days=args.days)).strftime("%Y-%m-%d")
         rows = [r for r in rows if str(r.get("entry_date_local") or "") >= cutoff]
 
-    closed = [r for r in rows if r.get("outcome")]
-    wins = [r for r in closed if r["outcome"] in ("target", "win")]
-    losses = [r for r in closed if r["outcome"] == "loss"]
-    nets = [float(r["net_return_pct"]) for r in closed if r.get("net_return_pct") not in ("", None)]
-    durations = [float(r["duration_minutes"]) for r in closed if r.get("duration_minutes") not in ("", None)]
+    def lane_stats(subset: list[dict]) -> dict:
+        closed = [r for r in subset if r.get("outcome")]
+        wins = [r for r in closed if r["outcome"] in ("target", "win")]
+        losses = [r for r in closed if r["outcome"] == "loss"]
+        nets = [float(r["net_return_pct"]) for r in closed if r.get("net_return_pct") not in ("", None)]
+        durations = [float(r["duration_minutes"]) for r in closed if r.get("duration_minutes") not in ("", None)]
+        return {
+            "total": len(subset), "closed": len(closed), "wins": len(wins), "losses": len(losses),
+            "open": len(subset) - len(closed),
+            "rate": (len(wins) / len(closed) * 100.0) if closed else 0.0,
+            "avg": (sum(nets) / len(nets)) if nets else None,
+            "sum": sum(nets) if nets else 0.0,
+            "avg_hours": (sum(durations) / len(durations) / 60.0) if durations else None,
+            "reasons": {r.get("exit_reason", "?"): sum(1 for x in closed if x.get("exit_reason") == r.get("exit_reason")) for r in closed},
+        }
 
-    rate = (len(wins) / len(closed) * 100.0) if closed else 0.0
-    avg = (sum(nets) / len(nets)) if nets else 0.0
-    total = sum(nets)
-    print("=" * 74)
-    print("النظام التجريبي (ظلّي): ارتداد الاتجاه اليومي")
-    print("=" * 74)
-    print(f"الإشارات           : {len(rows)}")
-    print(f"مغلقة             : {len(closed)} (هدف {len(wins)} / وقف {len(losses)})")
-    print(f"مفتوحة            : {len(rows) - len(closed)}")
-    print(f"نسبة النجاح       : {rate:.1f}%")
-    print(f"متوسط الصفقة      : {avg:+.3f}%")
-    print(f"مجموع النسب       : {total:+.3f}% (مجموع حسابي بلا مركب)")
-    if durations:
-        print(f"متوسط المدة       : {sum(durations) / len(durations) / 60:.1f} ساعة")
-    reasons = {}
-    for r in closed:
-        reasons[r.get("exit_reason", "?")] = reasons.get(r.get("exit_reason", "?"), 0) + 1
-    if reasons:
-        print("أسباب الخروج      : " + " • ".join(f"{k}={v}" for k, v in sorted(reasons.items())))
+    def show(label: str, st: dict) -> None:
+        print(f"\n{'─' * 74}\n{label}\n{'─' * 74}")
+        print(f"الإشارات: {st['total']} | مغلقة: {st['closed']} (هدف {st['wins']} / وقف {st['losses']}) | مفتوحة: {st['open']}")
+        print(f"نسبة النجاح: {st['rate']:.1f}%" + (f" | متوسط الصفقة: {st['avg']:+.3f}% | مجموع: {st['sum']:+.2f}%" if st["avg"] is not None else " | (لا صفقات مغلقة بعد)"))
+        if st["avg_hours"] is not None:
+            print(f"متوسط المدة: {st['avg_hours']:.1f} ساعة")
+        if st["reasons"]:
+            print("أسباب الخروج: " + " • ".join(f"{k}={v}" for k, v in sorted(st["reasons"].items())))
+        # حكم القاعدة المُسجَّلة مسبقًا
+        if st["closed"] >= 100 and st["avg"] is not None:
+            if st["avg"] >= 0.05 and st["rate"] >= 52:
+                print("🟢 الحكم بحسب القاعدة المُسجَّلة: مؤهَّل للترقية (≥100 مغلقة، متوسط ≥ +0.05%، نجاح ≥52%)")
+            else:
+                print("🔴 الحكم بحسب القاعدة المُسجَّلة: غير مؤهَّل للترقية")
+        elif st["closed"] >= 50 and st["avg"] is not None and st["avg"] <= -0.15:
+            print("⚠️ إشارة إنذار مبكرة: متوسط ≤ −0.15% بعد 50+ صفقة — راجع القاعدة")
+        else:
+            print(f"⏳ قيد القياس: {st['closed']}/100 صفقة مغلقة — لا حكم قبل اكتمال العيّنة")
 
-    print("\nللمقارنة: قياس المختبر كان +0.057%/صفقة (t=+2.52) والنصف الثاني +0.126%.")
-    print("القاعدة: لا اعتماد قبل تراكم عيّنة كافية (≥100 صفقة مغلقة) وثبات الإشارة الموجبة.")
+    print("=" * 74)
+    print("النظام التجريبي (ظلّي): ارتداد الاتجاه اليومي — مسارَان")
+    print("=" * 74)
+    show(f"أ) المسار الشامل — ساعات {sorted(GOOD_HOURS)}", lane_stats(rows))
+    show(f"ب) المسار المركّز — ساعات {sorted(FOCUS_HOURS)} (موجبة في نصفَي العينة)", lane_stats([r for r in rows if str(r.get("in_focus_hours")) == "1"]))
+
+    print("\nللمقارنة (المختبر): شامل +0.057%/صفقة (t=+2.52) • مركّز 0+5+6 = +0.212%/صفقة ونجاح 58.9%")
+    print("القاعدة الكاملة: reports/shadow_watch_plan.md")
 
     if args.symbols:
         per: dict[str, list[float]] = {}
-        for r in closed:
+        for r in [x for x in rows if x.get("outcome")]:
             try:
                 per.setdefault(str(r["symbol"]), []).append(float(r["net_return_pct"]))
             except (TypeError, ValueError, KeyError):

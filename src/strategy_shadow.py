@@ -20,6 +20,9 @@ from src.strategy import StrategySettings, ema, prepare_strategy_frame, rsi
 
 SHADOW_STRATEGY_FILE = "strategy_shadow.csv"
 GOOD_HOURS = {0, 2, 5, 6, 14, 21, 23}
+# مسار مركّز: الساعات التي ظلّت موجبة في **نصفي** العينة (0 و5 و6)
+# يُسجَّل كوسم على كل إشارة لقياس المسارين معًا على البيانات الحيّة دون أي انتقاء لاحق
+FOCUS_HOURS = {0, 5, 6}
 TARGET_PCT = 2.0
 STOP_ATR_MULT = 1.5
 MIN_STOP_PCT = 1.2
@@ -29,7 +32,7 @@ TZ_OFFSET_MS = 3 * 3_600_000
 
 FIELDNAMES = [
     "shadow_id", "symbol", "entry_bar_open_time", "entry_time_ms", "entry_time_local", "entry_date_local",
-    "entry_hour_local", "entry_price", "target_price", "stop_price", "stop_pct",
+    "entry_hour_local", "in_focus_hours", "entry_price", "target_price", "stop_price", "stop_pct",
     "atr_at_entry", "rsi2", "rsi14", "distance_from_ema20_pct", "d1_close", "d1_sma50",
     "d1_gap_pct", "outcome", "exit_reason", "exit_time_ms", "exit_price",
     "duration_minutes", "net_return_pct", "max_favorable_pct",
@@ -114,6 +117,7 @@ def build_candidate(df_closed: pd.DataFrame, symbol: str, daily_trend_ok: bool) 
     return {
         "symbol": symbol,
         "entry_time_ms": open_ms + 3_600_000 - 1,   # لحظة إغلاق شمعة الإشارة (نفس توقيت البوت)
+        "in_focus_hours": 1 if int(hour) in FOCUS_HOURS else 0,
         "entry_hour_local": int(hour),
         "entry_price": round(entry, 10),
         "target_price": round(entry * (1 + TARGET_PCT / 100.0), 10),
