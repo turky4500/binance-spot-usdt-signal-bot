@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1791468000000,
+  "last_processed_open_time": 1791471600000,
   "last_entry_bar_time": {
     "ESPUSDT": 1791349200000,
     "GMXUSDT": 1791306000000,
@@ -192,7 +192,8 @@
     "API3USDT": 1791356400000,
     "MSFTBUSDT": 1791360000000,
     "NFLXBUSDT": 1791360000000,
-    "SOXSBUSDT": 1791388800000
+    "SOXSBUSDT": 1791388800000,
+    "PLTRBUSDT": 1791471600000
   },
   "last_exit_bar_time": {
     "ESPUSDT": 1791360000000,
@@ -327,7 +328,7 @@
     "STXUSDT": 1791327600000,
     "EULUSDT": 1791327600000,
     "LUMIAUSDT": 1791327600000,
-    "LPTUSDT": 1791331200000,
+    "LPTUSDT": 1791471600000,
     "USDEUSDT": 1791331200000,
     "ENJUSDT": 1791334800000,
     "MANAUSDT": 1791334800000,
@@ -395,7 +396,7 @@
       "stop_price": 767.9245502743319,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791475080000,
+      "last_target_check_ms": 1791475380000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -412,7 +413,7 @@
       "stop_price": 333.37633324761555,
       "entry_time": 1791345599999,
       "entry_bar_open_time": 1791342000000,
-      "last_target_check_ms": 1791475080000,
+      "last_target_check_ms": 1791475380000,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
@@ -439,30 +440,30 @@
       "max_favorable_pct": 1.265709,
       "reference_target_hit": false
     },
-    "LPTUSDT": {
-      "trade_id": "LPTUSDT-1791468000000",
-      "symbol": "LPTUSDT",
-      "entry_price": 1.78,
-      "target_price": 1.8156,
-      "stop_price": 1.767074793028274,
-      "entry_time": 1791471599999,
-      "entry_bar_open_time": 1791468000000,
-      "last_target_check_ms": 1791475080000,
+    "PLTRBUSDT": {
+      "trade_id": "PLTRBUSDT-1791471600000",
+      "symbol": "PLTRBUSDT",
+      "entry_price": 198.81,
+      "target_price": 202.7862,
+      "stop_price": 197.02453910910592,
+      "entry_time": 1791475199999,
+      "entry_bar_open_time": 1791471600000,
+      "last_target_check_ms": 1791475259999,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
       "metrics": {
-        "rsi": 54.20376246977901,
-        "stoch": 74.87534620681119,
-        "adx": 21.00001338594718,
-        "plus_di": 22.516787966124845,
-        "minus_di": 13.554814672939402,
-        "relative_volume": 2.434336935338845,
-        "reward_risk_ratio": 2.4788771328836465,
-        "buy_risk_pct": 0.7261352231306772,
-        "atr": 0.043254081077083735,
-        "distance_from_ema200_pct": 1.933455161788801,
-        "quote_volume": 297842.38039999997,
+        "rsi": 66.67766572862914,
+        "stoch": 61.31511528608022,
+        "adx": 48.35214971592794,
+        "plus_di": 42.776014219994266,
+        "minus_di": 5.787419966419229,
+        "relative_volume": 2.381627604234198,
+        "reward_risk_ratio": 2.0042892108423573,
+        "buy_risk_pct": 0.8980739856617302,
+        "atr": 1.5851247592117947,
+        "distance_from_ema200_pct": 3.9929908761567408,
+        "quote_volume": 22823.58681,
         "bullish_divergence": false,
         "oversold_at_pivot": false,
         "volume_confirm": true,
@@ -470,15 +471,15 @@
         "adx_buy_ok": true,
         "liquidity_ok": true
       },
-      "atr_at_entry": 0.043254081077083735,
-      "peak_price": 1.78,
+      "atr_at_entry": 1.5851247592117947,
+      "peak_price": 198.81,
       "max_favorable_pct": 0.0,
       "reference_target_hit": false,
-      "trail_stop_price": 1.6934918378,
-      "trail_initial_stop_pct": 4.860009,
+      "trail_stop_price": 195.6397504816,
+      "trail_initial_stop_pct": 1.594613,
       "smart_score": 3,
-      "entry_hour_local": 17,
-      "halal_verdict": "✅ مباح"
+      "entry_hour_local": 18,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
     }
   },
   "event_log": [
@@ -2981,6 +2982,16 @@
       "type": "pdh_entry",
       "symbol": "GMEBUSDT",
       "time_ms": 1791471599999
+    },
+    {
+      "type": "stop",
+      "symbol": "LPTUSDT",
+      "time_ms": 1791475199999
+    },
+    {
+      "type": "entry",
+      "symbol": "PLTRBUSDT",
+      "time_ms": 1791475199999
     }
   ],
   "daily_report": {
@@ -3007,7 +3018,7 @@
     "BARUSDT": 1791396000000,
     "UUSDT": 1791396000000,
     "MUBARAKUSDT": 1791442800000,
-    "NVDABUSDT": 1791450000000,
+    "NVDABUSDT": 1791471600000,
     "CHIPUSDT": 1791414000000,
     "QNTUSDT": 1791414000000,
     "RENDERUSDT": 1791414000000,
@@ -3025,7 +3036,8 @@
     "CRVUSDT": 1791446400000,
     "MRVLBUSDT": 1791460800000,
     "MAGICUSDT": 1791464400000,
-    "OPGUSDT": 1791464400000
+    "OPGUSDT": 1791464400000,
+    "NFLXBUSDT": 1791471600000
   },
   "shadow_candidates": {
     "AMDBUSDT-1791385200000": {
@@ -3037,16 +3049,6 @@
       "entry_time": 1791388799999,
       "entry_bar_open_time": 1791385200000,
       "reason": "volume_blowoff"
-    },
-    "BARUSDT-1791396000000": {
-      "candidate_id": "BARUSDT-1791396000000",
-      "symbol": "BARUSDT",
-      "entry_price": 0.284,
-      "target_price": 0.28968,
-      "stop_price": 0.27949934483940286,
-      "entry_time": 1791399599999,
-      "entry_bar_open_time": 1791396000000,
-      "reason": "volume_too_low"
     },
     "UUSDT-1791396000000": {
       "candidate_id": "UUSDT-1791396000000",
@@ -3068,36 +3070,6 @@
       "entry_bar_open_time": 1791417600000,
       "reason": "volume_too_low"
     },
-    "MUBARAKUSDT-1791442800000": {
-      "candidate_id": "MUBARAKUSDT-1791442800000",
-      "symbol": "MUBARAKUSDT",
-      "entry_price": 0.07255,
-      "target_price": 0.07400100000000001,
-      "stop_price": 0.07126424143131044,
-      "entry_time": 1791446399999,
-      "entry_bar_open_time": 1791442800000,
-      "reason": "volume_too_low"
-    },
-    "TRXUSDT-1791453600000": {
-      "candidate_id": "TRXUSDT-1791453600000",
-      "symbol": "TRXUSDT",
-      "entry_price": 0.336,
-      "target_price": 0.34272,
-      "stop_price": 0.3345659828192358,
-      "entry_time": 1791457199999,
-      "entry_bar_open_time": 1791453600000,
-      "reason": "volume_too_low"
-    },
-    "MAGICUSDT-1791464400000": {
-      "candidate_id": "MAGICUSDT-1791464400000",
-      "symbol": "MAGICUSDT",
-      "entry_price": 0.0649,
-      "target_price": 0.066198,
-      "stop_price": 0.06376803785577566,
-      "entry_time": 1791467999999,
-      "entry_bar_open_time": 1791464400000,
-      "reason": "volume_too_low"
-    },
     "OPGUSDT-1791464400000": {
       "candidate_id": "OPGUSDT-1791464400000",
       "symbol": "OPGUSDT",
@@ -3117,6 +3089,26 @@
       "entry_time": 1791471599999,
       "entry_bar_open_time": 1791468000000,
       "reason": "volume_too_low"
+    },
+    "NFLXBUSDT-1791471600000": {
+      "candidate_id": "NFLXBUSDT-1791471600000",
+      "symbol": "NFLXBUSDT",
+      "entry_price": 71.18,
+      "target_price": 72.60360000000001,
+      "stop_price": 69.79042172364818,
+      "entry_time": 1791475199999,
+      "entry_bar_open_time": 1791471600000,
+      "reason": "volume_blowoff"
+    },
+    "NVDABUSDT-1791471600000": {
+      "candidate_id": "NVDABUSDT-1791471600000",
+      "symbol": "NVDABUSDT",
+      "entry_price": 235.37,
+      "target_price": 240.0774,
+      "stop_price": 233.72105152328731,
+      "entry_time": 1791475199999,
+      "entry_bar_open_time": 1791471600000,
+      "reason": "di_trend_negative"
     }
   },
   "strategy_shadow": {
@@ -3133,8 +3125,8 @@
       "rsi2": 26.1344,
       "rsi14": 45.5209,
       "distance_from_ema20_pct": -0.275095,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "ANIMEUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3143,7 +3135,8 @@
       "max_favorable_pct": 1.286174,
       "d1_close": 0.00314,
       "d1_sma50": 0.0030316,
-      "d1_gap_pct": 3.57567
+      "d1_gap_pct": 3.57567,
+      "exit_time_ms": 1791475199999
     },
     "ARBUSDT-1791457200000": {
       "symbol": "ARBUSDT",
@@ -3158,8 +3151,8 @@
       "rsi2": 23.4176,
       "rsi14": 44.0743,
       "distance_from_ema20_pct": -0.749096,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "ARBUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3168,7 +3161,8 @@
       "max_favorable_pct": 0.162866,
       "d1_close": 0.1858,
       "d1_sma50": 0.159608,
-      "d1_gap_pct": 16.410205
+      "d1_gap_pct": 16.410205,
+      "exit_time_ms": 1791475199999
     },
     "ARKMUSDT-1791457200000": {
       "symbol": "ARKMUSDT",
@@ -3209,8 +3203,8 @@
       "rsi2": 33.3396,
       "rsi14": 45.0884,
       "distance_from_ema20_pct": -0.133704,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "ASTRUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3219,7 +3213,8 @@
       "max_favorable_pct": 0.948276,
       "d1_close": 0.006992,
       "d1_sma50": 0.00637448,
-      "d1_gap_pct": 9.687378
+      "d1_gap_pct": 9.687378,
+      "exit_time_ms": 1791475199999
     },
     "AUCTIONUSDT-1791457200000": {
       "symbol": "AUCTIONUSDT",
@@ -3234,8 +3229,8 @@
       "rsi2": 30.9259,
       "rsi14": 43.8572,
       "distance_from_ema20_pct": -0.512343,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "AUCTIONUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3244,7 +3239,8 @@
       "max_favorable_pct": 1.916758,
       "d1_close": 3.705,
       "d1_sma50": 3.48104,
-      "d1_gap_pct": 6.433709
+      "d1_gap_pct": 6.433709,
+      "exit_time_ms": 1791475199999
     },
     "AXLUSDT-1791457200000": {
       "symbol": "AXLUSDT",
@@ -3259,8 +3255,8 @@
       "rsi2": 26.8694,
       "rsi14": 48.7614,
       "distance_from_ema20_pct": -0.134036,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "AXLUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3269,7 +3265,8 @@
       "max_favorable_pct": 1.953125,
       "d1_close": 0.0518,
       "d1_sma50": 0.046348,
-      "d1_gap_pct": 11.763183
+      "d1_gap_pct": 11.763183,
+      "exit_time_ms": 1791475199999
     },
     "BERAUSDT-1791457200000": {
       "symbol": "BERAUSDT",
@@ -3284,8 +3281,8 @@
       "rsi2": 35.3073,
       "rsi14": 46.6288,
       "distance_from_ema20_pct": -0.266695,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "BERAUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3294,7 +3291,8 @@
       "max_favorable_pct": 0.317749,
       "d1_close": 0.2229,
       "d1_sma50": 0.200094,
-      "d1_gap_pct": 11.397643
+      "d1_gap_pct": 11.397643,
+      "exit_time_ms": 1791475199999
     },
     "BIGTIMEUSDT-1791457200000": {
       "symbol": "BIGTIMEUSDT",
@@ -3309,8 +3307,8 @@
       "rsi2": 17.117,
       "rsi14": 44.491,
       "distance_from_ema20_pct": -0.274592,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "BIGTIMEUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3319,7 +3317,8 @@
       "max_favorable_pct": 1.084337,
       "d1_close": 0.00828,
       "d1_sma50": 0.0075152,
-      "d1_gap_pct": 10.176709
+      "d1_gap_pct": 10.176709,
+      "exit_time_ms": 1791475199999
     },
     "BLURUSDT-1791457200000": {
       "symbol": "BLURUSDT",
@@ -3360,8 +3359,8 @@
       "rsi2": 21.6304,
       "rsi14": 44.4398,
       "distance_from_ema20_pct": -0.934653,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "BREVUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3370,7 +3369,8 @@
       "max_favorable_pct": 0.0,
       "d1_close": 0.0857,
       "d1_sma50": 0.07965,
-      "d1_gap_pct": 7.595731
+      "d1_gap_pct": 7.595731,
+      "exit_time_ms": 1791475199999
     },
     "CELOUSDT-1791457200000": {
       "symbol": "CELOUSDT",
@@ -3385,8 +3385,8 @@
       "rsi2": 36.6553,
       "rsi14": 44.8475,
       "distance_from_ema20_pct": -0.147215,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "CELOUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3395,7 +3395,8 @@
       "max_favorable_pct": 1.657517,
       "d1_close": 0.09513,
       "d1_sma50": 0.0842998,
-      "d1_gap_pct": 12.847243
+      "d1_gap_pct": 12.847243,
+      "exit_time_ms": 1791475199999
     },
     "CFGUSDT-1791457200000": {
       "symbol": "CFGUSDT",
@@ -3540,8 +3541,8 @@
       "rsi2": 33.2259,
       "rsi14": 48.8478,
       "distance_from_ema20_pct": -0.06554,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "FETUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3550,7 +3551,8 @@
       "max_favorable_pct": 1.951431,
       "d1_close": 0.2299,
       "d1_sma50": 0.185662,
-      "d1_gap_pct": 23.82717
+      "d1_gap_pct": 23.82717,
+      "exit_time_ms": 1791475199999
     },
     "FTTUSDT-1791457200000": {
       "symbol": "FTTUSDT",
@@ -3695,8 +3697,8 @@
       "rsi2": 13.4638,
       "rsi14": 43.4788,
       "distance_from_ema20_pct": -1.276126,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "IOUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3705,7 +3707,8 @@
       "max_favorable_pct": 1.336728,
       "d1_close": 0.1577,
       "d1_sma50": 0.143304,
-      "d1_gap_pct": 10.045777
+      "d1_gap_pct": 10.045777,
+      "exit_time_ms": 1791475199999
     },
     "JSTUSDT-1791457200000": {
       "symbol": "JSTUSDT",
@@ -3726,8 +3729,8 @@
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
       "entry_date_local": "2026-10-08",
-      "peak_price": 0.14059,
-      "max_favorable_pct": 1.362653,
+      "peak_price": 0.14067,
+      "max_favorable_pct": 1.420332,
       "d1_close": 0.14189,
       "d1_sma50": 0.1138758,
       "d1_gap_pct": 24.600661
@@ -3771,8 +3774,8 @@
       "rsi2": 20.8069,
       "rsi14": 46.6081,
       "distance_from_ema20_pct": -0.381175,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "MANTRAUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3781,7 +3784,8 @@
       "max_favorable_pct": 1.354402,
       "d1_close": 0.00447,
       "d1_sma50": 0.0043862,
-      "d1_gap_pct": 1.910538
+      "d1_gap_pct": 1.910538,
+      "exit_time_ms": 1791475199999
     },
     "MEMEUSDT-1791457200000": {
       "symbol": "MEMEUSDT",
@@ -3796,8 +3800,8 @@
       "rsi2": 21.235,
       "rsi14": 44.8011,
       "distance_from_ema20_pct": -0.483551,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "MEMEUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3806,7 +3810,8 @@
       "max_favorable_pct": 0.880282,
       "d1_close": 0.000572,
       "d1_sma50": 0.0005623,
-      "d1_gap_pct": 1.725058
+      "d1_gap_pct": 1.725058,
+      "exit_time_ms": 1791475199999
     },
     "MEUSDT-1791457200000": {
       "symbol": "MEUSDT",
@@ -3847,8 +3852,8 @@
       "rsi2": 28.9702,
       "rsi14": 45.6131,
       "distance_from_ema20_pct": -0.29944,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "MIRAUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3857,7 +3862,8 @@
       "max_favorable_pct": 0.342742,
       "d1_close": 0.04992,
       "d1_sma50": 0.0481778,
-      "d1_gap_pct": 3.616188
+      "d1_gap_pct": 3.616188,
+      "exit_time_ms": 1791475199999
     },
     "NEWTUSDT-1791457200000": {
       "symbol": "NEWTUSDT",
@@ -3872,8 +3878,8 @@
       "rsi2": 23.8136,
       "rsi14": 43.6959,
       "distance_from_ema20_pct": -0.433789,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "NEWTUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3882,7 +3888,8 @@
       "max_favorable_pct": 0.645439,
       "d1_close": 0.04704,
       "d1_sma50": 0.04506,
-      "d1_gap_pct": 4.394141
+      "d1_gap_pct": 4.394141,
+      "exit_time_ms": 1791475199999
     },
     "PENDLEUSDT-1791457200000": {
       "symbol": "PENDLEUSDT",
@@ -3897,8 +3904,8 @@
       "rsi2": 18.1145,
       "rsi14": 45.7356,
       "distance_from_ema20_pct": -0.608007,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "PENDLEUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3907,7 +3914,8 @@
       "max_favorable_pct": 0.579839,
       "d1_close": 2.245,
       "d1_sma50": 2.1442,
-      "d1_gap_pct": 4.701054
+      "d1_gap_pct": 4.701054,
+      "exit_time_ms": 1791475199999
     },
     "PORTALUSDT-1791457200000": {
       "symbol": "PORTALUSDT",
@@ -3922,8 +3930,8 @@
       "rsi2": 14.6188,
       "rsi14": 47.5456,
       "distance_from_ema20_pct": -0.319007,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "PORTALUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3932,7 +3940,8 @@
       "max_favorable_pct": 1.344243,
       "d1_close": 0.01706,
       "d1_sma50": 0.0167336,
-      "d1_gap_pct": 1.950567
+      "d1_gap_pct": 1.950567,
+      "exit_time_ms": 1791475199999
     },
     "PUNDIXUSDT-1791457200000": {
       "symbol": "PUNDIXUSDT",
@@ -3947,8 +3956,8 @@
       "rsi2": 34.1301,
       "rsi14": 46.4255,
       "distance_from_ema20_pct": -0.051537,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "PUNDIXUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -3957,7 +3966,8 @@
       "max_favorable_pct": 0.974314,
       "d1_close": 0.1133,
       "d1_sma50": 0.104886,
-      "d1_gap_pct": 8.022043
+      "d1_gap_pct": 8.022043,
+      "exit_time_ms": 1791475199999
     },
     "QIUSDT-1791457200000": {
       "symbol": "QIUSDT",
@@ -4075,8 +4085,8 @@
       "rsi2": 7.8283,
       "rsi14": 43.0224,
       "distance_from_ema20_pct": -0.979089,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "SANTOSUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -4085,7 +4095,8 @@
       "max_favorable_pct": 0.579151,
       "d1_close": 0.525,
       "d1_sma50": 0.52034,
-      "d1_gap_pct": 0.895568
+      "d1_gap_pct": 0.895568,
+      "exit_time_ms": 1791475199999
     },
     "USUALUSDT-1791457200000": {
       "symbol": "USUALUSDT",
@@ -4100,8 +4111,8 @@
       "rsi2": 28.6052,
       "rsi14": 44.3493,
       "distance_from_ema20_pct": -0.361496,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "USUALUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -4110,7 +4121,8 @@
       "max_favorable_pct": 1.470588,
       "d1_close": 0.01233,
       "d1_sma50": 0.0122328,
-      "d1_gap_pct": 0.794585
+      "d1_gap_pct": 0.794585,
+      "exit_time_ms": 1791475199999
     },
     "WCTUSDT-1791457200000": {
       "symbol": "WCTUSDT",
@@ -4125,8 +4137,8 @@
       "rsi2": 22.6883,
       "rsi14": 43.8272,
       "distance_from_ema20_pct": -0.633276,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "WCTUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -4135,7 +4147,8 @@
       "max_favorable_pct": 1.215881,
       "d1_close": 0.04106,
       "d1_sma50": 0.0395576,
-      "d1_gap_pct": 3.798006
+      "d1_gap_pct": 3.798006,
+      "exit_time_ms": 1791475199999
     },
     "XAIUSDT-1791457200000": {
       "symbol": "XAIUSDT",
@@ -4150,8 +4163,8 @@
       "rsi2": 36.3273,
       "rsi14": 45.2984,
       "distance_from_ema20_pct": -0.293002,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "XAIUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -4160,7 +4173,8 @@
       "max_favorable_pct": 0.221484,
       "d1_close": 0.00914,
       "d1_sma50": 0.008057,
-      "d1_gap_pct": 13.441728
+      "d1_gap_pct": 13.441728,
+      "exit_time_ms": 1791475199999
     },
     "SKLUSDT-1791457200000": {
       "symbol": "SKLUSDT",
@@ -4244,7 +4258,13 @@
       "exit_time_ms_b": 1791467999999,
       "exit_price_b": 355.53584,
       "net_b_pct": 1.0,
-      "duration_minutes_b": 60
+      "duration_minutes_b": 60,
+      "outcome_main": "loss",
+      "exit_reason_main": "below_level",
+      "exit_time_ms_main": 1791475199999,
+      "exit_price_main": 349.31,
+      "net_main_pct": -0.772128,
+      "duration_minutes_main": 180
     },
     "SENTUSDT-1791460800000": {
       "signal_id": "SENTUSDT-1791460800000",
@@ -4300,7 +4320,13 @@
       "exit_time_ms_b": 1791471599999,
       "exit_price_b": 0.0010598676,
       "net_b_pct": 1.0,
-      "duration_minutes_b": 60
+      "duration_minutes_b": 60,
+      "outcome_main": "loss",
+      "exit_reason_main": "stop_loss",
+      "exit_time_ms_main": 1791475199999,
+      "exit_price_main": 0.0010211175,
+      "net_main_pct": -2.7,
+      "duration_minutes_main": 120
     },
     "MSFTBUSDT-1791464400000": {
       "signal_id": "MSFTBUSDT-1791464400000",
@@ -4342,7 +4368,15 @@
       "target_price": 591.04848,
       "atr_at_entry": 4.5335370134,
       "gap_pct": 0.0668,
-      "d1_trend_ok": 1
+      "d1_trend_ok": 1,
+      "peak_price": 585.11,
+      "max_favorable_pct": 0.183207,
+      "outcome_main": "loss",
+      "exit_reason_main": "below_level",
+      "exit_time_ms_main": 1791475199999,
+      "exit_price_main": 580.69,
+      "net_main_pct": -0.773591,
+      "duration_minutes_main": 60
     },
     "GMEBUSDT-1791468000000": {
       "signal_id": "GMEBUSDT-1791468000000",
@@ -4359,7 +4393,15 @@
       "target_price": 25.1482,
       "atr_at_entry": 0.15412427,
       "gap_pct": 0.1612,
-      "d1_trend_ok": 1
+      "d1_trend_ok": 1,
+      "peak_price": 25.56,
+      "max_favorable_pct": 2.857143,
+      "outcome_b": "target",
+      "exit_reason_b": "take_profit",
+      "exit_time_ms_b": 1791475199999,
+      "exit_price_b": 25.1482,
+      "net_b_pct": 1.0,
+      "duration_minutes_b": 60
     }
   }
 }
