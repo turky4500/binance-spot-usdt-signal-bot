@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import os
 import time
 from collections import Counter
 from datetime import datetime, timedelta, timezone
@@ -14,6 +15,14 @@ from src.exit_rules import ExitSettings
 from src.halal import ensure_verdict, refresh_if_stale
 from src.shadow_journal import append_shadow_candidate, resolve_shadow_candidate
 from src.smart_entry import REJECTION_REASONS_AR as SMART_REJECTION_REASONS_AR, SmartEntrySettings
+from src.strategy_shadow import (
+    GOOD_HOURS as SHADOW_GOOD_HOURS,
+    append_row as append_strategy_shadow,
+    build_candidate as build_strategy_shadow_candidate,
+    daily_trend_from_daily_klines,
+    load_rows as load_strategy_shadow_rows,
+    update_row as update_strategy_shadow_row,
+)
 from src.state import StateStore
 from src.strategy import StrategySettings, compute_entry_signal
 from src.telegram_client import TelegramClient
@@ -44,6 +53,7 @@ from src.utils import (
 )
 
 HOUR_MS = 60 * 60 * 1000
+TZ_OFFSET_MS = 3 * HOUR_MS  # توقيت الرياض UTC+3
 MINUTE_MS = 60 * 1000
 EVENT_RETENTION_DAYS = 120
 WEEKLY_REPORT_WEEKDAY = 6  # الأحد، حيث الاثنين = 0
@@ -69,6 +79,8 @@ class SpotSignalBot:
         self.entry_gates = EntryGateSettings()
         self.exit_rules = ExitSettings()
         self.smart_entry = SmartEntrySettings(timezone_name=config.timezone_name)
+        self.strategy_shadow_enabled = os.getenv("STRATEGY_SHADOW", "1").strip().lower() not in ("0", "false", "no", "off")
+        self._daily_trend_cache: dict[str, tuple[str, bool, float, float]] = {}
         self.store = StateStore(config.state_file)
         self.state = self.store.load()
         self.data_dir = str(Path(config.state_file).parent)
@@ -701,6 +713,7 @@ class SpotSignalBot:
             self.send_entry_message(trade)
             self.logger.info("New trade opened for %s", symbol)
 
+        self.process_strategy_shadow(klines_map, last_closed_open_time)
         self.state["last_processed_open_time"] = last_closed_open_time
         self.store.save(self.state)
 
@@ -848,6 +861,16 @@ class SpotSignalBot:
         if closed_count == 0:
             lines.append("• لا توجد صفقات مغلقة كافية لهذا اليوم بعد، لذلك التحليل النوعي ما زال محدودًا.")
 
+        shadow_strategy = self._strategy_shadow_stats(load_strategy_shadow_rows(self.data_dir), report_day, report_day)
+        lines.extend([
+            f"🧪 النظام التجريبي (ظلّي — بلا رسائل): {int(shadow_strategy['total'])} إشارة اليوم"
+            f" • أُغلقت {int(shadow_strategy['closed'])} (هدف {int(shadow_strategy['wins'])} / وقف {int(shadow_strategy['losses'])} = {float(shadow_strategy['rate']):.1f}%)"
+            f" • مفتوحة {int(shadow_strategy['open'])}"
+            + (f" • متوسط {shadow_strategy['avg_net']:+.3f}%" if shadow_strategy["avg_net"] is not None else ""),
+            "   • هذا قياس حي لنظام «ارتداد الاتجاه اليومي» — يُقارن بنسبة الصفقات الفعلية أعلاه قبل أي اعتماد",
+            "═════════════",
+        ])
+
         target_rows = [row for row in closed_rows if is_win(row.get("outcome"))]
         stop_rows = [row for row in closed_rows if is_loss(row.get("outcome"))]
         target_dur = self._exit_duration_summary(target_rows)
@@ -945,6 +968,138 @@ class SpotSignalBot:
         total = len(rows)
         inside = sum(1 for r in rows if int(float(r.get("entry_hour_local") or -1)) in hours) if total else 0
         return {"total": total, "inside": inside}
+
+
+    # ================= الوضع الظلّي: نظام «ارتداد الاتجاه اليومي» =================
+    def _shadow_daily_trend(self, symbol: str, today_key: str) -> tuple[bool, float, float]:
+        """اتجاه يومي مع كاش يومي (طلب واحد لكل عملة/يوم)."""
+        cached = self._daily_trend_cache.get(symbol)
+        if cached and cached[0] == today_key:
+            return cached[1], cached[2], cached[3]
+        ok, close, sma = False, float("nan"), float("nan")
+        try:
+            daily_frames = self.binance.get_klines_for_symbols([symbol], "1d", 70)
+            ok, close, sma = daily_trend_from_daily_klines(daily_frames.get(symbol))
+        except Exception as exc:  # noqa: BLE001
+            self.logger.warning("shadow daily trend failed for %s: %s", symbol, exc)
+        self._daily_trend_cache[symbol] = (today_key, ok, close, sma)
+        return ok, close, sma
+
+    def process_strategy_shadow(self, klines_map: dict, last_closed_open_time: int) -> None:
+        """يسجّل إشارات النظام المرشح ظلّيًا (بلا رسائل) ويسوّي المفتوحة منها."""
+        if not self.strategy_shadow_enabled:
+            return
+        shadow_state = self.state.setdefault("strategy_shadow", {})
+        today_key = local_date_key_from_ms(last_closed_open_time, self.config.timezone_name)
+
+        # 1) تسوية المفتوحة
+        for shadow_id, record in list(shadow_state.items()):
+            if record.get("outcome"):
+                continue
+            df = klines_map.get(record["symbol"])
+            if df is None or df.empty:
+                continue
+            candle = df[df["open_time"] == last_closed_open_time]
+            if candle.empty:
+                continue
+            row = candle.iloc[-1]
+            high, low, close = float(row["high"]), float(row["low"]), float(row["close"])
+            entry = float(record["entry_price"])
+            target, stop = float(record["target_price"]), float(record["stop_price"])
+            peak = max(float(record.get("peak_price", entry)), high)
+            record["peak_price"] = peak
+            mfe = round((peak / entry - 1.0) * 100.0, 6)
+
+            outcome = exit_reason = None
+            exit_price = None
+            if low <= stop:  # تحفّظ: الوقف أولًا عند لمس الاثنين
+                outcome, exit_reason, exit_price = "loss", "stop_loss", stop
+            elif high >= target:
+                outcome, exit_reason, exit_price = "target", "take_profit", target
+            elif int(row["open_time"]) - int(record["entry_bar_open_time"]) >= 168 * HOUR_MS:
+                outcome = "win" if close > entry else "loss"
+                exit_reason, exit_price = "time_limit", close
+            if outcome is None:
+                record["max_favorable_pct"] = mfe
+                continue
+
+            exit_ms = int(row["close_time"])
+            net = (exit_price / entry - 1.0) * 100.0 - 2.0 * self.settings.commission_per_side_pct
+            record.update({"outcome": outcome, "exit_reason": exit_reason, "exit_time_ms": exit_ms})
+            update_strategy_shadow_row(self.data_dir, shadow_id, {
+                "outcome": outcome, "exit_reason": exit_reason,
+                "exit_time_ms": exit_ms,
+                "exit_price": round(exit_price, 10),
+                "duration_minutes": max(int((exit_ms - int(record.get("entry_time_ms", exit_ms))) // 60000), 0),
+                "net_return_pct": round(net, 6),
+                "max_favorable_pct": mfe,
+            })
+            self.store.save(self.state)
+
+        # 2) تسجيل إشارات جديدة (بلا أي رسالة تيليجرام)
+        added = 0
+        for symbol, df in klines_map.items():
+            if df is None or df.empty:
+                continue
+            closed = df[df["open_time"] <= last_closed_open_time]
+            if closed.empty or int(closed.iloc[-1]["open_time"]) != last_closed_open_time:
+                continue
+            if str(symbol) in {r["symbol"] for r in shadow_state.values() if not r.get("outcome")}:
+                continue
+            # فحص سريع أولًا (بلا طلب شبكة): هل تحقق شرط الارتداد والساعة؟
+            hour = ((last_closed_open_time + TZ_OFFSET_MS) // HOUR_MS) % 24
+            if hour not in SHADOW_GOOD_HOURS:
+                continue
+            snapshot = build_strategy_shadow_candidate(closed, symbol, daily_trend_ok=True)
+            if snapshot is None:
+                continue
+            # الآن فقط نطلب بيانات اليوم للتحقق من الاتجاه اليومي (عدد قليل لكل ساعة)
+            trend_ok, d1_close, d1_sma = self._shadow_daily_trend(symbol, today_key)
+            if not trend_ok:
+                continue
+            shadow_id = f"{symbol}-{last_closed_open_time}"
+            if shadow_id in shadow_state:
+                continue
+            snapshot.update({
+                "shadow_id": shadow_id,
+                "entry_bar_open_time": last_closed_open_time,
+                "entry_time_local": ms_to_local_text(snapshot["entry_time_ms"], self.config.timezone_name),
+                "entry_date_local": today_key,
+                "peak_price": snapshot["entry_price"],
+                "max_favorable_pct": 0.0,
+                "d1_close": round(d1_close, 10) if d1_close == d1_close else "",
+                "d1_sma50": round(d1_sma, 10) if d1_sma == d1_sma else "",
+                "d1_gap_pct": round((d1_close / d1_sma - 1.0) * 100.0, 6) if (d1_sma == d1_sma and d1_sma) else "",
+            })
+            shadow_state[shadow_id] = snapshot
+            append_strategy_shadow(self.data_dir, snapshot)
+            added += 1
+        if added:
+            self.store.save(self.state)
+            self.logger.info("Strategy shadow: %d new signal(s) recorded", added)
+
+    @staticmethod
+    def _strategy_shadow_stats(rows: list[dict], start_day: str | None = None, end_day: str | None = None) -> dict:
+        selected = [
+            r for r in rows
+            if (start_day is None or str(r.get("entry_date_local") or "") >= start_day)
+            and (end_day is None or str(r.get("entry_date_local") or "") <= end_day)
+        ]
+        closed = [r for r in selected if r.get("outcome")]
+        wins = sum(1 for r in closed if r.get("outcome") in ("target", "win"))
+        losses = sum(1 for r in closed if r.get("outcome") == "loss")
+        nets = []
+        for r in closed:
+            try:
+                nets.append(float(r.get("net_return_pct")))
+            except (TypeError, ValueError):
+                continue
+        rate = success_rate_percent(wins, losses)
+        return {
+            "total": len(selected), "closed": len(closed), "wins": wins, "losses": losses,
+            "open": len(selected) - len(closed), "rate": rate,
+            "avg_net": (sum(nets) / len(nets)) if nets else None,
+        }
 
     def send_weekly_report_if_due(self, now_ms: int) -> None:
         now_local = datetime.fromtimestamp(now_ms / 1000, tz=timezone.utc).astimezone(ZoneInfo(self.config.timezone_name))
@@ -1097,7 +1252,16 @@ class SpotSignalBot:
                 if week_reject_reasons else ""
             )
             + f"═════════════\n"
-            f"🧭 قاعدة الخروج المفعّلة: {self.exit_rules.describe()}\n"
+            + (lambda sw: (
+                f"🧪 النظام التجريبي (ظلّي — بلا رسائل)\n"
+                f"   • الإشارات: {int(sw['total'])} • أُغلقت: {int(sw['closed'])} (هدف {int(sw['wins'])} / وقف {int(sw['losses'])})"
+                + (f" • نسبة نجاح: {float(sw['rate']):.1f}%" if int(sw["closed"]) else "")
+                + (f" • متوسط الصفقة: {sw['avg_net']:+.3f}%" if sw["avg_net"] is not None else "")
+                + f"\n   • مفتوحة: {int(sw['open'])} • القاعدة: نظام يُعتمد فقط إذا سبق الصفقات الفعلية في عينة حيّة\n"
+                f"   • ملاحظة: هذا قياس حي لنظام «ارتداد الاتجاه اليومي» من المختبر الكمي\n"
+                f"═════════════\n"
+            ))(self._strategy_shadow_stats(load_strategy_shadow_rows(self.data_dir), report_start_key, report_end_key))
+            + f"🧭 قاعدة الخروج المفعّلة: {self.exit_rules.describe()}\n"
             f"🏆 أكثر العملات نجاحًا: {best_symbols}\n"
             f"⚠️ أكثر العملات وصولًا للوقف: {stop_symbols_text}"
         )
