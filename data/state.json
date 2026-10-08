@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1791421200000,
+  "last_processed_open_time": 1791424800000,
   "last_entry_bar_time": {
     "ESPUSDT": 1791349200000,
     "GMXUSDT": 1791306000000,
@@ -395,7 +395,7 @@
       "stop_price": 767.9245502743319,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791428280000,
+      "last_target_check_ms": 1791428580000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -411,7 +411,7 @@
       "stop_price": 342.22527179721885,
       "entry_time": 1791212399999,
       "entry_bar_open_time": 1791208800000,
-      "last_target_check_ms": 1791428280000,
+      "last_target_check_ms": 1791428580000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -427,7 +427,7 @@
       "stop_price": 0.999964774076438,
       "entry_time": 1791259199999,
       "entry_bar_open_time": 1791255600000,
-      "last_target_check_ms": 1791428280000,
+      "last_target_check_ms": 1791428580000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -443,7 +443,7 @@
       "stop_price": 1.0002745356386218,
       "entry_time": 1791262799999,
       "entry_bar_open_time": 1791259200000,
-      "last_target_check_ms": 1791428280000,
+      "last_target_check_ms": 1791428580000,
       "strong": false,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -460,7 +460,7 @@
       "stop_price": 251.387866379407,
       "entry_time": 1791302399999,
       "entry_bar_open_time": 1791298800000,
-      "last_target_check_ms": 1791428280000,
+      "last_target_check_ms": 1791428580000,
       "strong": true,
       "buy_score": 3,
       "mode": "متوازن",
@@ -483,10 +483,10 @@
         "liquidity_ok": true
       },
       "halal_verdict": "ℹ️ لا يوجد حكم",
-      "peak_price": 260.65,
-      "max_favorable_pct": 2.127576,
+      "peak_price": 260.7,
+      "max_favorable_pct": 2.147167,
       "reference_target_hit": true,
-      "trail_stop_price": 258.9661200314,
+      "trail_stop_price": 259.1912951286,
       "trail_initial_stop_pct": 0.673674
     },
     "AAPLBUSDT": {
@@ -497,7 +497,7 @@
       "stop_price": 333.37633324761555,
       "entry_time": 1791345599999,
       "entry_bar_open_time": 1791342000000,
-      "last_target_check_ms": 1791428280000,
+      "last_target_check_ms": 1791428580000,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
@@ -2992,7 +2992,10 @@
     "RENDERUSDT": 1791414000000,
     "OGNUSDT": 1791417600000,
     "USDCUSDT": 1791417600000,
-    "TRXUSDT": 1791421200000
+    "TRXUSDT": 1791421200000,
+    "ATMUSDT": 1791424800000,
+    "QQQBUSDT": 1791424800000,
+    "SPCXBUSDT": 1791424800000
   },
   "shadow_candidates": {
     "AMDBUSDT-1791385200000": {
@@ -3113,6 +3116,36 @@
       "stop_price": 0.3348768648081041,
       "entry_time": 1791424799999,
       "entry_bar_open_time": 1791421200000,
+      "reason": "volume_too_low"
+    },
+    "ATMUSDT-1791424800000": {
+      "candidate_id": "ATMUSDT-1791424800000",
+      "symbol": "ATMUSDT",
+      "entry_price": 1.062,
+      "target_price": 1.08324,
+      "stop_price": 1.0466035638349196,
+      "entry_time": 1791428399999,
+      "entry_bar_open_time": 1791424800000,
+      "reason": "volume_too_low"
+    },
+    "QQQBUSDT-1791424800000": {
+      "candidate_id": "QQQBUSDT-1791424800000",
+      "symbol": "QQQBUSDT",
+      "entry_price": 758.53,
+      "target_price": 773.7006,
+      "stop_price": 757.3101728760582,
+      "entry_time": 1791428399999,
+      "entry_bar_open_time": 1791424800000,
+      "reason": "volume_too_low"
+    },
+    "SPCXBUSDT-1791424800000": {
+      "candidate_id": "SPCXBUSDT-1791424800000",
+      "symbol": "SPCXBUSDT",
+      "entry_price": 168.29,
+      "target_price": 171.6558,
+      "stop_price": 167.57705969165536,
+      "entry_time": 1791428399999,
+      "entry_bar_open_time": 1791424800000,
       "reason": "volume_too_low"
     }
   }
