@@ -1,2 +1,4 @@
 signal_id,symbol,entry_bar_open_time,entry_time_ms,entry_time_local,entry_date_local,entry_hour_local,level_price,entry_price,stop_price,stop_pct,target_price,atr_at_entry,gap_pct,d1_trend_ok,outcome_main,exit_reason_main,exit_time_ms_main,exit_price_main,net_main_pct,duration_minutes_main,outcome_b,exit_reason_b,exit_time_ms_b,exit_price_b,net_b_pct,duration_minutes_b,max_favorable_pct
-DIAUSDT-1791457200000,DIAUSDT,1791457200000,1791460799999,2026-10-08 14:59,2026-10-08,14,0.1749,0.1751,0.1707225,2.5,0.1772012,0.0036017521,0.1144,1,,,,,,,,,,,,,
+DIAUSDT-1791457200000,DIAUSDT,1791457200000,1791460799999,2026-10-08 14:59,2026-10-08,14,0.1749,0.1751,0.1707225,2.5,0.1772012,0.0036017521,0.1144,1,loss,below_level,1791464399999,0.1741,-0.771102,60,,,,,,,0.0
+GOOGLBUSDT-1791460800000,GOOGLBUSDT,1791460800000,1791464399999,2026-10-08 15:59,2026-10-08,15,350.87,351.32,347.10416,1.2,355.53584,1.5247914672,0.1283,1,,,,,,,,,,,,,
+SENTUSDT-1791460800000,SENTUSDT,1791460800000,1791464399999,2026-10-08 15:59,2026-10-08,15,0.02643,0.02653,0.02586675,2.5,0.02684836,0.0004863817,0.3784,1,,,,,,,,,,,,,
