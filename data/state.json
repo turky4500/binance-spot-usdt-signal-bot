@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1791471600000,
+  "last_processed_open_time": 1791475200000,
   "last_entry_bar_time": {
     "ESPUSDT": 1791349200000,
     "GMXUSDT": 1791306000000,
@@ -396,7 +396,7 @@
       "stop_price": 767.9245502743319,
       "entry_time": 1791205199999,
       "entry_bar_open_time": 1791201600000,
-      "last_target_check_ms": 1791478680000,
+      "last_target_check_ms": 1791478980000,
       "strong": true,
       "mode": "متوازن",
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -413,7 +413,7 @@
       "stop_price": 333.37633324761555,
       "entry_time": 1791345599999,
       "entry_bar_open_time": 1791342000000,
-      "last_target_check_ms": 1791478680000,
+      "last_target_check_ms": 1791478980000,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
@@ -436,8 +436,8 @@
         "liquidity_ok": true
       },
       "halal_verdict": "ℹ️ لا يوجد حكم",
-      "peak_price": 340.26,
-      "max_favorable_pct": 1.813285,
+      "peak_price": 340.38,
+      "max_favorable_pct": 1.849192,
       "reference_target_hit": false
     },
     "PLTRBUSDT": {
@@ -448,7 +448,7 @@
       "stop_price": 197.02453910910592,
       "entry_time": 1791475199999,
       "entry_bar_open_time": 1791471600000,
-      "last_target_check_ms": 1791478680000,
+      "last_target_check_ms": 1791478980000,
       "strong": false,
       "buy_score": 2,
       "mode": "متوازن",
@@ -2992,6 +2992,11 @@
       "type": "entry",
       "symbol": "PLTRBUSDT",
       "time_ms": 1791475199999
+    },
+    {
+      "type": "pdh_entry",
+      "symbol": "AAPLBUSDT",
+      "time_ms": 1791478799999
     }
   ],
   "daily_report": {
@@ -3040,16 +3045,6 @@
     "NFLXBUSDT": 1791471600000
   },
   "shadow_candidates": {
-    "AMDBUSDT-1791385200000": {
-      "candidate_id": "AMDBUSDT-1791385200000",
-      "symbol": "AMDBUSDT",
-      "entry_price": 644.65,
-      "target_price": 657.543,
-      "stop_price": 633.3796772218993,
-      "entry_time": 1791388799999,
-      "entry_bar_open_time": 1791385200000,
-      "reason": "volume_blowoff"
-    },
     "UUSDT-1791396000000": {
       "candidate_id": "UUSDT-1791396000000",
       "symbol": "UUSDT",
@@ -3099,16 +3094,6 @@
       "entry_time": 1791475199999,
       "entry_bar_open_time": 1791471600000,
       "reason": "volume_blowoff"
-    },
-    "NVDABUSDT-1791471600000": {
-      "candidate_id": "NVDABUSDT-1791471600000",
-      "symbol": "NVDABUSDT",
-      "entry_price": 235.37,
-      "target_price": 240.0774,
-      "stop_price": 233.72105152328731,
-      "entry_time": 1791475199999,
-      "entry_bar_open_time": 1791471600000,
-      "reason": "di_trend_negative"
     }
   },
   "strategy_shadow": {
@@ -4008,8 +3993,8 @@
       "rsi2": 21.5988,
       "rsi14": 42.7503,
       "distance_from_ema20_pct": -1.09327,
-      "outcome": "",
-      "exit_reason": "",
+      "outcome": "loss",
+      "exit_reason": "stop_loss",
       "shadow_id": "QKCUSDT-1791457200000",
       "entry_bar_open_time": 1791457200000,
       "entry_time_local": "2026-10-08 2:59:59 مساءً",
@@ -4018,7 +4003,8 @@
       "max_favorable_pct": 1.600894,
       "d1_close": 0.002673,
       "d1_sma50": 0.00248998,
-      "d1_gap_pct": 7.35026
+      "d1_gap_pct": 7.35026,
+      "exit_time_ms": 1791478799999
     },
     "ROSEUSDT-1791457200000": {
       "symbol": "ROSEUSDT",
@@ -4351,7 +4337,13 @@
       "exit_time_ms_main": 1791471599999,
       "exit_price_main": 530.6,
       "net_main_pct": -0.532476,
-      "duration_minutes_main": 60
+      "duration_minutes_main": 60,
+      "outcome_b": "loss",
+      "exit_reason_b": "stop_loss",
+      "exit_time_ms_b": 1791478799999,
+      "exit_price_b": 525.98156,
+      "net_b_pct": -1.4,
+      "duration_minutes_b": 180
     },
     "DELLBUSDT-1791468000000": {
       "signal_id": "DELLBUSDT-1791468000000",
@@ -4376,7 +4368,13 @@
       "exit_time_ms_main": 1791475199999,
       "exit_price_main": 580.69,
       "net_main_pct": -0.773591,
-      "duration_minutes_main": 60
+      "duration_minutes_main": 60,
+      "outcome_b": "loss",
+      "exit_reason_b": "stop_loss",
+      "exit_time_ms_b": 1791478799999,
+      "exit_price_b": 577.03152,
+      "net_b_pct": -1.4,
+      "duration_minutes_b": 120
     },
     "GMEBUSDT-1791468000000": {
       "signal_id": "GMEBUSDT-1791468000000",
@@ -4394,14 +4392,31 @@
       "atr_at_entry": 0.15412427,
       "gap_pct": 0.1612,
       "d1_trend_ok": 1,
-      "peak_price": 25.56,
-      "max_favorable_pct": 2.857143,
+      "peak_price": 25.8,
+      "max_favorable_pct": 3.822938,
       "outcome_b": "target",
       "exit_reason_b": "take_profit",
       "exit_time_ms_b": 1791475199999,
       "exit_price_b": 25.1482,
       "net_b_pct": 1.0,
       "duration_minutes_b": 60
+    },
+    "AAPLBUSDT-1791475200000": {
+      "signal_id": "AAPLBUSDT-1791475200000",
+      "symbol": "AAPLBUSDT",
+      "entry_bar_open_time": 1791475200000,
+      "entry_time_ms": 1791478799999,
+      "entry_time_local": "2026-10-08 19:59",
+      "entry_date_local": "2026-10-08",
+      "entry_hour_local": 19,
+      "level_price": 338.38,
+      "entry_price": 339.39,
+      "stop_price": 335.31732,
+      "stop_pct": 1.2,
+      "target_price": 343.46268,
+      "atr_at_entry": 0.9021549053,
+      "gap_pct": 0.2985,
+      "d1_trend_ok": 1
     }
   }
 }
