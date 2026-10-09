@@ -605,12 +605,12 @@ class SpotSignalBot:
     def process_new_closed_hour(self, server_time: int) -> None:
         self.purge_pegged_stable_trades()
         last_processed = int(self.state.get("last_processed_open_time", 0))
-        # عالج جميع الشموع المغلقة منذ آخر معالجة (catch-up)
+        # الشمعة المغلقة الأخيرة = أصغر من server_time
         target_closed = ((server_time - HOUR_MS) // HOUR_MS) * HOUR_MS
         if last_processed >= target_closed:
             return
 
-        self.logger.info("Catch-up: processing from %s to %s", last_processed, target_closed)
+        self.logger.info("Processing closed hour at open_time=%s", target_closed)
         klines_map = self.binance.get_klines_for_symbols(self.symbols, self.config.interval, self.config.kline_limit)
 
         # تأكيد من البيانات: الشمعة الأخيرة فعلاً مُغلقة في klines_map
@@ -620,17 +620,20 @@ class SpotSignalBot:
                 self.logger.warning("No klines data; skipping cycle")
                 return
             last_in_data = int(sample.iloc[-1]["open_time"])
-            # استخدم آخر شمعة فعلاً مُغلقة من البيانات (لا server_time)
-            # هذا يحلّ مشكلة: server_time ثابت بين دورتين متتاليتين
-            target_closed = min(target_closed, last_in_data)
-            if last_processed >= target_closed:
+            if last_in_data < target_closed:
+                self.logger.warning("Data lag: latest open_time=%s < target=%s; skipping",
+                                    last_in_data, target_closed)
                 return
         except StopIteration:
             return
 
-        # عالج الشموع واحدة واحدة — حد أقصى 24 شمعة للحماية
+        # catch-up: عالج كل الشموع منذ آخر معالجة (حد أقصى 24)
         step = HOUR_MS
-        cursor = max(last_processed + step, target_closed - 23 * step)
+        # إذا أول تشغيل (last_processed=0) — ابدأ من الشمعة الحالية فقط
+        if last_processed == 0:
+            cursor = target_closed
+        else:
+            cursor = max(last_processed + step, target_closed - 23 * step)
         if cursor > target_closed:
             cursor = last_processed + step
         while cursor <= target_closed:
