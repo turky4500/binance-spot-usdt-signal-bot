@@ -1,11 +1,12 @@
 {
-  "last_processed_open_time": 1791543600000,
+  "last_processed_open_time": 1791547200000,
   "last_entry_bar_time": {
     "CRVUSDT": 1791543600000,
     "METABUSDT": 1791543600000,
     "NEXOUSDT": 1791543600000,
     "SKLUSDT": 1791543600000,
-    "TRXUSDT": 1791543600000
+    "TRXUSDT": 1791543600000,
+    "BANKUSDT": 1791547200000
   },
   "last_exit_bar_time": {},
   "open_trades": {
@@ -26,7 +27,7 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791550680000,
+      "last_target_check_ms": 1791550980000,
       "atr_at_entry": 0.004745372654985546,
       "trend_length": 10,
       "peak_price": 0.3522,
@@ -49,7 +50,7 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791550680000,
+      "last_target_check_ms": 1791550980000,
       "atr_at_entry": 2.5324074808446135,
       "trend_length": 10,
       "peak_price": 727.24,
@@ -72,7 +73,7 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791550680000,
+      "last_target_check_ms": 1791550980000,
       "atr_at_entry": 0.006510917634841594,
       "trend_length": 10,
       "peak_price": 0.852,
@@ -95,10 +96,10 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791550680000,
+      "last_target_check_ms": 1791550980000,
       "atr_at_entry": 5.239663444782513e-05,
       "trend_length": 10,
-      "peak_price": 0.00608,
+      "peak_price": 0.00609,
       "halal_verdict": "✅ مباح"
     },
     "TRXUSDT": {
@@ -118,11 +119,34 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791550680000,
+      "last_target_check_ms": 1791550980000,
       "atr_at_entry": 0.0005279724049018422,
       "trend_length": 10,
       "peak_price": 0.3333,
       "halal_verdict": "✅ مباح"
+    },
+    "BANKUSDT": {
+      "trade_id": "BANKUSDT-1791547200000",
+      "symbol": "BANKUSDT",
+      "entry_price": 0.0286,
+      "stop_price": 0.02751795036339216,
+      "targets": [
+        0.03016024818303921,
+        0.03172049636607842,
+        0.03328074454911763
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791550799999,
+      "entry_bar_open_time": 1791547200000,
+      "last_target_check_ms": 1791550859999,
+      "atr_at_entry": 0.0003120496366078416,
+      "trend_length": 10,
+      "peak_price": 0.0286,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
     }
   },
   "event_log": [
@@ -150,6 +174,11 @@
       "type": "entry",
       "symbol": "TRXUSDT",
       "time_ms": 1791547199999
+    },
+    {
+      "type": "entry",
+      "symbol": "BANKUSDT",
+      "time_ms": 1791550799999
     }
   ],
   "daily_report": {
