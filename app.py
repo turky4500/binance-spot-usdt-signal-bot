@@ -875,39 +875,41 @@ class SpotSignalBot:
     @staticmethod
     def _rtl_pivot_entry(strong: str, symbol: str, entry: float, target: float, stop: float,
                          result: dict, verdict: str) -> str:
-        """رسالة دخول بصيغة RTL: كل سطر يُعكس ويُسبَق بعلامة U+200F."""
-        R = "\u200f"  # RTL mark — يُجبر محاذاة من اليمين لليسار في Telegram
+        """رسالة دخول بصيغة RTL: النص سليم، يسبقه علامة U+200F (بدون عكس الحروف)."""
+        R = "\u200f"  # RTL mark — يُجبر محاذاة السطر من اليمين لليسار في Telegram
+        sep = R + "━━━━━━━━━━━━━━━━━━"
         lines = [
             f"🟣📊 إشارة شراء{strong}",
-            "━━━━━━━━━━━━━━━━━━",
+            sep,
             f"🔹 العملة: {symbol}",
             f"🔹 سعر الدخول: {format_price(entry)}",
             f"🔹 الهدف: {format_price(target)} (+{result['target_pct']:.2f}%)",
             f"🔹 وقف الخسارة: {format_price(stop)} (-{result['stop_pct']:.2f}%)",
             f"🔹 درجة القوة: {result.get('score', 0)}/5",
             f"🔹 الحكم الشرعي: {verdict}",
-            "━━━━━━━━━━━━━━━━━━",
-            "القرار لك.",
+            sep,
+            f"القرار لك.",
         ]
-        return "\n".join(R + line[::-1] if line and not line.startswith("━━") else line for line in lines)
+        return "\n".join(R + line for line in lines)
 
     @staticmethod
     def _rtl_pivot_close(symbol: str, header_icon: str, reason: str, entry: float,
                          exit_price: float, target: float, net_pct: float,
                          verdict: str, status: str) -> str:
         R = "\u200f"
+        sep = R + "━━━━━━━━━━━━━━━━━━"
         lines = [
             f"🟣{header_icon} إغلاق صفقة {symbol}",
-            "━━━━━━━━━━━━━━━━━━",
+            sep,
             f"🔹 السبب: {reason}",
             f"🔹 دخول: {format_price(entry)} • خروج: {format_price(exit_price)}",
             f"🔹 الهدف كان: {format_price(target)} • الصافي: {net_pct:+.2f}%",
             f"🔹 الحكم الشرعي: {verdict}",
             f"🔹 النتيجة: {status}",
-            "━━━━━━━━━━━━━━━━━━",
-            "القرار لك.",
+            sep,
+            f"القرار لك.",
         ]
-        return "\n".join(R + line[::-1] if line and not line.startswith("━━") else line for line in lines)
+        return "\n".join(R + line for line in lines)
 
     def send_daily_report_if_due(self, now_ms: int) -> None:
         now_local = datetime.fromtimestamp(now_ms / 1000, tz=timezone.utc).astimezone(ZoneInfo(self.config.timezone_name))
