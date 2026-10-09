@@ -605,27 +605,27 @@ class SpotSignalBot:
     def process_new_closed_hour(self, server_time: int) -> None:
         self.purge_pegged_stable_trades()
         last_processed = int(self.state.get("last_processed_open_time", 0))
-        # الشمعة المغلقة الأخيرة = أصغر من server_time
-        target_closed = ((server_time - HOUR_MS) // HOUR_MS) * HOUR_MS
-        if last_processed >= target_closed:
-            return
 
-        self.logger.info("Processing closed hour at open_time=%s", target_closed)
+        # اعتمد على البيانات الفعلية من Binance لتحديد الشمعة المغلقة الأخيرة
+        # (لا server_time math — قد يتأخر في البيئات البطيئة)
         klines_map = self.binance.get_klines_for_symbols(self.symbols, self.config.interval, self.config.kline_limit)
-
-        # تأكيد من البيانات: الشمعة الأخيرة فعلاً مُغلقة في klines_map
         try:
             sample = next(iter(klines_map.values()))
             if sample is None or sample.empty:
                 self.logger.warning("No klines data; skipping cycle")
                 return
             last_in_data = int(sample.iloc[-1]["open_time"])
-            if last_in_data < target_closed:
-                self.logger.warning("Data lag: latest open_time=%s < target=%s; skipping",
-                                    last_in_data, target_closed)
-                return
         except StopIteration:
             return
+
+        # الشمعة المغلقة فعلًا = أصغر من server_time math ومن البيانات
+        target_from_server = ((server_time - HOUR_MS) // HOUR_MS) * HOUR_MS
+        target_closed = min(target_from_server, last_in_data)
+        if last_processed >= target_closed:
+            return
+
+        self.logger.info("Processing closed hour: target=%s (server=%s, data=%s)",
+                         target_closed, target_from_server, last_in_data)
 
         # catch-up: عالج كل الشموع منذ آخر معالجة (حد أقصى 24)
         step = HOUR_MS
