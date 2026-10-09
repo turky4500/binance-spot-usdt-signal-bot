@@ -620,20 +620,16 @@ class SpotSignalBot:
             return
 
         # الشمعة المغلقة فعلًا = الشمعة التي close_time لها ≤ server_time
-        # الشمعة الحالية قيد التشكّل: open_time < server_time < close_time → لا نعالجها
         if close_time_of_last >= server_time:
             # الشمعة الأخيرة في البيانات لم تُغلق بعد — استخدم السابقة
             last_in_data = last_in_data - HOUR_MS
-            close_time_of_last = close_time_of_last - HOUR_MS
 
-        # الشمعة المغلقة = min(target_from_server, last_in_data)
-        target_from_server = ((server_time - HOUR_MS) // HOUR_MS) * HOUR_MS
-        target_closed = min(target_from_server, last_in_data)
+        target_closed = last_in_data
         if last_processed >= target_closed:
             return
 
-        self.logger.info("Processing closed hour: target=%s (server=%s, data=%s)",
-                         target_closed, target_from_server, last_in_data)
+        self.logger.info("Processing closed hour: target=%s (last_processed=%s, data=%s)",
+                         target_closed, last_processed, last_in_data)
 
         # catch-up: عالج كل الشموع منذ آخر معالجة (حد أقصى 24)
         step = HOUR_MS
