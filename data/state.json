@@ -26,10 +26,10 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791547259999,
+      "last_target_check_ms": 1791547680000,
       "atr_at_entry": 0.004745372654985546,
       "trend_length": 10,
-      "peak_price": 0.3511,
+      "peak_price": 0.3522,
       "halal_verdict": "⛔ غير مباح"
     },
     "METABUSDT": {
@@ -49,10 +49,10 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791547259999,
+      "last_target_check_ms": 1791547680000,
       "atr_at_entry": 2.5324074808446135,
       "trend_length": 10,
-      "peak_price": 726.36,
+      "peak_price": 727.24,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     },
     "NEXOUSDT": {
@@ -72,10 +72,10 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791547259999,
+      "last_target_check_ms": 1791547680000,
       "atr_at_entry": 0.006510917634841594,
       "trend_length": 10,
-      "peak_price": 0.85,
+      "peak_price": 0.852,
       "halal_verdict": "⛔ غير مباح"
     },
     "SKLUSDT": {
@@ -95,7 +95,7 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791547259999,
+      "last_target_check_ms": 1791547680000,
       "atr_at_entry": 5.239663444782513e-05,
       "trend_length": 10,
       "peak_price": 0.00608,
@@ -118,10 +118,10 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791547259999,
+      "last_target_check_ms": 1791547680000,
       "atr_at_entry": 0.0005279724049018422,
       "trend_length": 10,
-      "peak_price": 0.3331,
+      "peak_price": 0.3333,
       "halal_verdict": "✅ مباح"
     }
   },
