@@ -604,13 +604,47 @@ class SpotSignalBot:
 
     def process_new_closed_hour(self, server_time: int) -> None:
         self.purge_pegged_stable_trades()
-        last_closed_open_time = ((server_time // HOUR_MS) - 1) * HOUR_MS
-        if int(self.state.get("last_processed_open_time", 0)) >= last_closed_open_time:
+        last_processed = int(self.state.get("last_processed_open_time", 0))
+        # عالج جميع الشموع المغلقة منذ آخر معالجة (catch-up)
+        target_closed = ((server_time - HOUR_MS) // HOUR_MS) * HOUR_MS
+        if last_processed >= target_closed:
             return
 
-        self.logger.info("Processing closed hour at open_time=%s", last_closed_open_time)
+        self.logger.info("Catch-up: processing from %s to %s", last_processed, target_closed)
         klines_map = self.binance.get_klines_for_symbols(self.symbols, self.config.interval, self.config.kline_limit)
 
+        # تأكيد من البيانات: الشمعة الأخيرة فعلاً مُغلقة في klines_map
+        try:
+            sample = next(iter(klines_map.values()))
+            if sample is None or sample.empty:
+                self.logger.warning("No klines data; skipping cycle")
+                return
+            last_in_data = int(sample.iloc[-1]["open_time"])
+            # استخدم آخر شمعة فعلاً مُغلقة من البيانات (لا server_time)
+            # هذا يحلّ مشكلة: server_time ثابت بين دورتين متتاليتين
+            target_closed = min(target_closed, last_in_data)
+            if last_processed >= target_closed:
+                return
+        except StopIteration:
+            return
+
+        # عالج الشموع واحدة واحدة — حد أقصى 24 شمعة للحماية
+        step = HOUR_MS
+        cursor = max(last_processed + step, target_closed - 23 * step)
+        if cursor > target_closed:
+            cursor = last_processed + step
+        while cursor <= target_closed:
+            self._process_one_closed_hour(klines_map, cursor)
+            self.state["last_processed_open_time"] = cursor
+            self.store.save(self.state)
+            self.logger.info("Processed closed hour at open_time=%s", cursor)
+            cursor += step
+
+        # shadow monitoring (يعمل على آخر شمعة معالجة)
+        self.monitor_shadow_candidates(klines_map, target_closed)
+
+    def _process_one_closed_hour(self, klines_map: dict, last_closed_open_time: int) -> None:
+        """معالجة شمعة واحدة مغلقة (تُستدعى لكل شمعة في catch-up)."""
         self.monitor_shadow_candidates(klines_map, last_closed_open_time)
 
         open_trades = self.state.get("open_trades", {})
@@ -631,7 +665,6 @@ class SpotSignalBot:
             trade["max_favorable_pct"] = round((peak_price / float(trade["entry_price"]) - 1.0) * 100.0, 6)
 
             if self.exit_rules.uses_trailing_stop:
-                # بلوغ الهدف المرجعي = لحظة التحول إلى الوقف المتحرك، ولا يُغلق الصفقة
                 reached_now = False
                 if not trade.get("reference_target_hit") and candle_high >= float(trade["target_price"]):
                     trade["reference_target_hit"] = True
@@ -640,7 +673,6 @@ class SpotSignalBot:
 
                 atr_now = self._atr_value_for(df, settings_atr_len=self.exit_rules.trail_atr_len)
                 if self.exit_rules.is_hybrid and not trade.get("reference_target_hit"):
-                    # الطور الأول: وقف الإشارة الأصلي كما هو
                     if candle_close < float(trade["stop_price"]):
                         self.send_stop_message(trade, candle_close_time)
                         self.close_trade(symbol, last_closed_open_time, "stop_close")
@@ -658,7 +690,7 @@ class SpotSignalBot:
                             6,
                         )
                 if reached_now:
-                    continue  # نبدأ تقييم الوقف المتحرك من الشمعة التالية (مطابق للمحاكاة)
+                    continue
 
                 trail_stop = trade.get("trail_stop_price")
                 if trail_stop is not None and candle_close <= float(trail_stop):
@@ -771,8 +803,6 @@ class SpotSignalBot:
         self.process_strategy_shadow(klines_map, last_closed_open_time)
         if os.getenv("PIVOT_STRATEGY", "1").strip().lower() not in ("0", "false", "no", "off"):
             self.process_pivot_strategy(klines_map, last_closed_open_time)
-        self.state["last_processed_open_time"] = last_closed_open_time
-        self.store.save(self.state)
 
     def process_pivot_strategy(self, klines_map: dict, last_closed_open_time: int) -> None:
         """استراتيجية قمم وقيعان مؤكدة (نسخة محسّنة) — تُحسب محليًا من شموع Binance.
@@ -789,7 +819,8 @@ class SpotSignalBot:
         for symbol, df in klines_map.items():
             if df is None or df.empty:
                 continue
-            closed = df[df["open_time"] <= last_closed_open_time]
+            # الشمعة السابقة المغلقة فقط — لا ننظر أبدًا إلى شمعة قيد التشكّل
+            closed = df[df["open_time"] < last_closed_open_time + HOUR_MS]
             if closed.empty or int(closed.iloc[-1]["open_time"]) != last_closed_open_time:
                 continue
             result = compute_pivot_signals(closed, symbol, mode=PIVOT_MODE)
