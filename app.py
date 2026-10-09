@@ -615,10 +615,18 @@ class SpotSignalBot:
                 self.logger.warning("No klines data; skipping cycle")
                 return
             last_in_data = int(sample.iloc[-1]["open_time"])
+            close_time_of_last = int(sample.iloc[-1].get("close_time", last_in_data + HOUR_MS - 1))
         except StopIteration:
             return
 
-        # الشمعة المغلقة فعلًا = أصغر من server_time math ومن البيانات
+        # الشمعة المغلقة فعلًا = الشمعة التي close_time لها ≤ server_time
+        # الشمعة الحالية قيد التشكّل: open_time < server_time < close_time → لا نعالجها
+        if close_time_of_last >= server_time:
+            # الشمعة الأخيرة في البيانات لم تُغلق بعد — استخدم السابقة
+            last_in_data = last_in_data - HOUR_MS
+            close_time_of_last = close_time_of_last - HOUR_MS
+
+        # الشمعة المغلقة = min(target_from_server, last_in_data)
         target_from_server = ((server_time - HOUR_MS) // HOUR_MS) * HOUR_MS
         target_closed = min(target_from_server, last_in_data)
         if last_processed >= target_closed:
