@@ -1,12 +1,16 @@
 {
-  "last_processed_open_time": 1791547200000,
+  "last_processed_open_time": 1791550800000,
   "last_entry_bar_time": {
     "CRVUSDT": 1791543600000,
     "METABUSDT": 1791543600000,
     "NEXOUSDT": 1791543600000,
     "SKLUSDT": 1791543600000,
     "TRXUSDT": 1791543600000,
-    "BANKUSDT": 1791547200000
+    "BANKUSDT": 1791547200000,
+    "FTTUSDT": 1791550800000,
+    "GPROBUSDT": 1791550800000,
+    "SOXSBUSDT": 1791550800000,
+    "SQQQBUSDT": 1791550800000
   },
   "last_exit_bar_time": {
     "METABUSDT": 1791550800000
@@ -29,7 +33,7 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791554280000,
+      "last_target_check_ms": 1791554640000,
       "atr_at_entry": 0.004745372654985546,
       "trend_length": 10,
       "peak_price": 0.3522,
@@ -52,7 +56,7 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791554280000,
+      "last_target_check_ms": 1791554640000,
       "atr_at_entry": 0.006510917634841594,
       "trend_length": 10,
       "peak_price": 0.852,
@@ -75,7 +79,7 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791554280000,
+      "last_target_check_ms": 1791554640000,
       "atr_at_entry": 5.239663444782513e-05,
       "trend_length": 10,
       "peak_price": 0.00609,
@@ -98,7 +102,7 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791554280000,
+      "last_target_check_ms": 1791554640000,
       "atr_at_entry": 0.0005279724049018422,
       "trend_length": 10,
       "peak_price": 0.3333,
@@ -121,10 +125,102 @@
       ],
       "entry_time": 1791550799999,
       "entry_bar_open_time": 1791547200000,
-      "last_target_check_ms": 1791554280000,
+      "last_target_check_ms": 1791554640000,
       "atr_at_entry": 0.0003120496366078416,
       "trend_length": 10,
       "peak_price": 0.0289,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "FTTUSDT": {
+      "trade_id": "FTTUSDT-1791550800000",
+      "symbol": "FTTUSDT",
+      "entry_price": 0.2605,
+      "stop_price": 0.2391367534541765,
+      "targets": [
+        0.27971623272911766,
+        0.29893246545823526,
+        0.3181486981873529
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791554399999,
+      "entry_bar_open_time": 1791550800000,
+      "last_target_check_ms": 1791554459999,
+      "atr_at_entry": 0.0038432465458235286,
+      "trend_length": 10,
+      "peak_price": 0.2605,
+      "halal_verdict": "⛔ غير مباح"
+    },
+    "GPROBUSDT": {
+      "trade_id": "GPROBUSDT-1791550800000",
+      "symbol": "GPROBUSDT",
+      "entry_price": 1.22,
+      "stop_price": 1.1780289537363877,
+      "targets": [
+        1.284855231318061,
+        1.3497104626361218,
+        1.4145656939541829
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791554399999,
+      "entry_bar_open_time": 1791550800000,
+      "last_target_check_ms": 1791554459999,
+      "atr_at_entry": 0.012971046263612188,
+      "trend_length": 10,
+      "peak_price": 1.22,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "SOXSBUSDT": {
+      "trade_id": "SOXSBUSDT-1791550800000",
+      "symbol": "SOXSBUSDT",
+      "entry_price": 34.15,
+      "stop_price": 31.67674139533429,
+      "targets": [
+        35.87129302332855,
+        37.5925860466571,
+        39.313879069985646
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791554399999,
+      "entry_bar_open_time": 1791550800000,
+      "last_target_check_ms": 1791554459999,
+      "atr_at_entry": 0.3442586046657097,
+      "trend_length": 10,
+      "peak_price": 34.15,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "SQQQBUSDT": {
+      "trade_id": "SQQQBUSDT-1791550800000",
+      "symbol": "SQQQBUSDT",
+      "entry_price": 33.19,
+      "stop_price": 32.46756204108981,
+      "targets": [
+        34.02718979455095,
+        34.8643795891019,
+        35.701569383652846
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791554399999,
+      "entry_bar_open_time": 1791550800000,
+      "last_target_check_ms": 1791554459999,
+      "atr_at_entry": 0.16743795891018998,
+      "trend_length": 10,
+      "peak_price": 33.19,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     }
   },
@@ -163,6 +259,26 @@
       "type": "exit_loss",
       "symbol": "METABUSDT",
       "time_ms": 1791553079999
+    },
+    {
+      "type": "entry",
+      "symbol": "FTTUSDT",
+      "time_ms": 1791554399999
+    },
+    {
+      "type": "entry",
+      "symbol": "GPROBUSDT",
+      "time_ms": 1791554399999
+    },
+    {
+      "type": "entry",
+      "symbol": "SOXSBUSDT",
+      "time_ms": 1791554399999
+    },
+    {
+      "type": "entry",
+      "symbol": "SQQQBUSDT",
+      "time_ms": 1791554399999
     }
   ],
   "daily_report": {
