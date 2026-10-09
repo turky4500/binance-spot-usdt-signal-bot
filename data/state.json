@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1791554400000,
+  "last_processed_open_time": 1791558000000,
   "last_entry_bar_time": {
     "CRVUSDT": 1791543600000,
     "METABUSDT": 1791543600000,
@@ -12,7 +12,9 @@
     "SOXSBUSDT": 1791550800000,
     "SQQQBUSDT": 1791550800000,
     "COINBUSDT": 1791554400000,
-    "HEIUSDT": 1791554400000
+    "HEIUSDT": 1791554400000,
+    "AIUSDT": 1791558000000,
+    "JASMYUSDT": 1791558000000
   },
   "last_exit_bar_time": {
     "METABUSDT": 1791550800000
@@ -35,7 +37,7 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791561480000,
+      "last_target_check_ms": 1791561780000,
       "atr_at_entry": 0.004745372654985546,
       "trend_length": 10,
       "peak_price": 0.3638,
@@ -58,7 +60,7 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791561480000,
+      "last_target_check_ms": 1791561780000,
       "atr_at_entry": 0.006510917634841594,
       "trend_length": 10,
       "peak_price": 0.852,
@@ -81,7 +83,7 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791561480000,
+      "last_target_check_ms": 1791561780000,
       "atr_at_entry": 5.239663444782513e-05,
       "trend_length": 10,
       "peak_price": 0.00609,
@@ -104,7 +106,7 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791561480000,
+      "last_target_check_ms": 1791561780000,
       "atr_at_entry": 0.0005279724049018422,
       "trend_length": 10,
       "peak_price": 0.3333,
@@ -127,7 +129,7 @@
       ],
       "entry_time": 1791550799999,
       "entry_bar_open_time": 1791547200000,
-      "last_target_check_ms": 1791561480000,
+      "last_target_check_ms": 1791561780000,
       "atr_at_entry": 0.0003120496366078416,
       "trend_length": 10,
       "peak_price": 0.0289,
@@ -150,7 +152,7 @@
       ],
       "entry_time": 1791554399999,
       "entry_bar_open_time": 1791550800000,
-      "last_target_check_ms": 1791561480000,
+      "last_target_check_ms": 1791561780000,
       "atr_at_entry": 0.0038432465458235286,
       "trend_length": 10,
       "peak_price": 0.2613,
@@ -173,7 +175,7 @@
       ],
       "entry_time": 1791554399999,
       "entry_bar_open_time": 1791550800000,
-      "last_target_check_ms": 1791561480000,
+      "last_target_check_ms": 1791561780000,
       "atr_at_entry": 0.012971046263612188,
       "trend_length": 10,
       "peak_price": 1.22,
@@ -196,10 +198,10 @@
       ],
       "entry_time": 1791554399999,
       "entry_bar_open_time": 1791550800000,
-      "last_target_check_ms": 1791561480000,
+      "last_target_check_ms": 1791561780000,
       "atr_at_entry": 0.3442586046657097,
       "trend_length": 10,
-      "peak_price": 34.75,
+      "peak_price": 34.92,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     },
     "SQQQBUSDT": {
@@ -219,7 +221,7 @@
       ],
       "entry_time": 1791554399999,
       "entry_bar_open_time": 1791550800000,
-      "last_target_check_ms": 1791561480000,
+      "last_target_check_ms": 1791561780000,
       "atr_at_entry": 0.16743795891018998,
       "trend_length": 10,
       "peak_price": 33.34,
@@ -242,7 +244,7 @@
       ],
       "entry_time": 1791557999999,
       "entry_bar_open_time": 1791554400000,
-      "last_target_check_ms": 1791561480000,
+      "last_target_check_ms": 1791561780000,
       "atr_at_entry": 1.0155491537913892,
       "trend_length": 10,
       "peak_price": 181.94,
@@ -265,11 +267,57 @@
       ],
       "entry_time": 1791557999999,
       "entry_bar_open_time": 1791554400000,
-      "last_target_check_ms": 1791561480000,
+      "last_target_check_ms": 1791561780000,
       "atr_at_entry": 0.002089942896951809,
       "trend_length": 10,
-      "peak_price": 0.1277,
+      "peak_price": 0.1283,
       "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "AIUSDT": {
+      "trade_id": "AIUSDT-1791558000000",
+      "symbol": "AIUSDT",
+      "entry_price": 0.0205,
+      "stop_price": 0.019190402949934543,
+      "targets": [
+        0.021997985250327288,
+        0.023495970500654578,
+        0.024993955750981865
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791561599999,
+      "entry_bar_open_time": 1791558000000,
+      "last_target_check_ms": 1791561659999,
+      "atr_at_entry": 0.0002995970500654576,
+      "trend_length": 10,
+      "peak_price": 0.0205,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "JASMYUSDT": {
+      "trade_id": "JASMYUSDT-1791558000000",
+      "symbol": "JASMYUSDT",
+      "entry_price": 0.0049,
+      "stop_price": 0.004663462402380606,
+      "targets": [
+        0.005262687988096965,
+        0.00562537597619393,
+        0.0059880639642908955
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791561599999,
+      "entry_bar_open_time": 1791558000000,
+      "last_target_check_ms": 1791561659999,
+      "atr_at_entry": 7.253759761939302e-05,
+      "trend_length": 10,
+      "peak_price": 0.0049,
+      "halal_verdict": "✅ مباح"
     }
   },
   "event_log": [
@@ -337,6 +385,16 @@
       "type": "entry",
       "symbol": "HEIUSDT",
       "time_ms": 1791557999999
+    },
+    {
+      "type": "entry",
+      "symbol": "AIUSDT",
+      "time_ms": 1791561599999
+    },
+    {
+      "type": "entry",
+      "symbol": "JASMYUSDT",
+      "time_ms": 1791561599999
     }
   ],
   "daily_report": {
