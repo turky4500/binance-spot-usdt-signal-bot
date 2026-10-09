@@ -1,9 +1,157 @@
 {
-  "last_processed_open_time": 1791540000000,
-  "last_entry_bar_time": {},
+  "last_processed_open_time": 1791543600000,
+  "last_entry_bar_time": {
+    "CRVUSDT": 1791543600000,
+    "METABUSDT": 1791543600000,
+    "NEXOUSDT": 1791543600000,
+    "SKLUSDT": 1791543600000,
+    "TRXUSDT": 1791543600000
+  },
   "last_exit_bar_time": {},
-  "open_trades": {},
-  "event_log": [],
+  "open_trades": {
+    "CRVUSDT": {
+      "trade_id": "CRVUSDT-1791543600000",
+      "symbol": "CRVUSDT",
+      "entry_price": 0.3511,
+      "stop_price": 0.33476462734501444,
+      "targets": [
+        0.37482686327492776,
+        0.3985537265498555,
+        0.4222805898247832
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791547199999,
+      "entry_bar_open_time": 1791543600000,
+      "last_target_check_ms": 1791547259999,
+      "atr_at_entry": 0.004745372654985546,
+      "trend_length": 10,
+      "peak_price": 0.3511,
+      "halal_verdict": "⛔ غير مباح"
+    },
+    "METABUSDT": {
+      "trade_id": "METABUSDT-1791543600000",
+      "symbol": "METABUSDT",
+      "entry_price": 726.36,
+      "stop_price": 719.9075925191554,
+      "targets": [
+        739.022037404223,
+        751.6840748084461,
+        764.3461122126693
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791547199999,
+      "entry_bar_open_time": 1791543600000,
+      "last_target_check_ms": 1791547259999,
+      "atr_at_entry": 2.5324074808446135,
+      "trend_length": 10,
+      "peak_price": 726.36,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "NEXOUSDT": {
+      "trade_id": "NEXOUSDT-1791543600000",
+      "symbol": "NEXOUSDT",
+      "entry_price": 0.85,
+      "stop_price": 0.8241890823651584,
+      "targets": [
+        0.882554588174208,
+        0.9151091763484159,
+        0.9476637645226239
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791547199999,
+      "entry_bar_open_time": 1791543600000,
+      "last_target_check_ms": 1791547259999,
+      "atr_at_entry": 0.006510917634841594,
+      "trend_length": 10,
+      "peak_price": 0.85,
+      "halal_verdict": "⛔ غير مباح"
+    },
+    "SKLUSDT": {
+      "trade_id": "SKLUSDT-1791543600000",
+      "symbol": "SKLUSDT",
+      "entry_price": 0.00608,
+      "stop_price": 0.004886603365552175,
+      "targets": [
+        0.006341983172239126,
+        0.006603966344478252,
+        0.006865949516717377
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791547199999,
+      "entry_bar_open_time": 1791543600000,
+      "last_target_check_ms": 1791547259999,
+      "atr_at_entry": 5.239663444782513e-05,
+      "trend_length": 10,
+      "peak_price": 0.00608,
+      "halal_verdict": "✅ مباح"
+    },
+    "TRXUSDT": {
+      "trade_id": "TRXUSDT-1791543600000",
+      "symbol": "TRXUSDT",
+      "entry_price": 0.3331,
+      "stop_price": 0.3315720275950982,
+      "targets": [
+        0.33573986202450923,
+        0.33837972404901845,
+        0.3410195860735276
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791547199999,
+      "entry_bar_open_time": 1791543600000,
+      "last_target_check_ms": 1791547259999,
+      "atr_at_entry": 0.0005279724049018422,
+      "trend_length": 10,
+      "peak_price": 0.3331,
+      "halal_verdict": "✅ مباح"
+    }
+  },
+  "event_log": [
+    {
+      "type": "entry",
+      "symbol": "CRVUSDT",
+      "time_ms": 1791547199999
+    },
+    {
+      "type": "entry",
+      "symbol": "METABUSDT",
+      "time_ms": 1791547199999
+    },
+    {
+      "type": "entry",
+      "symbol": "NEXOUSDT",
+      "time_ms": 1791547199999
+    },
+    {
+      "type": "entry",
+      "symbol": "SKLUSDT",
+      "time_ms": 1791547199999
+    },
+    {
+      "type": "entry",
+      "symbol": "TRXUSDT",
+      "time_ms": 1791547199999
+    }
+  ],
   "daily_report": {
     "last_reported_for_date": ""
   },
