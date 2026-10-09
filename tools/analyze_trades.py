@@ -1,3 +1,4 @@
+"""تحليل أولي لدفتر صفقات Target Trend — python tools/analyze_trades.py"""
 from __future__ import annotations
 
 import csv
@@ -5,7 +6,6 @@ from collections import Counter
 from pathlib import Path
 
 DATA_FILE = Path("data/trades_log.csv")
-SHADOW_FILE = Path("data/rejected_candidates.csv")
 
 
 def _to_float(value: str) -> float | None:
@@ -30,6 +30,13 @@ def _top_symbols(rows: list[dict[str, str]], limit: int = 5) -> str:
     return " | ".join(f"{sym} ({cnt})" for sym, cnt in counts.most_common(limit))
 
 
+def _target_counts(rows: list[dict[str, str]]) -> str:
+    t1 = sum(1 for r in rows if r.get("hit_target1") == "1")
+    t2 = sum(1 for r in rows if r.get("hit_target2") == "1")
+    t3 = sum(1 for r in rows if r.get("hit_target3") == "1")
+    return f"T1: {t1} | T2: {t2} | T3: {t3}"
+
+
 def main() -> None:
     if not DATA_FILE.exists():
         raise SystemExit("No data/trades_log.csv found yet.")
@@ -37,11 +44,11 @@ def main() -> None:
     with DATA_FILE.open("r", encoding="utf-8", newline="") as f:
         rows = list(csv.DictReader(f))
 
-    closed = [r for r in rows if r.get("outcome") in {"target", "stop", "win", "loss"}]
-    wins = [r for r in closed if r.get("outcome") in {"target", "win"}]
-    losses = [r for r in closed if r.get("outcome") in {"stop", "loss"}]
+    closed = [r for r in rows if r.get("outcome") in {"win", "loss"}]
+    wins = [r for r in closed if r.get("outcome") == "win"]
+    losses = [r for r in closed if r.get("outcome") == "loss"]
 
-    print("# Trade Analysis Snapshot")
+    print("# Target Trend — Trade Analysis Snapshot")
     print()
     print(f"- Total rows: {len(rows)}")
     print(f"- Closed trades: {len(closed)}")
@@ -50,37 +57,20 @@ def main() -> None:
     print(f"- Open trades: {len(rows) - len(closed)}")
     if closed:
         print(f"- Success rate: {len(wins) / len(closed) * 100:.1f}%")
+    print(f"- Exit reasons: {dict(Counter(r.get('exit_reason', '') for r in closed))}")
     print()
 
-    print("## Average metrics for wins")
-    for key in ["buy_score", "rsi", "stoch", "adx", "relative_volume", "reward_risk_ratio", "distance_from_ema200_pct", "duration_minutes"]:
-        val = _avg(wins, key)
-        print(f"- {key}: {val:.3f}" if val is not None else f"- {key}: —")
-    print(f"- top symbols: {_top_symbols(wins)}")
-    print()
-
-    print("## Average metrics for losses")
-    for key in ["buy_score", "rsi", "stoch", "adx", "relative_volume", "reward_risk_ratio", "distance_from_ema200_pct", "duration_minutes"]:
-        val = _avg(losses, key)
-        print(f"- {key}: {val:.3f}" if val is not None else f"- {key}: —")
-    print(f"- top symbols: {_top_symbols(losses)}")
-
-    # قياس أثر الفلاتر الجديدة: مقارنة المأخوذ مقابل المستبعد
-    if SHADOW_FILE.exists():
-        with SHADOW_FILE.open("r", encoding="utf-8", newline="") as f:
-            shadow = list(csv.DictReader(f))
-        s_closed = [r for r in shadow if r.get("outcome") in {"target", "stop", "win", "loss"}]
-        s_wins = sum(1 for r in s_closed if r.get("outcome") in {"target", "win"})
-        s_losses = sum(1 for r in s_closed if r.get("outcome") in {"stop", "loss"})
-        by_reason = Counter(r.get("reject_reason", "") for r in shadow)
+    for label, group in (("wins", wins), ("losses", losses)):
+        print(f"## Average metrics for {label}")
+        for key in ["net_return_pct", "gross_return_pct", "duration_minutes", "targets_hit_count", "atr_at_entry"]:
+            val = _avg(group, key)
+            print(f"- {key}: {val:.3f}" if val is not None else f"- {key}: —")
+        print(f"- top symbols: {_top_symbols(group)}")
         print()
-        print("## Filter impact (taken vs rejected)")
-        print(f"- rejected candidates: {len(shadow)} (closed: {len(s_closed)}, pending: {len(shadow) - len(s_closed)})")
-        if s_closed:
-            print(f"- rejected wins/losses: {s_wins}/{s_losses} = {s_wins / len(s_closed) * 100:.1f}%")
-        if closed:
-            print(f"- taken wins/losses: {len(wins)}/{len(losses)} = {len(wins) / len(closed) * 100:.1f}%")
-        print(f"- rejections by reason: {dict(by_reason)}")
+
+    print("## Targets hit")
+    print(f"- closed trades: {_target_counts(closed)}")
+    print(f"- all rows: {_target_counts(rows)}")
 
 
 if __name__ == "__main__":

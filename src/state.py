@@ -12,17 +12,9 @@ def _default_state() -> dict[str, Any]:
         "last_exit_bar_time": {},
         "open_trades": {},
         "event_log": [],
-        "daily_report": {
-            "last_reported_for_date": ""
-        },
-        "daily_analysis": {
-            "last_reported_for_date": ""
-        },
-        "weekly_report": {
-            "last_reported_week_start": ""
-        },
-        "last_rejected_bar_time": {},
-        "shadow_candidates": {},
+        "daily_report": {"last_reported_for_date": ""},
+        "daily_analysis": {"last_reported_for_date": ""},
+        "weekly_report": {"last_reported_week_start": ""},
     }
 
 

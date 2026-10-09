@@ -22,38 +22,19 @@ jobs:
       BINANCE_QUOTE_ASSET: USDT
       BINANCE_INTERVAL: 1h
       POLL_SECONDS: 60
-      KLINE_LIMIT: 260
+      # 499 = أقصى حد يبقى فيه وزن طلب Binance لـ klines = 2، وهو مطلوب لأن
+      # sma(atr(200),200) في Target Trend لا تصحح قبل ~400 شمعة.
+      KLINE_LIMIT: 499
       REQUEST_TIMEOUT: 20
       MAX_WORKERS: 10
       HALAL_REFRESH_HOURS: 6
       STATE_FILE: data/state.json
       LOG_LEVEL: INFO
-      # بوابات جودة الدخول (يمكن تعديلها من هنا بدون تعديل الكود)
-      GATE_MIN_REL_VOLUME: 1.2
-      GATE_MAX_REL_VOLUME: 2.5
-      GATE_REQUIRE_DI_POSITIVE: "true"
-      GATE_MIN_DI_SPREAD: 0.0
-      # الدخول الذكي: تصنيف الساعة في كل رسالة + (اختياريًا) بوابة زمنية أو سقف صفقات
-      SMART_ENTRY: "0"
-      # قرار المستخدم: تشغيل 24 ساعة وبلا سقف للصفقات — لا يريد تفويت أي إشارة
-      # القياس يقول: ساعات 00–06 أفضل (+0.135%/صفقة، t=+7.64) وساعات 07–23 أسوأ (−0.163%)،
-      # لكن الحافة كلها في ساعات النوم، فالتشغيل 24 ساعة يحل مشكلة تفويت الإشارات.
-      ENTRY_HOURS: ""
-      MAX_OPEN_TRADES: "0"
-      # الوضع الظلّي: تسجيل نظام «ارتداد الاتجاه اليومي» بلا رسائل (لقياس الجودة الحيّة)
-      STRATEGY_SHADOW: "1"
-      # وضع الهدوء (قرار المستخدم 2026-10-08): إسكات رسائل الدخول للنظام القديم (سالب التوقع حيًّا:
-      # −0.57%/صفقة على 169 صفقة) مع بقاء التسجيل والمتابعة والتقارير. الأهداف/الأوقاف تُرسل كالمعتاد.
-      QUIET_ENTRY_SIGNALS: "1"
-      # لتفعيل الفلترة لاحقًا: SMART_ENTRY="1" و ENTRY_HOURS="0,2,5,6,14,21,23"
-      # ولتحديد سقف للصفقات: MAX_OPEN_TRADES="15" (0 = بلا حد)
-      # قاعدة الخروج: hybrid | trailing | fixed_target
-      # hybrid = وقف الإشارة الأصلي حتى +2%، ثم وقف متحرك 2×ATR بأرضية التعادل
-      EXIT_MODE: hybrid
-      TRAIL_ATR_MULT: 2.0
-      TRAIL_ATR_LEN: 14
-      REFERENCE_TARGET_PCT: 2.0
-      HYBRID_LOCK_PCT: 0.0
+      # ── المؤشر المعتمد الوحيد: Target Trend [BigBeluga] (فريم 1H، سبوت/USDT) ──
+      TREND_LENGTH: 10        # طول الاتجاه (Trend Length في Pine)
+      TREND_TARGET_OFFSET: 0  # Set Targets في Pine (0 = أهداف 5/10/15×ATR)
+      # استثناء أزواج العملات المستقرة المربوطة (هدف ATR عليها ضجيج) — الإيقاف: "0"
+      EXCLUDE_PEGGED_STABLES: "1"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

@@ -68,3 +68,7 @@ def local_date_key_from_ms(ms: int, tz_name: str) -> str:
 def weekday_ar_from_ms(ms: int, tz_name: str) -> str:
     dt = datetime.fromtimestamp(ms / 1000, tz=timezone.utc).astimezone(ZoneInfo(tz_name))
     return WEEKDAY_AR.get(dt.weekday(), "")
+
+
+def local_hour_from_ms(ms: int, tz_name: str) -> int:
+    return datetime.fromtimestamp(ms / 1000, tz=timezone.utc).astimezone(ZoneInfo(tz_name)).hour

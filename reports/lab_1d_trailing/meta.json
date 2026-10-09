@@ -1,8 +1,0 @@
-{
-  "interval": "1d",
-  "bars": 1000,
-  "symbols": 385,
-  "exit_rule": "trailing: indicator flip or 2xATR trail from peak; no fixed target",
-  "fee_per_side_pct": 0.1,
-  "warmup_bars": 210
-}

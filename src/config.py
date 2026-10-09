@@ -13,13 +13,14 @@ class AppConfig:
     quote_asset: str = os.getenv("BINANCE_QUOTE_ASSET", "USDT")
     interval: str = os.getenv("BINANCE_INTERVAL", "1h")
     poll_seconds: int = int(os.getenv("POLL_SECONDS", "60"))
-    kline_limit: int = int(os.getenv("KLINE_LIMIT", "260"))
+    # 499: أقصى عدد شموع يبقى فيه وزن طلب Binance لـ klines = 2 (500+ يصبح 5).
+    # وهو مطلوب لأن sma(atr(200),200) في Target Trend لا تصحح قبل ~400 شمعة.
+    kline_limit: int = int(os.getenv("KLINE_LIMIT", "499"))
     request_timeout: int = int(os.getenv("REQUEST_TIMEOUT", "20"))
     max_workers: int = int(os.getenv("MAX_WORKERS", "10"))
     halal_refresh_hours: int = int(os.getenv("HALAL_REFRESH_HOURS", "6"))
     state_file: str = os.getenv("STATE_FILE", "data/state.json")
     log_level: str = os.getenv("LOG_LEVEL", "INFO")
-    exit_mode: str = os.getenv("EXIT_MODE", "trailing").strip().lower()
 
     @classmethod
     def from_env(cls) -> "AppConfig":
