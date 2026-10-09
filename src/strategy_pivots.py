@@ -228,10 +228,30 @@ def compute_pivot_signals(
     bb_at_high = bb_up.iloc[-1 - s.pivot_right] if not np.isnan(p_high_v) else np.nan
 
     # ── شروط القاع/القمة (Pine) ──
-    oversold_at_pivot = (
-        not np.isnan(p_low_v) and
-        (rsi_at_low <= RSI_OVERSOLD or stoch_at_low <= STOCH_OVERSOLD or p_low_v <= bb_at_low)
-    )
+    # يبحث عن قاع/قمة حديث في آخر ~15 شمعة (Pine يستخدم barstate.isconfirmed
+    # فيشتغل في أي شمعة مغلقة، لا يشترط أن يكون القاع على الشمعة الأخيرة بالضبط).
+    pl_recent = pl.dropna()
+    ph_recent = ph.dropna()
+    p_low_v = pl_recent.iloc[-1] if not pl_recent.empty else np.nan
+    p_high_v = ph_recent.iloc[-1] if not ph_recent.empty else np.nan
+    # عمر القاع/القمة (عدد الشموع منذ تسجيله)
+    pl_age = (len(df_closed) - 1 - pl_recent.index[-1]) if not pl_recent.empty else 999
+    ph_age = (len(df_closed) - 1 - ph_recent.index[-1]) if not ph_recent.empty else 999
+    # قيم المؤشرات عند القاع/القمة (Pine: value[pivotRight] - نطبّقها على موقع القاع الفعلي)
+    def _at_pivot(series: pd.Series, pivot_pos: int) -> float:
+        target = pivot_pos + 2  # pivotRight
+        if target >= len(series):
+            return float(series.iloc[-1])
+        return float(series.iloc[target])
+
+    pl_pos = int(pl_recent.index[-1]) if not pl_recent.empty else 0
+    ph_pos = int(ph_recent.index[-1]) if not ph_recent.empty else 0
+    rsi_at_low = _at_pivot(rsi_v, pl_pos)
+    stoch_at_low = _at_pivot(stoch_v, pl_pos)
+    bb_at_low = _at_pivot(bb_lo, pl_pos)
+    rsi_at_high = _at_pivot(rsi_v, ph_pos)
+    stoch_at_high = _at_pivot(stoch_v, ph_pos)
+    bb_at_high = _at_pivot(bb_up, ph_pos)
     overbought_at_pivot = (
         not np.isnan(p_high_v) and
         (rsi_at_high >= RSI_OVERBOUGHT or stoch_at_high >= STOCH_OVERBOUGHT or p_high_v >= bb_at_high)
@@ -243,7 +263,15 @@ def compute_pivot_signals(
     bearish_mom = cur["close"] < ema_fast.iloc[-1] or macd_hist.iloc[-1] < macd_hist.iloc[-2] or rsi_v.iloc[-1] < rsi_v.iloc[-2]
     vol_confirm = (not np.isnan(rel_vol.iloc[-1])) and rel_vol.iloc[-1] >= s.min_rel_volume
 
-    buy_score = int(oversold_at_pivot) + 0  # تباعد غير محسوب هنا (يحتاج تاريخ نقاط) + int(bullish_div) سيبقى 0
+    oversold_at_pivot = (
+        not np.isnan(p_low_v) and pl_age <= 15 and
+        (rsi_at_low <= RSI_OVERSOLD or stoch_at_low <= STOCH_OVERSOLD or p_low_v <= bb_at_low)
+    )
+    overbought_at_pivot = (
+        not np.isnan(p_high_v) and ph_age <= 15 and
+        (rsi_at_high >= RSI_OVERBOUGHT or stoch_at_high >= STOCH_OVERBOUGHT or p_high_v >= bb_at_high)
+    )
+
     buy_score = int(oversold_at_pivot) + int(bullish_candle) + int(bullish_mom) + int(vol_confirm)
     sell_score = int(overbought_at_pivot) + int(bearish_candle) + int(bearish_mom) + int(vol_confirm)
 
