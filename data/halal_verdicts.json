@@ -77,6 +77,10 @@
     "IOTX": 0,
     "XVS": 1,
     "MINA": 0,
-    "POWR": 0
+    "POWR": 0,
+    "ETHFI": 1,
+    "MBL": 1,
+    "SEI": 0,
+    "SKY": 0
   }
 }
