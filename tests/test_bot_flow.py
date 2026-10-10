@@ -100,21 +100,55 @@ def test_target_hit_message_does_not_close(tmp_path):
     assert bot.symbols[0] in bot.state["open_trades"]
 
 
-def test_close_win_reports_targets_hit(tmp_path):
+def test_close_with_two_targets_is_partial_even_if_profit(tmp_path):
+    """هدفان محققان رغم ربح موجب → تحقق أهداف فقط (لا ناجحة ولا خاسرة)."""
     bot = make_bot(tmp_path)
     trade = open_trade(bot)
     bot.send_entry_message(trade)
     trade["hit"] = [True, True, False]
     bot.send_close_message(trade, 110.0, trade["entry_time"] + 10 * HOUR_MS, "signal_down", "إشارة بيع")
     text = bot.telegram.sent[1]
-    assert "انتهت الصفقة" in text and "رابحة" in text
+    assert "انتهت الصفقة — تحقق هدفين فقط" in text
+    assert "انتهت الصفقة — رابحة" not in text
+    assert "لا تُحتسب ضمن الناجحة ولا الخاسرة" in text
     assert "الأهداف المحققة: 2 من 3" in text
     assert "سبب الإغلاق" in text
-    # السجل محدَّث بالنتيجة
+    # السجل: partial رغم الربح الموجب
     rows = list(csv.DictReader((tmp_path / "trades_log.csv").open(encoding="utf-8")))
-    assert rows[0]["outcome"] == "win"
+    assert rows[0]["outcome"] == "partial"
     assert rows[0]["targets_hit_count"] == "2"
     assert float(rows[0]["net_return_pct"]) > 0
+
+
+def test_close_one_target_positive_is_partial(tmp_path):
+    """حالة OPUSDT: هدف واحد وربح موجب → تحقق الهدف الأول فقط (لا ناجحة)."""
+    bot = make_bot(tmp_path)
+    trade = open_trade(bot, entry=0.1278, stop=0.1230, targets=(0.1345, 0.1412, 0.1479))
+    bot.send_entry_message(trade)
+    trade["hit"] = [True, False, False]
+    bot.send_close_message(trade, 0.1353, trade["entry_time"] + 14 * HOUR_MS, "signal_down", "إشارة بيع (تقاطع تحت خط الاتجاه)")
+    text = bot.telegram.sent[1]
+    assert "انتهت الصفقة — تحقق الهدف الأول فقط" in text
+    assert "ناجحة" not in text.split("التصنيف:")[0]  # العنوان لا يقول ناجحة
+    assert "لا تُحتسب ضمن الناجحة ولا الخاسرة" in text
+    rows = list(csv.DictReader((tmp_path / "trades_log.csv").open(encoding="utf-8")))
+    assert rows[0]["outcome"] == "partial"
+    assert float(rows[0]["net_return_pct"]) > 0
+    assert bot.state["event_log"][-1]["type"] == "exit_neutral"
+
+
+def test_close_profit_without_targets_is_win(tmp_path):
+    """صافي موجب دون أي هدف محقق → رابحة (win)."""
+    bot = make_bot(tmp_path)
+    trade = open_trade(bot)
+    bot.send_entry_message(trade)
+    trade["hit"] = [False, False, False]
+    bot.send_close_message(trade, 102.5, trade["entry_time"] + 6 * HOUR_MS, "signal_down", "إشارة بيع")
+    text = bot.telegram.sent[1]
+    assert "انتهت الصفقة — رابحة" in text
+    rows = list(csv.DictReader((tmp_path / "trades_log.csv").open(encoding="utf-8")))
+    assert rows[0]["outcome"] == "win"
+    assert bot.state["event_log"][-1]["type"] == "exit_win"
 
 
 def test_close_loss_reports_negative(tmp_path):
@@ -139,9 +173,9 @@ def test_close_with_target_hit_is_neutral_not_loss(tmp_path):
     bot.send_close_message(trade, 99.0, trade["entry_time"] + 8 * HOUR_MS, "signal_down", "إشارة بيع")
 
     text = bot.telegram.sent[1]
-    assert "انتهت الصفقة — حققت هدفًا فأكثر" in text
+    assert "انتهت الصفقة — تحقق هدفين فقط" in text
     assert "انتهت الصفقة — خاسرة" not in text
-    assert "محايدة" in text
+    assert "لا تُحتسب ضمن الناجحة ولا الخاسرة" in text
     assert "الأهداف المحققة: 2 من 3" in text
 
     rows = list(csv.DictReader((tmp_path / "trades_log.csv").open(encoding="utf-8")))

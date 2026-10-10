@@ -281,12 +281,14 @@ class SpotSignalBot:
     def send_close_message(
         self, trade: dict, exit_price: float, event_time_ms: int, reason: str, reason_ar: str
     ) -> None:
-        """رسالة انتهاء الصفقة مع تصنيفها: ناجحة / محايدة / خاسرة.
+        """رسالة انتهاء الصفقة مع تصنيفها.
 
-        التصنيف (قرار المستخدم 2026-10-10):
-          - النتيجة الصافية موجبة                     → ناجحة (win)
-          - الصافية سالبة لكن تحقّق هدف واحد فأكثر    → محايدة (partial) — لا تُحتسب ضمن الخاسرة
-          - الصافية سالبة دون تحقق أي هدف             → خاسرة (loss)
+        التصنيف (المُعدَّل 2026-10-10 بطلب المستخدم):
+          - تحققت الأهداف الثلاثة (3 من 3)              → ناجحة (win) — تُغلق تلقائيًا عند الهدف الثالث
+          - تحقّق هدف واحد أو هدفان (1-2 من 3) أيًا كانت النتيجة → تحقق أهداف فقط (partial)
+            لا تُحتسب ضمن الناجحة ولا الخاسرة
+          - دون تحقق أي هدف وصافي موجب                 → رابحة (win)
+          - دون تحقق أي هدف وصافي سالب                 → خاسرة (loss)
         """
         verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
         entry = float(trade["entry_price"])
@@ -295,17 +297,28 @@ class SpotSignalBot:
         hit = list(trade.get("hit") or [False, False, False])
         hit = (hit + [False, False, False])[:3]
         hit_count = sum(1 for h in hit if h)
-        if net > 0:
-            outcome, emoji, headline = "win", "✅", "انتهت الصفقة — رابحة 🎉"
+        if hit_count >= 3:
+            outcome, emoji = "win", "✅"
+            headline = "انتهت الصفقة — رابحة 🎉"
+            classification = "التصنيف: ناجحة ✅ — تحققت الأهداف الثلاثة كاملة"
         elif hit_count >= 1:
-            outcome, emoji, headline = "partial", "⚖️", "انتهت الصفقة — حققت هدفًا فأكثر"
+            outcome, emoji = "partial", "⚖️"
+            headline = (
+                "انتهت الصفقة — تحقق الهدف الأول فقط" if hit_count == 1
+                else "انتهت الصفقة — تحقق هدفين فقط"
+            )
+            classification = (
+                f"التصنيف: تحقق أهداف فقط ⚖️ ({hit_count} من 3) — "
+                "لا تُحتسب ضمن الناجحة ولا الخاسرة (الناجحة: الأهداف الثلاثة كاملة)"
+            )
+        elif net > 0:
+            outcome, emoji = "win", "✅"
+            headline = "انتهت الصفقة — رابحة 🎉"
+            classification = "التصنيف: رابحة ✅ — دون تحقق أي هدف"
         else:
-            outcome, emoji, headline = "loss", "🛑", "انتهت الصفقة — خاسرة"
-        classification = {
-            "win": "التصنيف: ناجحة ✅",
-            "partial": "التصنيف: محايدة ⚖️ — تحققت أهداف قبل الإغلاق فلا تُحتسب ضمن الخاسرة",
-            "loss": "التصنيف: خاسرة 🛑 — دون تحقق أي هدف",
-        }[outcome]
+            outcome, emoji = "loss", "🛑"
+            headline = "انتهت الصفقة — خاسرة"
+            classification = "التصنيف: خاسرة 🛑 — دون تحقق أي هدف"
         hit_detail = " • ".join(
             f"الهدف {i}: {'✔' if h else '✖'}" for i, h in enumerate(hit, start=1)
         )
@@ -690,7 +703,7 @@ class SpotSignalBot:
             f"🎯 أهداف تحققت: {targets}\n"
             f"✅ صفقات أُغلقت رابحة: {wins}\n"
             f"🛑 صفقات أُغلقت خاسرة: {losses}\n"
-            f"⚖️ صفقات أُغلقت محايدة (حققت هدفًا فأكثر — لا تُحتسب خاسرة): {neutrals}\n"
+            f"⚖️ تحققت أهدافًا فقط (1-2 من 3 — لا تُحتسب ناجحة ولا خاسرة): {neutrals}\n"
             f"📌 مفتوحة حاليًا: {open_count}\n"
             f"📈 نسبة النجاح: {success_rate:.1f}%"
         )
@@ -739,7 +752,7 @@ class SpotSignalBot:
             f"🧭 المؤشر: {self.settings.describe()}",
             "═════════════",
             f"📥 صفقات دخلت اليوم: {len(entry_rows)}",
-            f"✅ أُغلقت رابحة: {wins} • 🛑 خاسرة: {losses} • ⚖️ محايدة (حققت هدفًا فأكثر): {neutrals} • 📌 ما زالت مفتوحة: {open_count}",
+            f"✅ أُغلقت رابحة: {wins} • 🛑 خاسرة: {losses} • ⚖️ تحققت أهدافًا فقط (1-2 من 3): {neutrals} • 📌 ما زالت مفتوحة: {open_count}",
             f"📈 نسبة النجاح للمغلقة (رابحة ÷ (رابحة + خاسرة)): {success_rate:.1f}%",
             f"💰 متوسط نتيجة الصفقة المغلقة: {f'{avg_net:+.2f}%' if avg_net is not None else '—'}",
             "═════════════",
@@ -898,12 +911,12 @@ class SpotSignalBot:
             f"═════════════\n"
             f"📥 صفقات الدخول: {entries}\n"
             f"🎯 أهداف تحققت: {targets}\n"
-            f"✅ رابحة: {wins_events} • 🛑 خاسرة: {losses_events} • ⚖️ محايدة (حققت هدفًا فأكثر): {neutrals_events} • 📌 مفتوحة حاليًا: {open_count}\n"
+            f"✅ رابحة: {wins_events} • 🛑 خاسرة: {losses_events} • ⚖️ تحققت أهدافًا فقط (1-2 من 3): {neutrals_events} • 📌 مفتوحة حاليًا: {open_count}\n"
             f"📈 نسبة النجاح (رابحة ÷ (رابحة + خاسرة)): {success_rate:.1f}%\n"
             f"═════════════\n"
             f"📒 تحليل دفتر الصفقات\n"
             f"   • دخلت هذا الأسبوع: {len(entry_rows)} • أُغلقت: {len(closed_rows)}\n"
-            f"   • منها: رابحة {len(win_rows)} • خاسرة {len(loss_rows)} • محايدة {len(neutral_rows)}\n"
+            f"   • منها: رابحة {len(win_rows)} • خاسرة {len(loss_rows)} • تحققت أهداف فقط {len(neutral_rows)}\n"
             f"   • نسبة نجاح المغلقة: {file_rate:.1f}%\n"
             + (
                 f"   • متوسط نتيجة الصفقة: {avg_net:+.2f}% (أفضل {max(nets):+.2f}% • أسوأ {min(nets):+.2f}%)\n"
