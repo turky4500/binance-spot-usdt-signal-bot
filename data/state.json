@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1791583200000,
+  "last_processed_open_time": 1791586800000,
   "last_entry_bar_time": {
     "CRVUSDT": 1791543600000,
     "METABUSDT": 1791543600000,
@@ -68,7 +68,31 @@
     "MANAUSDT": 1791583200000,
     "MANTRAUSDT": 1791583200000,
     "PHAUSDT": 1791583200000,
-    "VANAUSDT": 1791583200000
+    "VANAUSDT": 1791583200000,
+    "ACTUSDT": 1791586800000,
+    "BANANAUSDT": 1791586800000,
+    "BARDUSDT": 1791586800000,
+    "BBUSDT": 1791586800000,
+    "CFXUSDT": 1791586800000,
+    "DOGSUSDT": 1791586800000,
+    "HMSTRUSDT": 1791586800000,
+    "HOLOUSDT": 1791586800000,
+    "KERNELUSDT": 1791586800000,
+    "MITOUSDT": 1791586800000,
+    "MOVEUSDT": 1791586800000,
+    "OGUSDT": 1791586800000,
+    "POLYXUSDT": 1791586800000,
+    "PORTALUSDT": 1791586800000,
+    "PSGUSDT": 1791586800000,
+    "RESOLVUSDT": 1791586800000,
+    "RUNEUSDT": 1791586800000,
+    "RVNUSDT": 1791586800000,
+    "SFPUSDT": 1791586800000,
+    "SSVUSDT": 1791586800000,
+    "STXUSDT": 1791586800000,
+    "VIRTUALUSDT": 1791586800000,
+    "WIFUSDT": 1791586800000,
+    "XVGUSDT": 1791586800000
   },
   "last_exit_bar_time": {
     "METABUSDT": 1791550800000
@@ -91,7 +115,7 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.004745372654985546,
       "trend_length": 10,
       "peak_price": 0.366,
@@ -114,7 +138,7 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.006510917634841594,
       "trend_length": 10,
       "peak_price": 0.852,
@@ -137,7 +161,7 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 5.239663444782513e-05,
       "trend_length": 10,
       "peak_price": 0.00609,
@@ -160,7 +184,7 @@
       ],
       "entry_time": 1791547199999,
       "entry_bar_open_time": 1791543600000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0005279724049018422,
       "trend_length": 10,
       "peak_price": 0.3333,
@@ -183,7 +207,7 @@
       ],
       "entry_time": 1791550799999,
       "entry_bar_open_time": 1791547200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0003120496366078416,
       "trend_length": 10,
       "peak_price": 0.0289,
@@ -206,7 +230,7 @@
       ],
       "entry_time": 1791554399999,
       "entry_bar_open_time": 1791550800000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0038432465458235286,
       "trend_length": 10,
       "peak_price": 0.2613,
@@ -229,7 +253,7 @@
       ],
       "entry_time": 1791554399999,
       "entry_bar_open_time": 1791550800000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.012971046263612188,
       "trend_length": 10,
       "peak_price": 1.22,
@@ -252,7 +276,7 @@
       ],
       "entry_time": 1791554399999,
       "entry_bar_open_time": 1791550800000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.3442586046657097,
       "trend_length": 10,
       "peak_price": 34.92,
@@ -275,7 +299,7 @@
       ],
       "entry_time": 1791554399999,
       "entry_bar_open_time": 1791550800000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.16743795891018998,
       "trend_length": 10,
       "peak_price": 33.34,
@@ -298,7 +322,7 @@
       ],
       "entry_time": 1791557999999,
       "entry_bar_open_time": 1791554400000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 1.0155491537913892,
       "trend_length": 10,
       "peak_price": 183.48,
@@ -321,7 +345,7 @@
       ],
       "entry_time": 1791557999999,
       "entry_bar_open_time": 1791554400000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.002089942896951809,
       "trend_length": 10,
       "peak_price": 0.1283,
@@ -344,7 +368,7 @@
       ],
       "entry_time": 1791561599999,
       "entry_bar_open_time": 1791558000000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0002995970500654576,
       "trend_length": 10,
       "peak_price": 0.0208,
@@ -367,7 +391,7 @@
       ],
       "entry_time": 1791561599999,
       "entry_bar_open_time": 1791558000000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 7.253759761939302e-05,
       "trend_length": 10,
       "peak_price": 0.00516,
@@ -390,7 +414,7 @@
       ],
       "entry_time": 1791565199999,
       "entry_bar_open_time": 1791561600000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 4.281194695881309e-05,
       "trend_length": 10,
       "peak_price": 0.003123,
@@ -413,7 +437,7 @@
       ],
       "entry_time": 1791565199999,
       "entry_bar_open_time": 1791561600000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0006240933843795354,
       "trend_length": 10,
       "peak_price": 0.0663,
@@ -436,7 +460,7 @@
       ],
       "entry_time": 1791565199999,
       "entry_bar_open_time": 1791561600000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 6.0820521357559335e-05,
       "trend_length": 10,
       "peak_price": 0.00591,
@@ -459,7 +483,7 @@
       ],
       "entry_time": 1791565199999,
       "entry_bar_open_time": 1791561600000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.023671208831657613,
       "trend_length": 10,
       "peak_price": 1.841,
@@ -482,7 +506,7 @@
       ],
       "entry_time": 1791565199999,
       "entry_bar_open_time": 1791561600000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0004960920096674459,
       "trend_length": 10,
       "peak_price": 0.0476,
@@ -505,7 +529,7 @@
       ],
       "entry_time": 1791568799999,
       "entry_bar_open_time": 1791565200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0019723191961770466,
       "trend_length": 10,
       "peak_price": 0.2024,
@@ -528,7 +552,7 @@
       ],
       "entry_time": 1791568799999,
       "entry_bar_open_time": 1791565200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0028639732647912823,
       "trend_length": 10,
       "peak_price": 0.1809,
@@ -551,7 +575,7 @@
       ],
       "entry_time": 1791568799999,
       "entry_bar_open_time": 1791565200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.00011815927840374283,
       "trend_length": 10,
       "peak_price": 0.01156,
@@ -574,7 +598,7 @@
       ],
       "entry_time": 1791568799999,
       "entry_bar_open_time": 1791565200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.006905008046928994,
       "trend_length": 10,
       "peak_price": 0.875,
@@ -597,7 +621,7 @@
       ],
       "entry_time": 1791568799999,
       "entry_bar_open_time": 1791565200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0005971324786832096,
       "trend_length": 10,
       "peak_price": 0.06346,
@@ -620,7 +644,7 @@
       ],
       "entry_time": 1791568799999,
       "entry_bar_open_time": 1791565200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0011126370406776417,
       "trend_length": 10,
       "peak_price": 0.0806,
@@ -643,7 +667,7 @@
       ],
       "entry_time": 1791568799999,
       "entry_bar_open_time": 1791565200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 2.276933015784424,
       "trend_length": 10,
       "peak_price": 900.06,
@@ -666,10 +690,10 @@
       ],
       "entry_time": 1791568799999,
       "entry_bar_open_time": 1791565200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0006288207531432275,
       "trend_length": 10,
-      "peak_price": 0.0712,
+      "peak_price": 0.0716,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     },
     "IDUSDT": {
@@ -689,7 +713,7 @@
       ],
       "entry_time": 1791568799999,
       "entry_bar_open_time": 1791565200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.00039542751434851225,
       "trend_length": 10,
       "peak_price": 0.0383,
@@ -712,7 +736,7 @@
       ],
       "entry_time": 1791568799999,
       "entry_bar_open_time": 1791565200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.00046127983387419906,
       "trend_length": 10,
       "peak_price": 0.0391,
@@ -735,10 +759,10 @@
       ],
       "entry_time": 1791568799999,
       "entry_bar_open_time": 1791565200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0006291397039954298,
       "trend_length": 10,
-      "peak_price": 0.06593,
+      "peak_price": 0.06607,
       "halal_verdict": "✅ مباح"
     },
     "WAXPUSDT": {
@@ -758,7 +782,7 @@
       ],
       "entry_time": 1791568799999,
       "entry_bar_open_time": 1791565200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 5.791755807949401e-05,
       "trend_length": 10,
       "peak_price": 0.0059,
@@ -781,7 +805,7 @@
       ],
       "entry_time": 1791568799999,
       "entry_bar_open_time": 1791565200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.00040941137822106464,
       "trend_length": 10,
       "peak_price": 0.0573,
@@ -804,10 +828,10 @@
       ],
       "entry_time": 1791568799999,
       "entry_bar_open_time": 1791565200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0010347932974220627,
       "trend_length": 10,
-      "peak_price": 0.1259,
+      "peak_price": 0.1266,
       "halal_verdict": "⛔ غير مباح"
     },
     "AAPLBUSDT": {
@@ -827,7 +851,7 @@
       ],
       "entry_time": 1791572399999,
       "entry_bar_open_time": 1791568800000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.5459980205056,
       "trend_length": 10,
       "peak_price": 338.78,
@@ -850,7 +874,7 @@
       ],
       "entry_time": 1791572399999,
       "entry_bar_open_time": 1791568800000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.00028333937308493216,
       "trend_length": 10,
       "peak_price": 0.02624,
@@ -873,7 +897,7 @@
       ],
       "entry_time": 1791572399999,
       "entry_bar_open_time": 1791568800000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.015643414512344255,
       "trend_length": 10,
       "peak_price": 1.875,
@@ -896,10 +920,10 @@
       ],
       "entry_time": 1791572399999,
       "entry_bar_open_time": 1791568800000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0018739780858302068,
       "trend_length": 10,
-      "peak_price": 0.1857,
+      "peak_price": 0.1865,
       "halal_verdict": "✅ مباح"
     },
     "OGNUSDT": {
@@ -919,7 +943,7 @@
       ],
       "entry_time": 1791572399999,
       "entry_bar_open_time": 1791568800000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0002736816603262289,
       "trend_length": 10,
       "peak_price": 0.04046,
@@ -942,7 +966,7 @@
       ],
       "entry_time": 1791575999999,
       "entry_bar_open_time": 1791572400000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 1.7786888746105054,
       "trend_length": 10,
       "peak_price": 280.45,
@@ -965,7 +989,7 @@
       ],
       "entry_time": 1791575999999,
       "entry_bar_open_time": 1791572400000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 2.2704398600423756,
       "trend_length": 10,
       "peak_price": 587.29,
@@ -988,7 +1012,7 @@
       ],
       "entry_time": 1791575999999,
       "entry_bar_open_time": 1791572400000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.00972072134734702,
       "trend_length": 10,
       "peak_price": 1.14,
@@ -1011,7 +1035,7 @@
       ],
       "entry_time": 1791579599999,
       "entry_bar_open_time": 1791576000000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.000661806806855937,
       "trend_length": 10,
       "peak_price": 0.0698,
@@ -1034,7 +1058,7 @@
       ],
       "entry_time": 1791579599999,
       "entry_bar_open_time": 1791576000000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.00418237746584704,
       "trend_length": 10,
       "peak_price": 0.20304,
@@ -1057,7 +1081,7 @@
       ],
       "entry_time": 1791579599999,
       "entry_bar_open_time": 1791576000000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0024617669234292235,
       "trend_length": 10,
       "peak_price": 0.2014,
@@ -1080,7 +1104,7 @@
       ],
       "entry_time": 1791579599999,
       "entry_bar_open_time": 1791576000000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 6.48732695649226e-06,
       "trend_length": 10,
       "peak_price": 0.000574,
@@ -1103,7 +1127,7 @@
       ],
       "entry_time": 1791579599999,
       "entry_bar_open_time": 1791576000000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0023393784128675345,
       "trend_length": 10,
       "peak_price": 0.133,
@@ -1126,7 +1150,7 @@
       ],
       "entry_time": 1791579599999,
       "entry_bar_open_time": 1791576000000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.00919533441891262,
       "trend_length": 10,
       "peak_price": 0.958,
@@ -1149,10 +1173,10 @@
       ],
       "entry_time": 1791579599999,
       "entry_bar_open_time": 1791576000000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.002761295061641163,
       "trend_length": 10,
-      "peak_price": 0.2428,
+      "peak_price": 0.2429,
       "halal_verdict": "⛔ غير مباح"
     },
     "ASTRUSDT": {
@@ -1172,7 +1196,7 @@
       ],
       "entry_time": 1791583199999,
       "entry_bar_open_time": 1791579600000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 6.45849231395804e-05,
       "trend_length": 10,
       "peak_price": 0.006997,
@@ -1195,7 +1219,7 @@
       ],
       "entry_time": 1791583199999,
       "entry_bar_open_time": 1791579600000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.00010123423775660837,
       "trend_length": 10,
       "peak_price": 0.00854,
@@ -1218,7 +1242,7 @@
       ],
       "entry_time": 1791583199999,
       "entry_bar_open_time": 1791579600000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.00019328918800013922,
       "trend_length": 10,
       "peak_price": 0.01953,
@@ -1241,7 +1265,7 @@
       ],
       "entry_time": 1791583199999,
       "entry_bar_open_time": 1791579600000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0008233196497847109,
       "trend_length": 10,
       "peak_price": 0.05224,
@@ -1264,7 +1288,7 @@
       ],
       "entry_time": 1791583199999,
       "entry_bar_open_time": 1791579600000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.02627421485278629,
       "trend_length": 10,
       "peak_price": 2.116,
@@ -1287,7 +1311,7 @@
       ],
       "entry_time": 1791583199999,
       "entry_bar_open_time": 1791579600000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.00013770423623349378,
       "trend_length": 10,
       "peak_price": 0.01857,
@@ -1310,7 +1334,7 @@
       ],
       "entry_time": 1791583199999,
       "entry_bar_open_time": 1791579600000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 5.867742030490393e-08,
       "trend_length": 10,
       "peak_price": 5.49e-06,
@@ -1333,7 +1357,7 @@
       ],
       "entry_time": 1791583199999,
       "entry_bar_open_time": 1791579600000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 1.65846860265409e-05,
       "trend_length": 10,
       "peak_price": 0.00147,
@@ -1356,7 +1380,7 @@
       ],
       "entry_time": 1791583199999,
       "entry_bar_open_time": 1791579600000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 1.2752655844039967e-05,
       "trend_length": 10,
       "peak_price": 0.001002,
@@ -1379,10 +1403,10 @@
       ],
       "entry_time": 1791583199999,
       "entry_bar_open_time": 1791579600000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 23.088209952903743,
       "trend_length": 10,
-      "peak_price": 2389.0,
+      "peak_price": 2391.0,
       "halal_verdict": "⛔ غير مباح"
     },
     "ARKMUSDT": {
@@ -1402,7 +1426,7 @@
       ],
       "entry_time": 1791586799999,
       "entry_bar_open_time": 1791583200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0016765135248485445,
       "trend_length": 10,
       "peak_price": 0.1302,
@@ -1425,7 +1449,7 @@
       ],
       "entry_time": 1791586799999,
       "entry_bar_open_time": 1791583200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.015223790673352514,
       "trend_length": 10,
       "peak_price": 1.207,
@@ -1448,10 +1472,10 @@
       ],
       "entry_time": 1791586799999,
       "entry_bar_open_time": 1791583200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0022703988838638717,
       "trend_length": 10,
-      "peak_price": 0.2383,
+      "peak_price": 0.2385,
       "halal_verdict": "✅ مباح"
     },
     "DOLOUSDT": {
@@ -1471,7 +1495,7 @@
       ],
       "entry_time": 1791586799999,
       "entry_bar_open_time": 1791583200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.00028085327120437657,
       "trend_length": 10,
       "peak_price": 0.02842,
@@ -1494,7 +1518,7 @@
       ],
       "entry_time": 1791586799999,
       "entry_bar_open_time": 1791583200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 4.057537990801338e-06,
       "trend_length": 10,
       "peak_price": 0.000416,
@@ -1517,7 +1541,7 @@
       ],
       "entry_time": 1791586799999,
       "entry_bar_open_time": 1791583200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.001984151906481499,
       "trend_length": 10,
       "peak_price": 0.1524,
@@ -1540,7 +1564,7 @@
       ],
       "entry_time": 1791586799999,
       "entry_bar_open_time": 1791583200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0013321268453903282,
       "trend_length": 10,
       "peak_price": 0.0954,
@@ -1563,7 +1587,7 @@
       ],
       "entry_time": 1791586799999,
       "entry_bar_open_time": 1791583200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 4.577658899352393e-05,
       "trend_length": 10,
       "peak_price": 0.00448,
@@ -1586,10 +1610,10 @@
       ],
       "entry_time": 1791586799999,
       "entry_bar_open_time": 1791583200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.0016592044829310032,
       "trend_length": 10,
-      "peak_price": 0.0612,
+      "peak_price": 0.0613,
       "halal_verdict": "✅ مباح"
     },
     "VANAUSDT": {
@@ -1609,10 +1633,562 @@
       ],
       "entry_time": 1791586799999,
       "entry_bar_open_time": 1791583200000,
-      "last_target_check_ms": 1791590280000,
+      "last_target_check_ms": 1791590580000,
       "atr_at_entry": 0.009578542542899818,
       "trend_length": 10,
       "peak_price": 1.053,
+      "halal_verdict": "✅ مباح"
+    },
+    "ACTUSDT": {
+      "trade_id": "ACTUSDT-1791586800000",
+      "symbol": "ACTUSDT",
+      "entry_price": 0.01004,
+      "stop_price": 0.009665026556365459,
+      "targets": [
+        0.010614867218172706,
+        0.01118973443634541,
+        0.011764601654518115
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.00011497344363454094,
+      "trend_length": 10,
+      "peak_price": 0.01004,
+      "halal_verdict": "✅ مباح"
+    },
+    "BANANAUSDT": {
+      "trade_id": "BANANAUSDT-1791586800000",
+      "symbol": "BANANAUSDT",
+      "entry_price": 3.891,
+      "stop_price": 3.7907543747605397,
+      "targets": [
+        4.0357281261973,
+        4.180456252394601,
+        4.325184378591901
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.028945625239460083,
+      "trend_length": 10,
+      "peak_price": 3.891,
+      "halal_verdict": "✅ مباح"
+    },
+    "BARDUSDT": {
+      "trade_id": "BARDUSDT-1791586800000",
+      "symbol": "BARDUSDT",
+      "entry_price": 0.1249,
+      "stop_price": 0.12073556321814476,
+      "targets": [
+        0.13177218390927617,
+        0.13864436781855233,
+        0.14551655172782849
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.0013744367818552322,
+      "trend_length": 10,
+      "peak_price": 0.1249,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "BBUSDT": {
+      "trade_id": "BBUSDT-1791586800000",
+      "symbol": "BBUSDT",
+      "entry_price": 0.00925,
+      "stop_price": 0.008837892923326488,
+      "targets": [
+        0.00996053538336756,
+        0.010671070766735121,
+        0.011381606150102681
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.00014210707667351212,
+      "trend_length": 10,
+      "peak_price": 0.00925,
+      "halal_verdict": "⛔ غير مباح"
+    },
+    "CFXUSDT": {
+      "trade_id": "CFXUSDT-1791586800000",
+      "symbol": "CFXUSDT",
+      "entry_price": 0.05072,
+      "stop_price": 0.04913972738086524,
+      "targets": [
+        0.053106363095673806,
+        0.055492726191347604,
+        0.05787908928702141
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.00047727261913476043,
+      "trend_length": 10,
+      "peak_price": 0.05072,
+      "halal_verdict": "✅ مباح"
+    },
+    "DOGSUSDT": {
+      "trade_id": "DOGSUSDT-1791586800000",
+      "symbol": "DOGSUSDT",
+      "entry_price": 4.431e-05,
+      "stop_price": 4.2678999327772755e-05,
+      "targets": [
+        4.676000336113621e-05,
+        4.921000672227243e-05,
+        5.166001008340864e-05
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 4.900006722272427e-07,
+      "trend_length": 10,
+      "peak_price": 4.431e-05,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "HMSTRUSDT": {
+      "trade_id": "HMSTRUSDT-1791586800000",
+      "symbol": "HMSTRUSDT",
+      "entry_price": 0.0001629,
+      "stop_price": 0.0001587712404591909,
+      "targets": [
+        0.00016959379770404561,
+        0.0001762875954080912,
+        0.00018298139311213678
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 1.3387595408091197e-06,
+      "trend_length": 10,
+      "peak_price": 0.0001629,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "HOLOUSDT": {
+      "trade_id": "HOLOUSDT-1791586800000",
+      "symbol": "HOLOUSDT",
+      "entry_price": 0.0613,
+      "stop_price": 0.05915113868718245,
+      "targets": [
+        0.06409430656408774,
+        0.06688861312817548,
+        0.06968291969226321
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.0005588613128175478,
+      "trend_length": 10,
+      "peak_price": 0.0613,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "KERNELUSDT": {
+      "trade_id": "KERNELUSDT-1791586800000",
+      "symbol": "KERNELUSDT",
+      "entry_price": 0.051,
+      "stop_price": 0.04935206977479455,
+      "targets": [
+        0.054039651126027224,
+        0.057079302252054445,
+        0.06011895337808167
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.0006079302252054452,
+      "trend_length": 10,
+      "peak_price": 0.051,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "MITOUSDT": {
+      "trade_id": "MITOUSDT-1791586800000",
+      "symbol": "MITOUSDT",
+      "entry_price": 0.01504,
+      "stop_price": 0.014366871670423602,
+      "targets": [
+        0.015955641647881987,
+        0.016871283295763977,
+        0.017786924943645963
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.0001831283295763976,
+      "trend_length": 10,
+      "peak_price": 0.01504,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "MOVEUSDT": {
+      "trade_id": "MOVEUSDT-1791586800000",
+      "symbol": "MOVEUSDT",
+      "entry_price": 0.009103,
+      "stop_price": 0.008708919027095023,
+      "targets": [
+        0.009784904864524888,
+        0.010466809729049776,
+        0.011148714593574664
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.00013638097290497763,
+      "trend_length": 10,
+      "peak_price": 0.009103,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "OGUSDT": {
+      "trade_id": "OGUSDT-1791586800000",
+      "symbol": "OGUSDT",
+      "entry_price": 2.804,
+      "stop_price": 2.73195130886975,
+      "targets": [
+        2.895243455651252,
+        2.9864869113025048,
+        3.077730366953757
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.018248691130250475,
+      "trend_length": 10,
+      "peak_price": 2.804,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "POLYXUSDT": {
+      "trade_id": "POLYXUSDT-1791586800000",
+      "symbol": "POLYXUSDT",
+      "entry_price": 0.0406,
+      "stop_price": 0.03892681341729579,
+      "targets": [
+        0.042715932913521035,
+        0.04483186582704207,
+        0.04694779874056311
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.0004231865827042076,
+      "trend_length": 10,
+      "peak_price": 0.0406,
+      "halal_verdict": "✅ مباح"
+    },
+    "PORTALUSDT": {
+      "trade_id": "PORTALUSDT-1791586800000",
+      "symbol": "PORTALUSDT",
+      "entry_price": 0.01655,
+      "stop_price": 0.015847489723101068,
+      "targets": [
+        0.017647551384494645,
+        0.018745102768989295,
+        0.019842654153483942
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.00021951027689892956,
+      "trend_length": 10,
+      "peak_price": 0.01655,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "PSGUSDT": {
+      "trade_id": "PSGUSDT-1791586800000",
+      "symbol": "PSGUSDT",
+      "entry_price": 0.462,
+      "stop_price": 0.4524900970664417,
+      "targets": [
+        0.47704951466779116,
+        0.4920990293355823,
+        0.5071485440033734
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.003009902933558228,
+      "trend_length": 10,
+      "peak_price": 0.462,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "RESOLVUSDT": {
+      "trade_id": "RESOLVUSDT-1791586800000",
+      "symbol": "RESOLVUSDT",
+      "entry_price": 0.0184,
+      "stop_price": 0.017531721544199276,
+      "targets": [
+        0.01990639227900363,
+        0.02141278455800726,
+        0.02291917683701089
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.000301278455800726,
+      "trend_length": 10,
+      "peak_price": 0.0184,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "RUNEUSDT": {
+      "trade_id": "RUNEUSDT-1791586800000",
+      "symbol": "RUNEUSDT",
+      "entry_price": 0.702,
+      "stop_price": 0.6754543535531339,
+      "targets": [
+        0.7412282322343308,
+        0.7804564644686616,
+        0.8196846967029923
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.007845646446866156,
+      "trend_length": 10,
+      "peak_price": 0.702,
+      "halal_verdict": "⛔ غير مباح"
+    },
+    "RVNUSDT": {
+      "trade_id": "RVNUSDT-1791586800000",
+      "symbol": "RVNUSDT",
+      "entry_price": 0.002282,
+      "stop_price": 0.0021993225691170856,
+      "targets": [
+        0.002403887154414572,
+        0.002525774308829143,
+        0.0026476614632437146
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 2.43774308829143e-05,
+      "trend_length": 10,
+      "peak_price": 0.002282,
+      "halal_verdict": "✅ مباح"
+    },
+    "SFPUSDT": {
+      "trade_id": "SFPUSDT-1791586800000",
+      "symbol": "SFPUSDT",
+      "entry_price": 0.2812,
+      "stop_price": 0.2736966511834454,
+      "targets": [
+        0.29311674408277316,
+        0.3050334881655463,
+        0.3169502322483195
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.0023833488165546316,
+      "trend_length": 10,
+      "peak_price": 0.2812,
+      "halal_verdict": "✅ مباح"
+    },
+    "SSVUSDT": {
+      "trade_id": "SSVUSDT-1791586800000",
+      "symbol": "SSVUSDT",
+      "entry_price": 2.919,
+      "stop_price": 2.80500313801554,
+      "targets": [
+        3.0794843099223,
+        3.2399686198446007,
+        3.400452929766901
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.03209686198446006,
+      "trend_length": 10,
+      "peak_price": 2.919,
+      "halal_verdict": "⚠️ مشبوه"
+    },
+    "STXUSDT": {
+      "trade_id": "STXUSDT-1791586800000",
+      "symbol": "STXUSDT",
+      "entry_price": 0.3955,
+      "stop_price": 0.374801305228321,
+      "targets": [
+        0.42129347385839483,
+        0.4470869477167897,
+        0.4728804215751845
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.005158694771678965,
+      "trend_length": 10,
+      "peak_price": 0.3955,
+      "halal_verdict": "✅ مباح"
+    },
+    "VIRTUALUSDT": {
+      "trade_id": "VIRTUALUSDT-1791586800000",
+      "symbol": "VIRTUALUSDT",
+      "entry_price": 0.7276,
+      "stop_price": 0.6975348276553217,
+      "targets": [
+        0.7801258617233914,
+        0.8326517234467828,
+        0.8851775851701742
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.010505172344678277,
+      "trend_length": 10,
+      "peak_price": 0.7276,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "WIFUSDT": {
+      "trade_id": "WIFUSDT-1791586800000",
+      "symbol": "WIFUSDT",
+      "entry_price": 0.2175,
+      "stop_price": 0.20740006258761765,
+      "targets": [
+        0.23384968706191173,
+        0.2501993741238234,
+        0.2665490611857352
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 0.003269937412382345,
+      "trend_length": 10,
+      "peak_price": 0.2175,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "XVGUSDT": {
+      "trade_id": "XVGUSDT-1791586800000",
+      "symbol": "XVGUSDT",
+      "entry_price": 0.002834,
+      "stop_price": 0.002720709353509342,
+      "targets": [
+        0.003020453232453291,
+        0.0032069064649065827,
+        0.0033933596973598737
+      ],
+      "hit": [
+        false,
+        false,
+        false
+      ],
+      "entry_time": 1791590399999,
+      "entry_bar_open_time": 1791586800000,
+      "last_target_check_ms": 1791590459999,
+      "atr_at_entry": 3.7290646490658245e-05,
+      "trend_length": 10,
+      "peak_price": 0.002834,
       "halal_verdict": "✅ مباح"
     }
   },
@@ -1976,6 +2552,126 @@
       "type": "target",
       "symbol": "ZRXUSDT",
       "time_ms": 1791587819999
+    },
+    {
+      "type": "entry",
+      "symbol": "ACTUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "BANANAUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "BARDUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "BBUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "CFXUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "DOGSUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "HMSTRUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "HOLOUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "KERNELUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "MITOUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "MOVEUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "OGUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "POLYXUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "PORTALUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "PSGUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "RESOLVUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "RUNEUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "RVNUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "SFPUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "SSVUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "STXUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "VIRTUALUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "WIFUSDT",
+      "time_ms": 1791590399999
+    },
+    {
+      "type": "entry",
+      "symbol": "XVGUSDT",
+      "time_ms": 1791590399999
     }
   ],
   "daily_report": {
