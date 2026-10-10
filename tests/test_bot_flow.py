@@ -137,18 +137,21 @@ def test_close_one_target_positive_is_partial(tmp_path):
     assert bot.state["event_log"][-1]["type"] == "exit_neutral"
 
 
-def test_close_profit_without_targets_is_win(tmp_path):
-    """صافي موجب دون أي هدف محقق → رابحة (win)."""
+def test_close_profit_without_targets_is_partial_win(tmp_path):
+    """صافي موجب دون أي هدف محقق → رابحة جزئيًا (لا تُحتسب ناجحة)."""
     bot = make_bot(tmp_path)
     trade = open_trade(bot)
     bot.send_entry_message(trade)
     trade["hit"] = [False, False, False]
     bot.send_close_message(trade, 102.5, trade["entry_time"] + 6 * HOUR_MS, "signal_down", "إشارة بيع")
     text = bot.telegram.sent[1]
-    assert "انتهت الصفقة — رابحة" in text
+    assert "انتهت الصفقة — رابحة جزئيًا" in text
+    assert "لا تُحتسب ضمن الناجحة" in text
+    assert "دون تحقق أي هدف" in text
     rows = list(csv.DictReader((tmp_path / "trades_log.csv").open(encoding="utf-8")))
-    assert rows[0]["outcome"] == "win"
-    assert bot.state["event_log"][-1]["type"] == "exit_win"
+    assert rows[0]["outcome"] == "partial_win"
+    assert float(rows[0]["net_return_pct"]) > 0
+    assert bot.state["event_log"][-1]["type"] == "exit_partial_win"
 
 
 def test_close_loss_reports_negative(tmp_path):

@@ -78,8 +78,10 @@ def success_rate_percent(wins: int, losses: int) -> float:
 
 WIN_OUTCOMES = {"target", "win"}
 LOSS_OUTCOMES = {"stop", "loss"}
-# صفقة تحقّق هدفًا فأكثر ثم أُغلقت بنتيجة سالبة — لا تُحتسب ضمن الخاسرة (قرار المستخدم)
+# هدف واحد أو هدفان محققان (1-2 من 3) أيًا كانت النتيجة — لا ناجحة ولا خاسرة
 NEUTRAL_OUTCOMES = {"partial", "neutral"}
+# دون أي هدف مع إغلاق فوق سعر الدخول — رابحة جزئيًا ولا تُحتسب ضمن الناجحة
+PARTIAL_WIN_OUTCOMES = {"partial_win"}
 
 
 def is_win(outcome: str | None) -> bool:
@@ -92,6 +94,10 @@ def is_loss(outcome: str | None) -> bool:
 
 def is_neutral(outcome: str | None) -> bool:
     return (outcome or "") in NEUTRAL_OUTCOMES
+
+
+def is_partial_win(outcome: str | None) -> bool:
+    return (outcome or "") in PARTIAL_WIN_OUTCOMES
 
 
 def top_symbols(rows: Iterable[dict[str, str]], empty_text: str, limit: int = 3) -> str:

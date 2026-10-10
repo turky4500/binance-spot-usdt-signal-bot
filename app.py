@@ -21,6 +21,7 @@ from src.trade_analysis import (
     build_daily_observations,
     is_loss,
     is_neutral,
+    is_partial_win,
     is_win,
     load_trade_rows,
     rows_for_entry_day,
@@ -287,7 +288,8 @@ class SpotSignalBot:
           - تحققت الأهداف الثلاثة (3 من 3)              → ناجحة (win) — تُغلق تلقائيًا عند الهدف الثالث
           - تحقّق هدف واحد أو هدفان (1-2 من 3) أيًا كانت النتيجة → تحقق أهداف فقط (partial)
             لا تُحتسب ضمن الناجحة ولا الخاسرة
-          - دون تحقق أي هدف وصافي موجب                 → رابحة (win)
+          - دون تحقق أي هدف وصافي موجب (إغلاق فوق الدخول فقط) → رابحة جزئيًا (partial_win)
+            — لا تُحتسب ضمن الناجحة
           - دون تحقق أي هدف وصافي سالب                 → خاسرة (loss)
         """
         verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
@@ -312,9 +314,12 @@ class SpotSignalBot:
                 "لا تُحتسب ضمن الناجحة ولا الخاسرة (الناجحة: الأهداف الثلاثة كاملة)"
             )
         elif net > 0:
-            outcome, emoji = "win", "✅"
-            headline = "انتهت الصفقة — رابحة 🎉"
-            classification = "التصنيف: رابحة ✅ — دون تحقق أي هدف"
+            outcome, emoji = "partial_win", "↗️"
+            headline = "انتهت الصفقة — رابحة جزئيًا ↗️"
+            classification = (
+                "التصنيف: رابحة جزئيًا ↗️ — دون تحقق أي هدف، الإغلاق فوق سعر الدخول فقط "
+                "— لا تُحتسب ضمن الناجحة"
+            )
         else:
             outcome, emoji = "loss", "🛑"
             headline = "انتهت الصفقة — خاسرة"
@@ -342,7 +347,12 @@ class SpotSignalBot:
             f"الحكم الشرعي: {verdict}"
         )
         self.telegram.send_message(text)
-        event_type = {"win": "exit_win", "partial": "exit_neutral", "loss": "exit_loss"}[outcome]
+        event_type = {
+            "win": "exit_win",
+            "partial": "exit_neutral",
+            "partial_win": "exit_partial_win",
+            "loss": "exit_loss",
+        }[outcome]
         self.append_event(event_type, trade["symbol"], int(event_time_ms))
         self._record_trade_exit(trade, outcome, reason, int(event_time_ms), float(exit_price))
 
@@ -667,7 +677,7 @@ class SpotSignalBot:
         if report_state.get("last_reported_for_date") == report_day:
             return
 
-        entries = targets = wins = losses = neutrals = 0
+        entries = targets = wins = losses = neutrals = partial_wins = 0
         for event in self.state.get("event_log", []):
             event_time_ms = int(event.get("time_ms", 0))
             if local_date_key_from_ms(event_time_ms, self.config.timezone_name) != report_day:
@@ -683,6 +693,8 @@ class SpotSignalBot:
                 losses += 1
             elif event_type == "exit_neutral":
                 neutrals += 1
+            elif event_type == "exit_partial_win":
+                partial_wins += 1
 
         open_count = len(self.state.get("open_trades", {}))
         closed_count = wins + losses
@@ -704,8 +716,9 @@ class SpotSignalBot:
             f"✅ صفقات أُغلقت رابحة: {wins}\n"
             f"🛑 صفقات أُغلقت خاسرة: {losses}\n"
             f"⚖️ تحققت أهدافًا فقط (1-2 من 3 — لا تُحتسب ناجحة ولا خاسرة): {neutrals}\n"
+            f"↗️ رابحة جزئيًا (دون أهداف — إغلاق فوق الدخول فقط): {partial_wins}\n"
             f"📌 مفتوحة حاليًا: {open_count}\n"
-            f"📈 نسبة النجاح: {success_rate:.1f}%"
+            f"📈 نسبة النجاح (ناجحة ÷ (ناجحة + خاسرة)): {success_rate:.1f}%"
         )
         self.telegram.send_message(text)
         report_state["last_reported_for_date"] = report_day
@@ -728,6 +741,7 @@ class SpotSignalBot:
         win_rows = [row for row in closed_rows if is_win(row.get("outcome"))]
         loss_rows = [row for row in closed_rows if is_loss(row.get("outcome"))]
         neutral_rows = [row for row in closed_rows if is_neutral(row.get("outcome"))]
+        partial_win_rows = [row for row in closed_rows if is_partial_win(row.get("outcome"))]
 
         wins, losses, neutrals = len(win_rows), len(loss_rows), len(neutral_rows)
         closed_count = wins + losses
@@ -752,8 +766,8 @@ class SpotSignalBot:
             f"🧭 المؤشر: {self.settings.describe()}",
             "═════════════",
             f"📥 صفقات دخلت اليوم: {len(entry_rows)}",
-            f"✅ أُغلقت رابحة: {wins} • 🛑 خاسرة: {losses} • ⚖️ تحققت أهدافًا فقط (1-2 من 3): {neutrals} • 📌 ما زالت مفتوحة: {open_count}",
-            f"📈 نسبة النجاح للمغلقة (رابحة ÷ (رابحة + خاسرة)): {success_rate:.1f}%",
+            f"✅ أُغلقت ناجحة (3 أهداف): {wins} • 🛑 خاسرة: {losses} • ⚖️ تحققت أهدافًا فقط (1-2 من 3): {neutrals} • ↗️ رابحة جزئيًا: {len(partial_win_rows)} • 📌 ما زالت مفتوحة: {open_count}",
+            f"📈 نسبة النجاح (ناجحة ÷ (ناجحة + خاسرة)): {success_rate:.1f}%",
             f"💰 متوسط نتيجة الصفقة المغلقة: {f'{avg_net:+.2f}%' if avg_net is not None else '—'}",
             "═════════════",
             f"🏆 أكثر العملات نجاحًا: {top_symbols(win_rows, 'لا توجد صفقات رابحة اليوم')}",
@@ -853,7 +867,7 @@ class SpotSignalBot:
         if weekly_state.get("last_reported_week_start") == report_start_key:
             return
 
-        entries = targets = wins_events = losses_events = neutrals_events = 0
+        entries = targets = wins_events = losses_events = neutrals_events = partial_wins_events = 0
         target_symbols: Counter = Counter()
         stop_symbols: Counter = Counter()
 
@@ -878,6 +892,8 @@ class SpotSignalBot:
                     stop_symbols[symbol] += 1
             elif event_type == "exit_neutral":
                 neutrals_events += 1
+            elif event_type == "exit_partial_win":
+                partial_wins_events += 1
 
         closed_count = wins_events + losses_events
         success_rate = (wins_events / closed_count * 100.0) if closed_count else 0.0
@@ -896,6 +912,7 @@ class SpotSignalBot:
         win_rows = [row for row in closed_rows if is_win(row.get("outcome"))]
         loss_rows = [row for row in closed_rows if is_loss(row.get("outcome"))]
         neutral_rows = [row for row in closed_rows if is_neutral(row.get("outcome"))]
+        partial_win_rows = [row for row in closed_rows if is_partial_win(row.get("outcome"))]
         file_rate = success_rate_percent(len(win_rows), len(loss_rows))
         nets = [float(r["net_return_pct"]) for r in closed_rows if r.get("net_return_pct") not in (None, "")]
         avg_net = (sum(nets) / len(nets)) if nets else None
@@ -911,13 +928,13 @@ class SpotSignalBot:
             f"═════════════\n"
             f"📥 صفقات الدخول: {entries}\n"
             f"🎯 أهداف تحققت: {targets}\n"
-            f"✅ رابحة: {wins_events} • 🛑 خاسرة: {losses_events} • ⚖️ تحققت أهدافًا فقط (1-2 من 3): {neutrals_events} • 📌 مفتوحة حاليًا: {open_count}\n"
-            f"📈 نسبة النجاح (رابحة ÷ (رابحة + خاسرة)): {success_rate:.1f}%\n"
+            f"✅ ناجحة (3 أهداف): {wins_events} • 🛑 خاسرة: {losses_events} • ⚖️ تحققت أهدافًا فقط (1-2 من 3): {neutrals_events} • ↗️ رابحة جزئيًا: {partial_wins_events} • 📌 مفتوحة حاليًا: {open_count}\n"
+            f"📈 نسبة النجاح (ناجحة ÷ (ناجحة + خاسرة)): {success_rate:.1f}%\n"
             f"═════════════\n"
             f"📒 تحليل دفتر الصفقات\n"
             f"   • دخلت هذا الأسبوع: {len(entry_rows)} • أُغلقت: {len(closed_rows)}\n"
-            f"   • منها: رابحة {len(win_rows)} • خاسرة {len(loss_rows)} • تحققت أهداف فقط {len(neutral_rows)}\n"
-            f"   • نسبة نجاح المغلقة: {file_rate:.1f}%\n"
+            f"   • منها: ناجحة {len(win_rows)} • خاسرة {len(loss_rows)} • تحققت أهداف فقط {len(neutral_rows)} • رابحة جزئيًا {len(partial_win_rows)}\n"
+            f"   • نسبة النجاح (ناجحة ÷ (ناجحة + خاسرة)): {file_rate:.1f}%\n"
             + (
                 f"   • متوسط نتيجة الصفقة: {avg_net:+.2f}% (أفضل {max(nets):+.2f}% • أسوأ {min(nets):+.2f}%)\n"
                 if nets else "   • متوسط نتيجة الصفقة: —\n"
