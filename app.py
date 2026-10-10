@@ -20,6 +20,7 @@ from src.trade_analysis import (
     avg_metric,
     build_daily_observations,
     is_loss,
+    is_neutral,
     is_win,
     load_trade_rows,
     rows_for_entry_day,
@@ -73,7 +74,8 @@ class SpotSignalBot:
     """بوت إشارات Target Trend [BigBeluga] — المؤشر الوحيد المعتمد.
 
     - شراء: عند إشارة signal_up (تقاطع close فوق sma_high)
-    - الأهداف الثلاثة: رسائل تحقق عند لمسها (لا تُغلق الصفقة)
+    - الأهداف الثلاثة: رسائل تحقق عند لمسها؛ تحقق الهدف الثالث يُغلق الصفقة
+      تلقائيًا وتُسجل **صفقة ناجحة (win)** بـ exit_reason=all_targets
     - الوقف: لمس sma_low عند الدخول يُغلق الصفقة
     - البيع: إشارة signal_down (تقاطع close تحت sma_low) تُغلق الصفقة
     """
@@ -240,13 +242,26 @@ class SpotSignalBot:
         append_trade_entry(self.data_dir, self._build_trade_log_record(trade))
 
     def send_target_hit_message(self, trade: dict, level: int, target_price: float, event_time_ms: int) -> None:
-        """رسالة تحقق أحد الأهداف الثلاثة — الصفقة تبقى مفتوحة."""
+        """رسالة تحقق أحد الأهداف الثلاثة.
+
+        الهدفان الأول والثاني: الصفقة تبقى مفتوحة.
+        الهدف الثالث: تسبقه رسالة إغلاق الصفقة تلقائيًا كصفقة ناجحة.
+        """
         verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
         entry = float(trade["entry_price"])
         gain_pct = (float(target_price) / entry - 1.0) * 100.0
         hit = list(trade.get("hit") or [False, False, False])
         hit_count = sum(1 for h in hit if h)
+        # حفظ وقت تحقق كل هدف — يظهر في رسالة الإغلاق عند اكتمال الثلاثة
+        hit_times = list(trade.get("hit_times") or [None, None, None])
+        hit_times = (hit_times + [None, None, None])[:3]
+        hit_times[level - 1] = int(event_time_ms)
+        trade["hit_times"] = hit_times
         duration = humanize_duration_ar(trade["entry_time"], event_time_ms)
+        if level >= 3:
+            footer = "ℹ️ تحقق الأهداف الثلاثة — ستُغلق الصفقة الآن كصفقة ناجحة ✅"
+        else:
+            footer = "ℹ️ الصفقة مستمرة — الإغلاق بإشارة البيع أو الوقف أو تحقق الأهداف الثلاثة"
         text = (
             f"🎯 تحقق الهدف {level} من 3\n"
             f"الزوج: {trade['symbol']}\n"
@@ -256,7 +271,7 @@ class SpotSignalBot:
             f"وقت التحقق: {ms_to_local_text(event_time_ms, self.config.timezone_name)}\n"
             f"المدة المستغرقة: {duration}\n"
             f"─────────────\n"
-            f"ℹ️ الصفقة مستمرة — الإغلاق بإشارة البيع أو الوقف\n"
+            f"{footer}\n"
             f"─────────────\n"
             f"الحكم الشرعي: {verdict}"
         )
@@ -266,17 +281,31 @@ class SpotSignalBot:
     def send_close_message(
         self, trade: dict, exit_price: float, event_time_ms: int, reason: str, reason_ar: str
     ) -> None:
-        """رسالة انتهاء الصفقة: رابحة أم خاسرة + كم هدفًا حققت."""
+        """رسالة انتهاء الصفقة مع تصنيفها: ناجحة / محايدة / خاسرة.
+
+        التصنيف (قرار المستخدم 2026-10-10):
+          - النتيجة الصافية موجبة                     → ناجحة (win)
+          - الصافية سالبة لكن تحقّق هدف واحد فأكثر    → محايدة (partial) — لا تُحتسب ضمن الخاسرة
+          - الصافية سالبة دون تحقق أي هدف             → خاسرة (loss)
+        """
         verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
         entry = float(trade["entry_price"])
         gross = (float(exit_price) / entry - 1.0) * 100.0
         net = gross - (2.0 * self.settings.commission_per_side_pct)
-        won = net > 0
-        emoji = "✅" if won else "🛑"
-        headline = "انتهت الصفقة — رابحة 🎉" if won else "انتهت الصفقة — خاسرة"
         hit = list(trade.get("hit") or [False, False, False])
         hit = (hit + [False, False, False])[:3]
         hit_count = sum(1 for h in hit if h)
+        if net > 0:
+            outcome, emoji, headline = "win", "✅", "انتهت الصفقة — رابحة 🎉"
+        elif hit_count >= 1:
+            outcome, emoji, headline = "partial", "⚖️", "انتهت الصفقة — حققت هدفًا فأكثر"
+        else:
+            outcome, emoji, headline = "loss", "🛑", "انتهت الصفقة — خاسرة"
+        classification = {
+            "win": "التصنيف: ناجحة ✅",
+            "partial": "التصنيف: محايدة ⚖️ — تحققت أهداف قبل الإغلاق فلا تُحتسب ضمن الخاسرة",
+            "loss": "التصنيف: خاسرة 🛑 — دون تحقق أي هدف",
+        }[outcome]
         hit_detail = " • ".join(
             f"الهدف {i}: {'✔' if h else '✖'}" for i, h in enumerate(hit, start=1)
         )
@@ -292,6 +321,7 @@ class SpotSignalBot:
             f"النتيجة الصافية: {net:+.2f}%\n"
             f"أعلى سعر تحقق: {format_price(peak)} (+{peak_gain:.2f}%)\n"
             f"الأهداف المحققة: {hit_count} من 3 ({hit_detail})\n"
+            f"{classification}\n"
             f"سبب الإغلاق: {reason_ar}\n"
             f"وقت الإغلاق: {ms_to_local_text(event_time_ms, self.config.timezone_name)}\n"
             f"المدة المستغرقة: {duration}\n"
@@ -299,8 +329,57 @@ class SpotSignalBot:
             f"الحكم الشرعي: {verdict}"
         )
         self.telegram.send_message(text)
-        self.append_event("exit_win" if won else "exit_loss", trade["symbol"], int(event_time_ms))
-        self._record_trade_exit(trade, "win" if won else "loss", reason, int(event_time_ms), float(exit_price))
+        event_type = {"win": "exit_win", "partial": "exit_neutral", "loss": "exit_loss"}[outcome]
+        self.append_event(event_type, trade["symbol"], int(event_time_ms))
+        self._record_trade_exit(trade, outcome, reason, int(event_time_ms), float(exit_price))
+
+    def send_all_targets_close_message(self, trade: dict, event_time_ms: int, exit_price: float) -> None:
+        """إغلاق الصفقة بعد تحقق الأهداف الثلاثة — تُسجل صفقة ناجحة (win) بـ exit_reason=all_targets.
+
+        الرسالة تذكر: تحقق الثلاثة، وقت ومدة تحقق كل هدف، والنِسب الفعلية والصافية.
+        """
+        verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
+        entry = float(trade["entry_price"])
+        gross = (float(exit_price) / entry - 1.0) * 100.0
+        net = gross - (2.0 * self.settings.commission_per_side_pct)
+        targets = list(trade.get("targets") or [])[:3]
+        hit_times = list(trade.get("hit_times") or [None, None, None])
+        hit_times = (hit_times + [None, None, None])[:3]
+
+        target_lines = []
+        for i, tp in enumerate(targets, start=1):
+            pct = (float(tp) / entry - 1.0) * 100.0
+            when = hit_times[i - 1]
+            when_text = (
+                f" • تحقق {ms_to_local_text(int(when), self.config.timezone_name)}"
+                if when else ""
+            )
+            target_lines.append(f"الهدف {i}: {format_price(float(tp))} (+{pct:.2f}%){when_text}")
+
+        peak = float(trade.get("peak_price", entry))
+        peak_gain = (peak / entry - 1.0) * 100.0
+        duration = humanize_duration_ar(trade["entry_time"], event_time_ms)
+
+        text = (
+            f"🎉 انتهت الصفقة — تحققت الأهداف الثلاثة!\n"
+            f"الزوج: {trade['symbol']}\n"
+            f"النتيجة: صفقة ناجحة ✅\n"
+            f"سعر الدخول: {format_price(entry)}\n"
+            f"سعر الإغلاق (الهدف 3): {format_price(float(exit_price))}\n"
+            f"النسبة الفعلية: {gross:+.2f}% • الصافية بعد العمولة: {net:+.2f}%\n"
+            f"الأهداف المحققة: 3 من 3 (الهدف 1: ✔ • الهدف 2: ✔ • الهدف 3: ✔)\n"
+            + "\n".join(target_lines) + "\n"
+            + f"مدة التحقق: {duration} (من الدخول حتى تحقق الهدف الثالث)\n"
+            + f"أعلى سعر تحقق: {format_price(peak)} (+{peak_gain:.2f}%)\n"
+            + f"وقت الإغلاق: {ms_to_local_text(event_time_ms, self.config.timezone_name)}\n"
+            + f"─────────────\n"
+            f"سبب الإغلاق: تحقق الأهداف الثلاثة كاملة\n"
+            f"─────────────\n"
+            f"الحكم الشرعي: {verdict}"
+        )
+        self.telegram.send_message(text)
+        self.append_event("exit_win", trade["symbol"], int(event_time_ms))
+        self._record_trade_exit(trade, "win", "all_targets", int(event_time_ms), float(exit_price))
 
     def close_trade(self, symbol: str, exit_bar_open_time: int, reason: str) -> None:
         self.state["open_trades"].pop(symbol, None)
@@ -328,6 +407,7 @@ class SpotSignalBot:
                 continue
 
             closed_by_stop = False
+            closed_by_targets = False
             for row in klines.itertuples(index=False):
                 low = float(row.low)
                 high = float(row.high)
@@ -343,7 +423,7 @@ class SpotSignalBot:
                     closed_by_stop = True
                     break
 
-                # 2) الأهداف الثلاثة — رسائل تحقق دون إغلاق
+                # 2) الأهداف الثلاثة — رسائل تحقق، وتحقق الثالث يُغلق الصفقة كصفقة ناجحة
                 targets = list(trade.get("targets") or [])
                 hit = list(trade.get("hit") or [False, False, False])
                 hit = (hit + [False, False, False])[:3]
@@ -354,6 +434,16 @@ class SpotSignalBot:
                         hit[i] = True
                         trade["hit"] = hit
                         self.send_target_hit_message(trade, i + 1, float(tp), event_ms)
+
+                # 3) تحقق الأهداف الثلاثة = صفقة ناجحة تُغلق فورًا عند الهدف الثالث
+                if all(hit) and len(targets) >= 3:
+                    self.send_all_targets_close_message(trade, event_ms, float(targets[2]))
+                    self.close_trade(symbol, event_ms // HOUR_MS * HOUR_MS, "all_targets")
+                    closed_by_targets = True
+                    break
+
+            if closed_by_targets:
+                continue
 
             if not closed_by_stop:
                 trade["last_target_check_ms"] = int(klines.iloc[-1]["close_time"]) + 1
@@ -476,6 +566,12 @@ class SpotSignalBot:
                     trade["hit"] = hit
                     self.send_target_hit_message(trade, i + 1, float(tp), candle_close_time)
 
+            # 1b2) تحقق الأهداف الثلاثة = صفقة ناجحة تُغلق فورًا (تسبق إشارة البيع)
+            if all(hit) and len(targets) >= 3:
+                self.send_all_targets_close_message(trade, candle_close_time, float(targets[2]))
+                self.close_trade(symbol, last_closed_open_time, "all_targets")
+                continue
+
             # 1c) إشارة البيع = إغلاق الصفقة
             signal = self.resolve_signal(symbol, closed_df)
             if signal and signal["action"] == "sell":
@@ -558,7 +654,7 @@ class SpotSignalBot:
         if report_state.get("last_reported_for_date") == report_day:
             return
 
-        entries = targets = wins = losses = 0
+        entries = targets = wins = losses = neutrals = 0
         for event in self.state.get("event_log", []):
             event_time_ms = int(event.get("time_ms", 0))
             if local_date_key_from_ms(event_time_ms, self.config.timezone_name) != report_day:
@@ -572,6 +668,8 @@ class SpotSignalBot:
                 wins += 1
             elif event_type == "exit_loss":
                 losses += 1
+            elif event_type == "exit_neutral":
+                neutrals += 1
 
         open_count = len(self.state.get("open_trades", {}))
         closed_count = wins + losses
@@ -592,6 +690,7 @@ class SpotSignalBot:
             f"🎯 أهداف تحققت: {targets}\n"
             f"✅ صفقات أُغلقت رابحة: {wins}\n"
             f"🛑 صفقات أُغلقت خاسرة: {losses}\n"
+            f"⚖️ صفقات أُغلقت محايدة (حققت هدفًا فأكثر — لا تُحتسب خاسرة): {neutrals}\n"
             f"📌 مفتوحة حاليًا: {open_count}\n"
             f"📈 نسبة النجاح: {success_rate:.1f}%"
         )
@@ -615,8 +714,9 @@ class SpotSignalBot:
         closed_rows = rows_for_exit_day(rows, report_day, self.config.timezone_name)
         win_rows = [row for row in closed_rows if is_win(row.get("outcome"))]
         loss_rows = [row for row in closed_rows if is_loss(row.get("outcome"))]
+        neutral_rows = [row for row in closed_rows if is_neutral(row.get("outcome"))]
 
-        wins, losses = len(win_rows), len(loss_rows)
+        wins, losses, neutrals = len(win_rows), len(loss_rows), len(neutral_rows)
         closed_count = wins + losses
         open_count = len(self.state.get("open_trades", {}))
         success_rate = success_rate_percent(wins, losses)
@@ -639,8 +739,8 @@ class SpotSignalBot:
             f"🧭 المؤشر: {self.settings.describe()}",
             "═════════════",
             f"📥 صفقات دخلت اليوم: {len(entry_rows)}",
-            f"✅ أُغلقت رابحة: {wins} • 🛑 خاسرة: {losses} • 📌 ما زالت مفتوحة: {open_count}",
-            f"📈 نسبة النجاح للمغلقة: {success_rate:.1f}%",
+            f"✅ أُغلقت رابحة: {wins} • 🛑 خاسرة: {losses} • ⚖️ محايدة (حققت هدفًا فأكثر): {neutrals} • 📌 ما زالت مفتوحة: {open_count}",
+            f"📈 نسبة النجاح للمغلقة (رابحة ÷ (رابحة + خاسرة)): {success_rate:.1f}%",
             f"💰 متوسط نتيجة الصفقة المغلقة: {f'{avg_net:+.2f}%' if avg_net is not None else '—'}",
             "═════════════",
             f"🏆 أكثر العملات نجاحًا: {top_symbols(win_rows, 'لا توجد صفقات رابحة اليوم')}",
@@ -740,7 +840,7 @@ class SpotSignalBot:
         if weekly_state.get("last_reported_week_start") == report_start_key:
             return
 
-        entries = targets = wins_events = losses_events = 0
+        entries = targets = wins_events = losses_events = neutrals_events = 0
         target_symbols: Counter = Counter()
         stop_symbols: Counter = Counter()
 
@@ -763,6 +863,8 @@ class SpotSignalBot:
                 losses_events += 1
                 if symbol:
                     stop_symbols[symbol] += 1
+            elif event_type == "exit_neutral":
+                neutrals_events += 1
 
         closed_count = wins_events + losses_events
         success_rate = (wins_events / closed_count * 100.0) if closed_count else 0.0
@@ -780,6 +882,7 @@ class SpotSignalBot:
         closed_rows = rows_for_exit_day_range(rows, report_start_key, report_end_key, self.config.timezone_name)
         win_rows = [row for row in closed_rows if is_win(row.get("outcome"))]
         loss_rows = [row for row in closed_rows if is_loss(row.get("outcome"))]
+        neutral_rows = [row for row in closed_rows if is_neutral(row.get("outcome"))]
         file_rate = success_rate_percent(len(win_rows), len(loss_rows))
         nets = [float(r["net_return_pct"]) for r in closed_rows if r.get("net_return_pct") not in (None, "")]
         avg_net = (sum(nets) / len(nets)) if nets else None
@@ -795,11 +898,12 @@ class SpotSignalBot:
             f"═════════════\n"
             f"📥 صفقات الدخول: {entries}\n"
             f"🎯 أهداف تحققت: {targets}\n"
-            f"✅ رابحة: {wins_events} • 🛑 خاسرة: {losses_events} • 📌 مفتوحة حاليًا: {open_count}\n"
-            f"📈 نسبة النجاح: {success_rate:.1f}%\n"
+            f"✅ رابحة: {wins_events} • 🛑 خاسرة: {losses_events} • ⚖️ محايدة (حققت هدفًا فأكثر): {neutrals_events} • 📌 مفتوحة حاليًا: {open_count}\n"
+            f"📈 نسبة النجاح (رابحة ÷ (رابحة + خاسرة)): {success_rate:.1f}%\n"
             f"═════════════\n"
             f"📒 تحليل دفتر الصفقات\n"
             f"   • دخلت هذا الأسبوع: {len(entry_rows)} • أُغلقت: {len(closed_rows)}\n"
+            f"   • منها: رابحة {len(win_rows)} • خاسرة {len(loss_rows)} • محايدة {len(neutral_rows)}\n"
             f"   • نسبة نجاح المغلقة: {file_rate:.1f}%\n"
             + (
                 f"   • متوسط نتيجة الصفقة: {avg_net:+.2f}% (أفضل {max(nets):+.2f}% • أسوأ {min(nets):+.2f}%)\n"
