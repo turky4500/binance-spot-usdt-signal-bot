@@ -47,9 +47,10 @@ def dip_then_rally(n_flat: int = 440) -> tuple[list, list, list]:
     return closes, highs, lows
 
 
-def test_settings_defaults_match_pine():
+def test_settings_defaults():
+    """الافتراضي المعتمد: length=89 (2026-10-11 بديلًا عن 10 بعد اختبار رجعي)."""
     s = StrategySettings()
-    assert s.length == 10
+    assert s.length == 89
     assert s.target_multipliers == (5.0, 10.0, 15.0)
     assert s.atr_len == 200
     assert s.atr_smooth_len == 200
@@ -58,6 +59,21 @@ def test_settings_defaults_match_pine():
 
 def test_min_bars_covers_atr_warmup():
     assert SETTINGS.min_bars >= 400
+
+
+def test_min_bars_fits_within_closed_klines():
+    """min_bars يجب أن تقع ضمن شموع مغلقة معقولة لطول الاتجاه المدعوم.
+
+    البوت يجلب KLINE_LIMIT=499 ثم يستبعد الشمعة الجارية → 498 مغلقة.
+    لو تجاوزت min_bars هذا الحد (كما حدث مع length=89 بالمعادلة القديمة = 499)
+    لرفض latest_signal كل البيانات وصمت تام بلا إشارة أبدًا.
+    """
+    import os
+
+    kline_limit = int(os.getenv("KLINE_LIMIT", "499"))
+    for length in (10, 21, 34, 55, 89):
+        s = StrategySettings(length=length)
+        assert s.min_bars <= kline_limit - 1, f"length={length}: min_bars={s.min_bars} > {kline_limit - 1}"
 
 
 def test_insufficient_history_returns_none():

@@ -137,14 +137,15 @@ def test_signal_down_closes_trade_without_targets(tmp_path):
             BASE_MS + (441 + i) * HOUR_MS,
         )
 
-    # 12 شمعة منصة دون الهدف الأول: ترفع sma_low دون لمس الأهداف أو الوقف
-    for i in range(1, 13):
+    # منصة طويلة (100 شمعة): مع length=89 يلزم وقت لرفع متوسط الـ89 شمعة حتى
+    # يقترب sma_low من السعر — كما في الإنتاج (متوسط مدة صفقات 89 ≈ 51 ساعة)
+    for i in range(1, 101):
         push(i, t1 - 0.2, t1 - 0.7, t1 - 0.3)
     assert "AAAUSDT" in bot.state["open_trades"]
     assert bot.state["open_trades"]["AAAUSDT"]["hit"] == [False, False, False]
 
-    # شمعة هبوط: close < sma_low مع low فوق الوقف → إغلاق بإشارة البيع
-    push(13, t1 - 1.5, t1 - 2.0, t1 - 1.7)
+    # شمعة هبوط: close < sma_low (الذي ارتفع مع المنصة) مع low فوق الوقف → إشارة بيع
+    push(101, t1 - 1.7, t1 - 2.6, t1 - 2.2)
     assert "AAAUSDT" not in bot.state["open_trades"], "لم تُغلق الصفقة عند إشارة البيع"
 
     close_msgs = [m for m in bot.telegram.sent if "انتهت الصفقة" in m]

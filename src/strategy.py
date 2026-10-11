@@ -19,9 +19,9 @@
     الخروج  = إشارة البيع، أو لمس الوقف
 
 ⚠️ ملاحظة تقنية حرجة:
-    sma(atr(200), 200) تحتاج ≥ 400 شمعة حتى تصبح صالحة، لذلك يجب أن يكون
-    KLINE_LIMIT ≥ 420 (مضبوط 499 افتراضيًا — وهو أقصى حد قبل أن يصبح وزن
-    طلب Binance لـ klines = 5 بدل 2).
+    sma(atr(200), 200) تحتاج ≥ 400 شمعة حتى تصبح صالحة، لذلك يجب أن يبقى
+    KLINE_LIMIT ≥ min_bars + 1 (الشمعة الجارية تُستبعد قبل الحساب → مغلقة = KLINE_LIMIT − 1).
+    مضبوط 499 افتراضيًا — وهو أقصى حد قبل أن يصبح وزن طلب Binance لـ klines = 5 بدل 2.
 
 الرخصة: CC BY-NC-SA 4.0 © BigBeluga (نسب العمل إلى المؤشر عند نشره).
 """
@@ -53,7 +53,7 @@ def _env_float(name: str, default: float) -> float:
 class StrategySettings:
     """إعدادات Target Trend — كلها قابلة للتعديل من متغيرات البيئة."""
 
-    length: int = _env_int("TREND_LENGTH", 10)                 # Trend Length
+    length: int = _env_int("TREND_LENGTH", 89)                 # Trend Length (معتمد 89 — 2026-10-11)
     target_offset: int = _env_int("TREND_TARGET_OFFSET", 0)    # Set Targets
     atr_len: int = 200                                         # فترة ATR الأساسية
     atr_smooth_len: int = 200                                  # تسطيح ATR (sma over atr)
@@ -62,8 +62,14 @@ class StrategySettings:
 
     @property
     def min_bars(self) -> int:
-        """أدنى عدد شموع لصالح الحساب (warmup الـ ATR المسطّح + الماوس)."""
-        return self.atr_len + self.atr_smooth_len + self.length + 10
+        """أدنى عدد شموع لصالح الحساب: الأكبر من (تمهيد الـATR المسطّح، طول الاتجاه) + هوامش.
+
+        (2026-10-11) صُحّحت من `atr_len + atr_smooth_len + length + 10`: مع length=89
+        كانت تصبح 499 > 498 شمعة مغلقة (KLINE_LIMIT=499 ناقص الشمعة الجارية) →
+        رفض دائم لكل البيانات وصمت تام بلا إشارات. تمهيد الـATR وسماوية الاتجاه
+        يتزامنان فعليًا فيكشف الاتجاه كلاهما بنفس السلسلة، فيُكفي الأكبر منهما.
+        """
+        return max(self.atr_len + self.atr_smooth_len, self.length) + 10
 
     @property
     def target_multipliers(self) -> tuple[float, float, float]:
