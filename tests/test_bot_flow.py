@@ -46,6 +46,7 @@ def make_bot(tmp_path: Path):
     bot.settings = StrategySettings()
     bot.symbols = ["BTCUSDT"]
     bot.halal_verdicts = {}
+    bot.price_ticks = {}
     bot.get_halal_verdict = lambda symbol: "希尔ًا (Halal)"
     return bot
 

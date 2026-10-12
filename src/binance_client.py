@@ -25,6 +25,7 @@ class BinanceClient:
         self.max_workers = max_workers
         self.base_url = base_url.rstrip("/")
         self.session = requests.Session()
+        self._price_ticks: dict[str, str] | None = None
 
         retry = Retry(
             total=3,
@@ -80,10 +81,35 @@ class BinanceClient:
         response.raise_for_status()
         return int(response.json()["serverTime"])
 
-    def get_spot_usdt_symbols(self, quote_asset: str = "USDT") -> list[str]:
+    def _fetch_exchange_info(self) -> dict:
         response = self.session.get(f"{self.base_url}/api/v3/exchangeInfo", timeout=self.timeout)
         response.raise_for_status()
-        payload = response.json()
+        return response.json()
+
+    @staticmethod
+    def _extract_price_ticks(payload: dict, quote_asset: str) -> dict[str, str]:
+        """tickSize لكل زوج من فلتر PRICE_FILTER — أساس مطابقة كتابة الأسعار لـBinance."""
+        ticks: dict[str, str] = {}
+        for item in payload.get("symbols", []):
+            if item.get("quoteAsset") != quote_asset:
+                continue
+            if item.get("status") != "TRADING":
+                continue
+            for flt in item.get("filters", []):
+                if flt.get("filterType") == "PRICE_FILTER":
+                    ticks[item["symbol"]] = str(flt.get("tickSize", ""))
+                    break
+        return ticks
+
+    def get_price_ticks(self, quote_asset: str = "USDT") -> dict[str, str]:
+        """tickSize لكل زوج لتنسيق الأسعار كما في Binance (مخبّأ — بلا طلب إضافي بعد exchangeInfo)."""
+        if self._price_ticks is None:
+            self._price_ticks = self._extract_price_ticks(self._fetch_exchange_info(), quote_asset)
+        return self._price_ticks
+
+    def get_spot_usdt_symbols(self, quote_asset: str = "USDT") -> list[str]:
+        payload = self._fetch_exchange_info()
+        self._price_ticks = self._extract_price_ticks(payload, quote_asset)
         symbols: list[str] = []
         for item in payload.get("symbols", []):
             if item.get("quoteAsset") != quote_asset:

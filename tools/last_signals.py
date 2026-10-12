@@ -29,8 +29,8 @@ from src.utils import format_price, ms_to_local_text
 HOUR_MS = 60 * 60 * 1000
 
 
-def scan(hours: int) -> tuple[list[dict], int, int, int]:
-    """يعيد (قائمة الإشارات، وقت إغلاق أحدث شمعة، عدد الرموز، عدد الرموز التي تحمل إشارة)."""
+def scan(hours: int) -> tuple[list[dict], int, int, int, dict[str, str]]:
+    """يعيد (قائمة الإشارات، وقت إغلاق أحدث شمعة، عدد الرموز، عدد الرموز التي تحمل إشارة، tickSizes)."""
     cfg = AppConfig(
         telegram_bot_token=os.getenv("TELEGRAM_BOT_TOKEN", "unused"),
         telegram_chat_id=os.getenv("TELEGRAM_CHAT_ID", "unused"),
@@ -41,6 +41,8 @@ def scan(hours: int) -> tuple[list[dict], int, int, int]:
     settings = StrategySettings()
 
     all_symbols = client.get_spot_usdt_symbols(cfg.quote_asset)
+    # tickSize لكل زوج (مخبّأ من نفس exchangeInfo) — لتنسيق الأسعار كما في Binance
+    price_ticks = client.get_price_ticks(cfg.quote_asset)
     if EXCLUDE_PEGGED_STABLES:
         symbols = [s for s in all_symbols if not is_pegged_stable_symbol(s, cfg.quote_asset)]
     else:
@@ -96,14 +98,20 @@ def scan(hours: int) -> tuple[list[dict], int, int, int]:
             )
 
     signals.sort(key=lambda s: s["open_ms"], reverse=True)
-    return signals, last_close_ms, len(symbols), with_trend
+    return signals, last_close_ms, len(symbols), with_trend, price_ticks
 
 
 def build_messages(
-    signals: list[dict], last_close_ms: int, hours: int, tz: str, scope_label: str | None = None
+    signals: list[dict],
+    last_close_ms: int,
+    hours: int,
+    tz: str,
+    scope_label: str | None = None,
+    price_ticks: dict[str, str] | None = None,
 ) -> list[str]:
     buys = [s for s in signals if s["kind"] == "signal_up"]
     sells = [s for s in signals if s["kind"] == "signal_down"]
+    ticks = price_ticks or {}
     scope = scope_label or f"آخر {hours} ساعة"
     header = (
         f"🔍 تقرير مسح — آخر إشارات Target Trend\n"
@@ -119,18 +127,19 @@ def build_messages(
         atr = sig["atr_value"]
         mults = StrategySettings().target_multipliers
         targets = [entry + m * atr for m in mults]
+        tick = ticks.get(sig["symbol"])
         time_text = ms_to_local_text(sig["open_ms"], tz)
         if sig["kind"] == "signal_up":
             lines = [
                 f"{idx}. 📥 {sig['symbol']} — شراء",
-                f"   الدخول: {format_price(entry)} • الوقف: {format_price(stop)} ({stop_pct:.2f}%)",
-                f"   الأهداف: {format_price(targets[0])} / {format_price(targets[1])} / {format_price(targets[2])}",
+                f"   الدخول: {format_price(entry, tick)} • الوقف: {format_price(stop, tick)} ({stop_pct:.2f}%)",
+                f"   الأهداف: {format_price(targets[0], tick)} / {format_price(targets[1], tick)} / {format_price(targets[2], tick)}",
                 f"   وقت الإشارة: {time_text}",
             ]
         else:
             lines = [
                 f"{idx}. 📤 {sig['symbol']} — بيع/إغلاق",
-                f"   السعر: {format_price(entry)}",
+                f"   السعر: {format_price(entry, tick)}",
                 f"   وقت الإشارة: {time_text}",
             ]
         return "\n".join(lines)
@@ -158,7 +167,7 @@ def main() -> None:
     args = parser.parse_args()
 
     started = time.time()
-    signals, last_close_ms, total, with_trend = scan(args.hours)
+    signals, last_close_ms, total, with_trend, price_ticks = scan(args.hours)
     print(f"scan took {time.time() - started:.1f}s • symbols with valid trend: {with_trend}/{total}", flush=True)
 
     tz = os.getenv("TIMEZONE", "Asia/Riyadh")
@@ -175,7 +184,7 @@ def main() -> None:
         print(f"signals in last {args.hours}h: {len(signals)}", flush=True)
 
     scope_label = f"شمعة الساعة {args.hour}:00 بتوقيت {tz}" if args.hour is not None else None
-    messages = build_messages(signals, last_close_ms, args.hours, tz, scope_label)
+    messages = build_messages(signals, last_close_ms, args.hours, tz, scope_label, price_ticks)
     for msg in messages:
         print("-" * 60)
         print(msg)

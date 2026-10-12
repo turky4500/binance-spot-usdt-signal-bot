@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
+from decimal import ROUND_HALF_UP, Decimal
 from zoneinfo import ZoneInfo
 
 WEEKDAY_AR = {
@@ -14,9 +15,24 @@ WEEKDAY_AR = {
 }
 
 
-def format_price(value: float) -> str:
+def format_price(value: float, tick_size: str | float | None = None) -> str:
+    """تنسيق سعر كما تكتبه Binance تمامًا.
+
+    tick_size (من PRICE_FILTER في exchangeInfo) يجعل الرقم مطابقًا للزوج:
+    تقريب لأقرب tick وكتابة بعدد خاناته — مثل 89400.57 للـBTC (tick=0.01)
+    بدل 89400.572255 الناتج عن float.
+    بدون tick_size يعود للسلوك القديم (8 خانات بلا أصفار زائدة).
+    """
     if value is None:
         return "—"
+    if tick_size:
+        try:
+            tick = Decimal(str(tick_size)).normalize()
+            decimals = max(0, -tick.as_tuple().exponent)
+            quantized = Decimal(str(float(value))).quantize(tick, rounding=ROUND_HALF_UP)
+            return f"{quantized:.{decimals}f}"
+        except Exception:  # noqa: BLE001 — أي قيمة غير صالحة تعود للتنسيق القديم
+            pass
     formatted = f"{value:.8f}".rstrip("0").rstrip(".")
     return formatted or "0"
 

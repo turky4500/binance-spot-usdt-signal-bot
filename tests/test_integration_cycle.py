@@ -49,6 +49,7 @@ def build(tmp_path: Path):
     bot.settings = StrategySettings()
     bot.symbols = ["AAAUSDT"]
     bot.halal_verdicts = {}
+    bot.price_ticks = {}
     bot.get_halal_verdict = lambda symbol: "Halal ✓"
     return bot
 

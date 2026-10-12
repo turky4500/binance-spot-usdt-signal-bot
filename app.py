@@ -98,6 +98,7 @@ class SpotSignalBot:
         self.store = StateStore(config.state_file)
         self.state = self.store.load()
         self.data_dir = str(Path(config.state_file).parent)
+        self.price_ticks: dict[str, str] = {}
         self.halal_verdicts: dict[str, int] = {}
         self.symbols: list[str] = []
         self.last_symbols_refresh = 0.0
@@ -108,6 +109,8 @@ class SpotSignalBot:
         if not force and self.symbols and (now - self.last_symbols_refresh) < 6 * 60 * 60:
             return
         all_symbols = self.binance.get_spot_usdt_symbols(self.config.quote_asset)
+        # tickSize لكل زوج (مخبّأ من نفس exchangeInfo) — لتنسيق الأسعار كما في Binance
+        self.price_ticks = self.binance.get_price_ticks(self.config.quote_asset)
         if EXCLUDE_PEGGED_STABLES:
             self.symbols = [s for s in all_symbols if not is_pegged_stable_symbol(s, self.config.quote_asset)]
         else:
@@ -216,6 +219,13 @@ class SpotSignalBot:
             self.store.save(self.state)
 
     # ─────────────────────────────────────────── رسائل تيليجرام
+    def _fmt_price(self, trade: dict, value: float | str) -> str:
+        """تنسيق سعر بدقّة tickSize الخاصة بالزوج — مطابق تمامًا لكتابة Binance.
+
+        يُستخدم لكل الأسعار المعروضة (دخول/وقف/أهداف/خروج/أعلى سعر).
+        """
+        return format_price(float(value), self.price_ticks.get(str(trade.get("symbol", ""))))
+
     def send_entry_message(self, trade: dict) -> None:
         verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
         entry = float(trade["entry_price"])
@@ -225,15 +235,15 @@ class SpotSignalBot:
         target_lines = []
         for i, tp in enumerate(targets, start=1):
             pct = (float(tp) / entry - 1.0) * 100.0
-            target_lines.append(f"الهدف {i}: {format_price(float(tp))} (+{pct:.2f}%)")
+            target_lines.append(f"الهدف {i}: {self._fmt_price(trade, tp)} (+{pct:.2f}%)")
 
         text = (
             f"📥 إشارة شراء — Target Trend\n"
             f"الزوج: {trade['symbol']}\n"
             f"الفريم: 1H\n"
-            f"سعر الدخول: {format_price(entry)}\n"
+            f"سعر الدخول: {self._fmt_price(trade, entry)}\n"
             + ("\n".join(target_lines) + "\n" if target_lines else "")
-            + f"وقف الخسارة: {format_price(stop)} ({stop_pct:.2f}%)\n"
+            + f"وقف الخسارة: {self._fmt_price(trade, stop)} ({stop_pct:.2f}%)\n"
             f"وقت الإشارة: {ms_to_local_text(trade['entry_time'], self.config.timezone_name)}\n"
             f"─────────────\n"
             f"الحكم الشرعي: {verdict}"
@@ -266,8 +276,8 @@ class SpotSignalBot:
         text = (
             f"🎯 تحقق الهدف {level} من 3\n"
             f"الزوج: {trade['symbol']}\n"
-            f"سعر الدخول: {format_price(entry)}\n"
-            f"سعر الهدف: {format_price(float(target_price))} (+{gain_pct:.2f}%)\n"
+            f"سعر الدخول: {self._fmt_price(trade, entry)}\n"
+            f"سعر الهدف: {self._fmt_price(trade, target_price)} (+{gain_pct:.2f}%)\n"
             f"الأهداف المحققة: {hit_count} من 3\n"
             f"وقت التحقق: {ms_to_local_text(event_time_ms, self.config.timezone_name)}\n"
             f"المدة المستغرقة: {duration}\n"
@@ -334,10 +344,10 @@ class SpotSignalBot:
         text = (
             f"{emoji} {headline}\n"
             f"الزوج: {trade['symbol']}\n"
-            f"سعر الدخول: {format_price(entry)}\n"
-            f"سعر الخروج: {format_price(float(exit_price))}\n"
+            f"سعر الدخول: {self._fmt_price(trade, entry)}\n"
+            f"سعر الخروج: {self._fmt_price(trade, exit_price)}\n"
             f"النتيجة الصافية: {net:+.2f}%\n"
-            f"أعلى سعر تحقق: {format_price(peak)} (+{peak_gain:.2f}%)\n"
+            f"أعلى سعر تحقق: {self._fmt_price(trade, peak)} (+{peak_gain:.2f}%)\n"
             f"الأهداف المحققة: {hit_count} من 3 ({hit_detail})\n"
             f"{classification}\n"
             f"سبب الإغلاق: {reason_ar}\n"
@@ -377,7 +387,7 @@ class SpotSignalBot:
                 f" • تحقق {ms_to_local_text(int(when), self.config.timezone_name)}"
                 if when else ""
             )
-            target_lines.append(f"الهدف {i}: {format_price(float(tp))} (+{pct:.2f}%){when_text}")
+            target_lines.append(f"الهدف {i}: {self._fmt_price(trade, tp)} (+{pct:.2f}%){when_text}")
 
         peak = float(trade.get("peak_price", entry))
         peak_gain = (peak / entry - 1.0) * 100.0
@@ -387,13 +397,13 @@ class SpotSignalBot:
             f"🎉 انتهت الصفقة — تحققت الأهداف الثلاثة!\n"
             f"الزوج: {trade['symbol']}\n"
             f"النتيجة: صفقة ناجحة ✅\n"
-            f"سعر الدخول: {format_price(entry)}\n"
-            f"سعر الإغلاق (الهدف 3): {format_price(float(exit_price))}\n"
+            f"سعر الدخول: {self._fmt_price(trade, entry)}\n"
+            f"سعر الإغلاق (الهدف 3): {self._fmt_price(trade, exit_price)}\n"
             f"النسبة الفعلية: {gross:+.2f}% • الصافية بعد العمولة: {net:+.2f}%\n"
             f"الأهداف المحققة: 3 من 3 (الهدف 1: ✔ • الهدف 2: ✔ • الهدف 3: ✔)\n"
             + "\n".join(target_lines) + "\n"
             + f"مدة التحقق: {duration} (من الدخول حتى تحقق الهدف الثالث)\n"
-            + f"أعلى سعر تحقق: {format_price(peak)} (+{peak_gain:.2f}%)\n"
+            + f"أعلى سعر تحقق: {self._fmt_price(trade, peak)} (+{peak_gain:.2f}%)\n"
             + f"وقت الإغلاق: {ms_to_local_text(event_time_ms, self.config.timezone_name)}\n"
             + f"─────────────\n"
             f"سبب الإغلاق: تحقق الأهداف الثلاثة كاملة\n"
