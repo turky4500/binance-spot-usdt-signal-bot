@@ -14,7 +14,7 @@ from src.binance_client import BinanceClient
 from src.config import AppConfig
 from src.halal import ensure_verdict, refresh_if_stale
 from src.state import StateStore
-from src.strategy import StrategySettings, latest_signal
+from src.strategy import StrategySettings, entry_er_ok, latest_signal
 from src.telegram_client import TelegramClient
 from src.trade_analysis import (
     avg_metric,
@@ -185,6 +185,11 @@ class SpotSignalBot:
         net_return_pct = gross_return_pct - (2.0 * self.settings.commission_per_side_pct)
         hit = list(trade.get("hit") or [False, False, False])
         hit = (hit + [False, False, False])[:3]
+        # تهدئة بعد الوقف (2026-10-13): لا إعادة دخول على الرمز قبل انتهائها
+        if exit_reason == "stop_loss" and self.settings.entry_cooldown_hours > 0:
+            blocked = self.state.setdefault("entry_blocked_until", {})
+            blocked[str(trade.get("symbol"))] = int(exit_time_ms) + self.settings.entry_cooldown_hours * HOUR_MS
+            self.store.save(self.state)
         update_trade_exit(
             self.data_dir,
             str(trade.get("trade_id")),
@@ -634,6 +639,26 @@ class SpotSignalBot:
             if int(self.state["last_entry_bar_time"].get(symbol, 0)) == signal["bar_open_time"]:
                 continue
 
+            # ── بوابة الدراسة (2026-10-13): الإشارة وحدها لا تكفي ──
+            # 1) كفاءة الاتجاه ER — سوق متعرج ⇒ لا دخول
+            allowed, er_value = entry_er_ok(closed_df, self.settings)
+            if not allowed:
+                self.append_event("entry_rejected_er", symbol, int(signal["bar_close_time"]))
+                self.logger.info(
+                    "بوابة الدراسة رفضت دخول %s: ER=%.3f < %.2f",
+                    symbol, er_value, self.settings.entry_er_min,
+                )
+                continue
+            # 2) تهدئة ما بعد الوقف — لا إعادة دخول على رمز أوقف للتو
+            cooldown_until = int(self.state.get("entry_blocked_until", {}).get(symbol, 0))
+            if int(signal["bar_close_time"]) < cooldown_until:
+                self.append_event("entry_rejected_cooldown", symbol, int(signal["bar_close_time"]))
+                self.logger.info(
+                    "تهدئة بعد الوقف: إشارة دخول %s مرفوضة (حتى %s)",
+                    symbol, cooldown_until,
+                )
+                continue
+
             trade = {
                 "trade_id": f"{symbol}-{signal['bar_open_time']}",
                 "symbol": symbol,
@@ -688,6 +713,7 @@ class SpotSignalBot:
             return
 
         entries = targets = wins = losses = neutrals = partial_wins = 0
+        rej_er = rej_cooldown = 0
         for event in self.state.get("event_log", []):
             event_time_ms = int(event.get("time_ms", 0))
             if local_date_key_from_ms(event_time_ms, self.config.timezone_name) != report_day:
@@ -705,6 +731,10 @@ class SpotSignalBot:
                 neutrals += 1
             elif event_type == "exit_partial_win":
                 partial_wins += 1
+            elif event_type == "entry_rejected_er":
+                rej_er += 1
+            elif event_type == "entry_rejected_cooldown":
+                rej_cooldown += 1
 
         open_count = len(self.state.get("open_trades", {}))
         closed_count = wins + losses
@@ -722,6 +752,7 @@ class SpotSignalBot:
             f"🧭 المؤشر: {self.settings.describe()}\n"
             f"─────────────\n"
             f"📥 صفقات الدخول: {entries}\n"
+            f"🚪 إشارات لم تدخل (بوابة الدراسة): كفاءة {rej_er} • تهدئة {rej_cooldown}\n"
             f"🎯 أهداف تحققت: {targets}\n"
             f"✅ صفقات أُغلقت رابحة: {wins}\n"
             f"🛑 صفقات أُغلقت خاسرة: {losses}\n"

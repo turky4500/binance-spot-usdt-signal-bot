@@ -59,6 +59,12 @@ class StrategySettings:
     atr_smooth_len: int = 200                                  # تسطيح ATR (sma over atr)
     atr_scale: float = 0.8                                     # ×0.8 كما في Pine
     commission_per_side_pct: float = 0.1                       # العمولة لكل جهة %
+    # ── بوابة الدراسة فوق الإشارة (2026-10-13، بموافقة المستخدم) ──
+    # الإشارة وحدها لا تكفي: ER (كفاءة الاتجاه) أقل من العتبة → لا دخول،
+    # وبعد الوقف تُهمَل إشارات نفس الرمز حتى انتهاء التهدئة. 0 = تعطيل.
+    entry_er_min: float = _env_float("ENTRY_ER_MIN", 0.30)     # أقل كفاءة اتجاه مقبولة
+    entry_er_len: int = _env_int("ENTRY_ER_LEN", 14)           # فترة كفاءة الاتجاه
+    entry_cooldown_hours: int = _env_int("ENTRY_COOLDOWN_HOURS", 24)  # تهدئة بعد الوقف
 
     @property
     def min_bars(self) -> int:
@@ -79,9 +85,11 @@ class StrategySettings:
 
     def describe(self) -> str:
         m = self.target_multipliers
+        gate = f" • بوابة ER ≥ {self.entry_er_min:g}" if self.entry_er_min > 0 else ""
+        cooldown = f" • تهدئة {self.entry_cooldown_hours}h بعد الوقف" if self.entry_cooldown_hours > 0 else ""
         return (
             f"Target Trend: طول الاتجاه {self.length} • "
-            f"أهداف {m[0]:g}/{m[1]:g}/{m[2]:g}×ATR"
+            f"أهداف {m[0]:g}/{m[1]:g}/{m[2]:g}×ATR{gate}{cooldown}"
         )
 
 
@@ -145,6 +153,35 @@ def compute_trend_frame(df: pd.DataFrame, settings: StrategySettings, initial_tr
     data["signal_up"] = (trend == 1.0) & (prev == 0.0)
     data["signal_down"] = (trend == 0.0) & (prev == 1.0)
     return data
+
+
+def efficiency_ratio(close: pd.Series, length: int = 14) -> pd.Series:
+    """كفاءة Kaufman للاتجاه: المسار الصافي ÷ مسار المماهلات.
+
+    1 = حركة صافية باتجاه واحد، 0 = تماهل/ضوضاء كاملة. أساس بوابة الدخول:
+    اختراق فوق (SMA+ATR) في سوق متعرج غالبًا كذبة تُوقف فورًا.
+    """
+    net = (close - close.shift(length)).abs()
+    path = close.diff().abs().rolling(length).sum()
+    return net / path
+
+
+def entry_er_ok(closed_df: pd.DataFrame, settings: StrategySettings) -> tuple[bool, float]:
+    """بوابة الدراسة فوق إشارة الدخول: ترفض الإشارة إذا كانت كفاءة الاتجاه ER أقل من العتبة.
+
+    تُرجع (مسموح، ER عند آخر شمعة مغلقة).
+    - بيانات ناقصة أو NaN → مسموح (الفلتر للتشويش لا لحرمان البيانات).
+    - تعطيل البوابة: entry_er_min <= 0.
+    ملاحظة: ER يُحسب على الشمعة المغلقة الأخيرة (نفس شمعة الإشارة) — لا رجوع إلى الوراء.
+    """
+    if settings.entry_er_min <= 0:
+        return True, float("nan")
+    if closed_df is None or len(closed_df) < settings.entry_er_len + 2:
+        return True, float("nan")
+    er = efficiency_ratio(closed_df["close"], settings.entry_er_len).iloc[-1]
+    if not np.isfinite(er):
+        return True, float("nan")
+    return bool(er >= settings.entry_er_min), float(er)
 
 
 def latest_signal(

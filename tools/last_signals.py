@@ -23,7 +23,7 @@ import pandas as pd
 from app import EXCLUDE_PEGGED_STABLES, is_pegged_stable_symbol
 from src.binance_client import BinanceClient
 from src.config import AppConfig
-from src.strategy import StrategySettings, compute_trend_frame
+from src.strategy import StrategySettings, compute_trend_frame, efficiency_ratio
 from src.utils import format_price, ms_to_local_text
 
 HOUR_MS = 60 * 60 * 1000
@@ -72,6 +72,7 @@ def scan(hours: int) -> tuple[list[dict], int, int, int, dict[str, str]]:
     with_trend = 0
     for symbol, df in non_empty.items():
         frame = compute_trend_frame(df, settings)
+        frame["er"] = efficiency_ratio(frame["close"], settings.entry_er_len)
         frame = frame[frame["atr_value"].notna()]
         if frame.empty:
             continue
@@ -94,6 +95,7 @@ def scan(hours: int) -> tuple[list[dict], int, int, int, dict[str, str]]:
                     "stop_price": float(row["sma_low"]) if kind == "signal_up" else float(row["sma_low"]),
                     "atr_value": float(row["atr_value"]),
                     "trend": float(row["trend"]),
+                    "er": float(row["er"]) if pd.notna(row["er"]) else None,
                 }
             )
 
@@ -130,10 +132,22 @@ def build_messages(
         tick = ticks.get(sig["symbol"])
         time_text = ms_to_local_text(sig["open_ms"], tz)
         if sig["kind"] == "signal_up":
+            settings = StrategySettings()
+            er = sig.get("er")
+            if er is None:
+                er_text, gate_text = "—", "✓ مسموحة (بلا بيانات ER)"
+            else:
+                er_text = f"{er:.2f}"
+                gate_text = (
+                    f"✓ مسموحة (≥ {settings.entry_er_min:g})"
+                    if er >= settings.entry_er_min
+                    else f"✗ مرفوضة بالبوابة (< {settings.entry_er_min:g})"
+                )
             lines = [
                 f"{idx}. 📥 {sig['symbol']} — شراء",
                 f"   الدخول: {format_price(entry, tick)} • الوقف: {format_price(stop, tick)} ({stop_pct:.2f}%)",
                 f"   الأهداف: {format_price(targets[0], tick)} / {format_price(targets[1], tick)} / {format_price(targets[2], tick)}",
+                f"   كفاءة الاتجاه ER: {er_text} — {gate_text}",
                 f"   وقت الإشارة: {time_text}",
             ]
         else:
