@@ -618,37 +618,10 @@
     "WCTUSDT": 1792029600000,
     "BTTCUSDT": 1792029600000,
     "AXLUSDT": 1792033200000,
-    "RSRUSDT": 1792044000000
+    "RSRUSDT": 1792044000000,
+    "INITUSDT": 1792080000000
   },
   "open_trades": {
-    "INITUSDT": {
-      "trade_id": "INITUSDT-1791590400000",
-      "symbol": "INITUSDT",
-      "entry_price": 0.1119,
-      "stop_price": 0.10653095551359835,
-      "targets": [
-        0.11909522243200815,
-        0.1262904448640163,
-        0.13348566729602448
-      ],
-      "hit": [
-        true,
-        true,
-        false
-      ],
-      "entry_time": 1791593999999,
-      "entry_bar_open_time": 1791590400000,
-      "last_target_check_ms": 1792086780000,
-      "atr_at_entry": 0.0014390444864016316,
-      "trend_length": 10,
-      "peak_price": 0.13146,
-      "halal_verdict": "ℹ️ لا يوجد حكم",
-      "hit_times": [
-        1791639839999,
-        1791833939999,
-        null
-      ]
-    },
     "KAVAUSDT": {
       "trade_id": "KAVAUSDT-1791853200000",
       "symbol": "KAVAUSDT",
@@ -666,7 +639,7 @@
       ],
       "entry_time": 1791856799999,
       "entry_bar_open_time": 1791853200000,
-      "last_target_check_ms": 1792086780000,
+      "last_target_check_ms": 1792087080000,
       "atr_at_entry": 0.0003087303376198545,
       "trend_length": 89,
       "peak_price": 0.07033,
@@ -694,7 +667,7 @@
       ],
       "entry_time": 1791867599999,
       "entry_bar_open_time": 1791864000000,
-      "last_target_check_ms": 1792086780000,
+      "last_target_check_ms": 1792087080000,
       "atr_at_entry": 2.838911406330284e-05,
       "trend_length": 89,
       "peak_price": 0.01133,
@@ -717,7 +690,7 @@
       ],
       "entry_time": 1791997199999,
       "entry_bar_open_time": 1791993600000,
-      "last_target_check_ms": 1792086780000,
+      "last_target_check_ms": 1792087080000,
       "atr_at_entry": 1.2950961247929769,
       "trend_length": 89,
       "peak_price": 242.35,
@@ -745,7 +718,7 @@
       ],
       "entry_time": 1792007999999,
       "entry_bar_open_time": 1792004400000,
-      "last_target_check_ms": 1792086780000,
+      "last_target_check_ms": 1792087080000,
       "atr_at_entry": 0.003218604631413161,
       "trend_length": 89,
       "peak_price": 0.09397,
@@ -768,7 +741,7 @@
       ],
       "entry_time": 1792040399999,
       "entry_bar_open_time": 1792036800000,
-      "last_target_check_ms": 1792086780000,
+      "last_target_check_ms": 1792087080000,
       "atr_at_entry": 0.0001992502210012835,
       "trend_length": 89,
       "peak_price": 0.0188,
@@ -5770,6 +5743,16 @@
       "type": "entry_rejected_er",
       "symbol": "ZROUSDT",
       "time_ms": 1792079999999
+    },
+    {
+      "type": "target",
+      "symbol": "INITUSDT",
+      "time_ms": 1792086839999
+    },
+    {
+      "type": "exit_win",
+      "symbol": "INITUSDT",
+      "time_ms": 1792086839999
     }
   ],
   "daily_report": {
