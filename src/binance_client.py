@@ -130,7 +130,7 @@ class BinanceClient:
     def get_klines(
         self,
         symbol: str,
-        interval: str = "1h",
+        interval: str = "4h",
         limit: int = 260,
         start_time: int | None = None,
         end_time: int | None = None,
@@ -195,7 +195,7 @@ class BinanceClient:
         combined = combined.drop_duplicates(subset=["open_time"]).sort_values("open_time").reset_index(drop=True)
         return combined
 
-    def get_klines_for_symbols(self, symbols: Iterable[str], interval: str = "1h", limit: int = 260) -> dict[str, pd.DataFrame]:
+    def get_klines_for_symbols(self, symbols: Iterable[str], interval: str = "4h", limit: int = 260) -> dict[str, pd.DataFrame]:
         results: dict[str, pd.DataFrame] = {}
         with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
             future_map = {

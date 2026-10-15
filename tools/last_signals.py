@@ -1,4 +1,4 @@
-"""تقرير آخر إشارات Target Trend على كل أزواج USDT الفورية (فريم 1H).
+"""تقرير آخر إشارات Target Trend على كل أزواج USDT الفورية (فريم الإعداد النشط — 4H الآن).
 
 الاستخدام:
     python tools/last_signals.py                 # مسح آخر 24 ساعة (طباعة فقط)
@@ -117,7 +117,7 @@ def build_messages(
     scope = scope_label or f"آخر {hours} ساعة"
     header = (
         f"🔍 تقرير مسح — آخر إشارات Target Trend\n"
-        f"الفريم: 1H • النطاق: {scope}\n"
+        f"الفريم: {cfg.interval.upper()} • النطاق: {scope}\n"
         f"أُغلقت الشمعة: {ms_to_local_text(last_close_ms, tz)}\n"
         f"إشارة شراء: {len(buys)} • إشارة بيع/إغلاق: {len(sells)}"
     )

@@ -47,6 +47,7 @@ def make_bot(tmp_path: Path):
     bot.symbols = ["BTCUSDT"]
     bot.halal_verdicts = {}
     bot.price_ticks = {}
+    bot.interval_ms = 3_600_000  # شبكة الفريم التي تُقرَّب عندها أحداث 1m
     bot.get_halal_verdict = lambda symbol: "希尔ًا (Halal)"
     return bot
 
@@ -78,7 +79,7 @@ def test_entry_message_contains_targets_and_stop(tmp_path):
     bot.send_entry_message(trade)
     text = bot.telegram.sent[0]
     assert "BTCUSDT" in text
-    assert "1H" in text
+    assert "4H" in text
     assert "الهدف 1" in text and "الهدف 2" in text and "الهدف 3" in text
     assert "وقف الخسارة" in text
     assert "الحكم الشرعي" in text

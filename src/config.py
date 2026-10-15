@@ -11,7 +11,7 @@ class AppConfig:
     timezone_name: str = os.getenv("TIMEZONE", "Asia/Riyadh")
     binance_base_url: str = os.getenv("BINANCE_BASE_URL", "https://data-api.binance.vision")
     quote_asset: str = os.getenv("BINANCE_QUOTE_ASSET", "USDT")
-    interval: str = os.getenv("BINANCE_INTERVAL", "1h")
+    interval: str = os.getenv("BINANCE_INTERVAL", "4h")
     poll_seconds: int = int(os.getenv("POLL_SECONDS", "60"))
     # 499: أقصى عدد شموع يبقى فيه وزن طلب Binance لـ klines = 2 (500+ يصبح 5).
     # وهو مطلوب لأن sma(atr(200),200) في Target Trend لا تصحح قبل ~400 شمعة.

@@ -20,23 +20,24 @@ jobs:
       TIMEZONE: Asia/Riyadh
       BINANCE_BASE_URL: https://data-api.binance.vision
       BINANCE_QUOTE_ASSET: USDT
-      BINANCE_INTERVAL: 1h
+      BINANCE_INTERVAL: 4h
       POLL_SECONDS: 60
       # 499 = أقصى حد يبقى فيه وزن طلب Binance لـ klines = 2، وهو مطلوب لأن
-      # sma(atr(200),200) في Target Trend لا تصحح قبل ~400 شمعة.
+      # sma(atr(200),200) في Target Trend لا تصحح قبل ~400 شمعة (من الفريم النشط).
       KLINE_LIMIT: 499
       REQUEST_TIMEOUT: 20
       MAX_WORKERS: 10
       HALAL_REFRESH_HOURS: 6
       STATE_FILE: data/state.json
       LOG_LEVEL: INFO
-      # ── المؤشر المعتمد الوحيد: Target Trend [BigBeluga] (فريم 1H، سبوت/USDT) ──
+      # ── المؤشر المعتمد الوحيد: Target Trend [BigBeluga] (فريم 4H، سبوت/USDT) ──
+      # الانتقال 1h→4h (2026-10-15) بعد اختبار رجعي 457 يومًا × 30 زوجًا:
+      # 4H تفوّق في كل مقياس (+336% بالبوابة مقابل −520% لـ1H بلا بوابة).
       TREND_LENGTH: 89       # طول الاتجاه (Trend Length) — اعتُمد 89 بديلًا عن 10 (2026-10-11)
       TREND_TARGET_OFFSET: 0  # Set Targets في Pine (0 = أهداف 5/10/15×ATR)
-      # ── بوابة الدراسة فوق الإشارة (2026-10-13): لا دخول إذا ER < العتبة،
-      #    وتهدئة بعد الوقف (0 = تعطيل أي منهما) ──
-      ENTRY_ER_MIN: "0.30"         # أقل كفاءة اتجاه (Kaufman ER) مقبولة للدخول
-      ENTRY_COOLDOWN_HOURS: "24"   # تهدئة إشارات الرمز بعد الوقف
+      # ── بوابة الدراسة فوق الإشارة (أُعيد ضبطها لفريم 4H 2026-10-15) ──
+      ENTRY_ER_MIN: "0.20"        # أقل كفاءة اتجاه (Kaufman ER) — 0.30 كانت لـ1H؛ 0.20 أفضل على 4H
+      ENTRY_COOLDOWN_HOURS: "96"  # تهدئة بعد الوقف — 24h = 6 شموع 4H فقط؛ 96h أفضل في الاختبار
       # استثناء أزواج العملات المستقرة المربوطة (هدف ATR عليها ضجيج) — الإيقاف: "0"
       EXCLUDE_PEGGED_STABLES: "1"
     steps:

@@ -59,12 +59,14 @@ class StrategySettings:
     atr_smooth_len: int = 200                                  # تسطيح ATR (sma over atr)
     atr_scale: float = 0.8                                     # ×0.8 كما في Pine
     commission_per_side_pct: float = 0.1                       # العمولة لكل جهة %
-    # ── بوابة الدراسة فوق الإشارة (2026-10-13، بموافقة المستخدم) ──
+    # ── بوابة الدراسة فوق الإشارة (2026-10-13؛ أُعيد ضبطها لفريم 4H 2026-10-15) ──
     # الإشارة وحدها لا تكفي: ER (كفاءة الاتجاه) أقل من العتبة → لا دخول،
     # وبعد الوقف تُهمَل إشارات نفس الرمز حتى انتهاء التهدئة. 0 = تعطيل.
-    entry_er_min: float = _env_float("ENTRY_ER_MIN", 0.30)     # أقل كفاءة اتجاه مقبولة
-    entry_er_len: int = _env_int("ENTRY_ER_LEN", 14)           # فترة كفاءة الاتجاه
-    entry_cooldown_hours: int = _env_int("ENTRY_COOLDOWN_HOURS", 24)  # تهدئة بعد الوقف
+    # القيم مشتقّة من اختبار رجعي 457 يومًا × 30 زوجًا على 4H (أفضل تركيبة:
+    # ER≥0.20 + تهدئة96h = +336% مقابل +219% بلا بوابة و−520% لـ1H بلا بوابة).
+    entry_er_min: float = _env_float("ENTRY_ER_MIN", 0.20)     # أقل كفاءة اتجاه مقبولة (0.30 كانت لـ1H)
+    entry_er_len: int = _env_int("ENTRY_ER_LEN", 14)           # فترة كفاءة الاتجاه (شموع الفريم)
+    entry_cooldown_hours: int = _env_int("ENTRY_COOLDOWN_HOURS", 96)  # تهدئة بعد الوقف (24h=6 شموع 4H فقط)
 
     @property
     def min_bars(self) -> int:

@@ -95,6 +95,13 @@ class SpotSignalBot:
             timeout=config.request_timeout,
         )
         self.settings = StrategySettings()
+        # وعي الفريم: كشف إغلاق الشمعة والمؤشّرات كلها تحسب من مدة الفريم النشط
+        self.interval_ms = BinanceClient.INTERVAL_MS.get(config.interval)
+        if self.interval_ms is None:
+            raise ValueError(
+                f"BINANCE_INTERVAL غير مدعوم: {config.interval!r} "
+                f"(المدعومة: {', '.join(sorted(BinanceClient.INTERVAL_MS))})"
+            )
         self.store = StateStore(config.state_file)
         self.state = self.store.load()
         self.data_dir = str(Path(config.state_file).parent)
@@ -245,7 +252,7 @@ class SpotSignalBot:
         text = (
             f"📥 إشارة شراء — Target Trend\n"
             f"الزوج: {trade['symbol']}\n"
-            f"الفريم: 1H\n"
+            f"الفريم: {self.config.interval.upper()}\n"
             f"سعر الدخول: {self._fmt_price(trade, entry)}\n"
             + ("\n".join(target_lines) + "\n" if target_lines else "")
             + f"وقف الخسارة: {self._fmt_price(trade, stop)} ({stop_pct:.2f}%)\n"
@@ -457,7 +464,7 @@ class SpotSignalBot:
                         trade, float(trade["stop_price"]), event_ms,
                         "stop_loss", "لمس وقف الخسارة",
                     )
-                    self.close_trade(symbol, event_ms // HOUR_MS * HOUR_MS, "stop_intrabar")
+                    self.close_trade(symbol, event_ms // self.interval_ms * self.interval_ms, "stop_intrabar")
                     closed_by_stop = True
                     break
 
@@ -476,7 +483,7 @@ class SpotSignalBot:
                 # 3) تحقق الأهداف الثلاثة = صفقة ناجحة تُغلق فورًا عند الهدف الثالث
                 if all(hit) and len(targets) >= 3:
                     self.send_all_targets_close_message(trade, event_ms, float(targets[2]))
-                    self.close_trade(symbol, event_ms // HOUR_MS * HOUR_MS, "all_targets")
+                    self.close_trade(symbol, event_ms // self.interval_ms * self.interval_ms, "all_targets")
                     closed_by_targets = True
                     break
 
@@ -506,10 +513,16 @@ class SpotSignalBot:
 
         try:
             first_open = int(closed_df.iloc[0]["open_time"])
+            # دفء sma(atr(200),200) يحتاج min_bars شموع من الفريم النشط — السجل
+            # الممتد يجب أن يغطيها حتى تتأكد الحالة الاتجاهية السابقة
+            extended_hours = max(
+                EXTENDED_KLINE_HOURS,
+                (int(self.settings.min_bars) + 50) * self.interval_ms // HOUR_MS,
+            )
             extended = self.binance.get_klines_range(
                 symbol=symbol,
                 interval=self.config.interval,
-                start_time=max(first_open - EXTENDED_KLINE_HOURS * HOUR_MS, 0),
+                start_time=max(first_open - extended_hours * HOUR_MS, 0),
                 end_time=int(closed_df.iloc[-1]["close_time"]),
             )
             if extended is not None and not extended.empty and len(extended) > len(closed_df):
@@ -525,6 +538,13 @@ class SpotSignalBot:
     def process_new_closed_hour(self, server_time: int) -> None:
         self.purge_pegged_stable_trades()
         last_processed = int(self.state.get("last_processed_open_time", 0))
+        # محاذاة شبكة الفريم: تغيير BINANCE_INTERVAL (مثل 1h→4h) قد يترك آخر قيمة
+        # معالجة خارج شبكة الفريم الحالي (مثلاً 14:00 ليست بداية شمعة 4H) — تُقرَّب
+        # لأسفل إلى أقرب شمعة صحيحة، وإلا يطارد البوت شموعًا غير موجودة ويسكت للأبد.
+        if last_processed and last_processed % self.interval_ms:
+            last_processed = (last_processed // self.interval_ms) * self.interval_ms
+            self.state["last_processed_open_time"] = last_processed
+            self.store.save(self.state)
 
         klines_map = self.binance.get_klines_for_symbols(self.symbols, self.config.interval, self.config.kline_limit)
         try:
@@ -533,34 +553,35 @@ class SpotSignalBot:
                 self.logger.warning("No klines data; skipping cycle")
                 return
             last_in_data = int(sample.iloc[-1]["open_time"])
-            close_time_of_last = int(sample.iloc[-1].get("close_time", last_in_data + HOUR_MS - 1))
+            close_time_of_last = int(sample.iloc[-1].get("close_time", last_in_data + self.interval_ms - 1))
         except StopIteration:
             return
 
         # الشمعة المغلقة فعلًا = آخر شمعة انتهى زمنها
         if close_time_of_last >= server_time:
-            last_in_data = last_in_data - HOUR_MS
+            last_in_data = last_in_data - self.interval_ms
 
         target_closed = last_in_data
         if last_processed >= target_closed:
             return
 
         self.logger.info(
-            "Processing closed hour: target=%s (last_processed=%s)", target_closed, last_processed
+            "Processing closed bar (%s): target=%s (last_processed=%s)",
+            self.config.interval, target_closed, last_processed,
         )
 
-        # catch-up: عالج كل الشموع منذ آخر معالجة (حد أقصى 24)
+        # catch-up: عالج كل الشموع منذ آخر معالجة (حد أقصى 24 شمعة من الفريم النشط)
         if last_processed == 0:
             cursor = target_closed
         else:
-            cursor = max(last_processed + HOUR_MS, target_closed - 23 * HOUR_MS)
+            cursor = max(last_processed + self.interval_ms, target_closed - 23 * self.interval_ms)
         if cursor > target_closed:
-            cursor = last_processed + HOUR_MS
+            cursor = last_processed + self.interval_ms
         while cursor <= target_closed:
             self._process_one_closed_hour(klines_map, cursor)
             self.state["last_processed_open_time"] = cursor
             self.store.save(self.state)
-            cursor += HOUR_MS
+            cursor += self.interval_ms
 
     def _process_one_closed_hour(self, klines_map: dict, last_closed_open_time: int) -> None:
         """شمعة واحدة مغلقة: إغلاق المفتوحة (وقف/أهداف/إشارة بيع) ثم فتح الجديد."""
@@ -587,7 +608,7 @@ class SpotSignalBot:
             if candle_low <= float(trade["stop_price"]):
                 self.send_close_message(
                     trade, float(trade["stop_price"]), candle_close_time,
-                    "stop_loss", "إغلاق شمعة 1H عند/أسفل وقف الخسارة",
+                    "stop_loss", f"إغلاق شمعة {self.config.interval.upper()} عند/أسفل وقف الخسارة",
                 )
                 self.close_trade(symbol, last_closed_open_time, "stop_hour")
                 continue

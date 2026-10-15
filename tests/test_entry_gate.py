@@ -124,9 +124,9 @@ def test_settings_gate_defaults():
     from src.strategy import StrategySettings
 
     s = StrategySettings()
-    assert s.entry_er_min == 0.30
+    assert s.entry_er_min == 0.20  # مضبوط على 4H (2026-10-15)
     assert s.entry_er_len == 14
-    assert s.entry_cooldown_hours == 24
+    assert s.entry_cooldown_hours == 96
     assert "بوابة ER" in s.describe()
     assert "تهدئة" in s.describe()
 
