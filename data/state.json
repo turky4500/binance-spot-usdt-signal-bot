@@ -613,7 +613,8 @@
     "INJUSDT": 1791990000000,
     "GLMRUSDT": 1791997200000,
     "GMEBUSDT": 1792008000000,
-    "RENDERUSDT": 1792029600000
+    "RENDERUSDT": 1792029600000,
+    "WCTUSDT": 1792029600000
   },
   "open_trades": {
     "INITUSDT": {
@@ -633,7 +634,7 @@
       ],
       "entry_time": 1791593999999,
       "entry_bar_open_time": 1791590400000,
-      "last_target_check_ms": 1792030980000,
+      "last_target_check_ms": 1792031280000,
       "atr_at_entry": 0.0014390444864016316,
       "trend_length": 10,
       "peak_price": 0.13146,
@@ -661,7 +662,7 @@
       ],
       "entry_time": 1791795599999,
       "entry_bar_open_time": 1791792000000,
-      "last_target_check_ms": 1792030980000,
+      "last_target_check_ms": 1792031280000,
       "atr_at_entry": 8.47192178615562e-09,
       "trend_length": 89,
       "peak_price": 3.9e-07,
@@ -684,7 +685,7 @@
       ],
       "entry_time": 1791827999999,
       "entry_bar_open_time": 1791824400000,
-      "last_target_check_ms": 1792030980000,
+      "last_target_check_ms": 1792031280000,
       "atr_at_entry": 0.005298181008660217,
       "trend_length": 89,
       "peak_price": 0.465,
@@ -712,7 +713,7 @@
       ],
       "entry_time": 1791856799999,
       "entry_bar_open_time": 1791853200000,
-      "last_target_check_ms": 1792030980000,
+      "last_target_check_ms": 1792031280000,
       "atr_at_entry": 0.0003087303376198545,
       "trend_length": 89,
       "peak_price": 0.07033,
@@ -740,7 +741,7 @@
       ],
       "entry_time": 1791867599999,
       "entry_bar_open_time": 1791864000000,
-      "last_target_check_ms": 1792030980000,
+      "last_target_check_ms": 1792031280000,
       "atr_at_entry": 2.838911406330284e-05,
       "trend_length": 89,
       "peak_price": 0.01133,
@@ -763,7 +764,7 @@
       ],
       "entry_time": 1791871199999,
       "entry_bar_open_time": 1791867600000,
-      "last_target_check_ms": 1792030980000,
+      "last_target_check_ms": 1792031280000,
       "atr_at_entry": 0.00046503629185962766,
       "trend_length": 89,
       "peak_price": 0.04079,
@@ -791,7 +792,7 @@
       ],
       "entry_time": 1791907199999,
       "entry_bar_open_time": 1791903600000,
-      "last_target_check_ms": 1792030980000,
+      "last_target_check_ms": 1792031280000,
       "atr_at_entry": 0.004453598563134583,
       "trend_length": 89,
       "peak_price": 0.278,
@@ -814,7 +815,7 @@
       ],
       "entry_time": 1791950399999,
       "entry_bar_open_time": 1791946800000,
-      "last_target_check_ms": 1792030980000,
+      "last_target_check_ms": 1792031280000,
       "atr_at_entry": 0.0004915895152295688,
       "trend_length": 89,
       "peak_price": 0.3347,
@@ -842,7 +843,7 @@
       ],
       "entry_time": 1791961199999,
       "entry_bar_open_time": 1791957600000,
-      "last_target_check_ms": 1792030980000,
+      "last_target_check_ms": 1792031280000,
       "atr_at_entry": 0.0005888153855688956,
       "trend_length": 89,
       "peak_price": 0.065,
@@ -870,33 +871,10 @@
       ],
       "entry_time": 1791997199999,
       "entry_bar_open_time": 1791993600000,
-      "last_target_check_ms": 1792030980000,
+      "last_target_check_ms": 1792031280000,
       "atr_at_entry": 1.2950961247929769,
       "trend_length": 89,
       "peak_price": 227.62,
-      "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
-    "WCTUSDT": {
-      "trade_id": "WCTUSDT-1791997200000",
-      "symbol": "WCTUSDT",
-      "entry_price": 0.04236,
-      "stop_price": 0.04010857881381037,
-      "targets": [
-        0.044494634020835755,
-        0.046629268041671515,
-        0.048763902062507275
-      ],
-      "hit": [
-        false,
-        false,
-        false
-      ],
-      "entry_time": 1792000799999,
-      "entry_bar_open_time": 1791997200000,
-      "last_target_check_ms": 1792030980000,
-      "atr_at_entry": 0.0004269268041671513,
-      "trend_length": 89,
-      "peak_price": 0.04378,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     },
     "NILUSDT": {
@@ -916,7 +894,7 @@
       ],
       "entry_time": 1792007999999,
       "entry_bar_open_time": 1792004400000,
-      "last_target_check_ms": 1792030980000,
+      "last_target_check_ms": 1792031280000,
       "atr_at_entry": 0.003218604631413161,
       "trend_length": 89,
       "peak_price": 0.09371,
@@ -5833,6 +5811,11 @@
       "type": "exit_loss",
       "symbol": "MANTAUSDT",
       "time_ms": 1792030979999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "WCTUSDT",
+      "time_ms": 1792031099999
     }
   ],
   "daily_report": {
@@ -5891,6 +5874,7 @@
     "GMEBUSDT": 1792096259999,
     "RENDERUSDT": 1792117379999,
     "AUSDT": 1792117139999,
-    "MANTAUSDT": 1792117379999
+    "MANTAUSDT": 1792117379999,
+    "WCTUSDT": 1792117499999
   }
 }
