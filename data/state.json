@@ -576,7 +576,7 @@
     "BANDUSDT": 1791889200000,
     "ZROUSDT": 1791849600000,
     "ALGOUSDT": 1791849600000,
-    "ZKUSDT": 1791982800000,
+    "ZKUSDT": 1792267200000,
     "MEGAUSDT": 1792065600000,
     "PLTRBUSDT": 1791849600000,
     "SOXSBUSDT": 1791853200000,
@@ -646,7 +646,7 @@
       ],
       "entry_time": 1791856799999,
       "entry_bar_open_time": 1791853200000,
-      "last_target_check_ms": 1792272180000,
+      "last_target_check_ms": 1792272480000,
       "atr_at_entry": 0.0003087303376198545,
       "trend_length": 89,
       "peak_price": 0.0717,
@@ -674,34 +674,11 @@
       ],
       "entry_time": 1792007999999,
       "entry_bar_open_time": 1792004400000,
-      "last_target_check_ms": 1792272180000,
+      "last_target_check_ms": 1792272480000,
       "atr_at_entry": 0.003218604631413161,
       "trend_length": 89,
       "peak_price": 0.09512,
       "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
-    "ZKUSDT": {
-      "trade_id": "ZKUSDT-1792036800000",
-      "symbol": "ZKUSDT",
-      "entry_price": 0.01839,
-      "stop_price": 0.015217378992481862,
-      "targets": [
-        0.019386251105006417,
-        0.020382502210012834,
-        0.021378753315019254
-      ],
-      "hit": [
-        false,
-        false,
-        false
-      ],
-      "entry_time": 1792040399999,
-      "entry_bar_open_time": 1792036800000,
-      "last_target_check_ms": 1792272180000,
-      "atr_at_entry": 0.0001992502210012835,
-      "trend_length": 89,
-      "peak_price": 0.01885,
-      "halal_verdict": "✅ مباح"
     },
     "SOLVUSDT": {
       "trade_id": "SOLVUSDT-1792123200000",
@@ -720,7 +697,7 @@
       ],
       "entry_time": 1792137599999,
       "entry_bar_open_time": 1792123200000,
-      "last_target_check_ms": 1792272180000,
+      "last_target_check_ms": 1792272480000,
       "atr_at_entry": 0.00010755741164504311,
       "trend_length": 89,
       "peak_price": 0.00474,
@@ -743,7 +720,7 @@
       ],
       "entry_time": 1792209599999,
       "entry_bar_open_time": 1792195200000,
-      "last_target_check_ms": 1792272180000,
+      "last_target_check_ms": 1792272480000,
       "atr_at_entry": 0.006054084669696621,
       "trend_length": 89,
       "peak_price": 0.2817,
@@ -5855,6 +5832,11 @@
       "type": "target",
       "symbol": "KAVAUSDT",
       "time_ms": 1792225019999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "ZKUSDT",
+      "time_ms": 1792272419999
     }
   ],
   "daily_report": {
@@ -5924,6 +5906,7 @@
     "NXPCUSDT": 1792452899999,
     "ANIMEUSDT": 1792467359999,
     "KGSTUSDT": 1792492619999,
-    "MRNABUSDT": 1792504619999
+    "MRNABUSDT": 1792504619999,
+    "ZKUSDT": 1792618019999
   }
 }
