@@ -1,0 +1,95 @@
+name: QAA Bot Cron
+
+# نظام القاع (يومي) — نظام موازٍ مستقل عن Target Trend (workflow مختلف،
+# حالة ودفتر وكاش شرعي منفصلة، ولا يقرأ ولا يكتب ملفات النظام الآخر).
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'  # كل 10 دقائق UTC — يكشف إغلاق الشمعة اليومية وتحديثات الوقف
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qaa-signal-bot-cron
+  cancel-in-progress: false
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TIMEZONE: Asia/Riyadh
+      BINANCE_BASE_URL: https://data-api.binance.vision
+      BINANCE_QUOTE_ASSET: USDT
+      POLL_SECONDS: 60
+      # 499 يبقى وزن طلب klines = 2 — يكفي تمهيد EMA200 مع هوامش
+      KLINE_LIMIT: 499
+      REQUEST_TIMEOUT: 20
+      MAX_WORKERS: 10
+      HALAL_REFRESH_HOURS: 6
+      LOG_LEVEL: INFO
+      # ── نظام القاع (يومي) — مسارات النظام الموازية المنفصلة ──
+      QAA_STATE_FILE: data/state_qaa.json
+      QAA_HALAL_DIR: data/qaa
+      # ── قواعد النظام (مطابقة للمُختبر في swing_bottom_backtest) ──
+      QAA_LEFT_BARS: 3            # الشموع يسار القاع
+      QAA_RIGHT_BARS: 1           # شمعة تأكيد القاع
+      QAA_MAX_HOLD: 40            # المهلة بالأيام
+      QAA_COOLDOWN_BARS: 3        # مهلة أقل بين الدخولات (شموع)
+      QAA_USE_TRAILING: 1         # وقف متحرك مفعّل (0 = وقف ثابت)
+      QAA_TRAIL_PCT: "8"          # الوقف المتحرك: 8% من القمة
+      QAA_TARGET_R: "2"           # الهدف المقترح = 2× مسافة الوقف (عرض فقط)
+      QAA_RISK_PCT: "1"           # المخاطرة لكل صفقة %
+      QAA_COMMISSION_SIDE_PCT: "0.1"
+      # عتبة رسالة تحديث الوقف — رسالة عند ارتفاع ≥ 1% عن آخر رسالة (0 = عند كل تغيير)
+      QAA_STOP_ALERT_STEP_PCT: "1"
+      # استثناء أزواج العملات المستقرة المربوطة — الإيقاف: "0"
+      EXCLUDE_PEGGED_STABLES: "1"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run QAA bot once
+        run: python run_qaa_once.py
+
+      - name: Commit state updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # git add data/ : يضيف ملفات الحالة (منها ملفات النظامين — لا مشكلة: كلاهما يتقدم)
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No state changes to commit"
+            exit 0
+          fi
+          git commit -m "chore: update QAA bot state [skip ci]"
+
+          # دورتان متزامنتان (أو تداخل مع workflow Target Trend) قد يتصادمان على data/.
+          # عند التعارض نُبقي نسختنا (الأحدث) عبر -X theirs داخل الـrebase، مع إعادة محاولة 5 مرات.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase -X theirs origin/main; then
+              if git push origin HEAD:main; then
+                echo "State pushed on attempt $attempt"
+                exit 0
+              fi
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "Retry $attempt: another run updated the state first, retrying..."
+            sleep $((attempt * 5))
+          done
+          echo "::warning::Could not push state after 5 attempts; next run will pick it up."
