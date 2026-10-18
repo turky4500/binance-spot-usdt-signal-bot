@@ -626,7 +626,8 @@
     "NXPCUSDT": 1792094400000,
     "ANIMEUSDT": 1792108800000,
     "KGSTUSDT": 1792137600000,
-    "MRNABUSDT": 1792152000000
+    "MRNABUSDT": 1792152000000,
+    "NILUSDT": 1792296000000
   },
   "open_trades": {
     "KAVAUSDT": {
@@ -646,7 +647,7 @@
       ],
       "entry_time": 1791856799999,
       "entry_bar_open_time": 1791853200000,
-      "last_target_check_ms": 1792300980000,
+      "last_target_check_ms": 1792301280000,
       "atr_at_entry": 0.0003087303376198545,
       "trend_length": 89,
       "peak_price": 0.0717,
@@ -656,29 +657,6 @@
         1792225019999,
         null
       ]
-    },
-    "NILUSDT": {
-      "trade_id": "NILUSDT-1792004400000",
-      "symbol": "NILUSDT",
-      "entry_price": 0.08825,
-      "stop_price": 0.07867611446971043,
-      "targets": [
-        0.1043430231570658,
-        0.1204360463141316,
-        0.13652906947119742
-      ],
-      "hit": [
-        false,
-        false,
-        false
-      ],
-      "entry_time": 1792007999999,
-      "entry_bar_open_time": 1792004400000,
-      "last_target_check_ms": 1792300980000,
-      "atr_at_entry": 0.003218604631413161,
-      "trend_length": 89,
-      "peak_price": 0.09512,
-      "halal_verdict": "ℹ️ لا يوجد حكم"
     },
     "SOLVUSDT": {
       "trade_id": "SOLVUSDT-1792123200000",
@@ -697,7 +675,7 @@
       ],
       "entry_time": 1792137599999,
       "entry_bar_open_time": 1792123200000,
-      "last_target_check_ms": 1792300980000,
+      "last_target_check_ms": 1792301280000,
       "atr_at_entry": 0.00010755741164504311,
       "trend_length": 89,
       "peak_price": 0.00474,
@@ -720,7 +698,7 @@
       ],
       "entry_time": 1792209599999,
       "entry_bar_open_time": 1792195200000,
-      "last_target_check_ms": 1792300980000,
+      "last_target_check_ms": 1792301280000,
       "atr_at_entry": 0.006054084669696621,
       "trend_length": 89,
       "peak_price": 0.2817,
@@ -5837,6 +5815,11 @@
       "type": "exit_loss",
       "symbol": "ZKUSDT",
       "time_ms": 1792272419999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "NILUSDT",
+      "time_ms": 1792301099999
     }
   ],
   "daily_report": {
@@ -5907,6 +5890,7 @@
     "ANIMEUSDT": 1792467359999,
     "KGSTUSDT": 1792492619999,
     "MRNABUSDT": 1792504619999,
-    "ZKUSDT": 1792618019999
+    "ZKUSDT": 1792618019999,
+    "NILUSDT": 1792646699999
   }
 }
