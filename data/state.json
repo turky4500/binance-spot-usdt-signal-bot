@@ -436,7 +436,7 @@
     "SQQQBUSDT": 1791990000000,
     "PLUMEUSDT": 1791763200000,
     "AEVOUSDT": 1791810000000,
-    "EIGENUSDT": 1791914400000,
+    "EIGENUSDT": 1792324800000,
     "METISUSDT": 1791774000000,
     "BOMEUSDT": 1791781200000,
     "AAOIBUSDT": 1791792000000,
@@ -647,7 +647,7 @@
       ],
       "entry_time": 1791856799999,
       "entry_bar_open_time": 1791853200000,
-      "last_target_check_ms": 1792330380000,
+      "last_target_check_ms": 1792330680000,
       "atr_at_entry": 0.0003087303376198545,
       "trend_length": 89,
       "peak_price": 0.07237,
@@ -675,33 +675,10 @@
       ],
       "entry_time": 1792137599999,
       "entry_bar_open_time": 1792123200000,
-      "last_target_check_ms": 1792330380000,
+      "last_target_check_ms": 1792330680000,
       "atr_at_entry": 0.00010755741164504311,
       "trend_length": 89,
       "peak_price": 0.00474,
-      "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
-    "EIGENUSDT": {
-      "trade_id": "EIGENUSDT-1792195200000",
-      "symbol": "EIGENUSDT",
-      "entry_price": 0.2759,
-      "stop_price": 0.23590321870108993,
-      "targets": [
-        0.3061704233484831,
-        0.33644084669696617,
-        0.3667112700454493
-      ],
-      "hit": [
-        false,
-        false,
-        false
-      ],
-      "entry_time": 1792209599999,
-      "entry_bar_open_time": 1792195200000,
-      "last_target_check_ms": 1792330380000,
-      "atr_at_entry": 0.006054084669696621,
-      "trend_length": 89,
-      "peak_price": 0.2817,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     },
     "ERAUSDT": {
@@ -721,7 +698,7 @@
       ],
       "entry_time": 1792310399999,
       "entry_bar_open_time": 1792296000000,
-      "last_target_check_ms": 1792330380000,
+      "last_target_check_ms": 1792330680000,
       "atr_at_entry": 0.001536595145105418,
       "trend_length": 89,
       "peak_price": 0.08,
@@ -5848,6 +5825,11 @@
       "type": "entry",
       "symbol": "ERAUSDT",
       "time_ms": 1792310399999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "EIGENUSDT",
+      "time_ms": 1792330439999
     }
   ],
   "daily_report": {
@@ -5919,6 +5901,7 @@
     "KGSTUSDT": 1792492619999,
     "MRNABUSDT": 1792504619999,
     "ZKUSDT": 1792618019999,
-    "NILUSDT": 1792646699999
+    "NILUSDT": 1792646699999,
+    "EIGENUSDT": 1792676039999
   }
 }
