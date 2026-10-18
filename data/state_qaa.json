@@ -1,0 +1,91 @@
+{
+  "last_processed_open_time": 1792195200000,
+  "last_entry_bar_time": {
+    "GTCUSDT": 1792195200000,
+    "HUMAUSDT": 1792195200000,
+    "PROMUSDT": 1792195200000
+  },
+  "last_exit_bar_time": {},
+  "open_trades": {
+    "GTCUSDT": {
+      "trade_id": "GTCUSDT-1792195200000",
+      "symbol": "GTCUSDT",
+      "entry_price": 0.23631,
+      "stop_price": 0.1884,
+      "pivot_stop": 0.1884,
+      "target_price": 0.3321299999999999,
+      "stop_dist_pct": 20.274216072108665,
+      "size_suggest_pct": 0.04932373199749532,
+      "entry_time": 1792281599999,
+      "entry_bar_open_time": 1792195200000,
+      "last_check_ms": 1792281659999,
+      "peak_price": 0.27732,
+      "last_stop_alert_price": 0.1884,
+      "stop_updates_count": 0,
+      "halal_verdict": "✅ مباح"
+    },
+    "HUMAUSDT": {
+      "trade_id": "HUMAUSDT-1792195200000",
+      "symbol": "HUMAUSDT",
+      "entry_price": 0.02833,
+      "stop_price": 0.02701,
+      "pivot_stop": 0.02701,
+      "target_price": 0.030970000000000004,
+      "stop_dist_pct": 4.659371690787157,
+      "size_suggest_pct": 0.21462121212121185,
+      "entry_time": 1792281599999,
+      "entry_bar_open_time": 1792195200000,
+      "last_check_ms": 1792281659999,
+      "peak_price": 0.02936,
+      "last_stop_alert_price": 0.02701,
+      "stop_updates_count": 0,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "PROMUSDT": {
+      "trade_id": "PROMUSDT-1792195200000",
+      "symbol": "PROMUSDT",
+      "entry_price": 4.999,
+      "stop_price": 4.407,
+      "pivot_stop": 4.407,
+      "target_price": 6.182999999999999,
+      "stop_dist_pct": 11.842368473694732,
+      "size_suggest_pct": 0.08444256756756761,
+      "entry_time": 1792281599999,
+      "entry_bar_open_time": 1792195200000,
+      "last_check_ms": 1792281659999,
+      "peak_price": 5.211,
+      "last_stop_alert_price": 4.407,
+      "stop_updates_count": 0,
+      "halal_verdict": "✅ مباح"
+    }
+  },
+  "event_log": [
+    {
+      "type": "entry",
+      "symbol": "GTCUSDT",
+      "time_ms": 1792281599999
+    },
+    {
+      "type": "entry",
+      "symbol": "HUMAUSDT",
+      "time_ms": 1792281599999
+    },
+    {
+      "type": "entry",
+      "symbol": "PROMUSDT",
+      "time_ms": 1792281599999
+    }
+  ],
+  "daily_report": {
+    "last_reported_for_date": ""
+  },
+  "daily_analysis": {
+    "last_reported_for_date": ""
+  },
+  "weekly_report": {
+    "last_reported_week_start": ""
+  },
+  "open_report": {
+    "last_reported_for_date": "2026-10-18"
+  }
+}

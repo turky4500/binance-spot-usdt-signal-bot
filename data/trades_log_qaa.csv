@@ -1,0 +1,4 @@
+trade_id,symbol,strategy,entry_time_ms,entry_time_local,entry_date_local,entry_price,pivot_stop,entry_stop_dist_pct,size_suggest_pct,target_price,peak_price,stop_updates_count,halal_verdict,outcome,exit_reason,exit_time_ms,exit_time_local,exit_price,duration_minutes,duration_text,gross_return_pct,net_return_pct
+GTCUSDT-1792195200000,GTCUSDT,نظام القاع (يومي),1792281599999,2026-10-18 2:59:59 صباحًا,2026-10-18,0.23631,0.1884,20.274216072108665,0.04932373199749532,0.3321299999999999,0.27732,0,✅ مباح,,,,,,,,,
+HUMAUSDT-1792195200000,HUMAUSDT,نظام القاع (يومي),1792281599999,2026-10-18 2:59:59 صباحًا,2026-10-18,0.02833,0.02701,4.659371690787157,0.21462121212121185,0.030970000000000004,0.02936,0,ℹ️ لا يوجد حكم,,,,,,,,,
+PROMUSDT-1792195200000,PROMUSDT,نظام القاع (يومي),1792281599999,2026-10-18 2:59:59 صباحًا,2026-10-18,4.999,4.407,11.842368473694732,0.08444256756756761,6.182999999999999,5.211,0,✅ مباح,,,,,,,,,
