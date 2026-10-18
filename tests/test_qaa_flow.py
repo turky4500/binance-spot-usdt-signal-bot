@@ -9,6 +9,7 @@ from __future__ import annotations
 import csv
 import logging
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -29,11 +30,15 @@ class FakeTelegram:
 
 
 class FakeBinance:
-    def __init__(self, klines_1m: pd.DataFrame):
+    def __init__(self, klines_1m: pd.DataFrame | None = None, prices: dict | None = None):
         self.klines_1m = klines_1m
+        self.prices = prices or {}
 
     def get_klines_range(self, symbol, interval, start_time, end_time, limit=1000):
         return self.klines_1m
+
+    def get_all_prices(self):
+        return self.prices
 
 
 def make_bot(tmp_path: Path):
@@ -242,3 +247,60 @@ def test_entry_blocked_on_exit_day(tmp_path):
     assert not (tmp_path / "trades_log_qaa.csv").exists()
     assert not (tmp_path / "state.json").exists()
     assert not (tmp_path / "trades_log.csv").exists()
+
+
+def _report_now_ms(hour_utc=6):
+    """2026-10-18 الساعة hour_utc UTC (= hour_utc+3 بتوقيت الرياض)."""
+    return int(datetime(2026, 10, 18, hour_utc, 0, tzinfo=timezone.utc).timestamp() * 1000)
+
+
+def test_open_trades_report_lists_positions(tmp_path):
+    bot = make_bot(tmp_path)
+    trade = make_trade()
+    bot.state["open_trades"]["BTCUSDT"] = trade
+    bot.binance = FakeBinance(prices={"BTCUSDT": 108.0})
+
+    bot.send_open_trades_report_if_due(_report_now_ms(hour_utc=6))  # 09:00 الرياض
+    text = bot.telegram.sent[-1]
+    assert "صفقات نظام القاع (يومي) المفتوحة" in text
+    assert "BTCUSDT — دخلت" in text
+    assert "الدخول: 100 • السعر الآن: 108 (+8.00%)" in text
+    assert "الوقف الحالي (وقف القاع): 95" in text
+    assert "الوقف ما زال دون الدخول (-5.00%)" in text
+    assert "الهدف المقترح (عرض فقط)" in text
+    assert "الحكم الشرعي" in text
+    assert "1 صفقة مفتوحة • متوسط الحالة: +8.00%" in text
+
+    # نفس اليوم — لا تكرار
+    sent_before = len(bot.telegram.sent)
+    bot.send_open_trades_report_if_due(_report_now_ms(hour_utc=7))
+    assert len(bot.telegram.sent) == sent_before
+
+
+def test_open_trades_report_skips_wrong_hour_and_empty(tmp_path):
+    bot = make_bot(tmp_path)
+    bot.binance = FakeBinance(prices={})
+    # ساعة خاطئة مع وجود صفقة
+    bot.state["open_trades"]["BTCUSDT"] = make_trade()
+    bot.send_open_trades_report_if_due(_report_now_ms(hour_utc=2))  # 05:00 الرياض
+    assert bot.telegram.sent == []
+    # الساعة الصحيحة بدون صفقات
+    bot.state["open_trades"].clear()
+    bot.send_open_trades_report_if_due(_report_now_ms(hour_utc=6))
+    assert bot.telegram.sent == []
+
+
+def test_open_trades_report_force_sends_now(tmp_path):
+    """زر send_open_report: يرسل فورًا في أي ساعة ويتخطى حارس عدم التكرار."""
+    from src.qaa_strategy import QaaSettings
+
+    bot = make_bot(tmp_path)
+    bot.settings = QaaSettings(force_open_report=True)
+    bot.binance = FakeBinance(prices={"BTCUSDT": 108.0})
+    bot.state["open_trades"]["BTCUSDT"] = make_trade()
+
+    bot.send_open_trades_report_if_due(_report_now_ms(hour_utc=2))  # 05:00 الرياض — خارج الساعة
+    assert any("المفتوحة" in t for t in bot.telegram.sent)
+    sent_count = len(bot.telegram.sent)
+    bot.send_open_trades_report_if_due(_report_now_ms(hour_utc=3))  # استدعاء ثانٍ — لا حارس تكرار
+    assert len(bot.telegram.sent) == sent_count + 1

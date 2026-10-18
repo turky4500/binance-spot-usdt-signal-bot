@@ -66,6 +66,10 @@ class QaaSettings:
     commission_side_pct: float = _env_float("QAA_COMMISSION_SIDE_PCT", 0.1)  # العمولة لكل جهة %
     # عتبة رسالة تحديث الوقف: رسالة عند ارتفاع ≥ هذه النسبة عن آخر رسالة (0 = عند كل تغيير)
     stop_alert_step_pct: float = _env_float("QAA_STOP_ALERT_STEP_PCT", 1.0)
+    # ساعة إرسال تقرير الصفقات المفتوحة يوميًا (بتوقيت TIMEZONE، 24 ساعة)
+    open_report_hour: int = _env_int("QAA_OPEN_REPORT_HOUR", 9)
+    # إرسال التقرير فورًا بغض النظر عن الساعة (زر Run workflow → send_open_report)
+    force_open_report: bool = _env_int("QAA_FORCE_OPEN_REPORT", 0) != 0
 
     @property
     def min_bars(self) -> int:

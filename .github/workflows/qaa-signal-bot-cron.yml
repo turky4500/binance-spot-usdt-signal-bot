@@ -7,6 +7,11 @@ on:
   schedule:
     - cron: '*/10 * * * *'  # كل 10 دقائق UTC — يكشف إغلاق الشمعة اليومية وتحديثات الوقف
   workflow_dispatch:
+    inputs:
+      send_open_report:
+        description: 'إرسال تقرير الصفقات المفتوحة فورًا (تجاهل الساعة)'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -47,6 +52,10 @@ jobs:
       QAA_COMMISSION_SIDE_PCT: "0.1"
       # عتبة رسالة تحديث الوقف — رسالة عند ارتفاع ≥ 1% عن آخر رسالة (0 = عند كل تغيير)
       QAA_STOP_ALERT_STEP_PCT: "1"
+      # ساعة تقرير الصفقات المفتوحة يوميًا (بتوقيت TIMEZONE)
+      QAA_OPEN_REPORT_HOUR: "9"
+      # زر الإرسال الفوري: Run workflow → send_open_report
+      QAA_FORCE_OPEN_REPORT: ${{ github.event.inputs.send_open_report == 'true' && '1' || '0' }}
       # استثناء أزواج العملات المستقرة المربوطة — الإيقاف: "0"
       EXCLUDE_PEGGED_STABLES: "1"
     steps:

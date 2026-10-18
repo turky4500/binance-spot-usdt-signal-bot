@@ -23,6 +23,7 @@ import os
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import pandas as pd
 
@@ -545,6 +546,78 @@ class QaaSignalBot:
                 })
             self.append_event("removed_pegged", symbol, int(trade.get("entry_time") or 0))
 
+    # ─────────────────────────────────────────── تقرير الصفقات المفتوحة (يوميًا)
+    def send_open_trades_report_if_due(self, now_ms: int) -> None:
+        """رسالة يومية بقائمة كل الصفقات المفتوحة — لمتابعة يدوية كاملة.
+
+        تُرسل مرة واحدة يوميًا في ساعة ثابتة (QAA_OPEN_REPORT_HOUR، افتراضي 9 صباحًا)
+        فقط إذا وُجدت صفقات مفتوحة. السعر الآن من ticker عام (طلب واحد لكل الرموز).
+        """
+        now_local = datetime.fromtimestamp(now_ms / 1000, tz=timezone.utc).astimezone(
+            ZoneInfo(self.config.timezone_name)
+        )
+        if not (self.settings.force_open_report or now_local.hour == self.settings.open_report_hour):
+            return
+
+        report_day = now_local.date().isoformat()
+        report_state = self.state.setdefault("open_report", {})
+        if not self.settings.force_open_report and report_state.get("last_reported_for_date") == report_day:
+            return
+
+        open_trades = self.state.get("open_trades", {})
+        if not open_trades:
+            return
+
+        try:
+            prices = self.binance.get_all_prices()
+        except Exception:
+            self.logger.warning("QAA: فشل جلب الأسعار الحالية لتقرير المفتوحة", exc_info=True)
+            prices = {}
+
+        lines = [
+            f"📌 صفقات {STRATEGY_LABEL} المفتوحة",
+            f"🕛 وقت التحديث: {ms_to_local_text(now_ms, self.config.timezone_name)}",
+            "═════════════",
+        ]
+        states: list[float] = []
+        for i, (symbol, trade) in enumerate(open_trades.items(), start=1):
+            entry = float(trade["entry_price"])
+            stop = float(trade["stop_price"])
+            target = float(trade.get("target_price", entry))
+            entry_ms = int(trade["entry_time"])
+            current = prices.get(symbol)
+            if current:
+                states.append((float(current) / entry - 1.0) * 100.0)
+            lock_pct = (stop / entry - 1.0) * 100.0
+            lock_line = (
+                f"🔒 ربح مضمون عند هذا الوقف: {lock_pct:+.2f}%"
+                if lock_pct >= 0
+                else f"⚠️ الوقف ما زال دون الدخول ({lock_pct:+.2f}%)"
+            )
+            trail_note = "متحرك 🔺" if stop > float(trade.get("pivot_stop", stop)) else "وقف القاع"
+            lines.extend([
+                f"{i}) {symbol} — دخلت {local_date_key_from_ms(entry_ms, self.config.timezone_name)} "
+                f"(منذ {humanize_duration_ar(entry_ms, now_ms)})",
+                f"   الدخول: {self._fmt_price(trade, entry)}"
+                + (
+                    f" • السعر الآن: {self._fmt_price(trade, current)} ({(float(current) / entry - 1.0) * 100.0:+.2f}%)"
+                    if current else " • السعر الآن: —"
+                ),
+                f"   الوقف الحالي ({trail_note}): {self._fmt_price(trade, stop)} — {lock_line}",
+                f"   الهدف المقترح (عرض فقط): {self._fmt_price(trade, target)} "
+                f"({(target / entry - 1.0) * 100.0:+.1f}%)",
+                f"   تحديثات الوقف: {int(trade.get('stop_updates_count', 0))}",
+                f"   الحكم الشرعي: {trade.get('halal_verdict') or self.get_halal_verdict(symbol)}",
+            ])
+        lines.append("═════════════")
+        avg_line = f" • متوسط الحالة: {sum(states) / len(states):+.2f}%" if states else ""
+        lines.append(f"📌 الإجمالي: {len(open_trades)} صفقة مفتوحة{avg_line}")
+        lines.append("ℹ️ تحديثات الوقف تصلك فورًا عند ارتفاع ≥ 1%")
+        self.telegram.send_message("\n".join(lines))
+        report_state["last_reported_for_date"] = report_day
+        self.store.save(self.state)
+        self.logger.info("QAA: Open trades report sent for %s", report_day)
+
     # ─────────────────────────────────────────── التشغيل
     def run_cycle(self) -> None:
         self.refresh_symbols(force=not self.symbols)
@@ -553,6 +626,7 @@ class QaaSignalBot:
         server_time = self.binance.get_server_time()
         self.monitor_open_trades_intrabar(server_time)
         self.process_new_closed_day(server_time)
+        self.send_open_trades_report_if_due(server_time)
 
     def run(self) -> None:
         self.refresh_symbols(force=True)
