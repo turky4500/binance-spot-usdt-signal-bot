@@ -217,6 +217,28 @@ def test_timeout_exit_on_closed_day(tmp_path):
     assert bot.state["last_exit_bar_time"]["BTCUSDT"] == last_closed
 
 
+def test_exit_updates_journal_row_after_real_entry(tmp_path):
+    """دخول حقيقي (صف مسجّل في الدفتر) ثم إغلاق لاحقًا — يُحدَّث الصف بكل الحقول
+    (peak_gain_pct وغيره) دون انفجار DictWriter. Regression: أوقفت الدورة كاملة في الإنتاج."""
+    bot = make_bot(tmp_path)
+    bot.symbols = ["BTCUSDT"]
+    df = valid_entry_df()
+    last_closed = int(df.iloc[-1]["open_time"])
+    bot._process_one_closed_day({"BTCUSDT": df}, last_closed)
+    trade = bot.state["open_trades"]["BTCUSDT"]
+    # شمعة الدخول: إغلاق 349 وقمة 350 → أول رفع للوقف: 350 × 0.92 = 322
+    entry_time = int(trade["entry_time"])
+    rows = [(340.0, 345.0, 320.0, entry_time + 2 * MINUTE_MS)]  # لمس 322 → إغلاق عند الوقف
+    bot.binance = FakeBinance(make_1m(rows))
+    bot.monitor_open_trades_intrabar(entry_time + 5 * MINUTE_MS)
+
+    assert "BTCUSDT" not in bot.state["open_trades"]
+    with (tmp_path / "trades_log_qaa.csv").open(newline="", encoding="utf-8") as f:
+        row = next(csv.DictReader(f))
+    assert row["exit_reason"] != "" and row["exit_price"] != ""
+    assert row["peak_gain_pct"] != ""  # العمود الجديد كان يُسقط الكتابة كلها
+
+
 def test_entry_flow_opens_trade(tmp_path):
     bot = make_bot(tmp_path)
     bot.symbols = ["BTCUSDT"]

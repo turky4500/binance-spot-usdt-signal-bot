@@ -23,6 +23,7 @@ FIELDNAMES = [
     "size_suggest_pct",
     "target_price",
     "peak_price",
+    "peak_gain_pct",
     "stop_updates_count",
     "halal_verdict",
     "outcome",
@@ -77,7 +78,8 @@ def update_qaa_exit(data_dir: str, trade_id: str, updates: dict[str, Any]) -> bo
     changed = False
     for row in rows:
         if row.get("trade_id") == trade_id:
-            row.update(updates)
+            # حماية صارمة: مفتاح غير معرَّف لا يُسقط الدورة كلها (تصحيح حادثة peak_gain_pct)
+            row.update({key: value for key, value in updates.items() if key in FIELDNAMES})
             changed = True
     if not changed:
         return False
