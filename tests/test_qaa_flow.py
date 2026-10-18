@@ -52,6 +52,7 @@ def make_bot(tmp_path: Path):
     bot.telegram = FakeTelegram()
     bot.logger = logging.getLogger("test-qaa-flow")
     bot.settings = QaaSettings()
+    bot.binance = FakeBinance()  # افتراضي؛ الاختبارات التي تحتاج بيانات تستبدله
     bot.interval = "1d"
     bot.interval_ms = DAY_MS
     bot.data_dir = str(tmp_path)
@@ -229,6 +230,8 @@ def test_entry_flow_opens_trade(tmp_path):
     assert live["target_price"] == 471.0
     assert bot.state["last_entry_bar_time"]["BTCUSDT"] == last_closed
     assert any("إشارة دخول" in t for t in bot.telegram.sent)
+    # فتح فرصة → قائمة المفتوحة تُرسل تلقائيًا فورًا (إضافة إلى رسالة الإشارة)
+    assert any("المفتوحة" in t for t in bot.telegram.sent)
     with (tmp_path / "trades_log_qaa.csv").open(newline="", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     assert len(rows) == 1 and rows[0]["symbol"] == "BTCUSDT"

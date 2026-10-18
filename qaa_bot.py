@@ -524,6 +524,8 @@ class QaaSignalBot:
             self.store.save(self.state)
             self.send_entry_message(trade)
             self.logger.info("QAA: New trade opened for %s @ %s", symbol, signal["entry_price"])
+            # قائمة المفتوحة تُرسل تلقائيًا فور فتح أي فرصة (متابعة شاملة لكل المراكز)
+            self.send_open_trades_report_if_due(signal["bar_close_time"], force=True)
 
     def purge_pegged_stable_trades(self) -> None:
         """يحذف أي صفقة لعملة مستقرة مربوطة تسللت (لا دخل للضجيج في نظام القاع)."""
@@ -547,21 +549,23 @@ class QaaSignalBot:
             self.append_event("removed_pegged", symbol, int(trade.get("entry_time") or 0))
 
     # ─────────────────────────────────────────── تقرير الصفقات المفتوحة (يوميًا)
-    def send_open_trades_report_if_due(self, now_ms: int) -> None:
-        """رسالة يومية بقائمة كل الصفقات المفتوحة — لمتابعة يدوية كاملة.
+    def send_open_trades_report_if_due(self, now_ms: int, force: bool = False) -> None:
+        """رسالة بقائمة كل الصفقات المفتوحة — لمتابعة يدوية كاملة.
 
-        تُرسل مرة واحدة يوميًا في ساعة ثابتة (QAA_OPEN_REPORT_HOUR، افتراضي 9 صباحًا)
+        تُرسل تلقائيًا: (1) مرة يوميًا في ساعة ثابتة (QAA_OPEN_REPORT_HOUR، افتراضي 9 صباحًا)
+        (2) فور فتح فرصة جديدة (force=True) (3) عند زر send_open_report في Actions.
         فقط إذا وُجدت صفقات مفتوحة. السعر الآن من ticker عام (طلب واحد لكل الرموز).
         """
+        force = force or self.settings.force_open_report
         now_local = datetime.fromtimestamp(now_ms / 1000, tz=timezone.utc).astimezone(
             ZoneInfo(self.config.timezone_name)
         )
-        if not (self.settings.force_open_report or now_local.hour == self.settings.open_report_hour):
+        if not (force or now_local.hour == self.settings.open_report_hour):
             return
 
         report_day = now_local.date().isoformat()
         report_state = self.state.setdefault("open_report", {})
-        if not self.settings.force_open_report and report_state.get("last_reported_for_date") == report_day:
+        if not force and report_state.get("last_reported_for_date") == report_day:
             return
 
         open_trades = self.state.get("open_trades", {})
