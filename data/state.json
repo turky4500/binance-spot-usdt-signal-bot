@@ -628,7 +628,8 @@
     "ANIMEUSDT": 1792108800000,
     "KGSTUSDT": 1792137600000,
     "MRNABUSDT": 1792152000000,
-    "NILUSDT": 1792296000000
+    "NILUSDT": 1792296000000,
+    "QKCUSDT": 1792339200000
   },
   "open_trades": {
     "KAVAUSDT": {
@@ -648,7 +649,7 @@
       ],
       "entry_time": 1791856799999,
       "entry_bar_open_time": 1791853200000,
-      "last_target_check_ms": 1792351380000,
+      "last_target_check_ms": 1792351680000,
       "atr_at_entry": 0.0003087303376198545,
       "trend_length": 89,
       "peak_price": 0.07237,
@@ -676,7 +677,7 @@
       ],
       "entry_time": 1792137599999,
       "entry_bar_open_time": 1792123200000,
-      "last_target_check_ms": 1792351380000,
+      "last_target_check_ms": 1792351680000,
       "atr_at_entry": 0.00010755741164504311,
       "trend_length": 89,
       "peak_price": 0.00474,
@@ -699,34 +700,11 @@
       ],
       "entry_time": 1792310399999,
       "entry_bar_open_time": 1792296000000,
-      "last_target_check_ms": 1792351380000,
+      "last_target_check_ms": 1792351680000,
       "atr_at_entry": 0.001536595145105418,
       "trend_length": 89,
       "peak_price": 0.08,
       "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
-    "QKCUSDT": {
-      "trade_id": "QKCUSDT-1792324800000",
-      "symbol": "QKCUSDT",
-      "entry_price": 0.003131,
-      "stop_price": 0.002533440722885141,
-      "targets": [
-        0.003445875037259686,
-        0.0037607500745193713,
-        0.004075625111779058
-      ],
-      "hit": [
-        false,
-        false,
-        false
-      ],
-      "entry_time": 1792339199999,
-      "entry_bar_open_time": 1792324800000,
-      "last_target_check_ms": 1792351380000,
-      "atr_at_entry": 6.297500745193714e-05,
-      "trend_length": 89,
-      "peak_price": 0.00325,
-      "halal_verdict": "✅ مباح"
     }
   },
   "event_log": [
@@ -5859,6 +5837,11 @@
       "type": "entry",
       "symbol": "QKCUSDT",
       "time_ms": 1792339199999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "QKCUSDT",
+      "time_ms": 1792351499999
     }
   ],
   "daily_report": {
@@ -5931,6 +5914,7 @@
     "MRNABUSDT": 1792504619999,
     "ZKUSDT": 1792618019999,
     "NILUSDT": 1792646699999,
-    "EIGENUSDT": 1792676039999
+    "EIGENUSDT": 1792676039999,
+    "QKCUSDT": 1792697099999
   }
 }
