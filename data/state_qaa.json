@@ -1,16 +1,35 @@
 {
-  "last_processed_open_time": 1792195200000,
+  "last_processed_open_time": 1792281600000,
   "last_entry_bar_time": {
     "GTCUSDT": 1792195200000,
     "HUMAUSDT": 1792195200000,
-    "PROMUSDT": 1792195200000
+    "PROMUSDT": 1792195200000,
+    "币安人生USDT": 1792281600000
   },
   "last_exit_bar_time": {
     "GTCUSDT": 1792281600000,
     "HUMAUSDT": 1792281600000,
     "PROMUSDT": 1792281600000
   },
-  "open_trades": {},
+  "open_trades": {
+    "币安人生USDT": {
+      "trade_id": "币安人生USDT-1792281600000",
+      "symbol": "币安人生USDT",
+      "entry_price": 0.4844,
+      "stop_price": 0.4627,
+      "pivot_stop": 0.4627,
+      "target_price": 0.5278,
+      "stop_dist_pct": 4.479768786127167,
+      "size_suggest_pct": 0.22322580645161294,
+      "entry_time": 1792367999999,
+      "entry_bar_open_time": 1792281600000,
+      "last_check_ms": 1792368059999,
+      "peak_price": 0.4867,
+      "last_stop_alert_price": 0.4627,
+      "stop_updates_count": 0,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    }
+  },
   "event_log": [
     {
       "type": "entry",
@@ -46,6 +65,11 @@
       "type": "exit_loss",
       "symbol": "PROMUSDT",
       "time_ms": 1792298339999
+    },
+    {
+      "type": "entry",
+      "symbol": "币安人生USDT",
+      "time_ms": 1792367999999
     }
   ],
   "daily_report": {
@@ -58,6 +82,6 @@
     "last_reported_week_start": ""
   },
   "open_report": {
-    "last_reported_for_date": "2026-10-18"
+    "last_reported_for_date": "2026-10-19"
   }
 }
