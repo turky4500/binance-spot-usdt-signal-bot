@@ -433,7 +433,7 @@
     "SUSDT": 1791730800000,
     "币安人生USDT": 1791734400000,
     "PUMPUSDT": 1791752400000,
-    "SENTUSDT": 1791752400000,
+    "SENTUSDT": 1792425600000,
     "SQQQBUSDT": 1791990000000,
     "PLUMEUSDT": 1791763200000,
     "AEVOUSDT": 1791810000000,
@@ -649,7 +649,7 @@
       ],
       "entry_time": 1791856799999,
       "entry_bar_open_time": 1791853200000,
-      "last_target_check_ms": 1792434180000,
+      "last_target_check_ms": 1792434480000,
       "atr_at_entry": 0.0003087303376198545,
       "trend_length": 89,
       "peak_price": 0.07237,
@@ -677,7 +677,7 @@
       ],
       "entry_time": 1792137599999,
       "entry_bar_open_time": 1792123200000,
-      "last_target_check_ms": 1792434180000,
+      "last_target_check_ms": 1792434480000,
       "atr_at_entry": 0.00010755741164504311,
       "trend_length": 89,
       "peak_price": 0.0049,
@@ -705,33 +705,10 @@
       ],
       "entry_time": 1792310399999,
       "entry_bar_open_time": 1792296000000,
-      "last_target_check_ms": 1792434180000,
+      "last_target_check_ms": 1792434480000,
       "atr_at_entry": 0.001536595145105418,
       "trend_length": 89,
       "peak_price": 0.08,
-      "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
-    "SENTUSDT": {
-      "trade_id": "SENTUSDT-1792368000000",
-      "symbol": "SENTUSDT",
-      "entry_price": 0.0233,
-      "stop_price": 0.021310581122528933,
-      "targets": [
-        0.025472937083984556,
-        0.027645874167969115,
-        0.02981881125195367
-      ],
-      "hit": [
-        false,
-        false,
-        false
-      ],
-      "entry_time": 1792382399999,
-      "entry_bar_open_time": 1792368000000,
-      "last_target_check_ms": 1792434180000,
-      "atr_at_entry": 0.00043458741679691133,
-      "trend_length": 89,
-      "peak_price": 0.02377,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     },
     "AMZNBUSDT": {
@@ -751,7 +728,7 @@
       ],
       "entry_time": 1792425599999,
       "entry_bar_open_time": 1792411200000,
-      "last_target_check_ms": 1792434180000,
+      "last_target_check_ms": 1792434480000,
       "atr_at_entry": 1.6452124638300962,
       "trend_length": 89,
       "peak_price": 263.53,
@@ -5913,6 +5890,11 @@
       "type": "entry",
       "symbol": "AMZNBUSDT",
       "time_ms": 1792425599999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "SENTUSDT",
+      "time_ms": 1792434239999
     }
   ],
   "daily_report": {
@@ -5986,6 +5968,7 @@
     "ZKUSDT": 1792618019999,
     "NILUSDT": 1792646699999,
     "EIGENUSDT": 1792676039999,
-    "QKCUSDT": 1792697099999
+    "QKCUSDT": 1792697099999,
+    "SENTUSDT": 1792779839999
   }
 }
