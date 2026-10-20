@@ -210,6 +210,17 @@ class QaaSignalBot:
     def _fmt_price(self, trade: dict, value: float | str) -> str:
         return format_price(float(value), self.price_ticks.get(str(trade.get("symbol", ""))))
 
+    def _safe_send(self, text: str) -> None:
+        """إرسال آمن: فشل رسالة واحدة (تجاوز 4096، شبكة...) لا يوقف دورة المراقبة.
+
+        الدرس: يوم 2026-10-20 — تقرير بـ15 صفقة تجاوز حد تيليجرام (HTTP400)
+        قتل الدورة قبل حفظ الحالة → أربع دورات متعاقبة فشلت ودفعت النظام18 ساعة.
+        """
+        try:
+            self.telegram.send_message(text)
+        except Exception:
+            self.logger.error("QAA: فشل إرسال رسالة تيليجرام — تُجتاز وتُسجَّل وتُكمل الدورة", exc_info=True)
+
     def send_entry_message(self, trade: dict) -> None:
         verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
         entry = float(trade["entry_price"])
@@ -233,7 +244,7 @@ class QaaSignalBot:
             f"─────────────\n"
             f"الحكم الشرعي: {verdict}"
         )
-        self.telegram.send_message(text)
+        self._safe_send(text)
         self.append_event("entry", trade["symbol"], int(trade["entry_time"]))
         append_qaa_entry(self.data_dir, self._build_trade_log_record(trade))
 
@@ -262,7 +273,7 @@ class QaaSignalBot:
             f"─────────────\n"
             f"الحكم الشرعي: {verdict}"
         )
-        self.telegram.send_message(text)
+        self._safe_send(text)
         self.append_event("stop_alert", trade["symbol"], int(event_ms))
 
     def send_close_message(
@@ -301,7 +312,7 @@ class QaaSignalBot:
             f"─────────────\n"
             f"الحكم الشرعي: {verdict}"
         )
-        self.telegram.send_message(text)
+        self._safe_send(text)
         self.append_event("exit_win" if outcome == "win" else "exit_loss", trade["symbol"], int(event_time_ms))
         self._record_trade_exit(trade, outcome, reason, int(event_time_ms), float(exit_price))
 
@@ -553,19 +564,20 @@ class QaaSignalBot:
         """رسالة بقائمة كل الصفقات المفتوحة — لمتابعة يدوية كاملة.
 
         تُرسل تلقائيًا: (1) مرة يوميًا في ساعة ثابتة (QAA_OPEN_REPORT_HOUR، افتراضي 9 صباحًا)
-        (2) فور فتح فرصة جديدة (force=True) (3) عند زر send_open_report في Actions.
-        فقط إذا وُجدت صفقات مفتوحة. السعر الآن من ticker عام (طلب واحد لكل الرموز).
+        (2) مع أول فرصة جديدة في اليوم (force=True — مرة يوميًا لا أكثر، ف يوم
+            الإشارات الكثيرة لا يُغرق القوائم) (3) زر send_open_report في Actions يتجاوز الحواجز.
+        فقط إذا وُجدت صفقات مفتوحة. مقسّمة إلى رسائل ≤ 3800 حرفًا (حد تيليجرام 4096).
         """
-        force = force or self.settings.force_open_report
+        manual = self.settings.force_open_report  # زر Actions — يتجاوز كل الحواجز
         now_local = datetime.fromtimestamp(now_ms / 1000, tz=timezone.utc).astimezone(
             ZoneInfo(self.config.timezone_name)
         )
-        if not (force or now_local.hour == self.settings.open_report_hour):
+        if not (manual or force or now_local.hour == self.settings.open_report_hour):
             return
 
         report_day = now_local.date().isoformat()
         report_state = self.state.setdefault("open_report", {})
-        if not force and report_state.get("last_reported_for_date") == report_day:
+        if not manual and report_state.get("last_reported_for_date") == report_day:
             return
 
         open_trades = self.state.get("open_trades", {})
@@ -578,12 +590,13 @@ class QaaSignalBot:
             self.logger.warning("QAA: فشل جلب الأسعار الحالية لتقرير المفتوحة", exc_info=True)
             prices = {}
 
-        lines = [
+        header = [
             f"📌 صفقات {STRATEGY_LABEL} المفتوحة",
             f"🕛 وقت التحديث: {ms_to_local_text(now_ms, self.config.timezone_name)}",
             "═════════════",
         ]
         states: list[float] = []
+        blocks: list[list[str]] = []
         for i, (symbol, trade) in enumerate(open_trades.items(), start=1):
             entry = float(trade["entry_price"])
             stop = float(trade["stop_price"])
@@ -599,7 +612,7 @@ class QaaSignalBot:
                 else f"⚠️ الوقف ما زال دون الدخول ({lock_pct:+.2f}%)"
             )
             trail_note = "متحرك 🔺" if stop > float(trade.get("pivot_stop", stop)) else "وقف القاع"
-            lines.extend([
+            blocks.append([
                 f"{i}) {symbol} — دخلت {local_date_key_from_ms(entry_ms, self.config.timezone_name)} "
                 f"(منذ {humanize_duration_ar(entry_ms, now_ms)})",
                 f"   الدخول: {self._fmt_price(trade, entry)}"
@@ -613,14 +626,32 @@ class QaaSignalBot:
                 f"   تحديثات الوقف: {int(trade.get('stop_updates_count', 0))}",
                 f"   الحكم الشرعي: {trade.get('halal_verdict') or self.get_halal_verdict(symbol)}",
             ])
-        lines.append("═════════════")
         avg_line = f" • متوسط الحالة: {sum(states) / len(states):+.2f}%" if states else ""
-        lines.append(f"📌 الإجمالي: {len(open_trades)} صفقة مفتوحة{avg_line}")
-        lines.append("ℹ️ تحديثات الوقف تصلك فورًا عند ارتفاع ≥ 1%")
-        self.telegram.send_message("\n".join(lines))
+        footer = [
+            "═════════════",
+            f"📌 الإجمالي: {len(open_trades)} صفقة مفتوحة{avg_line}",
+            "ℹ️ تحديثات الوقف تصلك فورًا عند ارتفاع ≥ 1%",
+        ]
+        # إرسال مقسّم ≤ 3800 حرفًا (حد تيليجرام 4096): يوم15+ صفقة كان يتجاوزه ويقتل الدورة
+        limit = 3800
+        messages: list[list[str]] = []
+        current_lines = list(header)
+        size = sum(len(line) + 1 for line in current_lines)
+        for block in blocks:
+            block_size = sum(len(line) + 1 for line in block)
+            if size + block_size > limit and len(current_lines) > len(header):
+                messages.append(current_lines)
+                current_lines = [f"📋 متابعة ({len(open_trades)} صفقة) — {STRATEGY_LABEL}", "═════════════"]
+                size = sum(len(line) + 1 for line in current_lines)
+            current_lines.extend(block)
+            size += block_size
+        current_lines.extend(footer)
+        messages.append(current_lines)
+        for message in messages:
+            self._safe_send("\n".join(message))
         report_state["last_reported_for_date"] = report_day
         self.store.save(self.state)
-        self.logger.info("QAA: Open trades report sent for %s", report_day)
+        self.logger.info("QAA: Open trades report sent for %s (%d part(s))", report_day, len(messages))
 
     # ─────────────────────────────────────────── التشغيل
     def run_cycle(self) -> None:
