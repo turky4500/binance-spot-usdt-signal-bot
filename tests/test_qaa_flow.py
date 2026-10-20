@@ -140,14 +140,20 @@ def test_entry_message_details_and_zero_touch(tmp_path):
 def test_stop_update_message_content(tmp_path):
     bot = make_bot(tmp_path)
     trade = make_trade()
-    bot.send_stop_update_message(trade, 95.0, 104.5, BASE_MS + DAY_MS)
+    bot.send_stop_update_message(trade, 95.0, 104.5, BASE_MS + DAY_MS, current_price=108.0)
     text = bot.telegram.sent[-1]
     assert "تحديث وقف متحرك" in text
     assert "الوقف السابق: 95" in text
     assert "الوقف الجديد: 104.5 (+10.00%)" in text
+    assert "السعر الآن: 108 (+8.00% من الدخول • 3.35% فوق الوقف الجديد)" in text
     assert "الربح المضمون" in text and "+4.50%" in text
     assert "عدّل وقفك يدويًا" in text
     assert "الحكم الشرعي" in text
+
+    # بلا سعر (مسار قديم/احتياطي) — السطر يُomit ولا تنكسر الرسالة
+    bot.telegram.sent.clear()
+    bot.send_stop_update_message(trade, 95.0, 104.5, BASE_MS + DAY_MS)
+    assert "السعر الآن" not in bot.telegram.sent[-1]
 
 
 def test_intrabar_trailing_alert_gated_by_step(tmp_path):

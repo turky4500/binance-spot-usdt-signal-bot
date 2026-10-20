@@ -246,8 +246,13 @@ class QaaSignalBot:
         self.append_event("entry", trade["symbol"], int(trade["entry_time"]))
         append_qaa_entry(self.data_dir, self._build_trade_log_record(trade))
 
-    def send_stop_update_message(self, trade: dict, old_stop: float, new_stop: float, event_ms: int) -> None:
-        """رسالة ارتفاع الوقف المتحرك — ليعدّل المستخدم وقفه يدويًا على منصته."""
+    def send_stop_update_message(
+        self, trade: dict, old_stop: float, new_stop: float, event_ms: int, current_price: float | None = None
+    ) -> None:
+        """رسالة ارتفاع الوقف المتحرك — ليعدّل المستخدم وقفه يدويًا على منصته.
+
+        current_price: السعر الحالي وقت التحديث ليقرّر المستخدم مسارته/تعديل وقفه.
+        """
         verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
         entry = float(trade["entry_price"])
         rise_pct = (float(new_stop) / float(old_stop) - 1.0) * 100.0
@@ -257,10 +262,20 @@ class QaaSignalBot:
             if lock_pct >= 0
             else f"⚠️ الوقف ما زال دون سعر الدخول ({lock_pct:+.2f}%)"
         )
+        price_line = ""
+        if current_price:
+            now_pct = (float(current_price) / entry - 1.0) * 100.0
+            gap = (float(current_price) / float(new_stop) - 1.0) * 100.0
+            gap_text = f"{gap:.2f}% فوق الوقف الجديد" if gap >= 0 else f"{-gap:.2f}% دون الوقف الجديد"
+            price_line = (
+                f"السعر الآن: {self._fmt_price(trade, current_price)} "
+                f"({now_pct:+.2f}% من الدخول • {gap_text})\n"
+            )
         text = (
             f"📈 تحديث وقف متحرك — {STRATEGY_LABEL}\n"
             f"الزوج: {trade['symbol']}\n"
             f"سعر الدخول: {self._fmt_price(trade, entry)}\n"
+            f"{price_line}"
             f"الوقف السابق: {self._fmt_price(trade, old_stop)}\n"
             f"الوقف الجديد: {self._fmt_price(trade, new_stop)} (+{rise_pct:.2f}%)\n"
             f"{lock_line}\n"
@@ -377,7 +392,7 @@ class QaaSignalBot:
                 if new_stop > cur_stop:
                     step = self.settings.stop_alert_step_pct
                     if should_raise_alert(new_stop, float(trade.get("last_stop_alert_price", cur_stop)), step):
-                        self.send_stop_update_message(trade, cur_stop, new_stop, event_ms)
+                        self.send_stop_update_message(trade, cur_stop, new_stop, event_ms, float(row.close))
                         trade["last_stop_alert_price"] = new_stop
                         trade["stop_updates_count"] = int(trade.get("stop_updates_count", 0)) + 1
 
@@ -482,7 +497,7 @@ class QaaSignalBot:
                 trade["stop_price"] = new_stop
                 step = self.settings.stop_alert_step_pct
                 if should_raise_alert(new_stop, float(trade.get("last_stop_alert_price", cur_stop)), step):
-                    self.send_stop_update_message(trade, cur_stop, new_stop, candle_close_time)
+                    self.send_stop_update_message(trade, cur_stop, new_stop, candle_close_time, candle_close)
                     trade["last_stop_alert_price"] = new_stop
                     trade["stop_updates_count"] = int(trade.get("stop_updates_count", 0)) + 1
 
