@@ -9,7 +9,6 @@ from __future__ import annotations
 import csv
 import logging
 import sys
-from datetime import datetime, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -252,8 +251,6 @@ def test_entry_flow_opens_trade(tmp_path):
     assert live["target_price"] == 471.0
     assert bot.state["last_entry_bar_time"]["BTCUSDT"] == last_closed
     assert any("إشارة دخول" in t for t in bot.telegram.sent)
-    # فتح فرصة → قائمة المفتوحة تُرسل تلقائيًا فورًا (إضافة إلى رسالة الإشارة)
-    assert any("المفتوحة" in t for t in bot.telegram.sent)
     with (tmp_path / "trades_log_qaa.csv").open(newline="", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     assert len(rows) == 1 and rows[0]["symbol"] == "BTCUSDT"
@@ -272,95 +269,6 @@ def test_entry_blocked_on_exit_day(tmp_path):
     assert not (tmp_path / "trades_log_qaa.csv").exists()
     assert not (tmp_path / "state.json").exists()
     assert not (tmp_path / "trades_log.csv").exists()
-
-
-def _report_now_ms(hour_utc=6):
-    """2026-10-18 الساعة hour_utc UTC (= hour_utc+3 بتوقيت الرياض)."""
-    return int(datetime(2026, 10, 18, hour_utc, 0, tzinfo=timezone.utc).timestamp() * 1000)
-
-
-def test_open_trades_report_lists_positions(tmp_path):
-    bot = make_bot(tmp_path)
-    trade = make_trade()
-    bot.state["open_trades"]["BTCUSDT"] = trade
-    bot.binance = FakeBinance(prices={"BTCUSDT": 108.0})
-
-    bot.send_open_trades_report_if_due(_report_now_ms(hour_utc=6))  # 09:00 الرياض
-    text = bot.telegram.sent[-1]
-    assert "صفقات نظام القاع (يومي) المفتوحة" in text
-    assert "BTCUSDT — دخلت" in text
-    assert "الدخول: 100 • السعر الآن: 108 (+8.00%)" in text
-    assert "الوقف الحالي (وقف القاع): 95" in text
-    assert "الوقف ما زال دون الدخول (-5.00%)" in text
-    assert "الهدف المقترح (عرض فقط)" in text
-    assert "الحكم الشرعي" in text
-    assert "1 صفقة مفتوحة • متوسط الحالة: +8.00%" in text
-
-    # نفس اليوم — لا تكرار
-    sent_before = len(bot.telegram.sent)
-    bot.send_open_trades_report_if_due(_report_now_ms(hour_utc=7))
-    assert len(bot.telegram.sent) == sent_before
-
-
-def test_open_trades_report_skips_wrong_hour_and_empty(tmp_path):
-    bot = make_bot(tmp_path)
-    bot.binance = FakeBinance(prices={})
-    # ساعة خاطئة مع وجود صفقة
-    bot.state["open_trades"]["BTCUSDT"] = make_trade()
-    bot.send_open_trades_report_if_due(_report_now_ms(hour_utc=2))  # 05:00 الرياض
-    assert bot.telegram.sent == []
-    # الساعة الصحيحة بدون صفقات
-    bot.state["open_trades"].clear()
-    bot.send_open_trades_report_if_due(_report_now_ms(hour_utc=6))
-    assert bot.telegram.sent == []
-
-
-def test_open_trades_report_force_sends_now(tmp_path):
-    """زر send_open_report: يرسل فورًا في أي ساعة ويتخطى حارس عدم التكرار."""
-    from src.qaa_strategy import QaaSettings
-
-    bot = make_bot(tmp_path)
-    bot.settings = QaaSettings(force_open_report=True)
-    bot.binance = FakeBinance(prices={"BTCUSDT": 108.0})
-    bot.state["open_trades"]["BTCUSDT"] = make_trade()
-
-    bot.send_open_trades_report_if_due(_report_now_ms(hour_utc=2))  # 05:00 الرياض — خارج الساعة
-    assert any("المفتوحة" in t for t in bot.telegram.sent)
-    sent_count = len(bot.telegram.sent)
-    bot.send_open_trades_report_if_due(_report_now_ms(hour_utc=3))  # استدعاء ثانٍ — لا حارس تكرار
-    assert len(bot.telegram.sent) == sent_count + 1
-
-
-def test_entry_forced_report_deduped_per_day(tmp_path):
-    """يوم إشارات كثيرة (15 دخولًا): قائمة واحدة يوميًا فقط — لا غرق بالرسائل."""
-    bot = make_bot(tmp_path)
-    bot.binance = FakeBinance(prices={})
-    bot.state["open_trades"]["BTCUSDT"] = make_trade()
-
-    bot.send_open_trades_report_if_due(_report_now_ms(hour_utc=6), force=True)
-    assert len(bot.telegram.sent) == 1
-    bot.send_open_trades_report_if_due(_report_now_ms(hour_utc=6), force=True)
-    assert len(bot.telegram.sent) == 1  # نفس اليوم — مرة واحدة
-    next_day = int(datetime(2026, 10, 19, 6, 0, tzinfo=timezone.utc).timestamp() * 1000)
-    bot.send_open_trades_report_if_due(next_day, force=True)
-    assert len(bot.telegram.sent) == 2  # يوم جديد — تُرسل من جديد
-
-
-def test_open_trades_report_chunks_to_telegram_limit(tmp_path):
-    """قائمة ضخمة (40 صفقة) تُقسَّم رسائل كل واحدة ≤ 4096 — درس حادثة2026-10-20."""
-    bot = make_bot(tmp_path)
-    bot.binance = FakeBinance(prices={})
-    for i in range(40):
-        symbol = f"COIN{i}USDT"
-        bot.state["open_trades"][symbol] = make_trade(symbol=symbol, entry=100.0 + i)
-
-    bot.send_open_trades_report_if_due(_report_now_ms(hour_utc=6))
-
-    assert len(bot.telegram.sent) > 1  # اقتُسِمت
-    assert all(len(m) <= 4096 for m in bot.telegram.sent)
-    joined = "\n".join(bot.telegram.sent)
-    assert "COIN0USDT" in joined and "COIN39USDT" in joined  # لا صفقة ضائعة
-    assert "الإجمالي: 40 صفقة مفتوحة" in bot.telegram.sent[-1]  # الخاتمة في آخر جزء
 
 
 def test_entry_flow_survives_telegram_failure(tmp_path):

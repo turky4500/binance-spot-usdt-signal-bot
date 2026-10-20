@@ -21,9 +21,7 @@ from __future__ import annotations
 import logging
 import os
 import time
-from datetime import datetime, timezone
 from pathlib import Path
-from zoneinfo import ZoneInfo
 
 import pandas as pd
 
@@ -535,8 +533,6 @@ class QaaSignalBot:
             self.store.save(self.state)
             self.send_entry_message(trade)
             self.logger.info("QAA: New trade opened for %s @ %s", symbol, signal["entry_price"])
-            # قائمة المفتوحة تُرسل تلقائيًا فور فتح أي فرصة (متابعة شاملة لكل المراكز)
-            self.send_open_trades_report_if_due(signal["bar_close_time"], force=True)
 
     def purge_pegged_stable_trades(self) -> None:
         """يحذف أي صفقة لعملة مستقرة مربوطة تسللت (لا دخل للضجيج في نظام القاع)."""
@@ -559,100 +555,6 @@ class QaaSignalBot:
                 })
             self.append_event("removed_pegged", symbol, int(trade.get("entry_time") or 0))
 
-    # ─────────────────────────────────────────── تقرير الصفقات المفتوحة (يوميًا)
-    def send_open_trades_report_if_due(self, now_ms: int, force: bool = False) -> None:
-        """رسالة بقائمة كل الصفقات المفتوحة — لمتابعة يدوية كاملة.
-
-        تُرسل تلقائيًا: (1) مرة يوميًا في ساعة ثابتة (QAA_OPEN_REPORT_HOUR، افتراضي 9 صباحًا)
-        (2) مع أول فرصة جديدة في اليوم (force=True — مرة يوميًا لا أكثر، ف يوم
-            الإشارات الكثيرة لا يُغرق القوائم) (3) زر send_open_report في Actions يتجاوز الحواجز.
-        فقط إذا وُجدت صفقات مفتوحة. مقسّمة إلى رسائل ≤ 3800 حرفًا (حد تيليجرام 4096).
-        """
-        manual = self.settings.force_open_report  # زر Actions — يتجاوز كل الحواجز
-        now_local = datetime.fromtimestamp(now_ms / 1000, tz=timezone.utc).astimezone(
-            ZoneInfo(self.config.timezone_name)
-        )
-        if not (manual or force or now_local.hour == self.settings.open_report_hour):
-            return
-
-        report_day = now_local.date().isoformat()
-        report_state = self.state.setdefault("open_report", {})
-        if not manual and report_state.get("last_reported_for_date") == report_day:
-            return
-
-        open_trades = self.state.get("open_trades", {})
-        if not open_trades:
-            return
-
-        try:
-            prices = self.binance.get_all_prices()
-        except Exception:
-            self.logger.warning("QAA: فشل جلب الأسعار الحالية لتقرير المفتوحة", exc_info=True)
-            prices = {}
-
-        header = [
-            f"📌 صفقات {STRATEGY_LABEL} المفتوحة",
-            f"🕛 وقت التحديث: {ms_to_local_text(now_ms, self.config.timezone_name)}",
-            "═════════════",
-        ]
-        states: list[float] = []
-        blocks: list[list[str]] = []
-        for i, (symbol, trade) in enumerate(open_trades.items(), start=1):
-            entry = float(trade["entry_price"])
-            stop = float(trade["stop_price"])
-            target = float(trade.get("target_price", entry))
-            entry_ms = int(trade["entry_time"])
-            current = prices.get(symbol)
-            if current:
-                states.append((float(current) / entry - 1.0) * 100.0)
-            lock_pct = (stop / entry - 1.0) * 100.0
-            lock_line = (
-                f"🔒 ربح مضمون عند هذا الوقف: {lock_pct:+.2f}%"
-                if lock_pct >= 0
-                else f"⚠️ الوقف ما زال دون الدخول ({lock_pct:+.2f}%)"
-            )
-            trail_note = "متحرك 🔺" if stop > float(trade.get("pivot_stop", stop)) else "وقف القاع"
-            blocks.append([
-                f"{i}) {symbol} — دخلت {local_date_key_from_ms(entry_ms, self.config.timezone_name)} "
-                f"(منذ {humanize_duration_ar(entry_ms, now_ms)})",
-                f"   الدخول: {self._fmt_price(trade, entry)}"
-                + (
-                    f" • السعر الآن: {self._fmt_price(trade, current)} ({(float(current) / entry - 1.0) * 100.0:+.2f}%)"
-                    if current else " • السعر الآن: —"
-                ),
-                f"   الوقف الحالي ({trail_note}): {self._fmt_price(trade, stop)} — {lock_line}",
-                f"   الهدف المقترح (عرض فقط): {self._fmt_price(trade, target)} "
-                f"({(target / entry - 1.0) * 100.0:+.1f}%)",
-                f"   تحديثات الوقف: {int(trade.get('stop_updates_count', 0))}",
-                f"   الحكم الشرعي: {trade.get('halal_verdict') or self.get_halal_verdict(symbol)}",
-            ])
-        avg_line = f" • متوسط الحالة: {sum(states) / len(states):+.2f}%" if states else ""
-        footer = [
-            "═════════════",
-            f"📌 الإجمالي: {len(open_trades)} صفقة مفتوحة{avg_line}",
-            "ℹ️ تحديثات الوقف تصلك فورًا عند ارتفاع ≥ 1%",
-        ]
-        # إرسال مقسّم ≤ 3800 حرفًا (حد تيليجرام 4096): يوم15+ صفقة كان يتجاوزه ويقتل الدورة
-        limit = 3800
-        messages: list[list[str]] = []
-        current_lines = list(header)
-        size = sum(len(line) + 1 for line in current_lines)
-        for block in blocks:
-            block_size = sum(len(line) + 1 for line in block)
-            if size + block_size > limit and len(current_lines) > len(header):
-                messages.append(current_lines)
-                current_lines = [f"📋 متابعة ({len(open_trades)} صفقة) — {STRATEGY_LABEL}", "═════════════"]
-                size = sum(len(line) + 1 for line in current_lines)
-            current_lines.extend(block)
-            size += block_size
-        current_lines.extend(footer)
-        messages.append(current_lines)
-        for message in messages:
-            self._safe_send("\n".join(message))
-        report_state["last_reported_for_date"] = report_day
-        self.store.save(self.state)
-        self.logger.info("QAA: Open trades report sent for %s (%d part(s))", report_day, len(messages))
-
     # ─────────────────────────────────────────── التشغيل
     def run_cycle(self) -> None:
         self.refresh_symbols(force=not self.symbols)
@@ -661,7 +563,6 @@ class QaaSignalBot:
         server_time = self.binance.get_server_time()
         self.monitor_open_trades_intrabar(server_time)
         self.process_new_closed_day(server_time)
-        self.send_open_trades_report_if_due(server_time)
 
     def run(self) -> None:
         self.refresh_symbols(force=True)
