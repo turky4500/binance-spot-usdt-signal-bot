@@ -1,0 +1,107 @@
+name: Saudi QAA Bot Cron
+
+# نظام القاع (سهم يومي) — نظام موازٍ مستقل تمامًا (sa_bot.py) عن qaa وTarget Trend:
+#   الحالة: data/state_sa.json • الدفتر: data/trades_log_sa.csv
+#   الحكم الشرعي: config/sa_halal.json • القائمة: config/sa_universe.txt
+# لا يقرأ ولا يكتب أي ملف يخص نظامًا آخر (state.json / state_qaa.json / trades_log*.csv).
+# بادئة متغيرات البيئة SA_* وworkflow وconcurrency منفصلان.
+
+on:
+  schedule:
+    # بعد إغلاق تداول 15:00 الرياض (12:00 UTC)، التداول الأحد–الخميس فقط (تافيق 0-4).
+    # ثلاث مرات (12:10/13:10/14:10 UTC): الأولى تلتقط الإغلاق، والباقيات إعادة محاولة
+    # إن تأخّر ياهو في نشر شمعة اليوم. المعالجة بالتاريخ فتصحّ الدورات المتكررة ولا تُكرر
+    # إشارة (last_processed_date) ولا تُعاد فتح صفقة (لا إعادة دخول في يوم الخروج).
+    - cron: '10 12-14 * * 0-4'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sa-signal-bot-cron
+  cancel-in-progress: false
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TIMEZONE: Asia/Riyadh
+      POLL_SECONDS: 60
+      REQUEST_TIMEOUT: 20
+      MAX_WORKERS: 8
+      LOG_LEVEL: INFO
+      # ── مسارات النظام المنفصلة (لا تمسّ state.json / state_qaa.json) ──
+      SA_STATE_FILE: data/state_sa.json
+      SA_HALAL_DIR: data/sa
+      SA_UNIVERSE_FILE: config/sa_universe.txt
+      # ── البيانات (Yahoo Finance، أسعار معدّلة) ──
+      SA_DATA_RANGE: 2y            # نافذة شموع يومية (~490 شمعة > تمهيد EMA200)
+      SA_PROBE_CODE: '2222'        # رمز مسبار رخيص قبل جلب 383 رمزًا
+      SA_MAX_CATCHUP_DAYS: '10'    # حدّ مطاردة الأيام الفائتة عند تعطّل الدورات
+      SA_INTRABAR_ENABLED: '0'     # لا متابعة لحظية (لا مصدر لحظي مجاني لتداول) —
+                                    # الوقف تُدار على إغلاق الشمعة اليومية فقط
+      # ── قواعد النظام (مطابقة للمُختبر في backtest_sa.py) ──
+      SA_LEFT_BARS: '3'            # شموع يسار القاع
+      SA_RIGHT_BARS: '1'           # شمعة تأكيد القاع
+      SA_MAX_HOLD: '40'            # المهلة (شموع تداول)
+      SA_COOLDOWN_BARS: '3'        # مهلة أقل بين الدخولات (شموع)
+      SA_USE_TRAILING: '1'         # وقف متحرك (0 = وقف ثابت)
+      SA_TRAIL_PCT: '8'            # الوقف المتحرك: 8% من القمة — يرتفع فقط
+      SA_TARGET_R: '2'             # الهدف المقترح = 2× مسافة الوقف (عرض فقط)
+      SA_RISK_PCT: '1'             # المخاطرة لكل صفقة %
+      SA_COMMISSION_SIDE_PCT: '0.15'  # عمولة كل جهة % (تداول ~0.15%)
+      # عتبة رسالة تحديث الوقف — رسالة عند ارتفاع ≥ 1% عن آخر رسالة
+      SA_STOP_ALERT_STEP_PCT: '1'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # بوابة إلزامية: أي اختبار ساقط يوقف تشغيل البوت (لا إشارة حقيقية عبر اختبار فاشل)
+      - name: Run tests (gate the bot)
+        run: python -m pytest tests/ -q
+
+      - name: Run Saudi bot once
+        run: python run_sa_once.py
+
+      - name: Commit state updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # data/ يتضمّن ملفات هذا النظام (state_sa/trades_log_sa/data/sa). يضيف أي تغيّر
+          # آخر إن وُجد — لا مشكلة: rebase -X theirs أدناه يبقي نسخة الأحدث عند التعارض.
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No state changes to commit"
+            exit 0
+          fi
+          git commit -m "chore: update Saudi QAA bot state [skip ci]"
+
+          # دورتان متزامنتان (أو تداخل مع workflows الأخرى) قد يتصادمان على data/.
+          # عند التعارض نُبقي نسختنا (الأحدث) عبر -X theirs داخل الـrebase، مع إعادة محاولة 5 مرات.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase -X theirs origin/main; then
+              if git push origin HEAD:main; then
+                echo "State pushed on attempt $attempt"
+                exit 0
+              fi
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "Retry $attempt: another run updated the state first, retrying..."
+            sleep $((attempt * 5))
+          done
+          echo "::warning::Could not push state after 5 attempts; next run will pick it up."

@@ -2,3 +2,7 @@ __pycache__/
 *.pyc
 .env
 .venv/
+# مخرجات تحقق نظام القاع السعودي (backtest) — كاش بيانات كبير ونتائج غير مُ versioned
+cache_sa_*.json
+backtest_sa_results.json
+.pytest_cache/
