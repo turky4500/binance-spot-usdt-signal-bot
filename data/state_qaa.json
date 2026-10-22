@@ -93,7 +93,8 @@
     "BANDUSDT": 1792627200000,
     "BROCCOLI714USDT": 1792627200000,
     "LINKUSDT": 1792627200000,
-    "SUIUSDT": 1792627200000
+    "SUIUSDT": 1792627200000,
+    "CKBUSDT": 1792627200000
   },
   "open_trades": {
     "币安人生USDT": {
@@ -107,7 +108,7 @@
       "size_suggest_pct": 0.22322580645161294,
       "entry_time": 1792367999999,
       "entry_bar_open_time": 1792281600000,
-      "last_check_ms": 1792695000000,
+      "last_check_ms": 1792706280000,
       "peak_price": 0.5196,
       "last_stop_alert_price": 0.47803199999999996,
       "stop_updates_count": 3,
@@ -124,7 +125,7 @@
       "size_suggest_pct": 0.22333333333333327,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792695000000,
+      "last_check_ms": 1792706280000,
       "peak_price": 0.1872,
       "last_stop_alert_price": 0.17222400000000002,
       "stop_updates_count": 3,
@@ -141,7 +142,7 @@
       "size_suggest_pct": 0.2786943281309481,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792695000000,
+      "last_check_ms": 1792706280000,
       "peak_price": 751.86,
       "last_stop_alert_price": 705.86,
       "stop_updates_count": 0,
@@ -158,7 +159,7 @@
       "size_suggest_pct": 0.22509433962264158,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792695000000,
+      "last_check_ms": 1792706280000,
       "peak_price": 124.0,
       "last_stop_alert_price": 114.0,
       "stop_updates_count": 0,
@@ -175,7 +176,7 @@
       "size_suggest_pct": 0.23880434782608675,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792695000000,
+      "last_check_ms": 1792706280000,
       "peak_price": 2.271,
       "last_stop_alert_price": 2.105,
       "stop_updates_count": 0,
@@ -192,7 +193,7 @@
       "size_suggest_pct": 0.19778145695364263,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792695000000,
+      "last_check_ms": 1792706280000,
       "peak_price": 62.39,
       "last_stop_alert_price": 57.3068,
       "stop_updates_count": 1,
@@ -209,7 +210,7 @@
       "size_suggest_pct": 0.22597849462365632,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792695000000,
+      "last_check_ms": 1792706280000,
       "peak_price": 109.2,
       "last_stop_alert_price": 100.43,
       "stop_updates_count": 0,
@@ -226,27 +227,10 @@
       "size_suggest_pct": 0.15067226890756286,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792695000000,
+      "last_check_ms": 1792706280000,
       "peak_price": 18.73,
       "last_stop_alert_price": 17.0936,
       "stop_updates_count": 2,
-      "halal_verdict": "✅ مباح"
-    },
-    "CKBUSDT": {
-      "trade_id": "CKBUSDT-1792540800000",
-      "symbol": "CKBUSDT",
-      "entry_price": 0.001588,
-      "stop_price": 0.00148304,
-      "pivot_stop": 0.001404,
-      "target_price": 0.001956,
-      "stop_dist_pct": 11.586901763224176,
-      "size_suggest_pct": 0.086304347826087,
-      "entry_time": 1792627199999,
-      "entry_bar_open_time": 1792540800000,
-      "last_check_ms": 1792695000000,
-      "peak_price": 0.001612,
-      "last_stop_alert_price": 0.00148304,
-      "stop_updates_count": 1,
       "halal_verdict": "✅ مباح"
     }
   },
@@ -1455,6 +1439,11 @@
       "type": "exit_loss",
       "symbol": "SUIUSDT",
       "time_ms": 1792681979999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "CKBUSDT",
+      "time_ms": 1792701239999
     }
   ],
   "daily_report": {
