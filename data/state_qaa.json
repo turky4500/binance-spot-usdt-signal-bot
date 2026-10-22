@@ -89,7 +89,11 @@
     "TSTUSDT": 1792627200000,
     "RADUSDT": 1792627200000,
     "RSRUSDT": 1792627200000,
-    "MUBARAKUSDT": 1792627200000
+    "MUBARAKUSDT": 1792627200000,
+    "BANDUSDT": 1792627200000,
+    "BROCCOLI714USDT": 1792627200000,
+    "LINKUSDT": 1792627200000,
+    "SUIUSDT": 1792627200000
   },
   "open_trades": {
     "币安人生USDT": {
@@ -103,7 +107,7 @@
       "size_suggest_pct": 0.22322580645161294,
       "entry_time": 1792367999999,
       "entry_bar_open_time": 1792281600000,
-      "last_check_ms": 1792680000000,
+      "last_check_ms": 1792695000000,
       "peak_price": 0.5196,
       "last_stop_alert_price": 0.47803199999999996,
       "stop_updates_count": 3,
@@ -120,27 +124,10 @@
       "size_suggest_pct": 0.22333333333333327,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792680000000,
+      "last_check_ms": 1792695000000,
       "peak_price": 0.1872,
       "last_stop_alert_price": 0.17222400000000002,
       "stop_updates_count": 3,
-      "halal_verdict": "✅ مباح"
-    },
-    "BANDUSDT": {
-      "trade_id": "BANDUSDT-1792368000000",
-      "symbol": "BANDUSDT",
-      "entry_price": 0.2172,
-      "stop_price": 0.208104,
-      "pivot_stop": 0.2078,
-      "target_price": 0.236,
-      "stop_dist_pct": 4.327808471454876,
-      "size_suggest_pct": 0.23106382978723428,
-      "entry_time": 1792454399999,
-      "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792680000000,
-      "peak_price": 0.2262,
-      "last_stop_alert_price": 0.2078,
-      "stop_updates_count": 0,
       "halal_verdict": "✅ مباح"
     },
     "BNBUSDT": {
@@ -154,7 +141,7 @@
       "size_suggest_pct": 0.2786943281309481,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792680000000,
+      "last_check_ms": 1792695000000,
       "peak_price": 751.86,
       "last_stop_alert_price": 705.86,
       "stop_updates_count": 0,
@@ -171,27 +158,10 @@
       "size_suggest_pct": 0.22509433962264158,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792680000000,
+      "last_check_ms": 1792695000000,
       "peak_price": 124.0,
       "last_stop_alert_price": 114.0,
       "stop_updates_count": 0,
-      "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
-    "BROCCOLI714USDT": {
-      "trade_id": "BROCCOLI714USDT-1792368000000",
-      "symbol": "BROCCOLI714USDT",
-      "entry_price": 0.0203,
-      "stop_price": 0.019688,
-      "pivot_stop": 0.01853,
-      "target_price": 0.023839999999999993,
-      "stop_dist_pct": 8.719211822660085,
-      "size_suggest_pct": 0.11468926553672333,
-      "entry_time": 1792454399999,
-      "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792680000000,
-      "peak_price": 0.0214,
-      "last_stop_alert_price": 0.0195868,
-      "stop_updates_count": 4,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     },
     "CAKEUSDT": {
@@ -205,28 +175,11 @@
       "size_suggest_pct": 0.23880434782608675,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792680000000,
+      "last_check_ms": 1792695000000,
       "peak_price": 2.271,
       "last_stop_alert_price": 2.105,
       "stop_updates_count": 0,
       "halal_verdict": "⛔ غير مباح"
-    },
-    "LINKUSDT": {
-      "trade_id": "LINKUSDT-1792368000000",
-      "symbol": "LINKUSDT",
-      "entry_price": 12.06,
-      "stop_price": 11.784279999999999,
-      "pivot_stop": 11.531,
-      "target_price": 13.118,
-      "stop_dist_pct": 4.386401326699834,
-      "size_suggest_pct": 0.2279773156899811,
-      "entry_time": 1792454399999,
-      "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792680000000,
-      "peak_price": 12.809,
-      "last_stop_alert_price": 11.784279999999999,
-      "stop_updates_count": 2,
-      "halal_verdict": "✅ مباح"
     },
     "LTCUSDT": {
       "trade_id": "LTCUSDT-1792368000000",
@@ -239,7 +192,7 @@
       "size_suggest_pct": 0.19778145695364263,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792680000000,
+      "last_check_ms": 1792695000000,
       "peak_price": 62.39,
       "last_stop_alert_price": 57.3068,
       "stop_updates_count": 1,
@@ -256,27 +209,10 @@
       "size_suggest_pct": 0.22597849462365632,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792680000000,
+      "last_check_ms": 1792695000000,
       "peak_price": 109.2,
       "last_stop_alert_price": 100.43,
       "stop_updates_count": 0,
-      "halal_verdict": "✅ مباح"
-    },
-    "SUIUSDT": {
-      "trade_id": "SUIUSDT-1792368000000",
-      "symbol": "SUIUSDT",
-      "entry_price": 0.9992,
-      "stop_price": 0.972072,
-      "pivot_stop": 0.9372,
-      "target_price": 1.1231999999999998,
-      "stop_dist_pct": 6.204963971176936,
-      "size_suggest_pct": 0.16116129032258078,
-      "entry_time": 1792454399999,
-      "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792680000000,
-      "peak_price": 1.0566,
-      "last_stop_alert_price": 0.970048,
-      "stop_updates_count": 3,
       "halal_verdict": "✅ مباح"
     },
     "TRBUSDT": {
@@ -290,7 +226,7 @@
       "size_suggest_pct": 0.15067226890756286,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792680000000,
+      "last_check_ms": 1792695000000,
       "peak_price": 18.73,
       "last_stop_alert_price": 17.0936,
       "stop_updates_count": 2,
@@ -307,7 +243,7 @@
       "size_suggest_pct": 0.086304347826087,
       "entry_time": 1792627199999,
       "entry_bar_open_time": 1792540800000,
-      "last_check_ms": 1792680000000,
+      "last_check_ms": 1792695000000,
       "peak_price": 0.001612,
       "last_stop_alert_price": 0.00148304,
       "stop_updates_count": 1,
@@ -1499,6 +1435,26 @@
       "type": "exit_loss",
       "symbol": "MUBARAKUSDT",
       "time_ms": 1792674899999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "BANDUSDT",
+      "time_ms": 1792681979999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "BROCCOLI714USDT",
+      "time_ms": 1792687799999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "LINKUSDT",
+      "time_ms": 1792687919999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "SUIUSDT",
+      "time_ms": 1792681979999
     }
   ],
   "daily_report": {
