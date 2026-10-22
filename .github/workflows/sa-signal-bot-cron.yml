@@ -70,6 +70,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # pytest ليس ضمن requirements.txt (وهو للتشغيل فقط) — نثبّته هنا لبوابة الاختبار
+      # حفاظًا على عزل الملف المشترك الذي تشغّله الأنظمة الأخرى.
+      - name: Install test dependencies
+        run: pip install "pytest>=9"
+
       # بوابة إلزامية: أي اختبار ساقط يوقف تشغيل البوت (لا إشارة حقيقية عبر اختبار فاشل)
       - name: Run tests (gate the bot)
         run: python -m pytest tests/ -q
