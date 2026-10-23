@@ -94,7 +94,8 @@
     "BROCCOLI714USDT": 1792627200000,
     "LINKUSDT": 1792627200000,
     "SUIUSDT": 1792627200000,
-    "CKBUSDT": 1792627200000
+    "CKBUSDT": 1792627200000,
+    "CAKEUSDT": 1792713600000
   },
   "open_trades": {
     "币安人生USDT": {
@@ -108,7 +109,7 @@
       "size_suggest_pct": 0.22322580645161294,
       "entry_time": 1792367999999,
       "entry_bar_open_time": 1792281600000,
-      "last_check_ms": 1792715220000,
+      "last_check_ms": 1792732320000,
       "peak_price": 0.5196,
       "last_stop_alert_price": 0.47803199999999996,
       "stop_updates_count": 3,
@@ -118,15 +119,15 @@
       "trade_id": "ARKUSDT-1792368000000",
       "symbol": "ARKUSDT",
       "entry_price": 0.1742,
-      "stop_price": 0.17222400000000002,
+      "stop_price": 0.17342000000000002,
       "pivot_stop": 0.1664,
       "target_price": 0.1898,
       "stop_dist_pct": 4.477611940298509,
       "size_suggest_pct": 0.22333333333333327,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792715220000,
-      "peak_price": 0.1872,
+      "last_check_ms": 1792732320000,
+      "peak_price": 0.1885,
       "last_stop_alert_price": 0.17222400000000002,
       "stop_updates_count": 3,
       "halal_verdict": "✅ مباح"
@@ -142,7 +143,7 @@
       "size_suggest_pct": 0.2786943281309481,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792715220000,
+      "last_check_ms": 1792732320000,
       "peak_price": 751.86,
       "last_stop_alert_price": 705.86,
       "stop_updates_count": 0,
@@ -159,28 +160,11 @@
       "size_suggest_pct": 0.22509433962264158,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792715220000,
+      "last_check_ms": 1792732320000,
       "peak_price": 124.0,
       "last_stop_alert_price": 114.0,
       "stop_updates_count": 0,
       "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
-    "CAKEUSDT": {
-      "trade_id": "CAKEUSDT-1792368000000",
-      "symbol": "CAKEUSDT",
-      "entry_price": 2.197,
-      "stop_price": 2.105,
-      "pivot_stop": 2.105,
-      "target_price": 2.3810000000000002,
-      "stop_dist_pct": 4.187528447883481,
-      "size_suggest_pct": 0.23880434782608675,
-      "entry_time": 1792454399999,
-      "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792715220000,
-      "peak_price": 2.271,
-      "last_stop_alert_price": 2.105,
-      "stop_updates_count": 0,
-      "halal_verdict": "⛔ غير مباح"
     },
     "LTCUSDT": {
       "trade_id": "LTCUSDT-1792368000000",
@@ -193,7 +177,7 @@
       "size_suggest_pct": 0.19778145695364263,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792715220000,
+      "last_check_ms": 1792732320000,
       "peak_price": 62.39,
       "last_stop_alert_price": 57.3068,
       "stop_updates_count": 1,
@@ -210,7 +194,7 @@
       "size_suggest_pct": 0.22597849462365632,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792715220000,
+      "last_check_ms": 1792732320000,
       "peak_price": 109.2,
       "last_stop_alert_price": 100.43,
       "stop_updates_count": 0,
@@ -227,7 +211,7 @@
       "size_suggest_pct": 0.15067226890756286,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792715220000,
+      "last_check_ms": 1792732320000,
       "peak_price": 18.73,
       "last_stop_alert_price": 17.0936,
       "stop_updates_count": 2,
@@ -1444,6 +1428,11 @@
       "type": "exit_loss",
       "symbol": "CKBUSDT",
       "time_ms": 1792701239999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "CAKEUSDT",
+      "time_ms": 1792718339999
     }
   ],
   "daily_report": {
