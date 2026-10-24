@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1792627200000,
+  "last_processed_open_time": 1792713600000,
   "last_entry_bar_time": {
     "GTCUSDT": 1792195200000,
     "HUMAUSDT": 1792195200000,
@@ -27,12 +27,12 @@
     "PEPEUSDT": 1792368000000,
     "PHAUSDT": 1792368000000,
     "PUMPUSDT": 1792368000000,
-    "QIUSDT": 1792368000000,
+    "QIUSDT": 1792713600000,
     "QNTUSDT": 1792368000000,
     "RAYUSDT": 1792368000000,
     "SKYUSDT": 1792368000000,
     "SOLUSDT": 1792368000000,
-    "SOMIUSDT": 1792368000000,
+    "SOMIUSDT": 1792713600000,
     "STXUSDT": 1792368000000,
     "SUIUSDT": 1792368000000,
     "SUPERUSDT": 1792368000000,
@@ -50,7 +50,12 @@
     "MAGICUSDT": 1792540800000,
     "MUBARAKUSDT": 1792540800000,
     "RADUSDT": 1792540800000,
-    "STRKUSDT": 1792540800000
+    "STRKUSDT": 1792540800000,
+    "AMPUSDT": 1792713600000,
+    "GMXUSDT": 1792713600000,
+    "KMNOUSDT": 1792713600000,
+    "SENTUSDT": 1792713600000,
+    "TRXUSDT": 1792713600000
   },
   "last_exit_bar_time": {
     "GTCUSDT": 1792281600000,
@@ -96,7 +101,8 @@
     "SUIUSDT": 1792627200000,
     "CKBUSDT": 1792627200000,
     "CAKEUSDT": 1792713600000,
-    "ARKUSDT": 1792713600000
+    "ARKUSDT": 1792713600000,
+    "LTCUSDT": 1792713600000
   },
   "open_trades": {
     "币安人生USDT": {
@@ -110,7 +116,7 @@
       "size_suggest_pct": 0.22322580645161294,
       "entry_time": 1792367999999,
       "entry_bar_open_time": 1792281600000,
-      "last_check_ms": 1792793880000,
+      "last_check_ms": 1792802880000,
       "peak_price": 0.5196,
       "last_stop_alert_price": 0.47803199999999996,
       "stop_updates_count": 3,
@@ -127,7 +133,7 @@
       "size_suggest_pct": 0.2786943281309481,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792793880000,
+      "last_check_ms": 1792802880000,
       "peak_price": 751.86,
       "last_stop_alert_price": 705.86,
       "stop_updates_count": 0,
@@ -144,28 +150,11 @@
       "size_suggest_pct": 0.22509433962264158,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792793880000,
+      "last_check_ms": 1792802880000,
       "peak_price": 124.0,
       "last_stop_alert_price": 114.0,
       "stop_updates_count": 0,
       "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
-    "LTCUSDT": {
-      "trade_id": "LTCUSDT-1792368000000",
-      "symbol": "LTCUSDT",
-      "entry_price": 59.73,
-      "stop_price": 57.3988,
-      "pivot_stop": 56.71,
-      "target_price": 65.76999999999998,
-      "stop_dist_pct": 5.056085719069138,
-      "size_suggest_pct": 0.19778145695364263,
-      "entry_time": 1792454399999,
-      "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792793880000,
-      "peak_price": 62.39,
-      "last_stop_alert_price": 57.3068,
-      "stop_updates_count": 1,
-      "halal_verdict": "✅ مباح"
     },
     "SOLUSDT": {
       "trade_id": "SOLUSDT-1792368000000",
@@ -178,7 +167,7 @@
       "size_suggest_pct": 0.22597849462365632,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792793880000,
+      "last_check_ms": 1792802880000,
       "peak_price": 109.2,
       "last_stop_alert_price": 100.43,
       "stop_updates_count": 0,
@@ -195,10 +184,129 @@
       "size_suggest_pct": 0.15067226890756286,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792793880000,
+      "last_check_ms": 1792802880000,
       "peak_price": 18.73,
       "last_stop_alert_price": 17.0936,
       "stop_updates_count": 2,
+      "halal_verdict": "✅ مباح"
+    },
+    "AMPUSDT": {
+      "trade_id": "AMPUSDT-1792713600000",
+      "symbol": "AMPUSDT",
+      "entry_price": 0.000787,
+      "stop_price": 0.000747,
+      "pivot_stop": 0.000747,
+      "target_price": 0.000867,
+      "stop_dist_pct": 5.08259212198221,
+      "size_suggest_pct": 0.19675000000000004,
+      "entry_time": 1792799999999,
+      "entry_bar_open_time": 1792713600000,
+      "last_check_ms": 1792800059999,
+      "peak_price": 0.00084,
+      "last_stop_alert_price": 0.000747,
+      "stop_updates_count": 0,
+      "halal_verdict": "✅ مباح"
+    },
+    "GMXUSDT": {
+      "trade_id": "GMXUSDT-1792713600000",
+      "symbol": "GMXUSDT",
+      "entry_price": 8.26,
+      "stop_price": 7.52,
+      "pivot_stop": 7.52,
+      "target_price": 9.74,
+      "stop_dist_pct": 8.958837772397098,
+      "size_suggest_pct": 0.11162162162162158,
+      "entry_time": 1792799999999,
+      "entry_bar_open_time": 1792713600000,
+      "last_check_ms": 1792800059999,
+      "peak_price": 8.33,
+      "last_stop_alert_price": 7.52,
+      "stop_updates_count": 0,
+      "halal_verdict": "⛔ غير مباح"
+    },
+    "KMNOUSDT": {
+      "trade_id": "KMNOUSDT-1792713600000",
+      "symbol": "KMNOUSDT",
+      "entry_price": 0.04214,
+      "stop_price": 0.03792,
+      "pivot_stop": 0.03792,
+      "target_price": 0.050579999999999986,
+      "stop_dist_pct": 10.0142382534409,
+      "size_suggest_pct": 0.09985781990521339,
+      "entry_time": 1792799999999,
+      "entry_bar_open_time": 1792713600000,
+      "last_check_ms": 1792800059999,
+      "peak_price": 0.04268,
+      "last_stop_alert_price": 0.03792,
+      "stop_updates_count": 0,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "QIUSDT": {
+      "trade_id": "QIUSDT-1792713600000",
+      "symbol": "QIUSDT",
+      "entry_price": 0.002325,
+      "stop_price": 0.00224,
+      "pivot_stop": 0.00224,
+      "target_price": 0.002495,
+      "stop_dist_pct": 3.6559139784946244,
+      "size_suggest_pct": 0.2735294117647058,
+      "entry_time": 1792799999999,
+      "entry_bar_open_time": 1792713600000,
+      "last_check_ms": 1792800059999,
+      "peak_price": 0.002399,
+      "last_stop_alert_price": 0.00224,
+      "stop_updates_count": 0,
+      "halal_verdict": "⛔ غير مباح"
+    },
+    "SENTUSDT": {
+      "trade_id": "SENTUSDT-1792713600000",
+      "symbol": "SENTUSDT",
+      "entry_price": 0.02233,
+      "stop_price": 0.02098,
+      "pivot_stop": 0.02098,
+      "target_price": 0.02503,
+      "stop_dist_pct": 6.045678459471565,
+      "size_suggest_pct": 0.16540740740740734,
+      "entry_time": 1792799999999,
+      "entry_bar_open_time": 1792713600000,
+      "last_check_ms": 1792800059999,
+      "peak_price": 0.02463,
+      "last_stop_alert_price": 0.02098,
+      "stop_updates_count": 0,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "SOMIUSDT": {
+      "trade_id": "SOMIUSDT-1792713600000",
+      "symbol": "SOMIUSDT",
+      "entry_price": 0.1762,
+      "stop_price": 0.1701,
+      "pivot_stop": 0.1701,
+      "target_price": 0.18839999999999998,
+      "stop_dist_pct": 3.4619750283768416,
+      "size_suggest_pct": 0.28885245901639367,
+      "entry_time": 1792799999999,
+      "entry_bar_open_time": 1792713600000,
+      "last_check_ms": 1792800059999,
+      "peak_price": 0.1837,
+      "last_stop_alert_price": 0.1701,
+      "stop_updates_count": 0,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "TRXUSDT": {
+      "trade_id": "TRXUSDT-1792713600000",
+      "symbol": "TRXUSDT",
+      "entry_price": 0.3301,
+      "stop_price": 0.3277,
+      "pivot_stop": 0.3277,
+      "target_price": 0.33490000000000003,
+      "stop_dist_pct": 0.7270524083611067,
+      "size_suggest_pct": 1.375416666666659,
+      "entry_time": 1792799999999,
+      "entry_bar_open_time": 1792713600000,
+      "last_check_ms": 1792800059999,
+      "peak_price": 0.3312,
+      "last_stop_alert_price": 0.3277,
+      "stop_updates_count": 0,
       "halal_verdict": "✅ مباح"
     }
   },
@@ -1452,6 +1560,46 @@
       "type": "exit_win",
       "symbol": "ARKUSDT",
       "time_ms": 1792741259999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "LTCUSDT",
+      "time_ms": 1792795679999
+    },
+    {
+      "type": "entry",
+      "symbol": "AMPUSDT",
+      "time_ms": 1792799999999
+    },
+    {
+      "type": "entry",
+      "symbol": "GMXUSDT",
+      "time_ms": 1792799999999
+    },
+    {
+      "type": "entry",
+      "symbol": "KMNOUSDT",
+      "time_ms": 1792799999999
+    },
+    {
+      "type": "entry",
+      "symbol": "QIUSDT",
+      "time_ms": 1792799999999
+    },
+    {
+      "type": "entry",
+      "symbol": "SENTUSDT",
+      "time_ms": 1792799999999
+    },
+    {
+      "type": "entry",
+      "symbol": "SOMIUSDT",
+      "time_ms": 1792799999999
+    },
+    {
+      "type": "entry",
+      "symbol": "TRXUSDT",
+      "time_ms": 1792799999999
     }
   ],
   "daily_report": {
