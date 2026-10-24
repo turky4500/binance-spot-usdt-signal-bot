@@ -89,7 +89,7 @@
     "MAGICUSDT": 1792627200000,
     "STRKUSDT": 1792627200000,
     "AWEUSDT": 1792627200000,
-    "SOMIUSDT": 1792627200000,
+    "SOMIUSDT": 1792800000000,
     "ONDOUSDT": 1792627200000,
     "TSTUSDT": 1792627200000,
     "RADUSDT": 1792627200000,
@@ -105,26 +105,13 @@
     "LTCUSDT": 1792713600000,
     "AMPUSDT": 1792800000000,
     "SENTUSDT": 1792800000000,
-    "KMNOUSDT": 1792800000000
+    "KMNOUSDT": 1792800000000,
+    "币安人生USDT": 1792800000000,
+    "BNSOLUSDT": 1792800000000,
+    "SOLUSDT": 1792800000000,
+    "TRBUSDT": 1792800000000
   },
   "open_trades": {
-    "币安人生USDT": {
-      "trade_id": "币安人生USDT-1792281600000",
-      "symbol": "币安人生USDT",
-      "entry_price": 0.4844,
-      "stop_price": 0.47803199999999996,
-      "pivot_stop": 0.4627,
-      "target_price": 0.5278,
-      "stop_dist_pct": 4.479768786127167,
-      "size_suggest_pct": 0.22322580645161294,
-      "entry_time": 1792367999999,
-      "entry_bar_open_time": 1792281600000,
-      "last_check_ms": 1792848780000,
-      "peak_price": 0.5196,
-      "last_stop_alert_price": 0.47803199999999996,
-      "stop_updates_count": 3,
-      "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
     "BNBUSDT": {
       "trade_id": "BNBUSDT-1792368000000",
       "symbol": "BNBUSDT",
@@ -136,62 +123,11 @@
       "size_suggest_pct": 0.2786943281309481,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792848780000,
+      "last_check_ms": 1792860960000,
       "peak_price": 751.86,
       "last_stop_alert_price": 705.86,
       "stop_updates_count": 0,
       "halal_verdict": "⛔ غير مباح"
-    },
-    "BNSOLUSDT": {
-      "trade_id": "BNSOLUSDT-1792368000000",
-      "symbol": "BNSOLUSDT",
-      "entry_price": 119.3,
-      "stop_price": 114.08,
-      "pivot_stop": 114.0,
-      "target_price": 129.89999999999998,
-      "stop_dist_pct": 4.442581726739311,
-      "size_suggest_pct": 0.22509433962264158,
-      "entry_time": 1792454399999,
-      "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792848780000,
-      "peak_price": 124.0,
-      "last_stop_alert_price": 114.0,
-      "stop_updates_count": 0,
-      "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
-    "SOLUSDT": {
-      "trade_id": "SOLUSDT-1792368000000",
-      "symbol": "SOLUSDT",
-      "entry_price": 105.08,
-      "stop_price": 100.46400000000001,
-      "pivot_stop": 100.43,
-      "target_price": 114.37999999999998,
-      "stop_dist_pct": 4.425199847735051,
-      "size_suggest_pct": 0.22597849462365632,
-      "entry_time": 1792454399999,
-      "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792848780000,
-      "peak_price": 109.2,
-      "last_stop_alert_price": 100.43,
-      "stop_updates_count": 0,
-      "halal_verdict": "✅ مباح"
-    },
-    "TRBUSDT": {
-      "trade_id": "TRBUSDT-1792368000000",
-      "symbol": "TRBUSDT",
-      "entry_price": 17.93,
-      "stop_price": 17.2316,
-      "pivot_stop": 16.74,
-      "target_price": 20.310000000000002,
-      "stop_dist_pct": 6.636921360847749,
-      "size_suggest_pct": 0.15067226890756286,
-      "entry_time": 1792454399999,
-      "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792848780000,
-      "peak_price": 18.73,
-      "last_stop_alert_price": 17.0936,
-      "stop_updates_count": 2,
-      "halal_verdict": "✅ مباح"
     },
     "GMXUSDT": {
       "trade_id": "GMXUSDT-1792713600000",
@@ -204,28 +140,11 @@
       "size_suggest_pct": 0.11162162162162158,
       "entry_time": 1792799999999,
       "entry_bar_open_time": 1792713600000,
-      "last_check_ms": 1792848780000,
+      "last_check_ms": 1792860960000,
       "peak_price": 8.56,
       "last_stop_alert_price": 7.8476,
       "stop_updates_count": 3,
       "halal_verdict": "⛔ غير مباح"
-    },
-    "SOMIUSDT": {
-      "trade_id": "SOMIUSDT-1792713600000",
-      "symbol": "SOMIUSDT",
-      "entry_price": 0.1762,
-      "stop_price": 0.1701,
-      "pivot_stop": 0.1701,
-      "target_price": 0.18839999999999998,
-      "stop_dist_pct": 3.4619750283768416,
-      "size_suggest_pct": 0.28885245901639367,
-      "entry_time": 1792799999999,
-      "entry_bar_open_time": 1792713600000,
-      "last_check_ms": 1792848780000,
-      "peak_price": 0.1837,
-      "last_stop_alert_price": 0.1701,
-      "stop_updates_count": 0,
-      "halal_verdict": "ℹ️ لا يوجد حكم"
     },
     "TRXUSDT": {
       "trade_id": "TRXUSDT-1792713600000",
@@ -238,7 +157,7 @@
       "size_suggest_pct": 1.375416666666659,
       "entry_time": 1792799999999,
       "entry_bar_open_time": 1792713600000,
-      "last_check_ms": 1792848780000,
+      "last_check_ms": 1792860960000,
       "peak_price": 0.3312,
       "last_stop_alert_price": 0.3277,
       "stop_updates_count": 0,
@@ -1600,6 +1519,31 @@
       "type": "exit_loss",
       "symbol": "QIUSDT",
       "time_ms": 1792833299999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "币安人生USDT",
+      "time_ms": 1792855079999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "BNSOLUSDT",
+      "time_ms": 1792851419999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "SOLUSDT",
+      "time_ms": 1792851419999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "TRBUSDT",
+      "time_ms": 1792855019999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "SOMIUSDT",
+      "time_ms": 1792855559999
     }
   ],
   "daily_report": {
