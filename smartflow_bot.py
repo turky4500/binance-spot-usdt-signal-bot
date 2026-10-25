@@ -96,6 +96,9 @@ class SmartFlowSignalBot:
         self.log_path = Path(os.getenv("SMARTFLOW_SIGNALS_LOG", "data/smartflow/signals_log.csv"))
         self.dry_run = _env_bool("SMARTFLOW_DRY_RUN", False)
         self.calibration_note_enabled = _env_bool("SMARTFLOW_CALIBRATION_NOTE", True)
+        # حماية من الإغراق: إذا تعدّت إشارات الشمعة الواحدة هذا الحد تُرسل رسالة مجمّعة
+        # (0 = تعطيل التجميع، ترسل كل رسالة على حدة مهما كان عددها)
+        self.batch_limit = max(0, _int_env("SMARTFLOW_BATCH_LIMIT", 8))
 
         self.store = StateStore(self.state_file)
         self.state = self.store.load()
@@ -152,7 +155,7 @@ class SmartFlowSignalBot:
         except Exception:
             self.logger.error("SmartFlow: فشل إرسال رسالة تيليجرام — تتجاوز وتُسجَّل وتُكمّل الدورة", exc_info=True)
 
-    def send_signal_message(self, symbol: str, sig: dict, bar_close_time_ms: int) -> None:
+    def build_signal_text(self, symbol: str, sig: dict, bar_close_time_ms: int) -> str:
         kind = sig["kind"]
         if kind == "buy":
             emoji = "🟢"
@@ -182,7 +185,32 @@ class SmartFlowSignalBot:
         if self.calibration_note_enabled:
             tick_line += f"{CALIBRATION_NOTE}\n─────────────\n"
         tick_line += f"الحكم الشرعي: {self.get_halal_verdict(symbol)}"
-        self._send(tick_line)
+        return tick_line
+
+    def _batch_digest_text(self, batch: list, bar_close_time_ms: int) -> str:
+        """رسالة مجمّعة عند كثرة إشارات الشمعة الواحدة (حماية من إغراق تيليجرام)."""
+        buys = [item["symbol"] for item in batch if item["kind"] == "buy"]
+        sells = [item["symbol"] for item in batch if item["kind"] == "sell"]
+
+        verdict_counts: dict[str, int] = {}
+        for item in batch:
+            v = self.get_halal_verdict(item["symbol"])
+            verdict_counts[v] = verdict_counts.get(v, 0) + 1
+        verdict_line = " • ".join(f"{v}: {n}" for v, n in verdict_counts.items())
+
+        text = (
+            f"📦 {len(batch)} إشارة جديدة في شمعة "
+            f"{ms_to_local_text(int(bar_close_time_ms), self.config.timezone_name)} — تم تجميعها لتقليل الإزعاج\n"
+            f"🔴 البيع ({len(sells)}): {_cap_str(sells)}\n"
+            f"🟢 الشراء ({len(buys)}): {_cap_str(buys)}\n"
+            f"─────────────\n"
+            f"الحكم الشرعي: {verdict_line}\n"
+            f"─────────────\n"
+        )
+        if self.calibration_note_enabled:
+            text += f"{CALIBRATION_NOTE}\n─────────────\n"
+        text += "تفاصيل كل إشارة (دخول/مستوى/وقف/RSI) في سجل الإشارات — والرسائل الفردية تعود عند هدوء السوق."
+        return text
 
     def append_signal_log(self, row: dict) -> None:
         self.log_path.parent.mkdir(parents=True, exist_ok=True)
@@ -273,6 +301,7 @@ class SmartFlowSignalBot:
             cursor += self.interval_ms
 
     def _process_one_closed_hour(self, klines_map: dict, last_closed_open_time: int) -> None:
+        batch = []  # رسائل هذه الشمعة — تُرسل فردية أو مجمعة حسب batch_limit
         for symbol in self.symbols:
             df = klines_map.get(symbol)
             if df is None or df.empty:
@@ -292,7 +321,13 @@ class SmartFlowSignalBot:
                 continue
 
             bar_close_time = int(closed_df.iloc[-1]["close_time"])
-            self.send_signal_message(symbol, sig, bar_close_time)
+            batch.append({
+                "symbol": symbol,
+                "kind": kind,
+                "sig": sig,
+                "bar_close_time": bar_close_time,
+            })
+            # السجل والحالة والتاريخ يُكتبان لكل إشارة حتى لو تجمّعت الرسالة
             self.append_event(f"signal_{kind}", symbol, bar_close_time)
             self.state.setdefault("last_signal", {})[symbol] = {
                 "kind": kind,
@@ -313,6 +348,14 @@ class SmartFlowSignalBot:
                 "breakout_level": sig["breakout_level"],
                 "stop_level": sig["stop_level"],
             })
+
+        if batch:
+            if self.batch_limit and len(batch) > self.batch_limit:
+                self._send(self._batch_digest_text(batch, batch[-1]["bar_close_time"]))
+            else:
+                for item in batch:
+                    self._send(self.build_signal_text(
+                        item["symbol"], item["sig"], item["bar_close_time"]))
         self.store.save(self.state)
 
     # ─────────────────────────────────────────── التشغيل
@@ -348,6 +391,14 @@ def _int_env(name: str, default: int) -> int:
         return int(float(raw)) if raw else default
     except ValueError:
         return default
+
+
+def _cap_str(names: list, shown: int = 40) -> str:
+    """يقطع قائمة طويلة من الرموز في الرسالة المجمعة بعد shown عنصرًا."""
+    names = list(names)
+    head = "، ".join(names[:shown])
+    rest = max(0, len(names) - shown)
+    return f"{head} (+{rest} أخرى)" if rest else head
 
 
 def build_smartflow_bot() -> SmartFlowSignalBot:

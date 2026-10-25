@@ -142,6 +142,33 @@ def test_no_signal_on_flat_market(tmp_path, bot):
     assert (tmp_path / "signals.csv").exists() is False
 
 
+def test_batch_digest_when_many_signals(bot):
+    """حماية الإغراق: عدد إشارات الشمعة > batch_limit → رسالة واحدة مجمعة."""
+    bot.batch_limit = 1
+    names = [SYMBOL, "BBBUSDT", "CCCUSDT"]
+    stub = StubBinance({s: make_df(rising_breakout_rows()) for s in names}, k=200)
+    bot.binance = stub
+    bot.symbols = list(names)
+    stub.server_time = BASE + 198 * H + H + 60_000
+
+    bot.process_new_closed_hour(stub.server_time)
+
+    assert len(bot.sent) == 1
+    text = bot.sent[0]
+    assert all(s in text for s in names)
+    assert "3 إشارة" in text and "تجميع" in text
+    # والحالة + السجل يظهران لكل رمز على حدة
+    with (tmp_path_csv(bot)).open("r", encoding="utf-8", newline="") as f:
+        rows = list(csv.reader(f))
+    assert len(rows) == 4  # رأس + 3 إشارات
+    assert all(bot.state["last_signal"][s]["kind"] == "buy" for s in names)
+
+
+def tmp_path_csv(bot):
+    import os
+    return Path(os.environ["SMARTFLOW_SIGNALS_LOG"] if "SMARTFLOW_SIGNALS_LOG" in os.environ else bot.log_path)
+
+
 def test_send_allowed_on_flip_and_cooldown(bot):
     bot.settings.alternate_only = False  # اختبار المهلة فقط — التبادل مغطى باختبار مستقل
     bot.state["last_signal"] = {
