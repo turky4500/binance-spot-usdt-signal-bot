@@ -125,6 +125,9 @@ class SmartFlowSignalBot:
         # حماية من الإغراق: إذا تعدّت إشارات الشمعة الواحدة هذا الحد تُرسل رسالة مجمّعة
         # (0 = تعطيل التجميع، ترسل كل رسالة على حدة مهما كان عددها)
         self.batch_limit = max(0, _int_env("SMARTFLOW_BATCH_LIMIT", 8))
+        # قرار المالك 2026-10-25: «يهمني اشارة شراء» — الإرسال للشراء فقط.
+        # البيع/كسر الوقف يُعالَج داخليًا (يُغلق دورة الشراء ويتيح شراء لاحقًا) بلا رسالة.
+        self.buys_only = _env_bool("SMARTFLOW_BUYS_ONLY", True)
 
         self.store = StateStore(self.state_file)
         self.state = self.store.load()
@@ -353,11 +356,14 @@ class SmartFlowSignalBot:
                 continue
 
             bar_close_time = int(closed_df.iloc[-1]["close_time"])
+            # الشراء فقط للإرسال (قرار المالك) — البيع يُسجّل داخليًا ويغلق الدورة بلا رسالة
+            sends = not (self.buys_only and kind == "sell")
             batch.append({
                 "symbol": symbol,
                 "kind": kind,
                 "sig": sig,
                 "bar_close_time": bar_close_time,
+                "sends": sends,
             })
             # السجل والحالة والتاريخ يُكتبان لكل إشارة حتى لو تجمّعت الرسالة
             self.append_event(f"signal_{kind}", symbol, bar_close_time)
@@ -382,10 +388,13 @@ class SmartFlowSignalBot:
             })
 
         if batch:
-            if self.batch_limit and len(batch) > self.batch_limit:
-                self._send(self._batch_digest_text(batch, batch[-1]["bar_close_time"]))
+            sendable = [item for item in batch if item.get("sends", True)]
+            if not sendable:
+                pass  # بيع/كسر وقف فقط في هذه الشمعة — بلا رسالة تيليجرام
+            elif self.batch_limit and len(sendable) > self.batch_limit:
+                self._send(self._batch_digest_text(sendable, sendable[-1]["bar_close_time"]))
             else:
-                for item in batch:
+                for item in sendable:
                     self._send(self.build_signal_text(
                         item["symbol"], item["sig"], item["bar_close_time"]))
         self.store.save(self.state)

@@ -169,6 +169,37 @@ def tmp_path_csv(bot):
     return Path(os.environ["SMARTFLOW_SIGNALS_LOG"] if "SMARTFLOW_SIGNALS_LOG" in os.environ else bot.log_path)
 
 
+def test_buys_only_sells_logged_not_sent(bot):
+    """قرار المالك «شراء فقط»: البيع يُسجل في الحالة/السجل بلا رسالة، ثم شراء يُرسل."""
+    rows = flat_rows(190)  # فهرسة 0..189 — إغلاقات ~100
+    rows = flat_rows(190)  # فهرسة 0..189 — إغلاقات مستوية ~100
+    rows.append((99.5, 99.7, 69.5, 70.0))    # فهرس 190: شمعة كسر عملاقة → بيع
+    rows.append((70.0, 105.5, 69.5, 105.0))  # فهرس 191: شمعة شراء عملاقة → شراء
+    stub = StubBinance({SYMBOL: make_df(rows)}, k=191)  # آخر شمعة ظاهرة 190 (الشراء 191 ما زالت مفتوحة)
+
+    bot.binance = stub
+    bot.symbols = [SYMBOL]
+    sell_hour = BASE + 190 * H
+    stub.server_time = sell_hour + H + 60_000  # الكسر مغلقة، والشراء لم تغلق بعد
+
+    bot.process_new_closed_hour(stub.server_time)
+
+    assert bot.sent == []                        # لا رسالة بيع (شراء فقط)
+    assert bot.state["last_signal"][SYMBOL]["kind"] == "sell"   # لكن الحالة سجّلتها
+    with bot.log_path.open("r", encoding="utf-8", newline="") as f:
+        logged = list(csv.DictReader(f))
+    assert logged and logged[-1]["kind"] == "sell"
+
+    # الشمعة التالية (شراء عملاقة) تغلق: يجب أن ترسل — شراء فقط
+    bot.sent = []
+    stub.frames = {SYMBOL: make_df(rows)}
+    stub.k = 192
+    stub.server_time += H
+    bot.process_new_closed_hour(stub.server_time)
+    assert len(bot.sent) == 1 and "شراء" in bot.sent[0]
+    assert bot.state["last_signal"][SYMBOL]["kind"] == "buy"
+
+
 def test_send_allowed_on_flip_and_cooldown(bot):
     bot.settings.alternate_only = False  # اختبار المهلة فقط — التبادل مغطى باختبار مستقل
     bot.state["last_signal"] = {

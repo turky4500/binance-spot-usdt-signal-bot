@@ -89,6 +89,7 @@ python -m pytest tests/test_smartflow_strategy.py tests/test_smartflow_flow.py -
 | `SMARTFLOW_COOLDOWN_BARS` | `6` | مهلة (تعمل فقط إذا عُطّل التبادل) |
 | `SMARTFLOW_BATCH_LIMIT` | `8` | إشارات أكثر من هذا في شمعة واحدة = رسالة مجمعة (0 = بلا تجميع) |
 | `SMARTFLOW_EXCLUDE_NON_CRYPTO` | `1` | عملات رقمية فقط: استثناء الأسهم المرمزة/الذهب/المغلفات المكررة |
+| `SMARTFLOW_BUYS_ONLY` | `1` | إرسال الشراء فقط — البيع/كسر الوقف يُسجل في الحالة/السجل بلا رسالة |
 | `SMARTFLOW_CALIBRATION_NOTE` | `1` | سطر «نسخة قيد المعايرة» في الرسائل |
 | `SMARTFLOW_DRY_RUN` | `0` | طباعة الرسائل في السجل بدل الإرسال (تجارب محلية) |
 
