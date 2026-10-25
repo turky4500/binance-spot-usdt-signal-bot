@@ -111,7 +111,8 @@
     "币安人生USDT": 1792800000000,
     "BNSOLUSDT": 1792800000000,
     "SOLUSDT": 1792800000000,
-    "TRBUSDT": 1792800000000
+    "TRBUSDT": 1792800000000,
+    "INITUSDT": 1792886400000
   },
   "open_trades": {
     "BNBUSDT": {
@@ -125,7 +126,7 @@
       "size_suggest_pct": 0.2786943281309481,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792892640000,
+      "last_check_ms": 1792911480000,
       "peak_price": 751.86,
       "last_stop_alert_price": 705.86,
       "stop_updates_count": 0,
@@ -135,17 +136,17 @@
       "trade_id": "GMXUSDT-1792713600000",
       "symbol": "GMXUSDT",
       "entry_price": 8.26,
-      "stop_price": 7.8752,
+      "stop_price": 7.9304,
       "pivot_stop": 7.52,
       "target_price": 9.74,
       "stop_dist_pct": 8.958837772397098,
       "size_suggest_pct": 0.11162162162162158,
       "entry_time": 1792799999999,
       "entry_bar_open_time": 1792713600000,
-      "last_check_ms": 1792892640000,
-      "peak_price": 8.56,
-      "last_stop_alert_price": 7.8476,
-      "stop_updates_count": 3,
+      "last_check_ms": 1792911480000,
+      "peak_price": 8.62,
+      "last_stop_alert_price": 7.9304,
+      "stop_updates_count": 4,
       "halal_verdict": "⛔ غير مباح"
     },
     "TRXUSDT": {
@@ -159,28 +160,11 @@
       "size_suggest_pct": 1.375416666666659,
       "entry_time": 1792799999999,
       "entry_bar_open_time": 1792713600000,
-      "last_check_ms": 1792892640000,
+      "last_check_ms": 1792911480000,
       "peak_price": 0.3312,
       "last_stop_alert_price": 0.3277,
       "stop_updates_count": 0,
       "halal_verdict": "✅ مباح"
-    },
-    "INITUSDT": {
-      "trade_id": "INITUSDT-1792800000000",
-      "symbol": "INITUSDT",
-      "entry_price": 0.15958,
-      "stop_price": 0.11337,
-      "pivot_stop": 0.11337,
-      "target_price": 0.252,
-      "stop_dist_pct": 28.957262814889084,
-      "size_suggest_pct": 0.034533650724951306,
-      "entry_time": 1792886399999,
-      "entry_bar_open_time": 1792800000000,
-      "last_check_ms": 1792886459999,
-      "peak_price": 0.16089,
-      "last_stop_alert_price": 0.11337,
-      "stop_updates_count": 0,
-      "halal_verdict": "ℹ️ لا يوجد حكم"
     },
     "KAVAUSDT": {
       "trade_id": "KAVAUSDT-1792800000000",
@@ -193,8 +177,8 @@
       "size_suggest_pct": 0.26289962825278695,
       "entry_time": 1792886399999,
       "entry_bar_open_time": 1792800000000,
-      "last_check_ms": 1792886459999,
-      "peak_price": 0.07087,
+      "last_check_ms": 1792911480000,
+      "peak_price": 0.07116,
       "last_stop_alert_price": 0.06803,
       "stop_updates_count": 0,
       "halal_verdict": "⛔ غير مباح"
@@ -203,17 +187,17 @@
       "trade_id": "NILUSDT-1792800000000",
       "symbol": "NILUSDT",
       "entry_price": 0.08863,
-      "stop_price": 0.07539,
+      "stop_price": 0.0829932,
       "pivot_stop": 0.07539,
       "target_price": 0.11511,
       "stop_dist_pct": 14.938508405731696,
       "size_suggest_pct": 0.06694108761329304,
       "entry_time": 1792886399999,
       "entry_bar_open_time": 1792800000000,
-      "last_check_ms": 1792886459999,
-      "peak_price": 0.08939,
-      "last_stop_alert_price": 0.07539,
-      "stop_updates_count": 0,
+      "last_check_ms": 1792911480000,
+      "peak_price": 0.09021,
+      "last_stop_alert_price": 0.0822388,
+      "stop_updates_count": 1,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     }
   },
@@ -1612,6 +1596,36 @@
       "type": "entry",
       "symbol": "NILUSDT",
       "time_ms": 1792886399999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "GMXUSDT",
+      "time_ms": 1792904399999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "INITUSDT",
+      "time_ms": 1792886519999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "INITUSDT",
+      "time_ms": 1792898819999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "INITUSDT",
+      "time_ms": 1792898879999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "INITUSDT",
+      "time_ms": 1792905899999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "NILUSDT",
+      "time_ms": 1792886519999
     }
   ],
   "daily_report": {
