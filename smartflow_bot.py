@@ -40,6 +40,32 @@ PEGGED_STABLE_BASES = frozenset({
     "BUSD", "USDP", "DAI", "PYUSD", "GUSD", "LUSD", "AEUR", "EURC", "USDY", "USDD", "USDF",
 })
 
+# غربلة «عملات رقمية فقط» (قرار المالك 2026-10-25): استثناء الرموز المُرمَّزَة
+# لأوراق مالية/أسهم/صناديق وذهب تُدرَج في قائمة السبوت رسميًا (لها لاحقة B)
+# وكذلك المشتقات المغلّفة/المستلمة المكررة لـ BTC/ETH (ضجيج إشارات مكرر).
+EXCLUDE_NON_CRYPTO = os.getenv("SMARTFLOW_EXCLUDE_NON_CRYPTO", "1").strip().lower() not in ("0", "false", "no", "off")
+
+NON_CRYPTO_BASES = frozenset({
+    # أسهم مُرمَّزة (Binance tokenized stocks/ETFs — لاحقة B):
+    "AAPLB", "ALABB", "AMDB", "AMATB", "ARMB", "ASTSB", "AVGOB", "AXTIB", "BMNRB", "BRKBB",
+    "CRCLB", "CRDOB", "CRWVB", "DELLB", "DRAMB", "EWYB", "FLNCB", "GLWB", "HPEB", "HOODB",
+    "INTCB", "IRENB", "KORUB", "LITEB", "METAB", "MRVLB", "MSTRB", "MUB", "MUUB", "MVLLB",
+    "NBISB", "NOKB", "NVDAB", "ORCLB", "PLTRB", "QCOMB", "QQQB", "SQQQB", "SMHB", "SNXB",
+    "SOXLB", "SOXSB", "STXB", "TQQQB", "TSLAB", "TSMB", "USARB", "WDCB",
+    # صكوك ذهب مُرمَّزة:
+    "XAUT", "PAXG",
+    # مغلفات/شهادات استلام مكررة (مرآة BTC/ETH/SOL):
+    "WBTC", "WBETH", "BNSOL",
+})
+
+
+def is_non_crypto_symbol(symbol: str, quote_asset: str = "USDT") -> bool:
+    symbol = (symbol or "").upper()
+    quote = (quote_asset or "USDT").upper()
+    if not symbol.endswith(quote):
+        return False
+    return symbol[: -len(quote)] in NON_CRYPTO_BASES
+
 
 def is_pegged_stable_symbol(symbol: str, quote_asset: str = "USDT") -> bool:
     symbol = (symbol or "").upper()
@@ -119,12 +145,18 @@ class SmartFlowSignalBot:
             self.symbols = [s for s in all_symbols if not is_pegged_stable_symbol(s, self.config.quote_asset)]
         else:
             self.symbols = list(all_symbols)
+        if EXCLUDE_NON_CRYPTO:
+            before = len(self.symbols)
+            self.symbols = [s for s in self.symbols if not is_non_crypto_symbol(s, self.config.quote_asset)]
+            non_crypto_dropped = before - len(self.symbols)
+        else:
+            non_crypto_dropped = 0
         self.last_symbols_refresh = now
         excluded = len(all_symbols) - len(self.symbols)
         self.logger.info(
-            "SmartFlow: Loaded %s spot symbols with quote asset %s%s",
+            "SmartFlow: Loaded %s crypto-only spot symbols with quote asset %s%s",
             len(self.symbols), self.config.quote_asset,
-            f" (استُثني {excluded} زوجًا لعملات مستقرة مربوطة)" if excluded else "",
+            f" (استُثني {excluded} زوجًا: مربوطة/مُرمَّزة لأوراق مالية/مغلفات مكررة)" if excluded else "",
         )
 
     def refresh_halal_verdicts(self) -> None:
