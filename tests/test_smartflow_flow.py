@@ -200,6 +200,24 @@ def test_buys_only_sells_logged_not_sent(bot):
     assert bot.state["last_signal"][SYMBOL]["kind"] == "buy"
 
 
+def test_crypto_only_filter_blocks_generic_b_suffix():
+    """لاحقات B غير مفهرسة تُستبعد تلقائيًا (رموز ظهرت فعليًا في مسح حي 25-10)."""
+    from smartflow_bot import is_non_crypto_symbol
+    non_crypto = [
+        "ASMLBUSDT", "COINBUSDT", "RDDTBUSDT", "SNXXBUSDT", "SPCXBUSDT",
+        "MDBBUSDT", "SKHYBUSDT", "USDEBUSDT", "VSTBUSDT", "MRNABUSDT",
+        "CBRSBUSDT", "RKLBBUSDT", "SMCIBUSDT", "BOTBUSDT", "KGSTBUSDT",
+        "ZMBUSDT", "DJTBUSDT", "INTWBUSDT",       # الزلقة من القائمة الثابتة
+        "TSLABUSDT", "XAUTUSDT", "PAXGUSDT", "WBTCUSDT",  # المفهرسة سلفًا
+    ]
+    crypto = ["BNBUSDT", "BTCUSDT", "1000SATSUSDT", "SUSDT", "SANDUSDT",
+              "TUTUSDT", "JUVUSDT", "PORTALUSDT", "ZENUSDT"]
+    for s in non_crypto:
+        assert is_non_crypto_symbol(s) is True, s
+    for s in crypto:
+        assert is_non_crypto_symbol(s) is False, s
+
+
 def test_send_allowed_on_flip_and_cooldown(bot):
     bot.settings.alternate_only = False  # اختبار المهلة فقط — التبادل مغطى باختبار مستقل
     bot.state["last_signal"] = {

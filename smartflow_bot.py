@@ -45,6 +45,12 @@ PEGGED_STABLE_BASES = frozenset({
 # وكذلك المشتقات المغلّفة/المستلمة المكررة لـ BTC/ETH (ضجيج إشارات مكرر).
 EXCLUDE_NON_CRYPTO = os.getenv("SMARTFLOW_EXCLUDE_NON_CRYPTO", "1").strip().lower() not in ("0", "false", "no", "off")
 
+# لاحقة B = نمط الأسهم المُرمَّزة في Binance (الرمز المالي الأصلي + B).
+# بدل تعدادها يدويًا (تُدرَج أزواج جديدة كل فترة: ASMLB، COINB، RDDTB...)،
+# الكشف بقاعدة عامة: أي قاعدة تنتهي بـ B = مُرمَّزة، ما عدا عملات رقمية معروفة
+# تنتهي أصلًا بـ B (القائمة أدناه صغيرة وثابتة).
+CRYPTO_BASES_ENDING_B = frozenset({"BNB"})
+
 NON_CRYPTO_BASES = frozenset({
     # أسهم مُرمَّزة (Binance tokenized stocks/ETFs — لاحقة B):
     "AAPLB", "ALABB", "AMDB", "AMATB", "ARMB", "ASTSB", "AVGOB", "AXTIB", "BMNRB", "BRKBB",
@@ -64,7 +70,13 @@ def is_non_crypto_symbol(symbol: str, quote_asset: str = "USDT") -> bool:
     quote = (quote_asset or "USDT").upper()
     if not symbol.endswith(quote):
         return False
-    return symbol[: -len(quote)] in NON_CRYPTO_BASES
+    base = symbol[: -len(quote)]
+    if base in NON_CRYPTO_BASES:
+        return True
+    # لاحقة B عامة: أسهم/صناديق مُرمَّزة جديدة غير مفهرسة بعد (ما عدا BNB رقمية)
+    if base.endswith("B") and base not in CRYPTO_BASES_ENDING_B:
+        return True
+    return False
 
 
 def is_pegged_stable_symbol(symbol: str, quote_asset: str = "USDT") -> bool:
