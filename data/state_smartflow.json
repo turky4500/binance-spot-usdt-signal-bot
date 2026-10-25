@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1792951200000,
+  "last_processed_open_time": 1792962000000,
   "last_entry_bar_time": {},
   "last_exit_bar_time": {},
   "open_trades": {},
@@ -2193,6 +2193,51 @@
       "type": "signal_buy",
       "symbol": "WCTUSDT",
       "time_ms": 1792954799999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "BMTUSDT",
+      "time_ms": 1792958399999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "MINAUSDT",
+      "time_ms": 1792958399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "GTCUSDT",
+      "time_ms": 1792961999999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "LUMIAUSDT",
+      "time_ms": 1792961999999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "BANANAS31USDT",
+      "time_ms": 1792965599999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "DASHUSDT",
+      "time_ms": 1792965599999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "MORPHOUSDT",
+      "time_ms": 1792965599999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SFPUSDT",
+      "time_ms": 1792965599999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SUSDT",
+      "time_ms": 1792965599999
     }
   ],
   "daily_report": {
@@ -2386,8 +2431,8 @@
       "bar_open_time": 1792782000000
     },
     "BANANAS31USDT": {
-      "kind": "buy",
-      "bar_open_time": 1792886400000
+      "kind": "sell",
+      "bar_open_time": 1792962000000
     },
     "BANKUSDT": {
       "kind": "sell",
@@ -2498,8 +2543,8 @@
       "bar_open_time": 1792904400000
     },
     "BMTUSDT": {
-      "kind": "sell",
-      "bar_open_time": 1792886400000
+      "kind": "buy",
+      "bar_open_time": 1792954800000
     },
     "BTTCUSDT": {
       "kind": "buy",
@@ -2594,8 +2639,8 @@
       "bar_open_time": 1792915200000
     },
     "DASHUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792929600000
+      "kind": "sell",
+      "bar_open_time": 1792962000000
     },
     "CYBERUSDT": {
       "kind": "sell",
@@ -2798,8 +2843,8 @@
       "bar_open_time": 1792915200000
     },
     "GTCUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792890000000
+      "kind": "sell",
+      "bar_open_time": 1792958400000
     },
     "GUSDT": {
       "kind": "buy",
@@ -3034,8 +3079,8 @@
       "bar_open_time": 1792782000000
     },
     "LUMIAUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792764000000
+      "kind": "sell",
+      "bar_open_time": 1792958400000
     },
     "MANAUSDT": {
       "kind": "sell",
@@ -3090,12 +3135,12 @@
       "bar_open_time": 1792854000000
     },
     "MORPHOUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792944000000
+      "kind": "sell",
+      "bar_open_time": 1792962000000
     },
     "MINAUSDT": {
-      "kind": "sell",
-      "bar_open_time": 1792782000000
+      "kind": "buy",
+      "bar_open_time": 1792954800000
     },
     "MEMEUSDT": {
       "kind": "sell",
@@ -3454,8 +3499,8 @@
       "bar_open_time": 1792792800000
     },
     "SFPUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792940400000
+      "kind": "sell",
+      "bar_open_time": 1792962000000
     },
     "SOLVUSDT": {
       "kind": "buy",
@@ -3514,8 +3559,8 @@
       "bar_open_time": 1792951200000
     },
     "SUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792936800000
+      "kind": "sell",
+      "bar_open_time": 1792962000000
     },
     "SUSHIUSDT": {
       "kind": "buy",
