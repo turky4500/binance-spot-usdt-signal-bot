@@ -4,40 +4,25 @@
     "9521": 1792652400000,
     "9618": 1792652400000
   },
-  "last_exit_bar_time": {},
+  "last_exit_bar_time": {
+    "9521": 1792911600000
+  },
   "open_trades": {
-    "9521": {
-      "trade_id": "9521-1792652400000",
-      "code": "9521",
-      "company": "INMAR Company",
-      "entry_price": 21.120001,
-      "stop_price": 20.200001,
-      "pivot_stop": 20.200001,
-      "target_price": 22.960000999999995,
-      "stop_dist_pct": 4.356060399807738,
-      "size_suggest_pct": 0.22956522826086997,
-      "entry_time": 1792670400000,
-      "entry_bar_open_time": 1792652400000,
-      "peak_price": 21.120001,
-      "last_stop_alert_price": 20.200001,
-      "stop_updates_count": 0,
-      "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
     "9618": {
       "trade_id": "9618-1792652400000",
       "code": "9618",
       "company": "Al-Fakhera Men's Tailoring Company",
       "entry_price": 26.0,
-      "stop_price": 19.0,
+      "stop_price": 23.92,
       "pivot_stop": 19.0,
       "target_price": 40.0,
       "stop_dist_pct": 26.923076923076923,
       "size_suggest_pct": 0.037142857142857144,
       "entry_time": 1792670400000,
       "entry_bar_open_time": 1792652400000,
-      "peak_price": 26.0,
-      "last_stop_alert_price": 19.0,
-      "stop_updates_count": 0,
+      "peak_price": 26.299999,
+      "last_stop_alert_price": 23.92,
+      "stop_updates_count": 1,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     }
   },
@@ -51,6 +36,16 @@
       "type": "entry",
       "symbol": "9618",
       "time_ms": 1792670400000
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "9521",
+      "time_ms": 1792929600000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "9618",
+      "time_ms": 1792929600000
     }
   ],
   "daily_report": {
@@ -62,5 +57,5 @@
   "weekly_report": {
     "last_reported_week_start": ""
   },
-  "last_processed_date": "2026-10-22"
+  "last_processed_date": "2026-10-25"
 }
