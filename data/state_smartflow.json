@@ -1,1 +1,3072 @@
-{"last_processed_open_time":1792918800000,"last_entry_bar_time":{},"last_exit_bar_time":{},"open_trades":{},"event_log":[{"type":"signal_sell","symbol":"API3USDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"AXSUSDT","time_ms":1792915199999},{"type":"signal_buy","symbol":"BABABUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"BEAMXUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"BOMEUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"CELOUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"CRWDBUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"CYBERUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"ESPUSDT","time_ms":1792915199999},{"type":"signal_buy","symbol":"FFUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"FLUXUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"FUSDT","time_ms":1792915199999},{"type":"signal_buy","symbol":"GNSUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"GPROBUSDT","time_ms":1792915199999},{"type":"signal_buy","symbol":"GSBUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"HOLOUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"IMXUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"KATUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"LAUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"LAYERUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"LINEAUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"MANAUSDT","time_ms":1792915199999},{"type":"signal_buy","symbol":"MANTRAUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"MARSCOINUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"MBLUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"MMTUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"NEWTUSDT","time_ms":1792915199999},{"type":"signal_buy","symbol":"PDDBUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"PIXELUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"SSVUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"TREEUSDT","time_ms":1792915199999},{"type":"signal_buy","symbol":"USUALUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"WAXPUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"WINUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"WOOUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"YGGUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"ZBTUSDT","time_ms":1792915199999},{"type":"signal_buy","symbol":"ZILUSDT","time_ms":1792915199999},{"type":"signal_sell","symbol":"1000CATUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"1000CHEEMSUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"1000SATSUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"1INCHUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"1MBABYDOGEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"2ZUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"AAVEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ACEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ACHUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ACMUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ACTUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ADAUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"AGLDUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"AIXBTUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ALGOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ALICEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ALLOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ALPINEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ALTUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"AMPUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ANIMEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"APEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"APTUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ARKMUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ARPAUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ARUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ASRUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ASTERUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ASTRUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ATMUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ATOMUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"AUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"AVAXUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"AVNTUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"AWEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"BANANAUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"BANDUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"BANKUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"BARDUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"BATUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"BCHUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"BERAUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"BICOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"BIOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"BLURUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"BNTUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"BONKUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"BROCCOLI714USDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"BTCUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"C98USDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"CAKEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"CATIUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"CELRUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"CETUSUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"CFXUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"CGPTUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"CHIPUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"CHRUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"CHZUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"COMPUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"COOKIEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"COTIUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"COWUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"CRVUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"CTKUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"CTSIUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"CUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"CVXUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"DCRUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"DEXEUSDT","time_ms":1792918799999},{"type":"signal_buy","symbol":"DODOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"DOGEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"DOLOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"DUSKUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"DYDXUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"DYMUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"EDENUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"EGLDUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"EIGENUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ENJUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ENSUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ETCUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ETHFIUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ETHUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"EULUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"FETUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"FIDAUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"FILUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"FLOKIUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"FLOWUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"FORMUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"FRAXUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"GALAUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"GASUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"GENIUSUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"GIGGLEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"GLMRUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"GLMUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"GMTUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"GNOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"GNSUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"GPSUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"GRAMUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"GRTUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"GUNUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"GUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"HEIUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"HEMIUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"HMSTRUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"HOMEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"HOTUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"HYPEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ICPUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"IDUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ILVUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"INJUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"IOTAUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"IOTXUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"IOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"JASMYUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"JOEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"JTOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"JUPUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"KAIAUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"KAITOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"KERNELUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"KITEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"KMNOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"KNCUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"KSMUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"LDOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"LINKUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"LISTAUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"LPTUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"LQTYUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"LTCUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"MAGICUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"MANTAUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"MANTRAUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"MASKUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"MEGAUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"MEMEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"MINAUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"MIRAUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"MORPHOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"MOVEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"MOVRUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"NEARUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"NEIROUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"NEOUSDT","time_ms":1792918799999},{"type":"signal_buy","symbol":"NEXOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"NIGHTUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"NILUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"NMRUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"NOTUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ONDOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ONEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ONGUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"OPGUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"OPNUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"OPUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ORDIUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"OSMOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"PENDLEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"PENGUUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"PEOPLEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"PLUMEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"PNUTUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"POLUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"PORTALUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"PORTOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"POWRUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"PROVEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"PSGUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"PUMPUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"PUNDIXUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"QTUMUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"RAREUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"RAYUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"REDUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"RENDERUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"RESOLVUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"RIFUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ROBOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"RONINUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ROSEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"RPLUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"RSRUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"RUNEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SAGAUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SANTOSUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SCRUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SEIUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SENTUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SFPUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SIGNUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SKLUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SKYUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SNXUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SOLUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SPELLUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SPKUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"STOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"STRAXUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"STRKUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"STXUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SUIUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SUNUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SUPERUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SUSHIUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SYNUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"SYRUPUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"TAOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"THETAUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"THEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"TKOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"TNSRUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"TRUMPUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"TSTUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"TURBOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"TURTLEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"TUTUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"UMAUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"UNIUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"VELODROMEUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"VETUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"VIRTUALUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"VTHOUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"WALUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"WCTUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"WLDUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"WUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"XLMUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"XPLUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"XTZUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"XVGUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"XVSUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"YFIUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ZENUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ZILUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ZROUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ZRXUSDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"币安人生USDT","time_ms":1792918799999},{"type":"signal_sell","symbol":"ADXUSDT","time_ms":1792922399999},{"type":"signal_sell","symbol":"AVAUSDT","time_ms":1792922399999},{"type":"signal_sell","symbol":"ENAUSDT","time_ms":1792922399999},{"type":"signal_sell","symbol":"HBARUSDT","time_ms":1792922399999},{"type":"signal_sell","symbol":"JUVUSDT","time_ms":1792922399999},{"type":"signal_sell","symbol":"KGSTUSDT","time_ms":1792922399999},{"type":"signal_buy","symbol":"LAZIOUSDT","time_ms":1792922399999},{"type":"signal_sell","symbol":"MUBARAKUSDT","time_ms":1792922399999},{"type":"signal_sell","symbol":"PARTIUSDT","time_ms":1792922399999},{"type":"signal_sell","symbol":"QUICKUSDT","time_ms":1792922399999}],"daily_report":{"last_reported_for_date":""},"daily_analysis":{"last_reported_for_date":""},"weekly_report":{"last_reported_week_start":""},"last_signal":{"0GUSDT":{"kind":"sell","bar_open_time":1792792800000},"AGLDUSDT":{"kind":"sell","bar_open_time":1792915200000},"AIGENSYNUSDT":{"kind":"sell","bar_open_time":1792904400000},"AIUSDT":{"kind":"sell","bar_open_time":1792839600000},"ACMUSDT":{"kind":"sell","bar_open_time":1792792800000},"ADAUSDT":{"kind":"sell","bar_open_time":1792908000000},"AAVEUSDT":{"kind":"sell","bar_open_time":1792792800000},"1000CHEEMSUSDT":{"kind":"sell","bar_open_time":1792915200000},"ACEUSDT":{"kind":"sell","bar_open_time":1792915200000},"1000CATUSDT":{"kind":"sell","bar_open_time":1792915200000},"1INCHUSDT":{"kind":"sell","bar_open_time":1792908000000},"2ZUSDT":{"kind":"sell","bar_open_time":1792846800000},"ACTUSDT":{"kind":"sell","bar_open_time":1792792800000},"ADXUSDT":{"kind":"sell","bar_open_time":1792789200000},"1000SATSUSDT":{"kind":"sell","bar_open_time":1792908000000},"ACHUSDT":{"kind":"sell","bar_open_time":1792908000000},"AIXBTUSDT":{"kind":"sell","bar_open_time":1792792800000},"1MBABYDOGEUSDT":{"kind":"sell","bar_open_time":1792904400000},"AEROUSDT":{"kind":"sell","bar_open_time":1792558800000},"AEVOUSDT":{"kind":"sell","bar_open_time":1792789200000},"ALGOUSDT":{"kind":"sell","bar_open_time":1792792800000},"ALLOUSDT":{"kind":"sell","bar_open_time":1792908000000},"ALPINEUSDT":{"kind":"sell","bar_open_time":1792782000000},"ALICEUSDT":{"kind":"sell","bar_open_time":1792915200000},"ALTUSDT":{"kind":"sell","bar_open_time":1792638000000},"ANKRUSDT":{"kind":"buy","bar_open_time":1792836000000},"AMPUSDT":{"kind":"sell","bar_open_time":1792915200000},"ANIMEUSDT":{"kind":"sell","bar_open_time":1792890000000},"API3USDT":{"kind":"sell","bar_open_time":1792792800000},"APEUSDT":{"kind":"sell","bar_open_time":1792792800000},"ARPAUSDT":{"kind":"sell","bar_open_time":1792908000000},"ASTERUSDT":{"kind":"sell","bar_open_time":1792915200000},"ASTRUSDT":{"kind":"sell","bar_open_time":1792915200000},"ASRUSDT":{"kind":"sell","bar_open_time":1792782000000},"ATOMUSDT":{"kind":"sell","bar_open_time":1792782000000},"ATMUSDT":{"kind":"sell","bar_open_time":1792792800000},"AVAXUSDT":{"kind":"sell","bar_open_time":1792904400000},"ATUSDT":{"kind":"buy","bar_open_time":1792749600000},"AUCTIONUSDT":{"kind":"sell","bar_open_time":1792792800000},"ARUSDT":{"kind":"sell","bar_open_time":1792782000000},"AUDIOUSDT":{"kind":"sell","bar_open_time":1792854000000},"AVAUSDT":{"kind":"sell","bar_open_time":1792918800000},"AUSDT":{"kind":"sell","bar_open_time":1792904400000},"AVNTUSDT":{"kind":"sell","bar_open_time":1792915200000},"AXSUSDT":{"kind":"sell","bar_open_time":1792782000000},"BANANAS31USDT":{"kind":"buy","bar_open_time":1792886400000},"BANKUSDT":{"kind":"sell","bar_open_time":1792782000000},"BARUSDT":{"kind":"sell","bar_open_time":1792792800000},"AXLUSDT":{"kind":"sell","bar_open_time":1792908000000},"AWEUSDT":{"kind":"sell","bar_open_time":1792789200000},"BANDUSDT":{"kind":"sell","bar_open_time":1792915200000},"BANANAUSDT":{"kind":"sell","bar_open_time":1792915200000},"BCHUSDT":{"kind":"sell","bar_open_time":1792792800000},"BABYUSDT":{"kind":"sell","bar_open_time":1792854000000},"BATUSDT":{"kind":"sell","bar_open_time":1792540800000},"BARDUSDT":{"kind":"sell","bar_open_time":1792915200000},"BEAMXUSDT":{"kind":"sell","bar_open_time":1792828800000},"BELUSDT":{"kind":"sell","bar_open_time":1792850400000},"BERAUSDT":{"kind":"sell","bar_open_time":1792915200000},"APTUSDT":{"kind":"sell","bar_open_time":1792792800000},"BIOUSDT":{"kind":"sell","bar_open_time":1792789200000},"ARKMUSDT":{"kind":"sell","bar_open_time":1792915200000},"BLURUSDT":{"kind":"sell","bar_open_time":1792764000000},"BNTUSDT":{"kind":"sell","bar_open_time":1792908000000},"BIGTIMEUSDT":{"kind":"sell","bar_open_time":1792854000000},"BOMEUSDT":{"kind":"sell","bar_open_time":1792911600000},"BROCCOLI714USDT":{"kind":"sell","bar_open_time":1792915200000},"BONKUSDT":{"kind":"sell","bar_open_time":1792915200000},"BNBUSDT":{"kind":"buy","bar_open_time":1792879200000},"BTCUSDT":{"kind":"sell","bar_open_time":1792915200000},"BICOUSDT":{"kind":"sell","bar_open_time":1792782000000},"BREVUSDT":{"kind":"sell","bar_open_time":1792908000000},"ARKUSDT":{"kind":"sell","bar_open_time":1792904400000},"BMTUSDT":{"kind":"sell","bar_open_time":1792886400000},"BTTCUSDT":{"kind":"buy","bar_open_time":1792472400000},"CATIUSDT":{"kind":"sell","bar_open_time":1792792800000},"C98USDT":{"kind":"sell","bar_open_time":1792782000000},"CELRUSDT":{"kind":"sell","bar_open_time":1792915200000},"CAKEUSDT":{"kind":"sell","bar_open_time":1792792800000},"CETUSUSDT":{"kind":"sell","bar_open_time":1792792800000},"CELOUSDT":{"kind":"sell","bar_open_time":1792782000000},"CFGUSDT":{"kind":"sell","bar_open_time":1792782000000},"CGPTUSDT":{"kind":"sell","bar_open_time":1792782000000},"CHZUSDT":{"kind":"sell","bar_open_time":1792908000000},"CHRUSDT":{"kind":"sell","bar_open_time":1792792800000},"CFXUSDT":{"kind":"sell","bar_open_time":1792782000000},"CUSDT":{"kind":"sell","bar_open_time":1792792800000},"CHIPUSDT":{"kind":"sell","bar_open_time":1792915200000},"CITYUSDT":{"kind":"sell","bar_open_time":1792782000000},"CVCUSDT":{"kind":"buy","bar_open_time":1792886400000},"COWUSDT":{"kind":"sell","bar_open_time":1792792800000},"CTKUSDT":{"kind":"sell","bar_open_time":1792792800000},"COMPUSDT":{"kind":"sell","bar_open_time":1792908000000},"COOKIEUSDT":{"kind":"sell","bar_open_time":1792915200000},"CRVUSDT":{"kind":"sell","bar_open_time":1792908000000},"COTIUSDT":{"kind":"sell","bar_open_time":1792778400000},"CVXUSDT":{"kind":"sell","bar_open_time":1792915200000},"DASHUSDT":{"kind":"sell","bar_open_time":1792908000000},"CYBERUSDT":{"kind":"sell","bar_open_time":1792854000000},"DIAUSDT":{"kind":"sell","bar_open_time":1792908000000},"DOGSUSDT":{"kind":"buy","bar_open_time":1792882800000},"DODOUSDT":{"kind":"buy","bar_open_time":1792839600000},"DUSKUSDT":{"kind":"sell","bar_open_time":1792792800000},"DEXEUSDT":{"kind":"sell","bar_open_time":1792782000000},"DCRUSDT":{"kind":"sell","bar_open_time":1792900800000},"DOGEUSDT":{"kind":"sell","bar_open_time":1792908000000},"DOLOUSDT":{"kind":"sell","bar_open_time":1792908000000},"DOTUSDT":{"kind":"sell","bar_open_time":1792760400000},"DYMUSDT":{"kind":"sell","bar_open_time":1792854000000},"DYDXUSDT":{"kind":"sell","bar_open_time":1792908000000},"EDUUSDT":{"kind":"sell","bar_open_time":1792663200000},"EGLDUSDT":{"kind":"sell","bar_open_time":1792778400000},"ENAUSDT":{"kind":"sell","bar_open_time":1792918800000},"ENSOUSDT":{"kind":"sell","bar_open_time":1792904400000},"EPICUSDT":{"kind":"sell","bar_open_time":1792904400000},"ERAUSDT":{"kind":"sell","bar_open_time":1792879200000},"ENJUSDT":{"kind":"sell","bar_open_time":1792789200000},"ENSUSDT":{"kind":"sell","bar_open_time":1792915200000},"ESPUSDT":{"kind":"sell","bar_open_time":1792850400000},"EIGENUSDT":{"kind":"sell","bar_open_time":1792792800000},"ETCUSDT":{"kind":"sell","bar_open_time":1792904400000},"ETHUSDT":{"kind":"sell","bar_open_time":1792915200000},"EULUSDT":{"kind":"sell","bar_open_time":1792908000000},"ETHFIUSDT":{"kind":"sell","bar_open_time":1792630800000},"FETUSDT":{"kind":"sell","bar_open_time":1792915200000},"FFUSDT":{"kind":"buy","bar_open_time":1792911600000},"FIDAUSDT":{"kind":"sell","bar_open_time":1792908000000},"FILUSDT":{"kind":"sell","bar_open_time":1792630800000},"FLOKIUSDT":{"kind":"sell","bar_open_time":1792782000000},"FLOWUSDT":{"kind":"sell","bar_open_time":1792630800000},"CTSIUSDT":{"kind":"sell","bar_open_time":1792904400000},"FRAXUSDT":{"kind":"sell","bar_open_time":1792850400000},"GASUSDT":{"kind":"sell","bar_open_time":1792915200000},"GALAUSDT":{"kind":"sell","bar_open_time":1792792800000},"FUSDT":{"kind":"sell","bar_open_time":1792868400000},"FLUXUSDT":{"kind":"sell","bar_open_time":1792911600000},"FORMUSDT":{"kind":"sell","bar_open_time":1792915200000},"FOGOUSDT":{"kind":"sell","bar_open_time":1792908000000},"FTTUSDT":{"kind":"buy","bar_open_time":1792897200000},"GENIUSUSDT":{"kind":"sell","bar_open_time":1792915200000},"GIGGLEUSDT":{"kind":"sell","bar_open_time":1792782000000},"GLMRUSDT":{"kind":"sell","bar_open_time":1792915200000},"GLMUSDT":{"kind":"sell","bar_open_time":1792915200000},"GMXUSDT":{"kind":"buy","bar_open_time":1792890000000},"GMTUSDT":{"kind":"sell","bar_open_time":1792915200000},"GNOUSDT":{"kind":"sell","bar_open_time":1792908000000},"GNSUSDT":{"kind":"sell","bar_open_time":1792915200000},"GPSUSDT":{"kind":"sell","bar_open_time":1792915200000},"GTCUSDT":{"kind":"buy","bar_open_time":1792890000000},"GUSDT":{"kind":"sell","bar_open_time":1792908000000},"GRTUSDT":{"kind":"sell","bar_open_time":1792908000000},"GRAMUSDT":{"kind":"sell","bar_open_time":1792584000000},"GUNUSDT":{"kind":"sell","bar_open_time":1792630800000},"HAEDALUSDT":{"kind":"sell","bar_open_time":1792893600000},"EDENUSDT":{"kind":"sell","bar_open_time":1792915200000},"HBARUSDT":{"kind":"sell","bar_open_time":1792918800000},"HEIUSDT":{"kind":"sell","bar_open_time":1792861200000},"HEMIUSDT":{"kind":"sell","bar_open_time":1792782000000},"HOMEUSDT":{"kind":"sell","bar_open_time":1792792800000},"HOTUSDT":{"kind":"sell","bar_open_time":1792915200000},"HUMAUSDT":{"kind":"sell","bar_open_time":1792854000000},"HIVEUSDT":{"kind":"buy","bar_open_time":1792886400000},"ILVUSDT":{"kind":"sell","bar_open_time":1792915200000},"HYPEUSDT":{"kind":"sell","bar_open_time":1792908000000},"IMXUSDT":{"kind":"sell","bar_open_time":1792911600000},"HYPERUSDT":{"kind":"sell","bar_open_time":1792854000000},"HOLOUSDT":{"kind":"sell","bar_open_time":1792911600000},"ICPUSDT":{"kind":"sell","bar_open_time":1792792800000},"INITUSDT":{"kind":"sell","bar_open_time":1792904400000},"HMSTRUSDT":{"kind":"sell","bar_open_time":1792792800000},"IDUSDT":{"kind":"sell","bar_open_time":1792908000000},"INJUSDT":{"kind":"sell","bar_open_time":1792915200000},"IOSTUSDT":{"kind":"buy","bar_open_time":1792886400000},"IOTAUSDT":{"kind":"sell","bar_open_time":1792908000000},"IOTXUSDT":{"kind":"sell","bar_open_time":1792760400000},"IOUSDT":{"kind":"sell","bar_open_time":1792915200000},"JOEUSDT":{"kind":"sell","bar_open_time":1792915200000},"JUPUSDT":{"kind":"sell","bar_open_time":1792634400000},"JUVUSDT":{"kind":"sell","bar_open_time":1792792800000},"JSTUSDT":{"kind":"buy","bar_open_time":1792717200000},"KAITOUSDT":{"kind":"sell","bar_open_time":1792904400000},"KATUSDT":{"kind":"sell","bar_open_time":1792886400000},"JASMYUSDT":{"kind":"sell","bar_open_time":1792792800000},"KAVAUSDT":{"kind":"sell","bar_open_time":1792904400000},"IQUSDT":{"kind":"buy","bar_open_time":1792886400000},"KGSTUSDT":{"kind":"sell","bar_open_time":1792861200000},"KITEUSDT":{"kind":"sell","bar_open_time":1792774800000},"KAIAUSDT":{"kind":"sell","bar_open_time":1792915200000},"KERNELUSDT":{"kind":"sell","bar_open_time":1792843200000},"JTOUSDT":{"kind":"sell","bar_open_time":1792908000000},"KMNOUSDT":{"kind":"sell","bar_open_time":1792915200000},"KNCUSDT":{"kind":"sell","bar_open_time":1792908000000},"KSMUSDT":{"kind":"sell","bar_open_time":1792908000000},"LAUSDT":{"kind":"sell","bar_open_time":1792886400000},"LDOUSDT":{"kind":"sell","bar_open_time":1792904400000},"LINEAUSDT":{"kind":"sell","bar_open_time":1792854000000},"LAYERUSDT":{"kind":"sell","bar_open_time":1792854000000},"LISTAUSDT":{"kind":"sell","bar_open_time":1792915200000},"LQTYUSDT":{"kind":"sell","bar_open_time":1792785600000},"LAZIOUSDT":{"kind":"buy","bar_open_time":1792900800000},"LTCUSDT":{"kind":"sell","bar_open_time":1792904400000},"LINKUSDT":{"kind":"sell","bar_open_time":1792792800000},"LSKUSDT":{"kind":"sell","bar_open_time":1792908000000},"LUNCUSDT":{"kind":"buy","bar_open_time":1792904400000},"LPTUSDT":{"kind":"sell","bar_open_time":1792792800000},"LUNAUSDT":{"kind":"sell","bar_open_time":1792850400000},"MAGICUSDT":{"kind":"sell","bar_open_time":1792782000000},"LUMIAUSDT":{"kind":"buy","bar_open_time":1792764000000},"MANAUSDT":{"kind":"sell","bar_open_time":1792911600000},"MANTAUSDT":{"kind":"sell","bar_open_time":1792915200000},"MASKUSDT":{"kind":"sell","bar_open_time":1792915200000},"MAVUSDT":{"kind":"sell","bar_open_time":1792850400000},"MARSCOINUSDT":{"kind":"sell","bar_open_time":1792911600000},"MITOUSDT":{"kind":"sell","bar_open_time":1792692000000},"MANTRAUSDT":{"kind":"sell","bar_open_time":1792915200000},"METUSDT":{"kind":"sell","bar_open_time":1792908000000},"METISUSDT":{"kind":"sell","bar_open_time":1792749600000},"MBLUSDT":{"kind":"sell","bar_open_time":1792818000000},"MEGAUSDT":{"kind":"sell","bar_open_time":1792908000000},"MIRAUSDT":{"kind":"sell","bar_open_time":1792854000000},"MMTUSDT":{"kind":"sell","bar_open_time":1792854000000},"MORPHOUSDT":{"kind":"sell","bar_open_time":1792792800000},"MINAUSDT":{"kind":"sell","bar_open_time":1792782000000},"MEMEUSDT":{"kind":"sell","bar_open_time":1792792800000},"MOVEUSDT":{"kind":"sell","bar_open_time":1792850400000},"MTLUSDT":{"kind":"sell","bar_open_time":1792897200000},"MEUSDT":{"kind":"sell","bar_open_time":1792854000000},"MOVRUSDT":{"kind":"sell","bar_open_time":1792771200000},"MUBARAKUSDT":{"kind":"sell","bar_open_time":1792792800000},"NEARUSDT":{"kind":"sell","bar_open_time":1792630800000},"NEWTUSDT":{"kind":"sell","bar_open_time":1792854000000},"NEOUSDT":{"kind":"sell","bar_open_time":1792792800000},"NIGHTUSDT":{"kind":"sell","bar_open_time":1792915200000},"NILUSDT":{"kind":"sell","bar_open_time":1792915200000},"NEXOUSDT":{"kind":"buy","bar_open_time":1792872000000},"NMRUSDT":{"kind":"sell","bar_open_time":1792785600000},"NXPCUSDT":{"kind":"sell","bar_open_time":1792854000000},"NEIROUSDT":{"kind":"sell","bar_open_time":1792792800000},"NOTUSDT":{"kind":"sell","bar_open_time":1792792800000},"NOMUSDT":{"kind":"sell","bar_open_time":1792782000000},"ONDOUSDT":{"kind":"sell","bar_open_time":1792908000000},"ONGUSDT":{"kind":"sell","bar_open_time":1792915200000},"ONTUSDT":{"kind":"sell","bar_open_time":1792908000000},"OPENUSDT":{"kind":"sell","bar_open_time":1792893600000},"OPNUSDT":{"kind":"sell","bar_open_time":1792915200000},"OPGUSDT":{"kind":"sell","bar_open_time":1792850400000},"OSMOUSDT":{"kind":"sell","bar_open_time":1792756800000},"ORDIUSDT":{"kind":"sell","bar_open_time":1792782000000},"ORCAUSDT":{"kind":"sell","bar_open_time":1792908000000},"PARTIUSDT":{"kind":"sell","bar_open_time":1792918800000},"PENDLEUSDT":{"kind":"sell","bar_open_time":1792904400000},"OPUSDT":{"kind":"sell","bar_open_time":1792908000000},"PEOPLEUSDT":{"kind":"sell","bar_open_time":1792915200000},"PENGUUSDT":{"kind":"sell","bar_open_time":1792785600000},"PEPEUSDT":{"kind":"sell","bar_open_time":1792904400000},"PIXELUSDT":{"kind":"sell","bar_open_time":1792854000000},"PHAUSDT":{"kind":"sell","bar_open_time":1792771200000},"PNUTUSDT":{"kind":"sell","bar_open_time":1792792800000},"PLUMEUSDT":{"kind":"sell","bar_open_time":1792782000000},"PORTALUSDT":{"kind":"sell","bar_open_time":1792846800000},"POLYXUSDT":{"kind":"buy","bar_open_time":1792886400000},"POLUSDT":{"kind":"sell","bar_open_time":1792792800000},"POWRUSDT":{"kind":"sell","bar_open_time":1792915200000},"PORTOUSDT":{"kind":"sell","bar_open_time":1792854000000},"PROMUSDT":{"kind":"buy","bar_open_time":1792900800000},"PSGUSDT":{"kind":"sell","bar_open_time":1792792800000},"PROVEUSDT":{"kind":"sell","bar_open_time":1792792800000},"PUMPUSDT":{"kind":"sell","bar_open_time":1792908000000},"PUNDIXUSDT":{"kind":"sell","bar_open_time":1792915200000},"RAREUSDT":{"kind":"sell","bar_open_time":1792756800000},"QKCUSDT":{"kind":"buy","bar_open_time":1792886400000},"PYTHUSDT":{"kind":"buy","bar_open_time":1792882800000},"QIUSDT":{"kind":"buy","bar_open_time":1792897200000},"RADUSDT":{"kind":"sell","bar_open_time":1792652400000},"QUICKUSDT":{"kind":"sell","bar_open_time":1792854000000},"QNTUSDT":{"kind":"buy","bar_open_time":1792886400000},"QTUMUSDT":{"kind":"sell","bar_open_time":1792908000000},"REDUSDT":{"kind":"sell","bar_open_time":1792850400000},"OGNUSDT":{"kind":"sell","bar_open_time":1792800000000},"RAYUSDT":{"kind":"sell","bar_open_time":1792915200000},"ONEUSDT":{"kind":"sell","bar_open_time":1792774800000},"RENDERUSDT":{"kind":"sell","bar_open_time":1792908000000},"REQUSDT":{"kind":"sell","bar_open_time":1792548000000},"RESOLVUSDT":{"kind":"sell","bar_open_time":1792893600000},"RIFUSDT":{"kind":"sell","bar_open_time":1792792800000},"RLCUSDT":{"kind":"sell","bar_open_time":1792756800000},"RONINUSDT":{"kind":"sell","bar_open_time":1792782000000},"ROBOUSDT":{"kind":"sell","bar_open_time":1792760400000},"REZUSDT":{"kind":"buy","bar_open_time":1792864800000},"REUSDT":{"kind":"buy","bar_open_time":1792882800000},"RUNEUSDT":{"kind":"sell","bar_open_time":1792792800000},"RWUSDUSDT":{"kind":"sell","bar_open_time":1791993600000},"RPLUSDT":{"kind":"sell","bar_open_time":1792915200000},"RVNUSDT":{"kind":"sell","bar_open_time":1792908000000},"OGUSDT":{"kind":"sell","bar_open_time":1792699200000},"ROSEUSDT":{"kind":"sell","bar_open_time":1792915200000},"RSRUSDT":{"kind":"sell","bar_open_time":1792591200000},"SAGAUSDT":{"kind":"sell","bar_open_time":1792782000000},"SAHARAUSDT":{"kind":"sell","bar_open_time":1792904400000},"SANDUSDT":{"kind":"sell","bar_open_time":1792904400000},"SAPIENUSDT":{"kind":"sell","bar_open_time":1792854000000},"SANTOSUSDT":{"kind":"sell","bar_open_time":1792792800000},"SCUSDT":{"kind":"buy","bar_open_time":1792886400000},"SEIUSDT":{"kind":"sell","bar_open_time":1792904400000},"SHELLUSDT":{"kind":"sell","bar_open_time":1792850400000},"SIGNUSDT":{"kind":"sell","bar_open_time":1792915200000},"SKLUSDT":{"kind":"sell","bar_open_time":1792915200000},"SKYUSDT":{"kind":"sell","bar_open_time":1792904400000},"SLPUSDT":{"kind":"sell","bar_open_time":1792908000000},"SNXUSDT":{"kind":"sell","bar_open_time":1792908000000},"SCRUSDT":{"kind":"sell","bar_open_time":1792915200000},"SENTUSDT":{"kind":"sell","bar_open_time":1792792800000},"SFPUSDT":{"kind":"sell","bar_open_time":1792915200000},"SOLVUSDT":{"kind":"buy","bar_open_time":1792886400000},"SOMIUSDT":{"kind":"sell","bar_open_time":1792792800000},"SOPHUSDT":{"kind":"sell","bar_open_time":1792782000000},"SPKUSDT":{"kind":"sell","bar_open_time":1792850400000},"SSVUSDT":{"kind":"sell","bar_open_time":1792778400000},"STRAXUSDT":{"kind":"sell","bar_open_time":1792915200000},"SPELLUSDT":{"kind":"sell","bar_open_time":1792792800000},"STOUSDT":{"kind":"sell","bar_open_time":1792782000000},"STEEMUSDT":{"kind":"buy","bar_open_time":1792886400000},"STRKUSDT":{"kind":"sell","bar_open_time":1792699200000},"STXUSDT":{"kind":"sell","bar_open_time":1792908000000},"SUNUSDT":{"kind":"sell","bar_open_time":1792850400000},"SUIUSDT":{"kind":"sell","bar_open_time":1792782000000},"SUPERUSDT":{"kind":"sell","bar_open_time":1792792800000},"SUSDT":{"kind":"sell","bar_open_time":1792760400000},"SUSHIUSDT":{"kind":"sell","bar_open_time":1792789200000},"SXTUSDT":{"kind":"sell","bar_open_time":1792897200000},"SYNUSDT":{"kind":"sell","bar_open_time":1792915200000},"SYRUPUSDT":{"kind":"sell","bar_open_time":1792641600000},"TFUELUSDT":{"kind":"sell","bar_open_time":1792908000000},"TAOUSDT":{"kind":"sell","bar_open_time":1792908000000},"TKOUSDT":{"kind":"sell","bar_open_time":1792915200000},"THEUSDT":{"kind":"sell","bar_open_time":1792782000000},"THETAUSDT":{"kind":"sell","bar_open_time":1792792800000},"TIAUSDT":{"kind":"sell","bar_open_time":1792540800000},"TNSRUSDT":{"kind":"sell","bar_open_time":1792792800000},"TLMUSDT":{"kind":"sell","bar_open_time":1792789200000},"TOWNSUSDT":{"kind":"sell","bar_open_time":1792850400000},"TREEUSDT":{"kind":"sell","bar_open_time":1792854000000},"TRUMPUSDT":{"kind":"sell","bar_open_time":1792908000000},"TRXUSDT":{"kind":"sell","bar_open_time":1792850400000},"TSTUSDT":{"kind":"sell","bar_open_time":1792782000000},"TURBOUSDT":{"kind":"sell","bar_open_time":1792792800000},"TURTLEUSDT":{"kind":"sell","bar_open_time":1792904400000},"TUSDT":{"kind":"buy","bar_open_time":1792886400000},"UMAUSDT":{"kind":"sell","bar_open_time":1792782000000},"TWTUSDT":{"kind":"buy","bar_open_time":1792886400000},"UNIUSDT":{"kind":"sell","bar_open_time":1792908000000},"USTCUSDT":{"kind":"sell","bar_open_time":1792782000000},"TUTUSDT":{"kind":"sell","bar_open_time":1792782000000},"USUALUSDT":{"kind":"buy","bar_open_time":1792879200000},"VELODROMEUSDT":{"kind":"sell","bar_open_time":1792562400000},"VANAUSDT":{"kind":"sell","bar_open_time":1792908000000},"VETUSDT":{"kind":"sell","bar_open_time":1792782000000},"SOLUSDT":{"kind":"sell","bar_open_time":1792915200000},"WALUSDT":{"kind":"sell","bar_open_time":1792749600000},"VIRTUALUSDT":{"kind":"sell","bar_open_time":1792792800000},"VTHOUSDT":{"kind":"sell","bar_open_time":1792908000000},"WAXPUSDT":{"kind":"sell","bar_open_time":1792911600000},"WCTUSDT":{"kind":"sell","bar_open_time":1792854000000},"WIFUSDT":{"kind":"sell","bar_open_time":1792904400000},"WOOUSDT":{"kind":"sell","bar_open_time":1792911600000},"WINUSDT":{"kind":"sell","bar_open_time":1792911600000},"WLFIUSDT":{"kind":"sell","bar_open_time":1792821600000},"XECUSDT":{"kind":"buy","bar_open_time":1792879200000},"WLDUSDT":{"kind":"sell","bar_open_time":1792915200000},"XPLUSDT":{"kind":"sell","bar_open_time":1792792800000},"XRPUSDT":{"kind":"buy","bar_open_time":1792872000000},"XVGUSDT":{"kind":"sell","bar_open_time":1792904400000},"XAIUSDT":{"kind":"sell","bar_open_time":1792792800000},"XVSUSDT":{"kind":"sell","bar_open_time":1792904400000},"XNOUSDT":{"kind":"sell","bar_open_time":1792645200000},"XTZUSDT":{"kind":"sell","bar_open_time":1792792800000},"XLMUSDT":{"kind":"sell","bar_open_time":1792908000000},"WUSDT":{"kind":"sell","bar_open_time":1792785600000},"YFIUSDT":{"kind":"sell","bar_open_time":1792792800000},"ZBTUSDT":{"kind":"sell","bar_open_time":1792886400000},"ZECUSDT":{"kind":"buy","bar_open_time":1792864800000},"YGGUSDT":{"kind":"sell","bar_open_time":1792904400000},"ZAMAUSDT":{"kind":"sell","bar_open_time":1792792800000},"ZENUSDT":{"kind":"sell","bar_open_time":1792908000000},"ZILUSDT":{"kind":"sell","bar_open_time":1792915200000},"ZKCUSDT":{"kind":"sell","bar_open_time":1792850400000},"ZKPUSDT":{"kind":"sell","bar_open_time":1792904400000},"ZROUSDT":{"kind":"sell","bar_open_time":1792915200000},"ZKUSDT":{"kind":"sell","bar_open_time":1792846800000},"牛来USDT":{"kind":"buy","bar_open_time":1792893600000},"币安人生USDT":{"kind":"sell","bar_open_time":1792915200000},"ZRXUSDT":{"kind":"sell","bar_open_time":1792915200000}},"events":[{"type":"anchor_rebuild","time_local":"2026-10-25 14:03","history_bars":500,"symbols":392,"changed":311,"note":"rebuild last_signal anchors from real 21-day history (v1.2 close-cross + alternation); fixes seed gap (DODO 05:00 buy missed)"}]}
+{
+  "last_processed_open_time": 1792922400000,
+  "last_entry_bar_time": {},
+  "last_exit_bar_time": {},
+  "open_trades": {},
+  "event_log": [
+    {
+      "type": "signal_sell",
+      "symbol": "API3USDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "AXSUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "BABABUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "BEAMXUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "BOMEUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CELOUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CRWDBUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CYBERUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ESPUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "FFUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "FLUXUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "FUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "GNSUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "GPROBUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "GSBUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "HOLOUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "IMXUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "KATUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "LAUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "LAYERUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "LINEAUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "MANAUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "MANTRAUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "MARSCOINUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "MBLUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "MMTUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "NEWTUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "PDDBUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "PIXELUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SSVUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "TREEUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "USUALUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "WAXPUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "WINUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "WOOUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "YGGUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ZBTUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "ZILUSDT",
+      "time_ms": 1792915199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "1000CATUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "1000CHEEMSUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "1000SATSUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "1INCHUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "1MBABYDOGEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "2ZUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "AAVEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ACEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ACHUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ACMUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ACTUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ADAUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "AGLDUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "AIXBTUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ALGOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ALICEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ALLOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ALPINEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ALTUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "AMPUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ANIMEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "APEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "APTUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ARKMUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ARPAUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ARUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ASRUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ASTERUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ASTRUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ATMUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ATOMUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "AUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "AVAXUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "AVNTUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "AWEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "BANANAUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "BANDUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "BANKUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "BARDUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "BATUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "BCHUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "BERAUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "BICOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "BIOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "BLURUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "BNTUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "BONKUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "BROCCOLI714USDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "BTCUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "C98USDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CAKEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CATIUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CELRUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CETUSUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CFXUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CGPTUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CHIPUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CHRUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CHZUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "COMPUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "COOKIEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "COTIUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "COWUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CRVUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CTKUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CTSIUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CVXUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "DCRUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "DEXEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "DODOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "DOGEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "DOLOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "DUSKUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "DYDXUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "DYMUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "EDENUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "EGLDUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "EIGENUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ENJUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ENSUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ETCUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ETHFIUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ETHUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "EULUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "FETUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "FIDAUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "FILUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "FLOKIUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "FLOWUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "FORMUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "FRAXUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "GALAUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "GASUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "GENIUSUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "GIGGLEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "GLMRUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "GLMUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "GMTUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "GNOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "GNSUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "GPSUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "GRAMUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "GRTUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "GUNUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "GUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "HEIUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "HEMIUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "HMSTRUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "HOMEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "HOTUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "HYPEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ICPUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "IDUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ILVUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "INJUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "IOTAUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "IOTXUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "IOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "JASMYUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "JOEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "JTOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "JUPUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "KAIAUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "KAITOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "KERNELUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "KITEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "KMNOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "KNCUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "KSMUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "LDOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "LINKUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "LISTAUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "LPTUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "LQTYUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "LTCUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "MAGICUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "MANTAUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "MANTRAUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "MASKUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "MEGAUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "MEMEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "MINAUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "MIRAUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "MORPHOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "MOVEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "MOVRUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "NEARUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "NEIROUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "NEOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "NEXOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "NIGHTUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "NILUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "NMRUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "NOTUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ONDOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ONEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ONGUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "OPGUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "OPNUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "OPUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ORDIUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "OSMOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "PENDLEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "PENGUUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "PEOPLEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "PLUMEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "PNUTUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "POLUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "PORTALUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "PORTOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "POWRUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "PROVEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "PSGUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "PUMPUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "PUNDIXUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "QTUMUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "RAREUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "RAYUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "REDUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "RENDERUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "RESOLVUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "RIFUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ROBOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "RONINUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ROSEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "RPLUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "RSRUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "RUNEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SAGAUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SANTOSUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SCRUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SEIUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SENTUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SFPUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SIGNUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SKLUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SKYUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SNXUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SOLUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SPELLUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SPKUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "STOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "STRAXUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "STRKUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "STXUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SUIUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SUNUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SUPERUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SUSHIUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SYNUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "SYRUPUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "TAOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "THETAUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "THEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "TKOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "TNSRUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "TRUMPUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "TSTUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "TURBOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "TURTLEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "TUTUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "UMAUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "UNIUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "VELODROMEUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "VETUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "VIRTUALUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "VTHOUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "WALUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "WCTUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "WLDUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "WUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "XLMUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "XPLUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "XTZUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "XVGUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "XVSUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "YFIUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ZENUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ZILUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ZROUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ZRXUSDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "币安人生USDT",
+      "time_ms": 1792918799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ADXUSDT",
+      "time_ms": 1792922399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "AVAUSDT",
+      "time_ms": 1792922399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ENAUSDT",
+      "time_ms": 1792922399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "HBARUSDT",
+      "time_ms": 1792922399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "JUVUSDT",
+      "time_ms": 1792922399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "KGSTUSDT",
+      "time_ms": 1792922399999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "LAZIOUSDT",
+      "time_ms": 1792922399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "MUBARAKUSDT",
+      "time_ms": 1792922399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "PARTIUSDT",
+      "time_ms": 1792922399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "QUICKUSDT",
+      "time_ms": 1792922399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "LUNCUSDT",
+      "time_ms": 1792925999999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "QIUSDT",
+      "time_ms": 1792925999999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "REUSDT",
+      "time_ms": 1792925999999
+    }
+  ],
+  "daily_report": {
+    "last_reported_for_date": ""
+  },
+  "daily_analysis": {
+    "last_reported_for_date": ""
+  },
+  "weekly_report": {
+    "last_reported_week_start": ""
+  },
+  "last_signal": {
+    "0GUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "AGLDUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "AIGENSYNUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "AIUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792839600000
+    },
+    "ACMUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "ADAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "AAVEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "1000CHEEMSUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "ACEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "1000CATUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "1INCHUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "2ZUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792846800000
+    },
+    "ACTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "ADXUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792789200000
+    },
+    "1000SATSUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "ACHUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "AIXBTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "1MBABYDOGEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "AEROUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792558800000
+    },
+    "AEVOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792789200000
+    },
+    "ALGOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "ALLOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "ALPINEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "ALICEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "ALTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792638000000
+    },
+    "ANKRUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792836000000
+    },
+    "AMPUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "ANIMEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792890000000
+    },
+    "API3USDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "APEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "ARPAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "ASTERUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "ASTRUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "ASRUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "ATOMUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "ATMUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "AVAXUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "ATUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792749600000
+    },
+    "AUCTIONUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "ARUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "AUDIOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "AVAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792918800000
+    },
+    "AUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "AVNTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "AXSUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "BANANAS31USDT": {
+      "kind": "buy",
+      "bar_open_time": 1792886400000
+    },
+    "BANKUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "BARUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "AXLUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "AWEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792789200000
+    },
+    "BANDUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "BANANAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "BCHUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "BABYUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "BATUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792540800000
+    },
+    "BARDUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "BEAMXUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792828800000
+    },
+    "BELUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792850400000
+    },
+    "BERAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "APTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "BIOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792789200000
+    },
+    "ARKMUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "BLURUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792764000000
+    },
+    "BNTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "BIGTIMEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "BOMEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792911600000
+    },
+    "BROCCOLI714USDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "BONKUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "BNBUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792879200000
+    },
+    "BTCUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "BICOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "BREVUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "ARKUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "BMTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792886400000
+    },
+    "BTTCUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792472400000
+    },
+    "CATIUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "C98USDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "CELRUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "CAKEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "CETUSUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "CELOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "CFGUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "CGPTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "CHZUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "CHRUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "CFXUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "CUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "CHIPUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "CITYUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "CVCUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792886400000
+    },
+    "COWUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "CTKUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "COMPUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "COOKIEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "CRVUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "COTIUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792778400000
+    },
+    "CVXUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "DASHUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "CYBERUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "DIAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "DOGSUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792882800000
+    },
+    "DODOUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792839600000
+    },
+    "DUSKUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "DEXEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "DCRUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792900800000
+    },
+    "DOGEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "DOLOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "DOTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792760400000
+    },
+    "DYMUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "DYDXUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "EDUUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792663200000
+    },
+    "EGLDUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792778400000
+    },
+    "ENAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792918800000
+    },
+    "ENSOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "EPICUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "ERAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792879200000
+    },
+    "ENJUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792789200000
+    },
+    "ENSUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "ESPUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792850400000
+    },
+    "EIGENUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "ETCUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "ETHUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "EULUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "ETHFIUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792630800000
+    },
+    "FETUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "FFUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792911600000
+    },
+    "FIDAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "FILUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792630800000
+    },
+    "FLOKIUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "FLOWUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792630800000
+    },
+    "CTSIUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "FRAXUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792850400000
+    },
+    "GASUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "GALAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "FUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792868400000
+    },
+    "FLUXUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792911600000
+    },
+    "FORMUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "FOGOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "FTTUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792897200000
+    },
+    "GENIUSUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "GIGGLEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "GLMRUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "GLMUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "GMXUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792890000000
+    },
+    "GMTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "GNOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "GNSUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "GPSUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "GTCUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792890000000
+    },
+    "GUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "GRTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "GRAMUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792584000000
+    },
+    "GUNUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792630800000
+    },
+    "HAEDALUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792893600000
+    },
+    "EDENUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "HBARUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792918800000
+    },
+    "HEIUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792861200000
+    },
+    "HEMIUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "HOMEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "HOTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "HUMAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "HIVEUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792886400000
+    },
+    "ILVUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "HYPEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "IMXUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792911600000
+    },
+    "HYPERUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "HOLOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792911600000
+    },
+    "ICPUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "INITUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "HMSTRUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "IDUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "INJUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "IOSTUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792886400000
+    },
+    "IOTAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "IOTXUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792760400000
+    },
+    "IOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "JOEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "JUPUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792634400000
+    },
+    "JUVUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "JSTUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792717200000
+    },
+    "KAITOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "KATUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792886400000
+    },
+    "JASMYUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "KAVAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "IQUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792886400000
+    },
+    "KGSTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792861200000
+    },
+    "KITEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792774800000
+    },
+    "KAIAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "KERNELUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792843200000
+    },
+    "JTOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "KMNOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "KNCUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "KSMUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "LAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792886400000
+    },
+    "LDOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "LINEAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "LAYERUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "LISTAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "LQTYUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792785600000
+    },
+    "LAZIOUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792900800000
+    },
+    "LTCUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "LINKUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "LSKUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "LUNCUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792922400000
+    },
+    "LPTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "LUNAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792850400000
+    },
+    "MAGICUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "LUMIAUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792764000000
+    },
+    "MANAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792911600000
+    },
+    "MANTAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "MASKUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "MAVUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792850400000
+    },
+    "MARSCOINUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792911600000
+    },
+    "MITOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792692000000
+    },
+    "MANTRAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "METUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "METISUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792749600000
+    },
+    "MBLUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792818000000
+    },
+    "MEGAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "MIRAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "MMTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "MORPHOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "MINAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "MEMEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "MOVEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792850400000
+    },
+    "MTLUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792897200000
+    },
+    "MEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "MOVRUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792771200000
+    },
+    "MUBARAKUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "NEARUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792630800000
+    },
+    "NEWTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "NEOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "NIGHTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "NILUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "NEXOUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792872000000
+    },
+    "NMRUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792785600000
+    },
+    "NXPCUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "NEIROUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "NOTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "NOMUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "ONDOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "ONGUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "ONTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "OPENUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792893600000
+    },
+    "OPNUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "OPGUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792850400000
+    },
+    "OSMOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792756800000
+    },
+    "ORDIUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "ORCAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "PARTIUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792918800000
+    },
+    "PENDLEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "OPUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "PEOPLEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "PENGUUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792785600000
+    },
+    "PEPEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "PIXELUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "PHAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792771200000
+    },
+    "PNUTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "PLUMEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "PORTALUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792846800000
+    },
+    "POLYXUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792886400000
+    },
+    "POLUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "POWRUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "PORTOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "PROMUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792900800000
+    },
+    "PSGUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "PROVEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "PUMPUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "PUNDIXUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "RAREUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792756800000
+    },
+    "QKCUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792886400000
+    },
+    "PYTHUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792882800000
+    },
+    "QIUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792922400000
+    },
+    "RADUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792652400000
+    },
+    "QUICKUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "QNTUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792886400000
+    },
+    "QTUMUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "REDUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792850400000
+    },
+    "OGNUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792800000000
+    },
+    "RAYUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "ONEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792774800000
+    },
+    "RENDERUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "REQUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792548000000
+    },
+    "RESOLVUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792893600000
+    },
+    "RIFUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "RLCUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792756800000
+    },
+    "RONINUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "ROBOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792760400000
+    },
+    "REZUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792864800000
+    },
+    "REUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792922400000
+    },
+    "RUNEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "RWUSDUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1791993600000
+    },
+    "RPLUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "RVNUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "OGUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792699200000
+    },
+    "ROSEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "RSRUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792591200000
+    },
+    "SAGAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "SAHARAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "SANDUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "SAPIENUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "SANTOSUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "SCUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792886400000
+    },
+    "SEIUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "SHELLUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792850400000
+    },
+    "SIGNUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "SKLUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "SKYUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "SLPUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "SNXUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "SCRUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "SENTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "SFPUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "SOLVUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792886400000
+    },
+    "SOMIUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "SOPHUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "SPKUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792850400000
+    },
+    "SSVUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792778400000
+    },
+    "STRAXUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "SPELLUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "STOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "STEEMUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792886400000
+    },
+    "STRKUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792699200000
+    },
+    "STXUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "SUNUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792850400000
+    },
+    "SUIUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "SUPERUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "SUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792760400000
+    },
+    "SUSHIUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792789200000
+    },
+    "SXTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792897200000
+    },
+    "SYNUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "SYRUPUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792641600000
+    },
+    "TFUELUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "TAOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "TKOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "THEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "THETAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "TIAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792540800000
+    },
+    "TNSRUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "TLMUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792789200000
+    },
+    "TOWNSUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792850400000
+    },
+    "TREEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "TRUMPUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "TRXUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792850400000
+    },
+    "TSTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "TURBOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "TURTLEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "TUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792886400000
+    },
+    "UMAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "TWTUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792886400000
+    },
+    "UNIUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "USTCUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "TUTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "USUALUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792879200000
+    },
+    "VELODROMEUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792562400000
+    },
+    "VANAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "VETUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792782000000
+    },
+    "SOLUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "WALUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792749600000
+    },
+    "VIRTUALUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "VTHOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "WAXPUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792911600000
+    },
+    "WCTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792854000000
+    },
+    "WIFUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "WOOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792911600000
+    },
+    "WINUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792911600000
+    },
+    "WLFIUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792821600000
+    },
+    "XECUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792879200000
+    },
+    "WLDUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "XPLUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "XRPUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792872000000
+    },
+    "XVGUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "XAIUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "XVSUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "XNOUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792645200000
+    },
+    "XTZUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "XLMUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "WUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792785600000
+    },
+    "YFIUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "ZBTUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792886400000
+    },
+    "ZECUSDT": {
+      "kind": "buy",
+      "bar_open_time": 1792864800000
+    },
+    "YGGUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "ZAMAUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792792800000
+    },
+    "ZENUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792908000000
+    },
+    "ZILUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "ZKCUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792850400000
+    },
+    "ZKPUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792904400000
+    },
+    "ZROUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "ZKUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792846800000
+    },
+    "牛来USDT": {
+      "kind": "buy",
+      "bar_open_time": 1792893600000
+    },
+    "币安人生USDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    },
+    "ZRXUSDT": {
+      "kind": "sell",
+      "bar_open_time": 1792915200000
+    }
+  },
+  "events": [
+    {
+      "type": "anchor_rebuild",
+      "time_local": "2026-10-25 14:03",
+      "history_bars": 500,
+      "symbols": 392,
+      "changed": 311,
+      "note": "rebuild last_signal anchors from real 21-day history (v1.2 close-cross + alternation); fixes seed gap (DODO 05:00 buy missed)"
+    }
+  ]
+}
