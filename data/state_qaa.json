@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1792713600000,
+  "last_processed_open_time": 1792800000000,
   "last_entry_bar_time": {
     "GTCUSDT": 1792195200000,
     "HUMAUSDT": 1792195200000,
@@ -21,7 +21,7 @@
     "LTCUSDT": 1792368000000,
     "METUSDT": 1792368000000,
     "NIGHTUSDT": 1792368000000,
-    "NILUSDT": 1792368000000,
+    "NILUSDT": 1792800000000,
     "OGNUSDT": 1792368000000,
     "ONDOUSDT": 1792368000000,
     "PEPEUSDT": 1792368000000,
@@ -55,7 +55,9 @@
     "GMXUSDT": 1792713600000,
     "KMNOUSDT": 1792713600000,
     "SENTUSDT": 1792713600000,
-    "TRXUSDT": 1792713600000
+    "TRXUSDT": 1792713600000,
+    "INITUSDT": 1792800000000,
+    "KAVAUSDT": 1792800000000
   },
   "last_exit_bar_time": {
     "GTCUSDT": 1792281600000,
@@ -123,7 +125,7 @@
       "size_suggest_pct": 0.2786943281309481,
       "entry_time": 1792454399999,
       "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1792885440000,
+      "last_check_ms": 1792892640000,
       "peak_price": 751.86,
       "last_stop_alert_price": 705.86,
       "stop_updates_count": 0,
@@ -140,7 +142,7 @@
       "size_suggest_pct": 0.11162162162162158,
       "entry_time": 1792799999999,
       "entry_bar_open_time": 1792713600000,
-      "last_check_ms": 1792885440000,
+      "last_check_ms": 1792892640000,
       "peak_price": 8.56,
       "last_stop_alert_price": 7.8476,
       "stop_updates_count": 3,
@@ -157,11 +159,62 @@
       "size_suggest_pct": 1.375416666666659,
       "entry_time": 1792799999999,
       "entry_bar_open_time": 1792713600000,
-      "last_check_ms": 1792885440000,
+      "last_check_ms": 1792892640000,
       "peak_price": 0.3312,
       "last_stop_alert_price": 0.3277,
       "stop_updates_count": 0,
       "halal_verdict": "✅ مباح"
+    },
+    "INITUSDT": {
+      "trade_id": "INITUSDT-1792800000000",
+      "symbol": "INITUSDT",
+      "entry_price": 0.15958,
+      "stop_price": 0.11337,
+      "pivot_stop": 0.11337,
+      "target_price": 0.252,
+      "stop_dist_pct": 28.957262814889084,
+      "size_suggest_pct": 0.034533650724951306,
+      "entry_time": 1792886399999,
+      "entry_bar_open_time": 1792800000000,
+      "last_check_ms": 1792886459999,
+      "peak_price": 0.16089,
+      "last_stop_alert_price": 0.11337,
+      "stop_updates_count": 0,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "KAVAUSDT": {
+      "trade_id": "KAVAUSDT-1792800000000",
+      "symbol": "KAVAUSDT",
+      "entry_price": 0.07072,
+      "stop_price": 0.06803,
+      "pivot_stop": 0.06803,
+      "target_price": 0.07610000000000003,
+      "stop_dist_pct": 3.8037330316742244,
+      "size_suggest_pct": 0.26289962825278695,
+      "entry_time": 1792886399999,
+      "entry_bar_open_time": 1792800000000,
+      "last_check_ms": 1792886459999,
+      "peak_price": 0.07087,
+      "last_stop_alert_price": 0.06803,
+      "stop_updates_count": 0,
+      "halal_verdict": "⛔ غير مباح"
+    },
+    "NILUSDT": {
+      "trade_id": "NILUSDT-1792800000000",
+      "symbol": "NILUSDT",
+      "entry_price": 0.08863,
+      "stop_price": 0.07539,
+      "pivot_stop": 0.07539,
+      "target_price": 0.11511,
+      "stop_dist_pct": 14.938508405731696,
+      "size_suggest_pct": 0.06694108761329304,
+      "entry_time": 1792886399999,
+      "entry_bar_open_time": 1792800000000,
+      "last_check_ms": 1792886459999,
+      "peak_price": 0.08939,
+      "last_stop_alert_price": 0.07539,
+      "stop_updates_count": 0,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
     }
   },
   "event_log": [
@@ -1544,6 +1597,21 @@
       "type": "exit_loss",
       "symbol": "SOMIUSDT",
       "time_ms": 1792855559999
+    },
+    {
+      "type": "entry",
+      "symbol": "INITUSDT",
+      "time_ms": 1792886399999
+    },
+    {
+      "type": "entry",
+      "symbol": "KAVAUSDT",
+      "time_ms": 1792886399999
+    },
+    {
+      "type": "entry",
+      "symbol": "NILUSDT",
+      "time_ms": 1792886399999
     }
   ],
   "daily_report": {
