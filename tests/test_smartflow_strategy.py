@@ -184,6 +184,13 @@ def test_rsi_gate_off_by_default_and_functional_when_enabled():
     assert evaluate(df, loose) is not None and evaluate(df, loose)["kind"] == "buy"
 
 
+def test_evaluate_returns_signal_candle_open():
+    """v1.2: سعر الدخول = افتتاح شمعة الإشارة (ما يعرضه جدول المؤشر في اللقطات)."""
+    sig = evaluate(make_df(flat_then_breakout_rows()), ZH)
+    assert sig is not None
+    assert sig["open"] == pytest.approx(95.0)  # افتتاح شمعة الانقلاب (قبل +8.0)
+
+
 def test_not_enough_bars_returns_none():
     assert evaluate(make_df(flat_rows(59)), ZH) is None
 

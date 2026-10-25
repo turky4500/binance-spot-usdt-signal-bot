@@ -49,7 +49,8 @@ jobs:
       SMARTFLOW_BREAK_LEN: "10"
       SMARTFLOW_ATR_LEN: "14"
       SMARTFLOW_SIGNAL_MODE: on_flip   # أول إشارة أو انقلاب — ضد إزعاج التكرار
-      SMARTFLOW_COOLDOWN_BARS: "6"     # مهلة 6 شموع (6 ساعات) بين إشارتين متوافقتي الاتجاه
+      SMARTFLOW_ALTERNATE: "1"         # v1.2: تبادل إلزامي شراء↔بيع (معايَر من لقطة 2026-10-25)
+      SMARTFLOW_COOLDOWN_BARS: "6"     # مهلة 6 شموع (تُستخدم فقط إذا عُطل التبادل)
       SMARTFLOW_CALIBRATION_NOTE: "1"  # سطر «نسخة قيد المعايرة» في كل رسالة (يُرفع إلى 0 بعد التثبيت)
       EXCLUDE_PEGGED_STABLES: "1"
     steps:

@@ -71,6 +71,12 @@ class SmartFlowSettings:
     # سلوك البوت (ليس من المؤشر الأصلي — ضد إزعاج الرسائل):
     signal_mode: str = "on_flip"   # on_flip (أول إشارة أو انقلاب) | every_bar
     cooldown_bars: int = 6         # مهلة أقل بين إشارتين متوافقتي الاتجاه
+    # v1.2 — التبادل الإلزامي (معايَر من لقطة Binance.US 1H بتاريخ 2026-10-25):
+    # المؤشر الأصلي يتجاهل إشارات مكررة الاتجاه بعد إشارة سابقة: بعد شراء لا يُقبل
+    # إلا بيع (إغلاق الدورة) وبعد بيع لا يُقبل إلا شراء (فتح دورة جديدة).
+    # تُثبت باللقطة: آخر إشارتين ظاهرتين = شراء 10-18 (0.003988) ثم بيع 10-19 (0.00301)
+    # وجميع البيعات المتتالية بعدها (10-21..10-25) لم تظهر و«الحالة: انتظار».
+    alternate_only: bool = True
 
     @classmethod
     def from_env(cls) -> "SmartFlowSettings":
@@ -88,6 +94,7 @@ class SmartFlowSettings:
             atr_len=_env_int("SMARTFLOW_ATR_LEN", 14),
             signal_mode=mode if mode in ("on_flip", "every_bar") else "on_flip",
             cooldown_bars=min(max(_env_int("SMARTFLOW_COOLDOWN_BARS", 6), 0), 500),
+            alternate_only=_env_bool("SMARTFLOW_ALTERNATE", True),
         )
 
     def min_bars(self) -> int:
@@ -99,10 +106,11 @@ class SmartFlowSettings:
 
     def describe(self) -> str:
         gate = f"مفعّلة ({self.buy_rsi_min:g}/{self.sell_rsi_max:g})" if self.use_rsi_gate else "مغلقة"
+        alt = "تبادل إلزامي (شراء↔بيع)" if self.alternate_only else f"مهلة {self.cooldown_bars} شمعة"
         return (
-            f"SmartFlow v1.1 — نافذة الانقلاب {self.break_len} شموع • "
+            f"SmartFlow v1.2 — نافذة الانقلاب {self.break_len} شموع • {alt} • "
             f"EMA {self.ema_len}/{self.ema_slow_len} · SMA {self.sma_len} · RSI {self.rsi_len} (بوابة {gate}) · "
-            f"ATR {self.atr_len} • نمط الرسائل {self.signal_mode} مهلة {self.cooldown_bars} شمعة"
+            f"ATR {self.atr_len} • نمط الرسائل {self.signal_mode}"
         )
 
 
@@ -202,6 +210,7 @@ def evaluate(df: pd.DataFrame, settings: SmartFlowSettings) -> dict | None:
     return {
         "kind": kind,
         "close": close,
+        "open": float(last["open"]),
         "rsi": rsi_value,
         "ema_fast": float(last["ema_fast"]),
         "ema_mid": float(last["ema_mid"]),

@@ -143,6 +143,7 @@ def test_no_signal_on_flat_market(tmp_path, bot):
 
 
 def test_send_allowed_on_flip_and_cooldown(bot):
+    bot.settings.alternate_only = False  # اختبار المهلة فقط — التبادل مغطى باختبار مستقل
     bot.state["last_signal"] = {
         SYMBOL: {"kind": "buy", "bar_open_time": BASE + 10 * H},
     }
@@ -157,6 +158,21 @@ def test_send_allowed_on_flip_and_cooldown(bot):
     # نمط every_bar يتجاوز كل القيود
     bot.settings.signal_mode = "every_bar"
     assert bot.send_allowed(SYMBOL, "buy", BASE + 11 * H) is True
+
+
+def test_alternate_only_blocks_same_direction_until_flip(bot):
+    """v1.2: بعد شراء لا يُقبل إلا بيع — ومهلة الشموع لا تُلغي التبادل."""
+    bot.state["last_signal"] = {
+        SYMBOL: {"kind": "sell", "bar_open_time": BASE + 10 * H},
+    }
+    # بيع مكرر بعد يوم كامل (24 شمعة) → مرفوض (المؤشر تجاهل البيعات المكررة)
+    assert bot.send_allowed(SYMBOL, "sell", BASE + 34 * H) is False
+    # أول شراء بعد البيع → مسموح فورًا
+    assert bot.send_allowed(SYMBOL, "buy", BASE + 11 * H) is True
+    # وبعد هذا الشراء: بيع مسموح، شراء مكرر مرفوض
+    bot.state["last_signal"][SYMBOL] = {"kind": "buy", "bar_open_time": BASE + 11 * H}
+    assert bot.send_allowed(SYMBOL, "buy", BASE + 40 * H) is False
+    assert bot.send_allowed(SYMBOL, "sell", BASE + 12 * H) is True
 
 
 def test_state_persists_between_cycles(tmp_path, bot):

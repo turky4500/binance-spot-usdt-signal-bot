@@ -166,6 +166,7 @@ class SmartFlowSignalBot:
             f"{emoji} إشارة {side} — {STRATEGY_LABEL}\n"
             f"الزوج: {symbol}\n"
             f"الفريم: 1H\n"
+            f"سعر الدخول (افتتاح شمعة الإشارة): {self._fmt_price(symbol, sig['open'])}\n"
             f"سعر الإغلاق: {self._fmt_price(symbol, sig['close'])}\n"
             f"{level_word} ({self.settings.break_len} شموع): "
             f"{self._fmt_price(symbol, sig['breakout_level'])}\n"
@@ -208,14 +209,21 @@ class SmartFlowSignalBot:
 
     # ─────────────────────────────────────────── قاعدة منع الإزعاج
     def send_allowed(self, symbol: str, kind: str, bar_open_time: int) -> bool:
-        """on_flip: أول إشارة للرمز أو انقلاب الاتجاه أو مهلة cooldown بات تغيير الاتجاه."""
+        """on_flip: أول إشارة للرمز أو انقلاب الاتجاه فقط.
+
+        v1.2 alternate_only: التبادل الإلزامي (معايَر من لقطة Binance 1H) —
+        بعد شراء لا يُقبل إلا بيع وبعد بيع لا يُقبل إلا شراء حتى انقلاب جديد؛
+        (المعايرة: المؤشر تجاهل 6 بيعات مكررة بعد بيع 10-19 وحالة «انتظار»).
+        """
         if self.settings.signal_mode == "every_bar":
             return True
         last = (self.state.get("last_signal") or {}).get(symbol)
         if not last:
             return True
         if str(last.get("kind")) != kind:
-            return True
+            return True  # انقلاب الاتجاه — مسموح دائمًا
+        if self.settings.alternate_only:
+            return False
         gap = (int(bar_open_time) - int(last.get("bar_open_time", 0))) // self.interval_ms
         return gap >= self.settings.cooldown_bars
 
