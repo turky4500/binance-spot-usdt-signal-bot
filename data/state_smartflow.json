@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1793030400000,
+  "last_processed_open_time": 1793044800000,
   "last_entry_bar_time": {},
   "last_exit_bar_time": {},
   "open_trades": {},
@@ -3718,6 +3718,136 @@
       "type": "signal_sell",
       "symbol": "POLYXUSDT",
       "time_ms": 1793033999999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "ANKRUSDT",
+      "time_ms": 1793037599999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "DYDXUSDT",
+      "time_ms": 1793037599999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "KMNOUSDT",
+      "time_ms": 1793037599999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "REZUSDT",
+      "time_ms": 1793037599999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ATUSDT",
+      "time_ms": 1793041199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CRVUSDT",
+      "time_ms": 1793041199999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "WALUSDT",
+      "time_ms": 1793041199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CVXUSDT",
+      "time_ms": 1793044799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "FLUXUSDT",
+      "time_ms": 1793044799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "IMXUSDT",
+      "time_ms": 1793044799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "1INCHUSDT",
+      "time_ms": 1793048399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ACHUSDT",
+      "time_ms": 1793048399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "AIGENSYNUSDT",
+      "time_ms": 1793048399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "AXLUSDT",
+      "time_ms": 1793048399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "CTSIUSDT",
+      "time_ms": 1793048399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "FILUSDT",
+      "time_ms": 1793048399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "GALAUSDT",
+      "time_ms": 1793048399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "MAGICUSDT",
+      "time_ms": 1793048399999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "OGNUSDT",
+      "time_ms": 1793048399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "PHAUSDT",
+      "time_ms": 1793048399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "PSGUSDT",
+      "time_ms": 1793048399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "PYTHUSDT",
+      "time_ms": 1793048399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "RUNEUSDT",
+      "time_ms": 1793048399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "THETAUSDT",
+      "time_ms": 1793048399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "TRXUSDT",
+      "time_ms": 1793048399999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "ZENUSDT",
+      "time_ms": 1793048399999
     }
   ],
   "daily_report": {
@@ -3739,8 +3869,8 @@
       "bar_open_time": 1792980000000
     },
     "AIGENSYNUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792987200000
+      "kind": "sell",
+      "bar_open_time": 1793044800000
     },
     "AIUSDT": {
       "kind": "buy",
@@ -3771,8 +3901,8 @@
       "bar_open_time": 1792990800000
     },
     "1INCHUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792947600000
+      "kind": "sell",
+      "bar_open_time": 1793044800000
     },
     "2ZUSDT": {
       "kind": "sell",
@@ -3791,8 +3921,8 @@
       "bar_open_time": 1793023200000
     },
     "ACHUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1793023200000
+      "kind": "sell",
+      "bar_open_time": 1793044800000
     },
     "AIXBTUSDT": {
       "kind": "buy",
@@ -3831,8 +3961,8 @@
       "bar_open_time": 1793030400000
     },
     "ANKRUSDT": {
-      "kind": "sell",
-      "bar_open_time": 1792929600000
+      "kind": "buy",
+      "bar_open_time": 1793034000000
     },
     "AMPUSDT": {
       "kind": "sell",
@@ -3879,8 +4009,8 @@
       "bar_open_time": 1792944000000
     },
     "ATUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1793005200000
+      "kind": "sell",
+      "bar_open_time": 1793037600000
     },
     "AUCTIONUSDT": {
       "kind": "sell",
@@ -3923,8 +4053,8 @@
       "bar_open_time": 1792792800000
     },
     "AXLUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1793026800000
+      "kind": "sell",
+      "bar_open_time": 1793044800000
     },
     "AWEUSDT": {
       "kind": "buy",
@@ -4107,16 +4237,16 @@
       "bar_open_time": 1793016000000
     },
     "CRVUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1793005200000
+      "kind": "sell",
+      "bar_open_time": 1793037600000
     },
     "COTIUSDT": {
       "kind": "buy",
       "bar_open_time": 1793023200000
     },
     "CVXUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792965600000
+      "kind": "sell",
+      "bar_open_time": 1793041200000
     },
     "DASHUSDT": {
       "kind": "buy",
@@ -4167,8 +4297,8 @@
       "bar_open_time": 1792854000000
     },
     "DYDXUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792947600000
+      "kind": "sell",
+      "bar_open_time": 1793034000000
     },
     "EDUUSDT": {
       "kind": "buy",
@@ -4239,8 +4369,8 @@
       "bar_open_time": 1793023200000
     },
     "FILUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792944000000
+      "kind": "sell",
+      "bar_open_time": 1793044800000
     },
     "FLOKIUSDT": {
       "kind": "buy",
@@ -4251,8 +4381,8 @@
       "bar_open_time": 1792630800000
     },
     "CTSIUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792944000000
+      "kind": "sell",
+      "bar_open_time": 1793044800000
     },
     "FRAXUSDT": {
       "kind": "buy",
@@ -4263,16 +4393,16 @@
       "bar_open_time": 1792915200000
     },
     "GALAUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1793023200000
+      "kind": "sell",
+      "bar_open_time": 1793044800000
     },
     "FUSDT": {
       "kind": "sell",
       "bar_open_time": 1792868400000
     },
     "FLUXUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1793023200000
+      "kind": "sell",
+      "bar_open_time": 1793041200000
     },
     "FORMUSDT": {
       "kind": "buy",
@@ -4387,8 +4517,8 @@
       "bar_open_time": 1793023200000
     },
     "IMXUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792944000000
+      "kind": "sell",
+      "bar_open_time": 1793041200000
     },
     "HYPERUSDT": {
       "kind": "buy",
@@ -4491,8 +4621,8 @@
       "bar_open_time": 1793012400000
     },
     "KMNOUSDT": {
-      "kind": "sell",
-      "bar_open_time": 1792980000000
+      "kind": "buy",
+      "bar_open_time": 1793034000000
     },
     "KNCUSDT": {
       "kind": "buy",
@@ -4555,8 +4685,8 @@
       "bar_open_time": 1792850400000
     },
     "MAGICUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1793012400000
+      "kind": "sell",
+      "bar_open_time": 1793044800000
     },
     "LUMIAUSDT": {
       "kind": "buy",
@@ -4755,8 +4885,8 @@
       "bar_open_time": 1792854000000
     },
     "PHAUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792994400000
+      "kind": "sell",
+      "bar_open_time": 1793044800000
     },
     "PNUTUSDT": {
       "kind": "buy",
@@ -4791,8 +4921,8 @@
       "bar_open_time": 1793012400000
     },
     "PSGUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1793016000000
+      "kind": "sell",
+      "bar_open_time": 1793044800000
     },
     "PROVEUSDT": {
       "kind": "buy",
@@ -4815,8 +4945,8 @@
       "bar_open_time": 1792976400000
     },
     "PYTHUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1793012400000
+      "kind": "sell",
+      "bar_open_time": 1793044800000
     },
     "QIUSDT": {
       "kind": "buy",
@@ -4843,8 +4973,8 @@
       "bar_open_time": 1792990800000
     },
     "OGNUSDT": {
-      "kind": "sell",
-      "bar_open_time": 1793019600000
+      "kind": "buy",
+      "bar_open_time": 1793044800000
     },
     "RAYUSDT": {
       "kind": "buy",
@@ -4883,16 +5013,16 @@
       "bar_open_time": 1792760400000
     },
     "REZUSDT": {
-      "kind": "sell",
-      "bar_open_time": 1793019600000
+      "kind": "buy",
+      "bar_open_time": 1793034000000
     },
     "REUSDT": {
       "kind": "buy",
       "bar_open_time": 1793026800000
     },
     "RUNEUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792947600000
+      "kind": "sell",
+      "bar_open_time": 1793044800000
     },
     "RWUSDUSDT": {
       "kind": "buy",
@@ -5075,8 +5205,8 @@
       "bar_open_time": 1793016000000
     },
     "THETAUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1793012400000
+      "kind": "sell",
+      "bar_open_time": 1793044800000
     },
     "TIAUSDT": {
       "kind": "buy",
@@ -5103,8 +5233,8 @@
       "bar_open_time": 1793005200000
     },
     "TRXUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792944000000
+      "kind": "sell",
+      "bar_open_time": 1793044800000
     },
     "TSTUSDT": {
       "kind": "buy",
@@ -5163,8 +5293,8 @@
       "bar_open_time": 1793023200000
     },
     "WALUSDT": {
-      "kind": "sell",
-      "bar_open_time": 1792994400000
+      "kind": "buy",
+      "bar_open_time": 1793037600000
     },
     "VIRTUALUSDT": {
       "kind": "buy",
@@ -5263,8 +5393,8 @@
       "bar_open_time": 1793005200000
     },
     "ZENUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792944000000
+      "kind": "sell",
+      "bar_open_time": 1793044800000
     },
     "ZILUSDT": {
       "kind": "buy",
