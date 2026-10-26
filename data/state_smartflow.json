@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1792962000000,
+  "last_processed_open_time": 1792969200000,
   "last_entry_bar_time": {},
   "last_exit_bar_time": {},
   "open_trades": {},
@@ -2238,6 +2238,46 @@
       "type": "signal_sell",
       "symbol": "SUSDT",
       "time_ms": 1792965599999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "CVXUSDT",
+      "time_ms": 1792969199999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "GPSUSDT",
+      "time_ms": 1792969199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "IOSTUSDT",
+      "time_ms": 1792969199999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "SYNUSDT",
+      "time_ms": 1792969199999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "BTCUSDT",
+      "time_ms": 1792972799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "EDUUSDT",
+      "time_ms": 1792972799999
+    },
+    {
+      "type": "signal_buy",
+      "symbol": "STEEMUSDT",
+      "time_ms": 1792972799999
+    },
+    {
+      "type": "signal_sell",
+      "symbol": "VELODROMEUSDT",
+      "time_ms": 1792972799999
     }
   ],
   "daily_report": {
@@ -2527,8 +2567,8 @@
       "bar_open_time": 1792879200000
     },
     "BTCUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792944000000
+      "kind": "sell",
+      "bar_open_time": 1792969200000
     },
     "BICOUSDT": {
       "kind": "sell",
@@ -2635,8 +2675,8 @@
       "bar_open_time": 1792778400000
     },
     "CVXUSDT": {
-      "kind": "sell",
-      "bar_open_time": 1792915200000
+      "kind": "buy",
+      "bar_open_time": 1792965600000
     },
     "DASHUSDT": {
       "kind": "sell",
@@ -2691,8 +2731,8 @@
       "bar_open_time": 1792947600000
     },
     "EDUUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792947600000
+      "kind": "sell",
+      "bar_open_time": 1792969200000
     },
     "EGLDUSDT": {
       "kind": "sell",
@@ -2839,8 +2879,8 @@
       "bar_open_time": 1792915200000
     },
     "GPSUSDT": {
-      "kind": "sell",
-      "bar_open_time": 1792915200000
+      "kind": "buy",
+      "bar_open_time": 1792965600000
     },
     "GTCUSDT": {
       "kind": "sell",
@@ -2939,8 +2979,8 @@
       "bar_open_time": 1792944000000
     },
     "IOSTUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792886400000
+      "kind": "sell",
+      "bar_open_time": 1792965600000
     },
     "IOTAUSDT": {
       "kind": "sell",
@@ -3535,8 +3575,8 @@
       "bar_open_time": 1792944000000
     },
     "STEEMUSDT": {
-      "kind": "sell",
-      "bar_open_time": 1792926000000
+      "kind": "buy",
+      "bar_open_time": 1792969200000
     },
     "STRKUSDT": {
       "kind": "sell",
@@ -3571,8 +3611,8 @@
       "bar_open_time": 1792951200000
     },
     "SYNUSDT": {
-      "kind": "sell",
-      "bar_open_time": 1792915200000
+      "kind": "buy",
+      "bar_open_time": 1792965600000
     },
     "SYRUPUSDT": {
       "kind": "sell",
@@ -3667,8 +3707,8 @@
       "bar_open_time": 1792879200000
     },
     "VELODROMEUSDT": {
-      "kind": "buy",
-      "bar_open_time": 1792926000000
+      "kind": "sell",
+      "bar_open_time": 1792969200000
     },
     "VANAUSDT": {
       "kind": "sell",
