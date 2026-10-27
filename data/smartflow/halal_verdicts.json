@@ -1,6 +1,6 @@
 {
   "vendor": "cryptohalal.cc",
-  "fetched_at_ms": 1793062108998,
+  "fetched_at_ms": 1793099093784,
   "note": "مصدر الأحكام: CryptoHalal.cc",
   "judgements": {
     "BTC": 0,
@@ -47,26 +47,19 @@
     "GT": 1,
     "KAS": 0,
     "ALGO": 0,
-    "RENDER": 0,
     "ATOM": 0,
+    "RENDER": 0,
     "INJ": 1,
     "FIL": 0,
     "DASH": 2,
     "CAKE": 1,
     "ZRO": 0,
-    "POWR": 0,
-    "QKC": 0,
-    "DODO": 1,
-    "MTL": 0,
-    "BAT": 0,
-    "MASK": 0,
-    "GTC": 0,
-    "IQ": 0,
-    "LISTA": 1,
-    "MBL": 1,
-    "SCR": 0,
-    "AVA": 0,
-    "BABY": 1,
-    "ARK": 0
+    "AXL": 0,
+    "BLUR": 0,
+    "TWT": 0,
+    "NMR": 1,
+    "AMP": 0,
+    "USTC": 1,
+    "LSK": 0
   }
 }
