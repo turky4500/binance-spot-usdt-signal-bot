@@ -124,12 +124,11 @@ def test_entry_message_details_and_zero_touch(tmp_path):
     trade = make_trade()
     bot.send_entry_message(trade)
     text = bot.telegram.sent[-1]
-    assert "نظام القاع (يومي)" in text
-    assert "الفريم: 1D (يومي)" in text
-    assert "سعر الدخول: 100" in text
-    assert "وقف القاع (الأصلي): 95 (-5.00%)" in text
-    assert "الهدف المقترح" in text and "عرض فقط" in text
-    assert "الحجم المقترح" in text
+    assert "نظام القاع (يومي) • يومي حصري" in text
+    assert "الدخول: 100" in text
+    assert "الوقف: 95 (-5%) ← الهدف:" in text
+    assert "عرض فقط" in text
+    assert "الحجم: " in text and "المخاطرة: 1.0%" in text
     assert "الحكم الشرعي" in text
     # العزل: دفتر النظام منفصل وملفات النظام الآخر غير مُنشأة أبدًا
     assert (tmp_path / "trades_log_qaa.csv").exists()
@@ -142,18 +141,20 @@ def test_stop_update_message_content(tmp_path):
     trade = make_trade()
     bot.send_stop_update_message(trade, 95.0, 104.5, BASE_MS + DAY_MS, current_price=108.0)
     text = bot.telegram.sent[-1]
-    assert "تحديث وقف متحرك" in text
-    assert "الوقف السابق: 95" in text
-    assert "الوقف الجديد: 104.5 (+10.00%)" in text
-    assert "السعر الآن: 108 (+8.00% من الدخول • 3.35% فوق الوقف الجديد)" in text
-    assert "الربح المضمون" in text and "+4.50%" in text
-    assert "عدّل وقفك يدويًا" in text
+    assert "📈 وقف متحرك — BTCUSDT" in text
+    assert "الدخول: 100 | السعر الآن: 108 (+8%)" in text
+    assert "الوقف: 95 ← 104.5 (+10%) | ربح مضمون: +4.5%" in text
+    assert "المسافة: 3.3% فوق الوقف الجديد | تحديث رقم: 1" in text
+    assert "⬆️ ارفع وقفك إلى 104.5 على منصتك" in text
     assert "الحكم الشرعي" in text
 
-    # بلا سعر (مسار قديم/احتياطي) — السطر يُomit ولا تنكسر الرسالة
+    # بلا سعر (مسار احتياطي) — السطران يُomitان ولا تنكسر الرسالة
     bot.telegram.sent.clear()
     bot.send_stop_update_message(trade, 95.0, 104.5, BASE_MS + DAY_MS)
-    assert "السعر الآن" not in bot.telegram.sent[-1]
+    no_price = bot.telegram.sent[-1]
+    assert "السعر الآن" not in no_price
+    assert "المسافة" not in no_price
+    assert "تحديث رقم: 1" in no_price
 
 
 def test_intrabar_trailing_alert_gated_by_step(tmp_path):
@@ -170,7 +171,7 @@ def test_intrabar_trailing_alert_gated_by_step(tmp_path):
     bot.binance = FakeBinance(make_1m(rows))
     bot.monitor_open_trades_intrabar(BASE_MS + 5 * MINUTE_MS)
 
-    alerts = [t for t in bot.telegram.sent if "تحديث وقف متحرك" in t]
+    alerts = [t for t in bot.telegram.sent if "وقف متحرك" in t]
     assert len(alerts) == 2
     live = bot.state["open_trades"]["BTCUSDT"]
     assert abs(live["stop_price"] - 110.86) < 1e-6      # القيمة تُحدَّث دائمًا
@@ -191,12 +192,12 @@ def test_intrabar_stop_hit_closes_trade(tmp_path):
     bot.monitor_open_trades_intrabar(BASE_MS + 5 * MINUTE_MS)
 
     assert "BTCUSDT" not in bot.state["open_trades"]
-    close_msgs = [t for t in bot.telegram.sent if "انتهت الصفقة" in t]
+    close_msgs = [t for t in bot.telegram.sent if "إغلاق" in t]
     assert len(close_msgs) == 1
     text = close_msgs[0]
     assert "لمس الوقف المتحرك" in text       # الوقف رُفع فوق القاع (96.6 > 95)
-    assert "سعر الخروج: 96.6" in text
-    assert "خاسرة" in text and "الصافية بعد العمولة: -3.60%" in text
+    assert "← الخروج: 96.6" in text
+    assert "إغلاق خاسر" in text and "الصافي: -3.60%" in text
     # يوم الخروج مسجّل — يمنع إعادة الدخول في نفس اليوم
     assert bot.state["last_exit_bar_time"]["BTCUSDT"] == (BASE_MS + 2 * MINUTE_MS) // DAY_MS * DAY_MS
 
@@ -214,11 +215,11 @@ def test_timeout_exit_on_closed_day(tmp_path):
     bot._process_one_closed_day({"BTCUSDT": df}, last_closed)
 
     assert "BTCUSDT" not in bot.state["open_trades"]
-    close_msgs = [t for t in bot.telegram.sent if "انتهت الصفقة" in t]
+    close_msgs = [t for t in bot.telegram.sent if "إغلاق" in t]
     assert len(close_msgs) == 1
     text = close_msgs[0]
     assert "انتهت المهلة (40 يومًا)" in text
-    assert "تم نجاح التوصية بنسبة +7.80%" in text   # 108/100 - 0.2% عمولة
+    assert "الصافي: +7.80%" in text   # 108/100 - 0.2% عمولة
     assert bot.state["last_exit_bar_time"]["BTCUSDT"] == last_closed
 
 

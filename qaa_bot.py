@@ -21,7 +21,9 @@ from __future__ import annotations
 import logging
 import os
 import time
+from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import pandas as pd
 
@@ -50,6 +52,24 @@ from src.utils import (
 MINUTE_MS = 60 * 1000
 EVENT_RETENTION_DAYS = 120
 STRATEGY_LABEL = "نظام القاع (يومي)"
+
+_AR_MONTHS = (
+    "يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو",
+    "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر",
+)
+
+
+def pct_label(value: float) -> str:
+    """نسبة مختصرة أنيقة: +10.0% ← +10% (تبقى بالخانة عند الحاجة)."""
+    return f"{value:+.1f}%".replace(".0%", "%")
+
+
+def stamp_ms(ms: int, timezone_name: str) -> str:
+    """ختم زمني مرتّب للرسائل: 22 أكتوبر — 6:16 صباحًا."""
+    moment = datetime.fromtimestamp(ms / 1000, tz=timezone.utc).astimezone(ZoneInfo(timezone_name))
+    hour12 = moment.hour % 12 or 12
+    day_part = "صباحًا" if moment.hour < 12 else "مساءً"
+    return f"{moment.day} {_AR_MONTHS[moment.month - 1]} — {hour12}:{moment.minute:02d} {day_part}"
 
 # ─────────────────────────────────────────────────────────────────────────────
 # استثناء أزواج العملات المستقرة المربوطة — نسخة مستقلة عن app.py (عزل تام)
@@ -227,20 +247,18 @@ class QaaSignalBot:
         dist = float(trade["stop_dist_pct"])
         size = float(trade["size_suggest_pct"])
         text = (
-            f"📥 إشارة دخول — {STRATEGY_LABEL}\n"
-            f"الزوج: {trade['symbol']}\n"
-            f"الفريم: 1D (يومي)\n"
-            f"سعر الدخول: {self._fmt_price(trade, entry)}\n"
-            f"وقف القاع (الأصلي): {self._fmt_price(trade, stop)} (-{dist:.2f}%)\n"
-            f"🎯 الهدف المقترح: {self._fmt_price(trade, target)} "
-            f"(+{self.settings.target_r * dist:.1f}% — عرض فقط لا يُنفَّذ)\n"
-            f"📏 مسافة الوقف: {dist:.2f}% → 💼 الحجم المقترح: {size:.1f}% من رأس المال "
-            f"(مخاطرة {self.settings.risk_pct:.1f}%)\n"
-            f"🟢 الوقف المتحرك: {self.settings.trail_pct:g}% من القمة — يرتفع فقط "
-            f"(أول رسالة تحديث عند +{self.settings.stop_alert_step_pct:g}%)\n"
-            f"وقت الإشارة: {ms_to_local_text(int(trade['entry_time']), self.config.timezone_name)}\n"
-            f"─────────────\n"
-            f"الحكم الشرعي: {verdict}"
+            f"📥 إشارة دخول — {trade['symbol']}\n"
+            f"{STRATEGY_LABEL} • يومي حصري\n"
+            "\n"
+            f"الدخول: {self._fmt_price(trade, entry)}\n"
+            f"الوقف: {self._fmt_price(trade, stop)} ({pct_label(-dist)}) ← الهدف: "
+            f"{self._fmt_price(trade, target)} ({pct_label(self.settings.target_r * dist)} — عرض فقط)\n"
+            f"الحجم: {size:.1f}% من رأس المال | المخاطرة: {self.settings.risk_pct:.1f}%\n"
+            f"الوقف المتحرك: +{self.settings.trail_pct:g}% من القمة "
+            f"(أول تحديث عند +{self.settings.stop_alert_step_pct:g}%)\n"
+            "\n"
+            f"وقت الإشارة: {stamp_ms(int(trade['entry_time']), self.config.timezone_name)}\n"
+            f"⚖️ الحكم الشرعي: {verdict}"
         )
         self._safe_send(text)
         self.append_event("entry", trade["symbol"], int(trade["entry_time"]))
@@ -257,34 +275,35 @@ class QaaSignalBot:
         entry = float(trade["entry_price"])
         rise_pct = (float(new_stop) / float(old_stop) - 1.0) * 100.0
         lock_pct = (float(new_stop) / entry - 1.0) * 100.0
-        lock_line = (
-            f"🔒 الربح المضمون عند الخروج عند هذا الوقف: {lock_pct:+.2f}%"
+        lock_part = (
+            f"ربح مضمون: {pct_label(lock_pct)}"
             if lock_pct >= 0
-            else f"⚠️ الوقف ما زال دون سعر الدخول ({lock_pct:+.2f}%)"
+            else f"⚠️ الوقف دون الدخول ({pct_label(lock_pct)})"
         )
         price_line = ""
+        dist_line = ""
         if current_price:
             now_pct = (float(current_price) / entry - 1.0) * 100.0
             gap = (float(current_price) / float(new_stop) - 1.0) * 100.0
-            gap_text = f"{gap:.2f}% فوق الوقف الجديد" if gap >= 0 else f"{-gap:.2f}% دون الوقف الجديد"
+            gap_text = f"{abs(gap):.1f}% فوق الوقف الجديد" if gap >= 0 else f"{abs(gap):.1f}% دون الوقف الجديد"
             price_line = (
-                f"السعر الآن: {self._fmt_price(trade, current_price)} "
-                f"({now_pct:+.2f}% من الدخول • {gap_text})\n"
+                f"الدخول: {self._fmt_price(trade, entry)} | "
+                f"السعر الآن: {self._fmt_price(trade, current_price)} ({pct_label(now_pct)})\n"
             )
+            dist_line = f"المسافة: {gap_text} | "
         text = (
-            f"📈 تحديث وقف متحرك — {STRATEGY_LABEL}\n"
-            f"الزوج: {trade['symbol']}\n"
-            f"سعر الدخول: {self._fmt_price(trade, entry)}\n"
+            f"📈 وقف متحرك — {trade['symbol']}\n"
+            f"{STRATEGY_LABEL}\n"
+            "\n"
             f"{price_line}"
-            f"الوقف السابق: {self._fmt_price(trade, old_stop)}\n"
-            f"الوقف الجديد: {self._fmt_price(trade, new_stop)} (+{rise_pct:.2f}%)\n"
-            f"{lock_line}\n"
-            f"عدد تحديثات الوقف: {int(trade.get('stop_updates_count', 0)) + 1}\n"
-            f"وقت التحديث: {ms_to_local_text(int(event_ms), self.config.timezone_name)}\n"
-            f"─────────────\n"
-            f"ℹ️ عدّل وقفك يدويًا على منصتك عند هذا المستوى\n"
-            f"─────────────\n"
-            f"الحكم الشرعي: {verdict}"
+            f"الوقف: {self._fmt_price(trade, old_stop)} ← {self._fmt_price(trade, new_stop)} "
+            f"({pct_label(rise_pct)}) | {lock_part}\n"
+            f"{dist_line}تحديث رقم: {int(trade.get('stop_updates_count', 0)) + 1}\n"
+            "\n"
+            f"⬆️ ارفع وقفك إلى {self._fmt_price(trade, new_stop)} على منصتك\n"
+            "\n"
+            f"{stamp_ms(int(event_ms), self.config.timezone_name)}\n"
+            f"⚖️ الحكم الشرعي: {verdict}"
         )
         self._safe_send(text)
         self.append_event("stop_alert", trade["symbol"], int(event_ms))
@@ -298,32 +317,24 @@ class QaaSignalBot:
         gross = (float(exit_price) / entry - 1.0) * 100.0
         net = gross - (2.0 * self.settings.commission_side_pct)
         if net > 0:
-            outcome, emoji, headline = "win", "🎉", "انتهت الصفقة — رابحة ✅"
-            result_line = f"✅ تم نجاح التوصية بنسبة {net:+.2f}%"
+            outcome, emoji, headline = "win", "🎉", f"إغلاق رابح — {trade['symbol']}"
         else:
-            outcome, emoji, headline = "loss", "🛑", "انتهت الصفقة — خاسرة"
-            result_line = f"🛑 الخسارة بنسبة {net:+.2f}%"
+            outcome, emoji, headline = "loss", "🛑", f"إغلاق خاسر — {trade['symbol']}"
         peak = float(trade.get("peak_price", entry))
         peak_gain = (peak / entry - 1.0) * 100.0
         duration = humanize_duration_ar(trade["entry_time"], event_time_ms)
-        last_stop = float(trade.get("stop_price", trade.get("pivot_stop", entry)))
         text = (
             f"{emoji} {headline}\n"
             f"{STRATEGY_LABEL}\n"
-            f"الزوج: {trade['symbol']}\n"
-            f"سعر الدخول: {self._fmt_price(trade, entry)}\n"
-            f"سعر الخروج: {self._fmt_price(trade, exit_price)}\n"
-            f"النسبة الفعلية: {gross:+.2f}% • الصافية بعد العمولة: {net:+.2f}%\n"
+            "\n"
+            f"الدخول: {self._fmt_price(trade, entry)} ← الخروج: {self._fmt_price(trade, exit_price)}\n"
+            f"الصافي: {net:+.2f}% (الخام: {gross:+.2f}%)\n"
+            "\n"
             f"سبب الإغلاق: {reason_ar}\n"
-            f"أعلى سعر تحقق: {self._fmt_price(trade, peak)} (+{peak_gain:.2f}%)\n"
-            f"الوقف الأخير: {self._fmt_price(trade, last_stop)}\n"
-            f"تحديثات الوقف: {int(trade.get('stop_updates_count', 0))} رسالة\n"
-            f"وقت الإغلاق: {ms_to_local_text(int(event_time_ms), self.config.timezone_name)}\n"
-            f"المدة المستغرقة: {duration}\n"
-            f"─────────────\n"
-            f"{result_line}\n"
-            f"─────────────\n"
-            f"الحكم الشرعي: {verdict}"
+            f"المدة: {duration} | أعلى سعر: {self._fmt_price(trade, peak)} (+{peak_gain:.2f}%)\n"
+            "\n"
+            f"{stamp_ms(int(event_time_ms), self.config.timezone_name)}\n"
+            f"⚖️ الحكم الشرعي: {verdict}"
         )
         self._safe_send(text)
         self.append_event("exit_win" if outcome == "win" else "exit_loss", trade["symbol"], int(event_time_ms))
