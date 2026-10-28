@@ -1,6 +1,6 @@
 {
   "vendor": "cryptohalal.cc",
-  "fetched_at_ms": 1793134979290,
+  "fetched_at_ms": 1793156865110,
   "note": "مصدر الأحكام: CryptoHalal.cc",
   "judgements": {
     "BTC": 0,
@@ -21,8 +21,8 @@
     "BCH": 0,
     "DAI": 1,
     "GRAM": 0,
-    "UNI": 1,
     "LTC": 0,
+    "UNI": 1,
     "AVAX": 0,
     "SUI": 0,
     "HBAR": 0,
@@ -35,8 +35,8 @@
     "TAO": 0,
     "PEPE": 1,
     "PAXG": 1,
-    "USDD": 2,
     "DOT": 0,
+    "USDD": 2,
     "WLD": 0,
     "ICP": 0,
     "BGB": 1,
