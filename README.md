@@ -59,6 +59,7 @@ signal_down = انقلاب الاتجاه صاعدًا ← هابطًا → إش
 
 **الأنظمة الموازية المستقلة** (كل نظام بملفات حالة منفصلة لا يلمس ملفات الأنظمة الأخرى):
 - `qaa_bot.py` + `src/qaa_strategy.py` — نظام القاع (يومي) — تفاصيله `README_QAA.md`
+- `zigzag_bot.py` + `src/zigzag.py` — ZigZag++ (ساعة) — تفاصيله `README_ZIGZAG.md`
 - `sa_bot.py` + `src/saudi_strategy.py` — السوق السعودي (تداول) — تفاصيله `README_SA.md`
 - `src/binance_client.py` — جلب بيانات Binance (شموع الفريم النشط و1m للمتابعة اللحظية)
 - `src/telegram_client.py` — إرسال رسائل تيليجرام
@@ -67,7 +68,7 @@ signal_down = انقلاب الاتجاه صاعدًا ← هابطًا → إش
 - `src/trade_analysis.py` — تحليل الدفتر للتقارير اليومية/الأسبوعية
 - `src/halal.py` — الحكم الشرعي من cryptohalal.cc مع كاش
 - `src/config.py` / `src/utils.py` — الإعدادات والأدوات
-- `tests/` — اختبارات المؤشر ودورة الصفقة (20 اختبارًا)
+- `tests/` — اختبارات المؤشر ودورة الصفقة والأنظمة الموازية (126 اختبارًا)
 - `tools/analyze_trades.py` — تحليل أولي لسجل الصفقات
 - `tools/get_telegram_chat_id.py` — استخراج Chat ID
 - `tools/create_github_repo.py` — إنشاء مستودع GitHub

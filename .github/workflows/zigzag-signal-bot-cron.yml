@@ -1,0 +1,90 @@
+name: ZigZag Bot Cron
+
+# نظام ZigZag++ (فريم الساعة) — نظام مستقل تمامًا عن Target Trend ونظام القاع
+# والسوق السعودي (workflow مختلف، حالة ودفتر وكاش شرعي منفصلة).
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'  # كل 5 دقائق UTC — أقل تكرار يدعمه GitHub Actions
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: zigzag-signal-bot-cron
+  cancel-in-progress: false
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TIMEZONE: Asia/Riyadh
+      BINANCE_BASE_URL: https://data-api.binance.vision
+      BINANCE_QUOTE_ASSET: USDT
+      POLL_SECONDS: 60
+      # 300 شمعة ساعة تكفي Depth=12 مع هامش كبير — وزن الطلب = 2
+      KLINE_LIMIT: 300
+      REQUEST_TIMEOUT: 20
+      MAX_WORKERS: 10
+      HALAL_REFRESH_HOURS: 6
+      LOG_LEVEL: INFO
+      # ── نظام ZigZag++ (ساعة) — مسارات مستقلة ──
+      ZZ_STATE_FILE: data/state_zigzag.json
+      ZZ_HALAL_DIR: data/zigzag
+      # ── قواعد النظام ──
+      ZZ_DEPTH: 12                  # القاع = أدنى قاع في آخر 12 شمعة 1H
+      ZZ_TARGET_PCT: "2"            # الهدف +2% من سعر الدخول (لمس)
+      ZZ_DOJI_BODY_PCT: "0.05"      # الدوجي: جسم ≤ 0.05% من السعر
+      ZZ_LOOKBACK_BARS: 6           # أقصى عمر للقاع عند البحث
+      ZZ_MAX_ENTRY_AGE_HOURS: "2"   # رفض الإشارات الأقدم من ساعتين (توقف/بيانات قديمة)
+      ZZ_COMMISSION_SIDE_PCT: "0.1" # العمولة لكل جهة % (للدفتر فقط)
+      # فلتر اختياري: أدنى مسافة بين الدخول وقاع الإشارة %. 0 = معطّل (المعتمد حاليًا)
+      ZZ_MIN_STOP_PCT: "0"
+      # استثناء أزواج العملات المستقرة المربوطة — الإيقاف: "0"
+      EXCLUDE_PEGGED_STABLES: "1"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run ZigZag bot once
+        run: python run_zigzag_once.py
+
+      - name: Commit state updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No state changes to commit"
+            exit 0
+          fi
+          git commit -m "chore: update ZigZag bot state [skip ci]"
+
+          # دورات متزامنة قد تتصادم على data/ — نُبقي نسختنا (الأحدث) عبر -X theirs.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase -X theirs origin/main; then
+              if git push origin HEAD:main; then
+                echo "State pushed on attempt $attempt"
+                exit 0
+              fi
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "Retry $attempt: another run updated the state first, retrying..."
+            sleep $((attempt * 5))
+          done
+          echo "::warning::Could not push state after 5 attempts; next run will pick it up."

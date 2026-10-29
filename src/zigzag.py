@@ -1,0 +1,239 @@
+"""نظام ZigZag++ (فريم الساعة) — تحويل منطق القيعان إلى pandas.
+
+المرجع: مؤشر ZigZag++ [LD] للمطور DevLucem، المبني على MT4 ZigZag
+(`Depth=12`, `Deviation=5`, `Backstep=2`). مكتبة ZigLib غير منشورة،
+لكن النسخة v4 من المؤشر تحتوي الخوارزمية كاملة، وهي المعتمدة هنا.
+
+تعريف القاع المعتمد (باختيار المستخدم):
+    القاع = شمعة 1H مغلقة يكون أدنى سعرها **أدنى من كل** الشموع الـ11 السابقة
+    (أي أدنى قاع في آخر Depth=12 شمعة). يُعرف القاع عند إغلاق شمعته نفسها،
+    ثم ننتظر الشمعة المغلقة التالية مباشرة.
+
+قواعد الإشارة:
+    - الشمعة التالية للقاع خضراء (إغلاق > افتتاح) وغير دوجي ⇒ دخول بإغلاقها.
+    - حمراء أو دوجي (جسم ≤ 0.05% من السعر) ⇒ يُلغى القاع وننتظر قاعًا آخر.
+    - الهدف: +2% من سعر الدخول — يُحتسب بمجرد **لمس** السعر للهدف (أعلى سعر).
+    - الخسارة: **إغلاق** شمعة ساعة تحت أدنى سعر لشمعة القاع (ليس اللمس).
+    - عند التعارض داخل الشمعة نفسها: لمس الهدف يسبق إغلاق الخسارة.
+
+⚠️ العزل: هذا الملف مستقل تمامًا. لا يقرأ ولا يكتب أي ملف يخص
+   Target Trend أو نظام القاع أو السوق السعودي.
+"""
+from __future__ import annotations
+
+import os
+from dataclasses import dataclass
+
+import numpy as np
+import pandas as pd
+
+HOUR_MS = 3_600_000
+MINUTE_MS = 60_000
+STRATEGY_LABEL = "ZigZag++ (ساعة)"
+
+
+def _env_int(name: str, default: int) -> int:
+    try:
+        return int(os.getenv(name, str(default)))
+    except (TypeError, ValueError):
+        return default
+
+
+def _env_float(name: str, default: float) -> float:
+    try:
+        return float(os.getenv(name, str(default)))
+    except (TypeError, ValueError):
+        return default
+
+
+@dataclass(slots=True)
+class ZigZagSettings:
+    """إعدادات النظام — كلها قابلة للتعديل من متغيرات البيئة ZZ_*."""
+
+    depth: int = _env_int("ZZ_DEPTH", 12)                       # نافذة أدنى قاع (شموع 1H)
+    target_pct: float = _env_float("ZZ_TARGET_PCT", 2.0)        # نسبة الهدف من سعر الدخول %
+    doji_body_pct: float = _env_float("ZZ_DOJI_BODY_PCT", 0.05)  # حد الدوجي: جسم ≤ هذه النسبة
+    lookback_bars: int = _env_int("ZZ_LOOKBACK_BARS", 6)        # أقصى عمر للقاع عند البحث
+    max_entry_age_hours: float = _env_float("ZZ_MAX_ENTRY_AGE_HOURS", 2.0)  # رفض الإشارات المتأخرة
+    commission_side_pct: float = _env_float("ZZ_COMMISSION_SIDE_PCT", 0.1)  # العمولة لكل جهة %
+    # فلتر اختياري: أدنى مسافة بين الدخول وقاع الإشارة %.
+    # 0 = معطّل (الافتراضي، وهو القرار المعتمد حاليًا). تشغيله من الوركفلو
+    # وحده (ZZ_MIN_STOP_PCT=1.5) يقلّل الرسائل ويرفع نسبة الفوز بلا تعديل كود.
+    min_stop_pct: float = _env_float("ZZ_MIN_STOP_PCT", 0.0)
+
+    def describe(self) -> str:
+        return (
+            f"{STRATEGY_LABEL}: قاع أدنى {self.depth} شمعة • "
+            f"هدف +{self.target_pct:g}% (لمس) • خسارة بإغلاق تحت القاع • "
+            f"دوجي ≤ {self.doji_body_pct:g}% • "
+            f"أدنى وقف {self.min_stop_pct:g}%"
+        )
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# اكتشاف القاع
+# ─────────────────────────────────────────────────────────────────────────────
+def find_latest_bottom(closed_df: pd.DataFrame, settings: ZigZagSettings) -> dict | None:
+    """آخر قاع مغلق: أدنى سعر في آخر `depth` شمعة (بلا نظر للمستقبل).
+
+    نفحص فقط آخر `lookback_bars` شمعة — القيعان الأقدم تُهمَل لأنها لم تعد
+    قابلة للتنفيذ. يعيد dict أو None.
+    """
+    n = len(closed_df)
+    if n < settings.depth:
+        return None
+
+    lows = closed_df["low"].to_numpy(dtype="float64")
+    start = max(settings.depth - 1, n - settings.lookback_bars)
+    for i in range(n - 1, start - 1, -1):
+        window = lows[i - settings.depth + 1 : i]  # الشموع السابقة فقط
+        if window.size == 0:
+            continue
+        if not np.isfinite(lows[i]) or not np.isfinite(window).all():
+            continue
+        if lows[i] < float(window.min()):  # أدنى من كل الشموع السابقة في النافذة
+            row = closed_df.iloc[i]
+            return {
+                "bar_index": i,
+                "bar_open_time": int(row["open_time"]),
+                "bar_close_time": int(row["close_time"]),
+                "low": float(row["low"]),
+            }
+    return None
+
+
+def next_closed_bar(closed_df: pd.DataFrame, bottom_open_time: int) -> pd.Series | None:
+    """الشمعة المغلقة التالية مباشرة لشمعة القاع (بفارق ساعة واحدة بالضبط)."""
+    expected = int(bottom_open_time) + HOUR_MS
+    match = closed_df[closed_df["open_time"] == expected]
+    if match.empty:
+        return None
+    return match.iloc[-1]
+
+
+def evaluate_entry_candle(
+    bottom: dict, next_row: pd.Series, settings: ZigZagSettings
+) -> dict | None:
+    """تقييم الشمعة التالية للقاع: خضراء وغير دوجي ⇒ إشارة دخول.
+
+    الحماية الإضافية: إغلاق الشمعة يجب أن يكون فوق قاع الإشارة، وإلا فالصفقة
+    خاسرة منذ لحظة الدخول (فجوة سفلية) — تُتجاهل.
+    """
+    open_price = float(next_row["open"])
+    close_price = float(next_row["close"])
+    if not np.isfinite(open_price) or not np.isfinite(close_price) or open_price <= 0:
+        return None
+
+    body_pct = abs(close_price - open_price) / open_price * 100.0
+    if close_price <= open_price:                      # حمراء
+        return None
+    if body_pct <= settings.doji_body_pct:             # دوجي
+        return None
+    if close_price <= float(bottom["low"]):            # إغلاق تحت القاع
+        return None
+
+    entry_price = close_price
+    stop_price = float(bottom["low"])
+    if settings.min_stop_pct > 0:
+        stop_dist_pct = (entry_price - stop_price) / entry_price * 100.0
+        if stop_dist_pct < settings.min_stop_pct:   # قاع قريب جدًا — فلتر اختياري
+            return None
+    target_price = entry_price * (1.0 + settings.target_pct / 100.0)
+
+    return {
+        "entry_price": entry_price,
+        "stop_price": stop_price,
+        "target_price": target_price,
+        "bottom_low": stop_price,
+        "bottom_bar_open_time": int(bottom["bar_open_time"]),
+        "entry_bar_open_time": int(next_row["open_time"]),
+        "entry_time": int(next_row["close_time"]),
+        "doji_body_pct": body_pct,
+    }
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# متابعة الهدف والخسارة
+# ─────────────────────────────────────────────────────────────────────────────
+def evaluate_path_1m(
+    klines_1m: pd.DataFrame | None,
+    target_price: float,
+    stop_price: float,
+) -> dict | None:
+    """يمشي على شموع الدقيقة بالترتيب الزمني: لمس الهدف أولًا، ثم إغلاق الساعة.
+
+    - الهدف: أي شمعة دقيقة لامس أعلاها الهدف ⇒ نجاح فوري (بلا انتظار إغلاق).
+    - الخسارة: إغلاق **شمعة الساعة** تحت قاع الإشارة ⇒ خسارة عند ذلك الإغلاق.
+    - داخل الشمعة نفسها: الهدف يسبق الخسارة (قرار المستخدم).
+    """
+    if klines_1m is None or klines_1m.empty:
+        return None
+
+    max_high = float("-inf")
+    for row in klines_1m.itertuples(index=False):
+        high = float(row.high)
+        close = float(row.close)
+        open_price = float(row.open)
+        close_time = int(row.close_time)
+        if np.isfinite(high) and high > max_high:
+            max_high = high
+
+        if high >= target_price:
+            fill = max(float(target_price), open_price) if np.isfinite(open_price) else float(target_price)
+            return {
+                "outcome": "win",
+                "reason": "target",
+                "fill_price": fill,
+                "event_time": close_time,
+                "max_price": max(max_high, high),
+            }
+
+        # آخر دقيقة في الساعة: (close_time + 1) يقبل القسمة على 3,600,000
+        if (close_time + 1) % HOUR_MS == 0 and close < stop_price:
+            return {
+                "outcome": "loss",
+                "reason": "close_below_bottom",
+                "fill_price": close,
+                "event_time": close_time,
+                "max_price": max_high,
+            }
+
+    return None
+
+
+def evaluate_path_1h(
+    closed_df: pd.DataFrame | None,
+    entry_bar_open_time: int,
+    target_price: float,
+    stop_price: float,
+) -> dict | None:
+    """مسار احتياطي عند تعذّر جلب شموع الدقيقة — نفس القواعد على شموع الساعة."""
+    if closed_df is None or closed_df.empty:
+        return None
+
+    rows = closed_df[closed_df["open_time"] > int(entry_bar_open_time)]
+    max_high = float("-inf")
+    for row in rows.itertuples(index=False):
+        high = float(row.high)
+        close = float(row.close)
+        open_price = float(row.open)
+        if np.isfinite(high) and high > max_high:
+            max_high = high
+        if high >= target_price:
+            fill = max(float(target_price), open_price) if np.isfinite(open_price) else float(target_price)
+            return {
+                "outcome": "win",
+                "reason": "target",
+                "fill_price": fill,
+                "event_time": int(row.close_time),
+                "max_price": max(max_high, high),
+            }
+        if close < stop_price:
+            return {
+                "outcome": "loss",
+                "reason": "close_below_bottom",
+                "fill_price": close,
+                "event_time": int(row.close_time),
+                "max_price": max_high,
+            }
+    return None
