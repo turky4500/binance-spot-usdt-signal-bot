@@ -1,0 +1,119 @@
+{
+  "last_processed_open_time": 0,
+  "last_entry_bar_time": {},
+  "last_exit_bar_time": {},
+  "open_trades": {},
+  "event_log": [
+    {
+      "type": "entry",
+      "symbol": "GMXUSDT",
+      "time_ms": 1793300399999
+    },
+    {
+      "type": "entry",
+      "symbol": "ORCLBUSDT",
+      "time_ms": 1793300399999
+    },
+    {
+      "type": "entry",
+      "symbol": "SPYBUSDT",
+      "time_ms": 1793300399999
+    }
+  ],
+  "daily_report": {
+    "last_reported_for_date": ""
+  },
+  "daily_analysis": {
+    "last_reported_for_date": ""
+  },
+  "weekly_report": {
+    "last_reported_week_start": ""
+  },
+  "last_bottom_bar_time": {
+    "AAOIBUSDT": 1793278800000,
+    "ALABBUSDT": 1793278800000,
+    "AMZNBUSDT": 1793278800000,
+    "APPBUSDT": 1793278800000,
+    "AVGOBUSDT": 1793278800000,
+    "AXTIBUSDT": 1793278800000,
+    "BBBUSDT": 1793278800000,
+    "BNCBUSDT": 1793278800000,
+    "BSPBUSDT": 1793278800000,
+    "COHRBUSDT": 1793278800000,
+    "CRMBUSDT": 1793278800000,
+    "FFUSDT": 1793293200000,
+    "FLNCBUSDT": 1793278800000,
+    "GEVBUSDT": 1793278800000,
+    "GMXUSDT": 1793293200000,
+    "GOOGLBUSDT": 1793278800000,
+    "GSBUSDT": 1793278800000,
+    "HIMSBUSDT": 1793278800000,
+    "KSTRBUSDT": 1793278800000,
+    "LITEBUSDT": 1793278800000,
+    "MDBBUSDT": 1793278800000,
+    "MSFTBUSDT": 1793282400000,
+    "MSTRBUSDT": 1793278800000,
+    "NFLXBUSDT": 1793278800000,
+    "NVDABUSDT": 1793278800000,
+    "ORCLBUSDT": 1793293200000,
+    "PARTIUSDT": 1793278800000,
+    "PLTRBUSDT": 1793278800000,
+    "PROMUSDT": 1793282400000,
+    "QQQBUSDT": 1793278800000,
+    "RDDTBUSDT": 1793278800000,
+    "SHAZBUSDT": 1793278800000,
+    "SKDDBUSDT": 1793286000000,
+    "SOLVUSDT": 1793282400000,
+    "SOXSBUSDT": 1793286000000,
+    "SPCXBUSDT": 1793278800000,
+    "SPYBUSDT": 1793293200000,
+    "TQQQBUSDT": 1793278800000,
+    "UMAUSDT": 1793293200000,
+    "UVXYBUSDT": 1793286000000,
+    "ZMBUSDT": 1793278800000
+  },
+  "open_signals": {
+    "GMXUSDT": {
+      "trade_id": "GMXUSDT-1793296800000",
+      "symbol": "GMXUSDT",
+      "entry_price": 8.41,
+      "target_price": 8.5782,
+      "stop_price": 8.32,
+      "bottom_low": 8.32,
+      "bottom_bar_open_time": 1793293200000,
+      "entry_bar_open_time": 1793296800000,
+      "entry_time": 1793300399999,
+      "last_check_ms": 1793300400000,
+      "max_price": 8.41,
+      "halal_verdict": "⛔ غير مباح"
+    },
+    "ORCLBUSDT": {
+      "trade_id": "ORCLBUSDT-1793296800000",
+      "symbol": "ORCLBUSDT",
+      "entry_price": 138.36,
+      "target_price": 141.12720000000002,
+      "stop_price": 136.83,
+      "bottom_low": 136.83,
+      "bottom_bar_open_time": 1793293200000,
+      "entry_bar_open_time": 1793296800000,
+      "entry_time": 1793300399999,
+      "last_check_ms": 1793300400000,
+      "max_price": 138.36,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    },
+    "SPYBUSDT": {
+      "trade_id": "SPYBUSDT-1793296800000",
+      "symbol": "SPYBUSDT",
+      "entry_price": 768.3,
+      "target_price": 783.6659999999999,
+      "stop_price": 767.36,
+      "bottom_low": 767.36,
+      "bottom_bar_open_time": 1793293200000,
+      "entry_bar_open_time": 1793296800000,
+      "entry_time": 1793300399999,
+      "last_check_ms": 1793300400000,
+      "max_price": 768.3,
+      "halal_verdict": "ℹ️ لا يوجد حكم"
+    }
+  }
+}
