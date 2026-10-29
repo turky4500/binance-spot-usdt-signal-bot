@@ -85,7 +85,7 @@
     "GTCUSDT": 1793145600000,
     "HUMAUSDT": 1793145600000,
     "PROMUSDT": 1792281600000,
-    "COMPUSDT": 1792454400000,
+    "COMPUSDT": 1793232000000,
     "ENAUSDT": 1793059200000,
     "LSKUSDT": 1792454400000,
     "NIGHTUSDT": 1793232000000,
@@ -110,7 +110,7 @@
     "OGNUSDT": 1793145600000,
     "SUSDT": 1792627200000,
     "FFUSDT": 1793059200000,
-    "MAGICUSDT": 1792627200000,
+    "MAGICUSDT": 1793232000000,
     "STRKUSDT": 1792627200000,
     "AWEUSDT": 1793145600000,
     "SOMIUSDT": 1792800000000,
@@ -152,77 +152,15 @@
     "CVXUSDT": 1793232000000,
     "ORCAUSDT": 1793232000000,
     "TIAUSDT": 1793232000000,
-    "ESPUSDT": 1793232000000
+    "ESPUSDT": 1793232000000,
+    "BNBUSDT": 1793232000000,
+    "KAVAUSDT": 1793232000000,
+    "TAOUSDT": 1793232000000,
+    "UNIUSDT": 1793232000000,
+    "ETHFIUSDT": 1793232000000,
+    "FLUXUSDT": 1793232000000
   },
   "open_trades": {
-    "BNBUSDT": {
-      "trade_id": "BNBUSDT-1792368000000",
-      "symbol": "BNBUSDT",
-      "entry_price": 732.13,
-      "stop_price": 705.86,
-      "pivot_stop": 705.86,
-      "target_price": 784.67,
-      "stop_dist_pct": 3.588160572575906,
-      "size_suggest_pct": 0.2786943281309481,
-      "entry_time": 1792454399999,
-      "entry_bar_open_time": 1792368000000,
-      "last_check_ms": 1793303280000,
-      "peak_price": 762.2,
-      "last_stop_alert_price": 705.86,
-      "stop_updates_count": 0,
-      "halal_verdict": "⛔ غير مباح"
-    },
-    "KAVAUSDT": {
-      "trade_id": "KAVAUSDT-1792800000000",
-      "symbol": "KAVAUSDT",
-      "entry_price": 0.07072,
-      "stop_price": 0.06803,
-      "pivot_stop": 0.06803,
-      "target_price": 0.07610000000000003,
-      "stop_dist_pct": 3.8037330316742244,
-      "size_suggest_pct": 0.26289962825278695,
-      "entry_time": 1792886399999,
-      "entry_bar_open_time": 1792800000000,
-      "last_check_ms": 1793303280000,
-      "peak_price": 0.07116,
-      "last_stop_alert_price": 0.06803,
-      "stop_updates_count": 0,
-      "halal_verdict": "⛔ غير مباح"
-    },
-    "TAOUSDT": {
-      "trade_id": "TAOUSDT-1792886400000",
-      "symbol": "TAOUSDT",
-      "entry_price": 253.1,
-      "stop_price": 242.6,
-      "pivot_stop": 242.6,
-      "target_price": 274.1,
-      "stop_dist_pct": 4.1485578822599765,
-      "size_suggest_pct": 0.24104761904761904,
-      "entry_time": 1792972799999,
-      "entry_bar_open_time": 1792886400000,
-      "last_check_ms": 1793303280000,
-      "peak_price": 262.4,
-      "last_stop_alert_price": 242.6,
-      "stop_updates_count": 0,
-      "halal_verdict": "✅ مباح"
-    },
-    "UNIUSDT": {
-      "trade_id": "UNIUSDT-1792886400000",
-      "symbol": "UNIUSDT",
-      "entry_price": 6.923,
-      "stop_price": 6.91932,
-      "pivot_stop": 6.516,
-      "target_price": 7.737,
-      "stop_dist_pct": 5.87895421060234,
-      "size_suggest_pct": 0.1700982800982801,
-      "entry_time": 1792972799999,
-      "entry_bar_open_time": 1792886400000,
-      "last_check_ms": 1793303280000,
-      "peak_price": 7.521,
-      "last_stop_alert_price": 6.907360000000001,
-      "stop_updates_count": 5,
-      "halal_verdict": "⛔ غير مباح"
-    },
     "币安人生USDT": {
       "trade_id": "币安人生USDT-1792886400000",
       "symbol": "币安人生USDT",
@@ -234,61 +172,10 @@
       "size_suggest_pct": 0.2176956521739129,
       "entry_time": 1792972799999,
       "entry_bar_open_time": 1792886400000,
-      "last_check_ms": 1793303280000,
+      "last_check_ms": 1793314860000,
       "peak_price": 0.5465,
       "last_stop_alert_price": 0.501768,
       "stop_updates_count": 4,
-      "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
-    "COMPUSDT": {
-      "trade_id": "COMPUSDT-1792972800000",
-      "symbol": "COMPUSDT",
-      "entry_price": 22.3,
-      "stop_price": 20.644800000000004,
-      "pivot_stop": 20.16,
-      "target_price": 26.580000000000002,
-      "stop_dist_pct": 9.596412556053814,
-      "size_suggest_pct": 0.10420560747663549,
-      "entry_time": 1793059199999,
-      "entry_bar_open_time": 1792972800000,
-      "last_check_ms": 1793303280000,
-      "peak_price": 22.44,
-      "last_stop_alert_price": 20.5344,
-      "stop_updates_count": 1,
-      "halal_verdict": "⛔ غير مباح"
-    },
-    "ETHFIUSDT": {
-      "trade_id": "ETHFIUSDT-1792972800000",
-      "symbol": "ETHFIUSDT",
-      "entry_price": 0.653,
-      "stop_price": 0.635628,
-      "pivot_stop": 0.5973,
-      "target_price": 0.7644,
-      "stop_dist_pct": 8.529862174578861,
-      "size_suggest_pct": 0.1172351885098744,
-      "entry_time": 1793059199999,
-      "entry_bar_open_time": 1792972800000,
-      "last_check_ms": 1793303280000,
-      "peak_price": 0.6909,
-      "last_stop_alert_price": 0.6302000000000001,
-      "stop_updates_count": 5,
-      "halal_verdict": "⛔ غير مباح"
-    },
-    "MAGICUSDT": {
-      "trade_id": "MAGICUSDT-1793059200000",
-      "symbol": "MAGICUSDT",
-      "entry_price": 0.0834,
-      "stop_price": 0.0802,
-      "pivot_stop": 0.0802,
-      "target_price": 0.08980000000000002,
-      "stop_dist_pct": 3.836930455635502,
-      "size_suggest_pct": 0.2606249999999993,
-      "entry_time": 1793145599999,
-      "entry_bar_open_time": 1793059200000,
-      "last_check_ms": 1793303280000,
-      "peak_price": 0.0852,
-      "last_stop_alert_price": 0.0802,
-      "stop_updates_count": 0,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     },
     "MORPHOUSDT": {
@@ -302,28 +189,11 @@
       "size_suggest_pct": 0.11471204188481686,
       "entry_time": 1793145599999,
       "entry_bar_open_time": 1793059200000,
-      "last_check_ms": 1793303280000,
+      "last_check_ms": 1793314860000,
       "peak_price": 2.29,
       "last_stop_alert_price": 2.09944,
       "stop_updates_count": 4,
       "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
-    "FLUXUSDT": {
-      "trade_id": "FLUXUSDT-1793145600000",
-      "symbol": "FLUXUSDT",
-      "entry_price": 0.0681,
-      "stop_price": 0.06394000000000001,
-      "pivot_stop": 0.0613,
-      "target_price": 0.08169999999999998,
-      "stop_dist_pct": 9.985315712187951,
-      "size_suggest_pct": 0.10014705882352949,
-      "entry_time": 1793231999999,
-      "entry_bar_open_time": 1793145600000,
-      "last_check_ms": 1793303280000,
-      "peak_price": 0.0695,
-      "last_stop_alert_price": 0.06394000000000001,
-      "stop_updates_count": 1,
-      "halal_verdict": "✅ مباح"
     },
     "JSTUSDT": {
       "trade_id": "JSTUSDT-1793145600000",
@@ -336,8 +206,8 @@
       "size_suggest_pct": 0.30995604395604404,
       "entry_time": 1793231999999,
       "entry_bar_open_time": 1793145600000,
-      "last_check_ms": 1793303280000,
-      "peak_price": 0.1419,
+      "last_check_ms": 1793314860000,
+      "peak_price": 0.14442,
       "last_stop_alert_price": 0.13648,
       "stop_updates_count": 0,
       "halal_verdict": "⛔ غير مباح"
@@ -353,7 +223,7 @@
       "size_suggest_pct": 0.1824999999999996,
       "entry_time": 1793231999999,
       "entry_bar_open_time": 1793145600000,
-      "last_check_ms": 1793303280000,
+      "last_check_ms": 1793314860000,
       "peak_price": 5.815,
       "last_stop_alert_price": 5.313,
       "stop_updates_count": 0,
@@ -2685,6 +2555,46 @@
       "type": "stop_alert",
       "symbol": "MORPHOUSDT",
       "time_ms": 1793290019999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "BNBUSDT",
+      "time_ms": 1793306459999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "KAVAUSDT",
+      "time_ms": 1793310719999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "TAOUSDT",
+      "time_ms": 1793306579999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "UNIUSDT",
+      "time_ms": 1793306039999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "COMPUSDT",
+      "time_ms": 1793306879999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "ETHFIUSDT",
+      "time_ms": 1793306279999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "MAGICUSDT",
+      "time_ms": 1793306519999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "FLUXUSDT",
+      "time_ms": 1793306579999
     }
   ],
   "daily_report": {
