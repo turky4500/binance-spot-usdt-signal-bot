@@ -30,7 +30,7 @@ from src.binance_client import BinanceClient
 from src.config import AppConfig
 from src.halal import ensure_verdict, refresh_if_stale
 from src.state import StateStore
-from src.telegram_client import TelegramClient
+from src.telegram_client import TelegramClient, is_muted
 from src.utils import (
     format_price,
     humanize_duration_ar,
@@ -247,6 +247,12 @@ class ZigZagSignalBot:
                 exc_info=True,
             )
 
+    def _send_trade_message(self, signal: dict, text: str) -> None:
+        if signal.get("silent"):
+            self.logger.info("ZigZag: صفقة صامتة %s — رسالة لم تُرسل (فُتحت أثناء الإسكات)", signal.get("symbol", "?"))
+            return
+        self._safe_send(text)
+
     def send_entry_message(self, signal: dict) -> None:
         verdict = signal.get("halal_verdict") or self.get_halal_verdict(signal["symbol"])
         text = (
@@ -262,7 +268,7 @@ class ZigZagSignalBot:
             f"⏱ {stamp_ms(int(signal['entry_time']), self.config.timezone_name)}\n"
             f"⚖️ الحكم الشرعي: {verdict}"
         )
-        self._safe_send(text)
+        self._send_trade_message(signal, text)
         self.append_event("entry", signal["symbol"], int(signal["entry_time"]))
         append_zigzag_entry(self.data_dir, self._build_trade_log_record(signal))
 
@@ -289,7 +295,7 @@ class ZigZagSignalBot:
             f"⏱ {stamp_ms(int(event['event_time']), self.config.timezone_name)}\n"
             f"⚖️ الحكم الشرعي: {verdict}"
         )
-        self._safe_send(text)
+        self._send_trade_message(signal, text)
         self.append_event("exit_win", signal["symbol"], int(event["event_time"]))
         self._record_trade_exit(signal, event)
         self.close_signal(signal["symbol"])
@@ -312,7 +318,7 @@ class ZigZagSignalBot:
             f"⏱ {stamp_ms(int(event['event_time']), self.config.timezone_name)}\n"
             f"⚖️ الحكم الشرعي: {verdict}"
         )
-        self._safe_send(text)
+        self._send_trade_message(signal, text)
         self.append_event("exit_loss", signal["symbol"], int(event["event_time"]))
         self._record_trade_exit(signal, event)
         self.close_signal(signal["symbol"])
@@ -441,6 +447,7 @@ class ZigZagSignalBot:
                 "last_check_ms": int(candidate["entry_time"]) + 1,
                 "max_price": candidate["entry_price"],
                 "halal_verdict": self.get_halal_verdict(symbol),
+                "silent": is_muted(),
             }
             open_signals[symbol] = signal
             self.store.save(self.state)

@@ -15,7 +15,7 @@ from src.config import AppConfig
 from src.halal import ensure_verdict, refresh_if_stale
 from src.state import StateStore
 from src.strategy import StrategySettings, entry_er_ok, latest_signal
-from src.telegram_client import TelegramClient
+from src.telegram_client import TelegramClient, is_muted
 from src.trade_analysis import (
     avg_metric,
     build_daily_observations,
@@ -238,6 +238,19 @@ class SpotSignalBot:
         """
         return format_price(float(value), self.price_ticks.get(str(trade.get("symbol", ""))))
 
+    def _send_trade_message(self, trade: dict, text: str) -> None:
+        """يتجاوز رسائل الصفقة إذا فُتحت أثناء الإسكات (silent) حتى بعد الاستئناف.
+
+        الصفقة تُسجَّل كاملة في الحالة والدفتر؛ نتجاوز الإرسال فقط.
+        """
+        if trade.get("silent"):
+            self.logger.info(
+                "Target Trend: صفقة صامتة %s — رسالة لم تُرسل (فُتحت أثناء الإسكات)",
+                trade.get("symbol", "?"),
+            )
+            return
+        self.telegram.send_message(text)
+
     def send_entry_message(self, trade: dict) -> None:
         verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
         entry = float(trade["entry_price"])
@@ -260,7 +273,7 @@ class SpotSignalBot:
             f"─────────────\n"
             f"الحكم الشرعي: {verdict}"
         )
-        self.telegram.send_message(text)
+        self._send_trade_message(trade, text)
         self.append_event("entry", trade["symbol"], int(trade["entry_time"]))
         append_trade_entry(self.data_dir, self._build_trade_log_record(trade))
 
@@ -298,9 +311,8 @@ class SpotSignalBot:
             f"─────────────\n"
             f"الحكم الشرعي: {verdict}"
         )
-        self.telegram.send_message(text)
+        self._send_trade_message(trade, text)
         self.append_event("target", trade["symbol"], int(event_time_ms))
-
     def send_close_message(
         self, trade: dict, exit_price: float, event_time_ms: int, reason: str, reason_ar: str
     ) -> None:
@@ -368,7 +380,7 @@ class SpotSignalBot:
             f"─────────────\n"
             f"الحكم الشرعي: {verdict}"
         )
-        self.telegram.send_message(text)
+        self._send_trade_message(trade, text)
         event_type = {
             "win": "exit_win",
             "partial": "exit_neutral",
@@ -422,7 +434,7 @@ class SpotSignalBot:
             f"─────────────\n"
             f"الحكم الشرعي: {verdict}"
         )
-        self.telegram.send_message(text)
+        self._send_trade_message(trade, text)
         self.append_event("exit_win", trade["symbol"], int(event_time_ms))
         self._record_trade_exit(trade, "win", "all_targets", int(event_time_ms), float(exit_price))
 
@@ -694,6 +706,9 @@ class SpotSignalBot:
                 "trend_length": signal["trend_length"],
                 "peak_price": signal["entry_price"],
                 "halal_verdict": self.get_halal_verdict(symbol),
+                # صفقة فُتحت أثناء الإسكات: تُسجَّل كاملة لكن لا تُرسل رسائلها
+                # (دخول/أهداف/إغلاق) حتى بعد رفع الإسكات.
+                "silent": is_muted(),
             }
             self.state["open_trades"][symbol] = trade
             self.state["last_entry_bar_time"][symbol] = signal["bar_open_time"]

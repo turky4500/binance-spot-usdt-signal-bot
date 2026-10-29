@@ -41,7 +41,7 @@ from src.qaa_strategy import (
     stop_fill,
 )
 from src.state import StateStore
-from src.telegram_client import TelegramClient
+from src.telegram_client import TelegramClient, is_muted
 from src.utils import (
     format_price,
     humanize_duration_ar,
@@ -239,6 +239,16 @@ class QaaSignalBot:
         except Exception:
             self.logger.error("QAA: فشل إرسال رسالة تيليجرام — تُجتاز وتُسجَّل وتُكمل الدورة", exc_info=True)
 
+    def _send_trade_message(self, trade: dict, text: str) -> None:
+        """يتجاوز رسائل الصفقة إذا فُتحت أثناء الإسكات (silent) حتى بعد الاستئناف."""
+        if trade.get("silent"):
+            self.logger.info(
+                "QAA: صفقة صامتة %s — رسالة لم تُرسل (فُتحت أثناء الإسكات)",
+                trade.get("symbol", "?"),
+            )
+            return
+        self._safe_send(text)
+
     def send_entry_message(self, trade: dict) -> None:
         verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["symbol"])
         entry = float(trade["entry_price"])
@@ -260,7 +270,7 @@ class QaaSignalBot:
             f"وقت الإشارة: {stamp_ms(int(trade['entry_time']), self.config.timezone_name)}\n"
             f"⚖️ الحكم الشرعي: {verdict}"
         )
-        self._safe_send(text)
+        self._send_trade_message(trade, text)
         self.append_event("entry", trade["symbol"], int(trade["entry_time"]))
         append_qaa_entry(self.data_dir, self._build_trade_log_record(trade))
 
@@ -305,7 +315,7 @@ class QaaSignalBot:
             f"{stamp_ms(int(event_ms), self.config.timezone_name)}\n"
             f"⚖️ الحكم الشرعي: {verdict}"
         )
-        self._safe_send(text)
+        self._send_trade_message(trade, text)
         self.append_event("stop_alert", trade["symbol"], int(event_ms))
 
     def send_close_message(
@@ -336,7 +346,7 @@ class QaaSignalBot:
             f"{stamp_ms(int(event_time_ms), self.config.timezone_name)}\n"
             f"⚖️ الحكم الشرعي: {verdict}"
         )
-        self._safe_send(text)
+        self._send_trade_message(trade, text)
         self.append_event("exit_win" if outcome == "win" else "exit_loss", trade["symbol"], int(event_time_ms))
         self._record_trade_exit(trade, outcome, reason, int(event_time_ms), float(exit_price))
 
@@ -553,6 +563,9 @@ class QaaSignalBot:
                 "last_stop_alert_price": signal["stop_price"],
                 "stop_updates_count": 0,
                 "halal_verdict": self.get_halal_verdict(symbol),
+                # صفقة فُتحت أثناء الإسكات: تُسجَّل كاملة لكن لا تُرسل رسائلها
+                # (دخول/وقف متحرك/إغلاق) حتى بعد رفع الإسكات.
+                "silent": is_muted(),
             }
             self.state["open_trades"][symbol] = trade
             self.state.setdefault("last_entry_bar_time", {})[symbol] = signal["bar_open_time"]

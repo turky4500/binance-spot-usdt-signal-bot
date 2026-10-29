@@ -50,7 +50,7 @@ from src.saudi_strategy import (
     stop_fill,
 )
 from src.state import StateStore
-from src.telegram_client import TelegramClient
+from src.telegram_client import TelegramClient, is_muted
 from src.utils import (
     humanize_duration_ar,
     local_date_key_from_ms,
@@ -229,6 +229,15 @@ class SaSignalBot:
         except Exception:
             self.logger.error("SA: فشل إرسال رسالة تيليجرام — تُجتاز وتُسجَّل وتُكمل الدورة", exc_info=True)
 
+    def _send_trade_message(self, trade: dict, text: str) -> None:
+        if trade.get("silent"):
+            self.logger.info(
+                "SA: صفقة صامتة %s — رسالة لم تُرسل (فُتحت أثناء الإسكات)",
+                trade.get("code", "?"),
+            )
+            return
+        self._safe_send(text)
+
     def send_entry_message(self, trade: dict) -> None:
         verdict = trade.get("halal_verdict") or self.get_halal_verdict(trade["code"])
         entry = float(trade["entry_price"])
@@ -252,7 +261,7 @@ class SaSignalBot:
             f"─────────────\n"
             f"الحكم الشرعي: {verdict}"
         )
-        self._safe_send(text)
+        self._send_trade_message(trade, text)
         self.append_event("entry", trade["code"], int(trade["entry_time"]))
         append_sa_entry(self.data_dir, self._build_trade_log_record(trade))
 
@@ -298,7 +307,7 @@ class SaSignalBot:
             f"─────────────\n"
             f"الحكم الشرعي: {verdict}"
         )
-        self._safe_send(text)
+        self._send_trade_message(trade, text)
         self.append_event("stop_alert", trade["code"], int(event_ms))
 
     def send_close_message(
@@ -337,7 +346,7 @@ class SaSignalBot:
             f"─────────────\n"
             f"الحكم الشرعي: {verdict}"
         )
-        self._safe_send(text)
+        self._send_trade_message(trade, text)
         self.append_event("exit_win" if outcome == "win" else "exit_loss", trade["code"], int(event_time_ms))
         self._record_trade_exit(trade, outcome, reason, int(event_time_ms), float(exit_price))
 
@@ -511,6 +520,7 @@ class SaSignalBot:
                 "last_stop_alert_price": signal["stop_price"],
                 "stop_updates_count": 0,
                 "halal_verdict": self.get_halal_verdict(code),
+                "silent": is_muted(),
             }
             self.state["open_trades"][code] = trade
             self.state.setdefault("last_entry_bar_time", {})[code] = signal["bar_open_time"]
