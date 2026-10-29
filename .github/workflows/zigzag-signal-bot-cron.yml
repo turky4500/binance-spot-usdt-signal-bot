@@ -22,6 +22,8 @@ jobs:
     env:
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      # ZigZag هو النظام الوحيد النشط رسائليًا الآن (بقية الأنظمة مُسكتة).
+      TELEGRAM_MUTE: "0"
       TIMEZONE: Asia/Riyadh
       BINANCE_BASE_URL: https://data-api.binance.vision
       BINANCE_QUOTE_ASSET: USDT

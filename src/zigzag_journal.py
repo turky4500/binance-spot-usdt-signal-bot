@@ -72,6 +72,11 @@ def append_zigzag_entry(data_dir: str, record: dict[str, Any]) -> bool:
     return True
 
 
+def load_zigzag_rows(data_dir: str) -> list[dict[str, str]]:
+    """يقرأ كل صفوف دفتر ZigZag (قراءة فقط — لا يلمس أي دفتر آخر)."""
+    return _read_rows(_log_path(data_dir))
+
+
 def update_zigzag_exit(data_dir: str, trade_id: str, updates: dict[str, Any]) -> bool:
     """يحدّث صف الصفقة عند الإغلاق — يعيد كتابة الملف بالمخطط نفسه."""
     path = _log_path(data_dir)

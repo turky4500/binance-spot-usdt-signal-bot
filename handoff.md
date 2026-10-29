@@ -148,6 +148,8 @@ signal_down = trend: true → false   → إغلاق
   التعارض داخل الشمعة: الهدف يسبق الخسارة.
 - **إشارة واحدة لكل عملة**؛ رسائل فردية فقط؛ `_safe_send` يجعل فشل رسالة لا يوقف الدورة.
 - **الوتيرة**: `zigzag-signal-bot-cron.yml` كل 5 دقائق + إعادة شموع 1m (دقة اللمس = دقيقة).
+- **التقرير اليومي**: عند 00:00 بتوقيت الرياض — إشارات اليوم، نجاح/خسارة، نسبة النجاح،
+  متوسط النتيجة بعد العمولة، المفتوح حاليًا، أفضل/أسوأ عملة (مرة واحدة لكل يوم).
 - **حماية**: رفض الإشارات الأقدم من ساعتين (`ZZ_MAX_ENTRY_AGE_HOURS=2`).
 - **الملفات**: `zigzag_bot.py` • `src/zigzag.py` • `src/zigzag_journal.py` • `run_zigzag_once.py`
   • `data/state_zigzag.json` • `data/trades_log_zigzag.csv` • `data/zigzag/`
@@ -155,6 +157,16 @@ signal_down = trend: true → false   → إغلاق
   الفلتر الاختياري `ZZ_MIN_STOP_PCT` (0 = معطّل) يُشغَّل من الوركفلو بلا كود.
 - **أرقام مرجعية**: بلا فلتر 375 إشارة/يوم لـ400 عملة، فوز 48.8%، توقع +0.026%/صفقة؛
   مع `min_stop=1.5%`: 172 إشارة/يوم، فوز 62.5%، توقع +0.078%.
+
+## إسكات الأنظمة الأخرى (مؤقت — 2026-10-29)
+
+بناءً على طلب المستخدم (التركيز على ZigZag فقط):
+
+- `TELEGRAM_MUTE=1` في `signal-bot-cron.yml` (Target Trend) و`qaa-signal-bot-cron.yml`
+  و`sa-signal-bot-cron.yml` — **تعمل جميعها وتحدّث حالتها ودفاترها وتقاريرها الداخلية
+  لكن لا ترسل أي رسالة** (البوابة في `src/telegram_client.py` المشترك).
+- `TELEGRAM_MUTE=0` في `zigzag-signal-bot-cron.yml` — ZigZag هو الوحيد المرسل.
+- **الإرجاع**: احذف سطر `TELEGRAM_MUTE` من وركفلو النظام أو اضبطه على `"0"` — بلا كود.
 
 ## الحالة الحالية والخطوة التالية
 
@@ -175,7 +187,7 @@ signal_down = trend: true → false   → إغلاق
 
 ```bash
 pip install -r requirements.txt      # المتطلبات
-python -m pytest tests/ -q           # الاختبارات (126)
+python -m pytest tests/ -q           # الاختبارات (134)
 python run_once.py                   # دورة واحدة
 python run_zigzag_once.py            # ZigZag++ دورة واحدة
 python app.py                        # تشغيل مستمر محلي

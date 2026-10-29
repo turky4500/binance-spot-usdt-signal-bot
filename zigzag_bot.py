@@ -22,7 +22,7 @@ from __future__ import annotations
 import logging
 import os
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -34,7 +34,9 @@ from src.telegram_client import TelegramClient
 from src.utils import (
     format_price,
     humanize_duration_ar,
+    local_date_key_from_ms,
     ms_to_local_text,
+    weekday_ar_from_ms,
 )
 from src.zigzag import (
     HOUR_MS,
@@ -47,7 +49,7 @@ from src.zigzag import (
     find_latest_bottom,
     next_closed_bar,
 )
-from src.zigzag_journal import append_zigzag_entry, update_zigzag_exit
+from src.zigzag_journal import append_zigzag_entry, load_zigzag_rows, update_zigzag_exit
 
 EVENT_RETENTION_DAYS = 120
 MAX_CATCHUP_HOURS = 24 * 7  # أقصى فترة استدراك لشموع الدقيقة عند توقف البوت
@@ -469,6 +471,88 @@ class ZigZagSignalBot:
             self.append_event("removed_pegged", symbol, int(signal.get("entry_time") or 0))
         self.store.save(self.state)
 
+    # ─────────────────────────────────────────── التقرير اليومي
+    def send_daily_report_if_due(self, now_ms: int) -> None:
+        """تقرير يومي عند 00:00 بتوقيت الرياض يغطي اليوم المنتهي.
+
+        الأرقام من حدثيات الحالة (دخول/نجاح/خسارة) ومن دفتر ZigZag
+        (`net_return_pct`) — لا يقرأ أي دفتر آخر.
+        """
+        now_local = datetime.fromtimestamp(now_ms / 1000, tz=timezone.utc).astimezone(
+            ZoneInfo(self.config.timezone_name)
+        )
+        if now_local.hour != 0:
+            return
+
+        report_day = (now_local.date() - timedelta(days=1)).isoformat()
+        report_state = self.state.setdefault("daily_report", {})
+        if report_state.get("last_reported_for_date") == report_day:
+            return
+
+        entries = wins = losses = 0
+        for event in self.state.get("event_log", []):
+            event_ms = int(event.get("time_ms", 0))
+            if local_date_key_from_ms(event_ms, self.config.timezone_name) != report_day:
+                continue
+            event_type = event.get("type")
+            if event_type == "entry":
+                entries += 1
+            elif event_type == "exit_win":
+                wins += 1
+            elif event_type == "exit_loss":
+                losses += 1
+
+        closed_rows = []
+        for row in load_zigzag_rows(self.data_dir):
+            try:
+                exit_ms = int(row.get("exit_time_ms") or 0)
+            except (TypeError, ValueError):
+                continue
+            if exit_ms and local_date_key_from_ms(exit_ms, self.config.timezone_name) == report_day:
+                closed_rows.append(row)
+
+        nets: list[tuple[str, float]] = []
+        for row in closed_rows:
+            try:
+                nets.append((str(row.get("symbol", "")), float(row.get("net_return_pct"))))
+            except (TypeError, ValueError):
+                continue
+
+        closed_count = wins + losses
+        success_rate = (wins / closed_count * 100.0) if closed_count else 0.0
+        avg_net = (sum(net for _sym, net in nets) / len(nets)) if nets else None
+        best = max(nets, key=lambda item: item[1]) if nets else None
+        worst = min(nets, key=lambda item: item[1]) if nets else None
+        weekday_name = weekday_ar_from_ms(now_ms - 1000, self.config.timezone_name)
+        open_count = len(self.state.get("open_signals", {}))
+
+        best_line = (
+            f"🏆 أفضل عملة: {best[0]} {pct_label(best[1])}" if best
+            else "🏆 أفضل عملة: لا توجد صفقات مغلقة اليوم"
+        )
+        worst_line = (
+            f"⚠️ أسوأ عملة: {worst[0]} {pct_label(worst[1])}" if worst
+            else "⚠️ أسوأ عملة: لا توجد صفقات مغلقة اليوم"
+        )
+        avg_net_text = pct_label(avg_net) if avg_net is not None else "—"
+        text = (
+            f"📊 التقرير اليومي — {STRATEGY_LABEL}\n"
+            f"🗓️ اليوم المشمول: {weekday_name} {report_day}\n"
+            f"🕛 وقت التقرير: {stamp_ms(now_ms, self.config.timezone_name)}\n"
+            "\n"
+            f"📥 إشارات دخلت: {entries}\n"
+            f"✅ نجاح: {wins} • 🛑 خسارة: {losses}\n"
+            f"📈 نسبة النجاح: {success_rate:.1f}%\n"
+            f"💰 متوسط النتيجة (بعد العمولة): {avg_net_text}\n"
+            f"📌 مفتوحة حاليًا: {open_count}\n"
+            f"{best_line}\n"
+            f"{worst_line}"
+        )
+        self._safe_send(text)
+        report_state["last_reported_for_date"] = report_day
+        self.store.save(self.state)
+        self.logger.info("ZigZag: Daily report sent for %s", report_day)
+
     # ─────────────────────────────────────────── التشغيل
     def run_cycle(self) -> None:
         self.refresh_symbols(force=not self.symbols)
@@ -481,6 +565,7 @@ class ZigZagSignalBot:
         )
         self.monitor_open_signals(server_time, klines_map)
         self.process_new_bottoms(klines_map, server_time)
+        self.send_daily_report_if_due(server_time)
 
     def run(self) -> None:
         self.refresh_symbols(force=True)

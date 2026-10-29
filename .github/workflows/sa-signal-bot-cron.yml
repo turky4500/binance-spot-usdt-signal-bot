@@ -29,6 +29,9 @@ jobs:
     env:
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      # إسكات مؤقت للرسائل — النظام يعمل ويحدّث حالته ودفتره بلا إرسال.
+      # إعادة التشغيل: احذف السطر أو اضبطه على "0".
+      TELEGRAM_MUTE: "1"
       TIMEZONE: Asia/Riyadh
       POLL_SECONDS: 60
       REQUEST_TIMEOUT: 20
