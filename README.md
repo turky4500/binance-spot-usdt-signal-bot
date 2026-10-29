@@ -68,7 +68,7 @@ signal_down = انقلاب الاتجاه صاعدًا ← هابطًا → إش
 - `src/trade_analysis.py` — تحليل الدفتر للتقارير اليومية/الأسبوعية
 - `src/halal.py` — الحكم الشرعي من cryptohalal.cc مع كاش
 - `src/config.py` / `src/utils.py` — الإعدادات والأدوات
-- `tests/` — اختبارات المؤشر ودورة الصفقة والأنظمة الموازية (134 اختبارًا)
+- `tests/` — اختبارات المؤشر ودورة الصفقة والأنظمة الموازية (137 اختبارًا)
 - `tools/analyze_trades.py` — تحليل أولي لسجل الصفقات
 - `tools/get_telegram_chat_id.py` — استخراج Chat ID
 - `tools/create_github_repo.py` — إنشاء مستودع GitHub

@@ -167,6 +167,9 @@ signal_down = trend: true → false   → إغلاق
   لكن لا ترسل أي رسالة** (البوابة في `src/telegram_client.py` المشترك).
 - `TELEGRAM_MUTE=0` في `zigzag-signal-bot-cron.yml` — ZigZag هو الوحيد المرسل.
 - **الإرجاع**: احذف سطر `TELEGRAM_MUTE` من وركفلو النظام أو اضبطه على `"0"` — بلا كود.
+- **لا إغراق عند الاستئناف**: الإسكات يُسقِط الرسالة لحظة الإرسال بلا طابور، والحالة
+  تتقدّم طبيعيًا ⇒ لا يُعاد أي شيء قديم (مغطّى بـ `tests/test_mute_no_backlog.py`).
+  فقط إغلاقات الصفقات المفتوحة لحظة الاستئناف تصل لأنها أحداث جديدة.
 
 ## الحالة الحالية والخطوة التالية
 
@@ -187,7 +190,7 @@ signal_down = trend: true → false   → إغلاق
 
 ```bash
 pip install -r requirements.txt      # المتطلبات
-python -m pytest tests/ -q           # الاختبارات (134)
+python -m pytest tests/ -q           # الاختبارات (137)
 python run_once.py                   # دورة واحدة
 python run_zigzag_once.py            # ZigZag++ دورة واحدة
 python app.py                        # تشغيل مستمر محلي
