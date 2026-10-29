@@ -83,8 +83,8 @@
       "bottom_bar_open_time": 1793293200000,
       "entry_bar_open_time": 1793296800000,
       "entry_time": 1793300399999,
-      "last_check_ms": 1793301960000,
-      "max_price": 8.41,
+      "last_check_ms": 1793303220000,
+      "max_price": 8.44,
       "halal_verdict": "⛔ غير مباح"
     },
     "ORCLBUSDT": {
@@ -97,7 +97,7 @@
       "bottom_bar_open_time": 1793293200000,
       "entry_bar_open_time": 1793296800000,
       "entry_time": 1793300399999,
-      "last_check_ms": 1793301960000,
+      "last_check_ms": 1793303220000,
       "max_price": 138.64,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     },
@@ -111,8 +111,8 @@
       "bottom_bar_open_time": 1793293200000,
       "entry_bar_open_time": 1793296800000,
       "entry_time": 1793300399999,
-      "last_check_ms": 1793301960000,
-      "max_price": 768.72,
+      "last_check_ms": 1793303220000,
+      "max_price": 769.39,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     }
   }
