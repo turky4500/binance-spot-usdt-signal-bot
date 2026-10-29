@@ -18,10 +18,45 @@
       "type": "entry",
       "symbol": "SPYBUSDT",
       "time_ms": 1793300399999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "GMXUSDT",
+      "time_ms": 1793307599999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "ORCLBUSDT",
+      "time_ms": 1793307599999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "SPYBUSDT",
+      "time_ms": 1793307599999
+    },
+    {
+      "type": "entry",
+      "symbol": "BRKBBUSDT",
+      "time_ms": 1793307599999
+    },
+    {
+      "type": "entry",
+      "symbol": "DJTBUSDT",
+      "time_ms": 1793303999999
+    },
+    {
+      "type": "entry",
+      "symbol": "PAXGUSDT",
+      "time_ms": 1793303999999
+    },
+    {
+      "type": "entry",
+      "symbol": "XAUTUSDT",
+      "time_ms": 1793303999999
     }
   ],
   "daily_report": {
-    "last_reported_for_date": ""
+    "last_reported_for_date": "2026-10-29"
   },
   "daily_analysis": {
     "last_reported_for_date": ""
@@ -70,50 +105,72 @@
     "TQQQBUSDT": 1793278800000,
     "UMAUSDT": 1793293200000,
     "UVXYBUSDT": 1793286000000,
-    "ZMBUSDT": 1793278800000
+    "ZMBUSDT": 1793278800000,
+    "BRKBBUSDT": 1793300400000,
+    "DJTBUSDT": 1793296800000,
+    "PAXGUSDT": 1793296800000,
+    "XAUTUSDT": 1793296800000
   },
   "open_signals": {
-    "GMXUSDT": {
-      "trade_id": "GMXUSDT-1793296800000",
-      "symbol": "GMXUSDT",
-      "entry_price": 8.41,
-      "target_price": 8.5782,
-      "stop_price": 8.32,
-      "bottom_low": 8.32,
-      "bottom_bar_open_time": 1793293200000,
-      "entry_bar_open_time": 1793296800000,
-      "entry_time": 1793300399999,
-      "last_check_ms": 1793303820000,
-      "max_price": 8.47,
-      "halal_verdict": "⛔ غير مباح"
+    "BRKBBUSDT": {
+      "trade_id": "BRKBBUSDT-1793304000000",
+      "symbol": "BRKBBUSDT",
+      "entry_price": 544.66,
+      "target_price": 555.5532,
+      "stop_price": 542.83,
+      "bottom_low": 542.83,
+      "bottom_bar_open_time": 1793300400000,
+      "entry_bar_open_time": 1793304000000,
+      "entry_time": 1793307599999,
+      "last_check_ms": 1793307600000,
+      "max_price": 544.66,
+      "halal_verdict": "ℹ️ لا يوجد حكم",
+      "silent": false
     },
-    "ORCLBUSDT": {
-      "trade_id": "ORCLBUSDT-1793296800000",
-      "symbol": "ORCLBUSDT",
-      "entry_price": 138.36,
-      "target_price": 141.12720000000002,
-      "stop_price": 136.83,
-      "bottom_low": 136.83,
-      "bottom_bar_open_time": 1793293200000,
-      "entry_bar_open_time": 1793296800000,
-      "entry_time": 1793300399999,
-      "last_check_ms": 1793303820000,
-      "max_price": 139.77,
-      "halal_verdict": "ℹ️ لا يوجد حكم"
+    "DJTBUSDT": {
+      "trade_id": "DJTBUSDT-1793300400000",
+      "symbol": "DJTBUSDT",
+      "entry_price": 5.76,
+      "target_price": 5.8751999999999995,
+      "stop_price": 5.7,
+      "bottom_low": 5.7,
+      "bottom_bar_open_time": 1793296800000,
+      "entry_bar_open_time": 1793300400000,
+      "entry_time": 1793303999999,
+      "last_check_ms": 1793304000000,
+      "max_price": 5.76,
+      "halal_verdict": "ℹ️ لا يوجد حكم",
+      "silent": false
     },
-    "SPYBUSDT": {
-      "trade_id": "SPYBUSDT-1793296800000",
-      "symbol": "SPYBUSDT",
-      "entry_price": 768.3,
-      "target_price": 783.6659999999999,
-      "stop_price": 767.36,
-      "bottom_low": 767.36,
-      "bottom_bar_open_time": 1793293200000,
-      "entry_bar_open_time": 1793296800000,
-      "entry_time": 1793300399999,
-      "last_check_ms": 1793303820000,
-      "max_price": 769.9,
-      "halal_verdict": "ℹ️ لا يوجد حكم"
+    "PAXGUSDT": {
+      "trade_id": "PAXGUSDT-1793300400000",
+      "symbol": "PAXGUSDT",
+      "entry_price": 4027.28,
+      "target_price": 4107.8256,
+      "stop_price": 4013.34,
+      "bottom_low": 4013.34,
+      "bottom_bar_open_time": 1793296800000,
+      "entry_bar_open_time": 1793300400000,
+      "entry_time": 1793303999999,
+      "last_check_ms": 1793304000000,
+      "max_price": 4027.28,
+      "halal_verdict": "⛔ غير مباح",
+      "silent": false
+    },
+    "XAUTUSDT": {
+      "trade_id": "XAUTUSDT-1793300400000",
+      "symbol": "XAUTUSDT",
+      "entry_price": 4021.44,
+      "target_price": 4101.8688,
+      "stop_price": 4006.57,
+      "bottom_low": 4006.57,
+      "bottom_bar_open_time": 1793296800000,
+      "entry_bar_open_time": 1793300400000,
+      "entry_time": 1793303999999,
+      "last_check_ms": 1793304000000,
+      "max_price": 4021.44,
+      "halal_verdict": "ℹ️ لا يوجد حكم",
+      "silent": false
     }
   }
 }

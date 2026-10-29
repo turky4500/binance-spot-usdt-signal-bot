@@ -52,7 +52,7 @@ from src.zigzag import (
 from src.zigzag_journal import append_zigzag_entry, load_zigzag_rows, update_zigzag_exit
 
 EVENT_RETENTION_DAYS = 120
-MAX_CATCHUP_HOURS = 24 * 7  # أقصى فترة استدراك لشموع الدقيقة عند توقف البوت
+MAX_CATCHUP_HOURS = 24  # أقصى فترة استدراك لشموع الدقيقة عند توقف البوت (منع إشارات قديمة)
 
 # مسارات النظام المستقل — ثابتة بغض النظر عن متغيرات الأنظمة الأخرى
 ZZ_STATE_FILE = os.getenv("ZZ_STATE_FILE", "data/state_zigzag.json")
