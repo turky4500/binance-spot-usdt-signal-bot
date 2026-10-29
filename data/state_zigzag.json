@@ -83,7 +83,7 @@
       "bottom_bar_open_time": 1793293200000,
       "entry_bar_open_time": 1793296800000,
       "entry_time": 1793300399999,
-      "last_check_ms": 1793300400000,
+      "last_check_ms": 1793301960000,
       "max_price": 8.41,
       "halal_verdict": "⛔ غير مباح"
     },
@@ -97,8 +97,8 @@
       "bottom_bar_open_time": 1793293200000,
       "entry_bar_open_time": 1793296800000,
       "entry_time": 1793300399999,
-      "last_check_ms": 1793300400000,
-      "max_price": 138.36,
+      "last_check_ms": 1793301960000,
+      "max_price": 138.64,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     },
     "SPYBUSDT": {
@@ -111,8 +111,8 @@
       "bottom_bar_open_time": 1793293200000,
       "entry_bar_open_time": 1793296800000,
       "entry_time": 1793300399999,
-      "last_check_ms": 1793300400000,
-      "max_price": 768.3,
+      "last_check_ms": 1793301960000,
+      "max_price": 768.72,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     }
   }
