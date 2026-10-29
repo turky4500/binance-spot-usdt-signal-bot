@@ -60,9 +60,6 @@ signal_down = انقلاب الاتجاه صاعدًا ← هابطًا → إش
 **الأنظمة الموازية المستقلة** (كل نظام بملفات حالة منفصلة لا يلمس ملفات الأنظمة الأخرى):
 - `qaa_bot.py` + `src/qaa_strategy.py` — نظام القاع (يومي) — تفاصيله `README_QAA.md`
 - `sa_bot.py` + `src/saudi_strategy.py` — السوق السعودي (تداول) — تفاصيله `README_SA.md`
-- `smartflow_bot.py` + `src/smartflow_strategy.py` — **Smart Flow PRO MAX (نسخة معايَرة)**:
-  إشارات 🟢/🔴 للاطلاع من نسخة البائع المغلقة نفسها فريم 1H على كل أزواج USDT
-  — تفاصيله وفرضيته ومعايرته في `README_SMARTFLOW.md`
 - `src/binance_client.py` — جلب بيانات Binance (شموع الفريم النشط و1m للمتابعة اللحظية)
 - `src/telegram_client.py` — إرسال رسائل تيليجرام
 - `src/state.py` — حفظ حالة الصفقات المفتوحة
