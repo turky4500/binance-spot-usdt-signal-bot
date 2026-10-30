@@ -104,3 +104,70 @@ def test_daily_report_survives_telegram_failure(tmp_path):
 
     # فشل الإرسال لا يمنع تسجيل التقرير ولا يرفع استثناء
     assert bot.state["daily_report"]["last_reported_for_date"] == "2026-10-29"
+
+
+# ─────────────── حماية من التقرير اليومي المكرّر (2026-10-30)
+class _FakeResponse:
+    def __init__(self, payload):
+        self._payload = payload
+
+    def raise_for_status(self):
+        return None
+
+    def json(self):
+        return self._payload
+
+
+def test_report_skipped_when_other_run_already_sent(tmp_path, monkeypatch):
+    """تشغيل آخر (كرون/مراقب) سجّل التقرير في المستودع ⇒ لا إرسال مكرّر."""
+    import zigzag_bot
+
+    bot = make_bot(tmp_path)
+    seed_day(bot, tmp_path)
+    monkeypatch.setenv("ZZ_STATE_URL", "https://example.test/state.json")
+    monkeypatch.setattr(
+        zigzag_bot.requests, "get",
+        lambda *a, **k: _FakeResponse({"daily_report": {"last_reported_for_date": "2026-10-29"}}),
+    )
+
+    before = len(bot.telegram.sent)
+    bot.send_daily_report_if_due(ms(2026, 10, 30, 0, 5))
+
+    assert len(bot.telegram.sent) == before, "لا يجب إرسال تقرير ثانٍ"
+    assert bot.state["daily_report"]["last_reported_for_date"] == "2026-10-29"
+
+
+def test_report_sent_when_remote_state_has_no_report(tmp_path, monkeypatch):
+    import zigzag_bot
+
+    bot = make_bot(tmp_path)
+    seed_day(bot, tmp_path)
+    monkeypatch.setenv("ZZ_STATE_URL", "https://example.test/state.json")
+    monkeypatch.setattr(
+        zigzag_bot.requests, "get",
+        lambda *a, **k: _FakeResponse({"daily_report": {"last_reported_for_date": "2026-10-28"}}),
+    )
+
+    before = len(bot.telegram.sent)
+    bot.send_daily_report_if_due(ms(2026, 10, 30, 0, 5))
+
+    assert len(bot.telegram.sent) == before + 1
+    assert bot.state["daily_report"]["last_reported_for_date"] == "2026-10-29"
+
+
+def test_report_sent_when_remote_check_fails(tmp_path, monkeypatch):
+    """فشل الشبكة لا يمنع التقرير (السلوك القديم محفوظ)."""
+    import zigzag_bot
+
+    bot = make_bot(tmp_path)
+    seed_day(bot, tmp_path)
+    monkeypatch.setenv("ZZ_STATE_URL", "https://example.test/state.json")
+
+    def boom(*a, **k):
+        raise RuntimeError("network down")
+
+    monkeypatch.setattr(zigzag_bot.requests, "get", boom)
+
+    before = len(bot.telegram.sent)
+    bot.send_daily_report_if_due(ms(2026, 10, 30, 0, 5))
+    assert len(bot.telegram.sent) == before + 1

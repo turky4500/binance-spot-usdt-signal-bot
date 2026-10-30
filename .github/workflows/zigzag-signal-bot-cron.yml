@@ -69,6 +69,8 @@ jobs:
       # ── رسائل فردية (2026-10-30): رسالة مستقلة لكل عملة، بلا تجميع ──
       # التوقيت فعلي: الإرسال في نفس الدورة (45–60 ثانية) بلا انتظار إغلاق شمعة.
       TELEGRAM_MIN_INTERVAL_SECONDS: "1.05"
+      # حماية من التقرير اليومي المكرّر بين المراقب والكرون (2026-10-30)
+      ZZ_STATE_URL: "https://raw.githubusercontent.com/turky4500/binance-spot-usdt-signal-bot/main/data/state_zigzag.json"
       # استثناء أزواج العملات المستقرة المربوطة — الإيقاف: "0"
       EXCLUDE_PEGGED_STABLES: "1"
     steps:

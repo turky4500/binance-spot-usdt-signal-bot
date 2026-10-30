@@ -22,6 +22,8 @@ from __future__ import annotations
 import logging
 import os
 import time
+
+import requests
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -792,6 +794,24 @@ class ZigZagSignalBot:
         self.store.save(self.state)
 
     # ─────────────────────────────────────────── التقرير اليومي
+    def _remote_reported_for(self, report_day: str) -> bool:
+        """هل سجّل تشغيل آخر (كرون/مراقب) إرسال تقرير هذا اليوم في نسخة المستودع؟
+
+        يعتمد على `ZZ_STATE_URL` (رابط raw لملف الحالة). أي فشل شبكة ⇒ False
+        (أي: نورّث السلوك القديم ولا نمنع التقرير بسبب عطل في الشبكة).
+        """
+        url = os.getenv("ZZ_STATE_URL", "").strip()
+        if not url:
+            return False
+        try:
+            response = requests.get(url, timeout=8)
+            response.raise_for_status()
+            remote = (response.json() or {}).get("daily_report") or {}
+            return remote.get("last_reported_for_date") == report_day
+        except Exception:
+            self.logger.warning("ZigZag: تعذّر فحص حالة التقرير اليومي عن بُعد — يُرسل محليًا", exc_info=False)
+            return False
+
     def send_daily_report_if_due(self, now_ms: int) -> None:
         """تقرير يومي عند 00:00 بتوقيت الرياض يغطي اليوم المنتهي.
 
@@ -807,6 +827,12 @@ class ZigZagSignalBot:
         report_day = (now_local.date() - timedelta(days=1)).isoformat()
         report_state = self.state.setdefault("daily_report", {})
         if report_state.get("last_reported_for_date") == report_day:
+            return
+        # حماية من تقرير مكرّر: الكرون والمراقب قد يفحصان نفس الدقيقة بحالة محلية
+        # مختلفة — نتحقق من نسخة الحالة على المستودع قبل الإرسال (2026-10-30).
+        if self._remote_reported_for(report_day):
+            report_state["last_reported_for_date"] = report_day
+            self.logger.info("ZigZag: تقرير %s مُرسل بالفعل من تشغيل آخر — تخطٍّ", report_day)
             return
 
         entries = wins = losses = 0
