@@ -541,10 +541,25 @@ class ZigZagSignalBot:
                 self._safe_send(text)
             self.logger.info("ZigZag: رسائل %s مجمّعة: %s رسالة تحوي %s عنصرًا", kind, len(chunks), len(items))
 
+    # ─────────────────────────── حماية من تكرار الرسائل (2026-10-30)
+    def _already_announced(self, kind: str, trade_id: str) -> bool:
+        """هل سبق إرسال رسالة هذا الحدث؟ (يمنع التكرار عند إعادة معالجة نفس الحالة)."""
+        return f"{kind}:{trade_id}" in set(self.state.get("sent_msgs", []))
+
+    def _mark_announced(self, kind: str, trade_id: str) -> None:
+        sent = self.state.setdefault("sent_msgs", [])
+        sent.append(f"{kind}:{trade_id}")
+        if len(sent) > 800:
+            self.state["sent_msgs"] = sent[-800:]
+
     def send_entry_message(self, signal: dict) -> None:
         """يسجّل الدخول (حدث + دفتر) ويضع رسالته في صندوق الدورة."""
         if not signal.get("halal_verdict"):
             signal["halal_verdict"] = self.get_halal_verdict(signal["symbol"])
+        if self._already_announced("entry", signal["trade_id"]):
+            self.logger.info("ZigZag: تخطّي إشعار دخول مكرّر لـ %s", signal["symbol"])
+            return
+        self._mark_announced("entry", signal["trade_id"])
         self.append_event("entry", signal["symbol"], int(signal["entry_time"]))
         append_zigzag_entry(self.data_dir, self._build_trade_log_record(signal))
         self._queue("entry", signal)
@@ -553,6 +568,11 @@ class ZigZagSignalBot:
         """يسجّل النجاح (حدث + دفتر + إغلاق) ويضع رسالته في صندوق الدورة."""
         if not signal.get("halal_verdict"):
             signal["halal_verdict"] = self.get_halal_verdict(signal["symbol"])
+        if self._already_announced("win", signal["trade_id"]):
+            self.logger.info("ZigZag: تخطّي إشعار هدف مكرّر لـ %s", signal["symbol"])
+            self.close_signal(signal["symbol"])
+            return
+        self._mark_announced("win", signal["trade_id"])
         self.append_event("exit_win", signal["symbol"], int(event["event_time"]))
         self._record_trade_exit(signal, event)
         self.close_signal(signal["symbol"])
@@ -562,6 +582,11 @@ class ZigZagSignalBot:
         """يسجّل الخسارة (حدث + دفتر + إغلاق) ويضع رسالتها في صندوق الدورة."""
         if not signal.get("halal_verdict"):
             signal["halal_verdict"] = self.get_halal_verdict(signal["symbol"])
+        if self._already_announced("loss", signal["trade_id"]):
+            self.logger.info("ZigZag: تخطّي إشعار خسارة مكرّر لـ %s", signal["symbol"])
+            self.close_signal(signal["symbol"])
+            return
+        self._mark_announced("loss", signal["trade_id"])
         self.append_event("exit_loss", signal["symbol"], int(event["event_time"]))
         self._record_trade_exit(signal, event)
         self.close_signal(signal["symbol"])

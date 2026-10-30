@@ -106,35 +106,45 @@ jobs:
             echo "⏹ المراقب معطّل عبر المتغير WATCHER_ENABLED=false — إنهاء بلا إعادة تشغيل."
             exit 0
           fi
+
+          # بصمة الحالة: تتغيّر عند أي إشارة/إغلاق ⇒ نحفظها فورًا (يمنع تكرار الرسائل)
+          sig() {
+            python -c "import json,hashlib;d=json.load(open('data/state_zigzag.json'));k=json.dumps([sorted(d.get('open_signals',{})),len(d.get('event_log',[])),len(d.get('sent_msgs',[]))]);h=hashlib.md5(open('data/trades_log_zigzag.csv','rb').read()).hexdigest();print(hashlib.md5((k+h).encode()).hexdigest())"
+          }
+
+          push_state() {
+            git add data/ || true
+            git diff --cached --quiet && return 0
+            git commit -q -m "chore: update ZigZag bot state [skip ci]" || true
+            for attempt in 1 2 3; do
+              git fetch -q origin main
+              if git rebase -X theirs origin/main 2>/dev/null && git push -q origin HEAD:main; then
+                return 0
+              fi
+              git rebase --abort 2>/dev/null || true
+              sleep $((attempt * 3))
+            done
+            echo "::warning::تعذّر حفظ الحالة (محاولة $n)"
+          }
+
           END=$(( $(date +%s) + HOURS * 3600 - 120 ))
           n=0
           while [ "$(date +%s)" -lt "$END" ]; do
             n=$((n+1))
             echo "── دورة $n — $(TZ=Asia/Riyadh date '+%H:%M:%S') ──"
+            before=$(sig)
             python run_zigzag_once.py || echo "::warning::فشلت الدورة $n (سنتابع)"
-            # حفظ الحالة كل 5 دورات (~5 دقائق)
-            if [ $((n % 5)) -eq 0 ]; then
-              git add data/ || true
-              if ! git diff --cached --quiet; then
-                git commit -q -m "chore: update ZigZag bot state [skip ci]" || true
-                for attempt in 1 2 3; do
-                  git fetch -q origin main
-                  if git rebase -X theirs origin/main 2>/dev/null && git push -q origin HEAD:main; then break; fi
-                  git rebase --abort 2>/dev/null || true
-                  sleep $((attempt * 3))
-                done
-              fi
+            after=$(sig)
+            if [ "$before" != "$after" ]; then
+              echo "🔔 تغيّرت الإشارات ⇒ حفظ فوري للحالة (منع تكرار الرسائل)"
+              push_state
+            elif [ $((n % 5)) -eq 0 ]; then
+              push_state
             fi
             sleep 45
           done
-          git add data/ || true
-          if ! git diff --cached --quiet; then
-            git commit -q -m "chore: update ZigZag bot state [skip ci]" || true
-            git fetch -q origin main || true
-            git rebase -X theirs origin/main 2>/dev/null || true
-            git push -q origin HEAD:main || true
-          fi
-          echo "انتهت المراقبة بعد $n دورة — أعد التشغيل من Actions عند الحاجة."
+          push_state
+          echo "انتهت المراقبة بعد $n دورة — يجري تشغيل الدورة التالية تلقائيًا."
 
       - name: Chain next watcher run (24/7)
         if: ${{ always() && vars.WATCHER_ENABLED != 'false' }}

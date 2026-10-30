@@ -253,3 +253,29 @@ def test_target_label_shows_r_multiple(tmp_path):
     bot.settings = ZigZagSettings(target_r=0.0, target_pct=2.0)
     sig2 = {"entry_price": 100.0, "target_price": 102.0}
     assert bot._target_label(sig2) == "+2%"
+
+
+def test_no_duplicate_messages_for_same_event(tmp_path):
+    """حماية التكرار: نفس الحدث لا يُرسل مرتين حتى لو أُعيدت معالجته."""
+    bot = make_bot(tmp_path)
+    bot.settings = ZigZagSettings(target_r=1.5)
+    signal = {"trade_id": "AAAUSDT-1", "symbol": "AAAUSDT", "entry_price": 1.0,
+              "target_price": 1.02, "stop_price": 0.99, "entry_time": 1_700_000_000_000,
+              "entry_bar_open_time": 1_700_000_000_000, "bottom_bar_open_time": 1_699_999_000_000,
+              "bottom_low": 0.99, "halal_verdict": "", "pivot_label": "HL"}
+    bot.send_entry_message(signal)
+    bot.flush_messages()
+    n1 = len(bot.telegram.sent)
+
+    bot.send_entry_message(dict(signal))     # نفس الحدث مرة أخرى
+    bot.flush_messages()
+    assert len(bot.telegram.sent) == n1, "الحدث نفسه يجب ألا يُرسل مرتين"
+
+    event = {"outcome": "win", "reason": "target", "event_time": 1_700_000_100_000,
+             "exit_price": 1.02, "fill_price": 1.02, "max_price": 1.02}
+    bot.send_success_message(dict(signal), dict(event))
+    bot.flush_messages()
+    n2 = len(bot.telegram.sent)
+    bot.send_success_message(dict(signal), dict(event))
+    bot.flush_messages()
+    assert len(bot.telegram.sent) == n2, "إشعار الهدف نفسه يجب ألا يُرسل مرتين"
