@@ -79,8 +79,6 @@ CRYPTO_B_BASES = frozenset({
 # بدل رسالة لكل عملة، تُجمع كل إشارات الدورة في رسالة واحدة (أو عدة رسائل
 # مقسّمة عند تجاوز الحد). التوقيت لم يتغيّر: الرسالة تُرسل في نفس الدورة التي
 # حدث فيها اللمس/الإغلاق (كل 5 دقائق)، أي «بالوقت الفعلي» بلا انتظار إغلاق شمعة.
-MSG_BATCH_MAX_ITEMS = int(os.getenv("ZZ_MSG_BATCH_MAX_ITEMS", "12"))
-MSG_BATCH_MAX_CHARS = int(os.getenv("ZZ_MSG_BATCH_MAX_CHARS", "3500"))
 
 _AR_MONTHS = (
     "يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو",
@@ -367,21 +365,6 @@ class ZigZagSignalBot:
         verdict = signal.get("halal_verdict") or ""
         return verdict.split(" ")[0] if verdict else ""
 
-    def _chunks(self, items: list) -> list[list]:
-        """تقسيم القائمة إلى رسائل بحجم آمن (عدد عناصر + عدد أحرف)."""
-        chunks: list[list] = []
-        current: list = []
-        chars = 0
-        for item in items:
-            length = len(getattr(item, "__str__", lambda: "")()) or 0
-            if current and (len(current) >= MSG_BATCH_MAX_ITEMS or chars + length > MSG_BATCH_MAX_CHARS):
-                chunks.append(current)
-                current, chars = [], 0
-            current.append(item)
-        if current:
-            chunks.append(current)
-        return chunks
-
     def _entry_line(self, signal: dict) -> str:
         entry = float(signal["entry_price"])
         stop = float(signal["stop_price"])
@@ -413,29 +396,48 @@ class ZigZagSignalBot:
         return f"+{pct:g}%"
 
     def _entry_text(self, signal: dict) -> str:
+        """رسالة دخول مفصّلة لعملة واحدة: الدخول والهدف والوقف كل واحد في سطر مستقل."""
         verdict = signal.get("halal_verdict") or self.get_halal_verdict(signal["symbol"])
-        pivot_line = ""
+        entry = float(signal["entry_price"])
+        target = float(signal["target_price"])
+        stop = float(signal["stop_price"])
+        target_pct = (target / entry - 1.0) * 100.0 if entry else 0.0
+        stop_pct = (stop / entry - 1.0) * 100.0 if entry else 0.0
+        if self.settings.target_r > 0:
+            target_note = f"{self._target_label(signal)} • {pct_label(target_pct)}"
+        else:
+            target_note = pct_label(target_pct)
+        lines = [
+            f"📥 إشارة دخول — {signal['symbol']}",
+            f"{STRATEGY_LABEL} • فريم 1H",
+            "",
+            f"💵 سعر الدخول: {self._fmt(signal, entry)}",
+            f"🎯 الهدف: {self._fmt(signal, target)}   ({target_note})",
+            f"🛑 الوقف: {self._fmt(signal, stop)}   ({pct_label(stop_pct)})",
+            "",
+        ]
+        notes: list[str] = []
         if signal.get("pivot_label"):
-            pivot_line = f"🧩 القاع: {signal['pivot_label']} محوري (ZigZag++ [LD])\n"
-        ema_line = ""
+            notes.append(f"🧩 القاع: {signal['pivot_label']} محوري (ZigZag++ [LD])")
         ema_value = signal.get("ema_value")
         if ema_value and float(ema_value) > 0:
-            ema_line = f"📈 فوق EMA{self.settings.ema_len}: {self._fmt(signal, float(ema_value))}\n"
-        return (
-            f"📥 إشارة دخول — {signal['symbol']}\n"
-            f"{STRATEGY_LABEL} • فريم 1H\n"
-            "\n"
-            f"الدخول: {self._fmt(signal, signal['entry_price'])}\n"
-            f"الهدف: {self._fmt(signal, signal['target_price'])} ({self._target_label(signal)})\n"
-            f"الوقف: {self._fmt(signal, signal['stop_price'])} — إغلاق تحت قاع الشمعة\n"
-            f"شمعة القاع: {hhmm_local(int(signal['bottom_bar_open_time']), self.config.timezone_name)}"
-            f" | شمعة الدخول: {hhmm_local(int(signal['entry_bar_open_time']), self.config.timezone_name)}\n"
-            f"{pivot_line}"
-            f"{ema_line}"
-            "\n"
-            f"⏱ {stamp_ms(int(signal['entry_time']), self.config.timezone_name)}\n"
-            f"⚖️ الحكم الشرعي: {verdict}"
+            interval = getattr(self.settings, "ema_interval", "1h")
+            notes.append(
+                f"📈 فوق EMA{self.settings.ema_len} ({interval}): {self._fmt(signal, float(ema_value))}"
+            )
+        notes.append(
+            f"🕯 شمعة القاع: {hhmm_local(int(signal['bottom_bar_open_time']), self.config.timezone_name)}"
+            f"  •  شمعة الدخول: {hhmm_local(int(signal['entry_bar_open_time']), self.config.timezone_name)}"
         )
+        lines.extend(notes)
+        lines += [
+            "",
+            "ℹ️ الوقف يُفعّل بإغلاق شمعة 1H تحت القاع • الهدف باللمس",
+            "",
+            f"⏱ {stamp_ms(int(signal['entry_time']), self.config.timezone_name)}",
+            f"⚖️ الحكم الشرعي: {verdict}",
+        ]
+        return "\n".join(lines)
 
     def _win_text(self, signal: dict, event: dict) -> str:
         verdict = signal.get("halal_verdict") or self.get_halal_verdict(signal["symbol"])
@@ -480,66 +482,34 @@ class ZigZagSignalBot:
             f"⚖️ الحكم الشرعي: {verdict}"
         )
 
-    def _batch_text(self, kind: str, items: list, part: int, parts: int, total: int) -> str:
-        """نص رسالة مجمّعة واحدة تضم عدة عملات (بدل رسالة لكل عملة)."""
-        if kind == "entry":
-            head = f"📥 إشارات دخول ({total}) — {STRATEGY_LABEL}"
-            stamp = stamp_ms(int(items[-1]["entry_time"]), self.config.timezone_name)
-            lines = [self._entry_line(item) for item in items]
-            footer = "الوقف: إغلاق شمعة تحت قاع الإشارة • الهدف يُحتسب باللمس"
-        elif kind == "win":
-            head = f"🎯 أهداف تحققت ({total}) — {STRATEGY_LABEL}"
-            stamp = stamp_ms(int(items[-1]["event"]["event_time"]), self.config.timezone_name)
-            lines = [self._exit_line(item["signal"], item["event"]) for item in items]
-            footer = f"الهدف {self._target_label(items[0]['signal'])} تم لمسه — الربح قبل العمولة"
-        else:
-            head = f"🛑 إغلاقات خاسرة ({total}) — {STRATEGY_LABEL}"
-            stamp = stamp_ms(int(items[-1]["event"]["event_time"]), self.config.timezone_name)
-            lines = [self._exit_line(item["signal"], item["event"]) for item in items]
-            footer = "سبب الخروج: إغلاق شمعة ساعة تحت قاع الإشارة"
-        part_note = f" • رسالة {part}/{parts}" if parts > 1 else ""
-        return (
-            f"{head}{part_note}\n"
-            f"⏱ {stamp}\n"
-            "\n"
-            + "\n".join(lines)
-            + "\n\n"
-            + footer
-        )
-
     def flush_messages(self) -> None:
-        """يُرسل ما تجمّع في صندوق الدورة: رسالة واحدة لكل نوع (أو تقسيم عند الحد).
+        """يُرسل صندوق الدورة: رسالة مستقلة ومفصّلة لكل عملة — بلا تجميع.
 
-        إشارة واحدة وحدها ⇒ تُرسل بتفصيلها الكامل كما قبل (لا تتغيّر تجربة القارئ)،
-        وأكثر من واحدة ⇒ رسالة مجمّعة واحدة تحوي سطرًا لكل عملة.
+        رسالة لكل عملة تمنع تداخل أسماء العملات وأسعارها، وتُظهر الدخول والهدف
+        والوقف في أسطر منفصلة. التباعد بين الرسائل يتولّاه TelegramClient
+        (فاصل 1.05 ثانية افتراضيًا + احترام 429) فلا إغراق.
         """
         box = self._outbox()
+        sent_count = 0
         for kind in ("entry", "win", "loss"):
             items = box.get(kind) or []
             if not items:
                 continue
             box[kind] = []
-            if len(items) == 1:
+            for item in items:
+                symbol = item.get("symbol") if kind == "entry" else item["signal"].get("symbol")
                 try:
                     if kind == "entry":
-                        self._send_trade_message(items[0], self._entry_text(items[0]))
+                        self._send_trade_message(item, self._entry_text(item))
                     elif kind == "win":
-                        self._send_trade_message(items[0]["signal"], self._win_text(items[0]["signal"], items[0]["event"]))
+                        self._send_trade_message(item["signal"], self._win_text(item["signal"], item["event"]))
                     else:
-                        self._send_trade_message(items[0]["signal"], self._loss_text(items[0]["signal"], items[0]["event"]))
+                        self._send_trade_message(item["signal"], self._loss_text(item["signal"], item["event"]))
+                    sent_count += 1
                 except Exception:
-                    self.logger.error("ZigZag: فشل تجهيز رسالة %s", kind, exc_info=True)
-                continue
-
-            chunks = self._chunks(items)
-            for index, chunk in enumerate(chunks, start=1):
-                try:
-                    text = self._batch_text(kind, chunk, index, len(chunks), len(items))
-                except Exception:
-                    self.logger.error("ZigZag: فشل تجهيز رسالة %s مجمّعة", kind, exc_info=True)
-                    continue
-                self._safe_send(text)
-            self.logger.info("ZigZag: رسائل %s مجمّعة: %s رسالة تحوي %s عنصرًا", kind, len(chunks), len(items))
+                    self.logger.error("ZigZag: فشل تجهيز رسالة %s لـ %s", kind, symbol, exc_info=True)
+        if sent_count:
+            self.logger.info("ZigZag: أُرسلت %s رسالة فردية (رسالة لكل عملة)", sent_count)
 
     # ─────────────────────────── حماية من تكرار الرسائل (2026-10-30)
     def _already_announced(self, kind: str, trade_id: str) -> bool:

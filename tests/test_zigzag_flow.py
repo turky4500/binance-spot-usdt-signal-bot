@@ -156,8 +156,9 @@ def test_entry_message_content(tmp_path):
     text = bot.telegram.sent[-1]
     assert "ZigZag++ (ساعة) • فريم 1H" in text
     assert "الدخول: 102" in text
-    assert "الهدف: 104.04 (+2%)" in text
-    assert "الوقف: 90 — إغلاق تحت قاع الشمعة" in text
+    assert "الهدف: 104.04" in text and "(+2%)" in text
+    assert "الوقف: 90" in text
+    assert "إغلاق شمعة 1H تحت القاع" in text
     assert "شمعة القاع:" in text and "شمعة الدخول:" in text
     assert "الحكم الشرعي: ✅ مباح" in text
 

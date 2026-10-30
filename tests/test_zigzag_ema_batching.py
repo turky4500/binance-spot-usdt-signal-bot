@@ -160,19 +160,37 @@ def test_default_settings_enable_ema_filter():
     assert "فوق EMA200" in settings.describe()
 
 
-# ─────────────────────────────────────────── تجميع الرسائل
-def test_three_entries_arrive_as_one_message(tmp_path):
+# ─────────────────────────── رسائل فردية: رسالة لكل عملة (2026-10-30)
+def test_three_entries_arrive_as_three_messages(tmp_path):
     bot = make_bot(tmp_path)
     bot.symbols = ["AAAUSDT", "BBBUSDT", "CCCUSDT"]
     df = trend_df("up", n=40)  # الفلتر معطّل داخل make_bot
     bot.process_new_bottoms({s: df for s in bot.symbols}, server_time_for(df))
 
     assert len(bot.state["open_signals"]) == 3
-    assert len(bot.telegram.sent) == 1, "ثلاث إشارات يجب أن تصل في رسالة واحدة"
-    text = bot.telegram.sent[0]
-    assert "إشارات دخول (3)" in text
-    for symbol in bot.symbols:
-        assert symbol in text
+    assert len(bot.telegram.sent) == 3, "كل عملة يجب أن تصل في رسالة مستقلة"
+    for text, symbol in zip(bot.telegram.sent, bot.symbols):
+        assert text.startswith(f"📥 إشارة دخول — {symbol}")
+        # كل عملة في رسالتها وحدها (لا تداخل)
+        others = [s for s in bot.symbols if s != symbol]
+        assert all(o not in text for o in others)
+
+
+def test_entry_message_has_one_line_per_field(tmp_path):
+    bot = make_bot(tmp_path)
+    bot.symbols = ["AAAUSDT"]
+    df = trend_df("up", n=40)
+    bot.process_new_bottoms({"AAAUSDT": df}, server_time_for(df))
+
+    lines = bot.telegram.sent[0].split("\n")
+    entry_line = [ln for ln in lines if "سعر الدخول:" in ln]
+    target_line = [ln for ln in lines if "الهدف:" in ln]
+    stop_line = [ln for ln in lines if "الStop:" in ln or "الوقف:" in ln]
+    assert len(entry_line) == 1 and len(target_line) == 1 and len(stop_line) == 1
+    # ثلاثة أسطر مختلفة: لا يجتمع سعران في سطر واحد
+    assert len({entry_line[0], target_line[0], stop_line[0]}) == 3
+    assert "سعر الدخول:" in entry_line[0] and "الهدف:" not in entry_line[0]
+    assert "الحكم الشرعي:" in lines[-1]
 
 
 def test_single_entry_keeps_detailed_message(tmp_path):
@@ -187,21 +205,17 @@ def test_single_entry_keeps_detailed_message(tmp_path):
     assert "الدخول:" in text and "الهدف:" in text and "الحكم الشرعي:" in text
 
 
-def test_batch_splits_when_over_item_limit(tmp_path, monkeypatch):
-    import zigzag_bot
-
-    monkeypatch.setattr(zigzag_bot, "MSG_BATCH_MAX_ITEMS", 2)
+def test_many_entries_never_batched(tmp_path):
     bot = make_bot(tmp_path)
-    bot.symbols = [f"SYM{i}USDT" for i in range(5)]
+    bot.symbols = [f"SYM{i}USDT" for i in range(6)]
     df = trend_df("up", n=40)
     bot.process_new_bottoms({s: df for s in bot.symbols}, server_time_for(df))
 
-    assert len(bot.telegram.sent) == 3  # 2 + 2 + 1
-    assert "رسالة 1/3" in bot.telegram.sent[0]
-    assert "رسالة 3/3" in bot.telegram.sent[-1]
+    assert len(bot.telegram.sent) == 6  # لا تجميع ولا تقسيم — رسالة لكل عملة
+    assert all("إشارات دخول (" not in t for t in bot.telegram.sent)
 
 
-def test_exits_are_batched_in_one_message(tmp_path):
+def test_exits_are_one_message_per_symbol(tmp_path):
     from test_zigzag_flow import make_1m, make_signal
 
     bot = make_bot(tmp_path)
@@ -217,11 +231,9 @@ def test_exits_are_batched_in_one_message(tmp_path):
     bot.monitor_open_signals(BASE_MS + 17 * HOUR_MS + 2 * 60_000, {})
 
     assert bot.state["open_signals"] == {}
-    assert len(bot.telegram.sent) == 1
-    text = bot.telegram.sent[0]
-    assert "أهداف تحققت (3)" in text
-    for symbol in ("AAAUSDT", "BBBUSDT", "CCCUSDT"):
-        assert symbol in text
+    assert len(bot.telegram.sent) == 3
+    for text, symbol in zip(bot.telegram.sent, ("AAAUSDT", "BBBUSDT", "CCCUSDT")):
+        assert text.startswith(f"🎯 نجاح — {symbol}")
 
 
 def test_flush_is_idempotent(tmp_path):
