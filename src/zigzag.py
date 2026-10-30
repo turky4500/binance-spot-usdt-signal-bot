@@ -72,6 +72,8 @@ class ZigZagSettings:
     # احتياطًا (لا نُصدر إشارة على متوسط غير مكتمل).
     ema_filter: int = _env_int("ZZ_EMA_FILTER", 1)
     ema_len: int = _env_int("ZZ_EMA_LEN", 200)
+    # فريم المتوسط: "1h" (الشمعة نفسها) أو "4h" (اتجاه أطول — أفضل بالاختبار: 81% فوز)
+    ema_interval: str = os.getenv("ZZ_EMA_INTERVAL", "1h").strip().lower()
     # ── تعريف القاع (2026-10-30) ──
     # "low12"    : أدنى قاع في Depth شمعة (الوضع السابق — افتراضي حتى اعتماد الأرقام)
     # "zigzag_ld": محاور ZigZag++ [LD] الحقيقية (Depth/Deviation/Backstep) — يطابق
@@ -99,7 +101,9 @@ class ZigZagSettings:
         return self.ema_filter != 0 and self.ema_len > 1
 
     def describe(self) -> str:
-        ema_part = f" • فوق EMA{self.ema_len}" if self.ema_enabled else ""
+        ema_part = (
+            f" • فوق EMA{self.ema_len}({self.ema_interval})" if self.ema_enabled else ""
+        )
         bottom_part = "محاور ZigZag++ [LD]" if self.pivot_mode else f"أدنى قاع {self.depth} شمعة"
         return (
             f"{STRATEGY_LABEL}: {bottom_part} • "
@@ -245,6 +249,21 @@ def _note_rejection(rejected: dict | None, reason: str) -> None:
 def ema_series(closes: pd.Series, length: int) -> pd.Series:
     """EMA مطابق لـ ta.ema في Pine: ewm(span=length, adjust=False)."""
     return closes.astype("float64").ewm(span=int(length), adjust=False).mean()
+
+
+def ema_at_bar_from_candles(
+    candles: pd.DataFrame | None, length: int, as_of_close_ms: int
+) -> float | None:
+    """EMA من شموع فريم آخر (مثل 4h)، باستخدام **الشموع المغلقة فقط** قبل لحظة القرار.
+
+    بلا نظر للمستقبل: تُهمَل أي شمعة لم تُغلق بعد عند `as_of_close_ms`.
+    """
+    if candles is None or candles.empty:
+        return None
+    closed = candles[candles["close_time"].astype("int64") <= int(as_of_close_ms)]
+    if len(closed) < max(20, length // 4):
+        return None
+    return float(ema_series(closed["close"].astype(float), length).iloc[-1])
 
 
 def ema_at_bar(closed_df: pd.DataFrame | None, length: int, bar_open_time: int) -> float | None:

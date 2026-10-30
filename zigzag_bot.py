@@ -47,6 +47,7 @@ from src.zigzag import (
     evaluate_path_1h,
     evaluate_path_1m,
     ema_at_bar,
+    ema_at_bar_from_candles,
     find_latest_bottom,
     next_closed_bar,
 )
@@ -684,7 +685,10 @@ class ZigZagSignalBot:
             # قيمة EMA عند شمعة الدخول نفسها (بلا نظر للمستقبل) — لفلتر المتوسط 200
             ema_value = None
             if self.settings.ema_enabled:
-                ema_value = ema_at_bar(closed_df, self.settings.ema_len, int(next_row["open_time"]))
+                if self.settings.ema_interval == "1h":
+                    ema_value = ema_at_bar(closed_df, self.settings.ema_len, int(next_row["open_time"]))
+                else:
+                    ema_value = self._ema_higher_tf(symbol, int(next_row["close_time"]))
 
             rejected: dict = {}
             candidate = evaluate_entry_candle(
@@ -732,6 +736,17 @@ class ZigZagSignalBot:
             )
         # إرسال رسائل الدخول مجمّعة (رسالة واحدة تحوي كل إشارات هذه الدورة)
         self.flush_messages()
+
+    def _ema_higher_tf(self, symbol: str, as_of_close_ms: int) -> float | None:
+        """EMA على فريم أعلى (4h) — يُجلب فقط عند وجود إشارة مرشّحة (تكلفة مهملة)."""
+        try:
+            candles = self.binance.get_klines(
+                symbol=symbol, interval=self.settings.ema_interval, limit=500
+            )
+        except Exception:
+            self.logger.warning("ZigZag: تعذّر جلب شموع %s لـ %s", self.settings.ema_interval, symbol)
+            return None
+        return ema_at_bar_from_candles(candles, self.settings.ema_len, as_of_close_ms)
 
     def _pivot_entry_candle(self, closed_df, bottom: dict):
         """وضع المحاور: آخر شمعة مغلقة، بشرط أن تكون بعد تأكيد المحور (بلا نظر للمستقبل)."""

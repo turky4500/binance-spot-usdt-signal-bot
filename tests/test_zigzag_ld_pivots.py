@@ -219,3 +219,25 @@ def test_target_r_multiple(tmp_path):
     cand = evaluate_entry_candle(bottom, row, settings)
     assert cand is not None
     assert cand["target_price"] == pytest.approx(101.0 + 1.5 * (101.0 - 98.0))
+
+
+def test_ema_from_higher_timeframe_ignores_unclosed_candle():
+    """EMA على 4 ساعات: تُستخدم الشموع المغلقة فقط قبل لحظة القرار (بلا نظر للمستقبل)."""
+    from src.zigzag import ema_at_bar_from_candles
+
+    n = 60
+    candles = pd.DataFrame({
+        "close_time": [BASE_MS + (i + 1) * 4 * HOUR_MS - 1 for i in range(n)],
+        "close": [100.0 + i for i in range(n)],
+    })
+    as_of = int(candles["close_time"].iloc[49])          # عند إغلاق الشمعة رقم 49
+    ema_then = ema_at_bar_from_candles(candles, 20, as_of)
+    assert ema_then is not None
+
+    # تغيير الشموع **بعد** لحظة القرار لا يغيّر القيمة (لا نظر للمستقبل)
+    tampered = candles.copy()
+    tampered.loc[50:, "close"] = 1.0
+    assert ema_at_bar_from_candles(tampered, 20, as_of) == pytest.approx(ema_then)
+
+    # لكن شمعة لم تُغلق بعد تُهمَل
+    assert ema_at_bar_from_candles(candles, 20, as_of - 4 * HOUR_MS) is not None
