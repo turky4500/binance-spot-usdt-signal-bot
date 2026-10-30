@@ -84,6 +84,9 @@ class ZigZagSettings:
     #   live      = الوسم الجاري على الشارت لحظة ظهوره (repaint) ⇒ الدخول على الشمعة التالية
     #   confirmed = المحور المؤكد فقط (بعد Backstep) ⇒ متأخر شمعتين عن الشارت
     pivot_source: str = os.getenv("ZZ_PIVOT_SOURCE", "live").strip().lower()
+    # موضع شمعة القاع: extreme = شمعة أدنى سعر فعلي (يظهر الوسم عليها) |
+    #                  detect  = شمعة الاكتشاف (حيث يؤكد MT4 المحور، عادةً بعدها بساعة)
+    bottom_bar: str = os.getenv("ZZ_BOTTOM_BAR", "extreme").strip().lower()
     deviation: int = _env_int("ZZ_DEVIATION", 5)      # Deviation (بنقاط السعر: × tickSize)
     backstep: int = _env_int("ZZ_BACKSTEP", 2)        # Backstep (شموت تأكيد المحور)
 
@@ -168,39 +171,41 @@ def _latest_pivot_low(
         point=float(point) if point else 0.01,
     )
     if settings.pivot_source == "live":
-        # قاعدة المستخدم: «إشارة القاع» هي الوسم (HL/LL) الذي يظهر **لحظة إغلاق شمعة القاع**،
-        # والدخول على الشمعة التالية لها مباشرة. لذلك نحسب المحاور على التاريخ حتى
-        # الشمعة **قبل الأخيرة** فقط (بلا نظر للمستقبل): إن خرجت الشمعة الأخيرة من الحساب
-        # قاعًا محوريًا ⇒ إشارتها قائمة، والشمعة الأخيرة المغلقة هي شمعة القرار.
-        # وإن كسرت الشمعة التالية القاع، فالمؤشر نفسه ينقل الوسم إليها (repaint) ⇒ الإشارة
-        # القديمة تُلغى تلقائيًا لأن الحساب يعطي القاع الجديد.
-        if len(closed_df) < settings.depth + settings.backstep + 3:
-            return None
-        prefix = closed_df.iloc[:-1]
+        # قاعدة المستخدم: «إشارة القاع» هي الوسم (HL/LL) الذي يرسمه المؤشر، والدخول على
+        # **الشمعة التالية** إن أغلقت خضراء (وإن كانت حمراء/دوجي تُلغى الإشارة).
+        # الحساب على الشموع المغلقة كلها (بلا نظر للمستقبل): المحور يُقرأ من البادئة الحالية،
+        # و«شمعة القرار» هي الشمعة التالية لشمعة القاع — ولا تُقيَّم إلا إذا كانت آخر شمعة مغلقة.
         pv = mt4_zigzag(
-            prefix["high"].to_numpy(dtype="float64"),
-            prefix["low"].to_numpy(dtype="float64"),
+            high, low,
             depth=settings.depth,
             deviation=settings.deviation,
             backstep=settings.backstep,
             point=float(point) if point else 0.01,
         )
-        if not pv:
-            return None
-        last_pivot = pv[-1]
-        p = len(prefix) - 1
-        if last_pivot["kind"] != "L" or int(last_pivot["bar"]) != p:
-            return None                       # الشمعة السابقة ليست قاعًا ⇒ لا إشارة
+        if not pv or pv[-1]["kind"] != "L":
+            return None                       # آخر محور ليس قاعًا ⇒ لا إشارة قاع قائمة
+        pivot = pv[-1]
+        # شمعة القاع: أدنى سعر فعلي في نافذة العمق (حيث يرسم المؤشر الوسم)
+        #           أو شمعة الاكتشاف نفسها (وضع detect)
+        bar_idx = int(pivot["bar"])
+        if settings.bottom_bar == "extreme":
+            lo = max(0, bar_idx - settings.depth + 1)
+            seg = low[lo:bar_idx + 1]
+            bar_idx = lo + int(seg.argmin())
+        decision_idx = bar_idx + 1
+        if decision_idx >= len(closed_df):
+            return None                       # لم تُغلق شمعة القرار بعد — ننتظر
         prev_lows = [x for x in pv[:-1] if x["kind"] == "L"]
-        label = "LL" if (prev_lows and last_pivot["price"] < prev_lows[-1]["price"]) else "HL"
-        row = prefix.iloc[p]
+        label = "LL" if (prev_lows and pivot["price"] < prev_lows[-1]["price"]) else "HL"
+        row = closed_df.iloc[bar_idx]
         return {
-            "bar_index": p,
+            "bar_index": bar_idx,
             "bar_open_time": int(row["open_time"]),
             "bar_close_time": int(row["close_time"]),
-            "low": float(last_pivot["price"]),
+            "low": float(pivot["price"]),
             "pivot_label": label,
-            "confirm_open_time": int(row["close_time"]),
+            "entry_open_time": int(closed_df.iloc[decision_idx]["open_time"]),
+            "confirm_open_time": int(closed_df.iloc[decision_idx - 1]["close_time"]),
         }
 
     lows = [p for p in pivots if p["kind"] == "L"]

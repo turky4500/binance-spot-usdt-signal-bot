@@ -173,9 +173,17 @@ def test_user_rule_enters_at_close_of_next_green_candle(tmp_path):
     assert signal["pivot_label"] in ("HL", "LL")
 
 
+def _set_last_bar(df: pd.DataFrame, o: float, c: float, lo: float, hi: float) -> pd.DataFrame:
+    df = df.copy()
+    i = df.index[-1]
+    df.loc[i, ["open", "close", "low", "high"]] = [o, c, lo, hi]
+    return df
+
+
 def test_user_rule_discards_signal_when_next_candle_is_red(tmp_path):
     settings = _rule_settings()
-    df = _series(DECLINE + [99.0])           # الشمعة التالية حمراء
+    # شمعة قرار حمراء لكن **بلا كسر قاع** (low 100.2 > 100.0)
+    df = _set_last_bar(_series(DECLINE + [101.0]), o=101.0, c=100.6, lo=100.2, hi=101.5)
     assert df["close"].iloc[-1] < df["open"].iloc[-1]
 
     bot = make_bot(tmp_path)
@@ -189,7 +197,7 @@ def test_user_rule_discards_signal_when_next_candle_is_red(tmp_path):
 
 def test_user_rule_discards_doji_signal(tmp_path):
     settings = _rule_settings()
-    df = _series(DECLINE + [100.5])          # دوجي: الإغلاق = الافتتاح
+    df = _set_last_bar(_series(DECLINE + [100.6]), o=100.6, c=100.6, lo=100.2, hi=101.0)
     assert df["close"].iloc[-1] == df["open"].iloc[-1]
 
     bot = make_bot(tmp_path)

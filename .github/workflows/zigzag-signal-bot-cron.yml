@@ -43,6 +43,7 @@ jobs:
       # الدخول بإغلاقها، وإن كانت حمراء/دوجي تُلغى الإشارة. (low12 = القاعدة القديمة)
       ZZ_BOTTOM_MODE: "zigzag_ld"
       ZZ_PIVOT_SOURCE: "live"       # live = الوسم لحظة ظهوره (قاعدة المستخدم) | confirmed = بعد backstep
+      ZZ_BOTTOM_BAR: "extreme"      # extreme = شمعة أدنى سعر (موضع الوسم) | detect = شمعة الاكتشاف
       ZZ_DEVIATION: "5"
       ZZ_BACKSTEP: "2"
       ZZ_MAX_STOP_PCT: "2.5"        # ارفض الإشارة إذا كان القاع أبعد من 2.5% (وقف مكلف)

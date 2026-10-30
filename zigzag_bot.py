@@ -656,7 +656,13 @@ class ZigZagSignalBot:
                 self.store.save(self.state)
                 continue
 
-            if self.settings.pivot_mode and self.settings.pivot_source == "confirmed":
+            if self.settings.pivot_mode and bottom.get("entry_open_time") is not None:
+                # قاعدة المستخدم: شمعة القرار = الشمعة التالية للقاع، ولا تُقيَّم إلا إذا
+                # كانت آخر شمعة مغلقة (وإلا فالإشارة فاتت — لا ندخل بسعر قديم)
+                if int(closed_df["open_time"].iloc[-1]) != int(bottom["entry_open_time"]):
+                    continue
+                next_row = closed_df.iloc[-1]
+            elif self.settings.pivot_mode and self.settings.pivot_source == "confirmed":
                 # المحور المؤكد: الدخول بعد تحقق الـ Backstep
                 next_row = self._pivot_entry_candle(closed_df, bottom)
             else:
