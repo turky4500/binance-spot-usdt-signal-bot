@@ -39,12 +39,14 @@ jobs:
       ZZ_HALAL_DIR: data/zigzag
       # ── قواعد النظام ──
       ZZ_DEPTH: 12                  # عمق ZigZag (Depth)
-      # تعريف القاع: low12 (الحالي) أو zigzag_ld (محاور ZigZag++ [LD] الحقيقية)
-      # لتفعيل محاور المؤشر: ZZ_BOTTOM_MODE: "zigzag_ld" + ZZ_MAX_STOP_PCT: "3"
-      ZZ_BOTTOM_MODE: "low12"
+      # قاعدة المستخدم (2026-10-30): إشارة القاع ZigZag++ [LD] ⇒ الشمعة التالية خضراء ⇒
+      # الدخول بإغلاقها، وإن كانت حمراء/دوجي تُلغى الإشارة. (low12 = القاعدة القديمة)
+      ZZ_BOTTOM_MODE: "zigzag_ld"
+      ZZ_PIVOT_SOURCE: "live"       # live = الوسم لحظة ظهوره (قاعدة المستخدم) | confirmed = بعد backstep
       ZZ_DEVIATION: "5"
       ZZ_BACKSTEP: "2"
-      ZZ_MAX_STOP_PCT: "0"
+      ZZ_MAX_STOP_PCT: "2.5"        # ارفض الإشارة إذا كان القاع أبعد من 2.5% (وقف مكلف)
+      ZZ_TARGET_R: "1.5"            # الهدف = الدخول + 1.5 × (الدخول − القاع)
       ZZ_TARGET_PCT: "2"            # الهدف +2% من سعر الدخول (لمس)
       ZZ_DOJI_BODY_PCT: "0.05"      # الدوجي: جسم ≤ 0.05% من السعر
       ZZ_LOOKBACK_BARS: 6           # أقصى عمر للقاع عند البحث

@@ -51,7 +51,7 @@ def test_detects_alternating_pivots():
 
 
 def test_higher_low_is_labelled_hl_and_lower_low_ll():
-    settings = ZigZagSettings(bottom_mode="zigzag_ld", depth=3, deviation=1, backstep=1)
+    settings = ZigZagSettings(bottom_mode="zigzag_ld", pivot_source="confirmed", depth=3, deviation=1, backstep=1)
     # قاع أول ثم قاع أعلى ⇒ HL
     df_hl = path_df([120, 100, 118, 108, 130], step_bars=4)
     bottom_hl = find_latest_bottom(df_hl, settings, point=1.0)
@@ -64,7 +64,7 @@ def test_higher_low_is_labelled_hl_and_lower_low_ll():
 
 
 def test_pivot_bottom_exposes_confirmation_bar():
-    settings = ZigZagSettings(bottom_mode="zigzag_ld", depth=3, deviation=1, backstep=2)
+    settings = ZigZagSettings(bottom_mode="zigzag_ld", pivot_source="confirmed", depth=3, deviation=1, backstep=2)
     df = path_df([120, 100, 118, 108, 130], step_bars=4)
     bottom = find_latest_bottom(df, settings, point=1.0)
     assert bottom is not None
@@ -79,7 +79,7 @@ def test_low12_mode_is_unchanged_by_default():
 
 def test_pivot_mode_enters_only_after_confirmation(tmp_path):
     bot = make_bot(tmp_path)
-    bot.settings = ZigZagSettings(bottom_mode="zigzag_ld", depth=3, deviation=1, backstep=2)
+    bot.settings = ZigZagSettings(bottom_mode="zigzag_ld", pivot_source="confirmed", depth=3, deviation=1, backstep=2)
     bot.settings.ema_filter = 0
     bot.symbols = ["AAAUSDT"]
 
@@ -124,3 +124,90 @@ def test_max_stop_filter_rejects_wide_pivot_stop():
     rejected: dict = {}
     assert evaluate_entry_candle(bottom, row, tight, rejected=rejected) is None
     assert rejected["reason"] == "stop_too_wide"
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# قاعدة المستخدم (2026-10-30): «إشارة القاع ⇒ الشمعة التالية خضراء ⇒ الدخول بإغلاقها،
+# وإن كانت حمراء أو دوجي تُلغى الإشارة وينتظر قاعًا جديدًا».
+# ─────────────────────────────────────────────────────────────────────────────
+def _series(closes: list[float]) -> pd.DataFrame:
+    """شموع من قائمة إغلاقات: الفتح = الإغلاق السابق، والقاع/القمة ±0.5."""
+    opens = [closes[0]] + closes[:-1]
+    n = len(closes)
+    return pd.DataFrame({
+        "open_time": [BASE_MS + i * HOUR_MS for i in range(n)],
+        "close_time": [BASE_MS + (i + 1) * HOUR_MS - 1 for i in range(n)],
+        "open": opens,
+        "high": [max(o, c) + 0.5 for o, c in zip(opens, closes)],
+        "low": [min(o, c) - 0.5 for o, c in zip(opens, closes)],
+        "close": closes,
+    })
+
+
+# هبوط متتابع ينتهي بقاع عند الشمعة 8 (100.0)، ثم شمعة قرار خضراء صاعدة.
+DECLINE = [120.0, 117.0, 114.0, 111.0, 108.0, 105.0, 102.0, 101.0, 100.5]
+BOTTOM_BAR, BOTTOM_LOW = 8, 100.0
+
+
+def _rule_settings() -> ZigZagSettings:
+    return ZigZagSettings(bottom_mode="zigzag_ld", depth=3, deviation=1, backstep=1, ema_filter=0)
+
+
+def test_user_rule_enters_at_close_of_next_green_candle(tmp_path):
+    settings = _rule_settings()
+    df = _series(DECLINE + [105.0])          # الشمعة 9 = شمعة الدخول (خضراء)
+    bottom = find_latest_bottom(df, settings, point=0.01)   # البوت يحسب على ما قبل الشمعة الأخيرة
+    assert bottom is not None, "يجب أن يُكتشف القاع عند الشمعة قبل الأخيرة"
+    assert bottom["bar_index"] == BOTTOM_BAR and bottom["low"] == pytest.approx(BOTTOM_LOW)
+
+    bot = make_bot(tmp_path)
+    bot.settings = settings
+    bot.symbols = ["AAAUSDT"]
+    bot.process_new_bottoms({"AAAUSDT": df}, int(df["close_time"].iloc[-1]) + 1)
+
+    signal = bot.state["open_signals"]["AAAUSDT"]
+    # الدخول = إغلاق الشمعة التالية للقاع، والوقف = قاع المحور
+    assert signal["entry_price"] == pytest.approx(105.0)
+    assert signal["entry_bar_open_time"] == int(df["open_time"].iloc[9])
+    assert signal["stop_price"] == pytest.approx(BOTTOM_LOW)
+    assert signal["pivot_label"] in ("HL", "LL")
+
+
+def test_user_rule_discards_signal_when_next_candle_is_red(tmp_path):
+    settings = _rule_settings()
+    df = _series(DECLINE + [99.0])           # الشمعة التالية حمراء
+    assert df["close"].iloc[-1] < df["open"].iloc[-1]
+
+    bot = make_bot(tmp_path)
+    bot.settings = settings
+    bot.symbols = ["AAAUSDT"]
+    bot.process_new_bottoms({"AAAUSDT": df}, int(df["close_time"].iloc[-1]) + 1)
+    assert "AAAUSDT" not in bot.state["open_signals"]
+    # الإشارة تُعلَّم كمُلغاة ⇒ لا تُعاد على شموع خضراء لاحقة، ننتظر قاعًا جديدًا
+    assert bot.state["last_bottom_bar_time"]["AAAUSDT"] == int(df["open_time"].iloc[BOTTOM_BAR])
+
+
+def test_user_rule_discards_doji_signal(tmp_path):
+    settings = _rule_settings()
+    df = _series(DECLINE + [100.5])          # دوجي: الإغلاق = الافتتاح
+    assert df["close"].iloc[-1] == df["open"].iloc[-1]
+
+    bot = make_bot(tmp_path)
+    bot.settings = settings
+    bot.symbols = ["AAAUSDT"]
+    bot.process_new_bottoms({"AAAUSDT": df}, int(df["close_time"].iloc[-1]) + 1)
+    assert "AAAUSDT" not in bot.state["open_signals"]
+
+
+def test_target_r_multiple(tmp_path):
+    """هدف بمضاعف R: target = entry + R × (entry − stop)."""
+    from src.zigzag import evaluate_entry_candle
+    import pandas as pd
+
+    row = pd.Series({"open": 100.0, "high": 101.0, "low": 99.5, "close": 101.0,
+                     "open_time": 0, "close_time": 1})
+    bottom = {"bar_index": 0, "bar_open_time": 0, "bar_close_time": 0, "low": 98.0}
+    settings = ZigZagSettings(ema_filter=0, max_stop_pct=5.0, target_r=1.5)
+    cand = evaluate_entry_candle(bottom, row, settings)
+    assert cand is not None
+    assert cand["target_price"] == pytest.approx(101.0 + 1.5 * (101.0 - 98.0))

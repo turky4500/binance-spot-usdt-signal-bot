@@ -656,10 +656,12 @@ class ZigZagSignalBot:
                 self.store.save(self.state)
                 continue
 
-            if self.settings.pivot_mode:
-                # وضع المحاور: الدخول على أول شمعة مغلقة بعد تأكيد المحور (backstep)
+            if self.settings.pivot_mode and self.settings.pivot_source == "confirmed":
+                # المحور المؤكد: الدخول بعد تحقق الـ Backstep
                 next_row = self._pivot_entry_candle(closed_df, bottom)
             else:
+                # قاعدة المستخدم: الدخول على **الشمعة التالية للقاع** إن أغلقت خضراء،
+                # وإلا تُلغى الإشارة (next_closed_bar = الشمعة التالية مباشرة)
                 next_row = next_closed_bar(closed_df, bottom["bar_open_time"])
             if next_row is None:
                 # لم تتأكد الإشارة/لم تُغلق شمعة الدخول بعد — ننتظر الدورة القادمة

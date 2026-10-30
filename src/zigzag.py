@@ -52,6 +52,9 @@ class ZigZagSettings:
 
     depth: int = _env_int("ZZ_DEPTH", 12)                       # نافذة أدنى قاع (شموع 1H)
     target_pct: float = _env_float("ZZ_TARGET_PCT", 2.0)        # نسبة الهدف من سعر الدخول %
+    # هدف بمضاعف المخاطرة: target = entry + R × (entry − stop). 0 = تعطيل (يُستخدم target_pct).
+    # مناسب عندما يكون القاع بعيدًا (وقف مكلف) كما في محاور ZigZag++ [LD].
+    target_r: float = _env_float("ZZ_TARGET_R", 0.0)
     doji_body_pct: float = _env_float("ZZ_DOJI_BODY_PCT", 0.05)  # حد الدوجي: جسم ≤ هذه النسبة
     lookback_bars: int = _env_int("ZZ_LOOKBACK_BARS", 6)        # أقصى عمر للقاع عند البحث
     max_entry_age_hours: float = _env_float("ZZ_MAX_ENTRY_AGE_HOURS", 2.0)  # رفض الإشارات المتأخرة
@@ -77,6 +80,10 @@ class ZigZagSettings:
     # أقصى مسافة وقف مقبولة % (0 = معطّل). يهمّ في وضع المحاور لأن قاع ZigZag قد
     # يكون بعيدًا جدًا (خسارة −6.4% مقابل ربح +1.8% في الباك-تست بلا حد).
     max_stop_pct: float = _env_float("ZZ_MAX_STOP_PCT", 0.0)
+    # مصدر القاع في وضع المحاور:
+    #   live      = الوسم الجاري على الشارت لحظة ظهوره (repaint) ⇒ الدخول على الشمعة التالية
+    #   confirmed = المحور المؤكد فقط (بعد Backstep) ⇒ متأخر شمعتين عن الشارت
+    pivot_source: str = os.getenv("ZZ_PIVOT_SOURCE", "live").strip().lower()
     deviation: int = _env_int("ZZ_DEVIATION", 5)      # Deviation (بنقاط السعر: × tickSize)
     backstep: int = _env_int("ZZ_BACKSTEP", 2)        # Backstep (شموت تأكيد المحور)
 
@@ -93,7 +100,8 @@ class ZigZagSettings:
         bottom_part = "محاور ZigZag++ [LD]" if self.pivot_mode else f"أدنى قاع {self.depth} شمعة"
         return (
             f"{STRATEGY_LABEL}: {bottom_part} • "
-            f"هدف +{self.target_pct:g}% (لمس) • خسارة بإغلاق تحت القاع • "
+            + (f"هدف {self.target_r:g}R (لمس) • " if self.target_r > 0 else f"هدف +{self.target_pct:g}% (لمس) • ")
+            + "خسارة بإغلاق تحت القاع • "
             f"دوجي ≤ {self.doji_body_pct:g}% • "
             f"أدنى وقف {self.min_stop_pct:g}%{ema_part}"
         )
@@ -159,6 +167,42 @@ def _latest_pivot_low(
         backstep=settings.backstep,
         point=float(point) if point else 0.01,
     )
+    if settings.pivot_source == "live":
+        # قاعدة المستخدم: «إشارة القاع» هي الوسم (HL/LL) الذي يظهر **لحظة إغلاق شمعة القاع**،
+        # والدخول على الشمعة التالية لها مباشرة. لذلك نحسب المحاور على التاريخ حتى
+        # الشمعة **قبل الأخيرة** فقط (بلا نظر للمستقبل): إن خرجت الشمعة الأخيرة من الحساب
+        # قاعًا محوريًا ⇒ إشارتها قائمة، والشمعة الأخيرة المغلقة هي شمعة القرار.
+        # وإن كسرت الشمعة التالية القاع، فالمؤشر نفسه ينقل الوسم إليها (repaint) ⇒ الإشارة
+        # القديمة تُلغى تلقائيًا لأن الحساب يعطي القاع الجديد.
+        if len(closed_df) < settings.depth + settings.backstep + 3:
+            return None
+        prefix = closed_df.iloc[:-1]
+        pv = mt4_zigzag(
+            prefix["high"].to_numpy(dtype="float64"),
+            prefix["low"].to_numpy(dtype="float64"),
+            depth=settings.depth,
+            deviation=settings.deviation,
+            backstep=settings.backstep,
+            point=float(point) if point else 0.01,
+        )
+        if not pv:
+            return None
+        last_pivot = pv[-1]
+        p = len(prefix) - 1
+        if last_pivot["kind"] != "L" or int(last_pivot["bar"]) != p:
+            return None                       # الشمعة السابقة ليست قاعًا ⇒ لا إشارة
+        prev_lows = [x for x in pv[:-1] if x["kind"] == "L"]
+        label = "LL" if (prev_lows and last_pivot["price"] < prev_lows[-1]["price"]) else "HL"
+        row = prefix.iloc[p]
+        return {
+            "bar_index": p,
+            "bar_open_time": int(row["open_time"]),
+            "bar_close_time": int(row["close_time"]),
+            "low": float(last_pivot["price"]),
+            "pivot_label": label,
+            "confirm_open_time": int(row["close_time"]),
+        }
+
     lows = [p for p in pivots if p["kind"] == "L"]
     if not lows:
         return None
@@ -264,7 +308,10 @@ def evaluate_entry_candle(
     if settings.max_stop_pct > 0 and stop_dist_pct > settings.max_stop_pct:
         _note_rejection(rejected, "stop_too_wide")      # قاع بعيد جدًا (وقف مكلف)
         return None
-    target_price = entry_price * (1.0 + settings.target_pct / 100.0)
+    if settings.target_r > 0:
+        target_price = entry_price + settings.target_r * (entry_price - stop_price)
+    else:
+        target_price = entry_price * (1.0 + settings.target_pct / 100.0)
 
     return {
         "entry_price": entry_price,
