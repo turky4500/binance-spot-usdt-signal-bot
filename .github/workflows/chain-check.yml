@@ -1,0 +1,24 @@
+name: Chain permission check
+on:
+  workflow_dispatch:
+permissions:
+  actions: write
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Dispatch watcher with GITHUB_TOKEN
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          CODE=$(curl -s -o /tmp/o -w "%{http_code}" -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$REPO/actions/workflows/zigzag-watch-loop.yml/dispatches" \
+            -d '{"ref":"main"}')
+          echo "DISPATCH_CODE=$CODE"
+          cat /tmp/o || true
+          [ "$CODE" = "204" ] && echo "✅ GITHUB_TOKEN يستطيع تشغيل workflow_dispatch" || echo "❌ لا يستطيع"

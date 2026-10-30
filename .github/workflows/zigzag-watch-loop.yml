@@ -3,7 +3,9 @@ name: ZigZag Fast Watcher (كل دقيقة)
 # لماذا هذا الملف؟ جدولة GitHub cron غير منتظمة (قياس فعلي: 2–66 دقيقة بين تشغيل وآخر)،
 # فتتأخر رسالة «لمس الهدف» 18–37 دقيقة رغم أن الكود يفحص شموع الدقيقة ويرسل عند اللمس.
 # هذا الـ workflow يشغّل البوت في حلقة داخل مهمة واحدة كل ~60 ثانية ⇒ تأخير ≈ دقيقة.
-# يعمل 5 ساعات كحد أقصى لكل تشغيل (حد GitHub 6 ساعات) — أعد تشغيله عند الحاجة.
+# يعمل 5 ساعات لكل تشغيل، ثم **يعيد تشغيل نفسه تلقائيًا** ⇒ مراقبة 24/7 بلا تدخل.
+# إيقافه نهائيًا: Actions → هذا الـ workflow → Disable workflow (أو اجعل المتغير
+# WATCHER_ENABLED = false في Settings → Variables).
 # المستودع public ⇒ دقائق Actions مجانية.
 on:
   workflow_dispatch:
@@ -100,8 +102,13 @@ jobs:
       - name: Watch loop (كل ~60 ثانية)
         env:
           HOURS: ${{ github.event.inputs.hours || '5' }}
+          WATCHER_ENABLED: ${{ vars.WATCHER_ENABLED || 'true' }}
         run: |
           set +e
+          if [ "${WATCHER_ENABLED:-true}" = "false" ]; then
+            echo "⏹ المراقب معطّل عبر المتغير WATCHER_ENABLED=false — إنهاء بلا إعادة تشغيل."
+            exit 0
+          fi
           END=$(( $(date +%s) + HOURS * 3600 - 120 ))
           n=0
           while [ "$(date +%s)" -lt "$END" ]; do
@@ -131,3 +138,22 @@ jobs:
             git push -q origin HEAD:main || true
           fi
           echo "انتهت المراقبة بعد $n دورة — أعد التشغيل من Actions عند الحاجة."
+
+      - name: Chain next watcher run (24/7)
+        if: ${{ always() && vars.WATCHER_ENABLED != 'false' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          # workflow_dispatch مُستثنى من قاعدة «أحداث GITHUB_TOKEN لا تُشغّل workflows»
+          CODE=$(curl -s -o /tmp/chain.out -w "%{http_code}" -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$REPO/actions/workflows/zigzag-watch-loop.yml/dispatches" \
+            -d '{"ref":"main"}')
+          echo "chain dispatch HTTP $CODE"
+          if [ "$CODE" != "204" ]; then
+            echo "::warning::تعذّر جدولة التشغيل التالي ($CODE) — شغّل المراقب يدويًا."
+            cat /tmp/chain.out || true
+          fi
