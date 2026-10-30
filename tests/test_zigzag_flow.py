@@ -58,6 +58,9 @@ def make_bot(tmp_path: Path, telegram=None):
     bot.telegram = telegram or FakeTelegram()
     bot.logger = logging.getLogger("test-zigzag-flow")
     bot.settings = ZigZagSettings()
+    # فلتر EMA200 له اختبارات مستقلة (tests/test_zigzag_ema_batching.py) تحتاج
+    # 200 شمعة تاريخية؛ هنا نعطّله ليبقى التركيز على مسار القاع→الدخول→الخروج.
+    bot.settings.ema_filter = 0
     bot.interval = "1h"
     bot.interval_ms = HOUR_MS
     bot.data_dir = str(tmp_path)

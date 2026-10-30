@@ -46,6 +46,7 @@ from src.zigzag import (
     evaluate_entry_candle,
     evaluate_path_1h,
     evaluate_path_1m,
+    ema_at_bar,
     find_latest_bottom,
     next_closed_bar,
 )
@@ -57,6 +58,16 @@ MAX_CATCHUP_HOURS = 24  # أقصى فترة استدراك لشموع الدقي
 # مسارات النظام المستقل — ثابتة بغض النظر عن متغيرات الأنظمة الأخرى
 ZZ_STATE_FILE = os.getenv("ZZ_STATE_FILE", "data/state_zigzag.json")
 ZZ_HALAL_DIR = os.getenv("ZZ_HALAL_DIR", "data/zigzag")
+# قائمة استبعاد يدوية (رموز أسهم/ETF مرمّزة، ذهب مرمّز، رموز غير مرغوبة).
+# ملف نصي بسيط: رمز في كل سطر، و«#» للتعليقات. الملف غير موجود = لا استبعاد.
+ZZ_EXCLUDE_FILE = os.getenv("ZZ_EXCLUDE_FILE", "config/zz_exclude.txt")
+
+# ── تجميع الرسائل (2026-10-30) ──
+# بدل رسالة لكل عملة، تُجمع كل إشارات الدورة في رسالة واحدة (أو عدة رسائل
+# مقسّمة عند تجاوز الحد). التوقيت لم يتغيّر: الرسالة تُرسل في نفس الدورة التي
+# حدث فيها اللمس/الإغلاق (كل 5 دقائق)، أي «بالوقت الفعلي» بلا انتظار إغلاق شمعة.
+MSG_BATCH_MAX_ITEMS = int(os.getenv("ZZ_MSG_BATCH_MAX_ITEMS", "12"))
+MSG_BATCH_MAX_CHARS = int(os.getenv("ZZ_MSG_BATCH_MAX_CHARS", "3500"))
 
 _AR_MONTHS = (
     "يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو",
@@ -82,6 +93,21 @@ def is_pegged_stable_symbol(symbol: str, quote_asset: str = "USDT") -> bool:
     if not symbol.endswith(quote):
         return False
     return symbol[: -len(quote)] in PEGGED_STABLE_BASES
+
+
+def load_excluded_symbols(path: str) -> set[str]:
+    """رموز مستبعدة من ملف نصي (سطر لكل رمز، «#» للتعليقات)."""
+    try:
+        with open(path, encoding="utf-8") as handle:
+            lines = handle.read().splitlines()
+    except OSError:
+        return set()
+    out: set[str] = set()
+    for line in lines:
+        token = line.split("#", 1)[0].strip().upper()
+        if token:
+            out.add(token)
+    return out
 
 
 def pct_label(value: float) -> str:
@@ -146,8 +172,20 @@ class ZigZagSignalBot:
             self.symbols = [s for s in all_symbols if not is_pegged_stable_symbol(s, self.config.quote_asset)]
         else:
             self.symbols = list(all_symbols)
+        pegged_excluded = len(all_symbols) - len(self.symbols)
+
+        # استبعاد يدوي (أسهم/ETF مرمّزة، ذهب مرمّز، رموز غير مرغوبة) — من ملف
+        blocklist = load_excluded_symbols(ZZ_EXCLUDE_FILE)
+        if blocklist:
+            before = len(self.symbols)
+            self.symbols = [s for s in self.symbols if s.upper() not in blocklist]
+            self.logger.info(
+                "ZigZag: استُثني %s رمزًا من قائمة الاستبعاد (%s)",
+                before - len(self.symbols), ZZ_EXCLUDE_FILE,
+            )
+
         self.last_symbols_refresh = now
-        excluded = len(all_symbols) - len(self.symbols)
+        excluded = pegged_excluded
         self.logger.info(
             "ZigZag: Loaded %s spot symbols with quote asset %s%s",
             len(self.symbols), self.config.quote_asset,
@@ -253,9 +291,71 @@ class ZigZagSignalBot:
             return
         self._safe_send(text)
 
-    def send_entry_message(self, signal: dict) -> None:
+    # ─────────────────────────────── تجميع الرسائل (2026-10-30)
+    # المنطق: كل إشارة تُسجَّل فورًا (حدث + دفتر + تحديث الحالة) كما كان،
+    # لكن نص الرسالة يُوضع في صندوق الدورة، ويُرسَل مرة واحدة عند نهاية الدورة.
+    # التوقيت الفعلي محفوظ: الرسالة تُرسل في نفس الدورة التي حدث فيها الحدث
+    # (كل 5 دقائق كحد أقصى) ولا تنتظر إغلاق أي شمعة.
+    def _outbox(self) -> dict[str, list]:
+        box = getattr(self, "_outbox_buffer", None)
+        if box is None:
+            box = {"entry": [], "win": [], "loss": []}
+            self._outbox_buffer = box
+        return box
+
+    def _queue(self, kind: str, payload) -> None:
+        self._outbox()[kind].append(payload)
+
+    def _halal_tag(self, signal: dict) -> str:
+        """رمز الحكم الشرعي المختصر (إيموجي فقط) لسطر الرسالة المجمّعة."""
+        verdict = signal.get("halal_verdict") or ""
+        return verdict.split(" ")[0] if verdict else ""
+
+    def _chunks(self, items: list) -> list[list]:
+        """تقسيم القائمة إلى رسائل بحجم آمن (عدد عناصر + عدد أحرف)."""
+        chunks: list[list] = []
+        current: list = []
+        chars = 0
+        for item in items:
+            length = len(getattr(item, "__str__", lambda: "")()) or 0
+            if current and (len(current) >= MSG_BATCH_MAX_ITEMS or chars + length > MSG_BATCH_MAX_CHARS):
+                chunks.append(current)
+                current, chars = [], 0
+            current.append(item)
+        if current:
+            chunks.append(current)
+        return chunks
+
+    def _entry_line(self, signal: dict) -> str:
+        entry = float(signal["entry_price"])
+        stop = float(signal["stop_price"])
+        stop_pct = (stop / entry - 1.0) * 100.0 if entry else 0.0
+        tag = self._halal_tag(signal)
+        return (
+            f"• {signal['symbol']} — دخول {self._fmt(signal, entry)} | "
+            f"هدف {self._fmt(signal, signal['target_price'])} (+{self.settings.target_pct:g}%) | "
+            f"وقف {self._fmt(signal, stop)} ({pct_label(stop_pct)})"
+            + (f" {tag}" if tag else "")
+        )
+
+    def _exit_line(self, signal: dict, event: dict) -> str:
+        entry = float(signal["entry_price"])
+        fill = float(event["fill_price"])
+        gross = (fill / entry - 1.0) * 100.0 if entry else 0.0
+        duration = humanize_duration_ar(int(signal["entry_time"]), int(event["event_time"]))
+        tag = self._halal_tag(signal)
+        return (
+            f"• {signal['symbol']} — {pct_label(gross)} | {duration}"
+            + (f" {tag}" if tag else "")
+        )
+
+    def _entry_text(self, signal: dict) -> str:
         verdict = signal.get("halal_verdict") or self.get_halal_verdict(signal["symbol"])
-        text = (
+        ema_line = ""
+        ema_value = signal.get("ema_value")
+        if ema_value and float(ema_value) > 0:
+            ema_line = f"📈 فوق EMA{self.settings.ema_len}: {self._fmt(signal, float(ema_value))}\n"
+        return (
             f"📥 إشارة دخول — {signal['symbol']}\n"
             f"{STRATEGY_LABEL} • فريم 1H\n"
             "\n"
@@ -264,15 +364,13 @@ class ZigZagSignalBot:
             f"الوقف: {self._fmt(signal, signal['stop_price'])} — إغلاق تحت قاع الشمعة\n"
             f"شمعة القاع: {hhmm_local(int(signal['bottom_bar_open_time']), self.config.timezone_name)}"
             f" | شمعة الدخول: {hhmm_local(int(signal['entry_bar_open_time']), self.config.timezone_name)}\n"
+            f"{ema_line}"
             "\n"
             f"⏱ {stamp_ms(int(signal['entry_time']), self.config.timezone_name)}\n"
             f"⚖️ الحكم الشرعي: {verdict}"
         )
-        self._send_trade_message(signal, text)
-        self.append_event("entry", signal["symbol"], int(signal["entry_time"]))
-        append_zigzag_entry(self.data_dir, self._build_trade_log_record(signal))
 
-    def send_success_message(self, signal: dict, event: dict) -> None:
+    def _win_text(self, signal: dict, event: dict) -> str:
         verdict = signal.get("halal_verdict") or self.get_halal_verdict(signal["symbol"])
         entry = float(signal["entry_price"])
         fill = float(event["fill_price"])
@@ -283,7 +381,7 @@ class ZigZagSignalBot:
             if abs(fill - float(signal["target_price"])) > 1e-12
             else ""
         )
-        text = (
+        return (
             f"🎯 نجاح — {signal['symbol']}\n"
             f"{STRATEGY_LABEL}\n"
             "\n"
@@ -295,18 +393,14 @@ class ZigZagSignalBot:
             f"⏱ {stamp_ms(int(event['event_time']), self.config.timezone_name)}\n"
             f"⚖️ الحكم الشرعي: {verdict}"
         )
-        self._send_trade_message(signal, text)
-        self.append_event("exit_win", signal["symbol"], int(event["event_time"]))
-        self._record_trade_exit(signal, event)
-        self.close_signal(signal["symbol"])
 
-    def send_loss_message(self, signal: dict, event: dict) -> None:
+    def _loss_text(self, signal: dict, event: dict) -> str:
         verdict = signal.get("halal_verdict") or self.get_halal_verdict(signal["symbol"])
         entry = float(signal["entry_price"])
         fill = float(event["fill_price"])
         gross = (fill / entry - 1.0) * 100.0
         duration = humanize_duration_ar(int(signal["entry_time"]), int(event["event_time"]))
-        text = (
+        return (
             f"🛑 خسارة — {signal['symbol']}\n"
             f"{STRATEGY_LABEL}\n"
             "\n"
@@ -318,10 +412,93 @@ class ZigZagSignalBot:
             f"⏱ {stamp_ms(int(event['event_time']), self.config.timezone_name)}\n"
             f"⚖️ الحكم الشرعي: {verdict}"
         )
-        self._send_trade_message(signal, text)
+
+    def _batch_text(self, kind: str, items: list, part: int, parts: int, total: int) -> str:
+        """نص رسالة مجمّعة واحدة تضم عدة عملات (بدل رسالة لكل عملة)."""
+        if kind == "entry":
+            head = f"📥 إشارات دخول ({total}) — {STRATEGY_LABEL}"
+            stamp = stamp_ms(int(items[-1]["entry_time"]), self.config.timezone_name)
+            lines = [self._entry_line(item) for item in items]
+            footer = "الوقف: إغلاق شمعة تحت قاع الإشارة • الهدف يُحتسب باللمس"
+        elif kind == "win":
+            head = f"🎯 أهداف تحققت ({total}) — {STRATEGY_LABEL}"
+            stamp = stamp_ms(int(items[-1]["event"]["event_time"]), self.config.timezone_name)
+            lines = [self._exit_line(item["signal"], item["event"]) for item in items]
+            footer = "الهدف +" + f"{self.settings.target_pct:g}% تم لمسه — الربح قبل العمولة"
+        else:
+            head = f"🛑 إغلاقات خاسرة ({total}) — {STRATEGY_LABEL}"
+            stamp = stamp_ms(int(items[-1]["event"]["event_time"]), self.config.timezone_name)
+            lines = [self._exit_line(item["signal"], item["event"]) for item in items]
+            footer = "سبب الخروج: إغلاق شمعة ساعة تحت قاع الإشارة"
+        part_note = f" • رسالة {part}/{parts}" if parts > 1 else ""
+        return (
+            f"{head}{part_note}\n"
+            f"⏱ {stamp}\n"
+            "\n"
+            + "\n".join(lines)
+            + "\n\n"
+            + footer
+        )
+
+    def flush_messages(self) -> None:
+        """يُرسل ما تجمّع في صندوق الدورة: رسالة واحدة لكل نوع (أو تقسيم عند الحد).
+
+        إشارة واحدة وحدها ⇒ تُرسل بتفصيلها الكامل كما قبل (لا تتغيّر تجربة القارئ)،
+        وأكثر من واحدة ⇒ رسالة مجمّعة واحدة تحوي سطرًا لكل عملة.
+        """
+        box = self._outbox()
+        for kind in ("entry", "win", "loss"):
+            items = box.get(kind) or []
+            if not items:
+                continue
+            box[kind] = []
+            if len(items) == 1:
+                try:
+                    if kind == "entry":
+                        self._send_trade_message(items[0], self._entry_text(items[0]))
+                    elif kind == "win":
+                        self._send_trade_message(items[0]["signal"], self._win_text(items[0]["signal"], items[0]["event"]))
+                    else:
+                        self._send_trade_message(items[0]["signal"], self._loss_text(items[0]["signal"], items[0]["event"]))
+                except Exception:
+                    self.logger.error("ZigZag: فشل تجهيز رسالة %s", kind, exc_info=True)
+                continue
+
+            chunks = self._chunks(items)
+            for index, chunk in enumerate(chunks, start=1):
+                try:
+                    text = self._batch_text(kind, chunk, index, len(chunks), len(items))
+                except Exception:
+                    self.logger.error("ZigZag: فشل تجهيز رسالة %s مجمّعة", kind, exc_info=True)
+                    continue
+                self._safe_send(text)
+            self.logger.info("ZigZag: رسائل %s مجمّعة: %s رسالة تحوي %s عنصرًا", kind, len(chunks), len(items))
+
+    def send_entry_message(self, signal: dict) -> None:
+        """يسجّل الدخول (حدث + دفتر) ويضع رسالته في صندوق الدورة."""
+        if not signal.get("halal_verdict"):
+            signal["halal_verdict"] = self.get_halal_verdict(signal["symbol"])
+        self.append_event("entry", signal["symbol"], int(signal["entry_time"]))
+        append_zigzag_entry(self.data_dir, self._build_trade_log_record(signal))
+        self._queue("entry", signal)
+
+    def send_success_message(self, signal: dict, event: dict) -> None:
+        """يسجّل النجاح (حدث + دفتر + إغلاق) ويضع رسالته في صندوق الدورة."""
+        if not signal.get("halal_verdict"):
+            signal["halal_verdict"] = self.get_halal_verdict(signal["symbol"])
+        self.append_event("exit_win", signal["symbol"], int(event["event_time"]))
+        self._record_trade_exit(signal, event)
+        self.close_signal(signal["symbol"])
+        self._queue("win", {"signal": dict(signal), "event": dict(event)})
+
+    def send_loss_message(self, signal: dict, event: dict) -> None:
+        """يسجّل الخسارة (حدث + دفتر + إغلاق) ويضع رسالتها في صندوق الدورة."""
+        if not signal.get("halal_verdict"):
+            signal["halal_verdict"] = self.get_halal_verdict(signal["symbol"])
         self.append_event("exit_loss", signal["symbol"], int(event["event_time"]))
         self._record_trade_exit(signal, event)
         self.close_signal(signal["symbol"])
+        self._queue("loss", {"signal": dict(signal), "event": dict(event)})
 
     def close_signal(self, symbol: str) -> None:
         self.state["open_signals"].pop(symbol, None)
@@ -384,6 +561,8 @@ class ZigZagSignalBot:
 
         if state_changed:
             self.store.save(self.state)
+        # إرسال رسائل الإغلاقات مجمّعة (رسالة واحدة تحوي كل إغلاقات هذه الدورة)
+        self.flush_messages()
 
     # ─────────────────────────────────────────── اكتشاف القيعان الجديدة
     def _closed_hours(self, df, server_time: int):
@@ -425,13 +604,29 @@ class ZigZagSignalBot:
                 self.logger.info("ZigZag: تخطّي قاع قديم لـ %s (عمر الإشارة %s دقيقة)", symbol, age_ms // MINUTE_MS)
                 continue
 
-            candidate = evaluate_entry_candle(bottom, next_row, self.settings)
+            # قيمة EMA عند شمعة الدخول نفسها (بلا نظر للمستقبل) — لفلتر المتوسط 200
+            ema_value = None
+            if self.settings.ema_enabled:
+                ema_value = ema_at_bar(closed_df, self.settings.ema_len, int(next_row["open_time"]))
+
+            rejected: dict = {}
+            candidate = evaluate_entry_candle(
+                bottom, next_row, self.settings, ema_value=ema_value, rejected=rejected
+            )
             self.state["last_bottom_bar_time"][symbol] = bottom["bar_open_time"]
 
             if candidate is None:
-                # حمراء أو دوجي أو إغلاق تحت القاع ⇒ يُلغى القاع وننتظر آخر
+                # حمراء أو دوجي أو إغلاق تحت القاع أو تحت EMA200 ⇒ يُلغى القاع
+                reason = rejected.get("reason")
+                if reason:
+                    self._count_rejection(reason, server_time)
                 self.store.save(self.state)
-                self.logger.info("ZigZag: قاع %s أُلغي (شمعة تالية غير صالحة)", symbol)
+                if reason == "below_ema":
+                    self.logger.info(
+                        "ZigZag: %s تحت EMA%s — إشارة مرفوضة", symbol, self.settings.ema_len
+                    )
+                else:
+                    self.logger.info("ZigZag: قاع %s أُلغي (شمعة تالية غير صالحة)", symbol)
                 continue
 
             signal = {
@@ -447,6 +642,7 @@ class ZigZagSignalBot:
                 "last_check_ms": int(candidate["entry_time"]) + 1,
                 "max_price": candidate["entry_price"],
                 "halal_verdict": self.get_halal_verdict(symbol),
+                "ema_value": candidate.get("ema_value"),
                 "silent": is_muted(),
             }
             open_signals[symbol] = signal
@@ -456,6 +652,19 @@ class ZigZagSignalBot:
                 "ZigZag: New signal for %s @ %s (target %s, stop %s)",
                 symbol, candidate["entry_price"], candidate["target_price"], candidate["stop_price"],
             )
+        # إرسال رسائل الدخول مجمّعة (رسالة واحدة تحوي كل إشارات هذه الدورة)
+        self.flush_messages()
+
+    def _count_rejection(self, reason: str, now_ms: int) -> None:
+        """عدّاد أسباب رفض الإشارات (يظهر في التقرير اليومي) — لا يغيّر أي منطق."""
+        day = local_date_key_from_ms(int(now_ms), self.config.timezone_name)
+        stats = self.state.setdefault("rejection_stats", {})
+        if stats.get("date") != day:
+            stats.clear()
+            stats["date"] = day
+            stats["counts"] = {}
+        counts = stats.setdefault("counts", {})
+        counts[reason] = int(counts.get(reason, 0)) + 1
 
     def purge_pegged_stable_signals(self) -> None:
         """يحذف أي إشارة لعملة مستقرة مربوطة تسللت."""
@@ -542,6 +751,15 @@ class ZigZagSignalBot:
             else "⚠️ أسوأ عملة: لا توجد صفقات مغلقة اليوم"
         )
         avg_net_text = pct_label(avg_net) if avg_net is not None else "—"
+
+        # سطر فلتر EMA200: كم إشارة رُفضت اليوم (شفافية أثر الفلتر)
+        stats = self.state.get("rejection_stats") or {}
+        filter_line = ""
+        if self.settings.ema_enabled and stats.get("date") == report_day:
+            counts = stats.get("counts") or {}
+            rejected_count = int(counts.get("below_ema", 0)) + int(counts.get("ema_unknown", 0))
+            if rejected_count:
+                filter_line = f"🚫 مرفوضة بفلتر EMA{self.settings.ema_len}: {rejected_count}\n"
         text = (
             f"📊 التقرير اليومي — {STRATEGY_LABEL}\n"
             f"🗓️ اليوم المشمول: {weekday_name} {report_day}\n"
@@ -552,6 +770,7 @@ class ZigZagSignalBot:
             f"📈 نسبة النجاح: {success_rate:.1f}%\n"
             f"💰 متوسط النتيجة (بعد العمولة): {avg_net_text}\n"
             f"📌 مفتوحة حاليًا: {open_count}\n"
+            f"{filter_line}"
             f"{best_line}\n"
             f"{worst_line}"
         )
@@ -566,13 +785,17 @@ class ZigZagSignalBot:
         self.refresh_halal_verdicts()
         self.purge_pegged_stable_signals()
         self.sync_open_signals_to_journal()
-        server_time = self.binance.get_server_time()
-        klines_map = self.binance.get_klines_for_symbols(
-            self.symbols, self.interval, self.config.kline_limit
-        )
-        self.monitor_open_signals(server_time, klines_map)
-        self.process_new_bottoms(klines_map, server_time)
-        self.send_daily_report_if_due(server_time)
+        try:
+            server_time = self.binance.get_server_time()
+            klines_map = self.binance.get_klines_for_symbols(
+                self.symbols, self.interval, self.config.kline_limit
+            )
+            self.monitor_open_signals(server_time, klines_map)
+            self.process_new_bottoms(klines_map, server_time)
+            self.send_daily_report_if_due(server_time)
+        finally:
+            # ضمان عدم بقاء أي رسالة في الصندوق حتى لو فشل جزء من الدورة
+            self.flush_messages()
 
     def run(self) -> None:
         self.refresh_symbols(force=True)

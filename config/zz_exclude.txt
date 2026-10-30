@@ -1,0 +1,73 @@
+# قائمة استبعاد ZigZag++ — رمز في كل سطر، «#» للتعليقات.
+# الملف اختياري: غيابه = لا استبعاد. المسار قابل للتغيير بـ ZZ_EXCLUDE_FILE.
+#
+# 2026-10-30: أُضيفت أسهم/صناديق ETF مرمّزة (xStocks) لأنها ليست عملات رقمية،
+# وتتداول في جلسة السوق الأمريكي فقط فتطلق إشاراتها دفعة واحدة مع بداية الجلسة.
+# العملات الرقمية الحقيقية التي تنتهي قاعدتها بحرف B (ARB, CKB, BNB, SHIB...) غير مشمولة.
+
+# ── أسهم/صناديق مرمّزة ظهرت فعليًا في إشارات البوت ──
+AAOIBUSDT
+AGPUBUSDT
+ALABBUSDT
+AMDBUSDT
+AMZNBUSDT
+APPBUSDT
+ASMLBUSDT
+AVGOBUSDT
+AXTIBUSDT
+BMNRBUSDT
+BNCBUSDT
+BRKBBUSDT
+BSPBUSDT
+COHRBUSDT
+COINBUSDT
+CRCLBUSDT
+CRMBUSDT
+CRWVBUSDT
+CYPHBUSDT
+DELLBUSDT
+DJTBUSDT
+FLNCBUSDT
+FWDIBUSDT
+GEVBUSDT
+GOOGLBUSDT
+GPROBUSDT
+GSBUSDT
+HIMSBUSDT
+HOODBUSDT
+HPEBUSDT
+KSTRBUSDT
+LITEBUSDT
+MDBBUSDT
+METABUSDT
+MSFTBUSDT
+MSTRBUSDT
+NFLXBUSDT
+NOKBUSDT
+NVDABUSDT
+ORCLBUSDT
+PLTRBUSDT
+QCOMBUSDT
+QQQBUSDT
+RDDTBUSDT
+SECZBUSDT
+SHAZBUSDT
+SKDDBUSDT
+SNXXBUSDT
+SOXSBUSDT
+SPCXBUSDT
+SPYBUSDT
+TQQQBUSDT
+UVXYBUSDT
+ZMBUSDT
+
+# ── رموز بأسماء غير لاتينية (ميمات) ظهرت في الإشارات ──
+币安人生USDT
+牛来USDT
+
+# ── أصول غير رقمية (ذهب مرمّز) — علّقها بإزالة «#» إن أردت استبعادها ──
+# PAXGUSDT
+# XAUTUSDT
+
+# ── رمز ملتبس (ليس تيكر أمريكي معروفًا ولا عملة رقمية شهيرة) — راجعه:
+# BBBUSDT

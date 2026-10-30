@@ -81,13 +81,13 @@ def test_find_latest_bottom_ignores_old_bottoms():
     rows = flat_rows()
     rows[5] = (100.0, 101.0, 80.0, 100.0)  # قاع أقدم من lookback (6)
     df = make_hour_df(rows)
-    assert find_latest_bottom(df, ZigZagSettings()) is None
+    assert find_latest_bottom(df, no_ema()) is None
 
 
 def test_find_latest_bottom_needs_depth_bars():
     rows = flat_rows(n=10)
     df = make_hour_df(rows)
-    assert find_latest_bottom(df, ZigZagSettings()) is None
+    assert find_latest_bottom(df, no_ema()) is None
 
 
 def test_next_closed_bar_matches_exact_hour():
@@ -113,7 +113,7 @@ def _row(open_, high, low, close, index=16):
 
 
 def test_entry_green_candle():
-    signal = evaluate_entry_candle(_bottom(), _row(100.0, 103.0, 99.0, 102.0), ZigZagSettings())
+    signal = evaluate_entry_candle(_bottom(), _row(100.0, 103.0, 99.0, 102.0), no_ema())
     assert signal is not None
     assert signal["entry_price"] == 102.0
     assert signal["stop_price"] == 90.0
@@ -121,30 +121,35 @@ def test_entry_green_candle():
     assert signal["entry_bar_open_time"] == BASE_MS + 16 * HOUR_MS
 
 
+def no_ema(**kwargs) -> ZigZagSettings:
+    """إعدادات لاختبار قواعد الشمعة وحدها (فلتر EMA200 له اختبارات مستقلة)."""
+    return ZigZagSettings(ema_filter=0, **kwargs)
+
+
 def test_entry_rejects_red_candle():
-    assert evaluate_entry_candle(_bottom(), _row(102.0, 103.0, 99.0, 100.0), ZigZagSettings()) is None
+    assert evaluate_entry_candle(_bottom(), _row(102.0, 103.0, 99.0, 100.0), no_ema()) is None
 
 
 def test_entry_rejects_doji():
     # جسم 0.02% ≤ 0.05% ⇒ دوجي رغم أنه أخضر
-    assert evaluate_entry_candle(_bottom(), _row(100.0, 101.0, 99.0, 100.02), ZigZagSettings()) is None
+    assert evaluate_entry_candle(_bottom(), _row(100.0, 101.0, 99.0, 100.02), no_ema()) is None
 
 
 def test_entry_rejects_close_below_bottom():
     # خضراء لكن إغلاقها تحت قاع الإشارة (فجوة سفلية)
-    assert evaluate_entry_candle(_bottom(low=95.0), _row(90.0, 96.0, 89.0, 94.5), ZigZagSettings()) is None
+    assert evaluate_entry_candle(_bottom(low=95.0), _row(90.0, 96.0, 89.0, 94.5), no_ema()) is None
 
 
 def test_min_stop_filter_off_by_default():
     # الافتراضي 0 = بلا فلتر: قاع قريب جدًا (2%) يبقى مقبولًا
-    settings = ZigZagSettings()
+    settings = no_ema()
     assert settings.min_stop_pct == 0
     signal = evaluate_entry_candle(_bottom(low=100.0), _row(100.0, 103.0, 99.0, 102.0), settings)
     assert signal is not None
 
 
 def test_min_stop_filter_rejects_close_bottom():
-    settings = ZigZagSettings(min_stop_pct=1.5)
+    settings = no_ema(min_stop_pct=1.5)
     # المسافة 102 ← 100 = 1.96% ≥ 1.5% ⇒ مقبول
     assert evaluate_entry_candle(_bottom(low=100.0), _row(100.0, 103.0, 99.0, 102.0), settings) is not None
     # المسافة 102 ← 101 = 0.98% < 1.5% ⇒ مرفوض

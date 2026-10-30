@@ -60,13 +60,27 @@ class ZigZagSettings:
     # 0 = معطّل (الافتراضي، وهو القرار المعتمد حاليًا). تشغيله من الوركفلو
     # وحده (ZZ_MIN_STOP_PCT=1.5) يقلّل الرسائل ويرفع نسبة الفوز بلا تعديل كود.
     min_stop_pct: float = _env_float("ZZ_MIN_STOP_PCT", 0.0)
+    # ── فلتر المتوسط 200 (2026-10-30، طلب المستخدم) ──
+    # لا إشارة إلا إذا كان إغلاق شمعة الدخول **فوق** EMA(ema_len).
+    # السبب: في الهبوط العام تكون كل الأزواج تحت المتوسط، فتصدر مئات الإشارات
+    # المتزامنة (246 إشارة في ثانية واحدة في 2026-10-30) ثم تُوقف كلها في نفس
+    # الشمعة. الفلتر يحصر الإشارات في الاتجاه الصاعد فقط.
+    # 0 = تعطيل الفلتر. عند نقص البيانات (أقل من ema_len شمعة) تُرفض الإشارة
+    # احتياطًا (لا نُصدر إشارة على متوسط غير مكتمل).
+    ema_filter: int = _env_int("ZZ_EMA_FILTER", 1)
+    ema_len: int = _env_int("ZZ_EMA_LEN", 200)
+
+    @property
+    def ema_enabled(self) -> bool:
+        return self.ema_filter != 0 and self.ema_len > 1
 
     def describe(self) -> str:
+        ema_part = f" • فوق EMA{self.ema_len}" if self.ema_enabled else ""
         return (
             f"{STRATEGY_LABEL}: قاع أدنى {self.depth} شمعة • "
             f"هدف +{self.target_pct:g}% (لمس) • خسارة بإغلاق تحت القاع • "
             f"دوجي ≤ {self.doji_body_pct:g}% • "
-            f"أدنى وقف {self.min_stop_pct:g}%"
+            f"أدنى وقف {self.min_stop_pct:g}%{ema_part}"
         )
 
 
@@ -111,8 +125,43 @@ def next_closed_bar(closed_df: pd.DataFrame, bottom_open_time: int) -> pd.Series
     return match.iloc[-1]
 
 
+def _note_rejection(rejected: dict | None, reason: str) -> None:
+    """يسجّل سبب رفض الإشارة (تعداد في التقرير اليومي) — لا يغيّر أي منطق."""
+    if isinstance(rejected, dict):
+        rejected["reason"] = reason
+
+
+def ema_series(closes: pd.Series, length: int) -> pd.Series:
+    """EMA مطابق لـ ta.ema في Pine: ewm(span=length, adjust=False)."""
+    return closes.astype("float64").ewm(span=int(length), adjust=False).mean()
+
+
+def ema_at_bar(closed_df: pd.DataFrame | None, length: int, bar_open_time: int) -> float | None:
+    """قيمة EMA عند شمعة محددة، محسوبة من الإغلاقات حتى تلك الشمعة فقط.
+
+    بلا نظر للمستقبل: لا تُستخدم أي شمعة بعد شمعة الدخول (نفس انضباط القاع).
+    تُرجع None إذا لم توجد الشمعة أو كانت الشموع المتاحة أقل من `length`
+    (متوسط غير مكتمل ⇒ لا تُبنى عليه إشارة).
+    """
+    if closed_df is None or closed_df.empty or int(length) <= 1:
+        return None
+    times = closed_df["open_time"].to_numpy()
+    matches = np.nonzero(times == int(bar_open_time))[0]
+    if matches.size == 0:
+        return None
+    pos = int(matches[-1])
+    if pos + 1 < int(length):
+        return None
+    value = float(ema_series(closed_df["close"].iloc[: pos + 1], int(length)).iloc[-1])
+    return value if np.isfinite(value) else None
+
+
 def evaluate_entry_candle(
-    bottom: dict, next_row: pd.Series, settings: ZigZagSettings
+    bottom: dict,
+    next_row: pd.Series,
+    settings: ZigZagSettings,
+    ema_value: float | None = None,
+    rejected: dict | None = None,
 ) -> dict | None:
     """تقييم الشمعة التالية للقاع: خضراء وغير دوجي ⇒ إشارة دخول.
 
@@ -126,11 +175,23 @@ def evaluate_entry_candle(
 
     body_pct = abs(close_price - open_price) / open_price * 100.0
     if close_price <= open_price:                      # حمراء
+        _note_rejection(rejected, "red")
         return None
     if body_pct <= settings.doji_body_pct:             # دوجي
+        _note_rejection(rejected, "doji")
         return None
     if close_price <= float(bottom["low"]):            # إغلاق تحت القاع
+        _note_rejection(rejected, "below_bottom")
         return None
+
+    # ── فلتر المتوسط 200: تحت المتوسط ⇒ لا إشارة ──
+    if settings.ema_enabled:
+        if ema_value is None or not np.isfinite(ema_value):
+            _note_rejection(rejected, "ema_unknown")
+            return None
+        if close_price <= float(ema_value):
+            _note_rejection(rejected, "below_ema")
+            return None
 
     entry_price = close_price
     stop_price = float(bottom["low"])
@@ -149,6 +210,7 @@ def evaluate_entry_candle(
         "entry_bar_open_time": int(next_row["open_time"]),
         "entry_time": int(next_row["close_time"]),
         "doji_body_pct": body_pct,
+        "ema_value": float(ema_value) if (settings.ema_enabled and ema_value is not None) else None,
     }
 
 
