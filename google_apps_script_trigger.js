@@ -169,3 +169,32 @@ function deleteMultiWorkflowTriggers() {
     }
   }
 }
+
+
+/**
+ * ⚡ الأسرع: مشغّل كل دقيقة (2026-10-30) — لتسليم «لمس الهدف» خلال ~60-90 ثانية.
+ *
+ * لماذا؟ كود البوت يفحص شموع الدقيقة ويرسل لحظة اللمس، لكن جدولة GitHub cron غير
+ * منتظمة عمليًا (قياس فعلي: 2–66 دقيقة بين تشغيل وآخر)، فتصل الرسالة متأخرة
+ * 18–37 دقيقة رغم أن السعر والوقت المسجّلين هما لحظة اللمس الحقيقية.
+ *
+ * الاستخدام:
+ *   1) Properties: GITHUB_TOKEN (+ اختياري GITHUB_OWNER/REPO) كما في الدوال السابقة.
+ *   2) شغّل createOneMinuteMultiTrigger مرة واحدة ووافق على الصلاحيات.
+ * ملاحظات الحصص (حساب Google عادي):
+ *   - 1440 تنفيذ/يوم × ~1.5 ثانية ≈ 36 دقيقة/يوم (الحد 90 دقيقة/يوم) ✓
+ *   - UrlFetchApp: ~2900 نداء/يوم (الحد 20000) ✓
+ *   - المستودع public ⇒ دقائق GitHub Actions مجانية.
+ */
+function createOneMinuteMultiTrigger() {
+  deleteMultiWorkflowTriggers();
+  const handler = 'triggerConfiguredWorkflows';
+  ScriptApp.newTrigger(handler).timeBased().everyMinutes(1).create();
+  console.log('تم إنشاء مشغّل كل دقيقة — ستصلك رسالة الهدف خلال ~1 دقيقة من اللمس.');
+}
+
+/** بديل بلا Google Apps Script: cron-job.org كل دقيقة يطلب:
+ *  POST https://api.github.com/repos/turky4500/binance-spot-usdt-signal-bot/actions/workflows/zigzag-signal-bot-cron.yml/dispatches
+ *  Header: Authorization: Bearer <TOKEN> , Accept: application/vnd.github+json
+ *  Body: {"ref":"main"}
+ */
