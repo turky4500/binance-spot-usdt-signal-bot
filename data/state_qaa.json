@@ -159,27 +159,10 @@
     "UNIUSDT": 1793232000000,
     "ETHFIUSDT": 1793232000000,
     "FLUXUSDT": 1793232000000,
-    "MORPHOUSDT": 1793318400000
+    "MORPHOUSDT": 1793318400000,
+    "JSTUSDT": 1793318400000
   },
-  "open_trades": {
-    "JSTUSDT": {
-      "trade_id": "JSTUSDT-1793145600000",
-      "symbol": "JSTUSDT",
-      "entry_price": 0.14103,
-      "stop_price": 0.13648,
-      "pivot_stop": 0.13648,
-      "target_price": 0.15012999999999999,
-      "stop_dist_pct": 3.226263915478975,
-      "size_suggest_pct": 0.30995604395604404,
-      "entry_time": 1793231999999,
-      "entry_bar_open_time": 1793145600000,
-      "last_check_ms": 1793327640000,
-      "peak_price": 0.14442,
-      "last_stop_alert_price": 0.13648,
-      "stop_updates_count": 0,
-      "halal_verdict": "⛔ غير مباح"
-    }
-  },
+  "open_trades": {},
   "event_log": [
     {
       "type": "entry",
@@ -2560,6 +2543,11 @@
       "type": "exit_loss",
       "symbol": "PROMUSDT",
       "time_ms": 1793319539999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "JSTUSDT",
+      "time_ms": 1793329319999
     }
   ],
   "daily_report": {
