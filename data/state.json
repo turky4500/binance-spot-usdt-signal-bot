@@ -713,7 +713,8 @@
     "ALABBUSDT": 1793347200000,
     "QNTBUSDT": 1793347200000,
     "AVGOBUSDT": 1793361600000,
-    "FLNCBUSDT": 1793361600000
+    "FLNCBUSDT": 1793361600000,
+    "ALPINEUSDT": 1793361600000
   },
   "open_trades": {
     "SOLVUSDT": {
@@ -733,7 +734,7 @@
       ],
       "entry_time": 1792137599999,
       "entry_bar_open_time": 1792123200000,
-      "last_target_check_ms": 1793373480000,
+      "last_target_check_ms": 1793373780000,
       "atr_at_entry": 0.00010755741164504311,
       "trend_length": 89,
       "peak_price": 0.00544,
@@ -761,7 +762,7 @@
       ],
       "entry_time": 1792555199999,
       "entry_bar_open_time": 1792540800000,
-      "last_target_check_ms": 1793373480000,
+      "last_target_check_ms": 1793373780000,
       "atr_at_entry": 9.612479510422495e-09,
       "trend_length": 89,
       "peak_price": 3.9e-07,
@@ -784,7 +785,7 @@
       ],
       "entry_time": 1792583999999,
       "entry_bar_open_time": 1792569600000,
-      "last_target_check_ms": 1793373480000,
+      "last_target_check_ms": 1793373780000,
       "atr_at_entry": 0.1928127939981249,
       "trend_length": 89,
       "peak_price": 6.019,
@@ -807,7 +808,7 @@
       ],
       "entry_time": 1792771199999,
       "entry_bar_open_time": 1792756800000,
-      "last_target_check_ms": 1793373480000,
+      "last_target_check_ms": 1793373780000,
       "atr_at_entry": 0.0010607132397463422,
       "trend_length": 89,
       "peak_price": 0.052,
@@ -835,7 +836,7 @@
       ],
       "entry_time": 1792871999999,
       "entry_bar_open_time": 1792857600000,
-      "last_target_check_ms": 1793373480000,
+      "last_target_check_ms": 1793373780000,
       "atr_at_entry": 0.0014242068016146194,
       "trend_length": 89,
       "peak_price": 0.0986,
@@ -863,7 +864,7 @@
       ],
       "entry_time": 1793073599999,
       "entry_bar_open_time": 1793059200000,
-      "last_target_check_ms": 1793373480000,
+      "last_target_check_ms": 1793373780000,
       "atr_at_entry": 0.001324462235549822,
       "trend_length": 89,
       "peak_price": 0.0336,
@@ -886,7 +887,7 @@
       ],
       "entry_time": 1793102399999,
       "entry_bar_open_time": 1793088000000,
-      "last_target_check_ms": 1793373480000,
+      "last_target_check_ms": 1793373780000,
       "atr_at_entry": 0.7974423988879291,
       "trend_length": 89,
       "peak_price": 54.44,
@@ -914,7 +915,7 @@
       ],
       "entry_time": 1793102399999,
       "entry_bar_open_time": 1793088000000,
-      "last_target_check_ms": 1793373480000,
+      "last_target_check_ms": 1793373780000,
       "atr_at_entry": 2.94938144424134,
       "trend_length": 89,
       "peak_price": 166.26,
@@ -942,7 +943,7 @@
       ],
       "entry_time": 1793116799999,
       "entry_bar_open_time": 1793102400000,
-      "last_target_check_ms": 1793373480000,
+      "last_target_check_ms": 1793373780000,
       "atr_at_entry": 2.025482379158095,
       "trend_length": 89,
       "peak_price": 167.14,
@@ -965,7 +966,7 @@
       ],
       "entry_time": 1793116799999,
       "entry_bar_open_time": 1793102400000,
-      "last_target_check_ms": 1793373480000,
+      "last_target_check_ms": 1793373780000,
       "atr_at_entry": 1.221961771738174,
       "trend_length": 89,
       "peak_price": 61.15,
@@ -988,7 +989,7 @@
       ],
       "entry_time": 1793116799999,
       "entry_bar_open_time": 1793102400000,
-      "last_target_check_ms": 1793373480000,
+      "last_target_check_ms": 1793373780000,
       "atr_at_entry": 9.238349827877428,
       "trend_length": 89,
       "peak_price": 402.11,
@@ -1011,7 +1012,7 @@
       ],
       "entry_time": 1793159999999,
       "entry_bar_open_time": 1793145600000,
-      "last_target_check_ms": 1793373480000,
+      "last_target_check_ms": 1793373780000,
       "atr_at_entry": 0.6716302277376028,
       "trend_length": 89,
       "peak_price": 14.05,
@@ -1034,7 +1035,7 @@
       ],
       "entry_time": 1793174399999,
       "entry_bar_open_time": 1793160000000,
-      "last_target_check_ms": 1793373480000,
+      "last_target_check_ms": 1793373780000,
       "atr_at_entry": 0.0010680265263892502,
       "trend_length": 89,
       "peak_price": 0.07134,
@@ -1057,7 +1058,7 @@
       ],
       "entry_time": 1793203199999,
       "entry_bar_open_time": 1793188800000,
-      "last_target_check_ms": 1793373480000,
+      "last_target_check_ms": 1793373780000,
       "atr_at_entry": 0.0034819699569472507,
       "trend_length": 89,
       "peak_price": 0.152,
@@ -1080,7 +1081,7 @@
       ],
       "entry_time": 1793275199999,
       "entry_bar_open_time": 1793260800000,
-      "last_target_check_ms": 1793373480000,
+      "last_target_check_ms": 1793373780000,
       "atr_at_entry": 0.0007110296694667229,
       "trend_length": 89,
       "peak_price": 0.03004,
@@ -1103,7 +1104,7 @@
       ],
       "entry_time": 1793289599999,
       "entry_bar_open_time": 1793275200000,
-      "last_target_check_ms": 1793373480000,
+      "last_target_check_ms": 1793373780000,
       "atr_at_entry": 0.3677571590922785,
       "trend_length": 89,
       "peak_price": 57.77,
@@ -1126,41 +1127,12 @@
       ],
       "entry_time": 1793332799999,
       "entry_bar_open_time": 1793318400000,
-      "last_target_check_ms": 1793373480000,
+      "last_target_check_ms": 1793373780000,
       "atr_at_entry": 0.011329972140691575,
       "trend_length": 89,
       "peak_price": 0.723,
       "halal_verdict": "⛔ غير مباح",
       "silent": true
-    },
-    "ALPINEUSDT": {
-      "trade_id": "ALPINEUSDT-1793332800000",
-      "symbol": "ALPINEUSDT",
-      "entry_price": 0.333,
-      "stop_price": 0.30626817525346817,
-      "targets": [
-        0.360086090024794,
-        0.3871721800495881,
-        0.4142582700743821
-      ],
-      "hit": [
-        true,
-        true,
-        false
-      ],
-      "entry_time": 1793347199999,
-      "entry_bar_open_time": 1793332800000,
-      "last_target_check_ms": 1793373480000,
-      "atr_at_entry": 0.005417218004958806,
-      "trend_length": 89,
-      "peak_price": 0.4,
-      "halal_verdict": "ℹ️ لا يوجد حكم",
-      "silent": true,
-      "hit_times": [
-        1793350079999,
-        1793352659999,
-        null
-      ]
     },
     "SOXSBUSDT": {
       "trade_id": "SOXSBUSDT-1793347200000",
@@ -1179,10 +1151,10 @@
       ],
       "entry_time": 1793361599999,
       "entry_bar_open_time": 1793347200000,
-      "last_target_check_ms": 1793373480000,
+      "last_target_check_ms": 1793373780000,
       "atr_at_entry": 0.9081023736189024,
       "trend_length": 89,
-      "peak_price": 51.7,
+      "peak_price": 51.76,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     }
@@ -7817,6 +7789,11 @@
       "type": "exit_loss",
       "symbol": "AMATBUSDT",
       "time_ms": 1793372699999
+    },
+    {
+      "type": "exit_neutral",
+      "symbol": "ALPINEUSDT",
+      "time_ms": 1793373599999
     }
   ],
   "daily_report": {
@@ -7962,6 +7939,7 @@
     "FLNCBUSDT": 1793712479999,
     "LITEBUSDT": 1793715899999,
     "AAOIBUSDT": 1793715959999,
-    "AMATBUSDT": 1793718299999
+    "AMATBUSDT": 1793718299999,
+    "ALPINEUSDT": 1793719199999
   }
 }
