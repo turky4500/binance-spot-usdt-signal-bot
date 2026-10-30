@@ -3528,6 +3528,11 @@
       "type": "exit_loss",
       "symbol": "CGPTUSDT",
       "time_ms": 1793375999999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "SOMIUSDT",
+      "time_ms": 1793379599999
     }
   ],
   "daily_report": {
@@ -3648,7 +3653,7 @@
     "CELRUSDT": 1793318400000,
     "CETUSUSDT": 1793318400000,
     "CFGUSDT": 1793304000000,
-    "CGPTUSDT": 1793358000000,
+    "CGPTUSDT": 1793372400000,
     "CHZUSDT": 1793318400000,
     "CKBUSDT": 1793318400000,
     "COINBUSDT": 1793318400000,
@@ -3707,7 +3712,7 @@
     "HEIUSDT": 1793304000000,
     "HEMIUSDT": 1793318400000,
     "HIVEUSDT": 1793318400000,
-    "HMSTRUSDT": 1793318400000,
+    "HMSTRUSDT": 1793372400000,
     "HOLOUSDT": 1793318400000,
     "HOMEUSDT": 1793318400000,
     "HOODBUSDT": 1793307600000,
@@ -3735,7 +3740,7 @@
     "LAUSDT": 1793304000000,
     "LAYERUSDT": 1793318400000,
     "LINEAUSDT": 1793318400000,
-    "LISTAUSDT": 1793318400000,
+    "LISTAUSDT": 1793372400000,
     "LPTUSDT": 1793318400000,
     "LQTYUSDT": 1793318400000,
     "LTCUSDT": 1793318400000,
@@ -3801,13 +3806,13 @@
     "REUSDT": 1793318400000,
     "REZUSDT": 1793318400000,
     "RIFUSDT": 1793325600000,
-    "RLCUSDT": 1793318400000,
+    "RLCUSDT": 1793372400000,
     "ROBOUSDT": 1793318400000,
     "RONINUSDT": 1793318400000,
     "ROSEUSDT": 1793318400000,
     "RPLUSDT": 1793318400000,
     "RSRUSDT": 1793304000000,
-    "RUNEUSDT": 1793304000000,
+    "RUNEUSDT": 1793372400000,
     "RVNUSDT": 1793318400000,
     "RWUSDUSDT": 1793307600000,
     "SAGAUSDT": 1793318400000,
@@ -3922,7 +3927,7 @@
     "ENAUSDT": 1793318400000,
     "FLUXUSDT": 1793318400000,
     "FRAXUSDT": 1793318400000,
-    "GLMRUSDT": 1793318400000,
+    "GLMRUSDT": 1793372400000,
     "GNSUSDT": 1793314800000,
     "HYPERUSDT": 1793318400000,
     "HYPEUSDT": 1793318400000,
@@ -4006,7 +4011,7 @@
       "bottom_bar_open_time": 1793300400000,
       "entry_bar_open_time": 1793304000000,
       "entry_time": 1793307599999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 552.66,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4021,7 +4026,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 9.57e-06,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4036,7 +4041,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 0.1789,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4051,7 +4056,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 722.08,
       "halal_verdict": "⛔ غير مباح",
       "silent": false
@@ -4066,7 +4071,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 0.02117,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4081,7 +4086,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 3.11,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4096,7 +4101,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 1.513,
       "halal_verdict": "⛔ غير مباح",
       "silent": false
@@ -4111,7 +4116,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 0.02352,
       "halal_verdict": "✅ مباح",
       "silent": false
@@ -4126,7 +4131,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 0.001993,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4141,7 +4146,7 @@
       "bottom_bar_open_time": 1793307600000,
       "entry_bar_open_time": 1793311200000,
       "entry_time": 1793314799999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 0.06966,
       "halal_verdict": "⛔ غير مباح",
       "silent": false
@@ -4156,7 +4161,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 4.358e-05,
       "halal_verdict": "⛔ غير مباح",
       "silent": false
@@ -4171,7 +4176,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 0.00121,
       "halal_verdict": "⛔ غير مباح",
       "silent": false
@@ -4186,7 +4191,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 0.0685,
       "halal_verdict": "✅ مباح",
       "silent": false
@@ -4201,7 +4206,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 0.04869,
       "halal_verdict": "✅ مباح",
       "silent": false
@@ -4216,7 +4221,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 0.01745,
       "halal_verdict": "⛔ غير مباح",
       "silent": false
@@ -4231,7 +4236,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 0.005924,
       "halal_verdict": "✅ مباح",
       "silent": false
@@ -4246,7 +4251,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 0.001975,
       "halal_verdict": "✅ مباح",
       "silent": false
@@ -4261,7 +4266,7 @@
       "bottom_bar_open_time": 1793318400000,
       "entry_bar_open_time": 1793322000000,
       "entry_time": 1793325599999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 0.000419,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4276,7 +4281,7 @@
       "bottom_bar_open_time": 1793318400000,
       "entry_bar_open_time": 1793322000000,
       "entry_time": 1793325599999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 0.0271,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4291,7 +4296,7 @@
       "bottom_bar_open_time": 1793318400000,
       "entry_bar_open_time": 1793322000000,
       "entry_time": 1793325599999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 0.3081,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4306,7 +4311,7 @@
       "bottom_bar_open_time": 1793318400000,
       "entry_bar_open_time": 1793322000000,
       "entry_time": 1793325599999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 0.01852,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4321,35 +4326,18 @@
       "bottom_bar_open_time": 1793343600000,
       "entry_bar_open_time": 1793347200000,
       "entry_time": 1793350799999,
-      "last_check_ms": 1793379420000,
+      "last_check_ms": 1793379720000,
       "max_price": 17.01,
       "halal_verdict": "ℹ️ لا يوجد حكم",
-      "silent": false
-    },
-    "SOMIUSDT": {
-      "trade_id": "SOMIUSDT-1793368800000",
-      "symbol": "SOMIUSDT",
-      "entry_price": 0.1865,
-      "target_price": 0.19130000000000003,
-      "stop_price": 0.1833,
-      "bottom_low": 0.1833,
-      "bottom_bar_open_time": 1793365200000,
-      "entry_bar_open_time": 1793368800000,
-      "entry_time": 1793372399999,
-      "last_check_ms": 1793379420000,
-      "max_price": 0.1873,
-      "halal_verdict": "ℹ️ لا يوجد حكم",
-      "ema_value": 0.18349096743557514,
-      "pivot_label": "HL",
       "silent": false
     }
   },
   "rejection_stats": {
     "date": "2026-10-30",
     "counts": {
-      "below_ema": 12,
-      "red": 11,
-      "stop_too_wide": 1
+      "below_ema": 15,
+      "red": 13,
+      "stop_too_wide": 2
     }
   }
 }
