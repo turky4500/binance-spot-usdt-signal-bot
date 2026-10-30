@@ -1,0 +1,126 @@
+"""اختبارات محاور ZigZag++ [LD] (Depth/Deviation/Backstep) — 2026-10-30.
+
+المرجع: كود Pine الذي أرسله المستخدم. الهدفان:
+  1) صحة اكتشاف المحاور وتسمياتها (HH/HL/LH/LL) كما في المؤشر.
+  2) أن وضع `ZZ_BOTTOM_MODE=zigzag_ld` لا يدخل قبل تأكيد المحور (بلا نظر للمستقبل).
+"""
+from __future__ import annotations
+
+import sys
+from pathlib import Path
+
+import pandas as pd
+import pytest
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from src.zigzag import ZigZagSettings, find_latest_bottom  # noqa: E402
+from src.zigzag_ld import mt4_zigzag, provisional  # noqa: E402
+from test_zigzag_flow import make_bot  # noqa: E402
+
+HOUR_MS = 3_600_000
+BASE_MS = 1_699_999_200_000
+
+
+def path_df(points: list[float], step_bars: int = 3) -> pd.DataFrame:
+    """يبني شموعًا سعرية تمشي بين النقاط المعطاة (نقاط تحوّل) بخطوات شموع."""
+    closes: list[float] = []
+    for a, b in zip(points, points[1:]):
+        for k in range(step_bars):
+            closes.append(a + (b - a) * k / step_bars)
+    closes.append(points[-1])
+    n = len(closes)
+    return pd.DataFrame({
+        "open_time": [BASE_MS + i * HOUR_MS for i in range(n)],
+        "close_time": [BASE_MS + (i + 1) * HOUR_MS - 1 for i in range(n)],
+        "open": closes,
+        "high": [c + 0.4 for c in closes],
+        "low": [c - 0.4 for c in closes],
+        "close": closes,
+    })
+
+
+def test_detects_alternating_pivots():
+    df = path_df([120, 100, 118, 108, 130], step_bars=4)
+    pivots = mt4_zigzag(df["high"], df["low"], depth=3, deviation=1, backstep=1, point=1.0)
+    kinds = [p["kind"] for p in pivots]
+    assert kinds[:3] == ["L", "H", "L"]
+    assert pivots[0]["price"] == pytest.approx(99.6, abs=0.5)
+    assert pivots[1]["price"] == pytest.approx(118.4, abs=0.5)
+
+
+def test_higher_low_is_labelled_hl_and_lower_low_ll():
+    settings = ZigZagSettings(bottom_mode="zigzag_ld", depth=3, deviation=1, backstep=1)
+    # قاع أول ثم قاع أعلى ⇒ HL
+    df_hl = path_df([120, 100, 118, 108, 130], step_bars=4)
+    bottom_hl = find_latest_bottom(df_hl, settings, point=1.0)
+    assert bottom_hl is not None and bottom_hl["pivot_label"] == "HL"
+
+    # قاع أول ثم قاع أدنى ⇒ LL
+    df_ll = path_df([120, 100, 118, 90, 130], step_bars=4)
+    bottom_ll = find_latest_bottom(df_ll, settings, point=1.0)
+    assert bottom_ll is not None and bottom_ll["pivot_label"] == "LL"
+
+
+def test_pivot_bottom_exposes_confirmation_bar():
+    settings = ZigZagSettings(bottom_mode="zigzag_ld", depth=3, deviation=1, backstep=2)
+    df = path_df([120, 100, 118, 108, 130], step_bars=4)
+    bottom = find_latest_bottom(df, settings, point=1.0)
+    assert bottom is not None
+    assert bottom["confirm_open_time"] > bottom["bar_open_time"], "التأكيد يجب أن يكون بعد شمعة القاع"
+
+
+def test_low12_mode_is_unchanged_by_default():
+    settings = ZigZagSettings()
+    assert settings.bottom_mode == "low12" and settings.pivot_mode is False
+    assert "أدنى قاع" in settings.describe()
+
+
+def test_pivot_mode_enters_only_after_confirmation(tmp_path):
+    bot = make_bot(tmp_path)
+    bot.settings = ZigZagSettings(bottom_mode="zigzag_ld", depth=3, deviation=1, backstep=2)
+    bot.settings.ema_filter = 0
+    bot.symbols = ["AAAUSDT"]
+
+    df = path_df([120, 100, 118, 108, 130, 142], step_bars=4)
+    # شمعة التأكيد نفسها: يجب ألّا يدخل
+    confirm_idx = df.index[df["open_time"] == find_latest_bottom(
+        df, bot.settings, point=1.0)["confirm_open_time"]][0]
+    bot.process_new_bottoms({"AAAUSDT": df.iloc[: confirm_idx + 1]}, int(df["close_time"].iloc[confirm_idx]) + 1)
+    assert "AAAUSDT" not in bot.state["open_signals"]
+
+    # بعد التأكيد بشمعة خضراء (نضبط الشمعة الأخيرة خضراء صراحةً): يدخل
+    df = df.copy()
+    df.loc[df.index[-1], "open"] = float(df["close"].iloc[-1]) * 0.99
+    bot.process_new_bottoms({"AAAUSDT": df}, int(df["close_time"].iloc[-1]) + 1)
+    assert "AAAUSDT" in bot.state["open_signals"]
+    signal = bot.state["open_signals"]["AAAUSDT"]
+    assert signal["pivot_label"] in ("HL", "LL")
+    assert signal["stop_price"] < signal["entry_price"]
+
+
+def test_provisional_matches_indicator_labels():
+    df = path_df([120, 100, 118, 108, 130], step_bars=4)
+    pivots = mt4_zigzag(df["high"], df["low"], depth=3, deviation=1, backstep=1, point=1.0)
+    state = provisional(df["high"].to_numpy(), df["low"].to_numpy(), pivots, len(df))
+    assert state is not None
+    assert state["direction"] in (-1, 1)
+    assert state["label"] in ("HH", "HL", "LH", "LL")
+
+
+def test_max_stop_filter_rejects_wide_pivot_stop():
+    """قاع مؤشر ZigZag قد يكون بعيدًا ⇒ فلتر أقصى مسافة وقف يرفضه."""
+    from src.zigzag import evaluate_entry_candle
+
+    df = path_df([120, 100, 118, 108, 130], step_bars=4).copy()
+    df.loc[df.index[-1], "open"] = float(df["close"].iloc[-1]) * 0.99   # شمعة خضراء
+    bottom = {"bar_index": 12, "bar_open_time": 0, "bar_close_time": 0, "low": 108.0}
+    row = df.iloc[-1]
+    loose = ZigZagSettings(ema_filter=0, max_stop_pct=0)
+    assert evaluate_entry_candle(bottom, row, loose) is not None
+
+    tight = ZigZagSettings(ema_filter=0, max_stop_pct=3.0)   # الوقف هنا ~24% بعيد
+    rejected: dict = {}
+    assert evaluate_entry_candle(bottom, row, tight, rejected=rejected) is None
+    assert rejected["reason"] == "stop_too_wide"

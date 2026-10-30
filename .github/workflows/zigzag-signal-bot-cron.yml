@@ -38,7 +38,13 @@ jobs:
       ZZ_STATE_FILE: data/state_zigzag.json
       ZZ_HALAL_DIR: data/zigzag
       # ── قواعد النظام ──
-      ZZ_DEPTH: 12                  # القاع = أدنى قاع في آخر 12 شمعة 1H
+      ZZ_DEPTH: 12                  # عمق ZigZag (Depth)
+      # تعريف القاع: low12 (الحالي) أو zigzag_ld (محاور ZigZag++ [LD] الحقيقية)
+      # لتفعيل محاور المؤشر: ZZ_BOTTOM_MODE: "zigzag_ld" + ZZ_MAX_STOP_PCT: "3"
+      ZZ_BOTTOM_MODE: "low12"
+      ZZ_DEVIATION: "5"
+      ZZ_BACKSTEP: "2"
+      ZZ_MAX_STOP_PCT: "0"
       ZZ_TARGET_PCT: "2"            # الهدف +2% من سعر الدخول (لمس)
       ZZ_DOJI_BODY_PCT: "0.05"      # الدوجي: جسم ≤ 0.05% من السعر
       ZZ_LOOKBACK_BARS: 6           # أقصى عمر للقاع عند البحث

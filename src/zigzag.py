@@ -69,6 +69,20 @@ class ZigZagSettings:
     # احتياطًا (لا نُصدر إشارة على متوسط غير مكتمل).
     ema_filter: int = _env_int("ZZ_EMA_FILTER", 1)
     ema_len: int = _env_int("ZZ_EMA_LEN", 200)
+    # ── تعريف القاع (2026-10-30) ──
+    # "low12"    : أدنى قاع في Depth شمعة (الوضع السابق — افتراضي حتى اعتماد الأرقام)
+    # "zigzag_ld": محاور ZigZag++ [LD] الحقيقية (Depth/Deviation/Backstep) — يطابق
+    #              المؤشر على TradingView شمعة بشمعة (تحقق JPMBUSDT: HH 346.16، HL 342.76)
+    bottom_mode: str = os.getenv("ZZ_BOTTOM_MODE", "low12").strip().lower()
+    # أقصى مسافة وقف مقبولة % (0 = معطّل). يهمّ في وضع المحاور لأن قاع ZigZag قد
+    # يكون بعيدًا جدًا (خسارة −6.4% مقابل ربح +1.8% في الباك-تست بلا حد).
+    max_stop_pct: float = _env_float("ZZ_MAX_STOP_PCT", 0.0)
+    deviation: int = _env_int("ZZ_DEVIATION", 5)      # Deviation (بنقاط السعر: × tickSize)
+    backstep: int = _env_int("ZZ_BACKSTEP", 2)        # Backstep (شموت تأكيد المحور)
+
+    @property
+    def pivot_mode(self) -> bool:
+        return self.bottom_mode in ("zigzag_ld", "pivot", "zigzag")
 
     @property
     def ema_enabled(self) -> bool:
@@ -76,8 +90,9 @@ class ZigZagSettings:
 
     def describe(self) -> str:
         ema_part = f" • فوق EMA{self.ema_len}" if self.ema_enabled else ""
+        bottom_part = "محاور ZigZag++ [LD]" if self.pivot_mode else f"أدنى قاع {self.depth} شمعة"
         return (
-            f"{STRATEGY_LABEL}: قاع أدنى {self.depth} شمعة • "
+            f"{STRATEGY_LABEL}: {bottom_part} • "
             f"هدف +{self.target_pct:g}% (لمس) • خسارة بإغلاق تحت القاع • "
             f"دوجي ≤ {self.doji_body_pct:g}% • "
             f"أدنى وقف {self.min_stop_pct:g}%{ema_part}"
@@ -87,7 +102,11 @@ class ZigZagSettings:
 # ─────────────────────────────────────────────────────────────────────────────
 # اكتشاف القاع
 # ─────────────────────────────────────────────────────────────────────────────
-def find_latest_bottom(closed_df: pd.DataFrame, settings: ZigZagSettings) -> dict | None:
+def find_latest_bottom(
+    closed_df: pd.DataFrame,
+    settings: ZigZagSettings,
+    point: float | None = None,
+) -> dict | None:
     """آخر قاع مغلق: أدنى سعر في آخر `depth` شمعة (بلا نظر للمستقبل).
 
     نفحص فقط آخر `lookback_bars` شمعة — القيعان الأقدم تُهمَل لأنها لم تعد
@@ -96,6 +115,9 @@ def find_latest_bottom(closed_df: pd.DataFrame, settings: ZigZagSettings) -> dic
     n = len(closed_df)
     if n < settings.depth:
         return None
+
+    if settings.pivot_mode:
+        return _latest_pivot_low(closed_df, settings, point)
 
     lows = closed_df["low"].to_numpy(dtype="float64")
     start = max(settings.depth - 1, n - settings.lookback_bars)
@@ -114,6 +136,46 @@ def find_latest_bottom(closed_df: pd.DataFrame, settings: ZigZagSettings) -> dic
                 "low": float(row["low"]),
             }
     return None
+
+
+def _latest_pivot_low(
+    closed_df: pd.DataFrame, settings: ZigZagSettings, point: float | None
+) -> dict | None:
+    """آخر **قاع محوري مؤكد** بحسب ZigZag++ [LD] (Depth/Deviation/Backstep).
+
+    يُرجع نفس بنية القاع القديمة + حقول إضافية:
+        pivot_label: "HL" أو "LL" (وسم المؤشر)
+        confirm_open_time: وقت فتح الشمعة التي صار عندها المحور مؤكدًا
+                           (bar_index + backstep) — البوت لا يدخل قبلها (بلا نظر للمستقبل)
+    """
+    from src.zigzag_ld import mt4_zigzag
+
+    high = closed_df["high"].to_numpy(dtype="float64")
+    low = closed_df["low"].to_numpy(dtype="float64")
+    pivots = mt4_zigzag(
+        high, low,
+        depth=settings.depth,
+        deviation=settings.deviation,
+        backstep=settings.backstep,
+        point=float(point) if point else 0.01,
+    )
+    lows = [p for p in pivots if p["kind"] == "L"]
+    if not lows:
+        return None
+    pivot = lows[-1]
+    idx = int(pivot["bar"])
+    confirm_idx = min(idx + settings.backstep, len(closed_df) - 1)
+    previous_low = lows[-2]["price"] if len(lows) > 1 else None
+    label = "LL" if (previous_low is not None and pivot["price"] < previous_low) else "HL"
+    row = closed_df.iloc[idx]
+    return {
+        "bar_index": idx,
+        "bar_open_time": int(row["open_time"]),
+        "bar_close_time": int(row["close_time"]),
+        "low": float(pivot["price"]),
+        "pivot_label": label,
+        "confirm_open_time": int(closed_df.iloc[confirm_idx]["open_time"]),
+    }
 
 
 def next_closed_bar(closed_df: pd.DataFrame, bottom_open_time: int) -> pd.Series | None:
@@ -195,10 +257,13 @@ def evaluate_entry_candle(
 
     entry_price = close_price
     stop_price = float(bottom["low"])
-    if settings.min_stop_pct > 0:
-        stop_dist_pct = (entry_price - stop_price) / entry_price * 100.0
-        if stop_dist_pct < settings.min_stop_pct:   # قاع قريب جدًا — فلتر اختياري
-            return None
+    stop_dist_pct = (entry_price - stop_price) / entry_price * 100.0
+    if settings.min_stop_pct > 0 and stop_dist_pct < settings.min_stop_pct:
+        _note_rejection(rejected, "stop_too_narrow")   # قاع قريب جدًا — فلتر اختياري
+        return None
+    if settings.max_stop_pct > 0 and stop_dist_pct > settings.max_stop_pct:
+        _note_rejection(rejected, "stop_too_wide")      # قاع بعيد جدًا (وقف مكلف)
+        return None
     target_price = entry_price * (1.0 + settings.target_pct / 100.0)
 
     return {

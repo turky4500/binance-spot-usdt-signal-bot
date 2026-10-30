@@ -406,6 +406,9 @@ class ZigZagSignalBot:
 
     def _entry_text(self, signal: dict) -> str:
         verdict = signal.get("halal_verdict") or self.get_halal_verdict(signal["symbol"])
+        pivot_line = ""
+        if signal.get("pivot_label"):
+            pivot_line = f"🧩 القاع: {signal['pivot_label']} محوري (ZigZag++ [LD])\n"
         ema_line = ""
         ema_value = signal.get("ema_value")
         if ema_value and float(ema_value) > 0:
@@ -419,6 +422,7 @@ class ZigZagSignalBot:
             f"الوقف: {self._fmt(signal, signal['stop_price'])} — إغلاق تحت قاع الشمعة\n"
             f"شمعة القاع: {hhmm_local(int(signal['bottom_bar_open_time']), self.config.timezone_name)}"
             f" | شمعة الدخول: {hhmm_local(int(signal['entry_bar_open_time']), self.config.timezone_name)}\n"
+            f"{pivot_line}"
             f"{ema_line}"
             "\n"
             f"⏱ {stamp_ms(int(signal['entry_time']), self.config.timezone_name)}\n"
@@ -632,7 +636,13 @@ class ZigZagSignalBot:
             if closed_df is None or closed_df.empty:
                 continue
 
-            bottom = find_latest_bottom(closed_df, self.settings)
+            # Deviation في MT4 بوحدات النقطة = tickSize للزوج
+            point = 0.01
+            try:
+                point = float(self.price_ticks.get(symbol) or 0.01)
+            except (TypeError, ValueError):
+                point = 0.01
+            bottom = find_latest_bottom(closed_df, self.settings, point=point)
             if bottom is None:
                 continue
 
@@ -646,9 +656,13 @@ class ZigZagSignalBot:
                 self.store.save(self.state)
                 continue
 
-            next_row = next_closed_bar(closed_df, bottom["bar_open_time"])
+            if self.settings.pivot_mode:
+                # وضع المحاور: الدخول على أول شمعة مغلقة بعد تأكيد المحور (backstep)
+                next_row = self._pivot_entry_candle(closed_df, bottom)
+            else:
+                next_row = next_closed_bar(closed_df, bottom["bar_open_time"])
             if next_row is None:
-                # لم تُغلق شمعة الدخول بعد — ننتظر الدورة القادمة
+                # لم تتأكد الإشارة/لم تُغلق شمعة الدخول بعد — ننتظر الدورة القادمة
                 continue
 
             # منع الإشارات المتأخرة (توقف البوت أو بيانات قديمة)
@@ -698,6 +712,7 @@ class ZigZagSignalBot:
                 "max_price": candidate["entry_price"],
                 "halal_verdict": self.get_halal_verdict(symbol),
                 "ema_value": candidate.get("ema_value"),
+                "pivot_label": bottom.get("pivot_label"),
                 "silent": is_muted(),
             }
             open_signals[symbol] = signal
@@ -709,6 +724,15 @@ class ZigZagSignalBot:
             )
         # إرسال رسائل الدخول مجمّعة (رسالة واحدة تحوي كل إشارات هذه الدورة)
         self.flush_messages()
+
+    def _pivot_entry_candle(self, closed_df, bottom: dict):
+        """وضع المحاور: آخر شمعة مغلقة، بشرط أن تكون بعد تأكيد المحور (بلا نظر للمستقبل)."""
+        if closed_df is None or closed_df.empty:
+            return None
+        last = closed_df.iloc[-1]
+        if int(last["open_time"]) <= int(bottom.get("confirm_open_time", 0)):
+            return None
+        return last
 
     def _count_rejection(self, reason: str, now_ms: int) -> None:
         """عدّاد أسباب رفض الإشارات (يظهر في التقرير اليومي) — لا يغيّر أي منطق."""
