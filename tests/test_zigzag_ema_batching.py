@@ -259,13 +259,16 @@ def test_exclude_file_removes_tokenized_stocks(tmp_path, monkeypatch):
 
 
 def test_missing_exclude_file_is_harmless(tmp_path, monkeypatch):
+    """غياب الملف لا يُعطّل النظام: قاعدة <تيكر>B تعمل وحدها."""
     import zigzag_bot
 
     monkeypatch.setattr(zigzag_bot, "ZZ_EXCLUDE_FILE", str(tmp_path / "nope.txt"))
+    monkeypatch.setattr(zigzag_bot, "ZZ_EXCLUDE_B_SUFFIX", True)
     bot = make_bot(tmp_path)
     bot.binance = FakeUniverseBinance()
     bot.refresh_symbols(force=True)
-    assert "SPYBUSDT" in bot.symbols
+    assert "BTCUSDT" in bot.symbols and "SOLUSDT" in bot.symbols
+    assert "SPYBUSDT" not in bot.symbols   # يُستبعد آليًا بنمط الأسهم المرمّزة
 
 
 def test_isolation_still_holds(tmp_path):
@@ -279,3 +282,61 @@ def test_isolation_still_holds(tmp_path):
     assert (tmp_path / "state_zigzag.json").exists()
     for other in ("state.json", "trades_log.csv", "state_qaa.json", "state_sa.json", "trades_log_sa.csv"):
         assert not (tmp_path / other).exists()
+
+
+# ─────────────────────────────────────────── استبعاد الأسهم المرمّزة (نمط <تيكر>B)
+class FakeMixedUniverse:
+    def get_spot_usdt_symbols(self, quote_asset="USDT"):
+        return ["BTCUSDT", "ARBUSDT", "SHIBUSDT", "SPYBUSDT", "JPMBUSDT", "INTCBUSDT", "NVDABUSDT"]
+
+    def get_price_ticks(self, quote_asset="USDT"):
+        return {}
+
+
+def test_tokenized_stock_detection_keeps_crypto():
+    import zigzag_bot
+
+    for symbol in ("SPYBUSDT", "JPMBUSDT", "INTCBUSDT", "NVDABUSDT"):
+        assert zigzag_bot.is_tokenized_stock_symbol(symbol) is True
+    for symbol in ("ARBUSDT", "CKBUSDT", "SHIBUSDT", "BNBUSDT", "SOLUSDT"):
+        assert zigzag_bot.is_tokenized_stock_symbol(symbol) is False
+
+
+def test_b_suffix_rule_excludes_tokenized_stocks(tmp_path, monkeypatch):
+    import zigzag_bot
+
+    monkeypatch.setattr(zigzag_bot, "ZZ_EXCLUDE_FILE", str(tmp_path / "none.txt"))
+    monkeypatch.setattr(zigzag_bot, "ZZ_EXCLUDE_B_SUFFIX", True)
+    bot = make_bot(tmp_path)
+    bot.binance = FakeMixedUniverse()
+    bot.refresh_symbols(force=True)
+
+    assert bot.symbols == ["BTCUSDT", "ARBUSDT", "SHIBUSDT"]
+
+
+def test_b_suffix_rule_can_be_disabled(tmp_path, monkeypatch):
+    import zigzag_bot
+
+    monkeypatch.setattr(zigzag_bot, "ZZ_EXCLUDE_FILE", str(tmp_path / "none.txt"))
+    monkeypatch.setattr(zigzag_bot, "ZZ_EXCLUDE_B_SUFFIX", False)
+    bot = make_bot(tmp_path)
+    bot.binance = FakeMixedUniverse()
+    bot.refresh_symbols(force=True)
+    assert "SPYBUSDT" in bot.symbols
+
+
+def test_forced_keep_override_in_exclude_file(tmp_path, monkeypatch):
+    """سطر «!SYMBOL» يُبقي الرمز حتى لو انتهت قاعدته بـ B."""
+    import zigzag_bot
+
+    exclude_file = tmp_path / "zz_exclude.txt"
+    exclude_file.write_text("!SPYBUSDT\n# تعليق\n", encoding="utf-8")
+    monkeypatch.setattr(zigzag_bot, "ZZ_EXCLUDE_FILE", str(exclude_file))
+    monkeypatch.setattr(zigzag_bot, "ZZ_EXCLUDE_B_SUFFIX", True)
+
+    bot = make_bot(tmp_path)
+    bot.binance = FakeMixedUniverse()
+    bot.refresh_symbols(force=True)
+
+    assert "SPYBUSDT" in bot.symbols
+    assert "JPMBUSDT" not in bot.symbols

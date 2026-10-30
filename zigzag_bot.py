@@ -61,6 +61,18 @@ ZZ_HALAL_DIR = os.getenv("ZZ_HALAL_DIR", "data/zigzag")
 # قائمة استبعاد يدوية (رموز أسهم/ETF مرمّزة، ذهب مرمّز، رموز غير مرغوبة).
 # ملف نصي بسيط: رمز في كل سطر، و«#» للتعليقات. الملف غير موجود = لا استبعاد.
 ZZ_EXCLUDE_FILE = os.getenv("ZZ_EXCLUDE_FILE", "config/zz_exclude.txt")
+# ── استبعاد الأسهم/الصناديق المرمّزة آليًا (2026-10-30) ──
+# Binance يسمّي الأصل المرمّز للأسهم/الصناديق بـ<التيكر>+B (SPYB, NVDAB, JPMB,
+# INTCB…). القائمة اليدوية وحدها لا تكفي: ظهرت رموز جديدة (JPMB/INTCB) بعد ساعة
+# من إضافة الملف. لذلك: أي أصل تنتهي قاعدته بحرف B يُستبعد افتراضيًا، ما لم يكن
+# في قائمة الإبقاء أدناه (عملات رقمية حقيقية) أو في ملف الاستبعاد بسطر «!SYMBOL».
+ZZ_EXCLUDE_B_SUFFIX = os.getenv("ZZ_EXCLUDE_B_SUFFIX", "1").strip().lower() not in (
+    "0", "false", "no", "off"
+)
+CRYPTO_B_BASES = frozenset({
+    "ARB", "BB", "BBB", "BNB", "BOTB", "CKB", "DGB", "MUB", "PENGB", "QNTB",
+    "SHIB", "TRB", "USDEB", "WENB", "YB",
+})
 
 # ── تجميع الرسائل (2026-10-30) ──
 # بدل رسالة لكل عملة، تُجمع كل إشارات الدورة في رسالة واحدة (أو عدة رسائل
@@ -97,17 +109,47 @@ def is_pegged_stable_symbol(symbol: str, quote_asset: str = "USDT") -> bool:
 
 def load_excluded_symbols(path: str) -> set[str]:
     """رموز مستبعدة من ملف نصي (سطر لكل رمز، «#» للتعليقات)."""
+    return set(load_exclusion_config(path)[0])
+
+
+def load_exclusion_config(path: str) -> tuple[set[str], set[str]]:
+    """يقرأ ملف الاستبعاد: يعيد (المستبعدة، المُبقاة إجباريًا).
+
+    الصيغة: رمز في كل سطر. السطر الذي يبدأ بـ«!» يعني «أبقِ هذا الرمز دائمًا»
+    (يُستخدم لاستثناء عملة رقمية من قاعدة استبعاد ما ينتهي بـ B).
+    """
     try:
         with open(path, encoding="utf-8") as handle:
             lines = handle.read().splitlines()
     except OSError:
-        return set()
-    out: set[str] = set()
+        return set(), set()
+    excluded: set[str] = set()
+    forced_keep: set[str] = set()
     for line in lines:
         token = line.split("#", 1)[0].strip().upper()
-        if token:
-            out.add(token)
-    return out
+        if not token:
+            continue
+        if token.startswith("!"):
+            forced_keep.add(token[1:].strip())
+        else:
+            excluded.add(token)
+    return excluded, forced_keep
+
+
+def is_tokenized_stock_symbol(symbol: str, quote_asset: str = "USDT") -> bool:
+    """هل الزوج لأصل تنتهي قاعدته بـ B (نمط أسهم/صناديق Binance المرمّزة)؟
+
+    المثال: SPYBUSDT / NVDABUSDT / JPMBUSDT ⇒ True
+            ARBUSDT / CKBUSDT / SOLUSDT   ⇒ False (ARB/CKB عملات رقمية)
+    """
+    symbol = (symbol or "").upper()
+    quote = (quote_asset or "USDT").upper()
+    if not symbol.endswith(quote) or len(symbol) <= len(quote):
+        return False
+    base = symbol[: -len(quote)]
+    if base in CRYPTO_B_BASES:
+        return False
+    return base.endswith("B")
 
 
 def pct_label(value: float) -> str:
@@ -174,8 +216,21 @@ class ZigZagSignalBot:
             self.symbols = list(all_symbols)
         pegged_excluded = len(all_symbols) - len(self.symbols)
 
-        # استبعاد يدوي (أسهم/ETF مرمّزة، ذهب مرمّز، رموز غير مرغوبة) — من ملف
-        blocklist = load_excluded_symbols(ZZ_EXCLUDE_FILE)
+        # استبعاد الأسهم/الصناديق المرمّزة آليًا (نمط <تيكر>B) — بلا حاجة لتحديث الملف
+        blocklist, forced_keep = load_exclusion_config(ZZ_EXCLUDE_FILE)
+        if ZZ_EXCLUDE_B_SUFFIX:
+            before = len(self.symbols)
+            self.symbols = [
+                s for s in self.symbols
+                if s.upper() in forced_keep
+                or not is_tokenized_stock_symbol(s, self.config.quote_asset)
+            ]
+            self.logger.info(
+                "ZigZag: استُثني %s رمزًا بنمط الأسهم المرمّزة (قاعدة تنتهي بـ B)",
+                before - len(self.symbols),
+            )
+
+        # استبعاد يدوي إضافي من الملف (رموز أخرى غير مرغوبة)
         if blocklist:
             before = len(self.symbols)
             self.symbols = [s for s in self.symbols if s.upper() not in blocklist]
