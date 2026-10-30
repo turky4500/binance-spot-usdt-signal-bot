@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1793145600000,
+  "last_processed_open_time": 1793232000000,
   "last_entry_bar_time": {
     "GTCUSDT": 1793059200000,
     "HUMAUSDT": 1793059200000,
@@ -84,7 +84,7 @@
   "last_exit_bar_time": {
     "GTCUSDT": 1793145600000,
     "HUMAUSDT": 1793145600000,
-    "PROMUSDT": 1792281600000,
+    "PROMUSDT": 1793318400000,
     "COMPUSDT": 1793232000000,
     "ENAUSDT": 1793059200000,
     "LSKUSDT": 1792454400000,
@@ -130,7 +130,7 @@
     "AMPUSDT": 1792800000000,
     "SENTUSDT": 1792800000000,
     "KMNOUSDT": 1792800000000,
-    "币安人生USDT": 1792800000000,
+    "币安人生USDT": 1793232000000,
     "BNSOLUSDT": 1792800000000,
     "SOLUSDT": 1792800000000,
     "TRBUSDT": 1792800000000,
@@ -158,43 +158,10 @@
     "TAOUSDT": 1793232000000,
     "UNIUSDT": 1793232000000,
     "ETHFIUSDT": 1793232000000,
-    "FLUXUSDT": 1793232000000
+    "FLUXUSDT": 1793232000000,
+    "MORPHOUSDT": 1793318400000
   },
   "open_trades": {
-    "币安人生USDT": {
-      "trade_id": "币安人生USDT-1792886400000",
-      "symbol": "币安人生USDT",
-      "entry_price": 0.5007,
-      "stop_price": 0.50278,
-      "pivot_stop": 0.4777,
-      "target_price": 0.5467000000000001,
-      "stop_dist_pct": 4.59356900339525,
-      "size_suggest_pct": 0.2176956521739129,
-      "entry_time": 1792972799999,
-      "entry_bar_open_time": 1792886400000,
-      "last_check_ms": 1793314860000,
-      "peak_price": 0.5465,
-      "last_stop_alert_price": 0.501768,
-      "stop_updates_count": 4,
-      "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
-    "MORPHOUSDT": {
-      "trade_id": "MORPHOUSDT-1793059200000",
-      "symbol": "MORPHOUSDT",
-      "entry_price": 2.191,
-      "stop_price": 2.1068000000000002,
-      "pivot_stop": 2.0,
-      "target_price": 2.5729999999999995,
-      "stop_dist_pct": 8.71748060246462,
-      "size_suggest_pct": 0.11471204188481686,
-      "entry_time": 1793145599999,
-      "entry_bar_open_time": 1793059200000,
-      "last_check_ms": 1793314860000,
-      "peak_price": 2.29,
-      "last_stop_alert_price": 2.09944,
-      "stop_updates_count": 4,
-      "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
     "JSTUSDT": {
       "trade_id": "JSTUSDT-1793145600000",
       "symbol": "JSTUSDT",
@@ -206,28 +173,11 @@
       "size_suggest_pct": 0.30995604395604404,
       "entry_time": 1793231999999,
       "entry_bar_open_time": 1793145600000,
-      "last_check_ms": 1793314860000,
+      "last_check_ms": 1793327640000,
       "peak_price": 0.14442,
       "last_stop_alert_price": 0.13648,
       "stop_updates_count": 0,
       "halal_verdict": "⛔ غير مباح"
-    },
-    "PROMUSDT": {
-      "trade_id": "PROMUSDT-1793145600000",
-      "symbol": "PROMUSDT",
-      "entry_price": 5.621,
-      "stop_price": 5.349800000000001,
-      "pivot_stop": 5.313,
-      "target_price": 6.237000000000002,
-      "stop_dist_pct": 5.479452054794533,
-      "size_suggest_pct": 0.1824999999999996,
-      "entry_time": 1793231999999,
-      "entry_bar_open_time": 1793145600000,
-      "last_check_ms": 1793314860000,
-      "peak_price": 5.815,
-      "last_stop_alert_price": 5.313,
-      "stop_updates_count": 0,
-      "halal_verdict": "✅ مباح"
     }
   },
   "event_log": [
@@ -2595,6 +2545,21 @@
       "type": "exit_loss",
       "symbol": "FLUXUSDT",
       "time_ms": 1793306579999
+    },
+    {
+      "type": "exit_win",
+      "symbol": "币安人生USDT",
+      "time_ms": 1793318159999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "MORPHOUSDT",
+      "time_ms": 1793319479999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "PROMUSDT",
+      "time_ms": 1793319539999
     }
   ],
   "daily_report": {
