@@ -1,0 +1,133 @@
+name: ZigZag Fast Watcher (كل دقيقة)
+
+# لماذا هذا الملف؟ جدولة GitHub cron غير منتظمة (قياس فعلي: 2–66 دقيقة بين تشغيل وآخر)،
+# فتتأخر رسالة «لمس الهدف» 18–37 دقيقة رغم أن الكود يفحص شموع الدقيقة ويرسل عند اللمس.
+# هذا الـ workflow يشغّل البوت في حلقة داخل مهمة واحدة كل ~60 ثانية ⇒ تأخير ≈ دقيقة.
+# يعمل 5 ساعات كحد أقصى لكل تشغيل (حد GitHub 6 ساعات) — أعد تشغيله عند الحاجة.
+# المستودع public ⇒ دقائق Actions مجانية.
+on:
+  workflow_dispatch:
+    inputs:
+      hours:
+        description: 'مدة المراقبة بالساعات (1-5)'
+        required: false
+        default: '5'
+  push:
+    paths:
+      - '.github/workflows/zigzag-watch-loop.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: zigzag-signal-bot-cron   # نفس مجموعة الكرون ⇒ لا تصادم على ملف الحالة
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      # ZigZag هو النظام الوحيد النشط رسائليًا الآن (بقية الأنظمة مُسكتة).
+      TELEGRAM_MUTE: "0"
+      TIMEZONE: Asia/Riyadh
+      BINANCE_BASE_URL: https://data-api.binance.vision
+      BINANCE_QUOTE_ASSET: USDT
+      POLL_SECONDS: 60
+      # 300 شمعة ساعة تكفي Depth=12 مع هامش كبير — وزن الطلب = 2
+      KLINE_LIMIT: 300
+      REQUEST_TIMEOUT: 20
+      MAX_WORKERS: 10
+      HALAL_REFRESH_HOURS: 6
+      LOG_LEVEL: INFO
+      # ── نظام ZigZag++ (ساعة) — مسارات مستقلة ──
+      ZZ_STATE_FILE: data/state_zigzag.json
+      ZZ_HALAL_DIR: data/zigzag
+      # ── قواعد النظام ──
+      ZZ_DEPTH: 12                  # عمق ZigZag (Depth)
+      # قاعدة المستخدم (2026-10-30): إشارة القاع ZigZag++ [LD] ⇒ الشمعة التالية خضراء ⇒
+      # الدخول بإغلاقها، وإن كانت حمراء/دوجي تُلغى الإشارة. (low12 = القاعدة القديمة)
+      ZZ_BOTTOM_MODE: "zigzag_ld"
+      ZZ_PIVOT_SOURCE: "live"       # live = الوسم لحظة ظهوره (قاعدة المستخدم) | confirmed = بعد backstep
+      ZZ_BOTTOM_BAR: "extreme"      # extreme = شمعة أدنى سعر (موضع الوسم) | detect = شمعة الاكتشاف
+      ZZ_DEVIATION: "5"
+      ZZ_BACKSTEP: "2"
+      ZZ_MAX_STOP_PCT: "2.5"        # ارفض الإشارة إذا كان القاع أبعد من 2.5% (وقف مكلف)
+      ZZ_TARGET_R: "1.5"            # الهدف = الدخول + 1.5 × (الدخول − القاع)
+      ZZ_TARGET_PCT: "2"            # الهدف +2% من سعر الدخول (لمس)
+      ZZ_DOJI_BODY_PCT: "0.05"      # الدوجي: جسم ≤ 0.05% من السعر
+      ZZ_LOOKBACK_BARS: 6           # أقصى عمر للقاع عند البحث
+      ZZ_MAX_ENTRY_AGE_HOURS: "2"   # رفض الإشارات الأقدم من ساعتين (توقف/بيانات قديمة)
+      ZZ_COMMISSION_SIDE_PCT: "0.1" # العمولة لكل جهة % (للدفتر فقط)
+      # فلتر اختياري: أدنى مسافة بين الدخول وقاع الإشارة %. 0 = معطّل (المعتمد حاليًا)
+      ZZ_MIN_STOP_PCT: "0"
+      # ── فلتر المتوسط 200 (2026-10-30): لا إشارة إلا فوق EMA200 ──
+      # السبب: 246 إشارة في ثانية واحدة عند هبوط سوقي عام ثم 141 خسارة معًا.
+      ZZ_EMA_FILTER: "1"
+      ZZ_EMA_LEN: "200"
+      # قائمة استبعاد (أسهم/ETF مرمّزة، ذهب مرمّز) — الملف داخل المستودع
+      ZZ_EXCLUDE_FILE: config/zz_exclude.txt
+      # استبعاد آلي للأسهم/الصناديق المرمّزة (قاعدة تنتهي بـ B)
+      ZZ_EXCLUDE_B_SUFFIX: "1"
+      # ── تجميع الرسائل: رسالة واحدة تحوي كل إشارات/إغلاقات الدورة ──
+      # التوقيت فعلي كما هو: الإرسال في نفس الدورة (5 دقائق) بلا انتظار إغلاق شمعة.
+      ZZ_MSG_BATCH_MAX_ITEMS: "12"
+      ZZ_MSG_BATCH_MAX_CHARS: "3500"
+      TELEGRAM_MIN_INTERVAL_SECONDS: "1.05"
+      # استثناء أزواج العملات المستقرة المربوطة — الإيقاف: "0"
+      EXCLUDE_PEGGED_STABLES: "1"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Watch loop (كل ~60 ثانية)
+        env:
+          HOURS: ${{ github.event.inputs.hours || '5' }}
+        run: |
+          set +e
+          END=$(( $(date +%s) + HOURS * 3600 - 120 ))
+          n=0
+          while [ "$(date +%s)" -lt "$END" ]; do
+            n=$((n+1))
+            echo "── دورة $n — $(TZ=Asia/Riyadh date '+%H:%M:%S') ──"
+            python run_zigzag_once.py || echo "::warning::فشلت الدورة $n (سنتابع)"
+            # حفظ الحالة كل 5 دورات (~5 دقائق)
+            if [ $((n % 5)) -eq 0 ]; then
+              git add data/ || true
+              if ! git diff --cached --quiet; then
+                git commit -q -m "chore: update ZigZag bot state [skip ci]" || true
+                for attempt in 1 2 3; do
+                  git fetch -q origin main
+                  if git rebase -X theirs origin/main 2>/dev/null && git push -q origin HEAD:main; then break; fi
+                  git rebase --abort 2>/dev/null || true
+                  sleep $((attempt * 3))
+                done
+              fi
+            fi
+            sleep 45
+          done
+          git add data/ || true
+          if ! git diff --cached --quiet; then
+            git commit -q -m "chore: update ZigZag bot state [skip ci]" || true
+            git fetch -q origin main || true
+            git rebase -X theirs origin/main 2>/dev/null || true
+            git push -q origin HEAD:main || true
+          fi
+          echo "انتهت المراقبة بعد $n دورة — أعد التشغيل من Actions عند الحاجة."
