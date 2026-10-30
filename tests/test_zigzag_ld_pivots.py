@@ -241,3 +241,15 @@ def test_ema_from_higher_timeframe_ignores_unclosed_candle():
 
     # لكن شمعة لم تُغلق بعد تُهمَل
     assert ema_at_bar_from_candles(candles, 20, as_of - 4 * HOUR_MS) is not None
+
+
+def test_target_label_shows_r_multiple(tmp_path):
+    """عرض الهدف: 1.5R بدل نسبة ثابتة خاطئة عند تفعيل ZZ_TARGET_R."""
+    bot = make_bot(tmp_path)
+    bot.settings = ZigZagSettings(target_r=1.5)
+    sig = {"entry_price": 0.1865, "target_price": 0.1913}
+    assert bot._target_label(sig) == "1.5R"
+
+    bot.settings = ZigZagSettings(target_r=0.0, target_pct=2.0)
+    sig2 = {"entry_price": 100.0, "target_price": 102.0}
+    assert bot._target_label(sig2) == "+2%"

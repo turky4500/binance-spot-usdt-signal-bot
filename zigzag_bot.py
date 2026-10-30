@@ -389,7 +389,7 @@ class ZigZagSignalBot:
         tag = self._halal_tag(signal)
         return (
             f"• {signal['symbol']} — دخول {self._fmt(signal, entry)} | "
-            f"هدف {self._fmt(signal, signal['target_price'])} (+{self.settings.target_pct:g}%) | "
+            f"هدف {self._fmt(signal, signal['target_price'])} ({self._target_label(signal)}) | "
             f"وقف {self._fmt(signal, stop)} ({pct_label(stop_pct)})"
             + (f" {tag}" if tag else "")
         )
@@ -405,6 +405,13 @@ class ZigZagSignalBot:
             + (f" {tag}" if tag else "")
         )
 
+    def _target_label(self, signal: dict) -> str:
+        """وصف الهدف: مضاعف R إن كان مفعّلًا، وإلا النسبة الثابتة."""
+        if self.settings.target_r > 0:
+            return f"{self.settings.target_r:g}R"
+        pct = (float(signal["target_price"]) / float(signal["entry_price"]) - 1.0) * 100.0
+        return f"+{pct:g}%"
+
     def _entry_text(self, signal: dict) -> str:
         verdict = signal.get("halal_verdict") or self.get_halal_verdict(signal["symbol"])
         pivot_line = ""
@@ -419,7 +426,7 @@ class ZigZagSignalBot:
             f"{STRATEGY_LABEL} • فريم 1H\n"
             "\n"
             f"الدخول: {self._fmt(signal, signal['entry_price'])}\n"
-            f"الهدف: {self._fmt(signal, signal['target_price'])} (+{self.settings.target_pct:g}%)\n"
+            f"الهدف: {self._fmt(signal, signal['target_price'])} ({self._target_label(signal)})\n"
             f"الوقف: {self._fmt(signal, signal['stop_price'])} — إغلاق تحت قاع الشمعة\n"
             f"شمعة القاع: {hhmm_local(int(signal['bottom_bar_open_time']), self.config.timezone_name)}"
             f" | شمعة الدخول: {hhmm_local(int(signal['entry_bar_open_time']), self.config.timezone_name)}\n"
@@ -484,7 +491,7 @@ class ZigZagSignalBot:
             head = f"🎯 أهداف تحققت ({total}) — {STRATEGY_LABEL}"
             stamp = stamp_ms(int(items[-1]["event"]["event_time"]), self.config.timezone_name)
             lines = [self._exit_line(item["signal"], item["event"]) for item in items]
-            footer = "الهدف +" + f"{self.settings.target_pct:g}% تم لمسه — الربح قبل العمولة"
+            footer = f"الهدف {self._target_label(items[0]['signal'])} تم لمسه — الربح قبل العمولة"
         else:
             head = f"🛑 إغلاقات خاسرة ({total}) — {STRATEGY_LABEL}"
             stamp = stamp_ms(int(items[-1]["event"]["event_time"]), self.config.timezone_name)
