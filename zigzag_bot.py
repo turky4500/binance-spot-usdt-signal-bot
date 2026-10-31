@@ -398,7 +398,7 @@ class ZigZagSignalBot:
         return f"+{pct:g}%"
 
     def _entry_text(self, signal: dict) -> str:
-        """رسالة دخول مفصّلة لعملة واحدة: الدخول والهدف والوقف كل واحد في سطر مستقل."""
+        """رسالة دخول مختصرة لعملة واحدة: الدخول والهدف والوقف، كل واحد في سطر مستقل."""
         verdict = signal.get("halal_verdict") or self.get_halal_verdict(signal["symbol"])
         entry = float(signal["entry_price"])
         target = float(signal["target_price"])
@@ -409,37 +409,17 @@ class ZigZagSignalBot:
             target_note = f"{self._target_label(signal)} • {pct_label(target_pct)}"
         else:
             target_note = pct_label(target_pct)
-        lines = [
-            f"📥 إشارة دخول — {signal['symbol']}",
-            f"{STRATEGY_LABEL} • فريم 1H",
-            "",
-            f"💵 سعر الدخول: {self._fmt(signal, entry)}",
-            f"🎯 الهدف: {self._fmt(signal, target)}   ({target_note})",
-            f"🛑 الوقف: {self._fmt(signal, stop)}   ({pct_label(stop_pct)})",
-            "",
-        ]
-        notes: list[str] = []
-        if signal.get("pivot_label"):
-            notes.append(f"🧩 القاع: {signal['pivot_label']} محوري (ZigZag++ [LD])")
-        ema_value = signal.get("ema_value")
-        if ema_value and float(ema_value) > 0:
-            interval = getattr(self.settings, "ema_interval", "1h")
-            notes.append(
-                f"📈 فوق EMA{self.settings.ema_len} ({interval}): {self._fmt(signal, float(ema_value))}"
-            )
-        notes.append(
-            f"🕯 شمعة القاع: {hhmm_local(int(signal['bottom_bar_open_time']), self.config.timezone_name)}"
-            f"  •  شمعة الدخول: {hhmm_local(int(signal['entry_bar_open_time']), self.config.timezone_name)}"
+        return (
+            f"📥 إشارة دخول — {signal['symbol']}\n"
+            f"{STRATEGY_LABEL} • فريم 1H\n"
+            "\n"
+            f"💵 سعر الدخول: {self._fmt(signal, entry)}\n"
+            f"🎯 الهدف: {self._fmt(signal, target)}   ({target_note})\n"
+            f"🛑 الوقف: {self._fmt(signal, stop)}   ({pct_label(stop_pct)})\n"
+            "\n"
+            f"⏱ {stamp_ms(int(signal['entry_time']), self.config.timezone_name)}\n"
+            f"⚖️ الحكم الشرعي: {verdict}"
         )
-        lines.extend(notes)
-        lines += [
-            "",
-            "ℹ️ الوقف يُفعّل بإغلاق شمعة 1H تحت القاع • الهدف باللمس",
-            "",
-            f"⏱ {stamp_ms(int(signal['entry_time']), self.config.timezone_name)}",
-            f"⚖️ الحكم الشرعي: {verdict}",
-        ]
-        return "\n".join(lines)
 
     def _win_text(self, signal: dict, event: dict) -> str:
         verdict = signal.get("halal_verdict") or self.get_halal_verdict(signal["symbol"])

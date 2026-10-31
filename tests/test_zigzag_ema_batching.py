@@ -93,7 +93,6 @@ def test_ema_accepts_entry_above_average(tmp_path):
     assert signal["ema_value"] is not None
     assert signal["entry_price"] > signal["ema_value"]
     assert len(bot.telegram.sent) == 1
-    assert "فوق EMA200" in bot.telegram.sent[0]
 
 
 def test_ema_rejects_entry_below_average(tmp_path):
