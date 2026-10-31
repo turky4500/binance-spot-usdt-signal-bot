@@ -161,7 +161,8 @@
     "ETHFIUSDT": 1793232000000,
     "FLUXUSDT": 1793232000000,
     "MORPHOUSDT": 1793318400000,
-    "JSTUSDT": 1793318400000
+    "JSTUSDT": 1793318400000,
+    "RUNEUSDT": 1793404800000
   },
   "open_trades": {
     "BNBUSDT": {
@@ -175,27 +176,9 @@
       "size_suggest_pct": 0.28846027846027894,
       "entry_time": 1793404799999,
       "entry_bar_open_time": 1793318400000,
-      "last_check_ms": 1793404859999,
+      "last_check_ms": 1793441460000,
       "peak_price": 722.08,
       "last_stop_alert_price": 680.0,
-      "stop_updates_count": 0,
-      "halal_verdict": "⛔ غير مباح",
-      "silent": true
-    },
-    "RUNEUSDT": {
-      "trade_id": "RUNEUSDT-1793318400000",
-      "symbol": "RUNEUSDT",
-      "entry_price": 0.65,
-      "stop_price": 0.58,
-      "pivot_stop": 0.58,
-      "target_price": 0.7900000000000001,
-      "stop_dist_pct": 10.769230769230779,
-      "size_suggest_pct": 0.09285714285714278,
-      "entry_time": 1793404799999,
-      "entry_bar_open_time": 1793318400000,
-      "last_check_ms": 1793404859999,
-      "peak_price": 0.723,
-      "last_stop_alert_price": 0.58,
       "stop_updates_count": 0,
       "halal_verdict": "⛔ غير مباح",
       "silent": true
@@ -204,17 +187,17 @@
       "trade_id": "UNIUSDT-1793318400000",
       "symbol": "UNIUSDT",
       "entry_price": 7.161,
-      "stop_price": 6.254,
+      "stop_price": 6.6672400000000005,
       "pivot_stop": 6.254,
       "target_price": 8.975,
       "stop_dist_pct": 12.665828794861053,
       "size_suggest_pct": 0.07895259095920618,
       "entry_time": 1793404799999,
       "entry_bar_open_time": 1793318400000,
-      "last_check_ms": 1793404859999,
-      "peak_price": 7.208,
-      "last_stop_alert_price": 6.254,
-      "stop_updates_count": 0,
+      "last_check_ms": 1793441460000,
+      "peak_price": 7.247,
+      "last_stop_alert_price": 6.631360000000001,
+      "stop_updates_count": 1,
       "halal_verdict": "⛔ غير مباح",
       "silent": true
     }
@@ -2619,6 +2602,16 @@
       "type": "entry",
       "symbol": "UNIUSDT",
       "time_ms": 1793404799999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "RUNEUSDT",
+      "time_ms": 1793404919999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "UNIUSDT",
+      "time_ms": 1793404919999
     }
   ],
   "daily_report": {
