@@ -1,0 +1,47 @@
+name: ZigZag Watchdog (حارس المراقب)
+
+# لماذا؟ 2026-10-31 توقّف المراقب السريع 04:13 لأن جدولة الدورة التالية رجعت 403
+# (نقص صلاحية actions: write)، ولم يعُد غيره يعمل ⇒ توقّف البوت 4+ ساعات بلا رسائل.
+# هذا الحارس يفحص كل 15 دقيقة: هل يوجد تشغيل للمراقب (in_progress/queued)؟
+# إن لم يوجد ⇒ يشغّله فورًا. لا يرسل أي رسالة ولا يمسّ الحالة.
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: zigzag-watchdog
+  cancel-in-progress: false
+
+jobs:
+  ensure-watcher:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: تشغيل المراقب إن كان متوقفًا
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -uo pipefail
+          URL="https://api.github.com/repos/$REPO/actions/workflows/zigzag-watch-loop.yml/runs?per_page=50"
+          ACTIVE=$(curl -s -H "Authorization: Bearer $GH_TOKEN" "$URL" | python3 -c "import sys,json;d=json.load(sys.stdin);print(sum(1 for r in d.get('workflow_runs',[]) if r.get('status') in ('in_progress','queued','pending','waiting')))")
+          echo "تشغيلات المراقب النشطة: ${ACTIVE:-0}"
+          if [ "${ACTIVE:-0}" -gt 0 ]; then
+            echo "✅ المراقب يعمل — لا حاجة لتدخل."
+            exit 0
+          fi
+          echo "⛔ لا يوجد مراقب يعمل — إعادة تشغيل الآن."
+          CODE=$(curl -s -o /tmp/wd.out -w "%{http_code}" -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$REPO/actions/workflows/zigzag-watch-loop.yml/dispatches" \
+            -d '{"ref":"main"}')
+          echo "dispatch HTTP $CODE"
+          cat /tmp/wd.out || true
+          [ "$CODE" = "204" ] || { echo "::error::تعذّر تشغيل المراقب"; exit 1; }
