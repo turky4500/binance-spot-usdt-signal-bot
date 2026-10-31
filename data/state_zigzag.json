@@ -4085,7 +4085,7 @@
       "bottom_bar_open_time": 1793300400000,
       "entry_bar_open_time": 1793304000000,
       "entry_time": 1793307599999,
-      "last_check_ms": 1793407680000,
+      "last_check_ms": 1793407980000,
       "max_price": 552.66,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4100,7 +4100,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793407680000,
+      "last_check_ms": 1793407980000,
       "max_price": 9.62e-06,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4115,7 +4115,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793407680000,
+      "last_check_ms": 1793407980000,
       "max_price": 722.08,
       "halal_verdict": "⛔ غير مباح",
       "silent": false
@@ -4130,7 +4130,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793407680000,
+      "last_check_ms": 1793407980000,
       "max_price": 3.11,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4145,7 +4145,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793407680000,
+      "last_check_ms": 1793407980000,
       "max_price": 1.513,
       "halal_verdict": "⛔ غير مباح",
       "silent": false
@@ -4160,8 +4160,8 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793407680000,
-      "max_price": 0.0239,
+      "last_check_ms": 1793407980000,
+      "max_price": 0.02391,
       "halal_verdict": "✅ مباح",
       "silent": false
     },
@@ -4175,7 +4175,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793407680000,
+      "last_check_ms": 1793407980000,
       "max_price": 0.00121,
       "halal_verdict": "⛔ غير مباح",
       "silent": false
@@ -4190,7 +4190,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793407680000,
+      "last_check_ms": 1793407980000,
       "max_price": 0.01745,
       "halal_verdict": "⛔ غير مباح",
       "silent": false
@@ -4205,7 +4205,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793407680000,
+      "last_check_ms": 1793407980000,
       "max_price": 0.00199,
       "halal_verdict": "✅ مباح",
       "silent": false
@@ -4220,7 +4220,7 @@
       "bottom_bar_open_time": 1793318400000,
       "entry_bar_open_time": 1793322000000,
       "entry_time": 1793325599999,
-      "last_check_ms": 1793407680000,
+      "last_check_ms": 1793407980000,
       "max_price": 0.0271,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4235,7 +4235,7 @@
       "bottom_bar_open_time": 1793318400000,
       "entry_bar_open_time": 1793322000000,
       "entry_time": 1793325599999,
-      "last_check_ms": 1793407680000,
+      "last_check_ms": 1793407980000,
       "max_price": 0.3081,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4250,7 +4250,7 @@
       "bottom_bar_open_time": 1793318400000,
       "entry_bar_open_time": 1793322000000,
       "entry_time": 1793325599999,
-      "last_check_ms": 1793407680000,
+      "last_check_ms": 1793407980000,
       "max_price": 0.01852,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4265,7 +4265,7 @@
       "bottom_bar_open_time": 1793343600000,
       "entry_bar_open_time": 1793347200000,
       "entry_time": 1793350799999,
-      "last_check_ms": 1793407680000,
+      "last_check_ms": 1793407980000,
       "max_price": 17.01,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4280,7 +4280,7 @@
       "bottom_bar_open_time": 1793397600000,
       "entry_bar_open_time": 1793401200000,
       "entry_time": 1793404799999,
-      "last_check_ms": 1793407680000,
+      "last_check_ms": 1793407980000,
       "max_price": 90.22,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "ema_value": 82.81454975247297,
