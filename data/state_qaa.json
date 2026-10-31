@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1793232000000,
+  "last_processed_open_time": 1793318400000,
   "last_entry_bar_time": {
     "GTCUSDT": 1793059200000,
     "HUMAUSDT": 1793059200000,
@@ -9,7 +9,7 @@
     "AWEUSDT": 1793059200000,
     "BANDUSDT": 1792368000000,
     "BEAMXUSDT": 1792972800000,
-    "BNBUSDT": 1792368000000,
+    "BNBUSDT": 1793318400000,
     "BNSOLUSDT": 1792368000000,
     "BROCCOLI714USDT": 1792368000000,
     "CAKEUSDT": 1792368000000,
@@ -65,7 +65,7 @@
     "SYNUSDT": 1792886400000,
     "TAOUSDT": 1792886400000,
     "TUSDT": 1792886400000,
-    "UNIUSDT": 1792886400000,
+    "UNIUSDT": 1793318400000,
     "ARBUSDT": 1792972800000,
     "ESPUSDT": 1792972800000,
     "ETHFIUSDT": 1792972800000,
@@ -79,7 +79,8 @@
     "FLUXUSDT": 1793145600000,
     "JSTUSDT": 1793145600000,
     "ORCAUSDT": 1793145600000,
-    "TIAUSDT": 1793145600000
+    "TIAUSDT": 1793145600000,
+    "RUNEUSDT": 1793318400000
   },
   "last_exit_bar_time": {
     "GTCUSDT": 1793145600000,
@@ -162,7 +163,62 @@
     "MORPHOUSDT": 1793318400000,
     "JSTUSDT": 1793318400000
   },
-  "open_trades": {},
+  "open_trades": {
+    "BNBUSDT": {
+      "trade_id": "BNBUSDT-1793318400000",
+      "symbol": "BNBUSDT",
+      "entry_price": 704.42,
+      "stop_price": 680.0,
+      "pivot_stop": 680.0,
+      "target_price": 753.2599999999999,
+      "stop_dist_pct": 3.466681809147946,
+      "size_suggest_pct": 0.28846027846027894,
+      "entry_time": 1793404799999,
+      "entry_bar_open_time": 1793318400000,
+      "last_check_ms": 1793404859999,
+      "peak_price": 722.08,
+      "last_stop_alert_price": 680.0,
+      "stop_updates_count": 0,
+      "halal_verdict": "⛔ غير مباح",
+      "silent": true
+    },
+    "RUNEUSDT": {
+      "trade_id": "RUNEUSDT-1793318400000",
+      "symbol": "RUNEUSDT",
+      "entry_price": 0.65,
+      "stop_price": 0.58,
+      "pivot_stop": 0.58,
+      "target_price": 0.7900000000000001,
+      "stop_dist_pct": 10.769230769230779,
+      "size_suggest_pct": 0.09285714285714278,
+      "entry_time": 1793404799999,
+      "entry_bar_open_time": 1793318400000,
+      "last_check_ms": 1793404859999,
+      "peak_price": 0.723,
+      "last_stop_alert_price": 0.58,
+      "stop_updates_count": 0,
+      "halal_verdict": "⛔ غير مباح",
+      "silent": true
+    },
+    "UNIUSDT": {
+      "trade_id": "UNIUSDT-1793318400000",
+      "symbol": "UNIUSDT",
+      "entry_price": 7.161,
+      "stop_price": 6.254,
+      "pivot_stop": 6.254,
+      "target_price": 8.975,
+      "stop_dist_pct": 12.665828794861053,
+      "size_suggest_pct": 0.07895259095920618,
+      "entry_time": 1793404799999,
+      "entry_bar_open_time": 1793318400000,
+      "last_check_ms": 1793404859999,
+      "peak_price": 7.208,
+      "last_stop_alert_price": 6.254,
+      "stop_updates_count": 0,
+      "halal_verdict": "⛔ غير مباح",
+      "silent": true
+    }
+  },
   "event_log": [
     {
       "type": "entry",
@@ -2548,6 +2604,21 @@
       "type": "exit_loss",
       "symbol": "JSTUSDT",
       "time_ms": 1793329319999
+    },
+    {
+      "type": "entry",
+      "symbol": "BNBUSDT",
+      "time_ms": 1793404799999
+    },
+    {
+      "type": "entry",
+      "symbol": "RUNEUSDT",
+      "time_ms": 1793404799999
+    },
+    {
+      "type": "entry",
+      "symbol": "UNIUSDT",
+      "time_ms": 1793404799999
     }
   ],
   "daily_report": {
