@@ -3938,6 +3938,16 @@
       "type": "exit_loss",
       "symbol": "PUNDIXUSDT",
       "time_ms": 1793523599999
+    },
+    {
+      "type": "entry",
+      "symbol": "PEPEUSDT",
+      "time_ms": 1793523599999
+    },
+    {
+      "type": "entry",
+      "symbol": "PROVEUSDT",
+      "time_ms": 1793523599999
     }
   ],
   "daily_report": {
@@ -4021,13 +4031,13 @@
     "APTUSDT": 1793480400000,
     "ARBUSDT": 1793318400000,
     "ARKMUSDT": 1793498400000,
-    "ARKUSDT": 1793498400000,
+    "ARKUSDT": 1793516400000,
     "ARPAUSDT": 1793318400000,
     "ARUSDT": 1793498400000,
     "ASRUSDT": 1793318400000,
     "ASTERUSDT": 1793498400000,
     "ASTRUSDT": 1793498400000,
-    "ATOMUSDT": 1793498400000,
+    "ATOMUSDT": 1793516400000,
     "ATUSDT": 1793487600000,
     "AUCTIONUSDT": 1793451600000,
     "AUSDT": 1793383200000,
@@ -4065,7 +4075,7 @@
     "COMPUSDT": 1793433600000,
     "COOKIEUSDT": 1793498400000,
     "COTIUSDT": 1793430000000,
-    "COWUSDT": 1793502000000,
+    "COWUSDT": 1793516400000,
     "CRVUSDT": 1793498400000,
     "CRWVBUSDT": 1793322000000,
     "CTSIUSDT": 1793379600000,
@@ -4160,7 +4170,7 @@
     "METABUSDT": 1793304000000,
     "METISUSDT": 1793487600000,
     "METUSDT": 1793498400000,
-    "MEUSDT": 1793498400000,
+    "MEUSDT": 1793516400000,
     "MINAUSDT": 1793433600000,
     "MIRAUSDT": 1793494800000,
     "MITOUSDT": 1793318400000,
@@ -4179,7 +4189,7 @@
     "NOKBUSDT": 1793307600000,
     "NOMUSDT": 1793498400000,
     "NOTUSDT": 1793498400000,
-    "NXPCUSDT": 1793498400000,
+    "NXPCUSDT": 1793516400000,
     "ONDOUSDT": 1793480400000,
     "ONEUSDT": 1793433600000,
     "ONGUSDT": 1793484000000,
@@ -4197,7 +4207,7 @@
     "POLYXUSDT": 1793318400000,
     "PORTALUSDT": 1793498400000,
     "POWRUSDT": 1793336400000,
-    "PROVEUSDT": 1793509200000,
+    "PROVEUSDT": 1793516400000,
     "PUMPUSDT": 1793383200000,
     "PUNDIXUSDT": 1793498400000,
     "QCOMBUSDT": 1793307600000,
@@ -4328,7 +4338,7 @@
     "DODOUSDT": 1793502000000,
     "DOLOUSDT": 1793498400000,
     "DYDXUSDT": 1793498400000,
-    "EDUUSDT": 1793498400000,
+    "EDUUSDT": 1793516400000,
     "ENAUSDT": 1793505600000,
     "FLUXUSDT": 1793440800000,
     "FRAXUSDT": 1793498400000,
@@ -4355,7 +4365,7 @@
     "OPNUSDT": 1793498400000,
     "ORCAUSDT": 1793437200000,
     "OSMOUSDT": 1793509200000,
-    "PEPEUSDT": 1793419200000,
+    "PEPEUSDT": 1793516400000,
     "PORTOUSDT": 1793487600000,
     "PSGUSDT": 1793498400000,
     "PYTHUSDT": 1793440800000,
@@ -4417,7 +4427,7 @@
     "REDUSDT": 1793512800000,
     "EIGENUSDT": 1793502000000,
     "LSKUSDT": 1793502000000,
-    "FTTUSDT": 1793505600000
+    "FTTUSDT": 1793516400000
   },
   "open_signals": {
     "BNBUSDT": {
@@ -4430,7 +4440,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793523540000,
+      "last_check_ms": 1793523600000,
       "max_price": 722.08,
       "halal_verdict": "⛔ غير مباح",
       "silent": false
@@ -4445,7 +4455,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793523540000,
+      "last_check_ms": 1793523600000,
       "max_price": 3.11,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4460,7 +4470,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793523540000,
+      "last_check_ms": 1793523600000,
       "max_price": 1.513,
       "halal_verdict": "⛔ غير مباح",
       "silent": false
@@ -4475,7 +4485,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793523540000,
+      "last_check_ms": 1793523600000,
       "max_price": 0.02391,
       "halal_verdict": "✅ مباح",
       "silent": false
@@ -4490,7 +4500,7 @@
       "bottom_bar_open_time": 1793318400000,
       "entry_bar_open_time": 1793322000000,
       "entry_time": 1793325599999,
-      "last_check_ms": 1793523540000,
+      "last_check_ms": 1793523600000,
       "max_price": 0.0271,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4505,7 +4515,7 @@
       "bottom_bar_open_time": 1793343600000,
       "entry_bar_open_time": 1793347200000,
       "entry_time": 1793350799999,
-      "last_check_ms": 1793523540000,
+      "last_check_ms": 1793523600000,
       "max_price": 17.29,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4520,7 +4530,7 @@
       "bottom_bar_open_time": 1793455200000,
       "entry_bar_open_time": 1793458800000,
       "entry_time": 1793462399999,
-      "last_check_ms": 1793523540000,
+      "last_check_ms": 1793523600000,
       "max_price": 7.18,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "ema_value": 6.502737865970458,
@@ -4537,7 +4547,7 @@
       "bottom_bar_open_time": 1793502000000,
       "entry_bar_open_time": 1793505600000,
       "entry_time": 1793509199999,
-      "last_check_ms": 1793523540000,
+      "last_check_ms": 1793523600000,
       "max_price": 0.06874,
       "halal_verdict": "⛔ غير مباح",
       "ema_value": 0.06838466093151063,
@@ -4554,10 +4564,44 @@
       "bottom_bar_open_time": 1793512800000,
       "entry_bar_open_time": 1793516400000,
       "entry_time": 1793519999999,
-      "last_check_ms": 1793523540000,
-      "max_price": 0.000711,
+      "last_check_ms": 1793523600000,
+      "max_price": 0.000712,
       "halal_verdict": "✅ مباح",
       "ema_value": 0.000680375800397701,
+      "pivot_label": "HL",
+      "silent": false
+    },
+    "PEPEUSDT": {
+      "trade_id": "PEPEUSDT-1793520000000",
+      "symbol": "PEPEUSDT",
+      "entry_price": 5.03e-06,
+      "target_price": 5.210000000000001e-06,
+      "stop_price": 4.91e-06,
+      "bottom_low": 4.91e-06,
+      "bottom_bar_open_time": 1793516400000,
+      "entry_bar_open_time": 1793520000000,
+      "entry_time": 1793523599999,
+      "last_check_ms": 1793523600000,
+      "max_price": 5.03e-06,
+      "halal_verdict": "⛔ غير مباح",
+      "ema_value": 4.386821842862739e-06,
+      "pivot_label": "HL",
+      "silent": false
+    },
+    "PROVEUSDT": {
+      "trade_id": "PROVEUSDT-1793520000000",
+      "symbol": "PROVEUSDT",
+      "entry_price": 0.2079,
+      "target_price": 0.21015,
+      "stop_price": 0.2064,
+      "bottom_low": 0.2064,
+      "bottom_bar_open_time": 1793516400000,
+      "entry_bar_open_time": 1793520000000,
+      "entry_time": 1793523599999,
+      "last_check_ms": 1793523600000,
+      "max_price": 0.2079,
+      "halal_verdict": "ℹ️ لا يوجد حكم",
+      "ema_value": 0.1960330949563492,
       "pivot_label": "HL",
       "silent": false
     }
@@ -4565,8 +4609,8 @@
   "rejection_stats": {
     "date": "2026-11-01",
     "counts": {
-      "below_ema": 235,
-      "red": 113,
+      "below_ema": 238,
+      "red": 117,
       "doji": 7,
       "stop_too_wide": 3
     }
@@ -4651,6 +4695,8 @@
     "win:PROMUSDT-1793505600000",
     "entry:AMPUSDT-1793516400000",
     "win:DODOUSDT-1793505600000",
-    "loss:PUNDIXUSDT-1793502000000"
+    "loss:PUNDIXUSDT-1793502000000",
+    "entry:PEPEUSDT-1793520000000",
+    "entry:PROVEUSDT-1793520000000"
   ]
 }
