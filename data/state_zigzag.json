@@ -4003,6 +4003,11 @@
       "type": "entry",
       "symbol": "PUNDIXUSDT",
       "time_ms": 1793537999999
+    },
+    {
+      "type": "exit_win",
+      "symbol": "OSMOUSDT",
+      "time_ms": 1793538599999
     }
   ],
   "daily_report": {
@@ -4495,7 +4500,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793538480000,
+      "last_check_ms": 1793538540000,
       "max_price": 722.08,
       "halal_verdict": "⛔ غير مباح",
       "silent": false
@@ -4510,7 +4515,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793538480000,
+      "last_check_ms": 1793538540000,
       "max_price": 3.11,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4525,7 +4530,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793538480000,
+      "last_check_ms": 1793538540000,
       "max_price": 1.513,
       "halal_verdict": "⛔ غير مباح",
       "silent": false
@@ -4540,7 +4545,7 @@
       "bottom_bar_open_time": 1793304000000,
       "entry_bar_open_time": 1793307600000,
       "entry_time": 1793311199999,
-      "last_check_ms": 1793538480000,
+      "last_check_ms": 1793538540000,
       "max_price": 0.02391,
       "halal_verdict": "✅ مباح",
       "silent": false
@@ -4555,7 +4560,7 @@
       "bottom_bar_open_time": 1793318400000,
       "entry_bar_open_time": 1793322000000,
       "entry_time": 1793325599999,
-      "last_check_ms": 1793538480000,
+      "last_check_ms": 1793538540000,
       "max_price": 0.0271,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": false
@@ -4570,7 +4575,7 @@
       "bottom_bar_open_time": 1793455200000,
       "entry_bar_open_time": 1793458800000,
       "entry_time": 1793462399999,
-      "last_check_ms": 1793538480000,
+      "last_check_ms": 1793538540000,
       "max_price": 7.18,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "ema_value": 6.502737865970458,
@@ -4587,7 +4592,7 @@
       "bottom_bar_open_time": 1793502000000,
       "entry_bar_open_time": 1793505600000,
       "entry_time": 1793509199999,
-      "last_check_ms": 1793538480000,
+      "last_check_ms": 1793538540000,
       "max_price": 0.06895,
       "halal_verdict": "⛔ غير مباح",
       "ema_value": 0.06838466093151063,
@@ -4604,7 +4609,7 @@
       "bottom_bar_open_time": 1793520000000,
       "entry_bar_open_time": 1793523600000,
       "entry_time": 1793527199999,
-      "last_check_ms": 1793538480000,
+      "last_check_ms": 1793538540000,
       "max_price": 8.23,
       "halal_verdict": "⛔ غير مباح",
       "ema_value": 8.2267416172761,
@@ -4621,7 +4626,7 @@
       "bottom_bar_open_time": 1793527200000,
       "entry_bar_open_time": 1793530800000,
       "entry_time": 1793534399999,
-      "last_check_ms": 1793538480000,
+      "last_check_ms": 1793538540000,
       "max_price": 201.1,
       "halal_verdict": "✅ مباح",
       "ema_value": 191.1201174127702,
@@ -4638,28 +4643,11 @@
       "bottom_bar_open_time": 1793530800000,
       "entry_bar_open_time": 1793534400000,
       "entry_time": 1793537999999,
-      "last_check_ms": 1793538480000,
+      "last_check_ms": 1793538540000,
       "max_price": 0.1873,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "ema_value": 0.18369618297712473,
       "pivot_label": "HL",
-      "silent": false
-    },
-    "OSMOUSDT": {
-      "trade_id": "OSMOUSDT-1793534400000",
-      "symbol": "OSMOUSDT",
-      "entry_price": 0.0475,
-      "target_price": 0.0481,
-      "stop_price": 0.0471,
-      "bottom_low": 0.0471,
-      "bottom_bar_open_time": 1793530800000,
-      "entry_bar_open_time": 1793534400000,
-      "entry_time": 1793537999999,
-      "last_check_ms": 1793538480000,
-      "max_price": 0.0478,
-      "halal_verdict": "⛔ غير مباح",
-      "ema_value": 0.04488750802708806,
-      "pivot_label": "LL",
       "silent": false
     },
     "PUNDIXUSDT": {
@@ -4672,7 +4660,7 @@
       "bottom_bar_open_time": 1793530800000,
       "entry_bar_open_time": 1793534400000,
       "entry_time": 1793537999999,
-      "last_check_ms": 1793538480000,
+      "last_check_ms": 1793538540000,
       "max_price": 0.1065,
       "halal_verdict": "✅ مباح",
       "ema_value": 0.10574010057756297,
@@ -4782,6 +4770,7 @@
     "loss:PEPEUSDT-1793520000000",
     "entry:AGLDUSDT-1793534400000",
     "entry:OSMOUSDT-1793534400000",
-    "entry:PUNDIXUSDT-1793534400000"
+    "entry:PUNDIXUSDT-1793534400000",
+    "win:OSMOUSDT-1793534400000"
   ]
 }
