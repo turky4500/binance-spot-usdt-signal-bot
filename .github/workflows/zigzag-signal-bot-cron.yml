@@ -84,6 +84,14 @@ jobs:
         with:
           python-version: '3.13'
 
+      - name: فحص مفتاح التشغيل (ZigZag موقوف)
+        run: |
+          if [ "${{ vars.ZIGZAG_ENABLED }}" != "true" ]; then
+            echo "⏹ نظام ZigZag موقوف (قرار المستخدم 2026-11-01: غير مربح)."
+            echo "   لإعادة تشغيله: Settings → Variables → ZIGZAG_ENABLED = true"
+            exit 0
+          fi
+
       - name: Install dependencies
         run: pip install -r requirements.txt
 

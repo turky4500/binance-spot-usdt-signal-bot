@@ -1,0 +1,150 @@
+name: Daily Trend Bot (تتبّع الاتجاه اليومي)
+
+# نظام بديل عن ZigZag++ (قرار المستخدم 2026-11-01): تتبّع اتجاه يومي + بوابة BTC + وقف متحرك.
+# لماذا حلقة داخل مهمة واحدة؟ جدولة GitHub cron غير منتظمة (2–66 دقيقة تأخيرًا)، ونظامنا
+# ينفّذ الدخول عند الإغلاق اليومي (00:00 UTC) وخروجًا فوريًا عند لمس الوقف ⇒ نحتاج دقة دقائق.
+# كل تشغيل = 5 ساعات × دورة كل 60 ثانية، ثم يعيد تشغيل نفسه تلقائيًا ⇒ 24/7.
+#
+# الإيقاف: Actions → هذا الـ workflow → Disable workflow
+#         أو اضبط المتغيّر DAILY_TREND_ENABLED = false في Settings → Variables.
+on:
+  # شبكة أمان: إن انقطعت سلسلة إعادة التشغيل تعود المهمة كل 6 ساعات.
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      hours:
+        description: 'مدة المراقبة بالساعات (1-5)'
+        required: false
+        default: '5'
+
+permissions:
+  contents: write
+  actions: write      # إلزامي لإعادة تشغيل نفس المهمة (chain)
+
+concurrency:
+  group: daily-trend-bot
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TELEGRAM_MUTE: "0"
+      TIMEZONE: Asia/Riyadh
+      BINANCE_BASE_URL: https://data-api.binance.vision
+      BINANCE_QUOTE_ASSET: USDT
+      REQUEST_TIMEOUT: "20"
+      MAX_WORKERS: "10"
+      HALAL_REFRESH_HOURS: "6"
+      LOG_LEVEL: INFO
+      POLL_SECONDS: "60"
+      # ── ملفات النظام (معزولة تمامًا عن ZigZag) ──
+      DT_STATE_FILE: data/state_daily_trend.json
+      DT_TRADE_LOG: data/trades_log_daily_trend.csv
+      DT_HALAL_DIR: data/zigzag            # نفس مصدر الأحكام القائم (قراءة فقط)
+      DT_HALAL_EXTRA: data/daily_trend/halal_extra.json   # 131 حكمًا مُتحقَّقًا
+      DT_EXCLUDE_FILE: config/zz_exclude.txt
+      # ── قواعد النظام (مثبتة باختبار سنتين — تقرير 2026-11-01) ──
+      DT_LOOKBACK: "20"           # اختراق أعلى سعر لـ20 يومًا
+      DT_ATR_LEN: "14"
+      DT_ATR_MULT: "2.5"          # وقف متحرك = 2.5 × ATR
+      DT_RISK_PCT: "1.0"          # مخاطرة 1% من الرصيد لكل صفقة
+      DT_MAX_POSITIONS: "2"       # مركزان متزامنان كحد أقصى
+      DT_GATE_EMA_LEN: "200"      # بوابة: BTC فوق EMA200 على 4 ساعات
+      DT_COMMISSION_SIDE_PCT: "0.1"
+      DT_MAX_STOP_PCT: "15"       # رفض وقف غير منطقي
+      DT_MIN_STOP_PCT: "1"
+      DT_CAPITAL: "300"           # رأس المال الابتدائي (ثم يُحفظ في الحالة)
+      DT_ENTRY_WINDOW_MIN: "90"   # لا دخول متأخر أكثر من 90 دقيقة بعد الإغلاق اليومي
+      DT_STOP_NOTICE_PCT: "0.05"  # إشعار تحديث الوقف عند تحسّنه ≥0.05%
+      TELEGRAM_MIN_INTERVAL_SECONDS: "1.05"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Watch loop (كل ~60 ثانية)
+        env:
+          HOURS: ${{ github.event.inputs.hours || '5' }}
+          DAILY_TREND_ENABLED: ${{ vars.DAILY_TREND_ENABLED || 'true' }}
+        run: |
+          set +e
+          if [ "${DAILY_TREND_ENABLED:-true}" = "false" ]; then
+            echo "⏹ النظام معطّل عبر DAILY_TREND_ENABLED=false — إنهاء بلا إعادة تشغيل."
+            exit 0
+          fi
+
+          sig() {
+            python -c "import json,hashlib,os;p='data/state_daily_trend.json';t='data/trades_log_daily_trend.csv';s=open(p,'rb').read() if os.path.exists(p) else b'';u=open(t,'rb').read() if os.path.exists(t) else b'';print(hashlib.md5(s+u).hexdigest())"
+          }
+
+          push_state() {
+            git add data/ || true
+            git diff --cached --quiet && return 0
+            git commit -q -m "chore: update daily trend state [skip ci]" || true
+            for attempt in 1 2 3; do
+              git fetch -q origin main
+              if git rebase -X theirs origin/main 2>/dev/null && git push -q origin HEAD:main; then
+                return 0
+              fi
+              git rebase --abort 2>/dev/null || true
+              sleep $((attempt * 3))
+            done
+            echo "::warning::تعذّر حفظ الحالة (محاولة $n)"
+          }
+
+          END=$(( $(date +%s) + HOURS * 3600 - 120 ))
+          n=0
+          while [ "$(date +%s)" -lt "$END" ]; do
+            n=$((n+1))
+            echo "── دورة $n — $(TZ=Asia/Riyadh date '+%H:%M:%S') ──"
+            before=$(sig)
+            DT_ONCE=1 python daily_trend_bot.py || echo "::warning::فشلت الدورة $n (سنتابع)"
+            after=$(sig)
+            if [ "$before" != "$after" ]; then
+              echo "🔔 تغيّرت الحالة ⇒ حفظ فوري"
+              push_state
+            elif [ $((n % 10)) -eq 0 ]; then
+              push_state
+            fi
+            sleep 45
+          done
+          push_state
+          echo "انتهت المراقبة بعد $n دورة — يجري تشغيل الدورة التالية تلقائيًا."
+
+      - name: Chain next run (24/7)
+        if: ${{ always() && vars.DAILY_TREND_ENABLED != 'false' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          for attempt in 1 2 3 4 5; do
+            CODE=$(curl -s -o /tmp/chain.out -w "%{http_code}" -X POST \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/$REPO/actions/workflows/daily-trend-bot.yml/dispatches" \
+              -d '{"ref":"main"}')
+            echo "chain dispatch HTTP $CODE (محاولة $attempt)"
+            [ "$CODE" = "204" ] && exit 0
+            sleep $((attempt * 10))
+          done
+          echo "::warning::تعذّر جدولة التشغيل التالي — شغّل النظام يدويًا."

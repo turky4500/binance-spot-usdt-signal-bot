@@ -101,11 +101,12 @@ jobs:
       - name: Watch loop (كل ~60 ثانية)
         env:
           HOURS: ${{ github.event.inputs.hours || '5' }}
-          WATCHER_ENABLED: ${{ vars.WATCHER_ENABLED || 'true' }}
+          WATCHER_ENABLED: ${{ vars.ZIGZAG_ENABLED || 'false' }}   # موقوف: استُبدل بنظام تتبّع الاتجاه اليومي (2026-11-01)
         run: |
           set +e
-          if [ "${WATCHER_ENABLED:-true}" = "false" ]; then
-            echo "⏹ المراقب معطّل عبر المتغير WATCHER_ENABLED=false — إنهاء بلا إعادة تشغيل."
+          if [ "${WATCHER_ENABLED:-false}" != "true" ]; then
+            echo "⏹ نظام ZigZag موقوف (قرار المستخدم 2026-11-01: غير مربح)."
+            echo "   لإعادة تشغيله: Settings → Variables → ZIGZAG_ENABLED = true"
             exit 0
           fi
 
@@ -149,7 +150,7 @@ jobs:
           echo "انتهت المراقبة بعد $n دورة — يجري تشغيل الدورة التالية تلقائيًا."
 
       - name: Chain next watcher run (24/7)
-        if: ${{ always() && vars.WATCHER_ENABLED != 'false' }}
+        if: ${{ always() && vars.ZIGZAG_ENABLED == 'true' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
