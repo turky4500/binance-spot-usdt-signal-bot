@@ -39,7 +39,7 @@ HALAL_EXTRA = os.getenv("DT_HALAL_EXTRA", "data/daily_trend/halal_extra.json")
 EXCLUDE_FILE = os.getenv("DT_EXCLUDE_FILE", "config/zz_exclude.txt")
 GATE_SYMBOL = os.getenv("DT_GATE_SYMBOL", "BTCUSDT")
 ENTRY_WINDOW_MIN = int(os.getenv("DT_ENTRY_WINDOW_MIN", "90"))   # نافذة التنفيذ بعد الإغلاق اليومي
-STOP_NOTICE_PCT = float(os.getenv("DT_STOP_NOTICE_PCT", "0.05"))  # إشعار عند تحسّن الوقف ≥0.05%
+STOP_NOTICE_PCT = float(os.getenv("DT_STOP_NOTICE_PCT", "0.1"))  # إشعار عند أي رفع للوقف ≥0.1%
 
 _LOG = logging.getLogger("daily_trend")
 _RIYADH = timezone(timedelta(hours=3))
@@ -94,6 +94,7 @@ class DailyTrendBot:
             "last_entry_bar_close": 0,    # آخر شمعة يومية عولجت للدخول
             "gate_open": None,            # آخر حالة معروفة للبوابة
             "sent": [],                   # مفاتيح الرسائل المُرسلة (منع التكرار)
+            "last_report_date": "",       # آخر يوم أُرسل فيه التقرير اليومي
             "event_log": [],
             "trades": 0,
             "wins": 0,
@@ -194,21 +195,9 @@ class DailyTrendBot:
             )
             pos["max_price"] = high_since
             if new_stop > float(pos["stop_price"]) * (1 + STOP_NOTICE_PCT / 100):
+                old_stop = float(pos["stop_price"])
                 pos["stop_price"] = new_stop
-                if new_stop >= float(pos["entry_price"]) and not self._already_sent(f"stop:{sym}:{new_stop:.8f}"):
-                    self._send_once(
-                        f"stop:{sym}:{new_stop:.8f}",
-                        "\n".join([
-                            f"🔒 الوقف أصبح مضمونًا — {sym}",
-                            "",
-                            f"💵 الدخول: {fmt_price(pos['entry_price'], self.ticks.get(sym))}",
-                            f"🛑 الوقف الجديد: {fmt_price(new_stop, self.ticks.get(sym))} "
-                            f"(فوق الدخول)",
-                            f"📈 أعلى سعر منذ الدخول: {fmt_price(high_since, self.ticks.get(sym))}",
-                            "",
-                            f"🕒 {local_time(now_ms)}",
-                        ]),
-                    )
+                self._announce_stop_raise(sym, pos, old_stop, new_stop, high_since, price, now_ms)
 
             reason = exit_reason(pos, price, gate["open"])
             if reason is None:
@@ -257,7 +246,7 @@ class DailyTrendBot:
         self._send_once(
             f"exit:{sym}:{pos['entry_time_ms']}",
             "\n".join([
-                f"{icon} إغلاق صفقة — {sym}",
+                f"{icon} أغلق الصفقة الآن — {sym}",
                 f"{label}",
                 "",
                 f"💵 الدخول: {fmt_price(pos['entry_price'], self.ticks.get(sym))}",
@@ -268,6 +257,90 @@ class DailyTrendBot:
                 f"🕒 {local_time(now_ms)}",
             ]),
         )
+
+    def _announce_stop_raise(self, sym: str, pos: dict, old_stop: float, new_stop: float,
+                            high_since: float, price: float | None, now_ms: int) -> None:
+        """رسالة «ارفع الوقف» عند كل ارتفاع للوقف المتحرك — المستخدم لا يقرر شيئًا."""
+        tick = self.ticks.get(sym)
+        entry = float(pos["entry_price"])
+        gain = (float(price) / entry - 1.0) * 100.0 if price else 0.0
+        distance = (float(price) / new_stop - 1.0) * 100.0 if price else 0.0
+        secured = new_stop >= entry
+        head = ("🔒 ارفع الوقف (الصفقة أصبحت بلا خسارة)" if secured else "📈 ارفع الوقف")
+        lines = [
+            f"{head} — {sym}",
+            "",
+            f"🛑 من: {fmt_price(old_stop, tick)}  ←  إلى: {fmt_price(new_stop, tick)}",
+            f"💵 الدخول: {fmt_price(entry, tick)}",
+        ]
+        if price:
+            lines.append(f"📊 السعر الآن: {fmt_price(float(price), tick)}  ({gain:+.2f}%)")
+            lines.append(f"📏 المسافة بين السعر والوقف: {distance:.2f}%")
+        lines += [
+            f"📈 أعلى سعر منذ الدخول: {fmt_price(high_since, tick)}",
+            "",
+            "👉 حدّث أمر الوقف (Stop) عند المنصة إلى الرقم أعلاه.",
+            f"🕒 {local_time(now_ms)}",
+        ]
+        self._send_once(f"stop:{sym}:{new_stop:.8f}", "\n".join(lines))
+
+    def send_daily_report_if_due(self, now_ms: int, gate: dict, prices: dict[str, float]) -> None:
+        """تقرير يومي (مرة واحدة كل يوم) — مثل تقرير الزيجزاج السابق."""
+        day = datetime.fromtimestamp(now_ms / 1000, _RIYADH).strftime("%Y-%m-%d")
+        if self.state.get("last_report_date") == day:
+            return
+        equity = float(self.state["equity"])
+        start = float(self.settings.capital)
+        peak = float(self.state.get("peak_equity") or equity)
+        trades = int(self.state.get("trades", 0))
+        wins = int(self.state.get("wins", 0))
+        rate = (wins / trades * 100.0) if trades else 0.0
+        gate_icon = "🟢 مفتوحة" if gate["open"] else "🔴 مغلقة"
+        lines = [
+            f"📊 التقرير اليومي — {datetime.fromtimestamp(now_ms / 1000, _RIYADH).strftime('%d %b %Y')}",
+            "",
+            f"💼 الرصيد: {equity:.2f}$  ({(equity / start - 1) * 100:+.1f}% من البداية)  •  أعلى رصيد: {peak:.2f}$",
+            f"🎯 الصفقات المغلقة: {trades}  •  ناجحة: {wins}  •  نسبة الفوز: {rate:.0f}%" if trades
+            else "🎯 الصفقات المغلقة: 0 (لا صفقات بعد)",
+            f"🌐 بوابة السوق: {gate_icon}  •  BTC "
+            f"{fmt_price(gate['close'], self.ticks.get(GATE_SYMBOL))} مقابل EMA{self.settings.gate_ema_len}: "
+            f"{fmt_price(gate['ema'], self.ticks.get(GATE_SYMBOL))}",
+        ]
+        positions = self.state["positions"]
+        if positions:
+            lines += ["", f"📌 المراكز المفتوحة ({len(positions)}):"]
+            for sym, pos in positions.items():
+                tick = self.ticks.get(sym)
+                price = prices.get(sym)
+                entry = float(pos["entry_price"])
+                gain = (float(price) / entry - 1.0) * 100.0 if price else 0.0
+                days = max(0, int((now_ms - int(pos["entry_time_ms"])) / 86_400_000))
+                lines.append(
+                    f"• {sym} — دخول {fmt_price(entry, tick)} | الآن "
+                    f"{fmt_price(float(price), tick) if price else '—'} ({gain:+.2f}%) | "
+                    f"الوقف المطلوب {fmt_price(float(pos['stop_price']), tick)} | مدة {days} يومًا"
+                )
+            lines += ["", "👉 تأكّد أن أوامر الوقف على المنصة مطابقة للوقف المطلوب أعلاه."]
+        else:
+            lines += ["", "📌 المراكز المفتوحة: لا يوجد" + ("" if gate["open"] else " (السوق النقدي — البوابة مغلقة)")]
+
+        today_events = [e for e in self.state.get("event_log", [])
+                        if datetime.fromtimestamp(e["time"] / 1000, _RIYADH).strftime("%Y-%m-%d") == day]
+        if today_events:
+            lines += ["", "🗓 أحداث اليوم:"]
+            for e in today_events[-8:]:
+                if e["type"] == "entry":
+                    lines.append(f"• دخول {e['symbol']} عند {fmt_price(float(e['entry']), self.ticks.get(e['symbol']))}")
+                else:
+                    lines.append(f"• إغلاق {e['symbol']} ({e.get('reason', '')}) بصافي {e.get('net_pct', 0):+.2f}%")
+
+        lines += [
+            "",
+            "📋 لا تنفّذ شيئًا الآن — ستستلم رسالة «ارفع الوقف» أو «أغلق الصفقة» عند الحاجة.",
+            f"🕒 {local_time(now_ms)}",
+        ]
+        self._send_once(f"report:{day}", "\n".join(lines))
+        self.state["last_report_date"] = day
 
     # ── الدخول ──
     def scan_entries(self, now_ms: int, gate: dict) -> None:
@@ -407,6 +480,7 @@ class DailyTrendBot:
         self.announce_gate(gate, now_ms)
         self.manage_positions(now_ms, gate, prices)
         self.scan_entries(now_ms, gate)
+        self.send_daily_report_if_due(now_ms, gate, prices)
         self.save_state()
 
     def run(self) -> None:

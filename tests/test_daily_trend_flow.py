@@ -146,7 +146,7 @@ def test_stop_touch_closes_position_and_updates_equity(bot):
     bot.client.get_all_prices = lambda: {"ADAUSDT": pos["stop_price"] * 0.98}
     bot.run_cycle()
     assert bot.state["positions"] == {}
-    exit_msgs = [m for m in bot.telegram.sent if "إغلاق صفقة" in m]
+    exit_msgs = [m for m in bot.telegram.sent if "أغلق الصفقة الآن" in m]
     assert len(exit_msgs) == 1
     assert "لمس الوقف" in exit_msgs[0]
     assert bot.state["equity"] < 300.0
@@ -196,3 +196,60 @@ def test_entry_window_expired_is_skipped(bot):
     bot.run_cycle()
     assert bot.state["positions"] == {}
     assert bot.state["last_entry_bar_close"] > 0            # عُلمت الشمعة كمعالَجة
+
+
+# ───────────────── رسائل رفع الوقف والتقرير اليومي ─────────────────
+def test_stop_raise_message_is_sent_even_below_entry(bot):
+    """المستخدم يريد رسالة عند *كل* رفع للوقف، وليس فقط عند التعادل."""
+    _setup_market(bot)
+    bot.symbols = ["ADAUSDT"]
+    bot.run_cycle()
+    pos = bot.state["positions"]["ADAUSDT"]
+    entry = pos["entry_price"]
+    # ارتفاع بسيط: الوقف يتحرك لكنه يبقى تحت الدخول
+    bot.client.get_all_prices = lambda: {"ADAUSDT": entry * 1.02}
+    bot.run_cycle()
+    raise_msgs = [m for m in bot.telegram.sent if "حدّث أمر الوقف" in m]
+    assert len(raise_msgs) == 1
+    new_stop = bot.state["positions"]["ADAUSDT"]["stop_price"]
+    assert new_stop < entry                      # لا يزال تحت الدخول
+    assert "من:" in raise_msgs[0] and "إلى:" in raise_msgs[0]
+
+
+def test_each_new_stop_level_sends_exactly_one_message(bot):
+    _setup_market(bot)
+    bot.symbols = ["ADAUSDT"]
+    bot.run_cycle()
+    entry = bot.state["positions"]["ADAUSDT"]["entry_price"]
+    for mult in (1.02, 1.06, 1.10):
+        bot.client.get_all_prices = lambda m=mult: {"ADAUSDT": entry * m}
+        bot.run_cycle()
+    raise_msgs = [m for m in bot.telegram.sent if "حدّث أمر الوقف" in m]
+    assert len(raise_msgs) >= 2                  # مستويات مختلفة ⇒ رسائل مختلفة
+    # نفس السعر مرة أخرى ⇒ لا رسالة جديدة (منع التكرار)
+    before = len([m for m in bot.telegram.sent if "حدّث أمر الوقف" in m])
+    bot.run_cycle()
+    assert len([m for m in bot.telegram.sent if "حدّث أمر الوقف" in m]) == before
+
+
+def test_daily_report_is_sent_once_per_day(bot):
+    _setup_market(bot)
+    bot.symbols = ["ADAUSDT"]
+    bot.run_cycle()
+    reports = [m for m in bot.telegram.sent if "التقرير اليومي" in m]
+    assert len(reports) == 1
+    assert "الرصيد" in reports[0] and "بوابة السوق" in reports[0]
+    assert "ADAUSDT" in reports[0]               # يعرض المراكز المفتوحة
+    assert "الوقف المطلوب" in reports[0]
+    bot.run_cycle()                              # نفس اليوم ⇒ لا تكرار
+    assert len([m for m in bot.telegram.sent if "التقرير اليومي" in m]) == 1
+
+
+def test_daily_report_when_no_positions_and_gate_closed(bot):
+    _setup_market(bot, gate_up=False)
+    bot.symbols = ["ADAUSDT"]
+    bot.run_cycle()
+    reports = [m for m in bot.telegram.sent if "التقرير اليومي" in m]
+    assert len(reports) == 1
+    assert "لا يوجد" in reports[0]
+    assert "مغلقة" in reports[0]
