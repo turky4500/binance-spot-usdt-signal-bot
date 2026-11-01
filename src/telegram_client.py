@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import logging
 import os
+import re
 import time
+import traceback
 
 import requests
 
@@ -13,6 +15,46 @@ _MUTE_VALUES = ("1", "true", "yes", "on")
 # بين الرسائل + احترام retry_after وإعادة محاولة (بدل فقدان الرسالة بصمت).
 _MIN_INTERVAL_ENV = "TELEGRAM_MIN_INTERVAL_SECONDS"
 _MAX_ATTEMPTS = 3
+
+# ── حجب التوكن من السجلات (2026-11-01) ──
+# عنوان تيليجرام يحمل التوكن في المسار، وأي خطأ شبكة يُسجَّل مع العنوان ⇒ تسريب
+# في سجلات المستودع العام. هذه المرشّحات تحجب النمط قبل كتابته.
+_TOKEN_RE = re.compile(r"bot\d{5,}:[A-Za-z0-9_-]{15,}")
+
+
+def redact(text: str) -> str:
+    """يحجب توكن البوت إن ظهر في أي نص قبل تسجيله."""
+    try:
+        return _TOKEN_RE.sub("bot<REDACTED>", str(text))
+    except Exception:
+        return text
+
+
+class RedactFilter(logging.Filter):
+    """مرشّح يسجّل على كل رسالة/تتبّع خطأ محجوبًا من التوكن."""
+
+    def filter(self, record: logging.LogRecord) -> bool:  # noqa: A003
+        try:
+            if isinstance(record.msg, str):
+                record.msg = redact(record.msg)
+            if isinstance(record.args, tuple):
+                record.args = tuple(redact(a) if isinstance(a, str) else a for a in record.args)
+            elif isinstance(record.args, dict):
+                record.args = {k: (redact(v) if isinstance(v, str) else v) for k, v in record.args.items()}
+            if record.exc_info and not record.exc_text:
+                record.exc_text = redact("".join(traceback.format_exception(*record.exc_info)))
+            elif record.exc_text:
+                record.exc_text = redact(record.exc_text)
+        except Exception:
+            pass
+        return True
+
+
+def install_redaction() -> None:
+    """يثبّت المرشّح على كل معالجات السجل الحالية (مرة واحدة لكل معالج)."""
+    for handler in logging.root.handlers:
+        if not any(isinstance(f, RedactFilter) for f in handler.filters):
+            handler.addFilter(RedactFilter())
 
 
 def is_muted() -> bool:
@@ -32,6 +74,7 @@ class TelegramClient:
         self.base_url = f"https://api.telegram.org/bot{token}"
         self.session = requests.Session()
         self.muted = is_muted()
+        install_redaction()
         self.logger = logging.getLogger("telegram")
         try:
             self.min_interval = float(os.getenv(_MIN_INTERVAL_ENV, "1.05"))

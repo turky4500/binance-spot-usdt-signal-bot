@@ -362,34 +362,6 @@ class ZigZagSignalBot:
     def _queue(self, kind: str, payload) -> None:
         self._outbox()[kind].append(payload)
 
-    def _halal_tag(self, signal: dict) -> str:
-        """رمز الحكم الشرعي المختصر (إيموجي فقط) لسطر الرسالة المجمّعة."""
-        verdict = signal.get("halal_verdict") or ""
-        return verdict.split(" ")[0] if verdict else ""
-
-    def _entry_line(self, signal: dict) -> str:
-        entry = float(signal["entry_price"])
-        stop = float(signal["stop_price"])
-        stop_pct = (stop / entry - 1.0) * 100.0 if entry else 0.0
-        tag = self._halal_tag(signal)
-        return (
-            f"• {signal['symbol']} — دخول {self._fmt(signal, entry)} | "
-            f"هدف {self._fmt(signal, signal['target_price'])} ({self._target_label(signal)}) | "
-            f"وقف {self._fmt(signal, stop)} ({pct_label(stop_pct)})"
-            + (f" {tag}" if tag else "")
-        )
-
-    def _exit_line(self, signal: dict, event: dict) -> str:
-        entry = float(signal["entry_price"])
-        fill = float(event["fill_price"])
-        gross = (fill / entry - 1.0) * 100.0 if entry else 0.0
-        duration = humanize_duration_ar(int(signal["entry_time"]), int(event["event_time"]))
-        tag = self._halal_tag(signal)
-        return (
-            f"• {signal['symbol']} — {pct_label(gross)} | {duration}"
-            + (f" {tag}" if tag else "")
-        )
-
     def _target_label(self, signal: dict) -> str:
         """وصف الهدف: مضاعف R إن كان مفعّلًا، وإلا النسبة الثابتة."""
         if self.settings.target_r > 0:
@@ -890,7 +862,38 @@ class ZigZagSignalBot:
         self.logger.info("ZigZag: Daily report sent for %s", report_day)
 
     # ─────────────────────────────────────────── التشغيل
+    def _log_effective_settings(self) -> None:
+        """يطبع الإعدادات الفعّالة مرة واحدة لكل تشغيل + تحذير إن خالف الفريم المعتمد.
+
+        السبب (2026-11-01): متغيّر ZZ_EMA_INTERVAL غاب من وركفلو المراقب فعاد الكود
+        إلى القيمة الافتراضية 1h بصمت، ولم يظهر ذلك إلا في نص رسالة الإعدادات.
+        """
+        if getattr(self, "_settings_logged", False):
+            return
+        self._settings_logged = True
+        source = (
+            "متغيّر البيئة ZZ_EMA_INTERVAL"
+            if os.getenv("ZZ_EMA_INTERVAL", "").strip()
+            else "القيمة الافتراضية في الكود (المتغيّر غير مضبوط!)"
+        )
+        self.logger.info("⚙️ الإعدادات الفعّالة: %s", self.settings.describe())
+        self.logger.info(
+            "⚙️ فلتر EMA: %s (%s) • الفريم=%s • الهدف=%.2fR • أقصى وقف=%.2f%%",
+            "مفعّل" if self.settings.ema_enabled else "معطّل",
+            self.settings.ema_len,
+            self.settings.ema_interval,
+            self.settings.target_r,
+            self.settings.max_stop_pct,
+        )
+        self.logger.info("⚙️ مصدر فريم EMA: %s", source)
+        if self.settings.ema_enabled and self.settings.ema_interval != "4h":
+            self.logger.warning(
+                "⚠️ فريم فلتر EMA هو %s وليس 4h المعتمد — تحقّق من ZZ_EMA_INTERVAL في الوركفلو",
+                self.settings.ema_interval,
+            )
+
     def run_cycle(self) -> None:
+        self._log_effective_settings()
         self.refresh_symbols(force=not self.symbols)
         self.refresh_halal_verdicts()
         self.purge_pegged_stable_signals()
