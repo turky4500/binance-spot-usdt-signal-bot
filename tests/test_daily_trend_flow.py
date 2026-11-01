@@ -207,6 +207,7 @@ def test_stop_raise_message_is_sent_even_below_entry(bot):
     pos = bot.state["positions"]["ADAUSDT"]
     entry = pos["entry_price"]
     # ارتفاع بسيط: الوقف يتحرك لكنه يبقى تحت الدخول
+    bot.client.now += 31 * 60_000                # بعد فترة السماح (30 دقيقة)
     bot.client.get_all_prices = lambda: {"ADAUSDT": entry * 1.02}
     bot.run_cycle()
     raise_msgs = [m for m in bot.telegram.sent if "حدّث أمر الوقف" in m]
@@ -222,12 +223,14 @@ def test_each_new_stop_level_sends_exactly_one_message(bot):
     bot.run_cycle()
     entry = bot.state["positions"]["ADAUSDT"]["entry_price"]
     for mult in (1.02, 1.06, 1.10):
+        bot.client.now += 31 * 60_000              # كل مستوى بعد فترة سماح
         bot.client.get_all_prices = lambda m=mult: {"ADAUSDT": entry * m}
         bot.run_cycle()
     raise_msgs = [m for m in bot.telegram.sent if "حدّث أمر الوقف" in m]
     assert len(raise_msgs) >= 2                  # مستويات مختلفة ⇒ رسائل مختلفة
     # نفس السعر مرة أخرى ⇒ لا رسالة جديدة (منع التكرار)
     before = len([m for m in bot.telegram.sent if "حدّث أمر الوقف" in m])
+    bot.client.now += 31 * 60_000
     bot.run_cycle()
     assert len([m for m in bot.telegram.sent if "حدّث أمر الوقف" in m]) == before
 
@@ -253,3 +256,20 @@ def test_daily_report_when_no_positions_and_gate_closed(bot):
     assert len(reports) == 1
     assert "لا يوجد" in reports[0]
     assert "مغلقة" in reports[0]
+
+
+def test_stop_notice_is_throttled_to_one_per_window(bot):
+    """حماية من الإغراق: رفع الوقف مرات متعددة في أقل من 30 دقيقة ⇒ رسالة واحدة."""
+    _setup_market(bot)
+    bot.symbols = ["ADAUSDT"]
+    bot.run_cycle()
+    entry = bot.state["positions"]["ADAUSDT"]["entry_price"]
+    before = len([m for m in bot.telegram.sent if "حدّث أمر الوقف" in m])
+    bot.client.get_all_prices = lambda: {"ADAUSDT": entry * 1.02}
+    bot.run_cycle()                      # أول رفع (تحت التعادل) ⇒ رسالة
+    bot.client.get_all_prices = lambda: {"ADAUSDT": entry * 1.04}
+    bot.run_cycle()                      # رفع ثانٍ تحت التعادل وخلال دقائق ⇒ لا رسالة (فاصل 30 دقيقة)
+    after = len([m for m in bot.telegram.sent if "حدّث أمر الوقف" in m])
+    assert after - before == 1
+    # الوقف الحقيقي تحدّث رغم عدم إرسال رسالة
+    assert bot.state["positions"]["ADAUSDT"]["stop_price"] > 0

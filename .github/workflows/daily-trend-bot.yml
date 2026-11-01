@@ -60,7 +60,8 @@ jobs:
       DT_MIN_STOP_PCT: "1"
       DT_CAPITAL: "300"           # رأس المال الابتدائي (ثم يُحفظ في الحالة)
       DT_ENTRY_WINDOW_MIN: "90"   # لا دخول متأخر أكثر من 90 دقيقة بعد الإغلاق اليومي
-      DT_STOP_NOTICE_PCT: "0.1"   # إشعار «ارفع الوقف» عند أي رفع ≥0.1% (رسالة لكل مستوى جديد)
+      DT_STOP_NOTICE_PCT: "1.0"   # إشعار «ارفع الوقف» عند رفع الوقف ≥1% من سعره
+      DT_STOP_MIN_MINUTES: "30"   # فاصل أدنى 30 دقيقة بين رسالتي وقف لنفس العملة (منع الإغراق)
       TELEGRAM_MIN_INTERVAL_SECONDS: "1.05"
     steps:
       - name: Checkout repository

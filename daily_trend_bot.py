@@ -39,7 +39,8 @@ HALAL_EXTRA = os.getenv("DT_HALAL_EXTRA", "data/daily_trend/halal_extra.json")
 EXCLUDE_FILE = os.getenv("DT_EXCLUDE_FILE", "config/zz_exclude.txt")
 GATE_SYMBOL = os.getenv("DT_GATE_SYMBOL", "BTCUSDT")
 ENTRY_WINDOW_MIN = int(os.getenv("DT_ENTRY_WINDOW_MIN", "90"))   # نافذة التنفيذ بعد الإغلاق اليومي
-STOP_NOTICE_PCT = float(os.getenv("DT_STOP_NOTICE_PCT", "0.1"))  # إشعار عند أي رفع للوقف ≥0.1%
+STOP_NOTICE_PCT = float(os.getenv("DT_STOP_NOTICE_PCT", "1.0"))      # إشعار عند رفع الوقف ≥1% من سعره
+STOP_MIN_MINUTES = float(os.getenv("DT_STOP_MIN_MINUTES", "30"))     # فاصل أدنى بين رسالتي وقف لنفس العملة
 
 _LOG = logging.getLogger("daily_trend")
 _RIYADH = timezone(timedelta(hours=3))
@@ -194,10 +195,19 @@ class DailyTrendBot:
                 pos["stop_price"], high_since, pos["atr"], self.settings.atr_mult
             )
             pos["max_price"] = high_since
-            if new_stop > float(pos["stop_price"]) * (1 + STOP_NOTICE_PCT / 100):
+            if new_stop > float(pos["stop_price"]):
                 old_stop = float(pos["stop_price"])
-                pos["stop_price"] = new_stop
-                self._announce_stop_raise(sym, pos, old_stop, new_stop, high_since, price, now_ms)
+                pos["stop_price"] = new_stop              # الوقف الحقيقي يتحدّث دائمًا (للدخول/الخروج)
+                entry = float(pos["entry_price"])
+                last_notified = float(pos.get("notified_stop") or old_stop)
+                last_ms = int(pos.get("notified_ms") or 0)
+                crossed_breakeven = new_stop >= entry > last_notified
+                big_enough = new_stop >= last_notified * (1 + STOP_NOTICE_PCT / 100)
+                cooled = (now_ms - last_ms) >= STOP_MIN_MINUTES * 60_000
+                if crossed_breakeven or (big_enough and cooled):
+                    pos["notified_stop"] = new_stop
+                    pos["notified_ms"] = now_ms
+                    self._announce_stop_raise(sym, pos, last_notified, new_stop, high_since, price, now_ms)
 
             reason = exit_reason(pos, price, gate["open"])
             if reason is None:
@@ -412,6 +422,8 @@ class DailyTrendBot:
             "notional": notional,
             "risk_usd": risk_usd,
             "max_price": sig["entry_price"],
+            "notified_stop": sig["stop_price"],
+            "notified_ms": 0,
             "halal": "مباح",
         }
         self.state["event_log"].append(
