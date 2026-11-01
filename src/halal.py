@@ -82,6 +82,42 @@ def _save_cache(data_dir: str, verdicts: dict[str, int], fetched_at_ms: int) -> 
         json.dump(payload, f, ensure_ascii=False, indent=2)
 
 
+def _merge_and_save(
+    data_dir: str,
+    extra: dict[str, int],
+    fetched_at_ms: int | None = None,
+) -> dict[str, int]:
+    """يدمج أحكامًا جديدة مع المحفوظة **دون محو** ما جُمع بالبحث الفردي.
+
+    السبب (2026-11-01): التحديث الشامل كان يكتب القائمة الأساسية فوق الملف
+    فيمحو كل عملة أُضيفت بالبحث الفردي خلال الـ6 ساعات السابقة (51 → 55 → 51 …).
+    الآن: القيم الجديدة تُحدِّث الموجود، والبقية تبقى كما هي.
+    """
+    try:
+        with open(_cache_path(data_dir), encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, ValueError):
+        data = {}
+    if not isinstance(data, dict):
+        data = {}
+
+    judgements = data.get("judgements")
+    if not isinstance(judgements, dict):
+        judgements = {}
+    judgements.update(extra)
+
+    payload = {
+        "vendor": "cryptohalal.cc",
+        "fetched_at_ms": int(fetched_at_ms or time.time() * 1000),
+        "note": "مصدر الأحكام: CryptoHalal.cc",
+        "judgements": judgements,
+    }
+    os.makedirs(data_dir, exist_ok=True)
+    with open(_cache_path(data_dir), "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
+    return judgements
+
+
 def _merge_into_cache(data_dir: str, extra: dict[str, int]) -> None:
     try:
         with open(_cache_path(data_dir), encoding="utf-8") as f:
@@ -157,8 +193,8 @@ def refresh_if_stale(data_dir: str, max_age_hours: int = 6) -> dict[str, int]:
     if stale:
         fresh = fetch_verdicts()
         if fresh is not None:
-            _save_cache(data_dir, fresh, int(time.time() * 1000))
-            return fresh
+            # دمج لا استبدال: نحتفظ بما جُمع بالبحث الفردي (2026-11-01)
+            return _merge_and_save(data_dir, fresh, int(time.time() * 1000))
     return cached or {}
 
 
