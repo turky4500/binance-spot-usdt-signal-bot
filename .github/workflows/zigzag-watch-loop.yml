@@ -25,6 +25,9 @@ concurrency:
 
 jobs:
   watch:
+# ⚠️ الحماية على مستوى المهمة (job if): «exit 0» داخل خطوة لا يوقف الخطوات التالية،
+#    وكان ذلك سبب استمرار بوت ZigZag بإرسال الرسائل بعد «إيقافه» (2026-11-02).
+    if: ${{ vars.ZIGZAG_ENABLED == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 350
     env:
@@ -104,7 +107,7 @@ jobs:
           WATCHER_ENABLED: ${{ vars.ZIGZAG_ENABLED || 'false' }}   # موقوف: استُبدل بنظام تتبّع الاتجاه اليومي (2026-11-01)
         run: |
           set +e
-          if [ "${WATCHER_ENABLED:-false}" != "true" ]; then
+          if [ "${WATCHER_ENABLED:-false}" != "true" ]; then   # احتياط إضافي فقط
             echo "⏹ نظام ZigZag موقوف (قرار المستخدم 2026-11-01: غير مربح)."
             echo "   لإعادة تشغيله: Settings → Variables → ZIGZAG_ENABLED = true"
             exit 0

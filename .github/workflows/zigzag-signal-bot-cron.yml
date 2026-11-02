@@ -17,6 +17,9 @@ concurrency:
 
 jobs:
   run-bot:
+# ⚠️ الحماية على مستوى المهمة (job if): «exit 0» داخل خطوة لا يوقف الخطوات التالية،
+#    وكان ذلك سبب استمرار بوت ZigZag بإرسال الرسائل بعد «إيقافه» (2026-11-02).
+    if: ${{ vars.ZIGZAG_ENABLED == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
@@ -84,14 +87,7 @@ jobs:
         with:
           python-version: '3.13'
 
-      - name: فحص مفتاح التشغيل (ZigZag موقوف)
-        run: |
-          if [ "${{ vars.ZIGZAG_ENABLED }}" != "true" ]; then
-            echo "⏹ نظام ZigZag موقوف (قرار المستخدم 2026-11-01: غير مربح)."
-            echo "   لإعادة تشغيله: Settings → Variables → ZIGZAG_ENABLED = true"
-            exit 0
-          fi
-
+      # لا حاجة لخطوة فحص: المهمة كاملة لا تعمل إلا إذا ZIGZAG_ENABLED == 'true'
       - name: Install dependencies
         run: pip install -r requirements.txt
 

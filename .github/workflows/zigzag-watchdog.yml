@@ -20,6 +20,9 @@ concurrency:
 
 jobs:
   ensure-watcher:
+# ⚠️ الحماية على مستوى المهمة (job if): «exit 0» داخل خطوة لا يوقف الخطوات التالية،
+#    وكان ذلك سبب استمرار بوت ZigZag بإرسال الرسائل بعد «إيقافه» (2026-11-02).
+    if: ${{ vars.ZIGZAG_ENABLED == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
