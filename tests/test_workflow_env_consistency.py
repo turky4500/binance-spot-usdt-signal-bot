@@ -33,7 +33,7 @@ APPROVED = {
     "ZZ_MIN_STOP_PCT": "0",
     "ZZ_EXCLUDE_B_SUFFIX": "1",
     "EXCLUDE_PEGGED_STABLES": "1",
-    "TELEGRAM_MUTE": "0",
+    "TELEGRAM_MUTE": "1",
 }
 
 
@@ -114,9 +114,14 @@ def test_other_systems_stay_muted(name):
     assert _envs(name).get("TELEGRAM_MUTE") == "1", f"{name} يجب أن يبقى مُسكتًا"
 
 
-def test_zigzag_is_unmuted():
+def test_zigzag_stays_muted_while_disabled():
+    """2026-11-02: ZigZag أُوقف (غير مربح) ⇒ يجب أن يبقى مُسكتًا كاحتياط ثانٍ.
+
+    قبل الإيقاف كان الاختبار يشترط TELEGRAM_MUTE == "0" (نظام وحيد مُرسل).
+    بعد الإيقاف صار الشرط معكوسًا: الحماية الأولى job-level if، والثانية الكتم.
+    """
     for name in (WATCHER, CRON):
-        assert _envs(name).get("TELEGRAM_MUTE") == "0"
+        assert _envs(name).get("TELEGRAM_MUTE") == "1", f"{name} يجب أن يبقى مُسكتًا بعد إيقاف ZigZag"
 
 
 # ─────────────────────────────────────────── حجب التوكن
