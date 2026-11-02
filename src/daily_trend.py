@@ -2,7 +2,7 @@
 
 القواعد (مثبتة باختبار سنتين و~600 تهيئة — تقرير 2026-11-01):
     1. الإطار: شمعة يومية مغلقة (00:00 UTC).
-    2. بوابة السوق: لا دخول إلا إذا كان إغلاق BTC(4h) **فوق** EMA200(4h).
+    2. بوابة السوق: لا دخول إلا إذا كان إغلاق BTC (يومي) **فوق** EMA20 (يومي).
        وإذا أُغلقت البوابة ⇒ تُغلق كل المراكز فورًا (السوق النقدي مركز).
     3. الدخول: إغلاق اليوم أعلى من أعلى سعر للـ`lookback` يومًا السابقة.
     4. الوقف الأولي: الدخول − `atr_mult` × ATR(14 يومي).
@@ -34,6 +34,9 @@ def _env_int(name: str, default: int) -> int:
         return default
 
 
+GATE_INTERVALS = {"1d": "يومي", "4h": "4 ساعات"}
+
+
 @dataclass(slots=True)
 class DailyTrendSettings:
     lookback: int = _env_int("DT_LOOKBACK", 20)             # اختراق أعلى سعر لـ20 يومًا
@@ -41,18 +44,29 @@ class DailyTrendSettings:
     atr_mult: float = _env_float("DT_ATR_MULT", 2.5)        # وقف متحرك = 2.5 × ATR
     risk_pct: float = _env_float("DT_RISK_PCT", 1.0)        # مخاطرة الصفقة من الرصيد %
     max_positions: int = _env_int("DT_MAX_POSITIONS", 2)    # مركزان متزامنان
-    gate_ema_len: int = _env_int("DT_GATE_EMA_LEN", 200)    # EMA200 على 4 ساعات
+    gate_ema_len: int = _env_int("DT_GATE_EMA_LEN", 20)     # EMA20 على الشموع اليومية
+    gate_interval: str = os.getenv("DT_GATE_INTERVAL", "1d").strip().lower()  # فريم بوابة BTC
     commission_side_pct: float = _env_float("DT_COMMISSION_SIDE_PCT", 0.1)
     max_stop_pct: float = _env_float("DT_MAX_STOP_PCT", 15.0)   # رفض وقف غير منطقي
     min_stop_pct: float = _env_float("DT_MIN_STOP_PCT", 1.0)
     capital: float = _env_float("DT_CAPITAL", 300.0)        # رأس المال الابتدائي
     daily_limit: int = _env_int("DT_DAILY_LIMIT", 120)      # شموع يومية مطلوبة
-    gate_limit: int = _env_int("DT_GATE_LIMIT", 320)        # شموع 4h مطلوبة (EMA200 + هامش)
+    gate_limit: int = _env_int("DT_GATE_LIMIT", 60)         # شموع البوابة المطلوبة (EMA + هامش)
+
+    @property
+    def gate_label(self) -> str:
+        """اسم فريم البوابة بالعربية."""
+        return GATE_INTERVALS.get(self.gate_interval, self.gate_interval)
+
+    @property
+    def gate_short(self) -> str:
+        """وصف مختصر للبوابة يُستخدم في الرسائل: EMA20 (يومي)."""
+        return f"EMA{self.gate_ema_len} ({self.gate_label})"
 
     def describe(self) -> str:
         return (
             f"تتبّع اتجاه يومي: اختراق {self.lookback} يومًا • وقف {self.atr_mult:g}×ATR({self.atr_len}) متحرك • "
-            f"بوابة BTC فوق EMA{self.gate_ema_len}(4h) • مخاطرة {self.risk_pct:g}% • "
+            f"بوابة BTC فوق {self.gate_short} • مخاطرة {self.risk_pct:g}% • "
             f"حد أقصى {self.max_positions} مراكز"
         )
 
@@ -102,10 +116,14 @@ def closed_bars(df: pd.DataFrame, now_ms: int) -> pd.DataFrame:
 
 # ─────────────────────────── بوابة السوق ───────────────────────────
 def market_gate(
-    btc_4h: pd.DataFrame, now_ms: int, ema_len: int = 200
+    btc_bars: pd.DataFrame, now_ms: int, ema_len: int = 20
 ) -> dict:
-    """حالة السوق: هل BTC فوق EMA200 على 4 ساعات؟ (آخر شمعة 4h مغلقة فقط)."""
-    closed = closed_bars(btc_4h, now_ms)
+    """حالة السوق: هل إغلاق BTC فوق متوسطه (يومي EMA20 افتراضيًا)؟
+
+    الشموع المغلقة فقط تُستخدم — فلا نظر للمستقبل: أثناء اليوم تُقيَّم البوابة
+    على إغلاق الأمس، وهو نفسه ما فعلته الباك-تست (اختيار EMA20 يومي).
+    """
+    closed = closed_bars(btc_bars, now_ms)
     if len(closed) < ema_len + 1:
         return {"open": False, "close": float("nan"), "ema": float("nan"), "reason": "بيانات غير كافية"}
     ema = ema_series(closed["close"], ema_len)

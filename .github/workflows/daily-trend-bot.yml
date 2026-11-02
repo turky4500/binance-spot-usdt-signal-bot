@@ -54,7 +54,9 @@ jobs:
       DT_ATR_MULT: "2.5"          # وقف متحرك = 2.5 × ATR
       DT_RISK_PCT: "1.0"          # مخاطرة 1% من الرصيد لكل صفقة
       DT_MAX_POSITIONS: "2"       # مركزان متزامنان كحد أقصى
-      DT_GATE_EMA_LEN: "200"      # بوابة: BTC فوق EMA200 على 4 ساعات
+      DT_GATE_INTERVAL: "1d"      # بوابة البتكوين: فريم يومي (كان 4h — تغيّر بعد قياس: +10.3% مقابل +2.4% في السنة الثانية)
+      DT_GATE_EMA_LEN: "20"       # بوابة: BTC فوق EMA20 على الشموع اليومية
+      DT_GATE_LIMIT: "60"         # شموع يومية كافية لحساب EMA20
       DT_COMMISSION_SIDE_PCT: "0.1"
       DT_MAX_STOP_PCT: "15"       # رفض وقف غير منطقي
       DT_MIN_STOP_PCT: "1"

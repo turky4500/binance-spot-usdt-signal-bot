@@ -80,6 +80,46 @@ def test_closed_bars_excludes_forming_candle():
 
 
 # ─────────────────────────── بوابة السوق ───────────────────────────
+def _btc_daily(closes):
+    n = len(closes)
+    return pd.DataFrame({
+        "open_time": [BASE + i * DAY for i in range(n)],
+        "open": closes, "high": [c * 1.01 for c in closes], "low": [c * 0.99 for c in closes],
+        "close": closes, "volume": [1.0] * n,
+        "close_time": [BASE + i * DAY + DAY - 1 for i in range(n)],
+    })
+
+
+def test_gate_defaults_to_daily_ema20():
+    s = DailyTrendSettings()
+    assert s.gate_interval == "1d"
+    assert s.gate_ema_len == 20
+    assert "EMA20" in s.describe() and "يومي" in s.describe()
+    assert s.gate_short == "EMA20 (يومي)"
+
+
+def test_market_gate_daily_ema20_open_and_closed():
+    up = _btc_daily([100.0 + i for i in range(40)])
+    now = int(up["close_time"].iloc[-1]) + 1
+    g = market_gate(up, now, 20)
+    assert g["open"] is True and g["close"] > g["ema"]
+    assert g["reason"] == "فوق المتوسط"
+    down = _btc_daily([400.0 - i for i in range(40)])
+    now = int(down["close_time"].iloc[-1]) + 1
+    g = market_gate(down, now, 20)
+    assert g["open"] is False and g["close"] < g["ema"]
+
+
+def test_market_gate_uses_only_closed_daily_bars():
+    """أثناء اليوم تُقيَّم البوابة على إغلاق الأمس — لا نظر للمستقبل."""
+    closes = [100.0] * 30 + [1000.0]        # الشمعة الأخيرة (غير المغلقة) صعود هائل
+    df = _btc_daily(closes)
+    now = int(df["open_time"].iloc[-1]) + 60_000        # داخل الشمعة الأخيرة
+    g = market_gate(df, now, 20)
+    assert g["open"] is False               # لم تُحتسب شمعة الألف
+    assert g["close"] == 100.0
+
+
 def _btc_4h(closes):
     n = len(closes)
     return pd.DataFrame({

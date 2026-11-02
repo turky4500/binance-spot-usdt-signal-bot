@@ -313,7 +313,7 @@ class DailyTrendBot:
             f"🎯 الصفقات المغلقة: {trades}  •  ناجحة: {wins}  •  نسبة الفوز: {rate:.0f}%" if trades
             else "🎯 الصفقات المغلقة: 0 (لا صفقات بعد)",
             f"🌐 بوابة السوق: {gate_icon}  •  BTC "
-            f"{fmt_price(gate['close'], self.ticks.get(GATE_SYMBOL))} مقابل EMA{self.settings.gate_ema_len}: "
+            f"{fmt_price(gate['close'], self.ticks.get(GATE_SYMBOL))} مقابل {self.settings.gate_short}: "
             f"{fmt_price(gate['ema'], self.ticks.get(GATE_SYMBOL))}",
         ]
         positions = self.state["positions"]
@@ -442,7 +442,7 @@ class DailyTrendBot:
                 f"📊 اختراق أعلى {self.settings.lookback} يومًا "
                 f"({fmt_price(sig['breakout_high'], tick)}) بـ +{sig['breakout_pct']:.2f}%",
                 "",
-                f"🌐 السوق: BTC فوق EMA{self.settings.gate_ema_len}(4h) ✅",
+                f"🌐 السوق: BTC فوق {self.settings.gate_short} ✅",
                 "⏳ الخروج: لمس الوقف المتحرك أو إغلاق بوابة السوق",
                 f"🕒 {local_time(now_ms)}",
             ]),
@@ -460,7 +460,7 @@ class DailyTrendBot:
         if gate["open"]:
             text = "\n".join([
                 "🟢 فتح بوابة السوق",
-                f"BTC فوق EMA{self.settings.gate_ema_len}(4h) — يُسمح بالدخول",
+                f"BTC فوق {self.settings.gate_short} — يُسمح بالدخول",
                 f"BTC: {fmt_price(gate['close'], self.ticks.get(GATE_SYMBOL))} • "
                 f"المتوسط: {fmt_price(gate['ema'], self.ticks.get(GATE_SYMBOL))}",
                 f"🕒 {local_time(now_ms)}",
@@ -468,7 +468,7 @@ class DailyTrendBot:
         else:
             text = "\n".join([
                 "🔴 إغلاق بوابة السوق",
-                f"BTC تحت EMA{self.settings.gate_ema_len}(4h) — إيقاف الدخول وإغلاق المراكز",
+                f"BTC تحت {self.settings.gate_short} — إيقاف الدخول وإغلاق المراكز",
                 f"BTC: {fmt_price(gate['close'], self.ticks.get(GATE_SYMBOL))} • "
                 f"المتوسط: {fmt_price(gate['ema'], self.ticks.get(GATE_SYMBOL))}",
                 f"🕒 {local_time(now_ms)}",
@@ -483,11 +483,29 @@ class DailyTrendBot:
         df = pd.DataFrame([row], columns=TRADE_FIELDS)
         df.to_csv(path, mode="a", header=not exists, index=False, encoding="utf-8-sig")
 
+    # ── حماية فريم البوابة ──
+    EXPECTED_GATE_INTERVAL = "1d"
+
+    def _guard_gate_interval(self) -> None:
+        """لا تشغيل صامت بفريم بوابة مخالف: تسجيل الإعدادات كل دورة + تحذير عند الانحراف."""
+        if getattr(self, "_settings_logged", False):
+            return
+        self._settings_logged = True
+        _LOG.info("⚙️ الإعدادات الفعّالة: %s", self.settings.describe())
+        if self.settings.gate_interval != self.EXPECTED_GATE_INTERVAL:
+            _LOG.warning(
+                "⚠️ فريم بوابة BTC هو %s وليس %s المعتمد (EMA%d) — تحقّق من DT_GATE_INTERVAL",
+                self.settings.gate_interval, self.EXPECTED_GATE_INTERVAL, self.settings.gate_ema_len,
+            )
+
     # ── دورة ──
     def run_cycle(self) -> None:
         now_ms = self.client.get_server_time()
-        btc_4h = self.client.get_klines(GATE_SYMBOL, "4h", self.settings.gate_limit)
-        gate = market_gate(btc_4h, now_ms, self.settings.gate_ema_len)
+        self._guard_gate_interval()
+        btc_gate_bars = self.client.get_klines(
+            GATE_SYMBOL, self.settings.gate_interval, self.settings.gate_limit
+        )
+        gate = market_gate(btc_gate_bars, now_ms, self.settings.gate_ema_len)
         prices = self.client.get_all_prices()
         self.announce_gate(gate, now_ms)
         self.manage_positions(now_ms, gate, prices)

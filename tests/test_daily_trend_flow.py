@@ -48,15 +48,29 @@ class FakeClient:
     def __init__(self, daily, gate_up=True, now=None):
         self.daily = daily
         self.gate_up = gate_up
+        self.calls = []
         self.now = now or (BASE + 21 * DAY + 5 * 60_000)   # 5 دقائق بعد إغلاق آخر شمعة يومية
 
     def get_server_time(self):
         return self.now
 
+    def _gate_df(self):
+        """شموع BTC اليومية للبوابة: صاعدة (EMA20 تحتها) أو هابطة (EMA20 فوقها)."""
+        n = 30
+        # نُحاذي آخر شمعة BTC مع آخر شمعة في بيانات الأزواج (نفس «ساعة» النظام)
+        anchor = int(next(iter(self.daily.values()))["open_time"].iloc[-1])
+        start = anchor - (n - 1) * DAY
+        closes = ([100.0 + i for i in range(n)] if self.gate_up
+                  else [300.0 - 5.0 * i for i in range(n)])
+        return daily_df(closes, start=start)
+
     def get_klines(self, symbol, interval="1d", limit=120, **kw):
-        if interval == "4h":
-            start = self.now - 261 * H4            # آخر شمعة 4h تُغلق قبل "الآن" مباشرة
+        self.calls.append((symbol, interval))
+        if interval == "4h":                       # للتوافق مع أي نداء قديم
+            start = self.now - 261 * H4
             return h4_df([100.0 + i if self.gate_up else 500.0 - i for i in range(260)], start=start)
+        if symbol == "BTCUSDT":
+            return self._gate_df()                 # البوابة اليومية تُبنى ديناميكيًا (قابلة للقلب)
         return self.daily[symbol]
 
     def get_all_prices(self):
@@ -100,8 +114,8 @@ def _setup_market(bot, breakout=True, gate_up=True):
     # 20 شمعة ثابتة ثم شمعة اختراق في آخر شمعة مغلقة
     closes = [100.0 + (i % 3) * 0.5 for i in range(20)]
     closes.append(103.0 if breakout else 100.0)
-    btc = daily_df([100.0 + (i % 2) for i in range(20)] + [101.0])
-    bot.client = FakeClient({"ADAUSDT": daily_df(closes), "BTCUSDT": btc}, gate_up=gate_up)
+    # بوابة EMA20 يومي (FakeClient يبنيها ديناميكيًا من gate_up)
+    bot.client = FakeClient({"ADAUSDT": daily_df(closes)}, gate_up=gate_up)
 
 
 def test_full_cycle_opens_position_and_sends_entry_message(bot):
@@ -273,3 +287,30 @@ def test_stop_notice_is_throttled_to_one_per_window(bot):
     assert after - before == 1
     # الوقف الحقيقي تحدّث رغم عدم إرسال رسالة
     assert bot.state["positions"]["ADAUSDT"]["stop_price"] > 0
+
+
+def test_gate_reads_daily_bitcoin_bars_not_4h(bot):
+    _setup_market(bot)
+    bot.symbols = ["ADAUSDT"]
+    bot.run_cycle()
+    assert ("BTCUSDT", "1d") in bot.client.calls
+    assert ("BTCUSDT", "4h") not in bot.client.calls
+
+
+def test_guard_warns_when_gate_interval_deviates(bot, caplog):
+    """لا تشغيل صامت بفريم بوابة مخالف: تحذير صريح + تسجيل الإعدادات."""
+    _setup_market(bot)
+    bot.settings.gate_interval = "4h"
+    with caplog.at_level("INFO"):
+        bot.run_cycle()
+    assert any(r.levelname == "WARNING" for r in caplog.records)
+    assert any("الإعدادات الفعّالة" in r.getMessage() for r in caplog.records)
+
+
+def test_gate_messages_describe_daily_ema20(bot):
+    _setup_market(bot)
+    bot.symbols = ["ADAUSDT"]
+    bot.run_cycle()
+    entry_text = next(t for t in bot.telegram.sent if "دخول جديد" in t)
+    assert "EMA20 (يومي)" in entry_text
+    assert "4h" not in entry_text
