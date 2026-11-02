@@ -46,7 +46,8 @@ jobs:
       DT_STATE_FILE: data/state_daily_trend.json
       DT_TRADE_LOG: data/trades_log_daily_trend.csv
       DT_HALAL_DIR: data/zigzag            # نفس مصدر الأحكام القائم (قراءة فقط)
-      DT_HALAL_EXTRA: data/daily_trend/halal_extra.json   # 131 حكمًا مُتحقَّقًا
+      DT_HALAL_PRIMARY: data/daily_trend/halal_academy.json  # المصدر الأساسي (764 حكمًا) — يتقدّم على غيره
+      DT_HALAL_EXTRA: data/daily_trend/halal_extra.json   # 131 حكمًا احتياطيًا (تغطية إضافية)
       DT_EXCLUDE_FILE: config/zz_exclude.txt
       # ── قواعد النظام (مثبتة باختبار سنتين — تقرير 2026-11-01) ──
       DT_LOOKBACK: "20"           # اختراق أعلى سعر لـ20 يومًا

@@ -19,6 +19,10 @@ import urllib.request
 from typing import Optional
 
 HALAL_API_URL = "https://api.cryptohalal.cc/api/coins"
+# المصدر الأساسي (2026-11-02): أكاديمية البيتكوين العربية — منهجيتها: لا خدمات حرام/مشبوهة ⇒ حلال.
+# الملف ثابت داخل المستودع (سحبه يدوي/دورياً عبر سكربت) لأن سحب 766 مقالاً يستغرق ~15 دقيقة.
+PRIMARY_HALAL_FILE = "halal_academy.json"
+PRIMARY_SOURCE = "btcacademy.online"
 HALAL_CACHE_FILE = "halal_verdicts.json"
 
 VERDICT_TEXTS = {
@@ -196,6 +200,23 @@ def refresh_if_stale(data_dir: str, max_age_hours: int = 6) -> dict[str, int]:
             # دمج لا استبدال: نحتفظ بما جُمع بالبحث الفردي (2026-11-01)
             return _merge_and_save(data_dir, fresh, int(time.time() * 1000))
     return cached or {}
+
+
+def load_primary_verdicts(path: str) -> dict[str, int]:
+    """يقرأ ملف المصدر الأساسي (خريطة base → 0/1/2). أي خلل ⇒ قاموس فارغ بلا إسقاط النظام."""
+    try:
+        with open(path, encoding="utf-8") as f:
+            raw = json.load(f)
+    except (OSError, ValueError):
+        return {}
+    return {str(k).upper(): int(v) for k, v in raw.items() if isinstance(v, (int, float))}
+
+
+def merge_with_primary(base: dict[str, int], primary: dict[str, int]) -> dict[str, int]:
+    """المصدر الأساسي يتقدّم على غيره؛ وما لا يوجد فيه يبقى من المصدر الثانوي (تغطية أوسع)."""
+    merged = dict(base)
+    merged.update(primary)
+    return merged
 
 
 def verdict_label(verdicts: dict[str, int], symbol: str) -> str:

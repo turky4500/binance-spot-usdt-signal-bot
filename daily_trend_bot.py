@@ -36,6 +36,7 @@ STATE_FILE = os.getenv("DT_STATE_FILE", "data/state_daily_trend.json")
 TRADE_LOG = os.getenv("DT_TRADE_LOG", "data/trades_log_daily_trend.csv")
 HALAL_DIR = os.getenv("DT_HALAL_DIR", "data/zigzag")          # نفس مصدر الأحكام القائم
 HALAL_EXTRA = os.getenv("DT_HALAL_EXTRA", "data/daily_trend/halal_extra.json")
+HALAL_PRIMARY = os.getenv("DT_HALAL_PRIMARY", "data/daily_trend/halal_academy.json")
 EXCLUDE_FILE = os.getenv("DT_EXCLUDE_FILE", "config/zz_exclude.txt")
 GATE_SYMBOL = os.getenv("DT_GATE_SYMBOL", "BTCUSDT")
 ENTRY_WINDOW_MIN = int(os.getenv("DT_ENTRY_WINDOW_MIN", "90"))   # نافذة التنفيذ بعد الإغلاق اليومي
@@ -140,7 +141,7 @@ class DailyTrendBot:
 
     # ── الكون والأحكام ──
     def refresh_universe(self) -> None:
-        from src.halal import load_cached_verdicts, refresh_if_stale
+        from src.halal import load_primary_verdicts, merge_with_primary, refresh_if_stale
 
         verdicts = refresh_if_stale(HALAL_DIR, int(os.getenv("HALAL_REFRESH_HOURS", "6"))) or {}
         extra_path = os.path.join(os.getcwd(), HALAL_EXTRA)
@@ -150,6 +151,15 @@ class DailyTrendBot:
                     verdicts = {**verdicts, **json.load(f)}
             except (OSError, ValueError):
                 pass
+        fallback_n = len(verdicts)
+        primary = load_primary_verdicts(os.path.join(os.getcwd(), HALAL_PRIMARY))
+        verdicts = merge_with_primary(verdicts, primary)
+        if primary:
+            _LOG.info("الأحكام: المصدر الأساسي %s (%d حكمًا) يتقدّم على %d حكمًا من المصادر الثانوية",
+                      HALAL_PRIMARY, len(primary), fallback_n)
+        else:
+            _LOG.warning("⚠️ ملف المصدر الأساسي للأحكام غير موجود (%s) — يُستخدم المصدر الثانوي فقط",
+                         HALAL_PRIMARY)
         self.halal = verdicts
 
         excluded: set[str] = set()
