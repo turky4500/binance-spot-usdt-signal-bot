@@ -190,7 +190,7 @@
       "size_suggest_pct": 0.28846027846027894,
       "entry_time": 1793404799999,
       "entry_bar_open_time": 1793318400000,
-      "last_check_ms": 1793785080000,
+      "last_check_ms": 1793813460000,
       "peak_price": 722.08,
       "last_stop_alert_price": 680.0,
       "stop_updates_count": 0,
@@ -201,17 +201,17 @@
       "trade_id": "GMXUSDT-1793404800000",
       "symbol": "GMXUSDT",
       "entry_price": 8.29,
-      "stop_price": 8.1144,
+      "stop_price": 8.5836,
       "pivot_stop": 7.68,
       "target_price": 9.509999999999998,
       "stop_dist_pct": 7.358262967430633,
       "size_suggest_pct": 0.13590163934426241,
       "entry_time": 1793491199999,
       "entry_bar_open_time": 1793404800000,
-      "last_check_ms": 1793785140000,
-      "peak_price": 8.82,
-      "last_stop_alert_price": 8.1052,
-      "stop_updates_count": 5,
+      "last_check_ms": 1793813460000,
+      "peak_price": 9.33,
+      "last_stop_alert_price": 8.5652,
+      "stop_updates_count": 10,
       "halal_verdict": "⛔ غير مباح",
       "silent": true
     },
@@ -219,17 +219,17 @@
       "trade_id": "NIGHTUSDT-1793404800000",
       "symbol": "NIGHTUSDT",
       "entry_price": 0.04068,
-      "stop_price": 0.040342,
+      "stop_price": 0.0414644,
       "pivot_stop": 0.0353,
       "target_price": 0.05144000000000001,
       "stop_dist_pct": 13.225172074729604,
       "size_suggest_pct": 0.07561338289962821,
       "entry_time": 1793491199999,
       "entry_bar_open_time": 1793404800000,
-      "last_check_ms": 1793785140000,
-      "peak_price": 0.04385,
-      "last_stop_alert_price": 0.0402592,
-      "stop_updates_count": 5,
+      "last_check_ms": 1793813460000,
+      "peak_price": 0.04507,
+      "last_stop_alert_price": 0.041243600000000005,
+      "stop_updates_count": 7,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     },
@@ -244,7 +244,7 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1793785140000,
+      "last_check_ms": 1793813460000,
       "peak_price": 0.14365,
       "last_stop_alert_price": 0.13515,
       "stop_updates_count": 0,
@@ -262,7 +262,7 @@
       "size_suggest_pct": 0.04579710144927536,
       "entry_time": 1793750399999,
       "entry_bar_open_time": 1793664000000,
-      "last_check_ms": 1793785140000,
+      "last_check_ms": 1793813460000,
       "peak_price": 0.665,
       "last_stop_alert_price": 0.6118,
       "stop_updates_count": 1,
@@ -3395,6 +3395,41 @@
       "type": "stop_alert",
       "symbol": "RUNEUSDT",
       "time_ms": 1793750519999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "GMXUSDT",
+      "time_ms": 1793802839999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "GMXUSDT",
+      "time_ms": 1793803799999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "GMXUSDT",
+      "time_ms": 1793804759999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "GMXUSDT",
+      "time_ms": 1793805119999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "GMXUSDT",
+      "time_ms": 1793805959999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "NIGHTUSDT",
+      "time_ms": 1793792399999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "NIGHTUSDT",
+      "time_ms": 1793805479999
     }
   ],
   "daily_report": {
