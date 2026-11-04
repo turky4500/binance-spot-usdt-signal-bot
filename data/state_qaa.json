@@ -137,8 +137,8 @@
     "LTCUSDT": 1792713600000,
     "AMPUSDT": 1792800000000,
     "SENTUSDT": 1793664000000,
-    "KMNOUSDT": 1792800000000,
-    "币安人生USDT": 1793232000000,
+    "KMNOUSDT": 1793750400000,
+    "币安人生USDT": 1793750400000,
     "BNSOLUSDT": 1792800000000,
     "SOLUSDT": 1792800000000,
     "TRBUSDT": 1792800000000,
@@ -173,7 +173,10 @@
     "DODOUSDT": 1793491200000,
     "RLCUSDT": 1793491200000,
     "BATUSDT": 1793577600000,
-    "NMRUSDT": 1793577600000
+    "NMRUSDT": 1793577600000,
+    "BTCUSDT": 1793750400000,
+    "WBTCUSDT": 1793750400000,
+    "BMTUSDT": 1793750400000
   },
   "open_trades": {
     "BNBUSDT": {
@@ -187,46 +190,28 @@
       "size_suggest_pct": 0.28846027846027894,
       "entry_time": 1793404799999,
       "entry_bar_open_time": 1793318400000,
-      "last_check_ms": 1793759100000,
+      "last_check_ms": 1793785080000,
       "peak_price": 722.08,
       "last_stop_alert_price": 680.0,
       "stop_updates_count": 0,
       "halal_verdict": "⛔ غير مباح",
       "silent": true
     },
-    "BTCUSDT": {
-      "trade_id": "BTCUSDT-1793404800000",
-      "symbol": "BTCUSDT",
-      "entry_price": 77582.02,
-      "stop_price": 76325.98,
-      "pivot_stop": 76325.98,
-      "target_price": 80094.10000000002,
-      "stop_dist_pct": 1.6189833675380045,
-      "size_suggest_pct": 0.6176715709690734,
-      "entry_time": 1793491199999,
-      "entry_bar_open_time": 1793404800000,
-      "last_check_ms": 1793759100000,
-      "peak_price": 78878.01,
-      "last_stop_alert_price": 76325.98,
-      "stop_updates_count": 0,
-      "halal_verdict": "✅ مباح",
-      "silent": true
-    },
     "GMXUSDT": {
       "trade_id": "GMXUSDT-1793404800000",
       "symbol": "GMXUSDT",
       "entry_price": 8.29,
-      "stop_price": 8.031600000000001,
+      "stop_price": 8.1144,
       "pivot_stop": 7.68,
       "target_price": 9.509999999999998,
       "stop_dist_pct": 7.358262967430633,
       "size_suggest_pct": 0.13590163934426241,
       "entry_time": 1793491199999,
       "entry_bar_open_time": 1793404800000,
-      "last_check_ms": 1793759100000,
-      "peak_price": 8.73,
-      "last_stop_alert_price": 8.022400000000001,
-      "stop_updates_count": 4,
+      "last_check_ms": 1793785140000,
+      "peak_price": 8.82,
+      "last_stop_alert_price": 8.1052,
+      "stop_updates_count": 5,
       "halal_verdict": "⛔ غير مباح",
       "silent": true
     },
@@ -234,53 +219,17 @@
       "trade_id": "NIGHTUSDT-1793404800000",
       "symbol": "NIGHTUSDT",
       "entry_price": 0.04068,
-      "stop_price": 0.03972560000000001,
+      "stop_price": 0.040342,
       "pivot_stop": 0.0353,
       "target_price": 0.05144000000000001,
       "stop_dist_pct": 13.225172074729604,
       "size_suggest_pct": 0.07561338289962821,
       "entry_time": 1793491199999,
       "entry_bar_open_time": 1793404800000,
-      "last_check_ms": 1793759100000,
-      "peak_price": 0.04318,
-      "last_stop_alert_price": 0.0394496,
-      "stop_updates_count": 3,
-      "halal_verdict": "ℹ️ لا يوجد حكم",
-      "silent": true
-    },
-    "WBTCUSDT": {
-      "trade_id": "WBTCUSDT-1793404800000",
-      "symbol": "WBTCUSDT",
-      "entry_price": 77504.1,
-      "stop_price": 76333.99,
-      "pivot_stop": 76333.99,
-      "target_price": 79844.32,
-      "stop_dist_pct": 1.5097394847498395,
-      "size_suggest_pct": 0.662365931408158,
-      "entry_time": 1793491199999,
-      "entry_bar_open_time": 1793404800000,
-      "last_check_ms": 1793759100000,
-      "peak_price": 78698.38,
-      "last_stop_alert_price": 76333.99,
-      "stop_updates_count": 0,
-      "halal_verdict": "⛔ غير مباح",
-      "silent": true
-    },
-    "币安人生USDT": {
-      "trade_id": "币安人生USDT-1793404800000",
-      "symbol": "币安人生USDT",
-      "entry_price": 0.5335,
-      "stop_price": 0.5060000000000001,
-      "pivot_stop": 0.4891,
-      "target_price": 0.6223,
-      "stop_dist_pct": 8.322399250234302,
-      "size_suggest_pct": 0.12015765765765767,
-      "entry_time": 1793491199999,
-      "entry_bar_open_time": 1793404800000,
-      "last_check_ms": 1793759100000,
-      "peak_price": 0.55,
-      "last_stop_alert_price": 0.504528,
-      "stop_updates_count": 3,
+      "last_check_ms": 1793785140000,
+      "peak_price": 0.04385,
+      "last_stop_alert_price": 0.0402592,
+      "stop_updates_count": 5,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     },
@@ -295,64 +244,28 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1793759100000,
-      "peak_price": 0.143,
+      "last_check_ms": 1793785140000,
+      "peak_price": 0.14365,
       "last_stop_alert_price": 0.13515,
       "stop_updates_count": 0,
       "halal_verdict": "⛔ غير مباح",
-      "silent": true
-    },
-    "BMTUSDT": {
-      "trade_id": "BMTUSDT-1793664000000",
-      "symbol": "BMTUSDT",
-      "entry_price": 0.02652,
-      "stop_price": 0.02044,
-      "pivot_stop": 0.02044,
-      "target_price": 0.03867999999999999,
-      "stop_dist_pct": 22.926093514328805,
-      "size_suggest_pct": 0.043618421052631584,
-      "entry_time": 1793750399999,
-      "entry_bar_open_time": 1793664000000,
-      "last_check_ms": 1793750459999,
-      "peak_price": 0.0289,
-      "last_stop_alert_price": 0.02044,
-      "stop_updates_count": 0,
-      "halal_verdict": "ℹ️ لا يوجد حكم",
-      "silent": true
-    },
-    "KMNOUSDT": {
-      "trade_id": "KMNOUSDT-1793664000000",
-      "symbol": "KMNOUSDT",
-      "entry_price": 0.03338,
-      "stop_price": 0.02912,
-      "pivot_stop": 0.02912,
-      "target_price": 0.0419,
-      "stop_dist_pct": 12.762133013780709,
-      "size_suggest_pct": 0.07835680751173708,
-      "entry_time": 1793750399999,
-      "entry_bar_open_time": 1793664000000,
-      "last_check_ms": 1793750459999,
-      "peak_price": 0.03502,
-      "last_stop_alert_price": 0.02912,
-      "stop_updates_count": 0,
-      "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     },
     "RUNEUSDT": {
       "trade_id": "RUNEUSDT-1793664000000",
       "symbol": "RUNEUSDT",
       "entry_price": 0.632,
-      "stop_price": 0.494,
+      "stop_price": 0.6118,
       "pivot_stop": 0.494,
       "target_price": 0.908,
       "stop_dist_pct": 21.835443037974684,
       "size_suggest_pct": 0.04579710144927536,
       "entry_time": 1793750399999,
       "entry_bar_open_time": 1793664000000,
-      "last_check_ms": 1793750459999,
+      "last_check_ms": 1793785140000,
       "peak_price": 0.665,
-      "last_stop_alert_price": 0.494,
-      "stop_updates_count": 0,
+      "last_stop_alert_price": 0.6118,
+      "stop_updates_count": 1,
       "halal_verdict": "⛔ غير مباح",
       "silent": true
     }
@@ -3397,6 +3310,91 @@
       "type": "entry",
       "symbol": "RUNEUSDT",
       "time_ms": 1793750399999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "BTCUSDT",
+      "time_ms": 1793761199999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "GMXUSDT",
+      "time_ms": 1793776319999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "NIGHTUSDT",
+      "time_ms": 1793780279999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "NIGHTUSDT",
+      "time_ms": 1793783519999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "WBTCUSDT",
+      "time_ms": 1793761139999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "币安人生USDT",
+      "time_ms": 1793761739999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "BMTUSDT",
+      "time_ms": 1793750519999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "BMTUSDT",
+      "time_ms": 1793752919999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "BMTUSDT",
+      "time_ms": 1793754719999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "BMTUSDT",
+      "time_ms": 1793754839999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "BMTUSDT",
+      "time_ms": 1793755559999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "BMTUSDT",
+      "time_ms": 1793755619999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "BMTUSDT",
+      "time_ms": 1793758859999
+    },
+    {
+      "type": "exit_win",
+      "symbol": "BMTUSDT",
+      "time_ms": 1793761139999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "KMNOUSDT",
+      "time_ms": 1793750519999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "KMNOUSDT",
+      "time_ms": 1793761379999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "RUNEUSDT",
+      "time_ms": 1793750519999
     }
   ],
   "daily_report": {
