@@ -10,9 +10,10 @@
     "report:2026-11-03",
     "report:2026-11-04",
     "report:2026-11-05",
-    "gate:1:20762"
+    "gate:1:20762",
+    "report:2026-11-06"
   ],
-  "last_report_date": "2026-11-05",
+  "last_report_date": "2026-11-06",
   "event_log": [],
   "trades": 0,
   "wins": 0
