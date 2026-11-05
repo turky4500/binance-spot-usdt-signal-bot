@@ -159,6 +159,47 @@ def repaint_extremum_signals(
     return out
 
 
+def nw_line_colors(y: Sequence[float] | np.ndarray) -> np.ndarray:
+    """ألوان خطوط المنحنى كما في Pine بالحرف.
+
+    في الدورة i: ``line.set_color(l, y2 > y1 ? dnCss : upCss)`` أي أن القطعة
+    الواصلة بين الشمعة i-1 (الأحدث) والشمعة i تصبح **حمراء** إذا كان
+    ``d[i] = y[i]-y[i-1] > 0`` (ميل هابط زمنيًا)، و**خضراء/تركوازية** إذا كان
+    ``d[i] <= 0`` (ميل صاعد زمنيًا). القطعة 0 غير معرّفة (y1 = na في أول دورة).
+
+    ملاحظة مهمة: عند قاع ▲ يكون ``d[i] < 0`` ⇒ لون القطعة عند التسمية أخضر
+    **بالتعريف**. المقصود عمليًا بـ«الخط أخضر» إما هذه القطعة، أو الجانب
+    الأحدث من المنحنى (``colors[1]``) أي أن المنحنى ما زال صاعدًا حتى الآن.
+    """
+    y = np.asarray(y, dtype=float).ravel()
+    colors = np.full(y.size, None, dtype=object)
+    for i in range(1, y.size):
+        colors[i] = "down" if (y[i] - y[i - 1]) > 0 else "up"
+    return colors
+
+
+def annotate_repaint_signals(
+    y: Sequence[float] | np.ndarray,
+    closes: Sequence[float] | np.ndarray | None = None,
+) -> list[dict]:
+    """التسميات ▲/▼ مرفقًا بها حالة لون الخط عند التسمية وفي أقصى اليمين.
+
+    ``color_at_signal`` = لون القطعة الواقعة عند الشمعة التي ظهرت فيها الإشارة.
+    ``color_newest``    = لون أحدث قطعة في المنحنى (ميل المنحنى «الآن»).
+    ``newer_all_up``    = هل كل القطع بين الإشارة والآن خضراء (صعود متصل).
+    """
+    sigs = repaint_extremum_signals(y, closes)
+    colors = nw_line_colors(y)
+    for s in sigs:
+        i = s["bars_ago"]
+        s["color_at_signal"] = colors[i]
+        s["color_newest"] = colors[1] if len(colors) > 1 else None
+        s["newer_all_up"] = bool(
+            i > 1 and all(c == "up" for c in colors[1:i])
+        )
+    return sigs
+
+
 def endpoint_flip_signals(
     out: Sequence[float] | np.ndarray,
     closes: Sequence[float] | np.ndarray | None = None,

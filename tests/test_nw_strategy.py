@@ -13,10 +13,12 @@ import pytest
 
 from src.nw_strategy import (
     NWConfig,
+    annotate_repaint_signals,
     endpoint_estimator,
     endpoint_flip_signals,
     gauss,
     nw_curve,
+    nw_line_colors,
     repaint_extremum_signals,
 )
 
@@ -120,6 +122,28 @@ def test_repainting_documented_behaviour():
     s_before = {(s["bars_ago"], s["kind"]) for s in repaint_extremum_signals(y_before)}
     s_after = {(s["bars_ago"], s["kind"]) for s in repaint_extremum_signals(y_after)}
     assert s_before != s_after
+
+
+def test_line_colors_match_pine_teal_red_rule():
+    # y[0]=الأحدث؛ d>0 ⇒ أحمر (down)، d<=0 ⇒ أخضر/تركوازي (up)
+    y = np.array([5, 4, 3, 2, 1, 2, 3, 4, 5, 4, 3], dtype=float)
+    c = nw_line_colors(y)
+    assert c[0] is None
+    assert list(c[1:5]) == ["up", "up", "up", "up"]      # المنحدر نحو القاع أخضر
+    assert list(c[5:9]) == ["down", "down", "down", "down"]
+    assert c[9] == "up" and c[10] == "up"
+
+
+def test_line_color_at_buy_signal_is_green_by_definition():
+    y = np.array([5, 4, 3, 2, 1, 2, 3, 4, 5, 4, 3], dtype=float)
+    sigs = annotate_repaint_signals(y)
+    buy = next(s for s in sigs if s["kind"] == "buy")
+    assert buy["bars_ago"] == 4
+    assert buy["color_at_signal"] == "up"     # «الخط أخضر» عند ▲ تحصيل حاصل
+    assert buy["color_newest"] == "up"
+    assert buy["newer_all_up"] is True
+    sell = next(s for s in sigs if s["kind"] == "sell")
+    assert sell["color_at_signal"] == "down"
 
 
 def test_insufficient_bars_raises():
