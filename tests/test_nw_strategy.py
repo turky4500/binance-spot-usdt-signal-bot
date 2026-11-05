@@ -111,17 +111,24 @@ def test_endpoint_flip_signals_skip_warmup_nans():
 
 
 def test_repainting_documented_behaviour():
-    """إضافة شمعة واحدة تغيّر تاريخ المنحنى/الإشارات — هذه هي مشكلة إعادة الرسم."""
+    """إضافة شمعة واحدة تغيّر تاريخ المنحنى/الإشارات — محاذاة صحيحة بالفهرس المطلق.
+
+    تنبيه: مقارنة ``bars_ago`` مباشرة بين نافذتين متجاورتين خاطئة (كل التسميات
+    تتحرك درجة واحدة بسبب تحرّك النافذة نفسها). الصحيح طرح/جمع الإزاحة بحيث
+    يشير المفتاح إلى نفس الشمعة المطلقة. القياس الواسع في tools/backtest_nw.py.
+    """
     rng = np.random.default_rng(21)
     base = 100 + np.cumsum(rng.normal(0, 0.6, 520))
-    y_before = nw_curve(base[:500])
-    y_after = nw_curve(base[:501])
-    # نفس الشمعة التاريخية (i=10 شمعة ماضية من نهاية كل نافذة) لا تعطي نفس القيمة
+    y_before = nw_curve(base[:500])       # آخر شمعة = 499
+    y_after = nw_curve(base[:501])        # آخر شمعة = 500
+    # نفس الشمعة التاريخية: y_before[i] ↔ y_after[i+1]
     assert y_before[10] != pytest.approx(y_after[11])
-    # الإشارات التاريخية تتحرك: لا يجوز استخدامها كإشارة حيّة بلا تأكيد
-    s_before = {(s["bars_ago"], s["kind"]) for s in repaint_extremum_signals(y_before)}
-    s_after = {(s["bars_ago"], s["kind"]) for s in repaint_extremum_signals(y_after)}
+    assert not np.allclose(y_before[:20], y_after[1:21])
+    s_before = {(499 - s["bars_ago"], s["kind"]) for s in repaint_extremum_signals(y_before)}
+    s_after = {(500 - s["bars_ago"], s["kind"]) for s in repaint_extremum_signals(y_after)}
+    # على هذه السلسلة تتغيّر تسميتان بأثر رجعي؛ عمومًا المتوسط ≈0.94/شمعة
     assert s_before != s_after
+    assert 0 < len(s_before ^ s_after) < 10
 
 
 def test_line_colors_match_pine_teal_red_rule():

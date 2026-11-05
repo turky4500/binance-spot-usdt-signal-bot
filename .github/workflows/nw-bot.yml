@@ -1,0 +1,101 @@
+name: NW 1H Bot (Nadaraya-Watson)
+
+# النظام السادس — مستقل تمامًا: حالة ودفتر ووركفلو خاص به فقط.
+# المصدر: Nadaraya-Watson Smoothers [LuxAlgo] (CC BY-NC-SA 4.0)، فريم الساعة.
+# القاعدة: ▲ + شمعة تالية خضراء + أحدث قطعة خضراء ⇒ توصية دخول،
+#          ▼ ⇒ إشارة خروج، وتكرار ▲ ⇒ «إشارة دخول ثانية». بلا أهداف ولا وقف.
+#
+# ⚠️ الإيقاف الصحيح: اضبط المتغيّر NW_ENABLED = false (أو Disable workflow).
+#    الحماية if على مستوى المهمة — لا تُستخدم خطوة `exit 0` كبوابة إطلاقًا
+#    (الدرس الموثّق في handoff.md §5).
+#
+# جدولتان في الساعة لأن cron قد يتأخر 2–66 دقيقة؛ التكرار آمن لأن الحالة
+# تمنع إعادة إرسال التسمية نفسها (_send_once + prev_buy_bars).
+
+on:
+  schedule:
+    - cron: '5 * * * *'
+    - cron: '35 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nw-1h-bot
+  cancel-in-progress: false
+
+jobs:
+  run-once:
+    if: vars.NW_ENABLED != 'false'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      # تفعيل فوري برسائل حقيقية (قرار المستخدم 2026-11-06).
+      # للإسكات المؤقت مع استمرار العمل: اضبطها "1".
+      TELEGRAM_MUTE: "0"
+      TELEGRAM_MIN_INTERVAL_SECONDS: "1.05"
+      TIMEZONE: Asia/Riyadh
+      BINANCE_BASE_URL: https://data-api.binance.vision
+      BINANCE_QUOTE_ASSET: USDT
+      REQUEST_TIMEOUT: "20"
+      MAX_WORKERS: "10"
+      LOG_LEVEL: INFO
+      # ── مسارات النظام (معزولة — لا يلمس أي ملف لأنظمة أخرى) ──
+      NW_STATE_FILE: data/state_nw.json
+      NW_TRADE_LOG: data/trades_log_nw.csv
+      NW_HALAL_PRIMARY: data/daily_trend/halal_academy.json
+      NW_HALAL_EXTRA: data/daily_trend/halal_extra.json
+      NW_HALAL_CACHE: data/zigzag/halal_verdicts.json
+      NW_EXCLUDE_FILE: config/zz_exclude.txt
+      # ── ثوابت المؤشر ──
+      NW_BANDWIDTH: "8"
+      NW_WINDOW: "500"
+      NW_KLINE_LIMIT: "501"       # 501 شمعة ⇒ 500 مغلقة بالضبط (وزن الطلب 5 لكل زوج)
+      NW_SIGNAL_MAX_AGE_BARS: "1" # لا إشارات بأثر رجعي (حماية إعادة الرسم)
+      NW_COMMISSION_SIDE_PCT: "0.1"
+      NW_SHOW_REPAINT_WARNING: "1"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run NW bot once
+        run: python run_nw_once.py
+
+      - name: Commit NW state updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for f in data/state_nw.json data/trades_log_nw.csv; do
+            if [ -f "$f" ]; then git add "$f"; fi
+          done
+          if git diff --cached --quiet; then
+            echo "No NW state changes to commit"
+            exit 0
+          fi
+          git commit -m "chore: update NW bot state [skip ci]"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase -X theirs origin/main; then
+              if git push origin HEAD:main; then
+                echo "NW state pushed on attempt $attempt"
+                exit 0
+              fi
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "Retry $attempt: another run updated main first"
+            sleep $((attempt * 5))
+          done
+          echo "::warning::Could not push NW state after 5 attempts; next run will pick it up."
