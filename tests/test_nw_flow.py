@@ -105,7 +105,10 @@ def test_full_flow_entry_repeat_exit(tmp_path):
     bot.client.frame, bot.client.now_ms = frame3, now_for(2 * HOUR)
     s4 = bot.run_once(universe=["BTCUSDT"])
     assert s4["exit"] == 1
-    assert "إشارة خروج" in tg.messages[-1] and "العلامة الحمراء" in tg.messages[-1]
+    last = tg.messages[-1]
+    assert "إشارة خروج" in last and "العلامة الحمراء" in last
+    assert "سعر الدخول" in last and "سعر الخروج" in last
+    assert ("ربح ✅" in last) or ("خسارة 🛑" in last) or ("تعادل ⚖️" in last)
     state = store.load()
     assert state["symbols"]["BTCUSDT"]["position"] is None
     trades = read_trades(str(tmp_path / "trades.csv"))
@@ -131,6 +134,17 @@ def test_reappearing_same_label_also_counts_as_second_entry(tmp_path):
     assert s["repeat"] == 1
     assert "إشارة دخول ثانية" in tg.messages[-1]
     assert len(tg.messages) == 2
+
+
+def test_ruling_is_taken_from_verdicts_and_shown_in_message(tmp_path):
+    """عملة «غير مباح» تُرسل إشارتها ويظهر حكمها الفعلي (لا تُستبعد)."""
+    frame = make_df("buy", base_time=0)
+    bot, tg, _ = build(tmp_path, frame, now_for(0))
+    bot.verdicts = {"BTC": 1}                    # ⛔ غير مباح
+    bot._load_verdicts = lambda: bot.verdicts   # يمنع إعادة التحميل من الملفات
+    s = bot.run_once(universe=["BTCUSDT"])
+    assert s["entry"] == 1
+    assert "الحكم الشرعي: ⛔ غير مباح" in tg.messages[0]
 
 
 def test_no_exit_when_no_open_recommendation(tmp_path):

@@ -61,6 +61,15 @@ def test_state_and_journal_default_paths_are_nw_only():
     assert "state_nw.json" in text and "trades_log_nw.csv" in text
 
 
+def test_no_btc_gate_in_nw_code():
+    """«لا تربط الدخول بالبتكوين» — لا بوابة سوق ولا EMA في كود النظام."""
+    forbidden = ("BTCUSDT", "EMA", "btc_gate", "gate_open", "DT_GATE")
+    for path in NEW_FILES:
+        text = _text(path)
+        for bad in forbidden:
+            assert bad not in text, f"{path.name} يحتوي {bad}"
+
+
 def test_workflow_env_uses_only_nw_paths():
     import yaml
     doc = yaml.safe_load(_text(ROOT / ".github" / "workflows" / "nw-bot.yml"))

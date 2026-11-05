@@ -4,6 +4,8 @@ name: NW 1H Bot (Nadaraya-Watson)
 # المصدر: Nadaraya-Watson Smoothers [LuxAlgo] (CC BY-NC-SA 4.0)، فريم الساعة.
 # القاعدة: ▲ + شمعة تالية خضراء + أحدث قطعة خضراء ⇒ توصية دخول،
 #          ▼ ⇒ إشارة خروج، وتكرار ▲ ⇒ «إشارة دخول ثانية». بلا أهداف ولا وقف.
+# الدخول من المؤشر وحده: لا بوابة BTC. الإرسال يشمل كل أزواج USDT الفورية
+# بجميع أحكامها (الحكم يُعرض في الرسالة ولا يُستخدم كفلتر).
 #
 # ⚠️ الإيقاف الصحيح: اضبط المتغيّر NW_ENABLED = false (أو Disable workflow).
 #    الحماية if على مستوى المهمة — لا تُستخدم خطوة `exit 0` كبوابة إطلاقًا
@@ -57,6 +59,11 @@ jobs:
       NW_SIGNAL_MAX_AGE_BARS: "1" # لا إشارات بأثر رجعي (حماية إعادة الرسم)
       NW_COMMISSION_SIDE_PCT: "0.1"
       NW_SHOW_REPAINT_WARNING: "1"
+      # ── كل العملات بجميع أحكامها (قرار المستخدم 2026-11-06) ──
+      NW_INCLUDE_ALL: "1"                  # لا فلتر شرعي؛ 0 = المباح فقط (السلوك القديم)
+      NW_EXCLUDE_PEGGED_STABLES: "1"      # استثناء العملات المستقرة المربوطة (ضجيج، ليست عملات متقلبة)
+      NW_EXCLUDE_TOKENIZED_STOCKS: "0"    # 1 = استثناء الأسهم المرمّزة
+      NW_USE_EXCLUDE_FILE: "0"            # 1 = تفعيل config/zz_exclude.txt
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

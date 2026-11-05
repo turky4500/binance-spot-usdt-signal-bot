@@ -34,6 +34,16 @@ def test_live_telegram_is_enabled():
     assert "secrets.TELEGRAM_CHAT_ID" in str(env["TELEGRAM_CHAT_ID"])
 
 
+def test_universe_covers_all_rulings_and_no_btc_gate():
+    env = next(iter(_load(NEW)["jobs"].values()))["env"]
+    assert env["NW_INCLUDE_ALL"] == "1"          # لا فلتر شرعي
+    assert env["NW_USE_EXCLUDE_FILE"] == "0"
+    assert env["NW_EXCLUDE_PEGGED_STABLES"] == "1"
+    assert env["NW_EXCLUDE_TOKENIZED_STOCKS"] == "0"
+    for bad in ("DT_GATE", "BTC", "NW_GATE"):
+        assert bad not in env
+
+
 def test_schedule_and_concurrency():
     doc = _load(NEW)
     on = doc.get("on") or doc.get(True)
