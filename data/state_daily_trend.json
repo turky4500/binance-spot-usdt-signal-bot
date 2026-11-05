@@ -2,14 +2,15 @@
   "equity": 300.0,
   "peak_equity": 300.0,
   "positions": {},
-  "last_entry_bar_close": 0,
-  "gate_open": false,
+  "last_entry_bar_close": 1793836799999,
+  "gate_open": true,
   "sent": [
     "report:2026-11-01",
     "report:2026-11-02",
     "report:2026-11-03",
     "report:2026-11-04",
-    "report:2026-11-05"
+    "report:2026-11-05",
+    "gate:1:20762"
   ],
   "last_report_date": "2026-11-05",
   "event_log": [],
