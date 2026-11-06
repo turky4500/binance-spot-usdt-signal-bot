@@ -2793,10 +2793,16 @@
       "last_entry_price": 0.0
     },
     "UNIUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 7.025,
+        "entry_time": 1793955600000,
+        "signal_bar_time": 1793952000000,
+        "signal_price": 6.968,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1793952000000,
+      "last_entry_price": 7.025
     },
     "USARBUSDT": {
       "position": null,
@@ -2967,10 +2973,16 @@
       "last_entry_price": 0.0
     },
     "币安人生USDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.4916,
+        "entry_time": 1793955600000,
+        "signal_bar_time": 1793952000000,
+        "signal_price": 0.491,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1793952000000,
+      "last_entry_price": 0.4916
     },
     "牛来USDT": {
       "position": null,
@@ -3445,7 +3457,9 @@
     "TUSDT": [],
     "TUTUSDT": [],
     "UMAUSDT": [],
-    "UNIUSDT": [],
+    "UNIUSDT": [
+      1793952000000
+    ],
     "USARBUSDT": [],
     "USDEBUSDT": [],
     "USTCUSDT": [],
@@ -3474,7 +3488,9 @@
     "ZMBUSDT": [],
     "ZROUSDT": [],
     "ZRXUSDT": [],
-    "币安人生USDT": [],
+    "币安人生USDT": [
+      1793952000000
+    ],
     "牛来USDT": []
   },
   "prev_sell_bars": {
@@ -4507,7 +4523,9 @@
     "TUSDT": [],
     "TUTUSDT": [],
     "UMAUSDT": [],
-    "UNIUSDT": [],
+    "UNIUSDT": [
+      1793952000000
+    ],
     "USARBUSDT": [],
     "USDEBUSDT": [],
     "USTCUSDT": [],
@@ -4538,7 +4556,9 @@
     "ZMBUSDT": [],
     "ZROUSDT": [],
     "ZRXUSDT": [],
-    "币安人生USDT": [],
+    "币安人生USDT": [
+      1793952000000
+    ],
     "牛来USDT": []
   },
   "cancelled_buy_bars": {
@@ -5141,9 +5161,11 @@
     "buy:ORDIUSDT:1793944800000:1",
     "buy:RESOLVUSDT:1793944800000:1",
     "buy:RKLBBUSDT:1793944800000:1",
-    "buy:TSTUSDT:1793944800000:1"
+    "buy:TSTUSDT:1793944800000:1",
+    "buy:UNIUSDT:1793952000000:1",
+    "buy:币安人生USDT:1793952000000:1"
   ],
-  "cycles": 7,
-  "messages_sent": 34,
-  "last_cycle_ms": 1793957886700
+  "cycles": 8,
+  "messages_sent": 36,
+  "last_cycle_ms": 1793961699616
 }
