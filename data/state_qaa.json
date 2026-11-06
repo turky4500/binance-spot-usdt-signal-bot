@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1793750400000,
+  "last_processed_open_time": 1793836800000,
   "last_entry_bar_time": {
     "GTCUSDT": 1793404800000,
     "HUMAUSDT": 1793059200000,
@@ -190,7 +190,7 @@
       "size_suggest_pct": 0.28846027846027894,
       "entry_time": 1793404799999,
       "entry_bar_open_time": 1793318400000,
-      "last_check_ms": 1793921820000,
+      "last_check_ms": 1793936400000,
       "peak_price": 723.42,
       "last_stop_alert_price": 680.0,
       "stop_updates_count": 0,
@@ -208,7 +208,7 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1793921820000,
+      "last_check_ms": 1793936400000,
       "peak_price": 0.14365,
       "last_stop_alert_price": 0.13515,
       "stop_updates_count": 0,
