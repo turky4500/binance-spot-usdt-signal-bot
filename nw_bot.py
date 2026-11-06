@@ -348,7 +348,11 @@ def build_nw_bot() -> NWBot:
         halal_extra=os.getenv("NW_HALAL_EXTRA", "data/daily_trend/halal_extra.json"),
         halal_cache=os.getenv("NW_HALAL_CACHE", "data/zigzag/halal_verdicts.json"),
         exclude_file=os.getenv("NW_EXCLUDE_FILE", "config/zz_exclude.txt"),
-        kline_limit=int(os.getenv("NW_KLINE_LIMIT", str(NW_WINDOW + 1))),
+        # الوضع السببي: أول قيمة للخط عند الشمعة 500، فلا يكفي 501 شمعة لكشف
+        # أي انقلاب ميل (خلل §23). نجلب 560 = 500 نافذة + 60 قيمة صالحة إضافية.
+        # وزن طلب Binance واحد لكلا الحدّين (501–1000 ⇒ weight 5) فلا تكلفة إضافية.
+        kline_limit=int(os.getenv("NW_KLINE_LIMIT", str(
+            NW_WINDOW + (60 if cfg.mode == "endpoint" else 1)))),
         commission_side_pct=float(os.getenv("NW_COMMISSION_SIDE_PCT", "0.1")),
         # الرسائل بالقالب المبسّط: بلا سطر تحذير افتراضيًا (1 يعيده اختياريًا)
         show_repaint_warning=os.getenv("NW_SHOW_REPAINT_WARNING", "0").strip() in ("1", "true", "yes", "on"),

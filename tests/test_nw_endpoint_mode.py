@@ -211,3 +211,39 @@ def test_repaint_mode_still_available_for_research():
     assert NWSignalConfig().mode == "repaint"
     with pytest.raises(ValueError):
         NWSignalConfig(mode="something_else")
+
+
+# ── 5) regression: 501 شمعة كانت تُخفي كل الانعطافات ────────────────────────
+
+def test_short_history_is_reported_as_not_ready_not_as_no_signal():
+    """ـ501 شمعة مغلقة ⇒ قيمة أو قيمتان فقط للخط ⇒ يجب أن يُعلَن عدم الجاهزية."""
+    o, c, t = candles_closed(frame(), NOW_11_05)
+    for lim in (500, 501):
+        res = evaluate_symbol(o[-lim:], c[-lim:], t[-lim:], ENDPOINT())
+        assert res["ok"] is False
+        assert res["reason"] == "not_enough_bars"
+        assert res["buy"] == []
+
+
+def test_560_bars_restore_the_9am_signal():
+    """الحدّ الجديد في الوركفلو يكشف ▲ 09:00 كما في 600 شمعة."""
+    o, c, t = candles_closed(frame(), NOW_11_05)
+    res = evaluate_symbol(o[-560:], c[-560:], t[-560:], ENDPOINT())
+    assert res["ok"] is True
+    assert len(res["buy"]) == 1
+    assert res["buy"][0]["bar_time"] == SIGNAL_09
+    assert res["buy"][0]["confirm_close"] == pytest.approx(859.76)
+
+
+def test_workflow_fetches_enough_klines_for_endpoint_mode():
+    doc = yaml.safe_load((ROOT / ".github/workflows/nw-bot.yml").read_text(encoding="utf-8"))
+    env = next(iter(doc["jobs"].values()))["env"]
+    assert int(env["NW_KLINE_LIMIT"]) >= 510
+    assert int(env["NW_WINDOW"]) == 500
+
+
+def test_build_nw_bot_defaults_to_560_klines_in_endpoint_mode(monkeypatch):
+    monkeypatch.setenv("TELEGRAM_MUTE", "1")
+    monkeypatch.delenv("NW_KLINE_LIMIT", raising=False)
+    monkeypatch.delenv("NW_MODE", raising=False)
+    assert build_nw_bot().kline_limit >= 560

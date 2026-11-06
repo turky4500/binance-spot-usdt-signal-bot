@@ -188,7 +188,10 @@ def _evaluate_endpoint(o: np.ndarray, c: np.ndarray, t: np.ndarray,
         "last_bar_time": int(t[-1]) if t.size else 0, "bars": int(c.size),
         "mode": "endpoint",
     }
-    if c.size < cfg.window:
+    # أول قيمة صالحة للخط تظهر عند الشمعة رقم `window`، ويحتاج انقلاب الميل
+    # ثلاث قيم متتالية على الأقل. بـ501 شمعة مغلقة لا توجد سوى قيمة أو قيمتين
+    # ⇒ صفر انعطافات «بصمت». نُعلن عدم الجاهزية بدل أن يبدو «لا توجد إشارة».
+    if c.size < cfg.window + 2:
         base["reason"] = "not_enough_bars"
         return base
 
