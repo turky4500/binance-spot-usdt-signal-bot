@@ -148,14 +148,19 @@ def test_red_confirmation_cancels_the_signal_permanently(tmp_path):
     assert SIGNAL_09 in store.load()["cancelled_buy_bars"]["TSTUSDT"]
 
 
-def test_build_nw_bot_enables_the_fix_by_default(monkeypatch):
+def test_build_nw_bot_uses_causal_endpoint_mode_by_default(monkeypatch):
+    """قرار 2026-11-06: الحيّ على repaint=false، وتصحيح الحافة معطّل."""
     monkeypatch.setenv("TELEGRAM_MUTE", "1")
-    monkeypatch.delenv("NW_BOUNDARY_CORRECT", raising=False)
+    for key in ("NW_MODE", "NW_BOUNDARY_CORRECT"):
+        monkeypatch.delenv(key, raising=False)
     bot = build_nw_bot()
-    assert bot.cfg.boundary_correction is True
+    assert bot.cfg.mode == "endpoint"
+    assert bot.cfg.boundary_correction is False
     assert bot.cfg.min_trough_pct == pytest.approx(0.0001)
-    monkeypatch.setenv("NW_BOUNDARY_CORRECT", "0")
-    assert build_nw_bot().cfg.boundary_correction is False
+    monkeypatch.setenv("NW_BOUNDARY_CORRECT", "1")
+    assert build_nw_bot().cfg.boundary_correction is True
+    monkeypatch.setenv("NW_MODE", "repaint")
+    assert build_nw_bot().cfg.mode == "repaint"
 
 
 def test_state_has_the_cancellation_log(tmp_path):

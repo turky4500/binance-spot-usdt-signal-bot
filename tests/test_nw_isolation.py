@@ -78,6 +78,7 @@ def test_workflow_env_uses_only_nw_paths():
     assert env["NW_TRADE_LOG"] == "data/trades_log_nw.csv"
     assert env["NW_WINDOW"] == "500" and env["NW_BANDWIDTH"] == "8"
     assert env["NW_REQUIRE_NEWEST_GREEN"] == "0"
-    assert env["NW_BOUNDARY_CORRECT"] == "1"
+    assert env["NW_MODE"] == "endpoint"
+    assert env["NW_BOUNDARY_CORRECT"] == "0"
     for key in ("DT_STATE_FILE", "ZZ_STATE_FILE", "QAA_STATE_FILE", "SA_STATE_FILE"):
         assert key not in env

@@ -33,13 +33,24 @@ from dataclasses import dataclass
 
 import numpy as np
 
-from src.nw_strategy import annotate_repaint_signals, nw_line_colors, nw_curve
+from src.nw_strategy import (
+    annotate_repaint_signals,
+    endpoint_estimator,
+    endpoint_flip_signals,
+    nw_line_colors,
+    nw_curve,
+)
 
 
 @dataclass(frozen=True, slots=True)
 class NWSignalConfig:
     bandwidth: float = 8.0        # h في مؤشر LuxAlgo
     window: int = 500             # نافذة الـ500 شمعة في الـPine
+    # قرار المستخدم 2026-11-06 (لقطة SNDKBUSDT): انتقال إلى الوضع السببي
+    # ``repaint=false`` من نفس مؤشر LuxAlgo. ``"repaint"`` يبقى متاحًا للاختبارات
+    # والباك-تست فقط، ويظل الافتراضي هنا كي لا تتغير دلالة الاستدعاءات القديمة؛
+    # ``build_nw_bot()`` والوركفلو الحيّ يضبطان ``"endpoint"`` صراحةً.
+    mode: str = "repaint"          # "endpoint" (سببي، الحيّ) | "repaint" (بحثي)
     max_age_bars: int = 1         # لا إشارات بأثر رجعي
     require_newest_green: bool = False   # مُلغي بأمر المستخدم — لون الخط ليس شرطًا
     require_confirm_green: bool = True       # شمعة التأكيد الخضراء (شرط المستخدم)
@@ -57,6 +68,8 @@ class NWSignalConfig:
             raise ValueError("window must be >= 10")
         if self.max_age_bars < 1:
             raise ValueError("max_age_bars must be >= 1")
+        if self.mode not in {"endpoint", "repaint"}:
+            raise ValueError("mode must be 'endpoint' or 'repaint'")
 
 
 def evaluate_symbol(
@@ -76,6 +89,8 @@ def evaluate_symbol(
     t = np.asarray(open_times_ms, dtype=np.int64).ravel()
     if not (o.size == c.size == t.size):
         raise ValueError("opens/closes/open_times_ms must have the same length")
+    if cfg.mode == "endpoint":
+        return _evaluate_endpoint(o, c, t, cfg)
     base = {
         "ok": False,
         "buy": [],
@@ -145,6 +160,90 @@ def evaluate_symbol(
             base["buy"].append(rec)
         else:
             if cfg.require_exit_confirm_green and not confirm_green:
+                continue
+            base["sell"].append(rec)
+    return base
+
+
+def _evaluate_endpoint(o: np.ndarray, c: np.ndarray, t: np.ndarray,
+                       cfg: "NWSignalConfig") -> dict:
+    """``repaint = false`` من LuxAlgo — الخط السببي (endpoint estimator).
+
+    توثيق LuxAlgo الرسمي: عند تعطيل «Repainting Smoothing» يُرسم خط سببي
+    يشبه المتوسط المتحرك، ولا يُرسم أي مثلث ▲/▼. نُطبّق هنا **نفس قاعدة
+    المثلثات** في Pine (``d * y1_d < 0``، ▲ عند انقلاب الميل من هابط إلى صاعد)
+    على هذا الخط السببي:
+
+      d[B] = out[B] - out[B-1] < 0  و  d[B+1] = out[B+1] - out[B] > 0
+      ⇒ ▲ على الشمعة B، وتُعرف لحظة إغلاق الشمعة B+1.
+
+    أي أن «الشمعة التالية» في شرط المستخدم هي بالضبط الشمعة التي تُثبت القاع،
+    فيمكن فحص لونها فور إغلاقها بلا أي بيانات مستقبلية. ``out[0..B+1]`` لا
+    يتغير أبدًا بإضافة شموع لاحقة ⇒ التسمية لا تتحرك ولا تُعاد رسمها، ولا توجد
+    قيعان طرفية وهمية (لا نافذة ثنائية الجانب)، فلا حاجة لتصحيح الحافة.
+    """
+    base = {
+        "ok": False, "buy": [], "sell": [], "cancelled_buy": [],
+        "ignored_retro": 0, "ignored_shallow": 0, "newest_color": None,
+        "last_bar_time": int(t[-1]) if t.size else 0, "bars": int(c.size),
+        "mode": "endpoint",
+    }
+    if c.size < cfg.window:
+        base["reason"] = "not_enough_bars"
+        return base
+
+    out = endpoint_estimator(c, h=cfg.bandwidth, window=cfg.window)
+    flips = endpoint_flip_signals(out, c)
+    base["ok"] = True
+    base["newest_color"] = "up" if out[-1] > out[-2] else "down"
+    base["labels_total"] = len(flips)
+
+    for s in flips:
+        # سُمح بها فقط إن ظهرت على إحدى آخر max_age_bars شمعة مغلقة. في الوضع
+        # السببي لا وجود لـ«إشارة بأثر رجعي»؛ الأقدم مجرد تاريخ لا يُعاد تقييمه.
+        age = int(c.size) - 1 - int(s["index"])
+        if age < 0 or age >= cfg.max_age_bars:
+            continue
+        idx = int(s["extremum_index"])       # شمعة ▲ / ▼ = B
+        confirm_idx = idx + 1                # الشمعة التالية = B+1
+        if idx < 1 or confirm_idx >= c.size:
+            continue
+        kind = str(s["kind"])
+        left, mid, right = float(out[idx - 1]), float(out[idx]), float(out[idx + 1])
+        depth = (min(left, right) - mid) if kind == "buy" else (mid - max(left, right))
+        depth_pct = depth / float(c[idx]) * 100.0
+        if cfg.min_trough_pct > 0 and depth_pct < cfg.min_trough_pct:
+            base["ignored_shallow"] += 1
+            continue
+        confirm_green_ = bool(c[confirm_idx] > o[confirm_idx])
+        rec = {
+            "kind": kind,
+            "bars_ago": 1,                       # ▲ على الشمعة السابقة مباشرةً
+            "bar_time": int(t[idx]),
+            "confirm_bar_time": int(t[confirm_idx]),
+            "signal_price": float(c[idx]),
+            "confirm_open": float(o[confirm_idx]),
+            "confirm_close": float(c[confirm_idx]),
+            "confirm_green": confirm_green_,
+            "confirm_pct": float((c[confirm_idx] / o[confirm_idx] - 1.0) * 100.0),
+            "nw": float(s["nw"]),
+            "depth_pct": float(depth_pct),
+            "color_at_signal": "up" if right > mid else "down",
+            "color_newest": base["newest_color"],
+            "newer_all_up": False,
+        }
+        if kind == "buy":
+            if cfg.require_confirm_green and not confirm_green_:
+                base["cancelled_buy"].append({
+                    "bar_time": int(t[idx]),
+                    "confirm_bar_time": int(t[confirm_idx]),
+                })
+                continue
+            if cfg.require_newest_green and rec["color_newest"] != "up":
+                continue
+            base["buy"].append(rec)
+        else:
+            if cfg.require_exit_confirm_green and not confirm_green_:
                 continue
             base["sell"].append(rec)
     return base

@@ -323,11 +323,16 @@ def build_nw_bot() -> NWBot:
     cfg = NWSignalConfig(
         bandwidth=float(os.getenv("NW_BANDWIDTH", "8")),
         window=int(os.getenv("NW_WINDOW", str(NW_WINDOW))),
+        # قرار المستخدم 2026-11-06 بعد لقطة SNDKBUSDT: الوضع السببي
+        # ``repaint=false`` من نفس مؤشر LuxAlgo (خط لا يعيد الرسم). الوضع
+        # ``repaint`` يبقى متاحًا بـ NW_MODE=repaint للاختبارات/الباك-تست فقط.
+        mode=os.getenv("NW_MODE", "endpoint").strip().lower(),
         max_age_bars=int(os.getenv("NW_SIGNAL_MAX_AGE_BARS", "1")),
         # لون الخط لم يعد شرطًا (قرار المستخدم 2026-11-06)؛ 1 يعيده اختياريًا
         require_newest_green=os.getenv("NW_REQUIRE_NEWEST_GREEN", "0").strip() in ("1", "true", "yes", "on"),
-        # منع ▲ الوهمية عند طرف النافذة (سبب توصية TSTUSDT الخاطئة). 0 يعيد مطابقة Pine الحرفية.
-        boundary_correction=os.getenv("NW_BOUNDARY_CORRECT", "1").strip() in ("1", "true", "yes", "on"),
+        # تصحيح الحافة خاص بوضع إعادة الرسم فقط، وهو الذي حرّف ▲ إلى 12 ظهرًا.
+        # في الوضع السببي لا نافذة ثنائية الجانب ⇒ معطّل افتراضيًا.
+        boundary_correction=os.getenv("NW_BOUNDARY_CORRECT", "0").strip() in ("1", "true", "yes", "on"),
         # عتبة الضجيج: 0.0001% من السعر (≈10 أضعاف القيعان الوهمية وأقل من أصغر قاع حقيقي)
         min_trough_pct=float(os.getenv("NW_MIN_TROUGH_PCT", "0.0001")),
     )
