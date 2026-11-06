@@ -580,3 +580,21 @@ curl -X POST -H "Authorization: Bearer <PAT>" -H "Accept: application/vnd.github
 - **تحذير صدق:** التواتر سينخفض جدًا وقد يصل صفرًا لدورات كاملة؛ `repaint=true` لا
   يُنتج إشارة سببية يمكن انتظار شمعتها التالية. عينة 12 رمزًا × 24 ساعة: 13 ▲ وهمية
   ⇒ 0 حقيقية بعد التصحيح. لا وعود أرباح، ولا باك-تست قبل التفعيل (قرار المستخدم).
+
+---
+
+## §21 — مُشغّل بديل لأن جدولة GitHub توقفت
+
+`nw-bot.yml` بـ `schedule: 5,35 * * * *` لم يُنتج تشغيلًا منذ 05:43 صباحًا
+(آخر `schedule`؛ كل ما بعده `workflow_dispatch` يدوي). وركفلوات أخرى لها
+`schedule` وتعمل لكن بتأخير كبير، فالمشكلة خاصة بجدولة NW لا بالمستودع كله.
+`disable`→`enable` عبر API أعاد `state=active` لكن لم يُنتج تشغيلًا في الموعد التالي.
+
+**§5 reminder:** لا تُستخدم `exit 0` كبوابة تشغيل على مستوى المهمة؛ البوابة
+`if: vars.NW_ENABLED != 'false'` على مستوى المهمة في الوركفلوين معًا.
+
+الحل: `.github/workflows/nw-bot-trigger.yml` — `on: workflow_run` لاكتمال
+`Signal Bot Cron` (يُستدعى خارجيًا كل 5 دقائق) ⇒ `POST /actions/workflows/
+nw-bot.yml/dispatches` بـ `GITHUB_TOKEN` و`permissions: actions: write`.
+خنق زمني UTC `00–04` / `30–34` ⇒ دورتان/ساعة. لا توكن خارجي، لا تعديل على
+الأنظمة الخمسة، ولا ملفات حالة أخرى. اختبارات جديدة ⇒ 338 ناجح.

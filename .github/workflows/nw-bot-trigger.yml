@@ -1,0 +1,56 @@
+name: NW 1H Bot — Trigger
+
+# ── لماذا هذا الملف؟ ────────────────────────────────────────────────
+# جدولة GitHub الأصلية في nw-bot.yml ('5,35 * * * *') توقفت عن إنتاج
+# تشغيلات منذ 2026-11-06 05:43 صباحًا، مع أن الوركفلو state=active وأن
+# جدولة وركفلوات أخرى في المستودع تعمل (بتأخير قد يصل ~100 دقيقة).
+# كل دورات NW بعد ذلك كانت workflow_dispatch يدوية.
+#
+# الحل: المستودع لديه مُجدِّل خارجي يُطلق "Signal Bot Cron" كل 5 دقائق
+# (workflow_dispatch). نستمع لاكتماله عبر workflow_run ونُطلق nw-bot.yml
+# عبر API بـ GITHUB_TOKEN (workflow_dispatch هو الاستثناء الموثّق الذي
+# يسمح بإنشاء تشغيل جديد بالـ GITHUB_TOKEN). لا نلمس أي وركفلو آخر،
+# ولا نحتاج توكنًا خارجيًا داخل المستودع.
+#
+# الخنق: نافذتان قصيرتان في الساعة (UTC دقيقة 00–04 و30–34) ⇒ دورة NW
+# كل نصف ساعة تقريبًا، بدل 12 دورة/ساعة. حالة NW تمنع تكرار الرسائل أصلًا.
+
+on:
+  workflow_run:
+    workflows: ["Signal Bot Cron"]
+    types: [completed]
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: nw-1h-trigger
+  cancel-in-progress: true
+
+jobs:
+  dispatch-nw:
+    if: vars.NW_ENABLED != 'false'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Throttle and dispatch NW bot
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          m=$(date -u +%M)
+          m=$((10#$m))
+          if ! { { [ "$m" -ge 0 ] && [ "$m" -lt 5 ]; } || { [ "$m" -ge 30 ] && [ "$m" -lt 35 ]; }; }; then
+            echo "خارج نافذة التشغيل (UTC دقيقة $m) — تخطٍّ بلا إرسال"
+            exit 0
+          fi
+          code=$(curl -s -o /tmp/nw_dispatch.json -w '%{http_code}' -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$REPO/actions/workflows/nw-bot.yml/dispatches" \
+            -d '{"ref":"main"}')
+          echo "nw-bot.yml dispatch → HTTP $code"
+          if [ "$code" != "204" ]; then cat /tmp/nw_dispatch.json; exit 1; fi
