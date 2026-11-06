@@ -2577,14 +2577,8 @@
       "last_entry_price": 0.0
     },
     "SNDKBUSDT": {
-      "position": {
-        "entry_price": 875.76,
-        "entry_time": 1793959200000,
-        "signal_bar_time": 1793955600000,
-        "signal_price": 874.75,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1793955600000,
       "last_entry_price": 875.76
     },
@@ -2799,14 +2793,8 @@
       "last_entry_price": 0.0
     },
     "UNIUSDT": {
-      "position": {
-        "entry_price": 7.025,
-        "entry_time": 1793955600000,
-        "signal_bar_time": 1793952000000,
-        "signal_price": 6.968,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1793952000000,
       "last_entry_price": 7.025
     },
@@ -2979,14 +2967,8 @@
       "last_entry_price": 0.0
     },
     "币安人生USDT": {
-      "position": {
-        "entry_price": 0.4916,
-        "entry_time": 1793955600000,
-        "signal_bar_time": 1793952000000,
-        "signal_price": 0.491,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1793952000000,
       "last_entry_price": 0.4916
     },
@@ -5041,7 +5023,9 @@
     "SLPUSDT": [],
     "SMCIBUSDT": [],
     "SMHBUSDT": [],
-    "SNDKBUSDT": [],
+    "SNDKBUSDT": [
+      1793955600000
+    ],
     "SNXUSDT": [],
     "SNXXBUSDT": [],
     "SOLUSDT": [],
@@ -5088,7 +5072,9 @@
     "TUTUSDT": [],
     "TWTUSDT": [],
     "UMAUSDT": [],
-    "UNIUSDT": [],
+    "UNIUSDT": [
+      1793952000000
+    ],
     "USARBUSDT": [],
     "USDEBUSDT": [],
     "USTCUSDT": [],
@@ -5134,7 +5120,9 @@
     "ZMBUSDT": [],
     "ZROUSDT": [],
     "ZRXUSDT": [],
-    "币安人生USDT": [],
+    "币安人生USDT": [
+      1793952000000
+    ],
     "牛来USDT": []
   },
   "sent": [
