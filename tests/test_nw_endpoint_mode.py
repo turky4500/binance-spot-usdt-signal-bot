@@ -192,19 +192,20 @@ def test_entry_message_uses_entry_candle_time_and_price(tmp_path):
 
 # ── 4) الإعداد الحيّ ────────────────────────────────────────────────────────
 
-def test_workflow_runs_causal_mode_without_boundary_kernel():
+def test_workflow_runs_the_supplied_envelope_without_invented_filters():
     doc = yaml.safe_load((ROOT / ".github/workflows/nw-bot.yml").read_text(encoding="utf-8"))
     env = next(iter(doc["jobs"].values()))["env"]
-    assert env["NW_MODE"] == "endpoint"
-    assert env["NW_BOUNDARY_CORRECT"] == "0"
-    assert env["NW_SIGNAL_MAX_AGE_BARS"] == "1"
+    assert env["NW_MODE"] == "envelope"
+    assert env["NW_MULT"] == "3"
+    for removed in ("NW_BOUNDARY_CORRECT", "NW_MIN_TROUGH_PCT", "NW_SIGNAL_MAX_AGE_BARS"):
+        assert removed not in env, removed
     assert env["NW_INCLUDE_ALL"] == "1"
 
 
-def test_build_nw_bot_defaults_to_endpoint(monkeypatch):
+def test_build_nw_bot_defaults_to_envelope(monkeypatch):
     monkeypatch.setenv("TELEGRAM_MUTE", "1")
     monkeypatch.delenv("NW_MODE", raising=False)
-    assert build_nw_bot().cfg.mode == "endpoint"
+    assert build_nw_bot().cfg.mode == "envelope"
 
 
 def test_repaint_mode_still_available_for_research():

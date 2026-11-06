@@ -40,17 +40,19 @@ from src.nw_strategy import (
     nw_line_colors,
     nw_curve,
 )
+from src.nw_envelope import EnvelopeConfig, envelope_labels
 
 
 @dataclass(frozen=True, slots=True)
 class NWSignalConfig:
     bandwidth: float = 8.0        # h في مؤشر LuxAlgo
     window: int = 500             # نافذة الـ500 شمعة في الـPine
-    # قرار المستخدم 2026-11-06 (لقطة SNDKBUSDT): انتقال إلى الوضع السببي
-    # ``repaint=false`` من نفس مؤشر LuxAlgo. ``"repaint"`` يبقى متاحًا للاختبارات
-    # والباك-تست فقط، ويظل الافتراضي هنا كي لا تتغير دلالة الاستدعاءات القديمة؛
-    # ``build_nw_bot()`` والوركفلو الحيّ يضبطان ``"endpoint"`` صراحةً.
-    mode: str = "repaint"          # "endpoint" (سببي، الحيّ) | "repaint" (بحثي)
+    # المصدر الحيّ الوحيد للتوصيات: Nadaraya-Watson Envelope [LuxAlgo] الذي
+    # أرسله المستخدم (2026-11-06) — ``mode="envelope"`` يقرأ تسميات ▲/▼ كما
+    # يطبعها الكود على الشارت بالحرف. ``build_nw_bot()`` والوركفلو يضبطانه
+    # صراحةً؛ الافتراضي هنا يبقى ``repaint`` لحفاظ اختبارات النقل البحثي القديمة.
+    mode: str = "repaint"          # "envelope" (الحيّ) | "endpoint" | "repaint"
+    mult: float = 3.0             # input.float(3., ...) في الكود المرسل
     max_age_bars: int = 1         # لا إشارات بأثر رجعي
     require_newest_green: bool = False   # مُلغي بأمر المستخدم — لون الخط ليس شرطًا
     require_confirm_green: bool = True       # شمعة التأكيد الخضراء (شرط المستخدم)
@@ -68,8 +70,10 @@ class NWSignalConfig:
             raise ValueError("window must be >= 10")
         if self.max_age_bars < 1:
             raise ValueError("max_age_bars must be >= 1")
-        if self.mode not in {"endpoint", "repaint"}:
-            raise ValueError("mode must be 'endpoint' or 'repaint'")
+        if self.mode not in {"envelope", "endpoint", "repaint"}:
+            raise ValueError("mode must be 'envelope', 'endpoint' or 'repaint'")
+        if self.mult < 0:
+            raise ValueError("mult must be >= 0")
 
 
 def evaluate_symbol(
@@ -89,6 +93,8 @@ def evaluate_symbol(
     t = np.asarray(open_times_ms, dtype=np.int64).ravel()
     if not (o.size == c.size == t.size):
         raise ValueError("opens/closes/open_times_ms must have the same length")
+    if cfg.mode == "envelope":
+        return _evaluate_envelope(o, c, t, cfg)
     if cfg.mode == "endpoint":
         return _evaluate_endpoint(o, c, t, cfg)
     base = {
@@ -160,6 +166,92 @@ def evaluate_symbol(
             base["buy"].append(rec)
         else:
             if cfg.require_exit_confirm_green and not confirm_green:
+                continue
+            base["sell"].append(rec)
+    return base
+
+
+def _evaluate_envelope(o: np.ndarray, c: np.ndarray, t: np.ndarray,
+                       cfg: "NWSignalConfig") -> dict:
+    """تسميات ▲/▼ من «Nadaraya-Watson Envelope [LuxAlgo]» كما أرسلها المستخدم.
+
+    لا يوجد هنا أي مقدّر أو فلتر أو عتبة من عندنا: نستدعي ``envelope_labels``
+    (النقل الحرفي لـ ``label.new`` في Pine) ثم نُطبّق **شرط المستخدم فقط**:
+
+        ظهرت ▲ على شمعة مغلقة B ⇒ الشمعة التالية B+1 خضراء ⇒ تُرسل التوصية
+        (بسعر إغلاق B+1 و🕒 وقتها)؛ حمراء ⇒ تُلغى نهائيًا؛ ▼ ⇒ خروج.
+
+    Pine يحسب التسميات على ``barstate.islast``، فتظهر التسمية الجديدة أينما كانت
+    داخل النافذة. لمطابقة «ما طبعه المؤشر للتو» نقارن لقطة النافذة الحالية بلقطة
+    الشمعة السابقة (``src[1:]``) ولا نُقيّم إلا التسميات التي ظهرت حديثًا. هذا
+    يمنع إعادة إرسال التسميات التاريخية، ويحفظ ``cancelled_buy_bars`` في الحالة
+    لمنع أي تكرار. لا ``max_age_bars`` ولا عتبة ضجيج ولا تصحيح حافة.
+    """
+    base = {
+        "ok": False, "buy": [], "sell": [], "cancelled_buy": [],
+        "ignored_retro": 0, "ignored_shallow": 0, "newest_color": None,
+        "last_bar_time": int(t[-1]) if t.size else 0, "bars": int(c.size),
+        "mode": "envelope",
+    }
+    if c.size < cfg.window + 2:
+        base["reason"] = "not_enough_bars"
+        return base
+
+    ecfg = EnvelopeConfig(bandwidth=cfg.bandwidth, mult=cfg.mult,
+                          window=cfg.window, repaint=True)
+    src = c[::-1]                       # src[0] = أحدث شمعة مغلقة
+    sae, labels = envelope_labels(src, ecfg)
+    _, labels_prev = envelope_labels(src[1:], ecfg)
+    n = int(c.size)
+    # الفهرس الزمني المطلق (0 = الأقدم): اللقطة السابقة منزاحة شمعة واحدة.
+    # التسمية التي كانت على أحدث شمعة في اللقطة السابقة لم يكن قرارها متاحًا
+    # (شمعته التالية لم تُغلق)، فلا تُعدّ «مُقيَّمة» وتُقيَّم الآن حين أغلقت.
+    prev_idx = {n - 2 - int(L["bars_ago"]) for L in labels_prev
+                if int(L["bars_ago"]) >= 1}
+    fresh = []
+    for L in labels:
+        idx = n - 1 - int(L["bars_ago"])
+        if idx not in prev_idx:
+            fresh.append((idx, L))
+    base["ok"] = True
+    base["sae"] = sae
+    base["labels_total"] = len(labels)
+    base["labels_new"] = len(fresh)
+
+    for idx, L in fresh:
+        confirm_idx = idx + 1
+        if confirm_idx >= n:            # شمعة التأكيد لم تُغلق بعد
+            continue
+        kind = str(L["kind"])
+        confirm_green_ = bool(c[confirm_idx] > o[confirm_idx])
+        rec = {
+            "kind": kind,
+            "bars_ago": int(L["bars_ago"]),
+            "bar_time": int(t[idx]),
+            "confirm_bar_time": int(t[confirm_idx]),
+            "signal_price": float(c[idx]),
+            "confirm_open": float(o[confirm_idx]),
+            "confirm_close": float(c[confirm_idx]),
+            "confirm_green": confirm_green_,
+            "confirm_pct": float((c[confirm_idx] / o[confirm_idx] - 1.0) * 100.0),
+            "nw": float(L["nwe"]),
+            "band": float(L["band"]),
+            "sae": float(sae),
+            "color_at_signal": "up" if kind == "buy" else "down",
+            "color_newest": None,
+            "newer_all_up": False,
+        }
+        if kind == "buy":
+            if cfg.require_confirm_green and not confirm_green_:
+                base["cancelled_buy"].append({
+                    "bar_time": int(t[idx]),
+                    "confirm_bar_time": int(t[confirm_idx]),
+                })
+                continue
+            # لون الخط ليس شرطًا بأمر المستخدم، ولا وجود لون خط في Envelope.
+            base["buy"].append(rec)
+        else:
+            if cfg.require_exit_confirm_green and not confirm_green_:
                 continue
             base["sell"].append(rec)
     return base

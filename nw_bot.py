@@ -323,18 +323,17 @@ def build_nw_bot() -> NWBot:
     cfg = NWSignalConfig(
         bandwidth=float(os.getenv("NW_BANDWIDTH", "8")),
         window=int(os.getenv("NW_WINDOW", str(NW_WINDOW))),
-        # قرار المستخدم 2026-11-06 بعد لقطة SNDKBUSDT: الوضع السببي
-        # ``repaint=false`` من نفس مؤشر LuxAlgo (خط لا يعيد الرسم). الوضع
-        # ``repaint`` يبقى متاحًا بـ NW_MODE=repaint للاختبارات/الباك-تست فقط.
-        mode=os.getenv("NW_MODE", "endpoint").strip().lower(),
+        # مصدر الإشارة = مؤشر Nadaraya-Watson Envelope [LuxAlgo] الذي أرسله
+        # المستخدم: تسميات ▲/▼ كما تُطبع على الشارت، بلا أي اشتقاق آخر.
+        mode=os.getenv("NW_MODE", "envelope").strip().lower(),
+        mult=float(os.getenv("NW_MULT", "3")),   # input.float(3.) في الكود المرسل
         max_age_bars=int(os.getenv("NW_SIGNAL_MAX_AGE_BARS", "1")),
         # لون الخط لم يعد شرطًا (قرار المستخدم 2026-11-06)؛ 1 يعيده اختياريًا
         require_newest_green=os.getenv("NW_REQUIRE_NEWEST_GREEN", "0").strip() in ("1", "true", "yes", "on"),
-        # تصحيح الحافة خاص بوضع إعادة الرسم فقط، وهو الذي حرّف ▲ إلى 12 ظهرًا.
-        # في الوضع السببي لا نافذة ثنائية الجانب ⇒ معطّل افتراضيًا.
+        # الفلتران التاليان خاصان بالنقل البحثي القديم ولا يُستخدمان إطلاقًا في
+        # وضع envelope؛ معطّلان افتراضيًا حتى لا يلمسا تسميات المؤشر المرسل.
         boundary_correction=os.getenv("NW_BOUNDARY_CORRECT", "0").strip() in ("1", "true", "yes", "on"),
-        # عتبة الضجيج: 0.0001% من السعر (≈10 أضعاف القيعان الوهمية وأقل من أصغر قاع حقيقي)
-        min_trough_pct=float(os.getenv("NW_MIN_TROUGH_PCT", "0.0001")),
+        min_trough_pct=float(os.getenv("NW_MIN_TROUGH_PCT", "0")),
     )
     state_path = os.getenv("NW_STATE_FILE", "data/state_nw.json")
     return NWBot(
@@ -352,7 +351,7 @@ def build_nw_bot() -> NWBot:
         # أي انقلاب ميل (خلل §23). نجلب 560 = 500 نافذة + 60 قيمة صالحة إضافية.
         # وزن طلب Binance واحد لكلا الحدّين (501–1000 ⇒ weight 5) فلا تكلفة إضافية.
         kline_limit=int(os.getenv("NW_KLINE_LIMIT", str(
-            NW_WINDOW + (60 if cfg.mode == "endpoint" else 1)))),
+            NW_WINDOW + (60 if cfg.mode in {"endpoint", "envelope"} else 1)))),
         commission_side_pct=float(os.getenv("NW_COMMISSION_SIDE_PCT", "0.1")),
         # الرسائل بالقالب المبسّط: بلا سطر تحذير افتراضيًا (1 يعيده اختياريًا)
         show_repaint_warning=os.getenv("NW_SHOW_REPAINT_WARNING", "0").strip() in ("1", "true", "yes", "on"),
