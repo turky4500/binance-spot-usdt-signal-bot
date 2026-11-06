@@ -1749,10 +1749,16 @@
       "last_entry_price": 114.79
     },
     "GNSUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.332,
+        "entry_time": 1793998800000,
+        "signal_bar_time": 1793995200000,
+        "signal_price": 0.324,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1793995200000,
+      "last_entry_price": 0.332
     },
     "GOOGLBUSDT": {
       "position": null,
@@ -2835,14 +2841,8 @@
       "last_entry_price": 0.0
     },
     "UVXYBUSDT": {
-      "position": {
-        "entry_price": 22.23,
-        "entry_time": 1793984400000,
-        "signal_bar_time": 1793980800000,
-        "signal_price": 21.14,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1793980800000,
       "last_entry_price": 22.23
     },
@@ -3186,7 +3186,7 @@
     "GMXUSDT": [],
     "GNOUSDT": [],
     "GNSUSDT": [
-      1793991600000
+      1793995200000
     ],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -3553,7 +3553,9 @@
     "ATOMUSDT": [],
     "ATUSDT": [],
     "AUCTIONUSDT": [],
-    "AUDIOUSDT": [],
+    "AUDIOUSDT": [
+      1793995200000
+    ],
     "AUSDT": [],
     "AVAUSDT": [],
     "AVAXUSDT": [],
@@ -3624,15 +3626,11 @@
     "CRWVBUSDT": [],
     "CTKUSDT": [],
     "CTSIUSDT": [],
-    "CUSDT": [
-      1793991600000
-    ],
+    "CUSDT": [],
     "CVCUSDT": [],
     "CVXUSDT": [],
     "CYBERUSDT": [],
-    "CYPHBUSDT": [
-      1793991600000
-    ],
+    "CYPHBUSDT": [],
     "DASHUSDT": [],
     "DCRUSDT": [],
     "DELLBUSDT": [],
@@ -3785,9 +3783,7 @@
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
     "MOVRUSDT": [],
-    "MRNABUSDT": [
-      1793991600000
-    ],
+    "MRNABUSDT": [],
     "MRVLBUSDT": [],
     "MSFTBUSDT": [],
     "MSTRBUSDT": [],
@@ -3850,9 +3846,7 @@
     "PUNDIXUSDT": [],
     "PYPLBUSDT": [],
     "PYTHUSDT": [],
-    "QCOMBUSDT": [
-      1793991600000
-    ],
+    "QCOMBUSDT": [],
     "QIUSDT": [],
     "QKCUSDT": [],
     "QNTBUSDT": [],
@@ -3878,9 +3872,7 @@
     "RPLUSDT": [],
     "RSRUSDT": [],
     "RUNEUSDT": [],
-    "RVNUSDT": [
-      1793991600000
-    ],
+    "RVNUSDT": [],
     "RWUSDUSDT": [],
     "SAGAUSDT": [],
     "SAHARAUSDT": [],
@@ -3912,9 +3904,7 @@
     "SOPHUSDT": [],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
-    "SPCXBUSDT": [
-      1793991600000
-    ],
+    "SPCXBUSDT": [],
     "SPELLUSDT": [],
     "SPKUSDT": [],
     "SPYBUSDT": [],
@@ -3958,13 +3948,13 @@
     "TWTUSDT": [],
     "UMAUSDT": [],
     "UNIUSDT": [],
-    "USARBUSDT": [
-      1793991600000
-    ],
+    "USARBUSDT": [],
     "USDEBUSDT": [],
     "USTCUSDT": [],
     "USUALUSDT": [],
-    "UVXYBUSDT": [],
+    "UVXYBUSDT": [
+      1793995200000
+    ],
     "VANAUSDT": [],
     "VETUSDT": [],
     "VIRTUALUSDT": [],
@@ -4201,7 +4191,9 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
-    "GNSUSDT": [],
+    "GNSUSDT": [
+      1793995200000
+    ],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
@@ -5059,11 +5051,13 @@
     "buy:WLDUSDT:1792915200000:2",
     "buy:UVXYBUSDT:1793980800000:1",
     "buy:ORCLBUSDT:1793984400000:1",
-    "buy:STXBUSDT:1793988000000:1"
+    "buy:STXBUSDT:1793988000000:1",
+    "buy:GNSUSDT:1793995200000:1",
+    "exit:UVXYBUSDT:1793995200000"
   ],
-  "cycles": 29,
-  "messages_sent": 93,
-  "last_cycle_ms": 1794000807352,
+  "cycles": 30,
+  "messages_sent": 95,
+  "last_cycle_ms": 1794002606614,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
