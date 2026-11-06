@@ -543,14 +543,8 @@
       "last_entry_price": 0.0
     },
     "MAGICUSDT": {
-      "position": {
-        "entry_price": 0.0845,
-        "entry_time": 1793923200000,
-        "signal_bar_time": 1793919600000,
-        "signal_price": 0.082,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1793919600000,
       "last_entry_price": 0.0845
     },
@@ -951,14 +945,8 @@
       "last_entry_price": 0.0
     },
     "WLDUSDT": {
-      "position": {
-        "entry_price": 0.3912,
-        "entry_time": 1793307600000,
-        "signal_bar_time": 1793304000000,
-        "signal_price": 0.3888,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1792915200000,
       "last_entry_price": 0.4472
     },
@@ -1551,14 +1539,8 @@
       "last_entry_price": 119.74
     },
     "CRMBUSDT": {
-      "position": {
-        "entry_price": 216.19,
-        "entry_time": 1793980800000,
-        "signal_bar_time": 1793977200000,
-        "signal_price": 214.51,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1793977200000,
       "last_entry_price": 216.19
     },
@@ -1749,14 +1731,8 @@
       "last_entry_price": 0.0
     },
     "GMEBUSDT": {
-      "position": {
-        "entry_price": 23.62,
-        "entry_time": 1793055600000,
-        "signal_bar_time": 1793052000000,
-        "signal_price": 23.55,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1793052000000,
       "last_entry_price": 23.62
     },
@@ -2175,14 +2151,8 @@
       "last_entry_price": 0.0
     },
     "MRNABUSDT": {
-      "position": {
-        "entry_price": 257.95,
-        "entry_time": 1793973600000,
-        "signal_bar_time": 1793970000000,
-        "signal_price": 237.41,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1793970000000,
       "last_entry_price": 257.95
     },
@@ -2529,14 +2499,8 @@
       "last_entry_price": 0.0
     },
     "SANDUSDT": {
-      "position": {
-        "entry_price": 0.05434,
-        "entry_time": 1792188000000,
-        "signal_bar_time": 1792184400000,
-        "signal_price": 0.05422,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1792184400000,
       "last_entry_price": 0.05434
     },
@@ -2589,14 +2553,8 @@
       "last_entry_price": 0.00946
     },
     "SKHYBUSDT": {
-      "position": {
-        "entry_price": 124.88,
-        "entry_time": 1793923200000,
-        "signal_bar_time": 1793919600000,
-        "signal_price": 121.13,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1793919600000,
       "last_entry_price": 124.88
     },
@@ -5466,5 +5424,71 @@
     "buy:TUSDT:1793970000000:1",
     "buy:WENBUSDT:1793970000000:1",
     "buy:XNOUSDT:1793970000000:1"
-  ]
+  ],
+  "bad_cycle_2026_11_06_1735Z": {
+    "reason": "old October labels sent because of an invented snapshot-diff (fixed in 0443d03c)",
+    "positions": {
+      "MAGICUSDT": {
+        "entry_price": 0.0845,
+        "entry_time": 1793923200000,
+        "signal_bar_time": 1793919600000,
+        "signal_price": 0.082,
+        "entry_count": 1
+      },
+      "WLDUSDT": {
+        "entry_price": 0.3912,
+        "entry_time": 1793307600000,
+        "signal_bar_time": 1793304000000,
+        "signal_price": 0.3888,
+        "entry_count": 2
+      },
+      "CRMBUSDT": {
+        "entry_price": 216.19,
+        "entry_time": 1793980800000,
+        "signal_bar_time": 1793977200000,
+        "signal_price": 214.51,
+        "entry_count": 1
+      },
+      "GMEBUSDT": {
+        "entry_price": 23.62,
+        "entry_time": 1793055600000,
+        "signal_bar_time": 1793052000000,
+        "signal_price": 23.55,
+        "entry_count": 1
+      },
+      "MRNABUSDT": {
+        "entry_price": 257.95,
+        "entry_time": 1793973600000,
+        "signal_bar_time": 1793970000000,
+        "signal_price": 237.41,
+        "entry_count": 1
+      },
+      "SANDUSDT": {
+        "entry_price": 0.05434,
+        "entry_time": 1792188000000,
+        "signal_bar_time": 1792184400000,
+        "signal_price": 0.05422,
+        "entry_count": 1
+      },
+      "SKHYBUSDT": {
+        "entry_price": 124.88,
+        "entry_time": 1793923200000,
+        "signal_bar_time": 1793919600000,
+        "signal_price": 121.13,
+        "entry_count": 1
+      }
+    },
+    "sent": [
+      "buy:CRMBUSDT:1793977200000:1",
+      "buy:GMEBUSDT:1793052000000:1",
+      "buy:MAGICUSDT:1793919600000:1",
+      "buy:MRNABUSDT:1793970000000:1",
+      "buy:RKLBBUSDT:1793646000000:1",
+      "exit:RKLBBUSDT:1793977200000",
+      "buy:SANDUSDT:1792184400000:1",
+      "buy:SKHYBUSDT:1793919600000:1",
+      "buy:WLDUSDT:1793304000000:1",
+      "buy:WLDUSDT:1792915200000:2"
+    ]
+  }
 }
