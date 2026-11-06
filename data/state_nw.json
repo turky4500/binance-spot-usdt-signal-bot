@@ -3186,7 +3186,7 @@
     "GMXUSDT": [],
     "GNOUSDT": [],
     "GNSUSDT": [
-      1793988000000
+      1793991600000
     ],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -3414,9 +3414,7 @@
     "STOUSDT": [],
     "STRAXUSDT": [],
     "STRKUSDT": [],
-    "STXBUSDT": [
-      1793988000000
-    ],
+    "STXBUSDT": [],
     "STXUSDT": [],
     "SUIUSDT": [],
     "SUNUSDT": [],
@@ -3513,9 +3511,7 @@
     "ACEUSDT": [],
     "ACHUSDT": [],
     "ACMUSDT": [],
-    "ACTUSDT": [
-      1793988000000
-    ],
+    "ACTUSDT": [],
     "ADAUSDT": [],
     "ADBEBUSDT": [],
     "ADXUSDT": [],
@@ -3628,11 +3624,15 @@
     "CRWVBUSDT": [],
     "CTKUSDT": [],
     "CTSIUSDT": [],
-    "CUSDT": [],
+    "CUSDT": [
+      1793991600000
+    ],
     "CVCUSDT": [],
     "CVXUSDT": [],
     "CYBERUSDT": [],
-    "CYPHBUSDT": [],
+    "CYPHBUSDT": [
+      1793991600000
+    ],
     "DASHUSDT": [],
     "DCRUSDT": [],
     "DELLBUSDT": [],
@@ -3685,9 +3685,7 @@
     "GLMRUSDT": [],
     "GLMUSDT": [],
     "GLWBUSDT": [],
-    "GMEBUSDT": [
-      1793988000000
-    ],
+    "GMEBUSDT": [],
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
@@ -3787,7 +3785,9 @@
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
     "MOVRUSDT": [],
-    "MRNABUSDT": [],
+    "MRNABUSDT": [
+      1793991600000
+    ],
     "MRVLBUSDT": [],
     "MSFTBUSDT": [],
     "MSTRBUSDT": [],
@@ -3851,7 +3851,7 @@
     "PYPLBUSDT": [],
     "PYTHUSDT": [],
     "QCOMBUSDT": [
-      1793988000000
+      1793991600000
     ],
     "QIUSDT": [],
     "QKCUSDT": [],
@@ -3861,9 +3861,7 @@
     "QTUMUSDT": [],
     "RADUSDT": [],
     "RAREUSDT": [],
-    "RAYUSDT": [
-      1793988000000
-    ],
+    "RAYUSDT": [],
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
@@ -3872,9 +3870,7 @@
     "REUSDT": [],
     "REZUSDT": [],
     "RIFUSDT": [],
-    "RKLBBUSDT": [
-      1793988000000
-    ],
+    "RKLBBUSDT": [],
     "RLCUSDT": [],
     "ROBOUSDT": [],
     "RONINUSDT": [],
@@ -3882,7 +3878,9 @@
     "RPLUSDT": [],
     "RSRUSDT": [],
     "RUNEUSDT": [],
-    "RVNUSDT": [],
+    "RVNUSDT": [
+      1793991600000
+    ],
     "RWUSDUSDT": [],
     "SAGAUSDT": [],
     "SAHARAUSDT": [],
@@ -3914,7 +3912,9 @@
     "SOPHUSDT": [],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
-    "SPCXBUSDT": [],
+    "SPCXBUSDT": [
+      1793991600000
+    ],
     "SPELLUSDT": [],
     "SPKUSDT": [],
     "SPYBUSDT": [],
@@ -3959,7 +3959,7 @@
     "UMAUSDT": [],
     "UNIUSDT": [],
     "USARBUSDT": [
-      1793988000000
+      1793991600000
     ],
     "USDEBUSDT": [],
     "USTCUSDT": [],
@@ -3975,9 +3975,7 @@
     "WBTCUSDT": [],
     "WCTUSDT": [],
     "WDCBUSDT": [],
-    "WENBUSDT": [
-      1793988000000
-    ],
+    "WENBUSDT": [],
     "WIFUSDT": [],
     "WINUSDT": [],
     "WLDUSDT": [],
@@ -4725,7 +4723,8 @@
     "GMXUSDT": [],
     "GNOUSDT": [],
     "GNSUSDT": [
-      1793988000000
+      1793988000000,
+      1793991600000
     ],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -5062,9 +5061,9 @@
     "buy:ORCLBUSDT:1793984400000:1",
     "buy:STXBUSDT:1793988000000:1"
   ],
-  "cycles": 27,
+  "cycles": 28,
   "messages_sent": 93,
-  "last_cycle_ms": 1793997212351,
+  "last_cycle_ms": 1793999007167,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
