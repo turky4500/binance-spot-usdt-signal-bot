@@ -85,6 +85,7 @@ def test_full_flow_entry_repeat_exit(tmp_path):
     assert s1["entry"] == 1 and s1["repeat"] == 0 and s1["exit"] == 0
     assert len(tg.messages) == 1 and "توصية دخول" in tg.messages[0]
     assert "شمعة التأكيد خضراء" in tg.messages[0]
+    assert "الخط أخضر" not in tg.messages[0]   # شرط الخط مُلغي
     assert "الحكم الشرعي" in tg.messages[0]
     assert store.load()["symbols"]["BTCUSDT"]["position"] is not None
 

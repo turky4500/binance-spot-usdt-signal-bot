@@ -1,7 +1,7 @@
 """نظام NW 1H — نظام سادس **مستقل تمامًا** عن الأنظمة الخمسة القائمة.
 
 المصدر: Nadaraya-Watson Smoothers [LuxAlgo] (CC BY-NC-SA 4.0) على فريم الساعة.
-القواعد: ▲ + شمعة تالية خضراء + أحدث قطعة خضراء ⇒ توصية دخول؛
+القواعد: ▲ + شمعة تالية خضراء ⇒ توصية دخول (شرطان فقط؛ **لون الخط مُلغي**)؛
          ▼ ⇒ إشارة خروج (مع سعر الدخول/الخروج والنتيجة ربحًا أو خسارةً)؛
          تكرار ▲ ⇒ «إشارة دخول ثانية». بلا أهداف ولا وقف.
          **الدخول من المؤشر وحده** — لا بوابة BTC ولا أي فلتر شرعي؛
@@ -159,7 +159,7 @@ class NWBot:
                 base = sym[:-4] if sym.endswith("USDT") else sym
                 if self.verdicts.get(base) != 0:
                     continue
-            # لا توجد أي بوابة مرتبطة بـ BTC: الدخول من المؤشر وحده (▲ + شمعة خضراء + خط أخضر)
+            # لا توجد أي بوابة مرتبطة بـ BTC: الدخول من المؤشر وحده (▲ + شمعة تالية خضراء فقط)
             symbols.append(sym)
         self.symbols = sorted(symbols)
         _LOG.info(
@@ -308,6 +308,8 @@ def build_nw_bot() -> NWBot:
         bandwidth=float(os.getenv("NW_BANDWIDTH", "8")),
         window=int(os.getenv("NW_WINDOW", str(NW_WINDOW))),
         max_age_bars=int(os.getenv("NW_SIGNAL_MAX_AGE_BARS", "1")),
+        # لون الخط لم يعد شرطًا (قرار المستخدم 2026-11-06)؛ 1 يعيده اختياريًا
+        require_newest_green=os.getenv("NW_REQUIRE_NEWEST_GREEN", "0").strip() in ("1", "true", "yes", "on"),
     )
     state_path = os.getenv("NW_STATE_FILE", "data/state_nw.json")
     return NWBot(

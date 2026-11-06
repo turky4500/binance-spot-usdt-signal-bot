@@ -49,7 +49,9 @@ def test_entry_message_contains_all_user_conditions():
     assert "توصية دخول — BTCUSDT" in text
     assert "فريم الساعة (1H)" in text
     assert "شمعة التأكيد خضراء" in text
-    assert "الخط أخضر" in text
+    # «الغي شرط الخط الأخضر» ⇒ لا يجوز أن تدّعي الرسالة أن الخط أخضر
+    assert "الخط أخضر" not in text
+    assert "لون الخط" not in text and "📈" not in text
     assert "الحكم الشرعي: ✅ مباح" in text
     assert REPAINT_WARNING in text
     assert REPAINT_WARNING not in entry_message("BTCUSDT", REC, "✅ مباح", show_warning=False)

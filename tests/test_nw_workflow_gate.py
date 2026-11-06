@@ -40,6 +40,7 @@ def test_universe_covers_all_rulings_and_no_btc_gate():
     assert env["NW_USE_EXCLUDE_FILE"] == "0"
     assert env["NW_EXCLUDE_PEGGED_STABLES"] == "1"
     assert env["NW_EXCLUDE_TOKENIZED_STOCKS"] == "0"
+    assert env["NW_REQUIRE_NEWEST_GREEN"] == "0"   # لون الخط ليس شرطًا
     for bad in ("DT_GATE", "BTC", "NW_GATE"):
         assert bad not in env
 

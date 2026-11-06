@@ -42,7 +42,7 @@ def test_green_confirmation_candle_is_required_for_entry():
     rec = res["buy"][0]
     assert rec["bars_ago"] == 1
     assert rec["confirm_green"] is True
-    assert rec["color_newest"] == "up"          # «الخط أخضر»
+    assert rec["color_newest"] == "up"          # حقيقة رياضية عند القاع، لكنها لم تعد شرطًا
     assert rec["color_at_signal"] == "up"
     assert rec["confirm_bar_time"] == int(t[-1])
     assert rec["bar_time"] == int(t[-2])
@@ -67,6 +67,20 @@ def test_exit_green_confirmation_can_be_enabled_explicitly():
     o, c, t = sine_series(*SELL_ARGS, confirm_delta=1.0)
     cfg = NWSignalConfig(require_exit_confirm_green=True)
     assert evaluate_symbol(o, c, t, cfg)["sell"] == []
+
+
+def test_red_line_does_not_block_entry_by_default():
+    """شرطا المستخدم فقط: ▲ + شمعة تالية خضراء ⇒ تُرسل ولو كان الخط أحمر."""
+    o, c, t = sine_series(*BUY_ARGS, confirm_delta=-1.0)
+    fake = [{
+        "bars_ago": 1, "kind": "buy", "index": N - 2, "nw": 100.0,
+        "color_at_signal": "down", "color_newest": "down", "newer_all_up": False,
+    }]
+    assert NWSignalConfig().require_newest_green is False
+    with patch("src.nw_signals.annotate_repaint_signals", return_value=fake):
+        res = evaluate_symbol(o, c, t)          # الإعداد الافتراضي
+        assert len(res["buy"]) == 1
+        assert res["buy"][0]["color_newest"] == "down"   # سجّلناه معلومة، لا شرطًا
 
 
 def test_newest_green_filter_is_honoured():
