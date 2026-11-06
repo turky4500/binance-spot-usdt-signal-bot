@@ -69,7 +69,7 @@ class NWBot:
         exclude_file: str = "config/zz_exclude.txt",
         kline_limit: int = NW_WINDOW + 1,
         commission_side_pct: float = 0.1,
-        show_repaint_warning: bool = True,
+        show_repaint_warning: bool = False,  # القالب المبسّط بلا سطر تحذير
         interval: str = "1h",
         include_all: bool = True,             # كل العملات بجميع أحكامها (قرار المستخدم)
         exclude_pegged_stables: bool = True,  # ليست عملات متقلبة ⇒ إشارات ضجيج
@@ -325,7 +325,8 @@ def build_nw_bot() -> NWBot:
         exclude_file=os.getenv("NW_EXCLUDE_FILE", "config/zz_exclude.txt"),
         kline_limit=int(os.getenv("NW_KLINE_LIMIT", str(NW_WINDOW + 1))),
         commission_side_pct=float(os.getenv("NW_COMMISSION_SIDE_PCT", "0.1")),
-        show_repaint_warning=os.getenv("NW_SHOW_REPAINT_WARNING", "1").strip() not in ("0", "false", "no", "off"),
+        # الرسائل بالقالب المبسّط: بلا سطر تحذير افتراضيًا (1 يعيده اختياريًا)
+        show_repaint_warning=os.getenv("NW_SHOW_REPAINT_WARNING", "0").strip() in ("1", "true", "yes", "on"),
         # «الإرسال يشمل كل العملات بجميع أحكامها» — لا فلتر شرعي ولا بوابة BTC
         include_all=os.getenv("NW_INCLUDE_ALL", "1").strip() not in ("0", "false", "no", "off"),
         exclude_pegged_stables=os.getenv("NW_EXCLUDE_PEGGED_STABLES", "1").strip() not in ("0", "false", "no", "off"),

@@ -1,13 +1,24 @@
-"""قوالب رسائل نظام NW 1H — عربية، رسالة واحدة لكل حدث، بلا وعود ربح.
+"""قوالب رسائل نظام NW 1H — **الصيغة المبسّطة** (قرار المستخدم 2026-11-06).
 
-تغييرات 2026-11-06 (بأمر المستخدم):
-  * «الإرسال يشمل كل العملات بجميع أحكامها» ⇒ الحكم الشرعي **ديناميكي**
-    (مباح / غير مباح / مشبوه / لا يوجد حكم) بدل سطر «مباح» الثابت.
-  * رسالة الخروج تذكر صراحة: سعر الدخول، سعر الخروج، والنسبة المحققة
-    مع تصنيف **ربح ✅ / خسارة 🛑 / تعادل ⚖️**، والإجمالي قبل العمولة.
-  * **إلغاء شرط «الخط الأخضر» (2026-11-06):** حُذفت جملة «📈 الخط أخضر»
-    من كل الرسائل. لون الخط لم يعد شرطًا، ولا يجوز ادعاؤه في رسالة تُرسل
-    للمستخدم وهو يرى الخط أحمر على TradingView.
+القالب المطلوب حرفيًا (سطر ثم سطر فارغ)، والتوقيت بنظام 12 ساعة:
+
+    📥 توصية دخول — TRBUSDT
+
+    🕐 فريم الساعة (1H) · Nadaraya
+
+    💰 سعر التوصية: 15.87
+
+    🕌 الحكم الشرعي: ✅ مباح
+
+    🕒 2026-11-06 09:00 AM
+
+ما حُذف من الرسائل بناءً على الطلب: سطر «شمعة التأكيد خضراء»، ونسبة الشمعة،
+واسم المؤشر المطوّل، ومصدر الحكم بين قوسين، وسطر تحذير إعادة الرسم
+(يبقى موثّقًا في README، ويمكن إرجاعه بـ ``NW_SHOW_REPAINT_WARNING=1``)،
+وعدّاد إشارات الدخول. الشروط نفسها ما زالت **مُطبَّقة في الكود** لكنها لم تعد تُعرض.
+
+رسالة الخروج تحتفظ بما طلبه المستخدم قبله: سعر الدخول، سعر الخروج،
+والنتيجة المحققة صريحةً ربحًا أو خسارةً.
 """
 
 from __future__ import annotations
@@ -22,16 +33,25 @@ _ORDINALS = {
 }
 REPAINT_WARNING = "⚠️ مؤشر Nadaraya-Watson يعيد الرسم: قد تتغيّر الإشارة بأثر رجعي"
 NO_RULING = "ℹ️ لا يوجد حكم"
-COMMISSION_NOTE = "0.1% لكل جهة"
 
 
 def riyadh_time(ms: int) -> str:
-    return datetime.fromtimestamp(int(ms) / 1000, RIYADH).strftime("%Y-%m-%d %H:%M")
+    """توقيت الرياض بنظام **12 ساعة** بصيغة YYYY-MM-DD hh:mm AM/PM."""
+    dt = datetime.fromtimestamp(int(ms) / 1000, RIYADH)
+    hour12 = dt.hour % 12 or 12               # 0 ⇒ 12 AM، 12 ⇒ 12 PM
+    suffix = "AM" if dt.hour < 12 else "PM"
+    return f"{dt:%Y-%m-%d} {hour12:02d}:{dt.minute:02d} {suffix}"
 
 
 def fmt_price(value: float) -> str:
+    """حتى 8 خانات للعملات الصغيرة، وبحد أدنى خانتان للأسعار الدائرية (15 ⇒ 15.00)."""
     text = f"{float(value):,.8f}".rstrip("0").rstrip(".")
-    return text or "0"
+    if not text:
+        return "0.00"
+    if "." not in text:
+        return text + ".00"
+    decimals = text.split(".")[1]
+    return text + "0" if len(decimals) < 2 else text
 
 
 def fmt_pct(value: float) -> str:
@@ -51,37 +71,47 @@ def result_label(net_pct: float) -> str:
     return "تعادل ⚖️"
 
 
-def _common(rec: dict, ruling: str, show_warning: bool) -> list[str]:
-    lines = [
-        f"💰 سعر التوصية: {fmt_price(rec['confirm_close'])}",
-        "✅ شمعة التأكيد خضراء: "
-        f"{fmt_pct(rec['confirm_pct'])} ({fmt_price(rec['confirm_open'])} ← {fmt_price(rec['confirm_close'])})",
-        f"🕌 الحكم الشرعي: {ruling or NO_RULING} (أكاديمية البيتكوين العربية)",
-        f"🕒 {riyadh_time(rec['confirm_bar_time'])} بتوقيت الرياض",
-    ]
-    if show_warning:
-        lines.append(REPAINT_WARNING)
-    return lines
+def _join(*lines: str) -> str:
+    """سطر ثم سطر فارغ — نفس شكل القالب الذي أرسله المستخدم."""
+    return "\n\n".join(lines)
 
 
-def entry_message(sym: str, rec: dict, ruling: str = NO_RULING, show_warning: bool = True) -> str:
-    """أول توصية دخول (لا توجد توصية مفتوحة لهذا الزوج)."""
-    return "\n".join([
+def _frame() -> str:
+    return "🕐 فريم الساعة (1H) · Nadaraya"
+
+
+def _ruling_line(ruling: str) -> str:
+    return f"🕌 الحكم الشرعي: {ruling or NO_RULING}"
+
+
+def _warning(show_warning: bool) -> list[str]:
+    return [REPAINT_WARNING] if show_warning else []
+
+
+def entry_message(sym: str, rec: dict, ruling: str = NO_RULING, show_warning: bool = False) -> str:
+    """أول توصية دخول — القالب المبسّط بالحرف."""
+    return _join(
         f"📥 توصية دخول — {sym}",
-        "🕐 فريم الساعة (1H) · Nadaraya-Watson [LuxAlgo] · h=8",
-        *_common(rec, ruling, show_warning),
-    ])
+        _frame(),
+        f"💰 سعر التوصية: {fmt_price(rec['confirm_close'])}",
+        _ruling_line(ruling),
+        f"🕒 {riyadh_time(rec['confirm_bar_time'])}",
+        *_warning(show_warning),
+    )
 
 
-def repeat_message(sym: str, rec: dict, count: int, ruling: str = NO_RULING, show_warning: bool = True) -> str:
-    """تكرار العلامة الخضراء ⇒ «إشارة دخول ثانية» (ثم ثالثة/رابعة…)."""
-    return "\n".join([
+def repeat_message(
+    sym: str, rec: dict, count: int, ruling: str = NO_RULING, show_warning: bool = False
+) -> str:
+    """تكرار العلامة الخضراء ⇒ «إشارة دخول ثانية» بنفس القالب المبسّط."""
+    return _join(
         f"🔁 إشارة دخول {ordinal(count)} — {sym}",
-        "🕐 فريم الساعة (1H) · Nadaraya-Watson [LuxAlgo] · h=8",
-        *_common(rec, ruling, show_warning),
-        f"🔢 عدد إشارات الدخول على هذه التوصية: {count}",
-        "ℹ️ التوصية الأصلية ما زالت مفتوحة (لا أهداف ولا وقف)",
-    ])
+        _frame(),
+        f"💰 سعر التوصية: {fmt_price(rec['confirm_close'])}",
+        _ruling_line(ruling),
+        f"🕒 {riyadh_time(rec['confirm_bar_time'])}",
+        *_warning(show_warning),
+    )
 
 
 def exit_message(
@@ -91,21 +121,21 @@ def exit_message(
     gross_pct: float,
     net_pct: float,
     ruling: str = NO_RULING,
-    show_warning: bool = True,
+    show_warning: bool = False,
 ) -> str:
-    """إشارة الخروج: سعرا الدخول والخروج + النسبة المحققة ربحًا أو خسارةً."""
-    lines = [
+    """إشارة الخروج: أسعار الدخول/الخروج + النتيجة ربحًا أو خسارةً، بالقالب المبسّط.
+
+    ``gross_pct`` محفوظ في الدفتر ولا يُعرض لإبقاء الرسالة مختصرة؛ المعروض هو
+    الصافي بعد عمولة 0.1% لكل جهة.
+    """
+    _ = gross_pct
+    return _join(
         f"🔴 إشارة خروج — {sym}",
-        "📉 ظهور العلامة الحمراء ▼ (قمة المنحنى)",
+        _frame(),
         f"📥 سعر الدخول: {fmt_price(pos['entry_price'])}",
         f"📤 سعر الخروج: {fmt_price(rec['confirm_close'])}",
-        f"📊 النتيجة: {result_label(net_pct)} {fmt_pct(net_pct)} (صافي بعد عمولة {COMMISSION_NOTE})",
-        f"   ├ الإجمالي قبل العمولة: {fmt_pct(gross_pct)}",
-        f"   └ الصافي المحقّق: {fmt_pct(net_pct)}",
-        f"🕌 الحكم الشرعي: {ruling or NO_RULING} (أكاديمية البيتكوين العربية)",
-        f"🔢 إشارات الدخول على التوصية: {pos.get('entry_count', 1)}",
-        f"🕒 {riyadh_time(rec['confirm_bar_time'])} بتوقيت الرياض",
-    ]
-    if show_warning:
-        lines.append(REPAINT_WARNING)
-    return "\n".join(lines)
+        f"📊 النتيجة: {result_label(net_pct)} {fmt_pct(net_pct)}",
+        _ruling_line(ruling),
+        f"🕒 {riyadh_time(rec['confirm_bar_time'])}",
+        *_warning(show_warning),
+    )

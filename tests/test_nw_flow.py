@@ -69,7 +69,7 @@ def build(tmp_path, frame, now_ms):
         state_store=store,
         state_path=str(tmp_path / "state.json"),
         trade_log=str(tmp_path / "trades.csv"),
-        show_repaint_warning=True,
+        show_repaint_warning=False,
     )
     return bot, tg, store
 
@@ -84,9 +84,12 @@ def test_full_flow_entry_repeat_exit(tmp_path):
     s1 = bot.run_once(universe=["BTCUSDT"])
     assert s1["entry"] == 1 and s1["repeat"] == 0 and s1["exit"] == 0
     assert len(tg.messages) == 1 and "توصية دخول" in tg.messages[0]
-    assert "شمعة التأكيد خضراء" in tg.messages[0]
-    assert "الخط أخضر" not in tg.messages[0]   # شرط الخط مُلغي
+    assert "💰 سعر التوصية:" in tg.messages[0]
+    assert "🕐 فريم الساعة (1H) · Nadaraya" in tg.messages[0]
+    assert "شمعة التأكيد" not in tg.messages[0]   # القالب المبسّط
+    assert "الخط أخضر" not in tg.messages[0]      # شرط الخط مُلغي
     assert "الحكم الشرعي" in tg.messages[0]
+    assert ("AM" in tg.messages[0]) or ("PM" in tg.messages[0])  # توقيت 12 ساعة
     assert store.load()["symbols"]["BTCUSDT"]["position"] is not None
 
     # نفس التسمية في دورة لاحقة ⇒ لا تكرار رسالة
@@ -107,7 +110,7 @@ def test_full_flow_entry_repeat_exit(tmp_path):
     s4 = bot.run_once(universe=["BTCUSDT"])
     assert s4["exit"] == 1
     last = tg.messages[-1]
-    assert "إشارة خروج" in last and "العلامة الحمراء" in last
+    assert "إشارة خروج" in last
     assert "سعر الدخول" in last and "سعر الخروج" in last
     assert ("ربح ✅" in last) or ("خسارة 🛑" in last) or ("تعادل ⚖️" in last)
     state = store.load()
