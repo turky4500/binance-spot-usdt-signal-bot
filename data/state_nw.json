@@ -2775,10 +2775,16 @@
       "last_entry_price": 0.0
     },
     "TURTLEUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.0367,
+        "entry_time": 1793926800000,
+        "signal_bar_time": 1793923200000,
+        "signal_price": 0.0365,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1793923200000,
+      "last_entry_price": 0.0367
     },
     "TUSDT": {
       "position": null,
@@ -3394,9 +3400,7 @@
     "REDUSDT": [],
     "RESOLVUSDT": [],
     "REUSDT": [],
-    "REZUSDT": [
-      1793908800000
-    ],
+    "REZUSDT": [],
     "RKLBBUSDT": [],
     "ROBOUSDT": [],
     "RONINUSDT": [],
@@ -3449,7 +3453,9 @@
     "TSMBUSDT": [],
     "TSTUSDT": [],
     "TURBOUSDT": [],
-    "TURTLEUSDT": [],
+    "TURTLEUSDT": [
+      1793923200000
+    ],
     "TUSDT": [],
     "TUTUSDT": [],
     "UMAUSDT": [],
@@ -4447,7 +4453,9 @@
     "TSMBUSDT": [],
     "TSTUSDT": [],
     "TURBOUSDT": [],
-    "TURTLEUSDT": [],
+    "TURTLEUSDT": [
+      1793923200000
+    ],
     "TUSDT": [],
     "TUTUSDT": [],
     "UMAUSDT": [],
@@ -4484,9 +4492,10 @@
     "牛来USDT": []
   },
   "sent": [
-    "buy:REZUSDT:1793908800000:1"
+    "buy:REZUSDT:1793908800000:1",
+    "buy:TURTLEUSDT:1793923200000:1"
   ],
-  "cycles": 2,
-  "messages_sent": 1,
-  "last_cycle_ms": 1793916039498
+  "cycles": 3,
+  "messages_sent": 2,
+  "last_cycle_ms": 1793931229565
 }
