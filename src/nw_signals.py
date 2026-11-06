@@ -15,6 +15,16 @@
 (``max_age_bars = 1``). التسميات الأقدم قد تكون ظهرت بأثر رجعي بسبب إعادة
 الرسم، فتُسجَّل في ``ignored_retro`` ولا يُرسل منها شيء. هذه هي الحماية التي
 تجعل الشرط (2) ممكنًا أصلًا: شمعة التأكيد تكون هي الشمعة الساعية المغلقة للتو.
+
+**توضيح المستخدم 2026-11-06 (TSTUSDT):** «إذا أُغلقت الشمعة وظهرت عليها إشارة
+دخول، انتظر الشمعة التالية؛ إن أُغلقت خضراء أرسل التوصية». أي أن الشمعة التالية
+الحمراء **تُلغي تلك الإشارة نهائيًا** ويجب انتظار ▲ جديدة. لذلك تُعاد التسميات
+المرفوضة في ``cancelled_buy`` ليُجمّد ``nw_bot.py`` قرارها في الحالة، فلا تُبعث
+مرة أخرى إن أعاد المؤشر رسمها.
+
+كذلك ``boundary_correction`` يمنع القيعان الوهمية عند طرف النافذة: نواة Pine
+أحادية الجانب عند i=0 كانت تُنتج ▲ زائفة على ``bars_ago=1`` لكل رمز تقريبًا
+(عمق القاع ~0.001% من السعر)، وهو بالضبط ما ولّد توصيات 09:00/10:00 الخاطئة.
 """
 
 from __future__ import annotations
@@ -34,6 +44,13 @@ class NWSignalConfig:
     require_newest_green: bool = False   # مُلغي بأمر المستخدم — لون الخط ليس شرطًا
     require_confirm_green: bool = True       # شمعة التأكيد الخضراء (شرط المستخدم)
     require_exit_confirm_green: bool = False  # الخروج بظهور ▼ فقط
+    # منع ▲ الوهمية عند طرف نافذة الـ500 (تحيّز النواة الأحادية الجانب).
+    # الافتراضي False للمطابقة الحرفية مع Pine؛ النظام الحيّ يفعّله بـ NW_BOUNDARY_CORRECT=1.
+    boundary_correction: bool = False
+    # عتبة ضجيج: أقل عمق مقبول للقاع/القمة كنسبة مئوية من السعر. القيعان الوهمية
+    # عند الحافة ~0.00003–0.00005%، والقيعان الحقيقية ~0.0002–0.0100%.
+    # الافتراضي 0 (معطّل) للمطابقة الحرفية؛ الحيّ يضبطه بـ NW_MIN_TROUGH_PCT=0.0001.
+    min_trough_pct: float = 0.0
 
     def __post_init__(self) -> None:
         if self.window < 10:
@@ -63,7 +80,9 @@ def evaluate_symbol(
         "ok": False,
         "buy": [],
         "sell": [],
+        "cancelled_buy": [],   # ▲ أُغلقت شمعتها التالية حمراء ⇒ تُلغى نهائيًا
         "ignored_retro": 0,
+        "ignored_shallow": 0,  # قيعان/قمم تحت عتبة الضجيج (لا تظهر على الشارت)
         "newest_color": None,
         "last_bar_time": int(t[-1]) if t.size else 0,
         "bars": int(c.size),
@@ -72,7 +91,8 @@ def evaluate_symbol(
         base["reason"] = "not_enough_bars"
         return base
 
-    y = nw_curve(c, h=cfg.bandwidth, window=cfg.window)
+    y = nw_curve(c, h=cfg.bandwidth, window=cfg.window,
+                 boundary_correction=cfg.boundary_correction)
     labels = annotate_repaint_signals(y, c)
     colors = nw_line_colors(y)
     base["ok"] = True
@@ -88,6 +108,12 @@ def evaluate_symbol(
         confirm_idx = idx + 1
         if confirm_idx >= c.size:
             continue                       # شمعة التأكيد لم تُغلق بعد
+        if cfg.min_trough_pct > 0 and 0 < i < y.size - 1:
+            left, mid, right = float(y[i - 1]), float(y[i]), float(y[i + 1])
+            depth = (min(left, right) - mid) if s["kind"] == "buy" else (mid - max(left, right))
+            if depth / float(c[idx]) * 100.0 < cfg.min_trough_pct:
+                base["ignored_shallow"] += 1
+                continue                   # ارتجاف رقمي، لا ▲/▼ مرئية
         confirm_green = bool(c[confirm_idx] > o[confirm_idx])
         rec = {
             "kind": s["kind"],                  # buy = ▲ | sell = ▼
@@ -106,6 +132,13 @@ def evaluate_symbol(
         }
         if s["kind"] == "buy":
             if cfg.require_confirm_green and not confirm_green:
+                # قاعدة المستخدم: إن أُغلقت الشمعة التالية حمراء تُلغى الإشارة
+                # نهائيًا وننتظر ▲ جديدة. نُبلّغ الحالة لتجميد القرار، حتى لو
+                # أعاد المؤشر رسم التسمية لاحقًا.
+                base["cancelled_buy"].append({
+                    "bar_time": int(t[idx]),
+                    "confirm_bar_time": int(t[confirm_idx]),
+                })
                 continue
             if cfg.require_newest_green and s["color_newest"] != "up":
                 continue

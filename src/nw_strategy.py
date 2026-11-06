@@ -77,6 +77,21 @@ def _curve_kernel(h: float, window: int) -> np.ndarray:
     return gauss(i - j, h)   # Toeplitz: W[i, j] = gauss(i-j, h)
 
 
+@lru_cache(maxsize=8)
+def _curve_kernel_mirrored(h: float, window: int) -> np.ndarray:
+    """تصحيح تحيّز الحافة: نواة ثنائية الجانب بعكس الماضي القريب.
+
+    عند i=0 تكون نواة Pine أحادية الجانب (لا توجد شموع «مستقبلية»)، فيرتفع
+    ``y[0]`` اصطناعيًا ويصير ``y[1]`` قاعًا موضعيًا وهميًا ⇒ ▲ زائفة عند
+    ``bars_ago=1`` على كل رمز تقريبًا. نعكس ``src[j]`` على الجانب الناقص
+    (``w(i+j)``) فيصير المقدّر متزنًا عند الحافة دون استخدام أي بيانات مستقبلية
+    حقيقية. القيعان الحقيقية في وسط النافذة لا تتغير (w(i+j) ≈ 0 هناك).
+    """
+    i = np.arange(window, dtype=float)[:, None]
+    j = np.arange(window, dtype=float)[None, :]
+    return gauss(i - j, h) + np.where(j > 0, gauss(i + j, h), 0.0)
+
+
 def endpoint_estimator(
     closes: Sequence[float] | Iterable[float],
     h: float = NW_BANDWIDTH,
@@ -107,17 +122,24 @@ def nw_curve(
     closes: Sequence[float] | Iterable[float],
     h: float = NW_BANDWIDTH,
     window: int = NW_WINDOW,
+    boundary_correction: bool = False,
 ) -> np.ndarray:
     """``repaint = true``: the full NW curve on the FINAL bar.
 
     Returns y[i] for i = 0 (current bar) .. window-1 (oldest bar in window).
     Recomputed from scratch on every new bar ⇒ historical values repaint.
+
+    ``boundary_correction=True`` يستخدم ``_curve_kernel_mirrored`` لمنع القيعان
+    الوهمية عند ``y[1]`` (انظر شرحها). الافتراضي ``False`` يحافظ على مطابقة
+    Pine الأصلية حرفيًا للاختبارات والباك-تست؛ النظام الحيّ يفعّله من
+    ``NW_BOUNDARY_CORRECT=1``.
     """
     arr = np.asarray(list(closes) if not isinstance(closes, np.ndarray) else closes, dtype=float).ravel()
     if arr.size < window:
         raise ValueError(f"need at least {window} bars for NW curve, got {arr.size}")
     src = arr[-window:][::-1]                 # src[0] = أحدث إغلاق
-    W = _curve_kernel(float(h), int(window))
+    kernel = _curve_kernel_mirrored if boundary_correction else _curve_kernel
+    W = kernel(float(h), int(window))
     return (W @ src) / W.sum(axis=1)
 
 

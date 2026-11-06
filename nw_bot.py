@@ -191,10 +191,21 @@ class NWBot:
         prev_buy = set(state["prev_buy_bars"].get(sym, []))
         prev_sell = set(state["prev_sell_bars"].get(sym, []))
         hist = set(state["buy_history"].get(sym, []))
-        events = {"entry": 0, "repeat": 0, "exit": 0, "skipped_same_label": 0}
+        cancelled = set(state["cancelled_buy_bars"].get(sym, []))
+        events = {"entry": 0, "repeat": 0, "exit": 0, "skipped_same_label": 0, "cancelled": 0}
+
+        # ① الإلغاء النهائي: شمعة التأكيد أُغلقت حمراء ⇒ تُسجَّل ويُنتظر ▲ جديدة.
+        for rec in res.get("cancelled_buy", []):
+            B = rec["bar_time"]
+            if B not in cancelled:
+                cancelled.add(B)
+                events["cancelled"] += 1
 
         for rec in res["buy"]:
             B = rec["bar_time"]
+            if B in cancelled:
+                events["skipped_same_label"] += 1
+                continue
             if B in prev_buy:
                 events["skipped_same_label"] += 1
                 continue
@@ -253,9 +264,13 @@ class NWBot:
             item["position"] = None
             item["entry_count"] = 0
 
-        state["prev_buy_bars"][sym] = _cap([r["bar_time"] for r in res["buy"]], 10)
+        state["prev_buy_bars"][sym] = _cap(
+            [r["bar_time"] for r in res["buy"]]
+            + [r["bar_time"] for r in res.get("cancelled_buy", [])], 10
+        )
         state["prev_sell_bars"][sym] = _cap([r["bar_time"] for r in res["sell"]], 10)
         state["buy_history"][sym] = _cap(sorted(hist), 60)
+        state["cancelled_buy_bars"][sym] = _cap(sorted(cancelled), 200)
         return events
 
     # ── دورة واحدة ─────────────────────────────────────────────────────────
@@ -268,8 +283,8 @@ class NWBot:
         state = self.store.load()
         summary = {
             "now_ms": now_ms, "symbols": len(symbols), "evaluated": 0,
-            "not_ready": 0, "ignored_retro": 0,
-            "entry": 0, "repeat": 0, "exit": 0, "skipped_same_label": 0,
+            "not_ready": 0, "ignored_retro": 0, "ignored_shallow": 0,
+            "entry": 0, "repeat": 0, "exit": 0, "skipped_same_label": 0, "cancelled": 0,
         }
         for sym in sorted(symbols):
             o, c, t = candles_closed(frames.get(sym), now_ms)
@@ -279,8 +294,9 @@ class NWBot:
                 continue
             summary["evaluated"] += 1
             summary["ignored_retro"] += res["ignored_retro"]
+            summary["ignored_shallow"] += res["ignored_shallow"]
             ev = self._apply(sym, res, state)
-            for key in ("entry", "repeat", "exit", "skipped_same_label"):
+            for key in ("entry", "repeat", "exit", "skipped_same_label", "cancelled"):
                 summary[key] += ev[key]
 
         state["cycles"] = int(state["cycles"]) + 1
@@ -310,6 +326,10 @@ def build_nw_bot() -> NWBot:
         max_age_bars=int(os.getenv("NW_SIGNAL_MAX_AGE_BARS", "1")),
         # لون الخط لم يعد شرطًا (قرار المستخدم 2026-11-06)؛ 1 يعيده اختياريًا
         require_newest_green=os.getenv("NW_REQUIRE_NEWEST_GREEN", "0").strip() in ("1", "true", "yes", "on"),
+        # منع ▲ الوهمية عند طرف النافذة (سبب توصية TSTUSDT الخاطئة). 0 يعيد مطابقة Pine الحرفية.
+        boundary_correction=os.getenv("NW_BOUNDARY_CORRECT", "1").strip() in ("1", "true", "yes", "on"),
+        # عتبة الضجيج: 0.0001% من السعر (≈10 أضعاف القيعان الوهمية وأقل من أصغر قاع حقيقي)
+        min_trough_pct=float(os.getenv("NW_MIN_TROUGH_PCT", "0.0001")),
     )
     state_path = os.getenv("NW_STATE_FILE", "data/state_nw.json")
     return NWBot(

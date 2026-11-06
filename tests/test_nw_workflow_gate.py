@@ -42,6 +42,8 @@ def test_universe_covers_all_rulings_and_no_btc_gate():
     assert env["NW_EXCLUDE_TOKENIZED_STOCKS"] == "0"
     assert env["NW_REQUIRE_NEWEST_GREEN"] == "0"   # لون الخط ليس شرطًا
     assert env["NW_SHOW_REPAINT_WARNING"] == "0"   # القالب المبسّط بلا سطر تحذير
+    assert env["NW_BOUNDARY_CORRECT"] == "1"       # منع ▲ الوهمية عند طرف النافذة
+    assert env["NW_MIN_TROUGH_PCT"] == "0.0001"    # عتبة الضجيج
     for bad in ("DT_GATE", "BTC", "NW_GATE"):
         assert bad not in env
 
