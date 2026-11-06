@@ -2577,10 +2577,16 @@
       "last_entry_price": 0.0
     },
     "SNDKBUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 875.76,
+        "entry_time": 1793959200000,
+        "signal_bar_time": 1793955600000,
+        "signal_price": 874.75,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1793955600000,
+      "last_entry_price": 875.76
     },
     "SNXUSDT": {
       "position": null,
@@ -3205,7 +3211,9 @@
     "AVNTUSDT": [],
     "AWEUSDT": [],
     "AXSUSDT": [],
-    "AXTIBUSDT": [],
+    "AXTIBUSDT": [
+      1793955600000
+    ],
     "BABABUSDT": [],
     "BABYUSDT": [],
     "BANANAS31USDT": [],
@@ -3421,7 +3429,9 @@
     "SKYUSDT": [],
     "SMCIBUSDT": [],
     "SMHBUSDT": [],
-    "SNDKBUSDT": [],
+    "SNDKBUSDT": [
+      1793955600000
+    ],
     "SNXUSDT": [],
     "SNXXBUSDT": [],
     "SOLVUSDT": [],
@@ -3457,9 +3467,7 @@
     "TUSDT": [],
     "TUTUSDT": [],
     "UMAUSDT": [],
-    "UNIUSDT": [
-      1793952000000
-    ],
+    "UNIUSDT": [],
     "USARBUSDT": [],
     "USDEBUSDT": [],
     "USTCUSDT": [],
@@ -3488,9 +3496,7 @@
     "ZMBUSDT": [],
     "ZROUSDT": [],
     "ZRXUSDT": [],
-    "币安人生USDT": [
-      1793952000000
-    ],
+    "币安人生USDT": [],
     "牛来USDT": []
   },
   "prev_sell_bars": {
@@ -4481,7 +4487,9 @@
     "SKYUSDT": [],
     "SMCIBUSDT": [],
     "SMHBUSDT": [],
-    "SNDKBUSDT": [],
+    "SNDKBUSDT": [
+      1793955600000
+    ],
     "SNXUSDT": [],
     "SNXXBUSDT": [],
     "SOLVUSDT": [],
@@ -4725,7 +4733,9 @@
     "AWEUSDT": [],
     "AXLUSDT": [],
     "AXSUSDT": [],
-    "AXTIBUSDT": [],
+    "AXTIBUSDT": [
+      1793955600000
+    ],
     "BABABUSDT": [],
     "BABYUSDT": [],
     "BANANAS31USDT": [],
@@ -5163,9 +5173,10 @@
     "buy:RKLBBUSDT:1793944800000:1",
     "buy:TSTUSDT:1793944800000:1",
     "buy:UNIUSDT:1793952000000:1",
-    "buy:币安人生USDT:1793952000000:1"
+    "buy:币安人生USDT:1793952000000:1",
+    "buy:SNDKBUSDT:1793955600000:1"
   ],
-  "cycles": 8,
-  "messages_sent": 36,
-  "last_cycle_ms": 1793961699616
+  "cycles": 9,
+  "messages_sent": 37,
+  "last_cycle_ms": 1793963006016
 }
