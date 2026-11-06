@@ -1,6 +1,6 @@
 {
   "vendor": "cryptohalal.cc",
-  "fetched_at_ms": 1793901462448,
+  "fetched_at_ms": 1793923370530,
   "note": "مصدر الأحكام: CryptoHalal.cc",
   "judgements": {
     "BTC": 0,
@@ -60,6 +60,7 @@
     "GNO": 2,
     "RUNE": 1,
     "ACT": 0,
-    "XTZ": 0
+    "XTZ": 0,
+    "CYBER": 0
   }
 }
