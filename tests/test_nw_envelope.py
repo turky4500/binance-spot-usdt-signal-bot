@@ -3,12 +3,17 @@
 لا يُختبر هنا أي سلوك مبتكر: تُقارن المعادلات والشروط بسطر الكود المقابل في
 Pine، ثم يُختبر شرط المستخدم الوحيد (الشمعة التالية خضراء ⇒ إرسال / حمراء ⇒
 إلغاء نهائي). ملف الشموع هو نفسه المستخدم في اللقطات: SNDKBUSDT 1H.
+
+§ جديد: بلاغ المستخدم «WLDUSDT آخر إشارة دخول لها 30 أكتوبر وأرسلتها الآن»
+مُثبّت كاختبار انحدار دائم في ``test_wldusdt_october_label_is_never_sent_today``.
 """
 
 from __future__ import annotations
 
 import json
+from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import numpy as np
 import pandas as pd
@@ -21,9 +26,12 @@ from src.nw_signals import NWSignalConfig, candles_closed, evaluate_symbol
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE = Path(__file__).parent / "fixtures" / "sndkb_1h_2026-11-06.json"
+WLD_FIXTURE = Path(__file__).parent / "fixtures" / "wld_1h_2026-11-06.json"
 ONE_AM = 1_793_916_000_000
 CYCLE_0503 = ONE_AM + 4 * 3_600_000 + 180_000        # 06 نوفمبر 05:03 ص
 CYCLE_0603 = ONE_AM + 5 * 3_600_000 + 180_000        # 06 نوفمبر 06:03 ص
+LIVE_NOW = 1_793_986_559_978                          # لحظة الدورة الحيّة 06 نوفمبر 8:35 م
+RIYADH = ZoneInfo("Asia/Riyadh")
 
 
 def src_at(now_ms: int) -> np.ndarray:
@@ -31,12 +39,15 @@ def src_at(now_ms: int) -> np.ndarray:
     return np.array([r[2] for r in rows if r[3] < now_ms][::-1], dtype=float)
 
 
-def frame_at(now_ms: int) -> pd.DataFrame:
-    rows = json.loads(FIXTURE.read_text(encoding="utf-8"))
+def frame(rows: list, now_ms: int) -> pd.DataFrame:
     return pd.DataFrame([{
         "open_time": r[0], "open": r[1], "high": max(r[1], r[2]),
         "low": min(r[1], r[2]), "close": r[2], "close_time": r[3],
     } for r in rows if r[3] < now_ms])
+
+
+def sndk_frame(now_ms: int) -> pd.DataFrame:
+    return frame(json.loads(FIXTURE.read_text(encoding="utf-8")), now_ms)
 
 
 # ── 1) المعادلات كما وردت في الكود المرسل ───────────────────────────────────
@@ -103,44 +114,71 @@ def test_labels_appear_then_stay_on_the_same_bar():
     assert second[0][1] == first[0][1]               # السعر لا يتغير
 
 
-# ── 3) شرط المستخدم فوق تسميات المؤشر ──────────────────────────────────────
+# ── 3) توقيت القرار: شرط المستخدم، بلا مقارنة لقطات ────────────────────────
 
-def test_new_label_with_green_next_candle_produces_the_recommendation():
-    o, c, t = candles_closed(frame_at(CYCLE_0503), CYCLE_0503)
+def _synthetic(n: int = 520, green: bool = True):
+    t = np.array([1_700_000_000_000 + k * 3_600_000 for k in range(n)], dtype=np.int64)
+    c = np.linspace(100.0, 110.0, n)
+    o = c - 0.1
+    o[-1] = c[-1] - 0.5 if green else c[-1] + 0.5
+    return o, c, t
+
+
+def _label(i: int, kind: str, price: float = 99.0) -> dict:
+    return {"bars_ago": i, "kind": kind, "price": price,
+            "band": price + (1.0 if kind == "buy" else -1.0),
+            "nwe": price, "sae": 1.0}
+
+
+def _inject(monkeypatch, labels):
+    calls = []
+
+    def fake(src, cfg):
+        calls.append(1)
+        return 1.0, list(labels)
+
+    monkeypatch.setattr("src.nw_signals.envelope_labels", fake)
+    return calls
+
+
+def test_only_the_label_whose_next_candle_just_closed_is_evaluated(monkeypatch):
+    """تسمية i=1 ⇒ شمعة التأكيد هي آخر مغلقة؛ التسميات الأقدم لا تُقيَّم."""
+    o, c, t = _synthetic()
+    calls = _inject(monkeypatch, [_label(1, "buy"), _label(185, "buy"),
+                                  _label(296, "sell"), _label(0, "buy")])
     res = evaluate_symbol(o, c, t, NWSignalConfig(mode="envelope"))
+    assert len(calls) == 1                     # لقطة واحدة فقط: لا مقارنة لقطات
     assert res["ok"] is True and res["mode"] == "envelope"
-    assert res["labels_new"] >= 1
+    assert res["labels_total"] == 4 and res["labels_due"] == 1
     assert len(res["buy"]) == 1
     rec = res["buy"][0]
-    assert rec["confirm_bar_time"] - rec["bar_time"] == 3_600_000
+    assert rec["bars_ago"] == 1
+    assert rec["confirm_bar_time"] == int(t[-1])
+    assert rec["bar_time"] == int(t[-2])
     assert rec["confirm_green"] is True
-    assert rec["confirm_close"] == pytest.approx(841.34)
-    # ▲ تعني أن السعر عبر تحت الشريط السفلي: src[i] < nwe[i] - sae
-    assert rec["sae"] > 0 and rec["band"] > rec["signal_price"]
+    assert res["sell"] == [] and res["cancelled_buy"] == []
 
 
-def test_red_next_candle_cancels_the_label_permanently():
-    df = frame_at(CYCLE_0503)
-    o, c, t = candles_closed(df, CYCLE_0503)
-    rec = evaluate_symbol(o, c, t, NWSignalConfig(mode="envelope"))["buy"][0]
-    i = int(np.flatnonzero(t == rec["confirm_bar_time"])[0])
-    o_red = o.copy()
-    o_red[i] = c[i] + 1.0                            # نفس الشمعة لكن حمراء
-    res = evaluate_symbol(o_red, c, t, NWSignalConfig(mode="envelope"))
-    assert res["buy"] == []
-    assert any(x["bar_time"] == rec["bar_time"] for x in res["cancelled_buy"])
-
-
-def test_sell_label_needs_no_green_candle():
-    o, c, t = candles_closed(frame_at(CYCLE_0503), CYCLE_0503)
+def test_red_next_candle_cancels_the_label_permanently(monkeypatch):
+    o, c, t = _synthetic(green=False)
+    _inject(monkeypatch, [_label(1, "buy")])
     res = evaluate_symbol(o, c, t, NWSignalConfig(mode="envelope"))
-    assert len(res["sell"]) == 1
-    assert res["sell"][0]["kind"] == "sell"
+    assert res["buy"] == []
+    assert len(res["cancelled_buy"]) == 1
+    assert res["cancelled_buy"][0]["confirm_bar_time"] == int(t[-1])
 
 
-def test_invented_filters_cannot_change_the_envelope_labels():
+def test_sell_label_needs_no_green_candle(monkeypatch):
+    o, c, t = _synthetic(green=False)
+    _inject(monkeypatch, [_label(1, "sell")])
+    res = evaluate_symbol(o, c, t, NWSignalConfig(mode="envelope"))
+    assert len(res["sell"]) == 1 and res["sell"][0]["kind"] == "sell"
+
+
+def test_invented_filters_cannot_change_the_envelope_labels(monkeypatch):
     """لا تصحيح حافة ولا عتبة ضجيج ولا حدّ عمر يلمس تسميات المؤشر المرسل."""
-    o, c, t = candles_closed(frame_at(CYCLE_0503), CYCLE_0503)
+    o, c, t = _synthetic()
+    _inject(monkeypatch, [_label(1, "buy"), _label(50, "buy")])
     plain = evaluate_symbol(o, c, t, NWSignalConfig(mode="envelope"))
     loaded = evaluate_symbol(o, c, t, NWSignalConfig(
         mode="envelope", boundary_correction=True, min_trough_pct=1.0,
@@ -149,7 +187,40 @@ def test_invented_filters_cannot_change_the_envelope_labels():
     assert [r["bar_time"] for r in loaded["sell"]] == [r["bar_time"] for r in plain["sell"]]
 
 
-# ── 4) الإعداد الحيّ يطابق مدخلات Pine ──────────────────────────────────────
+# ── 4) بلاغ المستخدم: WLDUSDT ───────────────────────────────────────────────
+
+def test_wldusdt_october_label_is_never_sent_today():
+    """«آخر إشارة دخول لها على المؤشر كانت 30 أكتوبر وأنت أرسلتها الآن»."""
+    rows = json.loads(WLD_FIXTURE.read_text(encoding="utf-8"))
+    o, c, t = candles_closed(frame(rows, LIVE_NOW), LIVE_NOW)
+    assert len(c) >= 502
+    _, labels = envelope_labels(c[::-1], EnvelopeConfig())
+    buys = [L for L in labels if L["kind"] == "buy"]
+    assert buys
+    times = [r[0] for r in rows if r[3] < LIVE_NOW][::-1]
+    newest = min(buys, key=lambda L: L["bars_ago"])
+    stamp = datetime.fromtimestamp(times[newest["bars_ago"]] / 1000, RIYADH)
+    assert stamp.strftime("%d %b") == "30 Oct"       # آخر ▲ فعلًا في 30 أكتوبر
+    assert newest["bars_ago"] > 1                     # شمعة تأكيدها أُغلقت قديمًا
+
+    res = evaluate_symbol(o, c, t, NWSignalConfig(mode="envelope"))
+    assert res["ok"] is True
+    assert res["labels_due"] == 0
+    assert res["buy"] == [] and res["sell"] == [] and res["cancelled_buy"] == []
+
+
+def test_wldusdt_old_labels_stay_inert_even_with_a_fresh_label(monkeypatch):
+    """وجود تسمية حديثة لا يبرّر إرسال التسميات القديمة معها."""
+    rows = json.loads(WLD_FIXTURE.read_text(encoding="utf-8"))
+    o, c, t = candles_closed(frame(rows, LIVE_NOW), LIVE_NOW)
+    _, labels = envelope_labels(c[::-1], EnvelopeConfig())
+    old = [L for L in labels if L["bars_ago"] > 1]
+    _inject(monkeypatch, old + [_label(1, "buy")])
+    res = evaluate_symbol(o, c, t, NWSignalConfig(mode="envelope"))
+    assert len(res["buy"]) == 1 and res["buy"][0]["bars_ago"] == 1
+
+
+# ── 5) الإعداد الحيّ يطابق مدخلات Pine ──────────────────────────────────────
 
 def test_workflow_uses_only_the_pine_inputs():
     doc = yaml.safe_load((ROOT / ".github/workflows/nw-bot.yml").read_text(encoding="utf-8"))

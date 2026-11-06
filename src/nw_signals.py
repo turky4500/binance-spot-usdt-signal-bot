@@ -181,11 +181,14 @@ def _evaluate_envelope(o: np.ndarray, c: np.ndarray, t: np.ndarray,
         ظهرت ▲ على شمعة مغلقة B ⇒ الشمعة التالية B+1 خضراء ⇒ تُرسل التوصية
         (بسعر إغلاق B+1 و🕒 وقتها)؛ حمراء ⇒ تُلغى نهائيًا؛ ▼ ⇒ خروج.
 
-    Pine يحسب التسميات على ``barstate.islast``، فتظهر التسمية الجديدة أينما كانت
-    داخل النافذة. لمطابقة «ما طبعه المؤشر للتو» نقارن لقطة النافذة الحالية بلقطة
-    الشمعة السابقة (``src[1:]``) ولا نُقيّم إلا التسميات التي ظهرت حديثًا. هذا
-    يمنع إعادة إرسال التسميات التاريخية، ويحفظ ``cancelled_buy_bars`` في الحالة
-    لمنع أي تكرار. لا ``max_age_bars`` ولا عتبة ضجيج ولا تصحيح حافة.
+    التوقيت من صيغة الشرط نفسها، لا من فلتر مضاف: «انتظر الشمعة التالية،
+    إذا أغلقت خضراء أرسل» ⇒ القرار يحين **مرة واحدة فقط**، عند إغلاق تلك
+    الشمعة. في ترتيب الشموع المغلقة يكون ``src[0]`` آخر شمعة مغلقة، فالتسمية
+    الوحيدة التي أغلقت شمعتها التالية للتو هي ``bars_ago == 1``. أي تسمية أقدم
+    أُغلقت شمعة تأكيدها في دورة سابقة ⇒ لا تُرسل اليوم (هذا هو خطأ WLDUSDT
+    الذي أبلغ عنه المستخدم: آخر ▲ لها 30 أكتوبر وأُرسلت توصية في 6 نوفمبر).
+    ``bars_ago == 0`` شمعتها التالية لم تُغلق بعد ⇒ تُنتظر. لا مقارنة لقطات،
+    ولا حدّ عمر، ولا عتبة ضجيج، ولا تصحيح حافة: التسميات من ``label.new`` كما هي.
     """
     base = {
         "ok": False, "buy": [], "sell": [], "cancelled_buy": [],
@@ -201,24 +204,17 @@ def _evaluate_envelope(o: np.ndarray, c: np.ndarray, t: np.ndarray,
                           window=cfg.window, repaint=True)
     src = c[::-1]                       # src[0] = أحدث شمعة مغلقة
     sae, labels = envelope_labels(src, ecfg)
-    _, labels_prev = envelope_labels(src[1:], ecfg)
     n = int(c.size)
-    # الفهرس الزمني المطلق (0 = الأقدم): اللقطة السابقة منزاحة شمعة واحدة.
-    # التسمية التي كانت على أحدث شمعة في اللقطة السابقة لم يكن قرارها متاحًا
-    # (شمعته التالية لم تُغلق)، فلا تُعدّ «مُقيَّمة» وتُقيَّم الآن حين أغلقت.
-    prev_idx = {n - 2 - int(L["bars_ago"]) for L in labels_prev
-                if int(L["bars_ago"]) >= 1}
-    fresh = []
-    for L in labels:
-        idx = n - 1 - int(L["bars_ago"])
-        if idx not in prev_idx:
-            fresh.append((idx, L))
+    # التسمية التي يحين قرارها في هذه الدورة فقط: على الشمعة قبل الأخيرة،
+    # وشمعة التأكيد هي آخر شمعة مغلقة. لا تسميات تاريخية تُقيَّم من جديد.
+    due = [(n - 1 - int(L["bars_ago"]), L) for L in labels
+           if int(L["bars_ago"]) == 1]
     base["ok"] = True
     base["sae"] = sae
     base["labels_total"] = len(labels)
-    base["labels_new"] = len(fresh)
+    base["labels_due"] = len(due)
 
-    for idx, L in fresh:
+    for idx, L in due:
         confirm_idx = idx + 1
         if confirm_idx >= n:            # شمعة التأكيد لم تُغلق بعد
             continue
