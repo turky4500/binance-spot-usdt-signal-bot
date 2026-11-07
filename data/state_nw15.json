@@ -1257,10 +1257,16 @@
       "last_entry_price": 0.0
     },
     "HMSTRUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.0001319,
+        "entry_time": 1794093300000,
+        "signal_bar_time": 1794092400000,
+        "signal_price": 0.0001311,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794092400000,
+      "last_entry_price": 0.0001319
     },
     "HOLOUSDT": {
       "position": null,
@@ -3094,9 +3100,7 @@
     "ARPAUSDT": [],
     "ARUSDT": [],
     "ASMLBUSDT": [],
-    "ASRUSDT": [
-      1794091500000
-    ],
+    "ASRUSDT": [],
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
@@ -3256,7 +3260,9 @@
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [],
+    "HMSTRUSDT": [
+      1794092400000
+    ],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -3442,9 +3448,7 @@
     "SHAZBUSDT": [],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
-    "SIGNUSDT": [
-      1794091500000
-    ],
+    "SIGNUSDT": [],
     "SKDDBUSDT": [],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
@@ -3842,7 +3846,9 @@
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
-    "MITOUSDT": [],
+    "MITOUSDT": [
+      1794092400000
+    ],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
@@ -3878,7 +3884,9 @@
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
-    "OPGUSDT": [],
+    "OPGUSDT": [
+      1794092400000
+    ],
     "OPNUSDT": [],
     "OPUSDT": [],
     "ORCAUSDT": [],
@@ -4276,7 +4284,9 @@
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [],
+    "HMSTRUSDT": [
+      1794092400000
+    ],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -5087,9 +5097,10 @@
     "牛来USDT": []
   },
   "sent": [
-    "buy:ASRUSDT:1794091500000:1"
+    "buy:ASRUSDT:1794091500000:1",
+    "buy:HMSTRUSDT:1794092400000:1"
   ],
-  "cycles": 2,
-  "messages_sent": 1,
-  "last_cycle_ms": 1794093503325
+  "cycles": 3,
+  "messages_sent": 2,
+  "last_cycle_ms": 1794094404767
 }
