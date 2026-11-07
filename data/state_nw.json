@@ -2943,10 +2943,16 @@
       "last_entry_price": 0.0
     },
     "YBUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.0539,
+        "entry_time": 1794031200000,
+        "signal_bar_time": 1794027600000,
+        "signal_price": 0.0534,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794027600000,
+      "last_entry_price": 0.0539
     },
     "YFIUSDT": {
       "position": null,
@@ -3490,7 +3496,9 @@
     "XTZUSDT": [],
     "XVGUSDT": [],
     "XVSUSDT": [],
-    "YBUSDT": [],
+    "YBUSDT": [
+      1794027600000
+    ],
     "YFIUSDT": [],
     "YGGUSDT": [],
     "ZAMAUSDT": [],
@@ -3521,9 +3529,7 @@
     "ACEUSDT": [],
     "ACHUSDT": [],
     "ACMUSDT": [],
-    "ACTUSDT": [
-      1794024000000
-    ],
+    "ACTUSDT": [],
     "ADAUSDT": [],
     "ADBEBUSDT": [],
     "ADXUSDT": [],
@@ -3557,9 +3563,7 @@
     "ARPAUSDT": [],
     "ARUSDT": [],
     "ASMLBUSDT": [],
-    "ASRUSDT": [
-      1794024000000
-    ],
+    "ASRUSDT": [],
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
@@ -3790,7 +3794,9 @@
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
-    "MITOUSDT": [],
+    "MITOUSDT": [
+      1794027600000
+    ],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
@@ -3822,9 +3828,7 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [
-      1794024000000
-    ],
+    "ONEUSDT": [],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -4521,7 +4525,9 @@
     "XTZUSDT": [],
     "XVGUSDT": [],
     "XVSUSDT": [],
-    "YBUSDT": [],
+    "YBUSDT": [
+      1794027600000
+    ],
     "YFIUSDT": [],
     "YGGUSDT": [],
     "ZAMAUSDT": [],
@@ -5075,11 +5081,12 @@
     "buy:GNSUSDT:1793995200000:1",
     "exit:UVXYBUSDT:1793995200000",
     "buy:STRAXUSDT:1794002400000:1",
-    "buy:GLMRUSDT:1794016800000:1"
+    "buy:GLMRUSDT:1794016800000:1",
+    "buy:YBUSDT:1794027600000:1"
   ],
-  "cycles": 51,
-  "messages_sent": 97,
-  "last_cycle_ms": 1794033198972,
+  "cycles": 52,
+  "messages_sent": 98,
+  "last_cycle_ms": 1794035005040,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
