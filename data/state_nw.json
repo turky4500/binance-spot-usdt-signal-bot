@@ -3133,9 +3133,7 @@
     "CUSDT": [],
     "CVCUSDT": [],
     "CVXUSDT": [],
-    "CYBERUSDT": [
-      1794002400000
-    ],
+    "CYBERUSDT": [],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
     "DCRUSDT": [],
@@ -3418,9 +3416,7 @@
     "SSVUSDT": [],
     "STEEMUSDT": [],
     "STOUSDT": [],
-    "STRAXUSDT": [
-      1794002400000
-    ],
+    "STRAXUSDT": [],
     "STRKUSDT": [],
     "STXBUSDT": [],
     "STXUSDT": [],
@@ -3689,7 +3685,9 @@
     "GLMRUSDT": [],
     "GLMUSDT": [],
     "GLWBUSDT": [],
-    "GMEBUSDT": [],
+    "GMEBUSDT": [
+      1794006000000
+    ],
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
@@ -5066,9 +5064,9 @@
     "exit:UVXYBUSDT:1793995200000",
     "buy:STRAXUSDT:1794002400000:1"
   ],
-  "cycles": 37,
+  "cycles": 38,
   "messages_sent": 96,
-  "last_cycle_ms": 1794011604813,
+  "last_cycle_ms": 1794013402142,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
