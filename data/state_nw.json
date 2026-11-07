@@ -3146,9 +3146,7 @@
     "BATUSDT": [],
     "BBBUSDT": [],
     "BBUSDT": [],
-    "BCHUSDT": [
-      1794081600000
-    ],
+    "BCHUSDT": [],
     "BEAMXUSDT": [],
     "BEBUSDT": [],
     "BELUSDT": [],
@@ -5184,9 +5182,9 @@
     "buy:BARUSDT:1794063600000:1",
     "buy:MUBARAKUSDT:1794067200000:1"
   ],
-  "cycles": 89,
+  "cycles": 90,
   "messages_sent": 109,
-  "last_cycle_ms": 1794090805255,
+  "last_cycle_ms": 1794092599745,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
