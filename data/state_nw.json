@@ -2229,10 +2229,16 @@
       "last_entry_price": 0.0
     },
     "MUBARAKUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1793944800000,
-      "last_entry_price": 0.04126
+      "position": {
+        "entry_price": 0.04029,
+        "entry_time": 1794070800000,
+        "signal_bar_time": 1794067200000,
+        "signal_price": 0.03949,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794067200000,
+      "last_entry_price": 0.04029
     },
     "MUBUSDT": {
       "position": null,
@@ -3115,9 +3121,7 @@
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
-    "ATMUSDT": [
-      1794063600000
-    ],
+    "ATMUSDT": [],
     "ATOMUSDT": [],
     "ATUSDT": [],
     "AUCTIONUSDT": [],
@@ -3138,9 +3142,7 @@
     "BANDUSDT": [],
     "BANKUSDT": [],
     "BARDUSDT": [],
-    "BARUSDT": [
-      1794063600000
-    ],
+    "BARUSDT": [],
     "BATUSDT": [],
     "BBBUSDT": [],
     "BBUSDT": [],
@@ -3356,7 +3358,9 @@
     "MSFTBUSDT": [],
     "MSTRBUSDT": [],
     "MTLUSDT": [],
-    "MUBARAKUSDT": [],
+    "MUBARAKUSDT": [
+      1794067200000
+    ],
     "MUBUSDT": [],
     "MUUBUSDT": [],
     "MVLLBUSDT": [],
@@ -3840,9 +3844,7 @@
     "MEMEUSDT": [],
     "METABUSDT": [],
     "METISUSDT": [],
-    "METUSDT": [
-      1794063600000
-    ],
+    "METUSDT": [],
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
@@ -3956,7 +3958,9 @@
     "SHAZBUSDT": [],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
-    "SIGNUSDT": [],
+    "SIGNUSDT": [
+      1794067200000
+    ],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
     "SKYUSDT": [],
@@ -4375,7 +4379,9 @@
     "MSFTBUSDT": [],
     "MSTRBUSDT": [],
     "MTLUSDT": [],
-    "MUBARAKUSDT": [],
+    "MUBARAKUSDT": [
+      1794067200000
+    ],
     "MUBUSDT": [],
     "MUUBUSDT": [],
     "MVLLBUSDT": [],
@@ -5175,11 +5181,12 @@
     "buy:STXUSDT:1794052800000:1",
     "buy:ATMUSDT:1794056400000:1",
     "buy:ATMUSDT:1794063600000:2",
-    "buy:BARUSDT:1794063600000:1"
+    "buy:BARUSDT:1794063600000:1",
+    "buy:MUBARAKUSDT:1794067200000:1"
   ],
-  "cycles": 77,
-  "messages_sent": 108,
-  "last_cycle_ms": 1794072801767,
+  "cycles": 78,
+  "messages_sent": 109,
+  "last_cycle_ms": 1794074606256,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
