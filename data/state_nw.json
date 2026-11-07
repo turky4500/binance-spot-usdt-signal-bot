@@ -855,10 +855,16 @@
       "last_entry_price": 0.0
     },
     "STRAXUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1793966400000,
-      "last_entry_price": 0.01005
+      "position": {
+        "entry_price": 0.00945,
+        "entry_time": 1794006000000,
+        "signal_bar_time": 1794002400000,
+        "signal_price": 0.00932,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794002400000,
+      "last_entry_price": 0.00945
     },
     "STXUSDT": {
       "position": null,
@@ -3127,7 +3133,9 @@
     "CUSDT": [],
     "CVCUSDT": [],
     "CVXUSDT": [],
-    "CYBERUSDT": [],
+    "CYBERUSDT": [
+      1794002400000
+    ],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
     "DCRUSDT": [],
@@ -3411,7 +3419,7 @@
     "STEEMUSDT": [],
     "STOUSDT": [],
     "STRAXUSDT": [
-      1793998800000
+      1794002400000
     ],
     "STRKUSDT": [],
     "STXBUSDT": [],
@@ -3600,9 +3608,7 @@
     "CATIUSDT": [],
     "CBRSBUSDT": [],
     "CELOUSDT": [],
-    "CELRUSDT": [
-      1793998800000
-    ],
+    "CELRUSDT": [],
     "CETUSUSDT": [],
     "CFGUSDT": [],
     "CFXUSDT": [],
@@ -3707,9 +3713,7 @@
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
-    "HOTUSDT": [
-      1793998800000
-    ],
+    "HOTUSDT": [],
     "HPEBUSDT": [],
     "HUMAUSDT": [],
     "HYPERUSDT": [],
@@ -3906,9 +3910,7 @@
     "SOPHUSDT": [],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
-    "SPCXBUSDT": [
-      1793998800000
-    ],
+    "SPCXBUSDT": [],
     "SPELLUSDT": [],
     "SPKUSDT": [],
     "SPYBUSDT": [],
@@ -3952,9 +3954,7 @@
     "TWTUSDT": [],
     "UMAUSDT": [],
     "UNIUSDT": [],
-    "USARBUSDT": [
-      1793998800000
-    ],
+    "USARBUSDT": [],
     "USDEBUSDT": [],
     "USTCUSDT": [],
     "USUALUSDT": [],
@@ -4434,7 +4434,9 @@
     "SSVUSDT": [],
     "STEEMUSDT": [],
     "STOUSDT": [],
-    "STRAXUSDT": [],
+    "STRAXUSDT": [
+      1794002400000
+    ],
     "STRKUSDT": [],
     "STXBUSDT": [
       1793988000000
@@ -4660,7 +4662,9 @@
     "CUSDT": [],
     "CVCUSDT": [],
     "CVXUSDT": [],
-    "CYBERUSDT": [],
+    "CYBERUSDT": [
+      1794002400000
+    ],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
     "DCRUSDT": [],
@@ -5059,11 +5063,12 @@
     "buy:ORCLBUSDT:1793984400000:1",
     "buy:STXBUSDT:1793988000000:1",
     "buy:GNSUSDT:1793995200000:1",
-    "exit:UVXYBUSDT:1793995200000"
+    "exit:UVXYBUSDT:1793995200000",
+    "buy:STRAXUSDT:1794002400000:1"
   ],
-  "cycles": 35,
-  "messages_sent": 95,
-  "last_cycle_ms": 1794008000267,
+  "cycles": 36,
+  "messages_sent": 96,
+  "last_cycle_ms": 1794009802305,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
