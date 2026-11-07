@@ -291,10 +291,16 @@
       "last_entry_price": 0.0
     },
     "ASRUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.707,
+        "entry_time": 1794092400000,
+        "signal_bar_time": 1794091500000,
+        "signal_price": 0.704,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794091500000,
+      "last_entry_price": 0.707
     },
     "ASTERUSDT": {
       "position": null,
@@ -3088,7 +3094,9 @@
     "ARPAUSDT": [],
     "ARUSDT": [],
     "ASMLBUSDT": [],
-    "ASRUSDT": [],
+    "ASRUSDT": [
+      1794091500000
+    ],
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
@@ -3435,7 +3443,7 @@
     "SHELLUSDT": [],
     "SHIBUSDT": [],
     "SIGNUSDT": [
-      1794090600000
+      1794091500000
     ],
     "SKDDBUSDT": [],
     "SKHYBUSDT": [],
@@ -3903,9 +3911,7 @@
     "PYPLBUSDT": [],
     "PYTHUSDT": [],
     "QCOMBUSDT": [],
-    "QIUSDT": [
-      1794090600000
-    ],
+    "QIUSDT": [],
     "QKCUSDT": [],
     "QNTBUSDT": [],
     "QNTUSDT": [],
@@ -4108,7 +4114,9 @@
     "ARPAUSDT": [],
     "ARUSDT": [],
     "ASMLBUSDT": [],
-    "ASRUSDT": [],
+    "ASRUSDT": [
+      1794091500000
+    ],
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
@@ -4963,7 +4971,8 @@
     "SHELLUSDT": [],
     "SHIBUSDT": [],
     "SIGNUSDT": [
-      1794090600000
+      1794090600000,
+      1794091500000
     ],
     "SKDDBUSDT": [],
     "SKHYBUSDT": [],
@@ -5077,8 +5086,10 @@
     "币安人生USDT": [],
     "牛来USDT": []
   },
-  "sent": [],
-  "cycles": 1,
-  "messages_sent": 0,
-  "last_cycle_ms": 1794093025506
+  "sent": [
+    "buy:ASRUSDT:1794091500000:1"
+  ],
+  "cycles": 2,
+  "messages_sent": 1,
+  "last_cycle_ms": 1794093503325
 }
