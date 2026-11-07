@@ -1,0 +1,110 @@
+name: NW 15M Bot (Nadaraya-Watson Envelope)
+
+# النظام الموازي على فريم 15 دقيقة — يعمل بالتوازي مع nw-bot.yml (1H) بلا أي
+# تعديل عليه. حالة ودفتر ووركفلو ومُحفّز خاصّة به فقط.
+# المصدر: Nadaraya-Watson Envelope [LuxAlgo] © LuxAlgo، CC BY-NC-SA 4.0.
+# الشروط مطابقة حرفيًا لشروط فريم الساعة الحالية على main: التسميات ▲/▼ كما
+# يطبعها الكود على الشارت، شمعة تالية خضراء ⇒ توصية، حمراء ⇒ إلغاء نهائي،
+# ▼ ⇒ خروج مع سعري الدخول/الخروج والنسبة الصافية، تكرار ▲ ⇒ إشارة دخول ثانية.
+# لا أهداف ولا وقف ولا بوابة BTC ولا أي فلتر إضافي. كل أزواج USDT بجميع أحكامها.
+# الفرق الوحيد: interval=15m، state/trade log مستقلان، وسطر «🕐 فريم 15 دقيقة
+# (15M) · Nadaraya» في الرسالة.
+#
+# ⚠️ الإيقاف الصحيح: اضبط المتغيّر NW15_ENABLED = false (أو Disable workflow).
+#    الحماية if على مستوى المهمة — لا تُستخدم خطوة `exit 0` كبوابة إطلاقًا.
+#    إيقاف 1H عبر NW_ENABLED لا يوقّف هذا النظام، والعكس صحيح.
+#
+# أربع دورات في الساعة بعد إغلاق شمعة 15m بثلاث دقائق (:00/:15/:30/:45 UTC ⇒
+# :03/:18/:33/:48). التكرار آمن لأن الحالة تمنع إعادة إرسال التسمية نفسها.
+
+on:
+  schedule:
+    - cron: '3,18,33,48 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nw-15m-bot
+  cancel-in-progress: false
+
+jobs:
+  run-once:
+    if: vars.NW15_ENABLED != 'false'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TELEGRAM_MUTE: "0"
+      TELEGRAM_MIN_INTERVAL_SECONDS: "1.05"
+      TIMEZONE: Asia/Riyadh
+      BINANCE_BASE_URL: https://data-api.binance.vision
+      BINANCE_QUOTE_ASSET: USDT
+      REQUEST_TIMEOUT: "20"
+      MAX_WORKERS: "10"
+      LOG_LEVEL: INFO
+      # ── مسارات هذا النظام وحده (لا يلمس ملفات 1H ولا أي نظام آخر) ──
+      NW_STATE_FILE: data/state_nw15.json
+      NW_TRADE_LOG: data/trades_log_nw15.csv
+      NW_HALAL_PRIMARY: data/daily_trend/halal_academy.json
+      NW_HALAL_EXTRA: data/daily_trend/halal_extra.json
+      NW_HALAL_CACHE: data/zigzag/halal_verdicts.json
+      NW_EXCLUDE_FILE: config/zz_exclude.txt
+      # ── ثوابت المؤشر: نفس قيم 1H بالحرف ──
+      NW_BANDWIDTH: "8"
+      NW_WINDOW: "500"
+      NW_MODE: "envelope"
+      NW_MULT: "3"
+      NW_KLINE_LIMIT: "560"
+      NW_REQUIRE_NEWEST_GREEN: "0"
+      NW_COMMISSION_SIDE_PCT: "0.1"
+      NW_SHOW_REPAINT_WARNING: "0"
+      # ── كل العملات بجميع أحكامها (نفس 1H) ──
+      NW_INCLUDE_ALL: "1"
+      NW_EXCLUDE_PEGGED_STABLES: "1"
+      NW_EXCLUDE_TOKENIZED_STOCKS: "0"
+      NW_USE_EXCLUDE_FILE: "0"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run NW 15M bot once
+        run: python run_nw15_once.py
+
+      - name: Commit NW 15M state updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for f in data/state_nw15.json data/trades_log_nw15.csv; do
+            if [ -f "$f" ]; then git add "$f"; fi
+          done
+          if git diff --cached --quiet; then
+            echo "No NW 15M state changes to commit"
+            exit 0
+          fi
+          git commit -m "chore: update NW 15M bot state [skip ci]"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase -X theirs origin/main; then
+              if git push origin HEAD:main; then
+                echo "NW 15M state pushed on attempt $attempt"
+                exit 0
+              fi
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "Retry $attempt: another run updated main first"
+            sleep $((attempt * 5))
+          done
+          echo "::warning::Could not push NW 15M state after 5 attempts; next run will pick it up."
