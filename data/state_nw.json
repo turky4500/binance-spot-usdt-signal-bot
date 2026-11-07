@@ -393,10 +393,16 @@
       "last_entry_price": 0.0
     },
     "GLMRUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1793941200000,
-      "last_entry_price": 0.00732
+      "position": {
+        "entry_price": 0.006971,
+        "entry_time": 1794020400000,
+        "signal_bar_time": 1794016800000,
+        "signal_price": 0.00693,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794016800000,
+      "last_entry_price": 0.006971
     },
     "GLMUSDT": {
       "position": null,
@@ -3184,7 +3190,9 @@
     "GASUSDT": [],
     "GENIUSUSDT": [],
     "GIGGLEUSDT": [],
-    "GLMRUSDT": [],
+    "GLMRUSDT": [
+      1794016800000
+    ],
     "GLMUSDT": [],
     "GLWBUSDT": [],
     "GMEBUSDT": [],
@@ -3515,9 +3523,7 @@
     "ACEUSDT": [],
     "ACHUSDT": [],
     "ACMUSDT": [],
-    "ACTUSDT": [
-      1794013200000
-    ],
+    "ACTUSDT": [],
     "ADAUSDT": [],
     "ADBEBUSDT": [],
     "ADXUSDT": [],
@@ -3868,9 +3874,7 @@
     "REUSDT": [],
     "REZUSDT": [],
     "RIFUSDT": [],
-    "RKLBBUSDT": [
-      1794013200000
-    ],
+    "RKLBBUSDT": [],
     "RLCUSDT": [],
     "ROBOUSDT": [],
     "RONINUSDT": [],
@@ -4186,7 +4190,9 @@
     "GASUSDT": [],
     "GENIUSUSDT": [],
     "GIGGLEUSDT": [],
-    "GLMRUSDT": [],
+    "GLMRUSDT": [
+      1794016800000
+    ],
     "GLMUSDT": [],
     "GLWBUSDT": [],
     "GMEBUSDT": [
@@ -5064,11 +5070,12 @@
     "buy:STXBUSDT:1793988000000:1",
     "buy:GNSUSDT:1793995200000:1",
     "exit:UVXYBUSDT:1793995200000",
-    "buy:STRAXUSDT:1794002400000:1"
+    "buy:STRAXUSDT:1794002400000:1",
+    "buy:GLMRUSDT:1794016800000:1"
   ],
-  "cycles": 45,
-  "messages_sent": 96,
-  "last_cycle_ms": 1794022406375,
+  "cycles": 46,
+  "messages_sent": 97,
+  "last_cycle_ms": 1794024202929,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
