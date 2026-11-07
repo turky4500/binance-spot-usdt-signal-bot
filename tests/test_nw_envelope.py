@@ -147,7 +147,7 @@ def test_only_the_label_whose_next_candle_just_closed_is_evaluated(monkeypatch):
     calls = _inject(monkeypatch, [_label(1, "buy"), _label(185, "buy"),
                                   _label(296, "sell"), _label(0, "buy")])
     res = evaluate_symbol(o, c, t, NWSignalConfig(mode="envelope"))
-    assert len(calls) == 1                     # لقطة واحدة فقط: لا مقارنة لقطات
+    assert len(calls) == 2                     # لقطة حية + محاكاة دورة تالية (صدفة البرودة)
     assert res["ok"] is True and res["mode"] == "envelope"
     assert res["labels_total"] == 4 and res["labels_due"] == 1
     assert len(res["buy"]) == 1

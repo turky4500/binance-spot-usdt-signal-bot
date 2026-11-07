@@ -16,6 +16,7 @@
 
 from __future__ import annotations
 
+import csv
 import json
 import logging
 import os
@@ -273,6 +274,64 @@ class NWBot:
         state["cancelled_buy_bars"][sym] = _cap(sorted(cancelled), 200)
         return events
 
+    def send_daily_report_if_due(self, now_ms: int) -> None:
+        """تقرير يومي NW: يرسل مرة واحدة يوميًا (عند منتصف الليل UTC) ملخص الصفقات المفتوحة والمغلقة."""
+        import datetime
+        dt = datetime.datetime.fromtimestamp(now_ms / 1000, datetime.timezone.utc)
+        report_day = dt.strftime("%Y-%m-%d")
+        
+        state = self.store.load()
+        report_state = state.setdefault("daily_report_nw", {})
+        if report_state.get("last_reported_for_date") == report_day:
+            return  # رُفِع مسبقًا اليوم
+
+        # نرسل فقط حول منتصف الليل (أول 30 دقيقة من اليوم الجديد لتفادي تفويت الفتح)
+        if dt.hour != 0 or dt.minute > 30:
+            return
+
+        # حساب الصفقات المفتوحة
+        symbols_state = state.get("symbols", {})
+        open_positions = [
+            sym for sym, val in symbols_state.items()
+            if isinstance(val, dict) and val.get("position") is not None
+        ]
+
+        # قراءة الصفقات المغلقة اليوم من دفتر الـ NW
+        closed_today = 0
+        total_pnl_net = 0.0
+        p = Path(self.trade_log)
+        if p.exists():
+            try:
+                with p.open(encoding="utf-8-sig") as f:
+                    reader = csv.DictReader(f)
+                    for row in reader:
+                        exit_t = row.get("exit_time")
+                        if exit_t and str(exit_t).isdigit():
+                            exit_dt = datetime.datetime.fromtimestamp(int(exit_t) / 1000, datetime.timezone.utc)
+                            if exit_dt.strftime("%Y-%m-%d") == report_day:
+                                closed_today += 1
+                                total_pnl_net += float(row.get("net_pct", 0.0))
+            except Exception:
+                pass
+
+        text = (
+            f"📊 **التقرير اليومي لنظام Nadaraya-Watson (NW 1H)**\n"
+            f"📅 التاريخ: `{report_day}`\n\n"
+            f"📌 **المراكز المفتوحة حالياً:** {len(open_positions)}\n"
+            f"🔒 **الصفقات المغلقة اليوم:** {closed_today}\n"
+            f"📈 **إجمالي صافي الربح/الخسارة المغلقة اليوم:** `{total_pnl_net:+.2f}%`\n"
+            f"🔄 **إجمالي دورات البوت:** {state.get('cycles', 0)}\n"
+            f"📨 **إجمالي التنبيهات المرسلة:** {state.get('messages_sent', 0)}"
+        )
+
+        try:
+            self.tg.send_message(text)
+            report_state["last_reported_for_date"] = report_day
+            self.store.save(state)
+            _LOG.info("✅ تم إرسال التقرير اليومي لـ NW عن تاريخ %s", report_day)
+        except Exception as e:
+            _LOG.error("❌ فشل إرسال التقرير اليومي لـ NW: %s", e)
+
     # ── دورة واحدة ─────────────────────────────────────────────────────────
     def run_once(self, now_ms: int | None = None, universe: list[str] | None = None) -> dict:
         now_ms = int(now_ms if now_ms is not None else self.client.get_server_time())
@@ -304,6 +363,10 @@ class NWBot:
         self.store.save(state)
         self.last_summary = summary
         _LOG.info("دورة NW: %s", summary)
+        try:
+            self.send_daily_report_if_due(now_ms)
+        except Exception as e:
+            _LOG.error("خطأ أثناء محاولة إرسال التقرير اليومي: %s", e)
         return summary
 
 

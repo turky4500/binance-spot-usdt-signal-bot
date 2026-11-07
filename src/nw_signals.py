@@ -181,6 +181,13 @@ def _evaluate_envelope(o: np.ndarray, c: np.ndarray, t: np.ndarray,
         ظهرت ▲ على شمعة مغلقة B ⇒ الشمعة التالية B+1 خضراء ⇒ تُرسل التوصية
         (بسعر إغلاق B+1 و🕒 وقتها)؛ حمراء ⇒ تُلغى نهائيًا؛ ▼ ⇒ خروج.
 
+    **صدفة البرودة (repaint):** الكود المرسل يحسب التسميات من نافذة 500 شمعة
+    عند كل لحظة؛ ``src[0]`` = أحدث شمعة مغلقة. كل دورة جديدة تُعدّل المنحنى
+    ``nwe`` والمقام ``sae`` ويُمكن أن تلغي التسمية القديمة (إعادة الرسم).
+    نتحقق فورًا أن التسمية على ``bars_ago == 1`` **تظل محسوبة حتى بعد إضافة
+    شمعة جديدة** في محاكاة الدورة التالية (ندخل الشمعة الجديدة في مقدمة النافذة).
+    إن لم تكن باقية في الحساب المنقح → لا تُرسل (المستخدم لن يرى الأسهم الأخضر، فالتوصية عبثية).
+
     التوقيت من صيغة الشرط نفسها، لا من فلتر مضاف: «انتظر الشمعة التالية،
     إذا أغلقت خضراء أرسل» ⇒ القرار يحين **مرة واحدة فقط**، عند إغلاق تلك
     الشمعة. في ترتيب الشموع المغلقة يكون ``src[0]`` آخر شمعة مغلقة، فالتسمية
@@ -214,6 +221,13 @@ def _evaluate_envelope(o: np.ndarray, c: np.ndarray, t: np.ndarray,
     base["labels_total"] = len(labels)
     base["labels_due"] = len(due)
 
+    # صدفة البرودة: محاكاة دورة تالية بإدخال شمعة جديدة في مقدمة النافذة (src[0])
+    # مع خروج أقدم شمعة منها. إن التسمية لم تعد موجودة في النسخة المحاكاة ⇒
+    # ستنحذف من الشارت لاحقًا (إعادة رسم) ⇒ لا تُرسل التوصية الآن.
+    shifted = np.concatenate([np.asarray([src[0]], dtype=float), src])
+    _, refreshed_labels = envelope_labels(shifted, ecfg)
+    refreshed_keys = {(str(L["kind"]), float(L["price"])) for L in refreshed_labels}
+
     for idx, L in due:
         confirm_idx = idx + 1
         if confirm_idx >= n:            # شمعة التأكيد لم تُغلق بعد
@@ -238,6 +252,8 @@ def _evaluate_envelope(o: np.ndarray, c: np.ndarray, t: np.ndarray,
             "newer_all_up": False,
         }
         if kind == "buy":
+            if (kind, float(L["price"])) not in refreshed_keys:
+                continue   # ▲/▼ اختفت ⇒ ستنحذف من الشارت (إعادة رسم) ⇒ لا تُرسل
             if cfg.require_confirm_green and not confirm_green_:
                 base["cancelled_buy"].append({
                     "bar_time": int(t[idx]),
@@ -247,6 +263,8 @@ def _evaluate_envelope(o: np.ndarray, c: np.ndarray, t: np.ndarray,
             # لون الخط ليس شرطًا بأمر المستخدم، ولا وجود لون خط في Envelope.
             base["buy"].append(rec)
         else:
+            if (kind, float(L["price"])) not in refreshed_keys:
+                continue   # ▼ اختفت ⇒ ستنحذف من الشارت (إعادة رسم) ⇒ لا تُرسل
             if cfg.require_exit_confirm_green and not confirm_green_:
                 continue
             base["sell"].append(rec)
