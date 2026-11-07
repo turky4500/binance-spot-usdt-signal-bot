@@ -18,13 +18,17 @@
 وعدّاد إشارات الدخول. الشروط نفسها ما زالت **مُطبَّقة في الكود** لكنها لم تعد تُعرض.
 
 رسالة الخروج تحتفظ بما طلبه المستخدم قبله: سعر الدخول، سعر الخروج،
-والنتيجة المحققة صريحةً ربحًا أو خسارةً.
+والنتيجة المحققة صريحةً ربحًا أو خسارةً، **ومدة الصفقة** (طلب المستخدم
+2026-11-07): الفرق بين شمعة تأكيد الدخول وشمعة تأكيد الخروج — مثلًا
+«ساعة واحدة» / «ساعتان» / «5 ساعات».
 """
 
 from __future__ import annotations
 
 from datetime import datetime
 from zoneinfo import ZoneInfo
+
+from .utils import humanize_duration_ar
 
 RIYADH = ZoneInfo("Asia/Riyadh")
 _ORDINALS = {
@@ -88,6 +92,19 @@ def _warning(show_warning: bool) -> list[str]:
     return [REPAINT_WARNING] if show_warning else []
 
 
+def _duration_line(pos: dict, rec: dict) -> str | None:
+    """مدة الصفقة: من شمعة تأكيد الدخول إلى شمعة تأكيد الخروج.
+
+    كلا الوقيتين افتتاح شمعة ⇒ الفرق = المدة الفعلية للتملّك بالضبط
+    (الدخول بسعر إغلاق شمعة التأكيد والخروج بسعر إغلاق شمعة الخروج).
+    """
+    entry_ms = int(pos.get("entry_time") or 0)
+    exit_ms = int(rec.get("confirm_bar_time") or 0)
+    if not entry_ms or not exit_ms or exit_ms < entry_ms:
+        return None
+    return f"⏳ مدة الصفقة: {humanize_duration_ar(entry_ms, exit_ms)}"
+
+
 def entry_message(sym: str, rec: dict, ruling: str = NO_RULING, show_warning: bool = False) -> str:
     """أول توصية دخول — القالب المبسّط بالحرف."""
     return _join(
@@ -123,19 +140,25 @@ def exit_message(
     ruling: str = NO_RULING,
     show_warning: bool = False,
 ) -> str:
-    """إشارة الخروج: أسعار الدخول/الخروج + النتيجة ربحًا أو خسارةً، بالقالب المبسّط.
+    """إشارة الخروج: أسعار الدخول/الخروج + النتيجة + مدة الصفقة، بالقالب المبسّط.
 
     ``gross_pct`` محفوظ في الدفتر ولا يُعرض لإبقاء الرسالة مختصرة؛ المعروض هو
     الصافي بعد عمولة 0.1% لكل جهة.
     """
     _ = gross_pct
-    return _join(
+    lines = [
         f"🔴 إشارة خروج — {sym}",
         _frame(),
         f"📥 سعر الدخول: {fmt_price(pos['entry_price'])}",
         f"📤 سعر الخروج: {fmt_price(rec['confirm_close'])}",
         f"📊 النتيجة: {result_label(net_pct)} {fmt_pct(net_pct)}",
+    ]
+    duration = _duration_line(pos, rec)
+    if duration:
+        lines.append(duration)
+    lines += [
         _ruling_line(ruling),
         f"🕒 {riyadh_time(rec['confirm_bar_time'])}",
         *_warning(show_warning),
-    )
+    ]
+    return _join(*lines)

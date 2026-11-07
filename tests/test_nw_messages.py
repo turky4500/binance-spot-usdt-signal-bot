@@ -106,11 +106,34 @@ def test_exit_message_keeps_prices_and_result_in_simplified_form():
         "📥 سعر الدخول: 15.00",
         "📤 سعر الخروج: 15.87",
         "📊 النتيجة: ربح ✅ +5.60%",
+        "⏳ مدة الصفقة: ساعة واحدة",
         "🕌 الحكم الشرعي: ✅ مباح",
         "🕒 2023-11-15 01:13 AM",
     ])
     assert "سعر الدخول" in text and "سعر الخروج" in text
     assert REPAINT_WARNING not in text
+
+
+def test_exit_message_duration_variants():
+    """طلب المستخدم (2026-11-07): مدة الصفقة مع رسالة الخروج بالساعات/الأيام."""
+    def dur(hours: int) -> str:
+        pos = {**POS, "entry_time": REC["confirm_bar_time"] - hours * 3_600_000}
+        return exit_message("TRBUSDT", pos, REC, 0.0, 0.0)
+
+    assert "⏳ مدة الصفقة: ساعة واحدة" in dur(1)
+    assert "⏳ مدة الصفقة: ساعتان" in dur(2)
+    assert "⏳ مدة الصفقة: 5 ساعات" in dur(5)
+    assert "⏳ مدة الصفقة: 11 ساعة" in dur(11)
+    # يوم كامل + ساعتان (فروق الشموع على فريم الساعة)
+    assert "يوم واحد و ساعتان" in dur(26)
+
+
+def test_exit_message_without_entry_time_has_no_duration_line():
+    """مواقع موروثة بلا entry_time ⇒ بلا سطر المدة بدل رسالة ناقصة."""
+    pos = {"entry_price": 15.00}
+    text = exit_message("TRBUSDT", pos, REC, 0.0, 0.0)
+    assert "مدة الصفقة" not in text
+    assert "📥 سعر الدخول" in text
 
 
 def test_exit_message_loss_and_breakeven():
