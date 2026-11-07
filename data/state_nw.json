@@ -2954,11 +2954,11 @@
         "entry_time": 1794031200000,
         "signal_bar_time": 1794027600000,
         "signal_price": 0.0534,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794027600000,
-      "last_entry_price": 0.0539
+      "entry_count": 2,
+      "last_buy_bar": 1794042000000,
+      "last_entry_price": 0.0522
     },
     "YFIUSDT": {
       "position": null,
@@ -3151,7 +3151,9 @@
     "CUSDT": [],
     "CVCUSDT": [],
     "CVXUSDT": [],
-    "CYBERUSDT": [],
+    "CYBERUSDT": [
+      1794042000000
+    ],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
     "DCRUSDT": [],
@@ -3499,13 +3501,11 @@
     "XNOUSDT": [],
     "XPLUSDT": [],
     "XRPUSDT": [],
-    "XTZUSDT": [
-      1794038400000
-    ],
+    "XTZUSDT": [],
     "XVGUSDT": [],
     "XVSUSDT": [],
     "YBUSDT": [
-      1794038400000
+      1794042000000
     ],
     "YFIUSDT": [],
     "YGGUSDT": [],
@@ -3536,7 +3536,9 @@
     "AAVEUSDT": [],
     "ACEUSDT": [],
     "ACHUSDT": [],
-    "ACMUSDT": [],
+    "ACMUSDT": [
+      1794042000000
+    ],
     "ACTUSDT": [],
     "ADAUSDT": [],
     "ADBEBUSDT": [],
@@ -3596,7 +3598,9 @@
     "BANDUSDT": [],
     "BANKUSDT": [],
     "BARDUSDT": [],
-    "BARUSDT": [],
+    "BARUSDT": [
+      1794042000000
+    ],
     "BATUSDT": [],
     "BBBUSDT": [],
     "BBUSDT": [],
@@ -3757,7 +3761,9 @@
     "JSTUSDT": [],
     "JTOUSDT": [],
     "JUPUSDT": [],
-    "JUVUSDT": [],
+    "JUVUSDT": [
+      1794042000000
+    ],
     "KAIAUSDT": [],
     "KAITOUSDT": [],
     "KATUSDT": [],
@@ -3798,13 +3804,13 @@
     "MEMEUSDT": [],
     "METABUSDT": [],
     "METISUSDT": [],
-    "METUSDT": [],
+    "METUSDT": [
+      1794042000000
+    ],
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
-    "MITOUSDT": [
-      1794038400000
-    ],
+    "MITOUSDT": [],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
@@ -3836,7 +3842,9 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [],
+    "ONEUSDT": [
+      1794042000000
+    ],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -4536,7 +4544,8 @@
     "XVGUSDT": [],
     "XVSUSDT": [],
     "YBUSDT": [
-      1794027600000
+      1794027600000,
+      1794042000000
     ],
     "YFIUSDT": [],
     "YGGUSDT": [],
@@ -4689,7 +4698,8 @@
     "CVCUSDT": [],
     "CVXUSDT": [],
     "CYBERUSDT": [
-      1794002400000
+      1794002400000,
+      1794042000000
     ],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
@@ -5097,11 +5107,12 @@
     "buy:STRAXUSDT:1794002400000:1",
     "buy:GLMRUSDT:1794016800000:1",
     "buy:YBUSDT:1794027600000:1",
-    "buy:XTZUSDT:1794038400000:1"
+    "buy:XTZUSDT:1794038400000:1",
+    "buy:YBUSDT:1794042000000:2"
   ],
-  "cycles": 61,
-  "messages_sent": 99,
-  "last_cycle_ms": 1794047783390,
+  "cycles": 62,
+  "messages_sent": 100,
+  "last_cycle_ms": 1794049407120,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
