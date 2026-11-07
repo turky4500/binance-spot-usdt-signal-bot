@@ -1262,11 +1262,11 @@
         "entry_time": 1794060000000,
         "signal_bar_time": 1794056400000,
         "signal_price": 0.757,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794056400000,
-      "last_entry_price": 0.77
+      "entry_count": 2,
+      "last_buy_bar": 1794063600000,
+      "last_entry_price": 0.762
     },
     "ATUSDT": {
       "position": null,
@@ -1359,10 +1359,16 @@
       "last_entry_price": 0.0
     },
     "BARUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.226,
+        "entry_time": 1794067200000,
+        "signal_bar_time": 1794063600000,
+        "signal_price": 0.223,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794063600000,
+      "last_entry_price": 0.226
     },
     "BBBUSDT": {
       "position": null,
@@ -3109,7 +3115,9 @@
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
-    "ATMUSDT": [],
+    "ATMUSDT": [
+      1794063600000
+    ],
     "ATOMUSDT": [],
     "ATUSDT": [],
     "AUCTIONUSDT": [],
@@ -3130,7 +3138,9 @@
     "BANDUSDT": [],
     "BANKUSDT": [],
     "BARDUSDT": [],
-    "BARUSDT": [],
+    "BARUSDT": [
+      1794063600000
+    ],
     "BATUSDT": [],
     "BBBUSDT": [],
     "BBUSDT": [],
@@ -3168,9 +3178,7 @@
     "CHIPUSDT": [],
     "CHRUSDT": [],
     "CHZUSDT": [],
-    "CITYUSDT": [
-      1794060000000
-    ],
+    "CITYUSDT": [],
     "CKBUSDT": [],
     "COHRBUSDT": [],
     "COINBUSDT": [],
@@ -3833,14 +3841,12 @@
     "METABUSDT": [],
     "METISUSDT": [],
     "METUSDT": [
-      1794060000000
+      1794063600000
     ],
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
-    "MITOUSDT": [
-      1794060000000
-    ],
+    "MITOUSDT": [],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
@@ -4112,7 +4118,8 @@
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
     "ATMUSDT": [
-      1794056400000
+      1794056400000,
+      1794063600000
     ],
     "ATOMUSDT": [],
     "ATUSDT": [],
@@ -4134,7 +4141,9 @@
     "BANDUSDT": [],
     "BANKUSDT": [],
     "BARDUSDT": [],
-    "BARUSDT": [],
+    "BARUSDT": [
+      1794063600000
+    ],
     "BATUSDT": [],
     "BBBUSDT": [],
     "BBUSDT": [],
@@ -5164,11 +5173,13 @@
     "buy:WOOUSDT:1794049200000:1",
     "buy:MAVUSDT:1794052800000:1",
     "buy:STXUSDT:1794052800000:1",
-    "buy:ATMUSDT:1794056400000:1"
+    "buy:ATMUSDT:1794056400000:1",
+    "buy:ATMUSDT:1794063600000:2",
+    "buy:BARUSDT:1794063600000:1"
   ],
-  "cycles": 75,
-  "messages_sent": 106,
-  "last_cycle_ms": 1794070707026,
+  "cycles": 76,
+  "messages_sent": 108,
+  "last_cycle_ms": 1794071006000,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
