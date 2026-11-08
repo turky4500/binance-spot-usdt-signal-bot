@@ -1202,11 +1202,11 @@
         "entry_time": 1794123000000,
         "signal_bar_time": 1794122100000,
         "signal_price": 110.32,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794122100000,
-      "last_entry_price": 111.04
+      "entry_count": 2,
+      "last_buy_bar": 1794123900000,
+      "last_entry_price": 111.23
     },
     "GNSUSDT": {
       "position": null,
@@ -2445,10 +2445,16 @@
       "last_entry_price": 0.0
     },
     "SIGNUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.00888,
+        "entry_time": 1794124800000,
+        "signal_bar_time": 1794123900000,
+        "signal_price": 0.00879,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794123900000,
+      "last_entry_price": 0.00888
     },
     "SKDDBUSDT": {
       "position": null,
@@ -2703,10 +2709,16 @@
       "last_entry_price": 0.0
     },
     "TKOUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.0433,
+        "entry_time": 1794124800000,
+        "signal_bar_time": 1794123900000,
+        "signal_price": 0.0431,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794123900000,
+      "last_entry_price": 0.0433
     },
     "TLMUSDT": {
       "position": null,
@@ -3251,17 +3263,13 @@
     "CUSDT": [],
     "CVCUSDT": [],
     "CVXUSDT": [],
-    "CYBERUSDT": [
-      1794123000000
-    ],
+    "CYBERUSDT": [],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
     "DCRUSDT": [],
     "DELLBUSDT": [],
     "DEXEUSDT": [],
-    "DGBUSDT": [
-      1794123000000
-    ],
+    "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
     "DODOUSDT": [],
@@ -3313,7 +3321,9 @@
     "GMEBUSDT": [],
     "GMTUSDT": [],
     "GMXUSDT": [],
-    "GNOUSDT": [],
+    "GNOUSDT": [
+      1794123900000
+    ],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -3516,7 +3526,9 @@
     "SHAZBUSDT": [],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
-    "SIGNUSDT": [],
+    "SIGNUSDT": [
+      1794123900000
+    ],
     "SKDDBUSDT": [],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
@@ -3559,7 +3571,9 @@
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
-    "TKOUSDT": [],
+    "TKOUSDT": [
+      1794123900000
+    ],
     "TLMUSDT": [],
     "TMFBUSDT": [],
     "TNSRUSDT": [],
@@ -3829,9 +3843,7 @@
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
-    "GTCUSDT": [
-      1794123000000
-    ],
+    "GTCUSDT": [],
     "GUNUSDT": [],
     "GUSDT": [],
     "HAEDALUSDT": [],
@@ -3975,7 +3987,9 @@
     "POLUSDT": [],
     "POLYXUSDT": [],
     "PORTALUSDT": [],
-    "PORTOUSDT": [],
+    "PORTOUSDT": [
+      1794123900000
+    ],
     "POWRUSDT": [],
     "PROMUSDT": [],
     "PROVEUSDT": [],
@@ -3997,9 +4011,7 @@
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [
-      1794123000000
-    ],
+    "REQUSDT": [],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -4352,7 +4364,8 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [
-      1794122100000
+      1794122100000,
+      1794123900000
     ],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
@@ -4572,7 +4585,9 @@
     "SHAZBUSDT": [],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
-    "SIGNUSDT": [],
+    "SIGNUSDT": [
+      1794123900000
+    ],
     "SKDDBUSDT": [],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
@@ -4615,7 +4630,9 @@
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
-    "TKOUSDT": [],
+    "TKOUSDT": [
+      1794123900000
+    ],
     "TLMUSDT": [],
     "TMFBUSDT": [],
     "TNSRUSDT": [],
@@ -5240,9 +5257,12 @@
     "buy:CYBERUSDT:1794121200000:1",
     "buy:GNOUSDT:1794122100000:1",
     "buy:CYBERUSDT:1794123000000:2",
-    "buy:DGBUSDT:1794123000000:1"
+    "buy:DGBUSDT:1794123000000:1",
+    "buy:GNOUSDT:1794123900000:2",
+    "buy:SIGNUSDT:1794123900000:1",
+    "buy:TKOUSDT:1794123900000:1"
   ],
-  "cycles": 37,
-  "messages_sent": 23,
-  "last_cycle_ms": 1794125007140
+  "cycles": 38,
+  "messages_sent": 26,
+  "last_cycle_ms": 1794125900341
 }
