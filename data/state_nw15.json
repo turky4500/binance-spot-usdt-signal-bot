@@ -3384,9 +3384,7 @@
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
-    "MITOUSDT": [
-      1794115800000
-    ],
+    "MITOUSDT": [],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
@@ -3743,9 +3741,7 @@
     "CUSDT": [],
     "CVCUSDT": [],
     "CVXUSDT": [],
-    "CYBERUSDT": [
-      1794115800000
-    ],
+    "CYBERUSDT": [],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
     "DCRUSDT": [],
@@ -5201,7 +5197,7 @@
     "buy:FTTUSDT:1794114000000:1",
     "buy:MITOUSDT:1794115800000:2"
   ],
-  "cycles": 29,
+  "cycles": 30,
   "messages_sent": 17,
-  "last_cycle_ms": 1794117803691
+  "last_cycle_ms": 1794118705333
 }
