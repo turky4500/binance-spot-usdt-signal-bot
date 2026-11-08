@@ -303,14 +303,8 @@
       "last_entry_price": 0.0
     },
     "ASRUSDT": {
-      "position": {
-        "entry_price": 0.707,
-        "entry_time": 1794092400000,
-        "signal_bar_time": 1794091500000,
-        "signal_price": 0.704,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794091500000,
       "last_entry_price": 0.707
     },
@@ -3256,9 +3250,7 @@
     "BONKUSDT": [],
     "BOTBUSDT": [],
     "BREVUSDT": [],
-    "BRKBBUSDT": [
-      1794141000000
-    ],
+    "BRKBBUSDT": [],
     "BROCCOLI714USDT": [],
     "BSPBUSDT": [],
     "BTCUSDT": [],
@@ -3370,7 +3362,9 @@
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [],
+    "HMSTRUSDT": [
+      1794141900000
+    ],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -3713,14 +3707,14 @@
     "APTUSDT": [],
     "ARBUSDT": [],
     "ARKMUSDT": [],
-    "ARKUSDT": [
-      1794141000000
-    ],
+    "ARKUSDT": [],
     "ARMBUSDT": [],
     "ARPAUSDT": [],
     "ARUSDT": [],
     "ASMLBUSDT": [],
-    "ASRUSDT": [],
+    "ASRUSDT": [
+      1794141900000
+    ],
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
@@ -3884,7 +3878,9 @@
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
-    "HOTUSDT": [],
+    "HOTUSDT": [
+      1794141900000
+    ],
     "HPEBUSDT": [],
     "HUMAUSDT": [],
     "HYPERUSDT": [],
@@ -4980,7 +4976,8 @@
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
     "HMSTRUSDT": [
-      1794140100000
+      1794140100000,
+      1794141900000
     ],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
@@ -5335,9 +5332,10 @@
     "buy:HMSTRUSDT:1794136500000:2",
     "exit:FTTUSDT:1794139200000",
     "buy:LINEAUSDT:1794140100000:1",
-    "buy:BRKBBUSDT:1794141000000:1"
+    "buy:BRKBBUSDT:1794141000000:1",
+    "exit:ASRUSDT:1794141900000"
   ],
-  "cycles": 57,
-  "messages_sent": 38,
-  "last_cycle_ms": 1794143006256
+  "cycles": 58,
+  "messages_sent": 39,
+  "last_cycle_ms": 1794143899536
 }
