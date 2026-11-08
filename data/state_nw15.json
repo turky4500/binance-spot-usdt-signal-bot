@@ -3423,9 +3423,7 @@
     "GENIUSUSDT": [],
     "GEVBUSDT": [],
     "GIGGLEUSDT": [],
-    "GLMRUSDT": [
-      1794163500000
-    ],
+    "GLMRUSDT": [],
     "GLMUSDT": [],
     "GLWBUSDT": [],
     "GMEBUSDT": [],
@@ -3868,7 +3866,9 @@
     "COINBUSDT": [],
     "COMPUSDT": [],
     "COOKIEUSDT": [],
-    "COTIUSDT": [],
+    "COTIUSDT": [
+      1794164400000
+    ],
     "COWUSDT": [],
     "CRCLBUSDT": [],
     "CRDOBUSDT": [],
@@ -5524,7 +5524,7 @@
     "buy:RSRUSDT:1794162600000:1",
     "buy:GLMRUSDT:1794163500000:1"
   ],
-  "cycles": 83,
+  "cycles": 84,
   "messages_sent": 65,
-  "last_cycle_ms": 1794165499181
+  "last_cycle_ms": 1794166400195
 }
