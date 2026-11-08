@@ -477,14 +477,8 @@
       "last_entry_price": 0.0
     },
     "BARUSDT": {
-      "position": {
-        "entry_price": 0.217,
-        "entry_time": 1794160800000,
-        "signal_bar_time": 1794159900000,
-        "signal_price": 0.215,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794159900000,
       "last_entry_price": 0.217
     },
@@ -3455,9 +3449,7 @@
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
-    "GTCUSDT": [
-      1794172500000
-    ],
+    "GTCUSDT": [],
     "GUNUSDT": [],
     "GUSDT": [],
     "HAEDALUSDT": [],
@@ -3569,9 +3561,7 @@
     "NOKBUSDT": [],
     "NOMUSDT": [],
     "NOTUSDT": [],
-    "NVDABUSDT": [
-      1794172500000
-    ],
+    "NVDABUSDT": [],
     "NXPCUSDT": [],
     "OGNUSDT": [],
     "OGUSDT": [],
@@ -3606,9 +3596,7 @@
     "PORTOUSDT": [],
     "POWRUSDT": [],
     "PROMUSDT": [],
-    "PROVEUSDT": [
-      1794172500000
-    ],
+    "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
     "PUNDIXUSDT": [],
@@ -3746,7 +3734,9 @@
     "XAUTUSDT": [],
     "XECUSDT": [],
     "XLMUSDT": [],
-    "XNOUSDT": [],
+    "XNOUSDT": [
+      1794173400000
+    ],
     "XPLUSDT": [],
     "XRPUSDT": [],
     "XTZUSDT": [],
@@ -3757,7 +3747,9 @@
     "YGGUSDT": [],
     "ZAMAUSDT": [],
     "ZBTUSDT": [],
-    "ZECUSDT": [],
+    "ZECUSDT": [
+      1794173400000
+    ],
     "ZENUSDT": [],
     "ZILUSDT": [],
     "ZKCUSDT": [],
@@ -3843,7 +3835,9 @@
     "BANDUSDT": [],
     "BANKUSDT": [],
     "BARDUSDT": [],
-    "BARUSDT": [],
+    "BARUSDT": [
+      1794173400000
+    ],
     "BATUSDT": [],
     "BBBUSDT": [],
     "BBUSDT": [],
@@ -4070,7 +4064,9 @@
     "MVLLBUSDT": [],
     "NBISBUSDT": [],
     "NEARUSDT": [],
-    "NEIROUSDT": [],
+    "NEIROUSDT": [
+      1794173400000
+    ],
     "NEOUSDT": [],
     "NEWTUSDT": [],
     "NEXOUSDT": [],
@@ -5467,7 +5463,8 @@
     "XECUSDT": [],
     "XLMUSDT": [],
     "XNOUSDT": [
-      1794160800000
+      1794160800000,
+      1794173400000
     ],
     "XPLUSDT": [],
     "XRPUSDT": [],
@@ -5481,7 +5478,9 @@
     "YGGUSDT": [],
     "ZAMAUSDT": [],
     "ZBTUSDT": [],
-    "ZECUSDT": [],
+    "ZECUSDT": [
+      1794173400000
+    ],
     "ZENUSDT": [],
     "ZILUSDT": [],
     "ZKCUSDT": [],
@@ -5565,11 +5564,12 @@
     "buy:NVDABUSDT:1794169800000:1",
     "buy:GTCUSDT:1794170700000:1",
     "buy:GTCUSDT:1794172500000:2",
-    "buy:PROVEUSDT:1794172500000:2"
+    "buy:PROVEUSDT:1794172500000:2",
+    "exit:BARUSDT:1794173400000"
   ],
-  "cycles": 94,
-  "messages_sent": 72,
-  "last_cycle_ms": 1794174504313,
+  "cycles": 95,
+  "messages_sent": 73,
+  "last_cycle_ms": 1794175399492,
   "daily_report_nw15": {
     "last_report_day": "2026-11-08",
     "reported_trade_keys": [
