@@ -3175,7 +3175,9 @@
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
-    "ATMUSDT": [],
+    "ATMUSDT": [
+      1794168000000
+    ],
     "ATOMUSDT": [],
     "ATUSDT": [],
     "AUCTIONUSDT": [],
@@ -3226,9 +3228,7 @@
     "CATIUSDT": [],
     "CBRSBUSDT": [],
     "CELOUSDT": [],
-    "CELRUSDT": [
-      1794164400000
-    ],
+    "CELRUSDT": [],
     "CETUSUSDT": [],
     "CFGUSDT": [],
     "CFXUSDT": [],
@@ -3431,14 +3431,14 @@
     "NOKBUSDT": [],
     "NOMUSDT": [],
     "NOTUSDT": [],
-    "NVDABUSDT": [],
+    "NVDABUSDT": [
+      1794168000000
+    ],
     "NXPCUSDT": [],
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [
-      1794164400000
-    ],
+    "ONEUSDT": [],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -3920,7 +3920,9 @@
     "MVLLBUSDT": [],
     "NBISBUSDT": [],
     "NEARUSDT": [],
-    "NEIROUSDT": [],
+    "NEIROUSDT": [
+      1794168000000
+    ],
     "NEOUSDT": [],
     "NEWTUSDT": [],
     "NEXOUSDT": [],
@@ -3996,9 +3998,7 @@
     "RONINUSDT": [],
     "ROSEUSDT": [],
     "RPLUSDT": [],
-    "RSRUSDT": [
-      1794164400000
-    ],
+    "RSRUSDT": [],
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
@@ -4764,7 +4764,8 @@
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
     "ATMUSDT": [
-      1794150000000
+      1794150000000,
+      1794168000000
     ],
     "ATOMUSDT": [],
     "ATUSDT": [],
@@ -5041,7 +5042,9 @@
     "NOKBUSDT": [],
     "NOMUSDT": [],
     "NOTUSDT": [],
-    "NVDABUSDT": [],
+    "NVDABUSDT": [
+      1794168000000
+    ],
     "NXPCUSDT": [],
     "OGNUSDT": [],
     "OGUSDT": [],
@@ -5319,9 +5322,9 @@
     "buy:LAZIOUSDT:1794160800000:1",
     "buy:PORTOUSDT:1794160800000:2"
   ],
-  "cycles": 143,
+  "cycles": 144,
   "messages_sent": 134,
-  "last_cycle_ms": 1794173601462,
+  "last_cycle_ms": 1794175399440,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
