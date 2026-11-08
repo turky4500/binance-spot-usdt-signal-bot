@@ -1647,10 +1647,16 @@
       "last_entry_price": 0.0528
     },
     "LAZIOUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.341,
+        "entry_time": 1794167100000,
+        "signal_bar_time": 1794166200000,
+        "signal_price": 0.335,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794166200000,
+      "last_entry_price": 0.341
     },
     "LDOUSDT": {
       "position": null,
@@ -3491,7 +3497,9 @@
     "KSTRBUSDT": [],
     "LAUSDT": [],
     "LAYERUSDT": [],
-    "LAZIOUSDT": [],
+    "LAZIOUSDT": [
+      1794166200000
+    ],
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
@@ -4573,7 +4581,9 @@
     "LAYERUSDT": [
       1794105000000
     ],
-    "LAZIOUSDT": [],
+    "LAZIOUSDT": [
+      1794166200000
+    ],
     "LDOUSDT": [],
     "LINEAUSDT": [
       1794140100000
@@ -5520,9 +5530,10 @@
     "buy:BARUSDT:1794159900000:1",
     "buy:PORTOUSDT:1794161700000:1",
     "buy:RSRUSDT:1794162600000:1",
-    "buy:GLMRUSDT:1794163500000:1"
+    "buy:GLMRUSDT:1794163500000:1",
+    "buy:LAZIOUSDT:1794166200000:1"
   ],
-  "cycles": 85,
-  "messages_sent": 65,
-  "last_cycle_ms": 1794167304595
+  "cycles": 86,
+  "messages_sent": 66,
+  "last_cycle_ms": 1794168206682
 }
