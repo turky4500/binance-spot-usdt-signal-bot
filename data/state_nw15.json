@@ -1221,14 +1221,8 @@
       "last_entry_price": 108.89
     },
     "GNSUSDT": {
-      "position": {
-        "entry_price": 0.324,
-        "entry_time": 1794130200000,
-        "signal_bar_time": 1794129300000,
-        "signal_price": 0.315,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794132900000,
       "last_entry_price": 0.316
     },
@@ -3736,7 +3730,9 @@
     "ATOMUSDT": [],
     "ATUSDT": [],
     "AUCTIONUSDT": [],
-    "AUDIOUSDT": [],
+    "AUDIOUSDT": [
+      1794153600000
+    ],
     "AUSDT": [],
     "AVAUSDT": [],
     "AVAXUSDT": [],
@@ -3815,9 +3811,7 @@
     "CVXUSDT": [],
     "CYBERUSDT": [],
     "CYPHBUSDT": [],
-    "DASHUSDT": [
-      1794152700000
-    ],
+    "DASHUSDT": [],
     "DCRUSDT": [],
     "DELLBUSDT": [],
     "DEXEUSDT": [],
@@ -3874,7 +3868,9 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
-    "GNSUSDT": [],
+    "GNSUSDT": [
+      1794153600000
+    ],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
@@ -5389,9 +5385,10 @@
     "buy:ATMUSDT:1794148200000:1",
     "buy:GNOUSDT:1794150000000:4",
     "buy:GNOUSDT:1794151800000:5",
-    "exit:ONEUSDT:1794151800000"
+    "exit:ONEUSDT:1794151800000",
+    "exit:GNSUSDT:1794153600000"
   ],
-  "cycles": 71,
-  "messages_sent": 49,
-  "last_cycle_ms": 1794155000915
+  "cycles": 72,
+  "messages_sent": 50,
+  "last_cycle_ms": 1794155600317
 }
