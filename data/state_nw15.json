@@ -3230,7 +3230,9 @@
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
-    "ATMUSDT": [],
+    "ATMUSDT": [
+      1794150900000
+    ],
     "ATOMUSDT": [],
     "ATUSDT": [],
     "AUCTIONUSDT": [],
@@ -3251,9 +3253,7 @@
     "BANDUSDT": [],
     "BANKUSDT": [],
     "BARDUSDT": [],
-    "BARUSDT": [
-      1794150000000
-    ],
+    "BARUSDT": [],
     "BATUSDT": [],
     "BBBUSDT": [],
     "BBUSDT": [],
@@ -3371,9 +3371,7 @@
     "GMEBUSDT": [],
     "GMTUSDT": [],
     "GMXUSDT": [],
-    "GNOUSDT": [
-      1794150000000
-    ],
+    "GNOUSDT": [],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -3394,7 +3392,9 @@
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
-    "HOTUSDT": [],
+    "HOTUSDT": [
+      1794150900000
+    ],
     "HPEBUSDT": [],
     "HUMAUSDT": [],
     "HYPERUSDT": [],
@@ -3692,7 +3692,9 @@
   "prev_sell_bars": {
     "0GUSDT": [],
     "1000CATUSDT": [],
-    "1000CHEEMSUSDT": [],
+    "1000CHEEMSUSDT": [
+      1794150900000
+    ],
     "1000SATSUSDT": [],
     "1INCHUSDT": [],
     "1MBABYDOGEUSDT": [],
@@ -3810,7 +3812,9 @@
     "COINBUSDT": [],
     "COMPUSDT": [],
     "COOKIEUSDT": [],
-    "COTIUSDT": [],
+    "COTIUSDT": [
+      1794150900000
+    ],
     "COWUSDT": [],
     "CRCLBUSDT": [],
     "CRDOBUSDT": [],
@@ -3838,7 +3842,9 @@
     "DOLOUSDT": [],
     "DOTUSDT": [],
     "DRAMBUSDT": [],
-    "DUSKUSDT": [],
+    "DUSKUSDT": [
+      1794150900000
+    ],
     "DYDXUSDT": [],
     "DYMUSDT": [],
     "EDENUSDT": [],
@@ -3872,7 +3878,9 @@
     "FWDIBUSDT": [],
     "GALAUSDT": [],
     "GASUSDT": [],
-    "GENIUSUSDT": [],
+    "GENIUSUSDT": [
+      1794150900000
+    ],
     "GEVBUSDT": [],
     "GIGGLEUSDT": [],
     "GLMRUSDT": [],
@@ -3952,7 +3960,9 @@
     "LLYBUSDT": [],
     "LPTUSDT": [],
     "LQTYUSDT": [],
-    "LSKUSDT": [],
+    "LSKUSDT": [
+      1794150900000
+    ],
     "LTCUSDT": [],
     "LUMIAUSDT": [],
     "LUNAUSDT": [],
@@ -4003,8 +4013,12 @@
     "NOTUSDT": [],
     "NVDABUSDT": [],
     "NXPCUSDT": [],
-    "OGNUSDT": [],
-    "OGUSDT": [],
+    "OGNUSDT": [
+      1794150900000
+    ],
+    "OGUSDT": [
+      1794150900000
+    ],
     "ONDOUSDT": [],
     "ONEUSDT": [],
     "ONGUSDT": [],
@@ -4066,7 +4080,9 @@
     "RONINUSDT": [],
     "ROSEUSDT": [],
     "RPLUSDT": [],
-    "RSRUSDT": [],
+    "RSRUSDT": [
+      1794150900000
+    ],
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
@@ -4828,7 +4844,9 @@
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
-    "ATMUSDT": [],
+    "ATMUSDT": [
+      1794150900000
+    ],
     "ATOMUSDT": [],
     "ATUSDT": [],
     "AUCTIONUSDT": [],
@@ -5023,7 +5041,9 @@
       1794145500000
     ],
     "HOODBUSDT": [],
-    "HOTUSDT": [],
+    "HOTUSDT": [
+      1794150900000
+    ],
     "HPEBUSDT": [],
     "HUMAUSDT": [],
     "HYPERUSDT": [],
@@ -5392,7 +5412,7 @@
     "buy:ATMUSDT:1794148200000:1",
     "buy:GNOUSDT:1794150000000:4"
   ],
-  "cycles": 67,
+  "cycles": 68,
   "messages_sent": 47,
-  "last_cycle_ms": 1794152002118
+  "last_cycle_ms": 1794152905337
 }
