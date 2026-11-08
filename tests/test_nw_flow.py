@@ -71,6 +71,9 @@ def build(tmp_path, frame, now_ms):
         trade_log=str(tmp_path / "trades.csv"),
         show_repaint_warning=False,
     )
+    # هذا الاختبار لتدفّق الإشارات فقط؛ التقرير اليومي يُختبر في
+    # tests/test_nw_daily_report.py (طابع 1970 هنا يصادف 12:00 AM بالرياض).
+    bot.send_daily_report_if_due = lambda _now_ms: None
     return bot, tg, store
 
 

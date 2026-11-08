@@ -213,10 +213,14 @@ def test_15m_trigger_is_independent_and_uses_job_level_if():
 
 
 def test_1h_files_are_byte_identical_to_main():
-    """حماية من أي تعديل على ملفات المستخدم: لا أثر لـ 15m داخلها."""
+    """حماية من أي تعديل على ملفات المستخدم: لا أثر لـ 15m داخلها.
+
+    الاستثناء الوحيد والمُصرَّح به من المستخدم (2026-11-08): دالة
+    ``send_daily_report_if_due`` في ``nw_bot.py`` لضبط التقرير اليومي.
+    """
     import subprocess
 
-    tracked = ["nw_bot.py", "src/nw_messages.py", "src/nw_signals.py",
+    tracked = ["src/nw_messages.py", "src/nw_signals.py",
                "src/nw_state.py", "src/nw_envelope.py", "run_nw_once.py",
                ".github/workflows/nw-bot.yml", ".github/workflows/nw-bot-trigger.yml",
                "tests/test_nw_messages.py", "tests/test_nw_envelope.py",
@@ -225,12 +229,29 @@ def test_1h_files_are_byte_identical_to_main():
                           cwd=ROOT, capture_output=True, text=True, check=True).stdout
     assert diff.strip() == "", f"ملفات المستخدم معدّلة: {diff}"
 
+    # nw_bot.py: يُسمح بتغيير جسم دالة التقرير فقط، لا أي شيء آخر.
+    head = subprocess.run(["git", "show", "HEAD:nw_bot.py"], cwd=ROOT,
+                          capture_output=True, text=True, check=True).stdout
+    current = (ROOT / "nw_bot.py").read_text(encoding="utf-8")
 
-def test_15m_state_file_is_separate_and_clean():
+    def strip_report(src: str) -> str:
+        start = src.index("    def send_daily_report_if_due(")
+        end = src.index("    def run_once(", start)
+        return src[:start] + "<REPORT>" + src[end:]
+
+    assert strip_report(head) == strip_report(current), \
+        "تعديل خارج دالة التقرير اليومي في nw_bot.py"
+
+
+def test_15m_state_file_is_separate():
+    """العزل هو المطلوب؛ لا نفترض أن الحالة الحيّة على main ما زالت فارغة."""
     import json
 
-    s1 = json.loads((ROOT / "data/state_nw.json").read_text(encoding="utf-8"))
-    s15 = json.loads((ROOT / "data/state_nw15.json").read_text(encoding="utf-8"))
+    p1, p15 = ROOT / "data/state_nw.json", ROOT / "data/state_nw15.json"
+    s1 = json.loads(p1.read_text(encoding="utf-8"))
+    s15 = json.loads(p15.read_text(encoding="utf-8"))
     assert s15["system"] == "nw-15m"
-    assert s15["cycles"] == 0 and s15["sent"] == [] and s15["symbols"] == {}
-    assert s15["sent"] != s1["sent"] or s15["cycles"] != s1["cycles"]
+    assert s1["system"] == "nw-1h"
+    assert {"cycles", "sent", "symbols"} <= set(s15)
+    assert p1.read_bytes() != p15.read_bytes(), "ملفا الحالة يجب أن يظلا منفصلين"
+    assert any(s15[k] != s1.get(k) for k in ("cycles", "sent", "symbols"))
