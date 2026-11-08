@@ -1760,11 +1760,11 @@
         "entry_time": 1794112200000,
         "signal_bar_time": 1794111300000,
         "signal_price": 0.00814,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794111300000,
-      "last_entry_price": 0.00831
+      "entry_count": 2,
+      "last_buy_bar": 1794115800000,
+      "last_entry_price": 0.00804
     },
     "MMTUSDT": {
       "position": null,
@@ -3384,7 +3384,9 @@
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
-    "MITOUSDT": [],
+    "MITOUSDT": [
+      1794115800000
+    ],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
@@ -3741,7 +3743,9 @@
     "CUSDT": [],
     "CVCUSDT": [],
     "CVXUSDT": [],
-    "CYBERUSDT": [],
+    "CYBERUSDT": [
+      1794115800000
+    ],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
     "DCRUSDT": [],
@@ -3775,9 +3779,7 @@
     "EULUSDT": [],
     "EWYBUSDT": [],
     "FETUSDT": [],
-    "FFUSDT": [
-      1794114900000
-    ],
+    "FFUSDT": [],
     "FIDAUSDT": [],
     "FILUSDT": [],
     "FLNCBUSDT": [],
@@ -3818,9 +3820,7 @@
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [
-      1794114900000
-    ],
+    "HMSTRUSDT": [],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -4426,7 +4426,8 @@
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [
-      1794111300000
+      1794111300000,
+      1794115800000
     ],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
@@ -5197,9 +5198,10 @@
     "buy:ACTUSDT:1794110400000:2",
     "buy:KAVAUSDT:1794110400000:2",
     "buy:MITOUSDT:1794111300000:1",
-    "buy:FTTUSDT:1794114000000:1"
+    "buy:FTTUSDT:1794114000000:1",
+    "buy:MITOUSDT:1794115800000:2"
   ],
-  "cycles": 28,
-  "messages_sent": 16,
-  "last_cycle_ms": 1794116899470
+  "cycles": 29,
+  "messages_sent": 17,
+  "last_cycle_ms": 1794117803691
 }
