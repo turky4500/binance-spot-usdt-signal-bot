@@ -3635,7 +3635,9 @@
     "AMATBUSDT": [],
     "AMCBUSDT": [],
     "AMDBUSDT": [],
-    "AMPUSDT": [],
+    "AMPUSDT": [
+      1794113100000
+    ],
     "AMZNBUSDT": [],
     "ANIMEUSDT": [],
     "ANKRUSDT": [],
@@ -3689,7 +3691,9 @@
     "BIOUSDT": [],
     "BLURUSDT": [],
     "BMNRBUSDT": [],
-    "BMTUSDT": [],
+    "BMTUSDT": [
+      1794113100000
+    ],
     "BNBUSDT": [],
     "BNCBUSDT": [],
     "BNSOLUSDT": [],
@@ -3741,9 +3745,7 @@
     "DCRUSDT": [],
     "DELLBUSDT": [],
     "DEXEUSDT": [],
-    "DGBUSDT": [
-      1794112200000
-    ],
+    "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
     "DODOUSDT": [],
@@ -3849,7 +3851,9 @@
     "KAVAUSDT": [],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
-    "KITEUSDT": [],
+    "KITEUSDT": [
+      1794113100000
+    ],
     "KMNOUSDT": [],
     "KNCUSDT": [],
     "KORUBUSDT": [],
@@ -3963,9 +3967,7 @@
     "QNTUSDT": [],
     "QQQBUSDT": [],
     "QTUMUSDT": [],
-    "RADUSDT": [
-      1794112200000
-    ],
+    "RADUSDT": [],
     "RAREUSDT": [],
     "RAYUSDT": [],
     "RDDTBUSDT": [],
@@ -4013,7 +4015,9 @@
     "SNXUSDT": [],
     "SNXXBUSDT": [],
     "SOLUSDT": [],
-    "SOLVUSDT": [],
+    "SOLVUSDT": [
+      1794113100000
+    ],
     "SOMIUSDT": [],
     "SOPHUSDT": [],
     "SOXLBUSDT": [],
@@ -5188,7 +5192,7 @@
     "buy:KAVAUSDT:1794110400000:2",
     "buy:MITOUSDT:1794111300000:1"
   ],
-  "cycles": 25,
+  "cycles": 26,
   "messages_sent": 15,
-  "last_cycle_ms": 1794114202744
+  "last_cycle_ms": 1794115107314
 }
