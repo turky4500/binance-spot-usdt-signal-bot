@@ -3423,7 +3423,9 @@
     "GENIUSUSDT": [],
     "GEVBUSDT": [],
     "GIGGLEUSDT": [],
-    "GLMRUSDT": [],
+    "GLMRUSDT": [
+      1794168000000
+    ],
     "GLMUSDT": [],
     "GLWBUSDT": [],
     "GMEBUSDT": [],
@@ -3938,7 +3940,9 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
-    "GNSUSDT": [],
+    "GNSUSDT": [
+      1794168000000
+    ],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
@@ -4122,9 +4126,7 @@
     "RONINUSDT": [],
     "ROSEUSDT": [],
     "RPLUSDT": [],
-    "RSRUSDT": [
-      1794167100000
-    ],
+    "RSRUSDT": [],
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
@@ -5085,7 +5087,8 @@
     "GEVBUSDT": [],
     "GIGGLEUSDT": [],
     "GLMRUSDT": [
-      1794111300000
+      1794111300000,
+      1794168000000
     ],
     "GLMUSDT": [],
     "GLWBUSDT": [],
@@ -5528,7 +5531,7 @@
     "buy:LAZIOUSDT:1794166200000:1",
     "exit:RSRUSDT:1794167100000"
   ],
-  "cycles": 87,
+  "cycles": 88,
   "messages_sent": 67,
-  "last_cycle_ms": 1794169101021
+  "last_cycle_ms": 1794170011383
 }
