@@ -2001,10 +2001,16 @@
       "last_entry_price": 0.0
     },
     "KAVAUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.06744,
+        "entry_time": 1794110400000,
+        "signal_bar_time": 1794106800000,
+        "signal_price": 0.06725,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794106800000,
+      "last_entry_price": 0.06744
     },
     "KERNELUSDT": {
       "position": null,
@@ -3307,7 +3313,9 @@
     "KAIAUSDT": [],
     "KAITOUSDT": [],
     "KATUSDT": [],
-    "KAVAUSDT": [],
+    "KAVAUSDT": [
+      1794106800000
+    ],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
     "KITEUSDT": [],
@@ -3703,9 +3711,7 @@
     "DCRUSDT": [],
     "DELLBUSDT": [],
     "DEXEUSDT": [],
-    "DGBUSDT": [
-      1794103200000
-    ],
+    "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
     "DODOUSDT": [],
@@ -3848,9 +3854,7 @@
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
-    "MITOUSDT": [
-      1794103200000
-    ],
+    "MITOUSDT": [],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
@@ -4322,7 +4326,9 @@
     "KAIAUSDT": [],
     "KAITOUSDT": [],
     "KATUSDT": [],
-    "KAVAUSDT": [],
+    "KAVAUSDT": [
+      1794106800000
+    ],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
     "KITEUSDT": [],
@@ -5190,11 +5196,12 @@
     "buy:BARUSDT:1794063600000:1",
     "buy:MUBARAKUSDT:1794067200000:1",
     "buy:SIGNUSDT:1794088800000:1",
-    "exit:SIGNUSDT:1794099600000"
+    "exit:SIGNUSDT:1794099600000",
+    "buy:KAVAUSDT:1794106800000:1"
   ],
-  "cycles": 103,
-  "messages_sent": 111,
-  "last_cycle_ms": 1794112397967,
+  "cycles": 104,
+  "messages_sent": 112,
+  "last_cycle_ms": 1794114206863,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
