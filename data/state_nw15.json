@@ -3384,7 +3384,9 @@
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
-    "MITOUSDT": [],
+    "MITOUSDT": [
+      1794117600000
+    ],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
@@ -3984,7 +3986,9 @@
     "RONINUSDT": [],
     "ROSEUSDT": [],
     "RPLUSDT": [],
-    "RSRUSDT": [],
+    "RSRUSDT": [
+      1794117600000
+    ],
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
@@ -4947,7 +4951,9 @@
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
-    "MITOUSDT": [],
+    "MITOUSDT": [
+      1794117600000
+    ],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
@@ -5197,7 +5203,7 @@
     "buy:FTTUSDT:1794114000000:1",
     "buy:MITOUSDT:1794115800000:2"
   ],
-  "cycles": 30,
+  "cycles": 31,
   "messages_sent": 17,
-  "last_cycle_ms": 1794118705333
+  "last_cycle_ms": 1794119598864
 }
