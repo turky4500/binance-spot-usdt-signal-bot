@@ -1203,10 +1203,16 @@
       "last_entry_price": 0.0
     },
     "GLMRUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.007254,
+        "entry_time": 1794164400000,
+        "signal_bar_time": 1794163500000,
+        "signal_price": 0.00718,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794163500000,
+      "last_entry_price": 0.007254
     },
     "GLMUSDT": {
       "position": null,
@@ -3417,7 +3423,9 @@
     "GENIUSUSDT": [],
     "GEVBUSDT": [],
     "GIGGLEUSDT": [],
-    "GLMRUSDT": [],
+    "GLMRUSDT": [
+      1794163500000
+    ],
     "GLMUSDT": [],
     "GLWBUSDT": [],
     "GMEBUSDT": [],
@@ -3608,9 +3616,7 @@
     "RONINUSDT": [],
     "ROSEUSDT": [],
     "RPLUSDT": [],
-    "RSRUSDT": [
-      1794162600000
-    ],
+    "RSRUSDT": [],
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
@@ -3941,9 +3947,7 @@
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
-    "GTCUSDT": [
-      1794162600000
-    ],
+    "GTCUSDT": [],
     "GUNUSDT": [],
     "GUSDT": [],
     "HAEDALUSDT": [],
@@ -3965,9 +3969,7 @@
     "ICPUSDT": [],
     "IDUSDT": [],
     "ILVUSDT": [],
-    "IMXUSDT": [
-      1794162600000
-    ],
+    "IMXUSDT": [],
     "INITUSDT": [],
     "INJUSDT": [],
     "INTCBUSDT": [],
@@ -4481,7 +4483,9 @@
     "GENIUSUSDT": [],
     "GEVBUSDT": [],
     "GIGGLEUSDT": [],
-    "GLMRUSDT": [],
+    "GLMRUSDT": [
+      1794163500000
+    ],
     "GLMUSDT": [],
     "GLWBUSDT": [],
     "GMEBUSDT": [],
@@ -5517,9 +5521,10 @@
     "buy:DODOUSDT:1794159000000:1",
     "buy:BARUSDT:1794159900000:1",
     "buy:PORTOUSDT:1794161700000:1",
-    "buy:RSRUSDT:1794162600000:1"
+    "buy:RSRUSDT:1794162600000:1",
+    "buy:GLMRUSDT:1794163500000:1"
   ],
-  "cycles": 82,
-  "messages_sent": 64,
-  "last_cycle_ms": 1794164598879
+  "cycles": 83,
+  "messages_sent": 65,
+  "last_cycle_ms": 1794165499181
 }
