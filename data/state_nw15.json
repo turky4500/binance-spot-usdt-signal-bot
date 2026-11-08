@@ -3455,9 +3455,7 @@
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
-    "GTCUSDT": [
-      1794170700000
-    ],
+    "GTCUSDT": [],
     "GUNUSDT": [],
     "GUSDT": [],
     "HAEDALUSDT": [],
@@ -3470,9 +3468,7 @@
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
-    "HOTUSDT": [
-      1794170700000
-    ],
+    "HOTUSDT": [],
     "HPEBUSDT": [],
     "HUMAUSDT": [],
     "HYPERUSDT": [],
@@ -5559,9 +5555,9 @@
     "buy:NVDABUSDT:1794169800000:1",
     "buy:GTCUSDT:1794170700000:1"
   ],
-  "cycles": 92,
+  "cycles": 93,
   "messages_sent": 70,
-  "last_cycle_ms": 1794172704315,
+  "last_cycle_ms": 1794173603214,
   "daily_report_nw15": {
     "last_report_day": "2026-11-08",
     "reported_trade_keys": [
