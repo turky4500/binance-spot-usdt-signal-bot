@@ -1953,14 +1953,8 @@
       "last_entry_price": 0.0
     },
     "ONEUSDT": {
-      "position": {
-        "entry_price": 0.001993,
-        "entry_time": 1794103200000,
-        "signal_bar_time": 1794102300000,
-        "signal_price": 0.001965,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794105000000,
       "last_entry_price": 0.00194
     },
@@ -3380,7 +3374,9 @@
     "MEMEUSDT": [],
     "METABUSDT": [],
     "METISUSDT": [],
-    "METUSDT": [],
+    "METUSDT": [
+      1794119400000
+    ],
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
@@ -3807,7 +3803,9 @@
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
-    "GTCUSDT": [],
+    "GTCUSDT": [
+      1794119400000
+    ],
     "GUNUSDT": [],
     "GUSDT": [],
     "HAEDALUSDT": [],
@@ -3924,7 +3922,9 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [],
+    "ONEUSDT": [
+      1794119400000
+    ],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -4015,9 +4015,7 @@
     "SNXUSDT": [],
     "SNXXBUSDT": [],
     "SOLUSDT": [],
-    "SOLVUSDT": [
-      1794118500000
-    ],
+    "SOLVUSDT": [],
     "SOMIUSDT": [],
     "SOPHUSDT": [],
     "SOXLBUSDT": [],
@@ -4945,7 +4943,9 @@
     "MEMEUSDT": [],
     "METABUSDT": [],
     "METISUSDT": [],
-    "METUSDT": [],
+    "METUSDT": [
+      1794119400000
+    ],
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
@@ -5199,9 +5199,10 @@
     "buy:KAVAUSDT:1794110400000:2",
     "buy:MITOUSDT:1794111300000:1",
     "buy:FTTUSDT:1794114000000:1",
-    "buy:MITOUSDT:1794115800000:2"
+    "buy:MITOUSDT:1794115800000:2",
+    "exit:ONEUSDT:1794119400000"
   ],
-  "cycles": 32,
-  "messages_sent": 17,
-  "last_cycle_ms": 1794120505373
+  "cycles": 33,
+  "messages_sent": 18,
+  "last_cycle_ms": 1794121404849
 }

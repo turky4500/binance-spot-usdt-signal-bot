@@ -1,2 +1,3 @@
 symbol,entry_time,entry_price,exit_time,exit_price,gross_pct,net_pct,entries_count,exit_reason,signal_bar_time,confirm_bar_time
 HMSTRUSDT,1794093300000,0.0001319,1794107700000,0.0001345,1.9712,1.7712,2,red_label,1794106800000,1794107700000
+ONEUSDT,1794103200000,0.001993,1794120300000,0.002042,2.4586,2.2586,2,red_label,1794119400000,1794120300000
