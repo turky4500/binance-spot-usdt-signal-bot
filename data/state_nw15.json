@@ -1191,10 +1191,16 @@
       "last_entry_price": 0.0
     },
     "GNOUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 111.04,
+        "entry_time": 1794123000000,
+        "signal_bar_time": 1794122100000,
+        "signal_price": 110.32,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794122100000,
+      "last_entry_price": 111.04
     },
     "GNSUSDT": {
       "position": null,
@@ -3128,9 +3134,7 @@
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
     "AIGENSYNUSDT": [],
-    "AIUSDT": [
-      1794121200000
-    ],
+    "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
     "ALGOUSDT": [],
@@ -3241,9 +3245,7 @@
     "CUSDT": [],
     "CVCUSDT": [],
     "CVXUSDT": [],
-    "CYBERUSDT": [
-      1794121200000
-    ],
+    "CYBERUSDT": [],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
     "DCRUSDT": [],
@@ -3301,7 +3303,9 @@
     "GMEBUSDT": [],
     "GMTUSDT": [],
     "GMXUSDT": [],
-    "GNOUSDT": [],
+    "GNOUSDT": [
+      1794122100000
+    ],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -3705,7 +3709,9 @@
     "BIOUSDT": [],
     "BLURUSDT": [],
     "BMNRBUSDT": [],
-    "BMTUSDT": [],
+    "BMTUSDT": [
+      1794122100000
+    ],
     "BNBUSDT": [],
     "BNCBUSDT": [],
     "BNSOLUSDT": [],
@@ -3777,7 +3783,9 @@
     "ENJUSDT": [],
     "ENSOUSDT": [],
     "ENSUSDT": [],
-    "ERAUSDT": [],
+    "ERAUSDT": [
+      1794122100000
+    ],
     "ESPUSDT": [],
     "ETCUSDT": [],
     "ETHFIUSDT": [],
@@ -3865,9 +3873,7 @@
     "KGSTUSDT": [],
     "KITEUSDT": [],
     "KMNOUSDT": [],
-    "KNCUSDT": [
-      1794121200000
-    ],
+    "KNCUSDT": [],
     "KORUBUSDT": [],
     "KSMUSDT": [],
     "KSTRBUSDT": [],
@@ -3996,9 +4002,7 @@
     "RONINUSDT": [],
     "ROSEUSDT": [],
     "RPLUSDT": [],
-    "RSRUSDT": [
-      1794121200000
-    ],
+    "RSRUSDT": [],
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
@@ -4336,7 +4340,9 @@
     "GMEBUSDT": [],
     "GMTUSDT": [],
     "GMXUSDT": [],
-    "GNOUSDT": [],
+    "GNOUSDT": [
+      1794122100000
+    ],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -5220,9 +5226,10 @@
     "buy:MITOUSDT:1794115800000:2",
     "exit:ONEUSDT:1794119400000",
     "buy:AIUSDT:1794121200000:1",
-    "buy:CYBERUSDT:1794121200000:1"
+    "buy:CYBERUSDT:1794121200000:1",
+    "buy:GNOUSDT:1794122100000:1"
   ],
-  "cycles": 35,
-  "messages_sent": 20,
-  "last_cycle_ms": 1794123204365
+  "cycles": 36,
+  "messages_sent": 21,
+  "last_cycle_ms": 1794124101840
 }
