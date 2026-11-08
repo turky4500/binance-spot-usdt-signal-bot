@@ -2025,10 +2025,16 @@
       "last_entry_price": 0.0
     },
     "NVDABUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 183.44,
+        "entry_time": 1794170700000,
+        "signal_bar_time": 1794169800000,
+        "signal_price": 182.9,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794169800000,
+      "last_entry_price": 183.44
     },
     "NXPCUSDT": {
       "position": null,
@@ -3260,9 +3266,7 @@
     "ACTUSDT": [],
     "ADAUSDT": [],
     "ADBEBUSDT": [],
-    "ADXUSDT": [
-      1794168900000
-    ],
+    "ADXUSDT": [],
     "AEROUSDT": [],
     "AEVOUSDT": [],
     "AGLDUSDT": [],
@@ -3557,7 +3561,9 @@
     "NOKBUSDT": [],
     "NOMUSDT": [],
     "NOTUSDT": [],
-    "NVDABUSDT": [],
+    "NVDABUSDT": [
+      1794169800000
+    ],
     "NXPCUSDT": [],
     "OGNUSDT": [],
     "OGUSDT": [],
@@ -3841,9 +3847,7 @@
     "BIOUSDT": [],
     "BLURUSDT": [],
     "BMNRBUSDT": [],
-    "BMTUSDT": [
-      1794168900000
-    ],
+    "BMTUSDT": [],
     "BNBUSDT": [],
     "BNCBUSDT": [],
     "BNSOLUSDT": [],
@@ -4056,7 +4060,9 @@
     "MVLLBUSDT": [],
     "NBISBUSDT": [],
     "NEARUSDT": [],
-    "NEIROUSDT": [],
+    "NEIROUSDT": [
+      1794169800000
+    ],
     "NEOUSDT": [],
     "NEWTUSDT": [],
     "NEXOUSDT": [],
@@ -4151,7 +4157,9 @@
     "SHELLUSDT": [],
     "SHIBUSDT": [],
     "SIGNUSDT": [],
-    "SKDDBUSDT": [],
+    "SKDDBUSDT": [
+      1794169800000
+    ],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
     "SKUUBUSDT": [],
@@ -4652,7 +4660,9 @@
     "NOKBUSDT": [],
     "NOMUSDT": [],
     "NOTUSDT": [],
-    "NVDABUSDT": [],
+    "NVDABUSDT": [
+      1794169800000
+    ],
     "NXPCUSDT": [],
     "OGNUSDT": [],
     "OGUSDT": [],
@@ -5538,9 +5548,24 @@
     "buy:GLMRUSDT:1794163500000:1",
     "buy:LAZIOUSDT:1794166200000:1",
     "exit:RSRUSDT:1794167100000",
-    "buy:ADXUSDT:1794168900000:1"
+    "buy:ADXUSDT:1794168900000:1",
+    "buy:NVDABUSDT:1794169800000:1"
   ],
-  "cycles": 90,
-  "messages_sent": 68,
-  "last_cycle_ms": 1794170907041
+  "cycles": 91,
+  "messages_sent": 69,
+  "last_cycle_ms": 1794171804252,
+  "daily_report_nw15": {
+    "last_report_day": "2026-11-08",
+    "reported_trade_keys": [
+      "HMSTRUSDT:1794093300000:1794107700000",
+      "ONEUSDT:1794103200000:1794120300000",
+      "FTTUSDT:1794114900000:1794140100000",
+      "ASRUSDT:1794092400000:1794142800000",
+      "DGBUSDT:1794123900000:1794147300000",
+      "ONEUSDT:1794146400000:1794152700000",
+      "GNSUSDT:1794130200000:1794154500000",
+      "AIUSDT:1794122100000:1794156300000",
+      "RSRUSDT:1794163500000:1794168000000"
+    ]
+  }
 }
