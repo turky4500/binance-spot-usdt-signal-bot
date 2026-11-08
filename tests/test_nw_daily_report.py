@@ -1,9 +1,9 @@
 """اختبارات التقرير اليومي لـ NW 1H بعد تعديل 2026-11-08.
 
 * 12:00 AM بتوقيت الرياض، وعن **اليوم السابق** لا اليوم الحالي.
-* شامل: مفتوحة + مغلقة + إجمالي الربح/الخسارة.
-* بلا «دورات» و«تنبيهات».
-* الصفقات المغلقة التي أُرسلت في تقرير سابق لا تُرسل مرة أخرى.
+* **أرقام فقط** بصيغة تقارير المستودع: مفتوحة / مغلقة / نجاح / خسارة /
+  نسبة النجاح / إجمالي الربح أو الخسارة. بلا أي قائمة صفقات.
+* بلا «دورات» و«تنبيهات»، وبلا تراكم للصفقات المُبلَّغ عنها سابقًا.
 
 هذا الملف جديد بالكامل، لا يعدّل اختبارات المستخدم.
 """
@@ -11,14 +11,15 @@
 from __future__ import annotations
 
 import csv
-from datetime import datetime, timedelta
+from datetime import datetime
 from zoneinfo import ZoneInfo
 
 import pytest
 
 from src import nw_daily_report as dr
-from src.nw_messages import RIYADH, fmt_pct
+from src.nw_messages import fmt_pct
 from src.nw_state import NWStateStore
+from src.trade_analysis import success_rate_percent
 
 RIYADH = ZoneInfo("Asia/Riyadh")
 
@@ -124,14 +125,62 @@ def test_report_date_is_previous_riyadh_day(tmp_path):
 
 def test_no_second_report_for_same_day(tmp_path):
     bot = FakeBot(tmp_path)
-    first = dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 10))
-    assert first is not None
+    assert dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 10)) is not None
     assert dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 40)) is None
     assert len(bot.tg.messages) == 1
     assert bot.store.load()["daily_report_nw"]["last_report_day"] == "2026-11-08"
 
 
-# ── المحتوى ────────────────────────────────────────────────────────────────
+# ── المحتوى: أرقام فقط ─────────────────────────────────────────────────────
+
+def test_report_contains_only_the_requested_numbers(tmp_path):
+    bot = FakeBot(tmp_path)
+    with_open_positions(bot, "ASRUSDT", "HMSTRUSDT")
+    write_trades(bot.trade_log, [
+        trade("SIGNUSDT", ms(2026, 11, 8, 5, 0), 8.5558, 0.0123, 0.0134),
+        trade("STRAXUSDT", ms(2026, 11, 6, 17, 0), -1.195, 0.05, 0.049),
+    ])
+
+    text = dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 10))
+    assert "📌 مفتوحة حاليًا: 2" in text
+    assert "🔒 الصفقات المغلقة: 2" in text
+    assert "✅ نجاح: 1 • 🛑 خسارة: 1" in text
+    assert "📈 نسبة النجاح: 50.0%" in text
+    assert f"`{fmt_pct(8.5558 - 1.195)}`" in text
+
+    # لا قائمة صفقات: لا أسماء عملات، ولا أسعار، ولا أوقات، ولا أسطر تبدأ بنقطة
+    for forbidden in ("ASRUSDT", "HMSTRUSDT", "SIGNUSDT", "STRAXUSDT",
+                      "0.0123", "0.0134", "52.07", "🕒", "←"):
+        assert forbidden not in text, forbidden
+    assert not any(line.startswith("•") for line in text.splitlines())
+
+
+def test_report_uses_repo_success_rate_helper(tmp_path):
+    """نسبة النجاح مأخوذة من src/trade_analysis.py كما في تقارير المستودع."""
+    bot = FakeBot(tmp_path)
+    write_trades(bot.trade_log, [
+        trade("AUSDT", ms(2026, 11, 8, 1, 0), 3.0),
+        trade("BUSDT", ms(2026, 11, 8, 2, 0), 5.0),
+        trade("CUSDT", ms(2026, 11, 8, 3, 0), 1.0),
+        trade("DUSDT", ms(2026, 11, 8, 4, 0), -2.0),
+    ])
+    text = dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 10))
+    expected = success_rate_percent(3, 1)
+    assert f"📈 نسبة النجاح: {expected:.1f}%" in text
+    assert "✅ نجاح: 3 • 🛑 خسارة: 1" in text
+
+
+def test_break_even_trade_is_neither_win_nor_loss(tmp_path):
+    bot = FakeBot(tmp_path)
+    write_trades(bot.trade_log, [
+        trade("WINUSDT", ms(2026, 11, 8, 1, 0), 4.0),
+        trade("EVENUSDT", ms(2026, 11, 8, 2, 0), 0.0),
+    ])
+    text = dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 10))
+    assert "🔒 الصفقات المغلقة: 2" in text
+    assert "✅ نجاح: 1 • 🛑 خسارة: 0" in text
+    assert "📈 نسبة النجاح: 100.0%" in text
+
 
 def test_no_cycles_and_no_alerts_lines(tmp_path):
     bot = FakeBot(tmp_path)
@@ -146,69 +195,59 @@ def test_no_cycles_and_no_alerts_lines(tmp_path):
     assert "103" not in text and "111" not in text
 
 
-def test_report_is_comprehensive_open_and_closed(tmp_path):
-    bot = FakeBot(tmp_path)
-    with_open_positions(bot, "ASRUSDT", "HMSTRUSDT")
-    write_trades(bot.trade_log, [
-        trade("SIGNUSDT", ms(2026, 11, 8, 5, 0), 8.5558, 0.0123, 0.0134),
-        trade("STRAXUSDT", ms(2026, 11, 6, 17, 0), -1.195, 0.05, 0.049),
-    ])
-
-    text = dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 10))
-    assert "📌 **المراكز المفتوحة:** 2" in text
-    assert "ASRUSDT" in text and "HMSTRUSDT" in text
-    assert "🔒 **الصفقات المغلقة:** 2" in text
-    assert "SIGNUSDT" in text and "STRAXUSDT" in text
-    assert "ربح ✅" in text and "خسارة 🛑" in text
-    assert f"`{fmt_pct(8.5558 - 1.195)}`" in text
-    assert "🕒 2026-11-08" in text
-
-
-def test_empty_sections_are_explicit(tmp_path):
+def test_empty_report_is_all_zeros(tmp_path):
     bot = FakeBot(tmp_path)
     text = dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 10))
-    assert "📌 **المراكز المفتوحة:** 0" in text
-    assert "🔒 **الصفقات المغلقة:** 0" in text
-    assert "• لا يوجد" in text
+    assert "📌 مفتوحة حاليًا: 0" in text
+    assert "🔒 الصفقات المغلقة: 0" in text
+    assert "✅ نجاح: 0 • 🛑 خسارة: 0" in text
+    assert "📈 نسبة النجاح: 0.0%" in text
     assert "`+0.00%`" in text
 
+
+def test_text_is_short_and_has_no_trade_list(tmp_path):
+    bot = FakeBot(tmp_path)
+    with_open_positions(bot, *[f"S{i}USDT" for i in range(30)])
+    text = dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 10))
+    assert len(text) < 400
+    assert len(text.splitlines()) <= 9
+
+
+# ── منع التراكم ────────────────────────────────────────────────────────────
 
 def test_trade_closed_after_midnight_belongs_to_next_report(tmp_path):
     bot = FakeBot(tmp_path)
     write_trades(bot.trade_log, [trade("LATEUSDT", ms(2026, 11, 9, 0, 30), 3.0)])
     text = dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 45))
-    assert "LATEUSDT" not in text
+    assert "🔒 الصفقات المغلقة: 0" in text
     text2 = dr.send_daily_report_if_due(bot, ms(2026, 11, 10, 0, 10))
-    assert "LATEUSDT" in text2
+    assert "🔒 الصفقات المغلقة: 1" in text2
 
 
-# ── منع التراكم ────────────────────────────────────────────────────────────
-
-def test_closed_trade_already_reported_is_never_sent_again(tmp_path):
+def test_closed_trade_already_reported_is_never_counted_again(tmp_path):
     bot = FakeBot(tmp_path)
     write_trades(bot.trade_log, [trade("SIGNUSDT", ms(2026, 11, 8, 5, 0), 8.5558)])
 
     day1 = dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 10))
-    assert "SIGNUSDT" in day1
+    assert "🔒 الصفقات المغلقة: 1" in day1
     day2 = dr.send_daily_report_if_due(bot, ms(2026, 11, 10, 0, 10))
-    assert "SIGNUSDT" not in day2
-    assert "🔒 **الصفقات المغلقة:** 0" in day2
+    assert "🔒 الصفقات المغلقة: 0" in day2
     assert "`+0.00%`" in day2          # الإجمالي لا يتراكم
     day3 = dr.send_daily_report_if_due(bot, ms(2026, 11, 11, 0, 10))
-    assert "SIGNUSDT" not in day3
+    assert "🔒 الصفقات المغلقة: 0" in day3
 
 
-def test_only_new_closed_trades_appear_in_later_report(tmp_path):
+def test_only_new_closed_trades_are_counted_in_later_report(tmp_path):
     bot = FakeBot(tmp_path)
     old = trade("OLDUSDT", ms(2026, 11, 8, 5, 0), 8.5558)
     write_trades(bot.trade_log, [old])
-    assert "OLDUSDT" in dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 10))
+    assert "🔒 الصفقات المغلقة: 1" in dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 10))
 
     new = trade("NEWUSDT", ms(2026, 11, 9, 14, 0), -2.1973)
     write_trades(bot.trade_log, [old, new])
     day2 = dr.send_daily_report_if_due(bot, ms(2026, 11, 10, 0, 10))
-    assert "OLDUSDT" not in day2
-    assert "NEWUSDT" in day2
+    assert "🔒 الصفقات المغلقة: 1" in day2
+    assert "✅ نجاح: 0 • 🛑 خسارة: 1" in day2
     assert "`-2.20%`" in day2
 
 
@@ -217,7 +256,7 @@ def test_reported_keys_are_persisted_and_deduplicated(tmp_path):
     row = trade("DUPUSDT", ms(2026, 11, 8, 5, 0), 3.0839)
     write_trades(bot.trade_log, [row, dict(row)])       # صف مكرر في الدفتر
     text = dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 10))
-    assert text.count("DUPUSDT") == 1
+    assert "🔒 الصفقات المغلقة: 1" in text
     keys = bot.store.load()["daily_report_nw"]["reported_trade_keys"]
     assert len(keys) == 1 and keys[0].startswith("DUPUSDT:")
 
@@ -229,7 +268,7 @@ def test_failed_send_does_not_mark_trade_as_reported(tmp_path):
     assert "daily_report_nw" not in bot.store.load()
     # دورة لاحقة تعيد المحاولة بعد عودة تيليجرام
     bot.tg.fail = False
-    assert "SIGNUSDT" in dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 40))
+    assert "🔒 الصفقات المغلقة: 1" in dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 40))
 
 
 def test_missing_trade_log_is_safe(tmp_path):

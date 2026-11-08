@@ -5,13 +5,16 @@
 * **التوقيت:** يُرسل مرة واحدة في أول دورة بعد منتصف الليل (00:00–00:59
   بتوقيت الرياض = 21:00–21:59 UTC)، ويحمل تاريخ **اليوم السابق** الذي انتهى
   للتو. لا يُرسل في أي ساعة أخرى، ولا مرتين لنفس اليوم.
-* **المحتوى:** المراكز المفتوحة حاليًا + الصفقات المغلقة التي لم يُبلَّغ عنها
-  في تقرير سابق + إجمالي صافي الربح/الخسارة لهذه الصفقات. **بلا** «إجمالي
-  دورات البوت» و**بلا** «إجمالي التنبيهات المرسلة».
+* **المحتوى — أرقام فقط، بلا أي قائمة صفقات:** عدد المفتوحة، عدد المغلقة،
+  الناجح، الخاسر، نسبة النجاح، وإجمالي الربح/الخسارة. الصيغة مأخوذة من
+  تقارير المستودع ``zigzag_bot.py`` / ``app.py`` / ``daily_trend_bot.py``،
+  ونسبة النجاح من ``src/trade_analysis.py::success_rate_percent``.
+  **بلا** أسماء عملات ولا أسعار ولا أوقات إغلاق، **وبلا** «دورات البوت»
+  و«التنبيهات المرسلة».
 * **منع التراكم:** مفتاح كل صفقة ``symbol:entry_time:exit_time`` يُحفظ في
   ``daily_report_nw.reported_trade_keys`` بعد نجاح الإرسال فقط، فلا تُعاد
   الصفقة نفسها في تقرير لاحق. الصفقات التي أُغلقت ولم يُبلَّغ عنها سابقًا
-  (مثل تعذّر دورة سابقة) تُدرج في أول تقرير تالٍ ⇒ لا تضيع ولا تتكرر.
+  تُدرج في أول تقرير تالٍ ⇒ لا تضيع ولا تتكرر، والأعداد لا تتراكم.
 
 هذا الملف جديد: لا يلمس شروط الإشارات ولا «درع إعادة الرسم» ولا «مدة الصفقة»
 التي أضافها المستخدم، ولا نظام 15m.
@@ -25,14 +28,13 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any
 
-from .nw_messages import RIYADH, fmt_pct, fmt_price, result_label, riyadh_time
+from .nw_messages import RIYADH, fmt_pct
+from .trade_analysis import success_rate_percent
 
 _LOG = logging.getLogger(__name__)
 
 REPORT_HOUR_RIYADH = 0          # 12:00 AM ⇒ 12:59 AM بتوقيت الرياض
 MAX_REPORTED_KEYS = 400        # سقف مفاتيح الصفقات المُبلَّغ عنها
-MAX_ROWS = 40                  # سقف أسطر كل قسم
-MAX_CHARS = 3800               # أقل من حد رسالة تيليجرام (4096)
 
 
 def _trade_key(row: dict) -> str:
@@ -67,57 +69,33 @@ def _int_ms(value: Any) -> int:
         return 0
 
 
-def _line_open(sym: str, pos: dict) -> str:
-    price = fmt_price(float(pos.get("entry_price") or 0.0))
-    when = riyadh_time(_int_ms(pos.get("entry_time"))) or "—"
-    return f"• {sym} — دخول {price} | 🕒 {when}"
-
-
-def _line_closed(row: dict) -> str:
-    sym = str(row.get("symbol") or "")
-    entry = fmt_price(float(row.get("entry_price") or 0.0))
-    exit_ = fmt_price(float(row.get("exit_price") or 0.0))
-    net = float(row.get("net_pct") or 0.0)
-    when = riyadh_time(_int_ms(row.get("exit_time")))
-    return f"• {sym} — {entry} ← {exit_} | {result_label(net)} {fmt_pct(net)} | 🕒 {when}"
-
-
-def _section(title: str, lines: list[str], limit: int) -> list[str]:
-    out = [f"{title} {len(lines)}", ""]
-    if not lines:
-        out.append("• لا يوجد")
-    else:
-        out.extend(lines[:limit])
-        if len(lines) > limit:
-            out.append(f"• …و {len(lines) - limit} أخرى")
-    return out
+def _net(row: dict) -> float:
+    try:
+        return float(row.get("net_pct") or 0.0)
+    except (TypeError, ValueError):
+        return 0.0
 
 
 def build_report_text(report_day: str, state: dict, new_closed: list[dict]) -> str:
-    """مفتوحة + مغلقة جديدة + الإجمالي، بلا دورات وتنبيهات."""
-    opens = _open_positions(state)
-    open_lines = [_line_open(s, p) for s, p in opens]
-    closed_lines = [_line_closed(r) for r in new_closed]
-    total = sum(float(r.get("net_pct") or 0.0) for r in new_closed)
+    """أرقام فقط — نفس صيغة تقارير المستودع، بلا قائمة صفقات."""
+    open_count = len(_open_positions(state))
+    closed_count = len(new_closed)
+    wins = sum(1 for r in new_closed if _net(r) > 0)
+    losses = sum(1 for r in new_closed if _net(r) < 0)
+    rate = success_rate_percent(wins, losses)
+    total = sum(_net(r) for r in new_closed)
 
-    # نُقلّص الأسطر لا الرأس/الإجمالي، حتى لو كثرت المراكز.
-    limit = MAX_ROWS
-    while True:
-        parts = [
-            "📊 **التقرير اليومي لنظام Nadaraya-Watson (NW 1H)**",
-            "",
-            f"📅 اليوم: `{report_day}` (حتى 12:00 AM بتوقيت الرياض)",
-            "",
-            *_section("📌 **المراكز المفتوحة:**", open_lines, limit),
-            "",
-            *_section("🔒 **الصفقات المغلقة:**", closed_lines, limit),
-            "",
-            f"📈 **إجمالي صافي الربح/الخسارة:** `{fmt_pct(total)}`",
-        ]
-        text = "\n".join(parts)
-        if len(text) <= MAX_CHARS or limit <= 0:
-            return text
-        limit = max(0, limit - 5)
+    return "\n".join([
+        "📊 **التقرير اليومي لنظام Nadaraya-Watson (NW 1H)**",
+        "",
+        f"📅 اليوم: `{report_day}` (حتى 12:00 AM بتوقيت الرياض)",
+        "",
+        f"📌 مفتوحة حاليًا: {open_count}",
+        f"🔒 الصفقات المغلقة: {closed_count}",
+        f"✅ نجاح: {wins} • 🛑 خسارة: {losses}",
+        f"📈 نسبة النجاح: {rate:.1f}%",
+        f"💰 إجمالي صافي الربح/الخسارة: `{fmt_pct(total)}`",
+    ])
 
 
 def send_daily_report_if_due(bot: Any, now_ms: int) -> str | None:
