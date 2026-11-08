@@ -3665,7 +3665,9 @@
     "BIOUSDT": [],
     "BLURUSDT": [],
     "BMNRBUSDT": [],
-    "BMTUSDT": [],
+    "BMTUSDT": [
+      1794104100000
+    ],
     "BNBUSDT": [],
     "BNCBUSDT": [],
     "BNSOLUSDT": [],
@@ -3972,7 +3974,9 @@
     "SHAZBUSDT": [],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
-    "SIGNUSDT": [],
+    "SIGNUSDT": [
+      1794104100000
+    ],
     "SKDDBUSDT": [],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
@@ -5127,7 +5131,7 @@
     "buy:HMSTRUSDT:1794102300000:2",
     "buy:ONEUSDT:1794102300000:1"
   ],
-  "cycles": 15,
+  "cycles": 16,
   "messages_sent": 6,
-  "last_cycle_ms": 1794105234374
+  "last_cycle_ms": 1794106107054
 }
