@@ -1208,11 +1208,11 @@
         "entry_time": 1794123000000,
         "signal_bar_time": 1794122100000,
         "signal_price": 110.32,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1794123900000,
-      "last_entry_price": 111.23
+      "entry_count": 3,
+      "last_buy_bar": 1794147300000,
+      "last_entry_price": 109.94
     },
     "GNSUSDT": {
       "position": {
@@ -2787,10 +2787,16 @@
       "last_entry_price": 0.0
     },
     "TREEUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.0301,
+        "entry_time": 1794148200000,
+        "signal_bar_time": 1794147300000,
+        "signal_price": 0.0299,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794147300000,
+      "last_entry_price": 0.0301
     },
     "TRUMPUSDT": {
       "position": null,
@@ -3209,9 +3215,7 @@
     "APTUSDT": [],
     "ARBUSDT": [],
     "ARKMUSDT": [],
-    "ARKUSDT": [
-      1794146400000
-    ],
+    "ARKUSDT": [],
     "ARMBUSDT": [],
     "ARPAUSDT": [],
     "ARUSDT": [],
@@ -3304,9 +3308,7 @@
     "CYBERUSDT": [],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
-    "DCRUSDT": [
-      1794146400000
-    ],
+    "DCRUSDT": [],
     "DELLBUSDT": [],
     "DEXEUSDT": [],
     "DGBUSDT": [],
@@ -3361,7 +3363,9 @@
     "GMEBUSDT": [],
     "GMTUSDT": [],
     "GMXUSDT": [],
-    "GNOUSDT": [],
+    "GNOUSDT": [
+      1794147300000
+    ],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -3614,16 +3618,16 @@
     "TOWNSUSDT": [],
     "TQQQBUSDT": [],
     "TRBUSDT": [],
-    "TREEUSDT": [],
+    "TREEUSDT": [
+      1794147300000
+    ],
     "TRUMPUSDT": [],
     "TRXUSDT": [],
     "TSLABUSDT": [],
     "TSMBUSDT": [],
     "TSTUSDT": [],
     "TURBOUSDT": [],
-    "TURTLEUSDT": [
-      1794146400000
-    ],
+    "TURTLEUSDT": [],
     "TUSDT": [],
     "TUTUSDT": [],
     "TWTUSDT": [],
@@ -3819,9 +3823,7 @@
     "DCRUSDT": [],
     "DELLBUSDT": [],
     "DEXEUSDT": [],
-    "DGBUSDT": [
-      1794146400000
-    ],
+    "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
     "DODOUSDT": [],
@@ -4058,9 +4060,7 @@
     "RONINUSDT": [],
     "ROSEUSDT": [],
     "RPLUSDT": [],
-    "RSRUSDT": [
-      1794146400000
-    ],
+    "RSRUSDT": [],
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
@@ -4413,7 +4413,8 @@
     "GMXUSDT": [],
     "GNOUSDT": [
       1794122100000,
-      1794123900000
+      1794123900000,
+      1794147300000
     ],
     "GNSUSDT": [
       1794129300000,
@@ -4696,7 +4697,9 @@
     "TOWNSUSDT": [],
     "TQQQBUSDT": [],
     "TRBUSDT": [],
-    "TREEUSDT": [],
+    "TREEUSDT": [
+      1794147300000
+    ],
     "TRUMPUSDT": [],
     "TRXUSDT": [],
     "TSLABUSDT": [],
@@ -5372,9 +5375,11 @@
     "buy:ONEUSDT:1794145500000:1",
     "buy:ARKUSDT:1794146400000:1",
     "exit:DGBUSDT:1794146400000",
-    "buy:TURTLEUSDT:1794146400000:1"
+    "buy:TURTLEUSDT:1794146400000:1",
+    "buy:GNOUSDT:1794147300000:3",
+    "buy:TREEUSDT:1794147300000:1"
   ],
-  "cycles": 63,
-  "messages_sent": 43,
-  "last_cycle_ms": 1794148404736
+  "cycles": 64,
+  "messages_sent": 45,
+  "last_cycle_ms": 1794149301762
 }
