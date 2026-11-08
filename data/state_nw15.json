@@ -3257,9 +3257,7 @@
     "CHRUSDT": [],
     "CHZUSDT": [],
     "CITYUSDT": [],
-    "CKBUSDT": [
-      1794129300000
-    ],
+    "CKBUSDT": [],
     "COHRBUSDT": [],
     "COINBUSDT": [],
     "COMPUSDT": [],
@@ -3320,9 +3318,7 @@
     "FLUXUSDT": [],
     "FOGOUSDT": [],
     "FORMUSDT": [],
-    "FRAXUSDT": [
-      1794129300000
-    ],
+    "FRAXUSDT": [],
     "FTTUSDT": [],
     "FUSDT": [],
     "FWDIBUSDT": [],
@@ -3338,9 +3334,7 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
-    "GNSUSDT": [
-      1794129300000
-    ],
+    "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
@@ -3699,7 +3693,9 @@
     "APTUSDT": [],
     "ARBUSDT": [],
     "ARKMUSDT": [],
-    "ARKUSDT": [],
+    "ARKUSDT": [
+      1794130200000
+    ],
     "ARMBUSDT": [],
     "ARPAUSDT": [],
     "ARUSDT": [],
@@ -5286,7 +5282,7 @@
     "buy:CKBUSDT:1794129300000:1",
     "buy:GNSUSDT:1794129300000:1"
   ],
-  "cycles": 44,
+  "cycles": 45,
   "messages_sent": 28,
-  "last_cycle_ms": 1794131303990
+  "last_cycle_ms": 1794132203025
 }
