@@ -3095,7 +3095,9 @@
     "ACEUSDT": [],
     "ACHUSDT": [],
     "ACMUSDT": [],
-    "ACTUSDT": [],
+    "ACTUSDT": [
+      1794132000000
+    ],
     "ADAUSDT": [],
     "ADBEBUSDT": [],
     "ADXUSDT": [],
@@ -3392,7 +3394,9 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [],
+    "ONEUSDT": [
+      1794132000000
+    ],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -3670,9 +3674,7 @@
     "BNBUSDT": [],
     "BNCBUSDT": [],
     "BNSOLUSDT": [],
-    "BNTUSDT": [
-      1794128400000
-    ],
+    "BNTUSDT": [],
     "BOMEUSDT": [],
     "BONKUSDT": [],
     "BREVUSDT": [],
@@ -3789,7 +3791,9 @@
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
-    "HOTUSDT": [],
+    "HOTUSDT": [
+      1794132000000
+    ],
     "HPEBUSDT": [],
     "HUMAUSDT": [],
     "HYPERUSDT": [],
@@ -4651,7 +4655,8 @@
     "ACHUSDT": [],
     "ACMUSDT": [],
     "ACTUSDT": [
-      1794052800000
+      1794052800000,
+      1794132000000
     ],
     "ADAUSDT": [],
     "ADBEBUSDT": [],
@@ -4964,7 +4969,8 @@
     "OGUSDT": [],
     "ONDOUSDT": [],
     "ONEUSDT": [
-      1794096000000
+      1794096000000,
+      1794132000000
     ],
     "ONGUSDT": [],
     "ONTUSDT": [],
@@ -5214,9 +5220,9 @@
     "buy:CYBERUSDT:1794121200000:3",
     "buy:GNOUSDT:1794121200000:1"
   ],
-  "cycles": 119,
+  "cycles": 120,
   "messages_sent": 115,
-  "last_cycle_ms": 1794137603483,
+  "last_cycle_ms": 1794139405484,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
