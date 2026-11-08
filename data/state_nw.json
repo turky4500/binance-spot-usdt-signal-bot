@@ -248,11 +248,11 @@
         "entry_time": 1794052800000,
         "signal_bar_time": 1794049200000,
         "signal_price": 0.308,
-        "entry_count": 3
+        "entry_count": 4
       },
-      "entry_count": 3,
-      "last_buy_bar": 1794121200000,
-      "last_entry_price": 0.293
+      "entry_count": 4,
+      "last_buy_bar": 1794139200000,
+      "last_entry_price": 0.283
     },
     "DASHUSDT": {
       "position": null,
@@ -1455,10 +1455,16 @@
       "last_entry_price": 0.0
     },
     "BNTUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1793970000000,
-      "last_entry_price": 0.281
+      "position": {
+        "entry_price": 0.271,
+        "entry_time": 1794142800000,
+        "signal_bar_time": 1794139200000,
+        "signal_price": 0.2673,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794139200000,
+      "last_entry_price": 0.271
     },
     "BOMEUSDT": {
       "position": null,
@@ -1503,10 +1509,16 @@
       "last_entry_price": 0.0
     },
     "CATIUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.03698,
+        "entry_time": 1794142800000,
+        "signal_bar_time": 1794139200000,
+        "signal_price": 0.03685,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794139200000,
+      "last_entry_price": 0.03698
     },
     "CBRSBUSDT": {
       "position": null,
@@ -3178,7 +3190,9 @@
     "BNBUSDT": [],
     "BNCBUSDT": [],
     "BNSOLUSDT": [],
-    "BNTUSDT": [],
+    "BNTUSDT": [
+      1794139200000
+    ],
     "BOMEUSDT": [],
     "BONKUSDT": [],
     "BREVUSDT": [],
@@ -3187,7 +3201,9 @@
     "BTTCUSDT": [],
     "C98USDT": [],
     "CAKEUSDT": [],
-    "CATIUSDT": [],
+    "CATIUSDT": [
+      1794139200000
+    ],
     "CBRSBUSDT": [],
     "CELOUSDT": [],
     "CELRUSDT": [],
@@ -3217,7 +3233,9 @@
     "CUSDT": [],
     "CVCUSDT": [],
     "CVXUSDT": [],
-    "CYBERUSDT": [],
+    "CYBERUSDT": [
+      1794139200000
+    ],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
     "DCRUSDT": [],
@@ -3447,9 +3465,7 @@
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [
-      1794135600000
-    ],
+    "REQUSDT": [],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -4181,7 +4197,9 @@
     "BNBUSDT": [],
     "BNCBUSDT": [],
     "BNSOLUSDT": [],
-    "BNTUSDT": [],
+    "BNTUSDT": [
+      1794139200000
+    ],
     "BOMEUSDT": [],
     "BONKUSDT": [],
     "BREVUSDT": [],
@@ -4190,7 +4208,9 @@
     "BTTCUSDT": [],
     "C98USDT": [],
     "CAKEUSDT": [],
-    "CATIUSDT": [],
+    "CATIUSDT": [
+      1794139200000
+    ],
     "CBRSBUSDT": [],
     "CELOUSDT": [],
     "CELRUSDT": [],
@@ -4225,7 +4245,8 @@
     "CYBERUSDT": [
       1794049200000,
       1794110400000,
-      1794121200000
+      1794121200000,
+      1794139200000
     ],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
@@ -5223,11 +5244,14 @@
     "buy:CYBERUSDT:1794110400000:2",
     "buy:CYBERUSDT:1794121200000:3",
     "buy:GNOUSDT:1794121200000:1",
-    "buy:REQUSDT:1794135600000:1"
+    "buy:REQUSDT:1794135600000:1",
+    "buy:BNTUSDT:1794139200000:1",
+    "buy:CATIUSDT:1794139200000:1",
+    "buy:CYBERUSDT:1794139200000:4"
   ],
-  "cycles": 123,
-  "messages_sent": 116,
-  "last_cycle_ms": 1794144804087,
+  "cycles": 124,
+  "messages_sent": 119,
+  "last_cycle_ms": 1794146604437,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
