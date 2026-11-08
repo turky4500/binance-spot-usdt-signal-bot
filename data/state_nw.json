@@ -1263,14 +1263,8 @@
       "last_entry_price": 0.0
     },
     "ATMUSDT": {
-      "position": {
-        "entry_price": 0.77,
-        "entry_time": 1794060000000,
-        "signal_bar_time": 1794056400000,
-        "signal_price": 0.757,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794063600000,
       "last_entry_price": 0.762
     },
@@ -1365,14 +1359,8 @@
       "last_entry_price": 0.0
     },
     "BARUSDT": {
-      "position": {
-        "entry_price": 0.226,
-        "entry_time": 1794067200000,
-        "signal_bar_time": 1794063600000,
-        "signal_price": 0.223,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794063600000,
       "last_entry_price": 0.226
     },
@@ -1881,10 +1869,16 @@
       "last_entry_price": 0.0
     },
     "HMSTRUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.0001329,
+        "entry_time": 1794146400000,
+        "signal_bar_time": 1794142800000,
+        "signal_price": 0.000132,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794142800000,
+      "last_entry_price": 0.0001329
     },
     "HOLOUSDT": {
       "position": null,
@@ -3190,9 +3184,7 @@
     "BNBUSDT": [],
     "BNCBUSDT": [],
     "BNSOLUSDT": [],
-    "BNTUSDT": [
-      1794139200000
-    ],
+    "BNTUSDT": [],
     "BOMEUSDT": [],
     "BONKUSDT": [],
     "BREVUSDT": [],
@@ -3201,9 +3193,7 @@
     "BTTCUSDT": [],
     "C98USDT": [],
     "CAKEUSDT": [],
-    "CATIUSDT": [
-      1794139200000
-    ],
+    "CATIUSDT": [],
     "CBRSBUSDT": [],
     "CELOUSDT": [],
     "CELRUSDT": [],
@@ -3233,9 +3223,7 @@
     "CUSDT": [],
     "CVCUSDT": [],
     "CVXUSDT": [],
-    "CYBERUSDT": [
-      1794139200000
-    ],
+    "CYBERUSDT": [],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
     "DCRUSDT": [],
@@ -3309,7 +3297,9 @@
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [],
+    "HMSTRUSDT": [
+      1794142800000
+    ],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -3655,7 +3645,9 @@
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
-    "ATMUSDT": [],
+    "ATMUSDT": [
+      1794142800000
+    ],
     "ATOMUSDT": [],
     "ATUSDT": [],
     "AUCTIONUSDT": [],
@@ -3676,7 +3668,9 @@
     "BANDUSDT": [],
     "BANKUSDT": [],
     "BARDUSDT": [],
-    "BARUSDT": [],
+    "BARUSDT": [
+      1794142800000
+    ],
     "BATUSDT": [],
     "BBBUSDT": [],
     "BBUSDT": [],
@@ -3974,7 +3968,9 @@
     "RONINUSDT": [],
     "ROSEUSDT": [],
     "RPLUSDT": [],
-    "RSRUSDT": [],
+    "RSRUSDT": [
+      1794142800000
+    ],
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
@@ -4329,7 +4325,9 @@
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [],
+    "HMSTRUSDT": [
+      1794142800000
+    ],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -5247,11 +5245,14 @@
     "buy:REQUSDT:1794135600000:1",
     "buy:BNTUSDT:1794139200000:1",
     "buy:CATIUSDT:1794139200000:1",
-    "buy:CYBERUSDT:1794139200000:4"
+    "buy:CYBERUSDT:1794139200000:4",
+    "exit:ATMUSDT:1794142800000",
+    "exit:BARUSDT:1794142800000",
+    "buy:HMSTRUSDT:1794142800000:1"
   ],
-  "cycles": 125,
-  "messages_sent": 119,
-  "last_cycle_ms": 1794148404591,
+  "cycles": 126,
+  "messages_sent": 122,
+  "last_cycle_ms": 1794150200428,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
