@@ -1305,10 +1305,16 @@
       "last_entry_price": 0.0
     },
     "GTCUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.17304,
+        "entry_time": 1794171600000,
+        "signal_bar_time": 1794170700000,
+        "signal_price": 0.17131,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794170700000,
+      "last_entry_price": 0.17304
     },
     "GUNUSDT": {
       "position": null,
@@ -3449,7 +3455,9 @@
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
-    "GTCUSDT": [],
+    "GTCUSDT": [
+      1794170700000
+    ],
     "GUNUSDT": [],
     "GUSDT": [],
     "HAEDALUSDT": [],
@@ -3462,7 +3470,9 @@
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
-    "HOTUSDT": [],
+    "HOTUSDT": [
+      1794170700000
+    ],
     "HPEBUSDT": [],
     "HUMAUSDT": [],
     "HYPERUSDT": [],
@@ -3561,9 +3571,7 @@
     "NOKBUSDT": [],
     "NOMUSDT": [],
     "NOTUSDT": [],
-    "NVDABUSDT": [
-      1794169800000
-    ],
+    "NVDABUSDT": [],
     "NXPCUSDT": [],
     "OGNUSDT": [],
     "OGUSDT": [],
@@ -4060,9 +4068,7 @@
     "MVLLBUSDT": [],
     "NBISBUSDT": [],
     "NEARUSDT": [],
-    "NEIROUSDT": [
-      1794169800000
-    ],
+    "NEIROUSDT": [],
     "NEOUSDT": [],
     "NEWTUSDT": [],
     "NEXOUSDT": [],
@@ -4157,9 +4163,7 @@
     "SHELLUSDT": [],
     "SHIBUSDT": [],
     "SIGNUSDT": [],
-    "SKDDBUSDT": [
-      1794169800000
-    ],
+    "SKDDBUSDT": [],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
     "SKUUBUSDT": [],
@@ -4527,7 +4531,9 @@
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
-    "GTCUSDT": [],
+    "GTCUSDT": [
+      1794170700000
+    ],
     "GUNUSDT": [],
     "GUSDT": [],
     "HAEDALUSDT": [],
@@ -5146,7 +5152,8 @@
     "HOODBUSDT": [],
     "HOTUSDT": [
       1794150900000,
-      1794156300000
+      1794156300000,
+      1794170700000
     ],
     "HPEBUSDT": [],
     "HUMAUSDT": [],
@@ -5549,11 +5556,12 @@
     "buy:LAZIOUSDT:1794166200000:1",
     "exit:RSRUSDT:1794167100000",
     "buy:ADXUSDT:1794168900000:1",
-    "buy:NVDABUSDT:1794169800000:1"
+    "buy:NVDABUSDT:1794169800000:1",
+    "buy:GTCUSDT:1794170700000:1"
   ],
-  "cycles": 91,
-  "messages_sent": 69,
-  "last_cycle_ms": 1794171804252,
+  "cycles": 92,
+  "messages_sent": 70,
+  "last_cycle_ms": 1794172704315,
   "daily_report_nw15": {
     "last_report_day": "2026-11-08",
     "reported_trade_keys": [
