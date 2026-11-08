@@ -3392,7 +3392,9 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [],
+    "ONEUSDT": [
+      1794107700000
+    ],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -3769,7 +3771,9 @@
     "GENIUSUSDT": [],
     "GEVBUSDT": [],
     "GIGGLEUSDT": [],
-    "GLMRUSDT": [],
+    "GLMRUSDT": [
+      1794107700000
+    ],
     "GLMUSDT": [],
     "GLWBUSDT": [],
     "GMEBUSDT": [],
@@ -3792,9 +3796,7 @@
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [
-      1794106800000
-    ],
+    "HMSTRUSDT": [],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -3870,7 +3872,9 @@
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
-    "MITOUSDT": [],
+    "MITOUSDT": [
+      1794107700000
+    ],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
@@ -3980,9 +3984,7 @@
     "SHAZBUSDT": [],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
-    "SIGNUSDT": [
-      1794106800000
-    ],
+    "SIGNUSDT": [],
     "SKDDBUSDT": [],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
@@ -4063,9 +4065,7 @@
     "WDCBUSDT": [],
     "WENBUSDT": [],
     "WIFUSDT": [],
-    "WINUSDT": [
-      1794106800000
-    ],
+    "WINUSDT": [],
     "WLDUSDT": [],
     "WLFIUSDT": [],
     "WOOUSDT": [],
@@ -4944,7 +4944,9 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [],
+    "ONEUSDT": [
+      1794107700000
+    ],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -5150,7 +5152,7 @@
     "buy:ONEUSDT:1794105000000:2",
     "exit:HMSTRUSDT:1794106800000"
   ],
-  "cycles": 19,
+  "cycles": 20,
   "messages_sent": 10,
-  "last_cycle_ms": 1794108808833
+  "last_cycle_ms": 1794109704100
 }
