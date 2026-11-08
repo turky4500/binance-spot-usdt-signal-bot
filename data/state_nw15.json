@@ -2181,10 +2181,16 @@
       "last_entry_price": 0.0
     },
     "PROVEUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.1783,
+        "entry_time": 1794155400000,
+        "signal_bar_time": 1794154500000,
+        "signal_price": 0.178,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794154500000,
+      "last_entry_price": 0.1783
     },
     "PSGUSDT": {
       "position": null,
@@ -3512,7 +3518,9 @@
     "PORTOUSDT": [],
     "POWRUSDT": [],
     "PROMUSDT": [],
-    "PROVEUSDT": [],
+    "PROVEUSDT": [
+      1794154500000
+    ],
     "PSGUSDT": [],
     "PUMPUSDT": [],
     "PUNDIXUSDT": [],
@@ -3730,9 +3738,7 @@
     "ATOMUSDT": [],
     "ATUSDT": [],
     "AUCTIONUSDT": [],
-    "AUDIOUSDT": [
-      1794153600000
-    ],
+    "AUDIOUSDT": [],
     "AUSDT": [],
     "AVAUSDT": [],
     "AVAXUSDT": [],
@@ -3869,7 +3875,7 @@
     "GMXUSDT": [],
     "GNOUSDT": [],
     "GNSUSDT": [
-      1794153600000
+      1794154500000
     ],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -4592,7 +4598,9 @@
     "PORTOUSDT": [],
     "POWRUSDT": [],
     "PROMUSDT": [],
-    "PROVEUSDT": [],
+    "PROVEUSDT": [
+      1794154500000
+    ],
     "PSGUSDT": [],
     "PUMPUSDT": [],
     "PUNDIXUSDT": [],
@@ -5386,9 +5394,10 @@
     "buy:GNOUSDT:1794150000000:4",
     "buy:GNOUSDT:1794151800000:5",
     "exit:ONEUSDT:1794151800000",
-    "exit:GNSUSDT:1794153600000"
+    "exit:GNSUSDT:1794153600000",
+    "buy:PROVEUSDT:1794154500000:1"
   ],
-  "cycles": 72,
-  "messages_sent": 50,
-  "last_cycle_ms": 1794155600317
+  "cycles": 73,
+  "messages_sent": 51,
+  "last_cycle_ms": 1794156497150
 }
