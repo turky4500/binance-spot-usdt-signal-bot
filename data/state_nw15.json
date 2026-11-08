@@ -3374,9 +3374,7 @@
     "MEMEUSDT": [],
     "METABUSDT": [],
     "METISUSDT": [],
-    "METUSDT": [
-      1794119400000
-    ],
+    "METUSDT": [],
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
@@ -3704,7 +3702,9 @@
     "BROCCOLI714USDT": [],
     "BSPBUSDT": [],
     "BTCUSDT": [],
-    "BTTCUSDT": [],
+    "BTTCUSDT": [
+      1794120300000
+    ],
     "C98USDT": [],
     "CAKEUSDT": [],
     "CATIUSDT": [],
@@ -3796,16 +3796,16 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
-    "GNSUSDT": [],
+    "GNSUSDT": [
+      1794120300000
+    ],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
-    "GTCUSDT": [
-      1794119400000
-    ],
+    "GTCUSDT": [],
     "GUNUSDT": [],
     "GUSDT": [],
     "HAEDALUSDT": [],
@@ -3922,9 +3922,7 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [
-      1794119400000
-    ],
+    "ONEUSDT": [],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -3973,7 +3971,9 @@
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [],
+    "REQUSDT": [
+      1794120300000
+    ],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -5202,7 +5202,7 @@
     "buy:MITOUSDT:1794115800000:2",
     "exit:ONEUSDT:1794119400000"
   ],
-  "cycles": 33,
+  "cycles": 34,
   "messages_sent": 18,
-  "last_cycle_ms": 1794121404849
+  "last_cycle_ms": 1794122307227
 }
