@@ -1479,14 +1479,8 @@
       "last_entry_price": 0.0
     },
     "DODOUSDT": {
-      "position": {
-        "entry_price": 0.022,
-        "entry_time": 1794159900000,
-        "signal_bar_time": 1794159000000,
-        "signal_price": 0.02195,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794159000000,
       "last_entry_price": 0.022
     },
@@ -3639,14 +3633,8 @@
       "last_entry_price": 0.0514
     },
     "PROMUSDT": {
-      "position": {
-        "entry_price": 5.125,
-        "entry_time": 1794175200000,
-        "signal_bar_time": 1794174300000,
-        "signal_price": 5.116,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794174300000,
       "last_entry_price": 5.125
     },
@@ -5946,7 +5934,9 @@
     "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
-    "DODOUSDT": [],
+    "DODOUSDT": [
+      1794179700000
+    ],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -6149,7 +6139,9 @@
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
-    "PROMUSDT": [],
+    "PROMUSDT": [
+      1794179700000
+    ],
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -6279,7 +6271,9 @@
     "WDCBUSDT": [],
     "WENBUSDT": [],
     "WIFUSDT": [],
-    "WINUSDT": [],
+    "WINUSDT": [
+      1794179700000
+    ],
     "WLDUSDT": [],
     "WLFIUSDT": [],
     "WOOUSDT": [],
@@ -8388,8 +8382,6 @@
     "牛来USDT": []
   },
   "sent": [
-    "buy:CATIUSDT:1794174300000:1",
-    "buy:CELOUSDT:1794174300000:1",
     "buy:CELRUSDT:1794174300000:1",
     "buy:CETUSUSDT:1794174300000:1",
     "buy:CFGUSDT:1794174300000:1",
@@ -8787,11 +8779,13 @@
     "buy:SUSHIUSDT:1794177900000:3",
     "buy:TKOUSDT:1794177900000:2",
     "buy:XLMUSDT:1794177900000:2",
-    "buy:YFIUSDT:1794177900000:2"
+    "buy:YFIUSDT:1794177900000:2",
+    "exit:DODOUSDT:1794179700000",
+    "exit:PROMUSDT:1794179700000"
   ],
-  "cycles": 101,
-  "messages_sent": 542,
-  "last_cycle_ms": 1794180803082,
+  "cycles": 102,
+  "messages_sent": 544,
+  "last_cycle_ms": 1794181700948,
   "daily_report_nw15": {
     "last_report_day": "2026-11-08",
     "reported_trade_keys": [
