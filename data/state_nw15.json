@@ -1695,10 +1695,16 @@
       "last_entry_price": 0.0
     },
     "METUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.3202,
+        "entry_time": 1794097800000,
+        "signal_bar_time": 1794096900000,
+        "signal_price": 0.3195,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794096900000,
+      "last_entry_price": 0.3202
     },
     "MEUSDT": {
       "position": null,
@@ -3119,7 +3125,9 @@
     "AXSUSDT": [],
     "AXTIBUSDT": [],
     "BABABUSDT": [],
-    "BABYUSDT": [],
+    "BABYUSDT": [
+      1794096900000
+    ],
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
     "BANDUSDT": [],
@@ -3332,7 +3340,9 @@
     "MEMEUSDT": [],
     "METABUSDT": [],
     "METISUSDT": [],
-    "METUSDT": [],
+    "METUSDT": [
+      1794096900000
+    ],
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
@@ -3752,9 +3762,7 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
-    "GNSUSDT": [
-      1794096000000
-    ],
+    "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
@@ -4354,7 +4362,9 @@
     "MEMEUSDT": [],
     "METABUSDT": [],
     "METISUSDT": [],
-    "METUSDT": [],
+    "METUSDT": [
+      1794096900000
+    ],
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
@@ -4649,7 +4659,9 @@
     "AXSUSDT": [],
     "AXTIBUSDT": [],
     "BABABUSDT": [],
-    "BABYUSDT": [],
+    "BABYUSDT": [
+      1794096900000
+    ],
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
     "BANDUSDT": [],
@@ -5094,9 +5106,10 @@
   },
   "sent": [
     "buy:ASRUSDT:1794091500000:1",
-    "buy:HMSTRUSDT:1794092400000:1"
+    "buy:HMSTRUSDT:1794092400000:1",
+    "buy:METUSDT:1794096900000:1"
   ],
-  "cycles": 7,
-  "messages_sent": 2,
-  "last_cycle_ms": 1794098005123
+  "cycles": 8,
+  "messages_sent": 3,
+  "last_cycle_ms": 1794098904976
 }
