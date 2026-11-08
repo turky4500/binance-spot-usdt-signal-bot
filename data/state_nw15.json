@@ -81,10 +81,16 @@
       "last_entry_price": 0.0
     },
     "ACTUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.01189,
+        "entry_time": 1794103200000,
+        "signal_bar_time": 1794102300000,
+        "signal_price": 0.01161,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794102300000,
+      "last_entry_price": 0.01189
     },
     "ADAUSDT": {
       "position": null,
@@ -1262,11 +1268,11 @@
         "entry_time": 1794093300000,
         "signal_bar_time": 1794092400000,
         "signal_price": 0.0001311,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794092400000,
-      "last_entry_price": 0.0001319
+      "entry_count": 2,
+      "last_buy_bar": 1794102300000,
+      "last_entry_price": 0.0001296
     },
     "HOLOUSDT": {
       "position": null,
@@ -1917,10 +1923,16 @@
       "last_entry_price": 0.0
     },
     "ONEUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.001993,
+        "entry_time": 1794103200000,
+        "signal_bar_time": 1794102300000,
+        "signal_price": 0.001965,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794102300000,
+      "last_entry_price": 0.001993
     },
     "ONGUSDT": {
       "position": null,
@@ -3071,7 +3083,9 @@
     "ACEUSDT": [],
     "ACHUSDT": [],
     "ACMUSDT": [],
-    "ACTUSDT": [],
+    "ACTUSDT": [
+      1794102300000
+    ],
     "ADAUSDT": [],
     "ADBEBUSDT": [],
     "ADXUSDT": [],
@@ -3266,7 +3280,9 @@
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [],
+    "HMSTRUSDT": [
+      1794102300000
+    ],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -3374,7 +3390,9 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [],
+    "ONEUSDT": [
+      1794102300000
+    ],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -4087,7 +4105,9 @@
     "ACEUSDT": [],
     "ACHUSDT": [],
     "ACMUSDT": [],
-    "ACTUSDT": [],
+    "ACTUSDT": [
+      1794102300000
+    ],
     "ADAUSDT": [],
     "ADBEBUSDT": [],
     "ADXUSDT": [],
@@ -4285,7 +4305,8 @@
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
     "HMSTRUSDT": [
-      1794092400000
+      1794092400000,
+      1794102300000
     ],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
@@ -4396,7 +4417,9 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [],
+    "ONEUSDT": [
+      1794102300000
+    ],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -5105,9 +5128,12 @@
   "sent": [
     "buy:ASRUSDT:1794091500000:1",
     "buy:HMSTRUSDT:1794092400000:1",
-    "buy:METUSDT:1794096900000:1"
+    "buy:METUSDT:1794096900000:1",
+    "buy:ACTUSDT:1794102300000:1",
+    "buy:HMSTRUSDT:1794102300000:2",
+    "buy:ONEUSDT:1794102300000:1"
   ],
-  "cycles": 13,
-  "messages_sent": 3,
-  "last_cycle_ms": 1794103407900
+  "cycles": 14,
+  "messages_sent": 6,
+  "last_cycle_ms": 1794104303080
 }
