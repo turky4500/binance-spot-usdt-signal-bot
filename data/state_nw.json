@@ -3226,7 +3226,9 @@
     "CATIUSDT": [],
     "CBRSBUSDT": [],
     "CELOUSDT": [],
-    "CELRUSDT": [],
+    "CELRUSDT": [
+      1794164400000
+    ],
     "CETUSUSDT": [],
     "CFGUSDT": [],
     "CFXUSDT": [],
@@ -3371,9 +3373,7 @@
     "KSMUSDT": [],
     "LAUSDT": [],
     "LAYERUSDT": [],
-    "LAZIOUSDT": [
-      1794160800000
-    ],
+    "LAZIOUSDT": [],
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
@@ -3436,7 +3436,9 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [],
+    "ONEUSDT": [
+      1794164400000
+    ],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -3463,9 +3465,7 @@
     "POLUSDT": [],
     "POLYXUSDT": [],
     "PORTALUSDT": [],
-    "PORTOUSDT": [
-      1794160800000
-    ],
+    "PORTOUSDT": [],
     "POWRUSDT": [],
     "PROMUSDT": [],
     "PROVEUSDT": [],
@@ -3996,7 +3996,9 @@
     "RONINUSDT": [],
     "ROSEUSDT": [],
     "RPLUSDT": [],
-    "RSRUSDT": [],
+    "RSRUSDT": [
+      1794164400000
+    ],
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
@@ -4823,7 +4825,8 @@
     "CBRSBUSDT": [],
     "CELOUSDT": [],
     "CELRUSDT": [
-      1794153600000
+      1794153600000,
+      1794164400000
     ],
     "CETUSUSDT": [],
     "CFGUSDT": [],
@@ -5045,7 +5048,8 @@
     "ONDOUSDT": [],
     "ONEUSDT": [
       1794096000000,
-      1794132000000
+      1794132000000,
+      1794164400000
     ],
     "ONGUSDT": [],
     "ONTUSDT": [],
@@ -5315,9 +5319,9 @@
     "buy:LAZIOUSDT:1794160800000:1",
     "buy:PORTOUSDT:1794160800000:2"
   ],
-  "cycles": 141,
+  "cycles": 142,
   "messages_sent": 134,
-  "last_cycle_ms": 1794170007782,
+  "last_cycle_ms": 1794171806486,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
@@ -5759,6 +5763,17 @@
     ]
   },
   "daily_report_nw": {
-    "last_reported_for_date": "2026-11-08"
+    "last_reported_for_date": "2026-11-08",
+    "last_report_day": "2026-11-08",
+    "reported_trade_keys": [
+      "STRAXUSDT:1793970000000:1793973600000",
+      "RKLBBUSDT:1793649600000:1793980800000",
+      "UVXYBUSDT:1793984400000:1793998800000",
+      "SIGNUSDT:1794092400000:1794103200000",
+      "ATMUSDT:1794060000000:1794146400000",
+      "BARUSDT:1794067200000:1794146400000",
+      "GLMRUSDT:1794020400000:1794157200000",
+      "GNSUSDT:1793998800000:1794157200000"
+    ]
   }
 }
