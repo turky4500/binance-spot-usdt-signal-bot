@@ -3866,9 +3866,7 @@
     "COINBUSDT": [],
     "COMPUSDT": [],
     "COOKIEUSDT": [],
-    "COTIUSDT": [
-      1794164400000
-    ],
+    "COTIUSDT": [],
     "COWUSDT": [],
     "CRCLBUSDT": [],
     "CRDOBUSDT": [],
@@ -5524,7 +5522,7 @@
     "buy:RSRUSDT:1794162600000:1",
     "buy:GLMRUSDT:1794163500000:1"
   ],
-  "cycles": 84,
+  "cycles": 85,
   "messages_sent": 65,
-  "last_cycle_ms": 1794166400195
+  "last_cycle_ms": 1794167304595
 }
