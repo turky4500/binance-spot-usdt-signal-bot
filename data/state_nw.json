@@ -2097,10 +2097,16 @@
       "last_entry_price": 0.0
     },
     "LAZIOUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1793970000000,
-      "last_entry_price": 0.351
+      "position": {
+        "entry_price": 0.341,
+        "entry_time": 1794164400000,
+        "signal_bar_time": 1794160800000,
+        "signal_price": 0.336,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794160800000,
+      "last_entry_price": 0.341
     },
     "LDOUSDT": {
       "position": null,
@@ -2492,11 +2498,11 @@
         "entry_time": 1794052800000,
         "signal_bar_time": 1794049200000,
         "signal_price": 0.38,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794049200000,
-      "last_entry_price": 0.383
+      "entry_count": 2,
+      "last_buy_bar": 1794160800000,
+      "last_entry_price": 0.367
     },
     "PSGUSDT": {
       "position": null,
@@ -3130,9 +3136,7 @@
     "AAVEUSDT": [],
     "ACEUSDT": [],
     "ACHUSDT": [],
-    "ACMUSDT": [
-      1794157200000
-    ],
+    "ACMUSDT": [],
     "ACTUSDT": [],
     "ADAUSDT": [],
     "ADBEBUSDT": [],
@@ -3292,9 +3296,7 @@
     "FLUXUSDT": [],
     "FOGOUSDT": [],
     "FORMUSDT": [],
-    "FRAXUSDT": [
-      1794157200000
-    ],
+    "FRAXUSDT": [],
     "FTTUSDT": [],
     "FUSDT": [],
     "FWDIBUSDT": [],
@@ -3369,7 +3371,9 @@
     "KSMUSDT": [],
     "LAUSDT": [],
     "LAYERUSDT": [],
-    "LAZIOUSDT": [],
+    "LAZIOUSDT": [
+      1794160800000
+    ],
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
@@ -3459,7 +3463,9 @@
     "POLUSDT": [],
     "POLYXUSDT": [],
     "PORTALUSDT": [],
-    "PORTOUSDT": [],
+    "PORTOUSDT": [
+      1794160800000
+    ],
     "POWRUSDT": [],
     "PROMUSDT": [],
     "PROVEUSDT": [],
@@ -3602,9 +3608,7 @@
     "XTZUSDT": [],
     "XVGUSDT": [],
     "XVSUSDT": [],
-    "YBUSDT": [
-      1794157200000
-    ],
+    "YBUSDT": [],
     "YFIUSDT": [],
     "YGGUSDT": [],
     "ZAMAUSDT": [],
@@ -4406,7 +4410,9 @@
     "KSMUSDT": [],
     "LAUSDT": [],
     "LAYERUSDT": [],
-    "LAZIOUSDT": [],
+    "LAZIOUSDT": [
+      1794160800000
+    ],
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
@@ -4509,7 +4515,8 @@
     "POLYXUSDT": [],
     "PORTALUSDT": [],
     "PORTOUSDT": [
-      1794049200000
+      1794049200000,
+      1794160800000
     ],
     "POWRUSDT": [],
     "PROMUSDT": [],
@@ -5304,11 +5311,13 @@
     "buy:ONEUSDT:1794153600000:1",
     "buy:ACMUSDT:1794157200000:1",
     "buy:FRAXUSDT:1794157200000:1",
-    "buy:YBUSDT:1794157200000:3"
+    "buy:YBUSDT:1794157200000:3",
+    "buy:LAZIOUSDT:1794160800000:1",
+    "buy:PORTOUSDT:1794160800000:2"
   ],
-  "cycles": 139,
-  "messages_sent": 132,
-  "last_cycle_ms": 1794167611650,
+  "cycles": 140,
+  "messages_sent": 134,
+  "last_cycle_ms": 1794168207174,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
