@@ -3729,7 +3729,9 @@
     "BNBUSDT": [],
     "BNCBUSDT": [],
     "BNSOLUSDT": [],
-    "BNTUSDT": [],
+    "BNTUSDT": [
+      1794128400000
+    ],
     "BOMEUSDT": [],
     "BONKUSDT": [],
     "BOTBUSDT": [],
@@ -4113,9 +4115,7 @@
     "WDCBUSDT": [],
     "WENBUSDT": [],
     "WIFUSDT": [],
-    "WINUSDT": [
-      1794126600000
-    ],
+    "WINUSDT": [],
     "WLDUSDT": [],
     "WLFIUSDT": [],
     "WOOUSDT": [],
@@ -4124,9 +4124,7 @@
     "XAUTUSDT": [],
     "XECUSDT": [],
     "XLMUSDT": [],
-    "XNOUSDT": [
-      1794126600000
-    ],
+    "XNOUSDT": [],
     "XPLUSDT": [],
     "XRPUSDT": [],
     "XTZUSDT": [],
@@ -5264,7 +5262,7 @@
     "buy:SIGNUSDT:1794123900000:1",
     "buy:TKOUSDT:1794123900000:1"
   ],
-  "cycles": 41,
+  "cycles": 42,
   "messages_sent": 26,
-  "last_cycle_ms": 1794128607702
+  "last_cycle_ms": 1794130398321
 }
