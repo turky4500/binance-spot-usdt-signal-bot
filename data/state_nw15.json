@@ -3153,9 +3153,7 @@
     "BOMEUSDT": [],
     "BONKUSDT": [],
     "BOTBUSDT": [],
-    "BREVUSDT": [
-      1794100500000
-    ],
+    "BREVUSDT": [],
     "BRKBBUSDT": [],
     "BROCCOLI714USDT": [],
     "BSPBUSDT": [],
@@ -3665,9 +3663,7 @@
     "BOTBUSDT": [],
     "BREVUSDT": [],
     "BRKBBUSDT": [],
-    "BROCCOLI714USDT": [
-      1794100500000
-    ],
+    "BROCCOLI714USDT": [],
     "BSPBUSDT": [],
     "BTCUSDT": [],
     "BTTCUSDT": [],
@@ -5111,7 +5107,7 @@
     "buy:HMSTRUSDT:1794092400000:1",
     "buy:METUSDT:1794096900000:1"
   ],
-  "cycles": 12,
+  "cycles": 13,
   "messages_sent": 3,
-  "last_cycle_ms": 1794102506223
+  "last_cycle_ms": 1794103407900
 }
