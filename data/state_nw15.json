@@ -1119,14 +1119,8 @@
       "last_entry_price": 0.0
     },
     "FTTUSDT": {
-      "position": {
-        "entry_price": 0.224,
-        "entry_time": 1794114900000,
-        "signal_bar_time": 1794114000000,
-        "signal_price": 0.2229,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794114000000,
       "last_entry_price": 0.224
     },
@@ -3167,7 +3161,9 @@
     "ACEUSDT": [],
     "ACHUSDT": [],
     "ACMUSDT": [],
-    "ACTUSDT": [],
+    "ACTUSDT": [
+      1794139200000
+    ],
     "ADAUSDT": [],
     "ADBEBUSDT": [],
     "ADXUSDT": [],
@@ -3705,7 +3701,9 @@
     "APTUSDT": [],
     "ARBUSDT": [],
     "ARKMUSDT": [],
-    "ARKUSDT": [],
+    "ARKUSDT": [
+      1794139200000
+    ],
     "ARMBUSDT": [],
     "ARPAUSDT": [],
     "ARUSDT": [],
@@ -3839,7 +3837,9 @@
     "FOGOUSDT": [],
     "FORMUSDT": [],
     "FRAXUSDT": [],
-    "FTTUSDT": [],
+    "FTTUSDT": [
+      1794139200000
+    ],
     "FUSDT": [],
     "FWDIBUSDT": [],
     "GALAUSDT": [],
@@ -3891,9 +3891,7 @@
     "IOSTUSDT": [],
     "IOTAUSDT": [],
     "IOTXUSDT": [],
-    "IOUSDT": [
-      1794138300000
-    ],
+    "IOUSDT": [],
     "IQUSDT": [],
     "IRENBUSDT": [],
     "JASMYUSDT": [],
@@ -3984,9 +3982,7 @@
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
-    "OPGUSDT": [
-      1794138300000
-    ],
+    "OPGUSDT": [],
     "OPNUSDT": [],
     "OPUSDT": [],
     "ORCAUSDT": [],
@@ -4019,9 +4015,7 @@
     "PYPLBUSDT": [],
     "PYTHUSDT": [],
     "QCOMBUSDT": [],
-    "QIUSDT": [
-      1794138300000
-    ],
+    "QIUSDT": [],
     "QKCUSDT": [],
     "QNTBUSDT": [],
     "QNTUSDT": [],
@@ -4033,7 +4027,9 @@
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [],
+    "REQUSDT": [
+      1794139200000
+    ],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -4750,7 +4746,9 @@
     "ACEUSDT": [],
     "ACHUSDT": [],
     "ACMUSDT": [],
-    "ACTUSDT": [],
+    "ACTUSDT": [
+      1794139200000
+    ],
     "ADAUSDT": [],
     "ADBEBUSDT": [],
     "ADXUSDT": [],
@@ -5318,9 +5316,10 @@
     "buy:HMSTRUSDT:1794134700000:1",
     "buy:ACTUSDT:1794135600000:4",
     "buy:SIGNUSDT:1794135600000:2",
-    "buy:HMSTRUSDT:1794136500000:2"
+    "buy:HMSTRUSDT:1794136500000:2",
+    "exit:FTTUSDT:1794139200000"
   ],
-  "cycles": 54,
-  "messages_sent": 35,
-  "last_cycle_ms": 1794140305143
+  "cycles": 55,
+  "messages_sent": 36,
+  "last_cycle_ms": 1794141200879
 }
