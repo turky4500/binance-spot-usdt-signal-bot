@@ -933,10 +933,16 @@
       "last_entry_price": 0.0
     },
     "EDUUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.0446,
+        "entry_time": 1794109500000,
+        "signal_bar_time": 1794108600000,
+        "signal_price": 0.0443,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794108600000,
+      "last_entry_price": 0.0446
     },
     "EGLDUSDT": {
       "position": null,
@@ -1473,10 +1479,16 @@
       "last_entry_price": 0.0
     },
     "KAVAUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.06725,
+        "entry_time": 1794109500000,
+        "signal_bar_time": 1794108600000,
+        "signal_price": 0.06707,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794108600000,
+      "last_entry_price": 0.06725
     },
     "KERNELUSDT": {
       "position": null,
@@ -3228,7 +3240,9 @@
     "DYDXUSDT": [],
     "DYMUSDT": [],
     "EDENUSDT": [],
-    "EDUUSDT": [],
+    "EDUUSDT": [
+      1794108600000
+    ],
     "EGLDUSDT": [],
     "EIGENUSDT": [],
     "ENAUSDT": [],
@@ -3318,7 +3332,9 @@
     "KAIAUSDT": [],
     "KAITOUSDT": [],
     "KATUSDT": [],
-    "KAVAUSDT": [],
+    "KAVAUSDT": [
+      1794108600000
+    ],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
     "KITEUSDT": [],
@@ -3392,9 +3408,7 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [
-      1794107700000
-    ],
+    "ONEUSDT": [],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -3771,9 +3785,7 @@
     "GENIUSUSDT": [],
     "GEVBUSDT": [],
     "GIGGLEUSDT": [],
-    "GLMRUSDT": [
-      1794107700000
-    ],
+    "GLMRUSDT": [],
     "GLMUSDT": [],
     "GLWBUSDT": [],
     "GMEBUSDT": [],
@@ -3872,9 +3884,7 @@
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
-    "MITOUSDT": [
-      1794107700000
-    ],
+    "MITOUSDT": [],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
@@ -4079,7 +4089,9 @@
     "XRPUSDT": [],
     "XTZUSDT": [],
     "XVGUSDT": [],
-    "XVSUSDT": [],
+    "XVSUSDT": [
+      1794108600000
+    ],
     "YBUSDT": [],
     "YFIUSDT": [],
     "YGGUSDT": [],
@@ -4256,7 +4268,9 @@
     "DYDXUSDT": [],
     "DYMUSDT": [],
     "EDENUSDT": [],
-    "EDUUSDT": [],
+    "EDUUSDT": [
+      1794108600000
+    ],
     "EGLDUSDT": [],
     "EIGENUSDT": [],
     "ENAUSDT": [],
@@ -4349,7 +4363,9 @@
     "KAIAUSDT": [],
     "KAITOUSDT": [],
     "KATUSDT": [],
-    "KAVAUSDT": [],
+    "KAVAUSDT": [
+      1794108600000
+    ],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
     "KITEUSDT": [],
@@ -5150,9 +5166,11 @@
     "buy:BREVUSDT:1794105000000:1",
     "buy:LAYERUSDT:1794105000000:1",
     "buy:ONEUSDT:1794105000000:2",
-    "exit:HMSTRUSDT:1794106800000"
+    "exit:HMSTRUSDT:1794106800000",
+    "buy:EDUUSDT:1794108600000:1",
+    "buy:KAVAUSDT:1794108600000:1"
   ],
-  "cycles": 20,
-  "messages_sent": 10,
-  "last_cycle_ms": 1794109704100
+  "cycles": 21,
+  "messages_sent": 12,
+  "last_cycle_ms": 1794110597049
 }
