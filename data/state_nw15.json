@@ -471,10 +471,16 @@
       "last_entry_price": 0.0
     },
     "BARUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.217,
+        "entry_time": 1794160800000,
+        "signal_bar_time": 1794159900000,
+        "signal_price": 0.215,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794159900000,
+      "last_entry_price": 0.217
     },
     "BATUSDT": {
       "position": null,
@@ -3226,9 +3232,7 @@
     "AAVEUSDT": [],
     "ACEUSDT": [],
     "ACHUSDT": [],
-    "ACMUSDT": [
-      1794159000000
-    ],
+    "ACMUSDT": [],
     "ACTUSDT": [],
     "ADAUSDT": [],
     "ADBEBUSDT": [],
@@ -3289,7 +3293,9 @@
     "BANDUSDT": [],
     "BANKUSDT": [],
     "BARDUSDT": [],
-    "BARUSDT": [],
+    "BARUSDT": [
+      1794159900000
+    ],
     "BATUSDT": [],
     "BBBUSDT": [],
     "BBUSDT": [],
@@ -3358,9 +3364,7 @@
     "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
-    "DODOUSDT": [
-      1794159000000
-    ],
+    "DODOUSDT": [],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -3394,9 +3398,7 @@
     "FLUXUSDT": [],
     "FOGOUSDT": [],
     "FORMUSDT": [],
-    "FRAXUSDT": [
-      1794159000000
-    ],
+    "FRAXUSDT": [],
     "FTTUSDT": [],
     "FUSDT": [],
     "FWDIBUSDT": [],
@@ -3710,9 +3712,7 @@
     "XTZUSDT": [],
     "XVGUSDT": [],
     "XVSUSDT": [],
-    "YBUSDT": [
-      1794159000000
-    ],
+    "YBUSDT": [],
     "YFIUSDT": [],
     "YGGUSDT": [],
     "ZAMAUSDT": [],
@@ -4328,7 +4328,9 @@
     "BANDUSDT": [],
     "BANKUSDT": [],
     "BARDUSDT": [],
-    "BARUSDT": [],
+    "BARUSDT": [
+      1794159900000
+    ],
     "BATUSDT": [],
     "BBBUSDT": [],
     "BBUSDT": [],
@@ -5486,9 +5488,10 @@
     "buy:HEIUSDT:1794156300000:1",
     "buy:XPLUSDT:1794156300000:1",
     "buy:RESOLVUSDT:1794158100000:1",
-    "buy:DODOUSDT:1794159000000:1"
+    "buy:DODOUSDT:1794159000000:1",
+    "buy:BARUSDT:1794159900000:1"
   ],
-  "cycles": 78,
-  "messages_sent": 61,
-  "last_cycle_ms": 1794161001528
+  "cycles": 79,
+  "messages_sent": 62,
+  "last_cycle_ms": 1794161904851
 }
