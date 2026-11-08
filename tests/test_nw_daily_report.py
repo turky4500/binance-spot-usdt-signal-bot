@@ -1,8 +1,9 @@
 """اختبارات التقرير اليومي لـ NW 1H بعد تعديل 2026-11-08.
 
 * 12:00 AM بتوقيت الرياض، وعن **اليوم السابق** لا اليوم الحالي.
-* **أرقام فقط** بصيغة تقارير المستودع: مفتوحة / مغلقة / نجاح / خسارة /
-  نسبة النجاح / إجمالي الربح أو الخسارة. بلا أي قائمة صفقات.
+* **أرقام فقط** بصيغة تقارير المستودع: إجمالي التوصيات المرسلة لليوم /
+  مفتوحة / مغلقة / نجاح / خسارة / نسبة النجاح / إجمالي الربح أو الخسارة.
+  بلا أي قائمة صفقات.
 * بلا «دورات» و«تنبيهات»، وبلا تراكم للصفقات المُبلَّغ عنها سابقًا.
 
 هذا الملف جديد بالكامل، لا يعدّل اختبارات المستخدم.
@@ -86,6 +87,12 @@ def with_open_positions(bot, *symbols):
     bot.store.save(state)
 
 
+def with_sent_keys(bot, *keys):
+    state = bot.store.load()
+    state["sent"] = list(keys)
+    bot.store.save(state)
+
+
 # ── التوقيت ────────────────────────────────────────────────────────────────
 
 @pytest.mark.parametrize("hour,minute", [
@@ -143,6 +150,7 @@ def test_report_contains_only_the_requested_numbers(tmp_path):
     ])
 
     text = dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 10))
+    assert "📥 إجمالي التوصيات المرسلة لليوم: 0" in text
     assert "📌 مفتوحة حاليًا: 2" in text
     assert "🔒 الصفقات المغلقة: 2" in text
     assert "✅ نجاح: 1 • 🛑 خسارة: 1" in text
@@ -199,6 +207,7 @@ def test_no_cycles_and_no_alerts_lines(tmp_path):
 def test_empty_report_is_all_zeros(tmp_path):
     bot = FakeBot(tmp_path)
     text = dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 10))
+    assert "📥 إجمالي التوصيات المرسلة لليوم: 0" in text
     assert "📌 مفتوحة حاليًا: 0" in text
     assert "🔒 الصفقات المغلقة: 0" in text
     assert "✅ نجاح: 0 • 🛑 خسارة: 0" in text
@@ -211,7 +220,7 @@ def test_text_is_short_and_has_no_trade_list(tmp_path):
     with_open_positions(bot, *[f"S{i}USDT" for i in range(30)])
     text = dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 10))
     assert len(text) < 400
-    assert len(text.splitlines()) <= 9
+    assert len(text.splitlines()) <= 10
 
 
 # ── منع التراكم ────────────────────────────────────────────────────────────
@@ -311,6 +320,7 @@ def test_15m_bot_sends_its_own_report_at_same_time(monkeypatch, tmp_path):
     text = bot.tg.messages[-1]
     assert f"({FRAME_LABEL_15M})" in text
     assert "(NW 1H)" not in text
+    assert "📥 إجمالي التوصيات المرسلة لليوم: 0" in text
     assert "📌 مفتوحة حاليًا: 1" in text
     assert "🔒 الصفقات المغلقة: 1" in text
     assert "✅ نجاح: 1 • 🛑 خسارة: 0" in text
@@ -350,3 +360,73 @@ def test_15m_report_does_not_accumulate_and_is_isolated_from_1h(monkeypatch, tmp
     assert "(NW 1H)" in text1h and "(NW 15M)" not in text1h
     assert "daily_report_nw" in bot1h.store.load()
     assert REPORT_STATE_KEY_15M not in bot1h.store.load()
+
+
+# ── إجمالي التوصيات المرسلة لليوم (طلب المستخدم 2026-11-08) ────────────────
+
+def test_total_sent_today_counts_only_this_days_entry_messages(tmp_path):
+    """يُعدّ كل buy: داخل اليوم فقط، بلا خروج ولا عدّاد تراكمي ولا مفاتيح تالفة."""
+    bot = FakeBot(tmp_path)
+    day_start = ms(2026, 11, 8, 0, 0)
+    # زمن الرسالة = bar_time + ساعة (1H) ⇒ confirm_bar_time المطبوع في الرسالة
+    inside = day_start - 3_600_000                       # ⇒ 00:00 داخل اليوم
+    before = day_start - 7_200_000                       # ⇒ 23:00 اليوم السابق
+    after = ms(2026, 11, 9, 0, 0) - 3_600_000            # ⇒ 00:00 اليوم التالي
+    state = bot.store.load()
+    state["messages_sent"] = 111
+    bot.store.save(state)
+    with_sent_keys(bot,
+                   f"buy:AUSDT:{inside}:1",
+                   f"buy:BUSDT:{inside + 3_600_000}:1",   # ⇒ 01:00 داخل اليوم
+                   f"buy:AUSDT:{inside}:2",                # «إشارة دخول ثانية»
+                   f"buy:DUSDT:{before}:1",
+                   f"buy:EUSDT:{after}:1",
+                   f"exit:FUSDT:{inside}",                 # الخروج لا يُعدّ
+                   "buy:broken", "garbage")               # مفاتيح غير صالحة
+
+    text = dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 10))
+    assert "📥 إجمالي التوصيات المرسلة لليوم: 3" in text
+    assert "111" not in text                              # لا messages_sent
+    assert "دورات" not in text and "التنبيهات" not in text
+
+
+def test_total_sent_today_does_not_accumulate_to_next_day(tmp_path):
+    """اليوم التالي يبدأ من صفر، ولا يُعاد عدّ توصيات اليوم السابق."""
+    bot = FakeBot(tmp_path)
+    with_sent_keys(bot, f"buy:AUSDT:{ms(2026, 11, 8, 2, 0) - 3_600_000}:1")
+
+    day1 = dr.send_daily_report_if_due(bot, ms(2026, 11, 9, 0, 10))
+    assert "📥 إجمالي التوصيات المرسلة لليوم: 1" in day1
+    day2 = dr.send_daily_report_if_due(bot, ms(2026, 11, 10, 0, 10))
+    assert "📥 إجمالي التوصيات المرسلة لليوم: 0" in day2
+
+
+def test_15m_total_uses_15_minute_interval(monkeypatch, tmp_path):
+    """شمعة 23:15 ⇒ رسالة 23:30 داخل اليوم بـ15m، و00:15 خارجه بـ1h."""
+    from src.nw_15m_bot import INTERVAL_MS_15M, build_nw_15m_bot
+
+    monkeypatch.setenv("TELEGRAM_MUTE", "1")
+    monkeypatch.setenv("NW_STATE_FILE", str(tmp_path / "state15.json"))
+    monkeypatch.setenv("NW_TRADE_LOG", str(tmp_path / "trades15.csv"))
+    bot = build_nw_15m_bot()
+    bot.tg = FakeTelegram()
+    bar = ms(2026, 11, 8, 23, 15)
+    with_sent_keys(bot, f"buy:S15USDT:{bar}:1")
+    assert INTERVAL_MS_15M == 900_000
+
+    assert bot.send_daily_report_if_due(ms(2026, 11, 9, 0, 10)) is None
+    text15 = bot.tg.messages[-1]
+    assert "📥 إجمالي التوصيات المرسلة لليوم: 1" in text15
+    assert "(NW 15M)" in text15
+
+    # نفس المفتاح مع طول شمعة 1H ⇒ زمن الرسالة 00:15 من اليوم التالي ⇒ لا يُعدّ
+    bot1h = FakeBot(tmp_path / "1h")
+    with_sent_keys(bot1h, f"buy:S15USDT:{bar}:1")
+    text1h = dr.send_daily_report_if_due(bot1h, ms(2026, 11, 9, 0, 10))
+    assert "📥 إجمالي التوصيات المرسلة لليوم: 0" in text1h
+
+
+def test_build_report_text_accepts_explicit_sent_today():
+    """الدالة العامة تبقى قابلة للاستدعاء مباشرة مع العدّاد الجديد."""
+    text = dr.build_report_text("2026-11-08", {"symbols": {}}, [], "NW 1H", 20)
+    assert "📥 إجمالي التوصيات المرسلة لليوم: 20" in text

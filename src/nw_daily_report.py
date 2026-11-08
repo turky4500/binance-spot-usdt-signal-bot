@@ -5,12 +5,20 @@
 * **التوقيت:** يُرسل مرة واحدة في أول دورة بعد منتصف الليل (00:00–00:59
   بتوقيت الرياض = 21:00–21:59 UTC)، ويحمل تاريخ **اليوم السابق** الذي انتهى
   للتو. لا يُرسل في أي ساعة أخرى، ولا مرتين لنفس اليوم.
-* **المحتوى — أرقام فقط، بلا أي قائمة صفقات:** عدد المفتوحة، عدد المغلقة،
-  الناجح، الخاسر، نسبة النجاح، وإجمالي الربح/الخسارة. الصيغة مأخوذة من
-  تقارير المستودع ``zigzag_bot.py`` / ``app.py`` / ``daily_trend_bot.py``،
-  ونسبة النجاح من ``src/trade_analysis.py::success_rate_percent``.
+* **المحتوى — أرقام فقط، بلا أي قائمة صفقات:** إجمالي التوصيات المرسلة
+  لليوم، عدد المفتوحة، عدد المغلقة، الناجح، الخاسر، نسبة النجاح، وإجمالي
+  الربح/الخسارة. الصيغة مأخوذة من تقارير المستودع ``zigzag_bot.py`` /
+  ``app.py`` / ``daily_trend_bot.py``، ونسبة النجاح من
+  ``src/trade_analysis.py::success_rate_percent``.
   **بلا** أسماء عملات ولا أسعار ولا أوقات إغلاق، **وبلا** «دورات البوت»
   و«التنبيهات المرسلة».
+* **إجمالي التوصيات المرسلة لليوم (طلب المستخدم 2026-11-08):** عدد رسائل
+  الدخول التي طابعها الزمني داخل اليوم المشمول فقط، مُستخرج من مفاتيح
+  ``buy:`` في الحالة. يُعدّ كل ``buy:`` بما فيها «إشارة دخول ثانية»؛ ولا
+  تُعدّ رسائل الخروج، ولا العدّاد التراكمي ``messages_sent``، ولا أي يوم
+  سابق ⇒ لا تراكم. زمن الرسالة هو ``confirm_bar_time = bar_time + طول
+  الشمعة`` (كما يُطبع في ``entry_message`` / ``repeat_message``)، ويُمرَّر
+  طول الشمعة من كل نظام: 1H = 3,600,000 ms، 15M = 900,000 ms.
 * **منع التراكم:** مفتاح كل صفقة ``symbol:entry_time:exit_time`` يُحفظ في
   ``daily_report_nw.reported_trade_keys`` بعد نجاح الإرسال فقط، فلا تُعاد
   الصفقة نفسها في تقرير لاحق. الصفقات التي أُغلقت ولم يُبلَّغ عنها سابقًا
@@ -35,6 +43,7 @@ _LOG = logging.getLogger(__name__)
 
 REPORT_HOUR_RIYADH = 0          # 12:00 AM ⇒ 12:59 AM بتوقيت الرياض
 MAX_REPORTED_KEYS = 400        # سقف مفاتيح الصفقات المُبلَّغ عنها
+INTERVAL_MS_1H = 3_600_000     # طول شمعة فريم الساعة
 
 
 def _trade_key(row: dict) -> str:
@@ -76,11 +85,40 @@ def _net(row: dict) -> float:
         return 0.0
 
 
+def _count_sent_recommendations(state: dict, start_ms: int, end_ms: int,
+                                interval_ms: int) -> int:
+    """عدد رسائل الدخول المرسلة داخل يوم واحد فقط — بلا تراكم.
+
+    مفتاح الإرسال ``buy:SYM:<bar_time>:<n>``؛ ``n`` هو ترتيب رسالة الدخول
+    (1 = توصية دخول، 2+ = إشارة دخول ثانية/ثالثة…). الطابع الزمني المطبوع
+    في الرسالة هو ``confirm_bar_time = bar_time + طول الشمعة``، ولذلك
+    يُمرَّر ``interval_ms`` من كل نظام. تُعدّ كل مفاتيح ``buy:`` ولا تُعدّ
+    مفاتيح ``exit:`` ولا ``messages_sent`` التراكمي. المفاتيح غير الصالحة
+    تُهمَل بأمان.
+    """
+    total = 0
+    for key in state.get("sent") or []:
+        if not isinstance(key, str) or not key.startswith("buy:"):
+            continue
+        parts = key.split(":")
+        if len(parts) != 4:
+            continue
+        try:
+            bar_ms = int(parts[2])
+        except ValueError:
+            continue
+        msg_ms = bar_ms + int(interval_ms)
+        if int(start_ms) <= msg_ms < int(end_ms):
+            total += 1
+    return total
+
+
 def build_report_text(report_day: str, state: dict, new_closed: list[dict],
-                      frame_label: str = "NW 1H") -> str:
+                      frame_label: str = "NW 1H", sent_today: int = 0) -> str:
     """أرقام فقط — نفس صيغة تقارير المستودع، بلا قائمة صفقات.
 
     ``frame_label`` يميّز تقرير 1H عن تقرير 15M؛ الصيغة والتوقيت واحد.
+    ``sent_today`` هو عدد التوصيات المرسلة في اليوم المشمول فقط.
     """
     open_count = len(_open_positions(state))
     closed_count = len(new_closed)
@@ -94,6 +132,7 @@ def build_report_text(report_day: str, state: dict, new_closed: list[dict],
         "",
         f"📅 اليوم: `{report_day}` (حتى 12:00 AM بتوقيت الرياض)",
         "",
+        f"📥 إجمالي التوصيات المرسلة لليوم: {int(sent_today)}",
         f"📌 مفتوحة حاليًا: {open_count}",
         f"🔒 الصفقات المغلقة: {closed_count}",
         f"✅ نجاح: {wins} • 🛑 خسارة: {losses}",
@@ -104,7 +143,8 @@ def build_report_text(report_day: str, state: dict, new_closed: list[dict],
 
 def send_daily_report_if_due(bot: Any, now_ms: int,
                              frame_label: str = "NW 1H",
-                             state_key: str = "daily_report_nw") -> str | None:
+                             state_key: str = "daily_report_nw",
+                             interval_ms: int = INTERVAL_MS_1H) -> str | None:
     """يُرسل تقرير اليوم السابق مرة واحدة عند 12 AM الرياض. يُعيد النص أو None.
 
     ``bot`` هو كائن ``NWBot`` (نعتمد على ``store`` و``trade_log`` و``tg`` فقط)،
@@ -112,7 +152,8 @@ def send_daily_report_if_due(bot: Any, now_ms: int,
 
     ``frame_label`` و``state_key`` يسمحان لنظام 15M بتقرير مستقل بنفس الصيغة
     والتوقيت، بمفتاح حالة منفصل داخل ``data/state_nw15.json``، فلا يشارك 1H
-    سجل الصفقات المُبلَّغ عنها ولا يمنع تقريره.
+    سجل الصفقات المُبلَّغ عنها ولا يمنع تقريره. ``interval_ms`` هو طول شمعة
+    النظام، ويُستخدم لتحديد زمن رسالة الدخول من مفتاح الإرسال.
     """
     now = datetime.fromtimestamp(int(now_ms) / 1000, RIYADH)
     if now.hour != REPORT_HOUR_RIYADH:
@@ -122,6 +163,7 @@ def send_daily_report_if_due(bot: Any, now_ms: int,
     day_end = now.replace(hour=0, minute=0, second=0, microsecond=0)
     day_start = day_end - timedelta(days=1)
     end_ms = int(day_end.timestamp() * 1000)
+    start_ms = int(day_start.timestamp() * 1000)
     report_day = day_start.date().isoformat()
 
     state = bot.store.load()
@@ -140,7 +182,8 @@ def send_daily_report_if_due(bot: Any, now_ms: int,
             seen.add(k)
             new_closed.append(r)
 
-    text = build_report_text(report_day, state, new_closed, frame_label)
+    sent_today = _count_sent_recommendations(state, start_ms, end_ms, interval_ms)
+    text = build_report_text(report_day, state, new_closed, frame_label, sent_today)
     try:
         bot.tg.send_message(text)
     except Exception as e:                       # لا تُسجَّل الصفقة إن فشل الإرسال
@@ -153,6 +196,7 @@ def send_daily_report_if_due(bot: Any, now_ms: int,
     )[-MAX_REPORTED_KEYS:]
     state[state_key] = report_state
     bot.store.save(state)
-    _LOG.info("✅ أُرسل تقرير %s عن يوم %s (مفتوحة=%d مغلقة_جديدة=%d)",
-              frame_label, report_day, len(_open_positions(state)), len(new_closed))
+    _LOG.info("✅ أُرسل تقرير %s عن يوم %s (مفتوحة=%d مغلقة_جديدة=%d توصيات_اليوم=%d)",
+              frame_label, report_day, len(_open_positions(state)), len(new_closed),
+              sent_today)
     return text

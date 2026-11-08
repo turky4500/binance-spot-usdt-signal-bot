@@ -9,7 +9,8 @@
     3. ``bot.trade_log``              ⇒ ``data/trades_log_nw15.csv`` (معزول).
     4. ``_send_once`` مُغلَّف          ⇒ سطر «🕐 فريم 15 دقيقة (15M)» في الرسالة.
     5. ``send_daily_report_if_due``  ⇒ تقرير يومي مستقل بنفس صيغة/توقيت 1H،
-       بعنوان «NW 15M» ومفتاح حالة ``daily_report_nw15`` (معزول عن 1H).
+       بعنوان «NW 15M» ومفتاح حالة ``daily_report_nw15`` (معزول عن 1H)،
+       و«إجمالي التوصيات المرسلة لليوم» محسوب بطول شمعة 15m.
 
 كل شروط الإشارة تبقى حرفيًا شروط 1H: مؤشر Envelope [LuxAlgo]، h=8، mult=3،
 src=close، نافذة 500، sae/499*3، ``bars_ago==1`` فقط، شمعة تالية خضراء ⇒
@@ -29,6 +30,7 @@ from src.nw_daily_report import send_daily_report_if_due as _daily_report
 from src.nw_state import NWStateStore
 
 INTERVAL_15M = "15m"
+INTERVAL_MS_15M = 900_000        # طول شمعة 15m لحساب زمن رسالة الدخول في التقرير
 STATE_15M = "data/state_nw15.json"
 TRADE_LOG_15M = "data/trades_log_nw15.csv"
 FRAME_LABEL_15M = "NW 15M"
@@ -55,11 +57,13 @@ def build_nw_15m_bot() -> NWBot:
     # تقرير يومي مستقل لفريم 15M: **نفس** صيغة تقرير 1H و**نفس** توقيته
     # (12:00 AM الرياض، اليوم السابق)، بعنوان «NW 15M» وحالة/دفتر معزولين،
     # ومفتاح حالة مستقل ``daily_report_nw15`` ⇒ لا يتشارك سجل منع التراكم
-    # مع 1H ولا يمنع تقريره. لا تعديل على nw_bot.py ولا على شروط الإشارات.
+    # مع 1H ولا يمنع تقريره. عدد «التوصيات المرسلة لليوم» يُحسب بطول شمعة
+    # 15m لا 1h. لا تعديل على nw_bot.py ولا على شروط الإشارات.
     def _send_15m_daily_report(now_ms: int) -> None:
         _daily_report(bot, now_ms,
                       frame_label=FRAME_LABEL_15M,
-                      state_key=REPORT_STATE_KEY_15M)
+                      state_key=REPORT_STATE_KEY_15M,
+                      interval_ms=INTERVAL_MS_15M)
 
     bot.send_daily_report_if_due = _send_15m_daily_report  # type: ignore[method-assign]
 

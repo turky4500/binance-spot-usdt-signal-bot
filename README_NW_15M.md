@@ -35,7 +35,8 @@
 - `src/nw_15m_bot.py` — يبني نفس بوت 1H ثم يضبط `interval="15m"`، الحالة،
   الدفتر، ويُغلّف نقطة الإرسال الوحيدة `_send_once`. ويربط تقريرًا يوميًا
   مستقلًا بنفس صيغة/توقيت 1H بعنوان «NW 15M» ومفتاح حالة `daily_report_nw15`
-  (راجع `README_NW_DAILY_REPORT.md`).
+  (راجع `README_NW_DAILY_REPORT.md`)، مع سطر «إجمالي التوصيات المرسلة لليوم»
+  محسوبًا بطول شمعة 15m عبر `interval_ms=INTERVAL_MS_15M` لا طول شمعة 1H.
 - `run_nw15_once.py` — دورة واحدة.
 - `.github/workflows/nw-bot-15m.yml` — أربع دورات/ساعة + `workflow_dispatch`.
 - `.github/workflows/nw-bot-15m-trigger.yml` — محفّز احتياطي على اكتمال
