@@ -603,10 +603,16 @@
       "last_entry_price": 0.0714
     },
     "BRKBBUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 570.24,
+        "entry_time": 1794141900000,
+        "signal_bar_time": 1794141000000,
+        "signal_price": 567.53,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794141000000,
+      "last_entry_price": 570.24
     },
     "BROCCOLI714USDT": {
       "position": null,
@@ -3250,16 +3256,16 @@
     "BONKUSDT": [],
     "BOTBUSDT": [],
     "BREVUSDT": [],
-    "BRKBBUSDT": [],
+    "BRKBBUSDT": [
+      1794141000000
+    ],
     "BROCCOLI714USDT": [],
     "BSPBUSDT": [],
     "BTCUSDT": [],
     "BTTCUSDT": [],
     "C98USDT": [],
     "CAKEUSDT": [],
-    "CATIUSDT": [
-      1794140100000
-    ],
+    "CATIUSDT": [],
     "CBRSBUSDT": [],
     "CELOUSDT": [],
     "CELRUSDT": [],
@@ -3364,9 +3370,7 @@
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [
-      1794140100000
-    ],
+    "HMSTRUSDT": [],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -3413,9 +3417,7 @@
     "LAYERUSDT": [],
     "LAZIOUSDT": [],
     "LDOUSDT": [],
-    "LINEAUSDT": [
-      1794140100000
-    ],
+    "LINEAUSDT": [],
     "LINKUSDT": [],
     "LISTAUSDT": [],
     "LITEBUSDT": [],
@@ -3711,7 +3713,9 @@
     "APTUSDT": [],
     "ARBUSDT": [],
     "ARKMUSDT": [],
-    "ARKUSDT": [],
+    "ARKUSDT": [
+      1794141000000
+    ],
     "ARMBUSDT": [],
     "ARPAUSDT": [],
     "ARUSDT": [],
@@ -4283,7 +4287,9 @@
     "BREVUSDT": [
       1794105000000
     ],
-    "BRKBBUSDT": [],
+    "BRKBBUSDT": [
+      1794141000000
+    ],
     "BROCCOLI714USDT": [],
     "BSPBUSDT": [],
     "BTCUSDT": [],
@@ -5328,9 +5334,10 @@
     "buy:SIGNUSDT:1794135600000:2",
     "buy:HMSTRUSDT:1794136500000:2",
     "exit:FTTUSDT:1794139200000",
-    "buy:LINEAUSDT:1794140100000:1"
+    "buy:LINEAUSDT:1794140100000:1",
+    "buy:BRKBBUSDT:1794141000000:1"
   ],
-  "cycles": 56,
-  "messages_sent": 37,
-  "last_cycle_ms": 1794142105848
+  "cycles": 57,
+  "messages_sent": 38,
+  "last_cycle_ms": 1794143006256
 }
