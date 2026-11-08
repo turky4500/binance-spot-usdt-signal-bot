@@ -915,10 +915,16 @@
       "last_entry_price": 0.0
     },
     "DODOUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.022,
+        "entry_time": 1794159900000,
+        "signal_bar_time": 1794159000000,
+        "signal_price": 0.02195,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794159000000,
+      "last_entry_price": 0.022
     },
     "DOGEUSDT": {
       "position": null,
@@ -3220,7 +3226,9 @@
     "AAVEUSDT": [],
     "ACEUSDT": [],
     "ACHUSDT": [],
-    "ACMUSDT": [],
+    "ACMUSDT": [
+      1794159000000
+    ],
     "ACTUSDT": [],
     "ADAUSDT": [],
     "ADBEBUSDT": [],
@@ -3279,9 +3287,7 @@
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
     "BANDUSDT": [],
-    "BANKUSDT": [
-      1794158100000
-    ],
+    "BANKUSDT": [],
     "BARDUSDT": [],
     "BARUSDT": [],
     "BATUSDT": [],
@@ -3349,12 +3355,12 @@
     "DCRUSDT": [],
     "DELLBUSDT": [],
     "DEXEUSDT": [],
-    "DGBUSDT": [
-      1794158100000
-    ],
+    "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
-    "DODOUSDT": [],
+    "DODOUSDT": [
+      1794159000000
+    ],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -3388,7 +3394,9 @@
     "FLUXUSDT": [],
     "FOGOUSDT": [],
     "FORMUSDT": [],
-    "FRAXUSDT": [],
+    "FRAXUSDT": [
+      1794159000000
+    ],
     "FTTUSDT": [],
     "FUSDT": [],
     "FWDIBUSDT": [],
@@ -3578,9 +3586,7 @@
     "REDUSDT": [],
     "RENDERUSDT": [],
     "REQUSDT": [],
-    "RESOLVUSDT": [
-      1794158100000
-    ],
+    "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
     "RIFUSDT": [],
@@ -3704,7 +3710,9 @@
     "XTZUSDT": [],
     "XVGUSDT": [],
     "XVSUSDT": [],
-    "YBUSDT": [],
+    "YBUSDT": [
+      1794159000000
+    ],
     "YFIUSDT": [],
     "YGGUSDT": [],
     "ZAMAUSDT": [],
@@ -4402,7 +4410,9 @@
     ],
     "DIAUSDT": [],
     "DJTBUSDT": [],
-    "DODOUSDT": [],
+    "DODOUSDT": [
+      1794159000000
+    ],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -4837,7 +4847,8 @@
     "ACEUSDT": [],
     "ACHUSDT": [],
     "ACMUSDT": [
-      1794156300000
+      1794156300000,
+      1794159000000
     ],
     "ACTUSDT": [
       1794139200000
@@ -5032,7 +5043,8 @@
     "FOGOUSDT": [],
     "FORMUSDT": [],
     "FRAXUSDT": [
-      1794129300000
+      1794129300000,
+      1794159000000
     ],
     "FTTUSDT": [
       1794111300000
@@ -5394,7 +5406,9 @@
     "XTZUSDT": [],
     "XVGUSDT": [],
     "XVSUSDT": [],
-    "YBUSDT": [],
+    "YBUSDT": [
+      1794159000000
+    ],
     "YFIUSDT": [],
     "YGGUSDT": [],
     "ZAMAUSDT": [],
@@ -5471,9 +5485,10 @@
     "buy:GNOUSDT:1794156300000:6",
     "buy:HEIUSDT:1794156300000:1",
     "buy:XPLUSDT:1794156300000:1",
-    "buy:RESOLVUSDT:1794158100000:1"
+    "buy:RESOLVUSDT:1794158100000:1",
+    "buy:DODOUSDT:1794159000000:1"
   ],
-  "cycles": 77,
-  "messages_sent": 60,
-  "last_cycle_ms": 1794160101007
+  "cycles": 78,
+  "messages_sent": 61,
+  "last_cycle_ms": 1794161001528
 }
