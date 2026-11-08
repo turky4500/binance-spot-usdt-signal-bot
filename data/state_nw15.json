@@ -141,14 +141,8 @@
       "last_entry_price": 0.0
     },
     "AIUSDT": {
-      "position": {
-        "entry_price": 0.0155,
-        "entry_time": 1794122100000,
-        "signal_bar_time": 1794121200000,
-        "signal_price": 0.0155,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794121200000,
       "last_entry_price": 0.0155
     },
@@ -3382,7 +3376,9 @@
     "HIVEUSDT": [],
     "HMSTRUSDT": [],
     "HOLOUSDT": [],
-    "HOMEUSDT": [],
+    "HOMEUSDT": [
+      1794155400000
+    ],
     "HOODBUSDT": [],
     "HOTUSDT": [],
     "HPEBUSDT": [],
@@ -3488,7 +3484,9 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [],
+    "ONEUSDT": [
+      1794155400000
+    ],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -3518,9 +3516,7 @@
     "PORTOUSDT": [],
     "POWRUSDT": [],
     "PROMUSDT": [],
-    "PROVEUSDT": [
-      1794154500000
-    ],
+    "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
     "PUNDIXUSDT": [],
@@ -3704,7 +3700,9 @@
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
     "AIGENSYNUSDT": [],
-    "AIUSDT": [],
+    "AIUSDT": [
+      1794155400000
+    ],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
     "ALGOUSDT": [],
@@ -3875,7 +3873,7 @@
     "GMXUSDT": [],
     "GNOUSDT": [],
     "GNSUSDT": [
-      1794154500000
+      1794155400000
     ],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -4060,7 +4058,9 @@
     "RONINUSDT": [],
     "ROSEUSDT": [],
     "RPLUSDT": [],
-    "RSRUSDT": [],
+    "RSRUSDT": [
+      1794155400000
+    ],
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
@@ -5019,7 +5019,8 @@
     ],
     "HOLOUSDT": [],
     "HOMEUSDT": [
-      1794145500000
+      1794145500000,
+      1794155400000
     ],
     "HOODBUSDT": [],
     "HOTUSDT": [
@@ -5138,7 +5139,8 @@
     "ONDOUSDT": [],
     "ONEUSDT": [
       1794107700000,
-      1794133800000
+      1794133800000,
+      1794155400000
     ],
     "ONGUSDT": [],
     "ONTUSDT": [],
@@ -5395,9 +5397,10 @@
     "buy:GNOUSDT:1794151800000:5",
     "exit:ONEUSDT:1794151800000",
     "exit:GNSUSDT:1794153600000",
-    "buy:PROVEUSDT:1794154500000:1"
+    "buy:PROVEUSDT:1794154500000:1",
+    "exit:AIUSDT:1794155400000"
   ],
-  "cycles": 73,
-  "messages_sent": 51,
-  "last_cycle_ms": 1794156497150
+  "cycles": 74,
+  "messages_sent": 52,
+  "last_cycle_ms": 1794157405726
 }
