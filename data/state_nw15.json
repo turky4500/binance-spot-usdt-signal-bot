@@ -2415,10 +2415,16 @@
       "last_entry_price": 0.0
     },
     "RSRUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.001705,
+        "entry_time": 1794163500000,
+        "signal_bar_time": 1794162600000,
+        "signal_price": 0.001673,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794162600000,
+      "last_entry_price": 0.001705
     },
     "RUNEUSDT": {
       "position": null,
@@ -3569,9 +3575,7 @@
     "POLUSDT": [],
     "POLYXUSDT": [],
     "PORTALUSDT": [],
-    "PORTOUSDT": [
-      1794161700000
-    ],
+    "PORTOUSDT": [],
     "POWRUSDT": [],
     "PROMUSDT": [],
     "PROVEUSDT": [],
@@ -3604,7 +3608,9 @@
     "RONINUSDT": [],
     "ROSEUSDT": [],
     "RPLUSDT": [],
-    "RSRUSDT": [],
+    "RSRUSDT": [
+      1794162600000
+    ],
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
@@ -3928,16 +3934,16 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
-    "GNSUSDT": [
-      1794161700000
-    ],
+    "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
-    "GTCUSDT": [],
+    "GTCUSDT": [
+      1794162600000
+    ],
     "GUNUSDT": [],
     "GUSDT": [],
     "HAEDALUSDT": [],
@@ -3959,7 +3965,9 @@
     "ICPUSDT": [],
     "IDUSDT": [],
     "ILVUSDT": [],
-    "IMXUSDT": [],
+    "IMXUSDT": [
+      1794162600000
+    ],
     "INITUSDT": [],
     "INJUSDT": [],
     "INTCBUSDT": [],
@@ -4703,7 +4711,9 @@
     "RONINUSDT": [],
     "ROSEUSDT": [],
     "RPLUSDT": [],
-    "RSRUSDT": [],
+    "RSRUSDT": [
+      1794162600000
+    ],
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
@@ -5506,9 +5516,10 @@
     "buy:RESOLVUSDT:1794158100000:1",
     "buy:DODOUSDT:1794159000000:1",
     "buy:BARUSDT:1794159900000:1",
-    "buy:PORTOUSDT:1794161700000:1"
+    "buy:PORTOUSDT:1794161700000:1",
+    "buy:RSRUSDT:1794162600000:1"
   ],
-  "cycles": 81,
-  "messages_sent": 63,
-  "last_cycle_ms": 1794163695872
+  "cycles": 82,
+  "messages_sent": 64,
+  "last_cycle_ms": 1794164598879
 }
