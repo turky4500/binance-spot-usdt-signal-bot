@@ -2199,10 +2199,16 @@
       "last_entry_price": 0.0
     },
     "PORTOUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.362,
+        "entry_time": 1794162600000,
+        "signal_bar_time": 1794161700000,
+        "signal_price": 0.362,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794161700000,
+      "last_entry_price": 0.362
     },
     "POWRUSDT": {
       "position": null,
@@ -3458,9 +3464,7 @@
     "JSTUSDT": [],
     "JTOUSDT": [],
     "JUPUSDT": [],
-    "JUVUSDT": [
-      1794160800000
-    ],
+    "JUVUSDT": [],
     "KAIAUSDT": [],
     "KAITOUSDT": [],
     "KATUSDT": [],
@@ -3475,9 +3479,7 @@
     "KSTRBUSDT": [],
     "LAUSDT": [],
     "LAYERUSDT": [],
-    "LAZIOUSDT": [
-      1794160800000
-    ],
+    "LAZIOUSDT": [],
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
@@ -3567,7 +3569,9 @@
     "POLUSDT": [],
     "POLYXUSDT": [],
     "PORTALUSDT": [],
-    "PORTOUSDT": [],
+    "PORTOUSDT": [
+      1794161700000
+    ],
     "POWRUSDT": [],
     "PROMUSDT": [],
     "PROVEUSDT": [],
@@ -3708,9 +3712,7 @@
     "XAUTUSDT": [],
     "XECUSDT": [],
     "XLMUSDT": [],
-    "XNOUSDT": [
-      1794160800000
-    ],
+    "XNOUSDT": [],
     "XPLUSDT": [],
     "XRPUSDT": [],
     "XTZUSDT": [],
@@ -3825,9 +3827,7 @@
     "BNBUSDT": [],
     "BNCBUSDT": [],
     "BNSOLUSDT": [],
-    "BNTUSDT": [
-      1794160800000
-    ],
+    "BNTUSDT": [],
     "BOMEUSDT": [],
     "BONKUSDT": [],
     "BOTBUSDT": [],
@@ -3928,7 +3928,9 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
-    "GNSUSDT": [],
+    "GNSUSDT": [
+      1794161700000
+    ],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
@@ -4089,9 +4091,7 @@
     "PYPLBUSDT": [],
     "PYTHUSDT": [],
     "QCOMBUSDT": [],
-    "QIUSDT": [
-      1794160800000
-    ],
+    "QIUSDT": [],
     "QKCUSDT": [],
     "QNTBUSDT": [],
     "QNTUSDT": [],
@@ -4664,7 +4664,9 @@
     "POLUSDT": [],
     "POLYXUSDT": [],
     "PORTALUSDT": [],
-    "PORTOUSDT": [],
+    "PORTOUSDT": [
+      1794161700000
+    ],
     "POWRUSDT": [],
     "PROMUSDT": [],
     "PROVEUSDT": [
@@ -5503,9 +5505,10 @@
     "buy:XPLUSDT:1794156300000:1",
     "buy:RESOLVUSDT:1794158100000:1",
     "buy:DODOUSDT:1794159000000:1",
-    "buy:BARUSDT:1794159900000:1"
+    "buy:BARUSDT:1794159900000:1",
+    "buy:PORTOUSDT:1794161700000:1"
   ],
-  "cycles": 80,
-  "messages_sent": 62,
-  "last_cycle_ms": 1794162805849
+  "cycles": 81,
+  "messages_sent": 63,
+  "last_cycle_ms": 1794163695872
 }
