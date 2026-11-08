@@ -1269,14 +1269,8 @@
       "last_entry_price": 0.0
     },
     "HMSTRUSDT": {
-      "position": {
-        "entry_price": 0.0001319,
-        "entry_time": 1794093300000,
-        "signal_bar_time": 1794092400000,
-        "signal_price": 0.0001311,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794102300000,
       "last_entry_price": 0.0001296
     },
@@ -3798,7 +3792,9 @@
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [],
+    "HMSTRUSDT": [
+      1794106800000
+    ],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -3874,9 +3870,7 @@
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
-    "MITOUSDT": [
-      1794105900000
-    ],
+    "MITOUSDT": [],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
@@ -3986,7 +3980,9 @@
     "SHAZBUSDT": [],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
-    "SIGNUSDT": [],
+    "SIGNUSDT": [
+      1794106800000
+    ],
     "SKDDBUSDT": [],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
@@ -4067,7 +4063,9 @@
     "WDCBUSDT": [],
     "WENBUSDT": [],
     "WIFUSDT": [],
-    "WINUSDT": [],
+    "WINUSDT": [
+      1794106800000
+    ],
     "WLDUSDT": [],
     "WLFIUSDT": [],
     "WOOUSDT": [],
@@ -5149,9 +5147,10 @@
     "buy:ONEUSDT:1794102300000:1",
     "buy:BREVUSDT:1794105000000:1",
     "buy:LAYERUSDT:1794105000000:1",
-    "buy:ONEUSDT:1794105000000:2"
+    "buy:ONEUSDT:1794105000000:2",
+    "exit:HMSTRUSDT:1794106800000"
   ],
-  "cycles": 18,
-  "messages_sent": 9,
-  "last_cycle_ms": 1794107897116
+  "cycles": 19,
+  "messages_sent": 10,
+  "last_cycle_ms": 1794108808833
 }
