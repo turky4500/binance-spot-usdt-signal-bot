@@ -1214,11 +1214,11 @@
         "entry_time": 1794123000000,
         "signal_bar_time": 1794122100000,
         "signal_price": 110.32,
-        "entry_count": 3
+        "entry_count": 4
       },
-      "entry_count": 3,
-      "last_buy_bar": 1794147300000,
-      "last_entry_price": 109.94
+      "entry_count": 4,
+      "last_buy_bar": 1794150000000,
+      "last_entry_price": 109.27
     },
     "GNSUSDT": {
       "position": {
@@ -3251,7 +3251,9 @@
     "BANDUSDT": [],
     "BANKUSDT": [],
     "BARDUSDT": [],
-    "BARUSDT": [],
+    "BARUSDT": [
+      1794150000000
+    ],
     "BATUSDT": [],
     "BBBUSDT": [],
     "BBUSDT": [],
@@ -3369,7 +3371,9 @@
     "GMEBUSDT": [],
     "GMTUSDT": [],
     "GMXUSDT": [],
-    "GNOUSDT": [],
+    "GNOUSDT": [
+      1794150000000
+    ],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -4418,7 +4422,8 @@
     "GNOUSDT": [
       1794122100000,
       1794123900000,
-      1794147300000
+      1794147300000,
+      1794150000000
     ],
     "GNSUSDT": [
       1794129300000,
@@ -4846,7 +4851,9 @@
     "BANDUSDT": [],
     "BANKUSDT": [],
     "BARDUSDT": [],
-    "BARUSDT": [],
+    "BARUSDT": [
+      1794150000000
+    ],
     "BATUSDT": [],
     "BBBUSDT": [],
     "BBUSDT": [],
@@ -5382,9 +5389,10 @@
     "buy:TURTLEUSDT:1794146400000:1",
     "buy:GNOUSDT:1794147300000:3",
     "buy:TREEUSDT:1794147300000:1",
-    "buy:ATMUSDT:1794148200000:1"
+    "buy:ATMUSDT:1794148200000:1",
+    "buy:GNOUSDT:1794150000000:4"
   ],
-  "cycles": 66,
-  "messages_sent": 46,
-  "last_cycle_ms": 1794151105658
+  "cycles": 67,
+  "messages_sent": 47,
+  "last_cycle_ms": 1794152002118
 }
