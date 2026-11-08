@@ -248,11 +248,11 @@
         "entry_time": 1794052800000,
         "signal_bar_time": 1794049200000,
         "signal_price": 0.308,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794049200000,
-      "last_entry_price": 0.309
+      "entry_count": 2,
+      "last_buy_bar": 1794110400000,
+      "last_entry_price": 0.311
     },
     "DASHUSDT": {
       "position": null,
@@ -3205,7 +3205,9 @@
     "CUSDT": [],
     "CVCUSDT": [],
     "CVXUSDT": [],
-    "CYBERUSDT": [],
+    "CYBERUSDT": [
+      1794110400000
+    ],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
     "DCRUSDT": [],
@@ -3313,9 +3315,7 @@
     "KAIAUSDT": [],
     "KAITOUSDT": [],
     "KATUSDT": [],
-    "KAVAUSDT": [
-      1794106800000
-    ],
+    "KAVAUSDT": [],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
     "KITEUSDT": [],
@@ -4211,7 +4211,8 @@
     "CVCUSDT": [],
     "CVXUSDT": [],
     "CYBERUSDT": [
-      1794049200000
+      1794049200000,
+      1794110400000
     ],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
@@ -5197,11 +5198,12 @@
     "buy:MUBARAKUSDT:1794067200000:1",
     "buy:SIGNUSDT:1794088800000:1",
     "exit:SIGNUSDT:1794099600000",
-    "buy:KAVAUSDT:1794106800000:1"
+    "buy:KAVAUSDT:1794106800000:1",
+    "buy:CYBERUSDT:1794110400000:2"
   ],
-  "cycles": 105,
-  "messages_sent": 112,
-  "last_cycle_ms": 1794116005963,
+  "cycles": 106,
+  "messages_sent": 113,
+  "last_cycle_ms": 1794117805903,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
