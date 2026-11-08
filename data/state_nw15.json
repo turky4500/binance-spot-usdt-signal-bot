@@ -141,10 +141,16 @@
       "last_entry_price": 0.0
     },
     "AIUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.0155,
+        "entry_time": 1794122100000,
+        "signal_bar_time": 1794121200000,
+        "signal_price": 0.0155,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794121200000,
+      "last_entry_price": 0.0155
     },
     "AIXBTUSDT": {
       "position": null,
@@ -819,10 +825,16 @@
       "last_entry_price": 0.0
     },
     "CYBERUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.285,
+        "entry_time": 1794122100000,
+        "signal_bar_time": 1794121200000,
+        "signal_price": 0.284,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794121200000,
+      "last_entry_price": 0.285
     },
     "CYPHBUSDT": {
       "position": null,
@@ -3116,7 +3128,9 @@
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
     "AIGENSYNUSDT": [],
-    "AIUSDT": [],
+    "AIUSDT": [
+      1794121200000
+    ],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
     "ALGOUSDT": [],
@@ -3227,7 +3241,9 @@
     "CUSDT": [],
     "CVCUSDT": [],
     "CVXUSDT": [],
-    "CYBERUSDT": [],
+    "CYBERUSDT": [
+      1794121200000
+    ],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
     "DCRUSDT": [],
@@ -3702,9 +3718,7 @@
     "BROCCOLI714USDT": [],
     "BSPBUSDT": [],
     "BTCUSDT": [],
-    "BTTCUSDT": [
-      1794120300000
-    ],
+    "BTTCUSDT": [],
     "C98USDT": [],
     "CAKEUSDT": [],
     "CATIUSDT": [],
@@ -3796,9 +3810,7 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
-    "GNSUSDT": [
-      1794120300000
-    ],
+    "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
@@ -3853,7 +3865,9 @@
     "KGSTUSDT": [],
     "KITEUSDT": [],
     "KMNOUSDT": [],
-    "KNCUSDT": [],
+    "KNCUSDT": [
+      1794121200000
+    ],
     "KORUBUSDT": [],
     "KSMUSDT": [],
     "KSTRBUSDT": [],
@@ -3971,9 +3985,7 @@
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [
-      1794120300000
-    ],
+    "REQUSDT": [],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -3984,7 +3996,9 @@
     "RONINUSDT": [],
     "ROSEUSDT": [],
     "RPLUSDT": [],
-    "RSRUSDT": [],
+    "RSRUSDT": [
+      1794121200000
+    ],
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
@@ -4141,7 +4155,9 @@
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
     "AIGENSYNUSDT": [],
-    "AIUSDT": [],
+    "AIUSDT": [
+      1794121200000
+    ],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
     "ALGOUSDT": [],
@@ -4256,7 +4272,9 @@
     "CUSDT": [],
     "CVCUSDT": [],
     "CVXUSDT": [],
-    "CYBERUSDT": [],
+    "CYBERUSDT": [
+      1794121200000
+    ],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
     "DCRUSDT": [],
@@ -5200,9 +5218,11 @@
     "buy:MITOUSDT:1794111300000:1",
     "buy:FTTUSDT:1794114000000:1",
     "buy:MITOUSDT:1794115800000:2",
-    "exit:ONEUSDT:1794119400000"
+    "exit:ONEUSDT:1794119400000",
+    "buy:AIUSDT:1794121200000:1",
+    "buy:CYBERUSDT:1794121200000:1"
   ],
-  "cycles": 34,
-  "messages_sent": 18,
-  "last_cycle_ms": 1794122307227
+  "cycles": 35,
+  "messages_sent": 20,
+  "last_cycle_ms": 1794123204365
 }
