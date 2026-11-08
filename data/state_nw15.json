@@ -105,10 +105,16 @@
       "last_entry_price": 0.0
     },
     "ADXUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.0502,
+        "entry_time": 1794169800000,
+        "signal_bar_time": 1794168900000,
+        "signal_price": 0.05,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794168900000,
+      "last_entry_price": 0.0502
     },
     "AEROUSDT": {
       "position": null,
@@ -3254,7 +3260,9 @@
     "ACTUSDT": [],
     "ADAUSDT": [],
     "ADBEBUSDT": [],
-    "ADXUSDT": [],
+    "ADXUSDT": [
+      1794168900000
+    ],
     "AEROUSDT": [],
     "AEVOUSDT": [],
     "AGLDUSDT": [],
@@ -3423,9 +3431,7 @@
     "GENIUSUSDT": [],
     "GEVBUSDT": [],
     "GIGGLEUSDT": [],
-    "GLMRUSDT": [
-      1794168000000
-    ],
+    "GLMRUSDT": [],
     "GLMUSDT": [],
     "GLWBUSDT": [],
     "GMEBUSDT": [],
@@ -3835,7 +3841,9 @@
     "BIOUSDT": [],
     "BLURUSDT": [],
     "BMNRBUSDT": [],
-    "BMTUSDT": [],
+    "BMTUSDT": [
+      1794168900000
+    ],
     "BNBUSDT": [],
     "BNCBUSDT": [],
     "BNSOLUSDT": [],
@@ -3940,9 +3948,7 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
-    "GNSUSDT": [
-      1794168000000
-    ],
+    "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
@@ -4279,7 +4285,9 @@
     ],
     "ADAUSDT": [],
     "ADBEBUSDT": [],
-    "ADXUSDT": [],
+    "ADXUSDT": [
+      1794168900000
+    ],
     "AEROUSDT": [],
     "AEVOUSDT": [],
     "AGLDUSDT": [
@@ -5529,9 +5537,10 @@
     "buy:RSRUSDT:1794162600000:1",
     "buy:GLMRUSDT:1794163500000:1",
     "buy:LAZIOUSDT:1794166200000:1",
-    "exit:RSRUSDT:1794167100000"
+    "exit:RSRUSDT:1794167100000",
+    "buy:ADXUSDT:1794168900000:1"
   ],
-  "cycles": 89,
-  "messages_sent": 67,
-  "last_cycle_ms": 1794170643892
+  "cycles": 90,
+  "messages_sent": 68,
+  "last_cycle_ms": 1794170907041
 }
