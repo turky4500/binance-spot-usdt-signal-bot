@@ -2619,14 +2619,8 @@
       "last_entry_price": 0.0
     },
     "SIGNUSDT": {
-      "position": {
-        "entry_price": 0.00868,
-        "entry_time": 1794092400000,
-        "signal_bar_time": 1794088800000,
-        "signal_price": 0.00867,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794088800000,
       "last_entry_price": 0.00868
     },
@@ -3386,9 +3380,7 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [
-      1794096000000
-    ],
+    "ONEUSDT": [],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -3964,7 +3956,9 @@
     "SHAZBUSDT": [],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
-    "SIGNUSDT": [],
+    "SIGNUSDT": [
+      1794099600000
+    ],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
     "SKYUSDT": [],
@@ -5193,11 +5187,12 @@
     "buy:ATMUSDT:1794063600000:2",
     "buy:BARUSDT:1794063600000:1",
     "buy:MUBARAKUSDT:1794067200000:1",
-    "buy:SIGNUSDT:1794088800000:1"
+    "buy:SIGNUSDT:1794088800000:1",
+    "exit:SIGNUSDT:1794099600000"
   ],
-  "cycles": 99,
-  "messages_sent": 110,
-  "last_cycle_ms": 1794105204454,
+  "cycles": 100,
+  "messages_sent": 111,
+  "last_cycle_ms": 1794107003615,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
