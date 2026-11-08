@@ -3464,9 +3464,7 @@
     "SHAZBUSDT": [],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
-    "SIGNUSDT": [
-      1794088800000
-    ],
+    "SIGNUSDT": [],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
     "SKYUSDT": [],
@@ -3589,7 +3587,9 @@
     "ACEUSDT": [],
     "ACHUSDT": [],
     "ACMUSDT": [],
-    "ACTUSDT": [],
+    "ACTUSDT": [
+      1794092400000
+    ],
     "ADAUSDT": [],
     "ADBEBUSDT": [],
     "ADXUSDT": [],
@@ -3711,7 +3711,9 @@
     "DCRUSDT": [],
     "DELLBUSDT": [],
     "DEXEUSDT": [],
-    "DGBUSDT": [],
+    "DGBUSDT": [
+      1794092400000
+    ],
     "DIAUSDT": [],
     "DJTBUSDT": [],
     "DODOUSDT": [],
@@ -5193,9 +5195,9 @@
     "buy:MUBARAKUSDT:1794067200000:1",
     "buy:SIGNUSDT:1794088800000:1"
   ],
-  "cycles": 95,
+  "cycles": 96,
   "messages_sent": 110,
-  "last_cycle_ms": 1794099180294,
+  "last_cycle_ms": 1794099808625,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
