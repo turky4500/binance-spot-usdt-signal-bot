@@ -76,8 +76,12 @@ def _net(row: dict) -> float:
         return 0.0
 
 
-def build_report_text(report_day: str, state: dict, new_closed: list[dict]) -> str:
-    """أرقام فقط — نفس صيغة تقارير المستودع، بلا قائمة صفقات."""
+def build_report_text(report_day: str, state: dict, new_closed: list[dict],
+                      frame_label: str = "NW 1H") -> str:
+    """أرقام فقط — نفس صيغة تقارير المستودع، بلا قائمة صفقات.
+
+    ``frame_label`` يميّز تقرير 1H عن تقرير 15M؛ الصيغة والتوقيت واحد.
+    """
     open_count = len(_open_positions(state))
     closed_count = len(new_closed)
     wins = sum(1 for r in new_closed if _net(r) > 0)
@@ -86,7 +90,7 @@ def build_report_text(report_day: str, state: dict, new_closed: list[dict]) -> s
     total = sum(_net(r) for r in new_closed)
 
     return "\n".join([
-        "📊 **التقرير اليومي لنظام Nadaraya-Watson (NW 1H)**",
+        f"📊 **التقرير اليومي لنظام Nadaraya-Watson ({frame_label})**",
         "",
         f"📅 اليوم: `{report_day}` (حتى 12:00 AM بتوقيت الرياض)",
         "",
@@ -98,11 +102,17 @@ def build_report_text(report_day: str, state: dict, new_closed: list[dict]) -> s
     ])
 
 
-def send_daily_report_if_due(bot: Any, now_ms: int) -> str | None:
+def send_daily_report_if_due(bot: Any, now_ms: int,
+                             frame_label: str = "NW 1H",
+                             state_key: str = "daily_report_nw") -> str | None:
     """يُرسل تقرير اليوم السابق مرة واحدة عند 12 AM الرياض. يُعيد النص أو None.
 
     ``bot`` هو كائن ``NWBot`` (نعتمد على ``store`` و``trade_log`` و``tg`` فقط)،
     ما يجعل المنطق قابلًا للاختبار ببدائل بسيطة بلا شبكة ولا تيليجرام.
+
+    ``frame_label`` و``state_key`` يسمحان لنظام 15M بتقرير مستقل بنفس الصيغة
+    والتوقيت، بمفتاح حالة منفصل داخل ``data/state_nw15.json``، فلا يشارك 1H
+    سجل الصفقات المُبلَّغ عنها ولا يمنع تقريره.
     """
     now = datetime.fromtimestamp(int(now_ms) / 1000, RIYADH)
     if now.hour != REPORT_HOUR_RIYADH:
@@ -116,7 +126,7 @@ def send_daily_report_if_due(bot: Any, now_ms: int) -> str | None:
 
     state = bot.store.load()
     # لا نُنشئ المفتاح إلا عند الحفظ الناجح ⇒ فشل الإرسال لا يترك أثرًا.
-    report_state = dict(state.get("daily_report_nw") or {})
+    report_state = dict(state.get(state_key) or {})
     if report_state.get("last_report_day") == report_day:
         return None
 
@@ -130,7 +140,7 @@ def send_daily_report_if_due(bot: Any, now_ms: int) -> str | None:
             seen.add(k)
             new_closed.append(r)
 
-    text = build_report_text(report_day, state, new_closed)
+    text = build_report_text(report_day, state, new_closed, frame_label)
     try:
         bot.tg.send_message(text)
     except Exception as e:                       # لا تُسجَّل الصفقة إن فشل الإرسال
@@ -141,8 +151,8 @@ def send_daily_report_if_due(bot: Any, now_ms: int) -> str | None:
     report_state["reported_trade_keys"] = list(
         dict.fromkeys([*sorted(reported), *(_trade_key(r) for r in new_closed)])
     )[-MAX_REPORTED_KEYS:]
-    state["daily_report_nw"] = report_state
+    state[state_key] = report_state
     bot.store.save(state)
-    _LOG.info("✅ أُرسل تقرير NW عن يوم %s (مفتوحة=%d مغلقة_جديدة=%d)",
-              report_day, len(_open_positions(state)), len(new_closed))
+    _LOG.info("✅ أُرسل تقرير %s عن يوم %s (مفتوحة=%d مغلقة_جديدة=%d)",
+              frame_label, report_day, len(_open_positions(state)), len(new_closed))
     return text

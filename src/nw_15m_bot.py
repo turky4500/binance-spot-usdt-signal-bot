@@ -8,6 +8,8 @@
     2. ``bot.state_path``/``store``   ⇒ ``data/state_nw15.json`` (معزول).
     3. ``bot.trade_log``              ⇒ ``data/trades_log_nw15.csv`` (معزول).
     4. ``_send_once`` مُغلَّف          ⇒ سطر «🕐 فريم 15 دقيقة (15M)» في الرسالة.
+    5. ``send_daily_report_if_due``  ⇒ تقرير يومي مستقل بنفس صيغة/توقيت 1H،
+       بعنوان «NW 15M» ومفتاح حالة ``daily_report_nw15`` (معزول عن 1H).
 
 كل شروط الإشارة تبقى حرفيًا شروط 1H: مؤشر Envelope [LuxAlgo]، h=8، mult=3،
 src=close، نافذة 500، sae/499*3، ``bars_ago==1`` فقط، شمعة تالية خضراء ⇒
@@ -23,11 +25,14 @@ from typing import Any
 
 from nw_bot import NWBot, build_nw_bot
 from src.nw_15m_messages import with_15m_frame
+from src.nw_daily_report import send_daily_report_if_due as _daily_report
 from src.nw_state import NWStateStore
 
 INTERVAL_15M = "15m"
 STATE_15M = "data/state_nw15.json"
 TRADE_LOG_15M = "data/trades_log_nw15.csv"
+FRAME_LABEL_15M = "NW 15M"
+REPORT_STATE_KEY_15M = "daily_report_nw15"
 
 
 def build_nw_15m_bot() -> NWBot:
@@ -47,10 +52,16 @@ def build_nw_15m_bot() -> NWBot:
     bot.store = NWStateStore(state_path)
     bot.trade_log = trade_log
 
-    # التقرير اليومي الذي أضافه المستخدم عنوانه «NW 1H» ويقرأ حالة NW؛
-    # إبقاؤه على 15m كان سيرسل تقريرًا ثانيًا بعنوان 1H وبيانات 15m.
-    # نُبقيه يعمل كما كتبه المستخدم على نظام 1H فقط، بلا تعديل ملفه.
-    bot.send_daily_report_if_due = lambda _now_ms: None  # type: ignore[method-assign]
+    # تقرير يومي مستقل لفريم 15M: **نفس** صيغة تقرير 1H و**نفس** توقيته
+    # (12:00 AM الرياض، اليوم السابق)، بعنوان «NW 15M» وحالة/دفتر معزولين،
+    # ومفتاح حالة مستقل ``daily_report_nw15`` ⇒ لا يتشارك سجل منع التراكم
+    # مع 1H ولا يمنع تقريره. لا تعديل على nw_bot.py ولا على شروط الإشارات.
+    def _send_15m_daily_report(now_ms: int) -> None:
+        _daily_report(bot, now_ms,
+                      frame_label=FRAME_LABEL_15M,
+                      state_key=REPORT_STATE_KEY_15M)
+
+    bot.send_daily_report_if_due = _send_15m_daily_report  # type: ignore[method-assign]
 
     # 4) وسم الفريم داخل الرسالة: نُغلّف نقطة الإرسال الوحيدة بدل نسخ القالب.
     original_send_once = bot._send_once

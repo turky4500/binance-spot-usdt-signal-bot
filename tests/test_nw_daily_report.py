@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import csv
+import json
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
@@ -289,12 +290,63 @@ def test_nw_bot_delegates_to_new_report_module():
     assert "datetime.timezone.utc" not in src
 
 
-def test_15m_bot_still_does_not_send_a_second_daily_report(monkeypatch, tmp_path):
-    from src.nw_15m_bot import build_nw_15m_bot
+def test_15m_bot_sends_its_own_report_at_same_time(monkeypatch, tmp_path):
+    """تقرير 15M مستقل: نفس التوقيت والصيغة، بعنوانه ومفتاح حالته."""
+    from src.nw_15m_bot import (
+        FRAME_LABEL_15M, REPORT_STATE_KEY_15M, build_nw_15m_bot,
+    )
 
     monkeypatch.setenv("TELEGRAM_MUTE", "1")
-    monkeypatch.setenv("NW_STATE_FILE", str(tmp_path / "state15.json"))
-    monkeypatch.setenv("NW_TRADE_LOG", str(tmp_path / "trades15.csv"))
+    state15 = tmp_path / "state15.json"
+    log15 = tmp_path / "trades15.csv"
+    monkeypatch.setenv("NW_STATE_FILE", str(state15))
+    monkeypatch.setenv("NW_TRADE_LOG", str(log15))
     bot = build_nw_15m_bot()
+    bot.tg = FakeTelegram()
+
+    write_trades(str(log15), [trade("S15USDT", ms(2026, 11, 8, 5, 0), 3.0)])
+    with_open_positions(bot, "OPEN15USDT")
+
     assert bot.send_daily_report_if_due(ms(2026, 11, 9, 0, 10)) is None
-    assert bot.tg is not None
+    text = bot.tg.messages[-1]
+    assert f"({FRAME_LABEL_15M})" in text
+    assert "(NW 1H)" not in text
+    assert "📌 مفتوحة حاليًا: 1" in text
+    assert "🔒 الصفقات المغلقة: 1" in text
+    assert "✅ نجاح: 1 • 🛑 خسارة: 0" in text
+    assert "📈 نسبة النجاح: 100.0%" in text
+    assert "`+3.00%`" in text
+    assert "12:00 AM" in text and "`2026-11-08`" in text
+
+    saved = json.loads(state15.read_text(encoding="utf-8"))
+    assert saved[REPORT_STATE_KEY_15M]["last_report_day"] == "2026-11-08"
+    assert len(saved[REPORT_STATE_KEY_15M]["reported_trade_keys"]) == 1
+    assert "daily_report_nw" not in saved      # لا يلمس مفتاح 1H
+
+
+def test_15m_report_does_not_accumulate_and_is_isolated_from_1h(monkeypatch, tmp_path):
+    """لا تراكم داخل 15M، وسجل 1H لا يتأثر إطلاقًا."""
+    from src.nw_15m_bot import REPORT_STATE_KEY_15M, build_nw_15m_bot
+
+    monkeypatch.setenv("TELEGRAM_MUTE", "1")
+    state15 = tmp_path / "state15.json"
+    log15 = tmp_path / "trades15.csv"
+    monkeypatch.setenv("NW_STATE_FILE", str(state15))
+    monkeypatch.setenv("NW_TRADE_LOG", str(log15))
+    bot = build_nw_15m_bot()
+    bot.tg = FakeTelegram()
+    write_trades(str(log15), [trade("S15USDT", ms(2026, 11, 8, 5, 0), 3.0)])
+
+    bot.send_daily_report_if_due(ms(2026, 11, 9, 0, 10))
+    bot.send_daily_report_if_due(ms(2026, 11, 9, 0, 40))   # نفس اليوم
+    bot.send_daily_report_if_due(ms(2026, 11, 10, 0, 10))  # اليوم التالي
+    assert len(bot.tg.messages) == 2
+    assert "🔒 الصفقات المغلقة: 0" in bot.tg.messages[-1]
+    assert "`+0.00%`" in bot.tg.messages[-1]
+
+    # بوت 1H بحالة منفصلة: تقريره يعمل ولم يتأثر مفتاحه
+    bot1h = FakeBot(tmp_path / "1h")
+    text1h = dr.send_daily_report_if_due(bot1h, ms(2026, 11, 9, 0, 10))
+    assert "(NW 1H)" in text1h and "(NW 15M)" not in text1h
+    assert "daily_report_nw" in bot1h.store.load()
+    assert REPORT_STATE_KEY_15M not in bot1h.store.load()

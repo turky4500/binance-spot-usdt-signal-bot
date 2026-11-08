@@ -33,8 +33,9 @@
 
 - `src/nw_15m_messages.py` — استبدال سطر الفريم في النص النهائي فقط.
 - `src/nw_15m_bot.py` — يبني نفس بوت 1H ثم يضبط `interval="15m"`، الحالة،
-  الدفتر، ويُغلّف نقطة الإرسال الوحيدة `_send_once`. التقرير اليومي الذي
-  أضفته يبقى يعمل على نظام 1H فقط (عنوانه «NW 1H»؛ لا يُكرَّر ببيانات 15m).
+  الدفتر، ويُغلّف نقطة الإرسال الوحيدة `_send_once`. ويربط تقريرًا يوميًا
+  مستقلًا بنفس صيغة/توقيت 1H بعنوان «NW 15M» ومفتاح حالة `daily_report_nw15`
+  (راجع `README_NW_DAILY_REPORT.md`).
 - `run_nw15_once.py` — دورة واحدة.
 - `.github/workflows/nw-bot-15m.yml` — أربع دورات/ساعة + `workflow_dispatch`.
 - `.github/workflows/nw-bot-15m-trigger.yml` — محفّز احتياطي على اكتمال

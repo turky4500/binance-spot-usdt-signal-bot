@@ -98,7 +98,8 @@ def test_15m_bot_uses_same_core_with_isolated_paths(monkeypatch, tmp_path):
     assert bot.include_all is True
     assert bot.exclude_pegged_stables is True
     assert bot.exclude_tokenized_stocks is False
-    # التقرير اليومي للمستخدم يبقى على 1H فقط
+    # تقرير 15M اليومي: نفس صيغة/توقيت 1H، لكن بمفتاح حالة مستقل.
+    # الطابع 0 ⇒ 03:00 AM بالرياض ⇒ خارج نافذة 12 AM ⇒ لا يُرسل.
     assert bot.send_daily_report_if_due(0) is None
 
     # نقطة الإرسال الوحيدة تُضيف سطر الفريم دون تغيير أي شيء آخر
