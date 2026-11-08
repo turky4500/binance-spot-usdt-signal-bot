@@ -3269,9 +3269,7 @@
     "DCRUSDT": [],
     "DELLBUSDT": [],
     "DEXEUSDT": [],
-    "DGBUSDT": [
-      1794124800000
-    ],
+    "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
     "DODOUSDT": [],
@@ -3324,9 +3322,7 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
-    "GNSUSDT": [
-      1794124800000
-    ],
+    "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
@@ -3499,9 +3495,7 @@
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [
-      1794124800000
-    ],
+    "REQUSDT": [],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -3803,9 +3797,7 @@
     "ENJUSDT": [],
     "ENSOUSDT": [],
     "ENSUSDT": [],
-    "ERAUSDT": [
-      1794124800000
-    ],
+    "ERAUSDT": [],
     "ESPUSDT": [],
     "ETCUSDT": [],
     "ETHFIUSDT": [],
@@ -3845,9 +3837,7 @@
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
-    "GTCUSDT": [
-      1794124800000
-    ],
+    "GTCUSDT": [],
     "GUNUSDT": [],
     "GUSDT": [],
     "HAEDALUSDT": [],
@@ -3856,7 +3846,9 @@
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [],
+    "HMSTRUSDT": [
+      1794125700000
+    ],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -3964,9 +3956,7 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [
-      1794124800000
-    ],
+    "ONEUSDT": [],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -4059,9 +4049,7 @@
     "SOLUSDT": [],
     "SOLVUSDT": [],
     "SOMIUSDT": [],
-    "SOPHUSDT": [
-      1794124800000
-    ],
+    "SOPHUSDT": [],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
     "SPCXBUSDT": [],
@@ -5274,7 +5262,7 @@
     "buy:SIGNUSDT:1794123900000:1",
     "buy:TKOUSDT:1794123900000:1"
   ],
-  "cycles": 39,
+  "cycles": 40,
   "messages_sent": 26,
-  "last_cycle_ms": 1794126804888
+  "last_cycle_ms": 1794127697796
 }
