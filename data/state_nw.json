@@ -3670,7 +3670,9 @@
     "BREVUSDT": [],
     "BROCCOLI714USDT": [],
     "BTCUSDT": [],
-    "BTTCUSDT": [],
+    "BTTCUSDT": [
+      1794117600000
+    ],
     "C98USDT": [],
     "CAKEUSDT": [],
     "CATIUSDT": [],
@@ -3777,9 +3779,7 @@
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [
-      1794114000000
-    ],
+    "HMSTRUSDT": [],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -5201,9 +5201,9 @@
     "buy:KAVAUSDT:1794106800000:1",
     "buy:CYBERUSDT:1794110400000:2"
   ],
-  "cycles": 111,
+  "cycles": 112,
   "messages_sent": 113,
-  "last_cycle_ms": 1794124196042,
+  "last_cycle_ms": 1794125008126,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
