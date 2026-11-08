@@ -1749,10 +1749,16 @@
       "last_entry_price": 0.0
     },
     "MITOUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.00831,
+        "entry_time": 1794112200000,
+        "signal_bar_time": 1794111300000,
+        "signal_price": 0.00814,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794111300000,
+      "last_entry_price": 0.00831
     },
     "MMTUSDT": {
       "position": null,
@@ -3101,9 +3107,7 @@
     "ACEUSDT": [],
     "ACHUSDT": [],
     "ACMUSDT": [],
-    "ACTUSDT": [
-      1794110400000
-    ],
+    "ACTUSDT": [],
     "ADAUSDT": [],
     "ADBEBUSDT": [],
     "ADXUSDT": [],
@@ -3186,7 +3190,9 @@
     "BONKUSDT": [],
     "BOTBUSDT": [],
     "BREVUSDT": [],
-    "BRKBBUSDT": [],
+    "BRKBBUSDT": [
+      1794111300000
+    ],
     "BROCCOLI714USDT": [],
     "BSPBUSDT": [],
     "BTCUSDT": [],
@@ -3267,7 +3273,9 @@
     "FOGOUSDT": [],
     "FORMUSDT": [],
     "FRAXUSDT": [],
-    "FTTUSDT": [],
+    "FTTUSDT": [
+      1794111300000
+    ],
     "FUSDT": [],
     "FWDIBUSDT": [],
     "GALAUSDT": [],
@@ -3275,7 +3283,9 @@
     "GENIUSUSDT": [],
     "GEVBUSDT": [],
     "GIGGLEUSDT": [],
-    "GLMRUSDT": [],
+    "GLMRUSDT": [
+      1794111300000
+    ],
     "GLMUSDT": [],
     "GLWBUSDT": [],
     "GMEBUSDT": [],
@@ -3332,9 +3342,7 @@
     "KAIAUSDT": [],
     "KAITOUSDT": [],
     "KATUSDT": [],
-    "KAVAUSDT": [
-      1794110400000
-    ],
+    "KAVAUSDT": [],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
     "KITEUSDT": [],
@@ -3376,7 +3384,9 @@
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
-    "MITOUSDT": [],
+    "MITOUSDT": [
+      1794111300000
+    ],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
@@ -3486,7 +3496,9 @@
     "SHAZBUSDT": [],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
-    "SIGNUSDT": [],
+    "SIGNUSDT": [
+      1794111300000
+    ],
     "SKDDBUSDT": [],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
@@ -3687,7 +3699,9 @@
     "BIOUSDT": [],
     "BLURUSDT": [],
     "BMNRBUSDT": [],
-    "BMTUSDT": [],
+    "BMTUSDT": [
+      1794111300000
+    ],
     "BNBUSDT": [],
     "BNCBUSDT": [],
     "BNSOLUSDT": [],
@@ -3697,9 +3711,7 @@
     "BOTBUSDT": [],
     "BREVUSDT": [],
     "BRKBBUSDT": [],
-    "BROCCOLI714USDT": [
-      1794110400000
-    ],
+    "BROCCOLI714USDT": [],
     "BSPBUSDT": [],
     "BTCUSDT": [],
     "BTTCUSDT": [],
@@ -3847,7 +3859,9 @@
     "KAVAUSDT": [],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
-    "KITEUSDT": [],
+    "KITEUSDT": [
+      1794111300000
+    ],
     "KMNOUSDT": [],
     "KNCUSDT": [],
     "KORUBUSDT": [],
@@ -4077,7 +4091,9 @@
     "WDCBUSDT": [],
     "WENBUSDT": [],
     "WIFUSDT": [],
-    "WINUSDT": [],
+    "WINUSDT": [
+      1794111300000
+    ],
     "WLDUSDT": [],
     "WLFIUSDT": [],
     "WOOUSDT": [],
@@ -4413,7 +4429,9 @@
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
-    "MITOUSDT": [],
+    "MITOUSDT": [
+      1794111300000
+    ],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
@@ -4740,7 +4758,9 @@
     "BREVUSDT": [
       1794100500000
     ],
-    "BRKBBUSDT": [],
+    "BRKBBUSDT": [
+      1794111300000
+    ],
     "BROCCOLI714USDT": [],
     "BSPBUSDT": [],
     "BTCUSDT": [],
@@ -4823,7 +4843,9 @@
     "FOGOUSDT": [],
     "FORMUSDT": [],
     "FRAXUSDT": [],
-    "FTTUSDT": [],
+    "FTTUSDT": [
+      1794111300000
+    ],
     "FUSDT": [],
     "FWDIBUSDT": [],
     "GALAUSDT": [],
@@ -4831,7 +4853,9 @@
     "GENIUSUSDT": [],
     "GEVBUSDT": [],
     "GIGGLEUSDT": [],
-    "GLMRUSDT": [],
+    "GLMRUSDT": [
+      1794111300000
+    ],
     "GLMUSDT": [],
     "GLWBUSDT": [],
     "GMEBUSDT": [],
@@ -5044,7 +5068,8 @@
     "SHIBUSDT": [],
     "SIGNUSDT": [
       1794090600000,
-      1794091500000
+      1794091500000,
+      1794111300000
     ],
     "SKDDBUSDT": [],
     "SKHYBUSDT": [],
@@ -5172,9 +5197,10 @@
     "buy:EDUUSDT:1794108600000:1",
     "buy:KAVAUSDT:1794108600000:1",
     "buy:ACTUSDT:1794110400000:2",
-    "buy:KAVAUSDT:1794110400000:2"
+    "buy:KAVAUSDT:1794110400000:2",
+    "buy:MITOUSDT:1794111300000:1"
   ],
-  "cycles": 23,
-  "messages_sent": 14,
-  "last_cycle_ms": 1794112398762
+  "cycles": 24,
+  "messages_sent": 15,
+  "last_cycle_ms": 1794113297898
 }
