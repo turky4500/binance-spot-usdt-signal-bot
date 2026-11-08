@@ -3177,9 +3177,7 @@
     "BOMEUSDT": [],
     "BONKUSDT": [],
     "BOTBUSDT": [],
-    "BREVUSDT": [
-      1794105000000
-    ],
+    "BREVUSDT": [],
     "BRKBBUSDT": [],
     "BROCCOLI714USDT": [],
     "BSPBUSDT": [],
@@ -3237,9 +3235,7 @@
     "DYMUSDT": [],
     "EDENUSDT": [],
     "EDUUSDT": [],
-    "EGLDUSDT": [
-      1794105000000
-    ],
+    "EGLDUSDT": [],
     "EIGENUSDT": [],
     "ENAUSDT": [],
     "ENJUSDT": [],
@@ -3338,9 +3334,7 @@
     "KSMUSDT": [],
     "KSTRBUSDT": [],
     "LAUSDT": [],
-    "LAYERUSDT": [
-      1794105000000
-    ],
+    "LAYERUSDT": [],
     "LAZIOUSDT": [],
     "LDOUSDT": [],
     "LINEAUSDT": [],
@@ -3404,9 +3398,7 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [
-      1794105000000
-    ],
+    "ONEUSDT": [],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -3737,9 +3729,7 @@
     "DCRUSDT": [],
     "DELLBUSDT": [],
     "DEXEUSDT": [],
-    "DGBUSDT": [
-      1794105000000
-    ],
+    "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
     "DODOUSDT": [],
@@ -3759,9 +3749,7 @@
     "ENJUSDT": [],
     "ENSOUSDT": [],
     "ENSUSDT": [],
-    "ERAUSDT": [
-      1794105000000
-    ],
+    "ERAUSDT": [],
     "ESPUSDT": [],
     "ETCUSDT": [],
     "ETHFIUSDT": [],
@@ -3886,7 +3874,9 @@
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
-    "MITOUSDT": [],
+    "MITOUSDT": [
+      1794105900000
+    ],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
@@ -5161,7 +5151,7 @@
     "buy:LAYERUSDT:1794105000000:1",
     "buy:ONEUSDT:1794105000000:2"
   ],
-  "cycles": 17,
+  "cycles": 18,
   "messages_sent": 9,
-  "last_cycle_ms": 1794107002977
+  "last_cycle_ms": 1794107897116
 }
