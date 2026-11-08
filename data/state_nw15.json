@@ -1310,11 +1310,11 @@
         "entry_time": 1794171600000,
         "signal_bar_time": 1794170700000,
         "signal_price": 0.17131,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794170700000,
-      "last_entry_price": 0.17304
+      "entry_count": 2,
+      "last_buy_bar": 1794172500000,
+      "last_entry_price": 0.17345
     },
     "GUNUSDT": {
       "position": null,
@@ -2258,11 +2258,11 @@
         "entry_time": 1794155400000,
         "signal_bar_time": 1794154500000,
         "signal_price": 0.178,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794154500000,
-      "last_entry_price": 0.1783
+      "entry_count": 2,
+      "last_buy_bar": 1794172500000,
+      "last_entry_price": 0.1777
     },
     "PSGUSDT": {
       "position": null,
@@ -3455,7 +3455,9 @@
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
-    "GTCUSDT": [],
+    "GTCUSDT": [
+      1794172500000
+    ],
     "GUNUSDT": [],
     "GUSDT": [],
     "HAEDALUSDT": [],
@@ -3567,7 +3569,9 @@
     "NOKBUSDT": [],
     "NOMUSDT": [],
     "NOTUSDT": [],
-    "NVDABUSDT": [],
+    "NVDABUSDT": [
+      1794172500000
+    ],
     "NXPCUSDT": [],
     "OGNUSDT": [],
     "OGUSDT": [],
@@ -3602,7 +3606,9 @@
     "PORTOUSDT": [],
     "POWRUSDT": [],
     "PROMUSDT": [],
-    "PROVEUSDT": [],
+    "PROVEUSDT": [
+      1794172500000
+    ],
     "PSGUSDT": [],
     "PUMPUSDT": [],
     "PUNDIXUSDT": [],
@@ -4528,7 +4534,8 @@
     "GRTUSDT": [],
     "GSBUSDT": [],
     "GTCUSDT": [
-      1794170700000
+      1794170700000,
+      1794172500000
     ],
     "GUNUSDT": [],
     "GUSDT": [],
@@ -4706,7 +4713,8 @@
     "POWRUSDT": [],
     "PROMUSDT": [],
     "PROVEUSDT": [
-      1794154500000
+      1794154500000,
+      1794172500000
     ],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -5263,7 +5271,9 @@
     "NOKBUSDT": [],
     "NOMUSDT": [],
     "NOTUSDT": [],
-    "NVDABUSDT": [],
+    "NVDABUSDT": [
+      1794172500000
+    ],
     "NXPCUSDT": [],
     "OGNUSDT": [],
     "OGUSDT": [],
@@ -5553,11 +5563,13 @@
     "exit:RSRUSDT:1794167100000",
     "buy:ADXUSDT:1794168900000:1",
     "buy:NVDABUSDT:1794169800000:1",
-    "buy:GTCUSDT:1794170700000:1"
+    "buy:GTCUSDT:1794170700000:1",
+    "buy:GTCUSDT:1794172500000:2",
+    "buy:PROVEUSDT:1794172500000:2"
   ],
-  "cycles": 93,
-  "messages_sent": 70,
-  "last_cycle_ms": 1794173603214,
+  "cycles": 94,
+  "messages_sent": 72,
+  "last_cycle_ms": 1794174504313,
   "daily_report_nw15": {
     "last_report_day": "2026-11-08",
     "reported_trade_keys": [
