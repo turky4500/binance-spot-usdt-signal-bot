@@ -3960,7 +3960,9 @@
     "SHAZBUSDT": [],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
-    "SIGNUSDT": [],
+    "SIGNUSDT": [
+      1794099600000
+    ],
     "SKDDBUSDT": [],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
@@ -5105,7 +5107,7 @@
     "buy:HMSTRUSDT:1794092400000:1",
     "buy:METUSDT:1794096900000:1"
   ],
-  "cycles": 10,
+  "cycles": 11,
   "messages_sent": 3,
-  "last_cycle_ms": 1794100700780
+  "last_cycle_ms": 1794101598060
 }
