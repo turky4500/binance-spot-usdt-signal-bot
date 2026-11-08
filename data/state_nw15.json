@@ -3362,9 +3362,7 @@
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [
-      1794141900000
-    ],
+    "HMSTRUSDT": [],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -3707,14 +3705,14 @@
     "APTUSDT": [],
     "ARBUSDT": [],
     "ARKMUSDT": [],
-    "ARKUSDT": [],
+    "ARKUSDT": [
+      1794142800000
+    ],
     "ARMBUSDT": [],
     "ARPAUSDT": [],
     "ARUSDT": [],
     "ASMLBUSDT": [],
-    "ASRUSDT": [
-      1794141900000
-    ],
+    "ASRUSDT": [],
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
@@ -3879,7 +3877,7 @@
     "HOMEUSDT": [],
     "HOODBUSDT": [],
     "HOTUSDT": [
-      1794141900000
+      1794142800000
     ],
     "HPEBUSDT": [],
     "HUMAUSDT": [],
@@ -4033,7 +4031,9 @@
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [],
+    "REQUSDT": [
+      1794142800000
+    ],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -4044,7 +4044,9 @@
     "RONINUSDT": [],
     "ROSEUSDT": [],
     "RPLUSDT": [],
-    "RSRUSDT": [],
+    "RSRUSDT": [
+      1794142800000
+    ],
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
@@ -5335,7 +5337,7 @@
     "buy:BRKBBUSDT:1794141000000:1",
     "exit:ASRUSDT:1794141900000"
   ],
-  "cycles": 58,
+  "cycles": 59,
   "messages_sent": 39,
-  "last_cycle_ms": 1794143899536
+  "last_cycle_ms": 1794144800633
 }
