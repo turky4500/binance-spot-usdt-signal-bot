@@ -1323,10 +1323,16 @@
       "last_entry_price": 0.0
     },
     "HMSTRUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1794102300000,
-      "last_entry_price": 0.0001296
+      "position": {
+        "entry_price": 0.0001373,
+        "entry_time": 1794135600000,
+        "signal_bar_time": 1794134700000,
+        "signal_price": 0.0001365,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794134700000,
+      "last_entry_price": 0.0001373
     },
     "HOLOUSDT": {
       "position": null,
@@ -3239,7 +3245,9 @@
     "BNBUSDT": [],
     "BNCBUSDT": [],
     "BNSOLUSDT": [],
-    "BNTUSDT": [],
+    "BNTUSDT": [
+      1794134700000
+    ],
     "BOMEUSDT": [],
     "BONKUSDT": [],
     "BOTBUSDT": [],
@@ -3307,9 +3315,7 @@
     "ENJUSDT": [],
     "ENSOUSDT": [],
     "ENSUSDT": [],
-    "ERAUSDT": [
-      1794133800000
-    ],
+    "ERAUSDT": [],
     "ESPUSDT": [],
     "ETCUSDT": [],
     "ETHFIUSDT": [],
@@ -3358,7 +3364,9 @@
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [],
+    "HMSTRUSDT": [
+      1794134700000
+    ],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -3466,9 +3474,7 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [
-      1794133800000
-    ],
+    "ONEUSDT": [],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -3738,7 +3744,9 @@
     "BBBUSDT": [],
     "BBUSDT": [],
     "BCHUSDT": [],
-    "BEAMXUSDT": [],
+    "BEAMXUSDT": [
+      1794134700000
+    ],
     "BEBUSDT": [],
     "BELUSDT": [],
     "BERAUSDT": [],
@@ -3905,7 +3913,9 @@
     "KAVAUSDT": [],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
-    "KITEUSDT": [],
+    "KITEUSDT": [
+      1794134700000
+    ],
     "KMNOUSDT": [],
     "KNCUSDT": [],
     "KORUBUSDT": [],
@@ -4025,7 +4035,9 @@
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [],
+    "REQUSDT": [
+      1794134700000
+    ],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -4036,9 +4048,7 @@
     "RONINUSDT": [],
     "ROSEUSDT": [],
     "RPLUSDT": [],
-    "RSRUSDT": [
-      1794133800000
-    ],
+    "RSRUSDT": [],
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
@@ -4409,7 +4419,8 @@
     "HIVEUSDT": [],
     "HMSTRUSDT": [
       1794092400000,
-      1794102300000
+      1794102300000,
+      1794134700000
     ],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
@@ -4820,7 +4831,9 @@
     "BNBUSDT": [],
     "BNCBUSDT": [],
     "BNSOLUSDT": [],
-    "BNTUSDT": [],
+    "BNTUSDT": [
+      1794134700000
+    ],
     "BOMEUSDT": [],
     "BONKUSDT": [],
     "BOTBUSDT": [],
@@ -5302,9 +5315,10 @@
     "buy:GNSUSDT:1794129300000:1",
     "buy:ACTUSDT:1794132900000:3",
     "buy:GNSUSDT:1794132900000:2",
-    "buy:ERAUSDT:1794133800000:1"
+    "buy:ERAUSDT:1794133800000:1",
+    "buy:HMSTRUSDT:1794134700000:1"
   ],
-  "cycles": 49,
-  "messages_sent": 31,
-  "last_cycle_ms": 1794135799444
+  "cycles": 50,
+  "messages_sent": 32,
+  "last_cycle_ms": 1794136708774
 }
