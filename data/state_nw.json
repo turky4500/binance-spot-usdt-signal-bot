@@ -3145,7 +3145,9 @@
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
-    "ATMUSDT": [],
+    "ATMUSDT": [
+      1794150000000
+    ],
     "ATOMUSDT": [],
     "ATUSDT": [],
     "AUCTIONUSDT": [],
@@ -3166,7 +3168,9 @@
     "BANDUSDT": [],
     "BANKUSDT": [],
     "BARDUSDT": [],
-    "BARUSDT": [],
+    "BARUSDT": [
+      1794150000000
+    ],
     "BATUSDT": [],
     "BBBUSDT": [],
     "BBUSDT": [],
@@ -3281,7 +3285,7 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [
-      1794146400000
+      1794150000000
     ],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
@@ -3484,7 +3488,9 @@
     "SHAZBUSDT": [],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
-    "SIGNUSDT": [],
+    "SIGNUSDT": [
+      1794150000000
+    ],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
     "SKYUSDT": [],
@@ -3729,9 +3735,7 @@
     "DCRUSDT": [],
     "DELLBUSDT": [],
     "DEXEUSDT": [],
-    "DGBUSDT": [
-      1794146400000
-    ],
+    "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
     "DODOUSDT": [],
@@ -4714,7 +4718,9 @@
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
-    "ATMUSDT": [],
+    "ATMUSDT": [
+      1794150000000
+    ],
     "ATOMUSDT": [],
     "ATUSDT": [],
     "AUCTIONUSDT": [],
@@ -4737,7 +4743,9 @@
     "BANDUSDT": [],
     "BANKUSDT": [],
     "BARDUSDT": [],
-    "BARUSDT": [],
+    "BARUSDT": [
+      1794150000000
+    ],
     "BATUSDT": [],
     "BBBUSDT": [],
     "BBUSDT": [],
@@ -4861,7 +4869,8 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [
-      1794146400000
+      1794146400000,
+      1794150000000
     ],
     "GNSUSDT": [
       1793988000000,
@@ -5077,7 +5086,8 @@
     "SHELLUSDT": [],
     "SHIBUSDT": [],
     "SIGNUSDT": [
-      1794056400000
+      1794056400000,
+      1794150000000
     ],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
@@ -5248,9 +5258,9 @@
     "exit:BARUSDT:1794142800000",
     "buy:HMSTRUSDT:1794142800000:1"
   ],
-  "cycles": 131,
+  "cycles": 132,
   "messages_sent": 122,
-  "last_cycle_ms": 1794155599798,
+  "last_cycle_ms": 1794157407245,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
