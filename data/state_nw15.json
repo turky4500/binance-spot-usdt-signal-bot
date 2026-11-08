@@ -1214,11 +1214,11 @@
         "entry_time": 1794123000000,
         "signal_bar_time": 1794122100000,
         "signal_price": 110.32,
-        "entry_count": 4
+        "entry_count": 5
       },
-      "entry_count": 4,
-      "last_buy_bar": 1794150000000,
-      "last_entry_price": 109.27
+      "entry_count": 5,
+      "last_buy_bar": 1794151800000,
+      "last_entry_price": 108.89
     },
     "GNSUSDT": {
       "position": {
@@ -2007,14 +2007,8 @@
       "last_entry_price": 0.0
     },
     "ONEUSDT": {
-      "position": {
-        "entry_price": 0.001863,
-        "entry_time": 1794146400000,
-        "signal_bar_time": 1794145500000,
-        "signal_price": 0.001832,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794145500000,
       "last_entry_price": 0.001863
     },
@@ -3230,9 +3224,7 @@
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
-    "ATMUSDT": [
-      1794150900000
-    ],
+    "ATMUSDT": [],
     "ATOMUSDT": [],
     "ATUSDT": [],
     "AUCTIONUSDT": [],
@@ -3371,7 +3363,9 @@
     "GMEBUSDT": [],
     "GMTUSDT": [],
     "GMXUSDT": [],
-    "GNOUSDT": [],
+    "GNOUSDT": [
+      1794151800000
+    ],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -3392,9 +3386,7 @@
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
-    "HOTUSDT": [
-      1794150900000
-    ],
+    "HOTUSDT": [],
     "HPEBUSDT": [],
     "HUMAUSDT": [],
     "HYPERUSDT": [],
@@ -3692,9 +3684,7 @@
   "prev_sell_bars": {
     "0GUSDT": [],
     "1000CATUSDT": [],
-    "1000CHEEMSUSDT": [
-      1794150900000
-    ],
+    "1000CHEEMSUSDT": [],
     "1000SATSUSDT": [],
     "1INCHUSDT": [],
     "1MBABYDOGEUSDT": [],
@@ -3812,9 +3802,7 @@
     "COINBUSDT": [],
     "COMPUSDT": [],
     "COOKIEUSDT": [],
-    "COTIUSDT": [
-      1794150900000
-    ],
+    "COTIUSDT": [],
     "COWUSDT": [],
     "CRCLBUSDT": [],
     "CRDOBUSDT": [],
@@ -3833,7 +3821,9 @@
     "DCRUSDT": [],
     "DELLBUSDT": [],
     "DEXEUSDT": [],
-    "DGBUSDT": [],
+    "DGBUSDT": [
+      1794151800000
+    ],
     "DIAUSDT": [],
     "DJTBUSDT": [],
     "DODOUSDT": [],
@@ -3842,9 +3832,7 @@
     "DOLOUSDT": [],
     "DOTUSDT": [],
     "DRAMBUSDT": [],
-    "DUSKUSDT": [
-      1794150900000
-    ],
+    "DUSKUSDT": [],
     "DYDXUSDT": [],
     "DYMUSDT": [],
     "EDENUSDT": [],
@@ -3878,9 +3866,7 @@
     "FWDIBUSDT": [],
     "GALAUSDT": [],
     "GASUSDT": [],
-    "GENIUSUSDT": [
-      1794150900000
-    ],
+    "GENIUSUSDT": [],
     "GEVBUSDT": [],
     "GIGGLEUSDT": [],
     "GLMRUSDT": [],
@@ -3893,7 +3879,9 @@
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
-    "GPSUSDT": [],
+    "GPSUSDT": [
+      1794151800000
+    ],
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
@@ -3960,9 +3948,7 @@
     "LLYBUSDT": [],
     "LPTUSDT": [],
     "LQTYUSDT": [],
-    "LSKUSDT": [
-      1794150900000
-    ],
+    "LSKUSDT": [],
     "LTCUSDT": [],
     "LUMIAUSDT": [],
     "LUNAUSDT": [],
@@ -4013,14 +3999,12 @@
     "NOTUSDT": [],
     "NVDABUSDT": [],
     "NXPCUSDT": [],
-    "OGNUSDT": [
-      1794150900000
-    ],
-    "OGUSDT": [
-      1794150900000
-    ],
+    "OGNUSDT": [],
+    "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [],
+    "ONEUSDT": [
+      1794151800000
+    ],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -4080,9 +4064,7 @@
     "RONINUSDT": [],
     "ROSEUSDT": [],
     "RPLUSDT": [],
-    "RSRUSDT": [
-      1794150900000
-    ],
+    "RSRUSDT": [],
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
@@ -4439,7 +4421,8 @@
       1794122100000,
       1794123900000,
       1794147300000,
-      1794150000000
+      1794150000000,
+      1794151800000
     ],
     "GNSUSDT": [
       1794129300000,
@@ -5410,9 +5393,11 @@
     "buy:GNOUSDT:1794147300000:3",
     "buy:TREEUSDT:1794147300000:1",
     "buy:ATMUSDT:1794148200000:1",
-    "buy:GNOUSDT:1794150000000:4"
+    "buy:GNOUSDT:1794150000000:4",
+    "buy:GNOUSDT:1794151800000:5",
+    "exit:ONEUSDT:1794151800000"
   ],
-  "cycles": 68,
-  "messages_sent": 47,
-  "last_cycle_ms": 1794152905337
+  "cycles": 69,
+  "messages_sent": 49,
+  "last_cycle_ms": 1794153809181
 }
