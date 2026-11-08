@@ -765,10 +765,16 @@
       "last_entry_price": 0.0
     },
     "REQUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.0474,
+        "entry_time": 1794139200000,
+        "signal_bar_time": 1794135600000,
+        "signal_price": 0.0467,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794135600000,
+      "last_entry_price": 0.0474
     },
     "RIFUSDT": {
       "position": null,
@@ -3095,9 +3101,7 @@
     "ACEUSDT": [],
     "ACHUSDT": [],
     "ACMUSDT": [],
-    "ACTUSDT": [
-      1794132000000
-    ],
+    "ACTUSDT": [],
     "ADAUSDT": [],
     "ADBEBUSDT": [],
     "ADXUSDT": [],
@@ -3394,9 +3398,7 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [
-      1794132000000
-    ],
+    "ONEUSDT": [],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -3445,7 +3447,9 @@
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [],
+    "REQUSDT": [
+      1794135600000
+    ],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -3791,9 +3795,7 @@
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
-    "HOTUSDT": [
-      1794132000000
-    ],
+    "HOTUSDT": [],
     "HPEBUSDT": [],
     "HUMAUSDT": [],
     "HYPERUSDT": [],
@@ -4476,7 +4478,9 @@
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [],
+    "REQUSDT": [
+      1794135600000
+    ],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -5218,11 +5222,12 @@
     "buy:KAVAUSDT:1794106800000:1",
     "buy:CYBERUSDT:1794110400000:2",
     "buy:CYBERUSDT:1794121200000:3",
-    "buy:GNOUSDT:1794121200000:1"
+    "buy:GNOUSDT:1794121200000:1",
+    "buy:REQUSDT:1794135600000:1"
   ],
-  "cycles": 121,
-  "messages_sent": 115,
-  "last_cycle_ms": 1794141198789,
+  "cycles": 122,
+  "messages_sent": 116,
+  "last_cycle_ms": 1794143000890,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
