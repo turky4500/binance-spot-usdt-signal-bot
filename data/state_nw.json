@@ -2619,10 +2619,16 @@
       "last_entry_price": 0.0
     },
     "SIGNUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1793970000000,
-      "last_entry_price": 0.00946
+      "position": {
+        "entry_price": 0.00868,
+        "entry_time": 1794092400000,
+        "signal_bar_time": 1794088800000,
+        "signal_price": 0.00867,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794088800000,
+      "last_entry_price": 0.00868
     },
     "SKHYBUSDT": {
       "position": null,
@@ -3458,7 +3464,9 @@
     "SHAZBUSDT": [],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
-    "SIGNUSDT": [],
+    "SIGNUSDT": [
+      1794088800000
+    ],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
     "SKYUSDT": [],
@@ -4485,7 +4493,9 @@
     "SHAZBUSDT": [],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
-    "SIGNUSDT": [],
+    "SIGNUSDT": [
+      1794088800000
+    ],
     "SKHYBUSDT": [
       1793919600000
     ],
@@ -5180,11 +5190,12 @@
     "buy:ATMUSDT:1794056400000:1",
     "buy:ATMUSDT:1794063600000:2",
     "buy:BARUSDT:1794063600000:1",
-    "buy:MUBARAKUSDT:1794067200000:1"
+    "buy:MUBARAKUSDT:1794067200000:1",
+    "buy:SIGNUSDT:1794088800000:1"
   ],
-  "cycles": 91,
-  "messages_sent": 109,
-  "last_cycle_ms": 1794094396430,
+  "cycles": 92,
+  "messages_sent": 110,
+  "last_cycle_ms": 1794096207573,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
@@ -5624,5 +5635,8 @@
       "buy:WLDUSDT:1793304000000:1",
       "buy:WLDUSDT:1792915200000:2"
     ]
+  },
+  "daily_report_nw": {
+    "last_reported_for_date": "2026-11-08"
   }
 }
