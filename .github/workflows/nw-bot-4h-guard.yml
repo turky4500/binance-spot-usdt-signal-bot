@@ -31,7 +31,9 @@ concurrency:
 
 jobs:
   kick:
-    if: ${{ vars.NW4H_ENABLED != 'false' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success') }}
+    # البوابة الوحيدة هي متغيّر التفعيل؛ كل قرار النافذة/التكرار داخل السكربت.
+    # هذا يتجنّب ضياع نبضة workflow_run إن انتهى النبض بـ skipped/cancelled.
+    if: vars.NW4H_ENABLED != 'false'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
