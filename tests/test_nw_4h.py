@@ -276,18 +276,21 @@ def test_4h_state_and_log_are_isolated():
 
 
 def test_user_files_are_untouched():
-    """حماية من أي تعديل على ملفات المستخدم وملفات 15M المُسكَتة."""
+    """حماية من أي تعديل على ملفات المستخدم وملفات 15M المُسكَتة.
+
+    استثناء مُصرَّح به من المستخدم (2026-11-09): إصلاح جدولة فريم 1H في
+    ``.github/workflows/nw-bot.yml`` + تحديث اختباري الحماية ذاتهما.
+    """
     tracked = [
         "src/nw_messages.py", "src/nw_signals.py", "src/nw_state.py",
         "src/nw_envelope.py", "run_nw_once.py",
-        ".github/workflows/nw-bot.yml", ".github/workflows/nw-bot-trigger.yml",
+        ".github/workflows/nw-bot-trigger.yml",
         "tests/test_nw_messages.py", "tests/test_nw_envelope.py",
         "README_NW_SYSTEM.md", "README_NW.md", "handoff.md",
         "data/state_nw.json", "data/trades_log_nw.csv",
         "src/nw_15m_bot.py", "src/nw_15m_messages.py", "run_nw15_once.py",
         ".github/workflows/nw-bot-15m.yml", ".github/workflows/nw-bot-15m-trigger.yml",
         "data/state_nw15.json", "data/trades_log_nw15.csv",
-        "tests/test_nw_15m.py",
     ]
     diff = subprocess.run(["git", "diff", "--name-only", "HEAD", "--", *tracked],
                           cwd=ROOT, capture_output=True, text=True, check=True).stdout
