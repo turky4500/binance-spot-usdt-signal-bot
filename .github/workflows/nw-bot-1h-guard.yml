@@ -1,0 +1,86 @@
+name: NW 1H Bot — Guarded Kick
+
+# إصلاح عطل فريم 1H (2026-11-09): جدولة nw-bot.yml الأصلية توقفت ~8 ساعات،
+# والتريغر القديم 409220950 عُطّل يدويًا لمنع التكرار. هذا المُشغّل الجديد:
+#   • يستمع لاكتمال "Signal Bot Cron" (نبض خارجي موثوق كل ~5 دقائق).
+#   • نافذتان فقط في الساعة (00–04 / 30–34 UTC) ⇒ دورة كل ~30 دقيقة.
+#   • يرفض الإرسال إن وُجد تشغيل 1H نشط، أو كان آخر تشغيل أحدث من 25 دقيقة.
+#   • يرسل {"ref":"main"} فقط؛ nw-bot.yml نفسه يحدّث checkout إلى أحدث main
+#     ويمنع التشغيل المتزامن ⇒ لا حالة قديمة ولا رسائل مكرّرة.
+# لا نُعيد تفعيل التريغر القديم؛ يبقى disabled_manually. لا يمسّ 4H/15M.
+
+on:
+  workflow_run:
+    workflows: ["Signal Bot Cron"]
+    types: [completed]
+  schedule:
+    - cron: '2,32 * * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: nw-1h-guard
+  cancel-in-progress: true
+
+jobs:
+  kick:
+    if: ${{ vars.NW_ENABLED != 'false' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Guarded dispatch of NW 1H bot
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          m=$(date -u +%M); m=$((10#$m))
+          if ! { { [ "$m" -ge 0 ] && [ "$m" -lt 5 ]; } || { [ "$m" -ge 30 ] && [ "$m" -lt 35 ]; }; }; then
+            echo "⏭ خارج نافذة التشغيل (UTC دقيقة $m) — تخطٍّ"
+            exit 0
+          fi
+          python3 - <<'PY'
+          import json, os, urllib.request, urllib.error, datetime
+          token = os.environ["GH_TOKEN"]
+          repo = os.environ["REPO"]
+          H = {"Authorization": f"Bearer {token}",
+               "Accept": "application/vnd.github+json",
+               "X-GitHub-Api-Version": "2022-11-28",
+               "User-Agent": "nw-1h-guard"}
+          base = f"https://api.github.com/repos/{repo}"
+          def get(path):
+              req = urllib.request.Request(base + path, headers=H)
+              with urllib.request.urlopen(req, timeout=20) as r:
+                  return json.load(r)
+          try:
+              runs = get("/actions/workflows/nw-bot.yml/runs?per_page=20")["workflow_runs"]
+          except Exception as e:
+              print("::error::تعذّر قراءة تشغيلات 1H:", e)
+              raise SystemExit(1)
+          active = [r for r in runs
+                    if r.get("status") in ("queued", "in_progress", "pending", "waiting", "requested")]
+          if active:
+              print("⏭ يوجد تشغيل 1H نشط:", [(r["id"], r["status"]) for r in active])
+              raise SystemExit(0)
+          if runs:
+              last = max(datetime.datetime.fromisoformat(r["created_at"].replace("Z", "+00:00"))
+                         for r in runs)
+              age = (datetime.datetime.now(datetime.timezone.utc) - last).total_seconds() / 60
+              if age < 25:
+                  print(f"⏭ آخر تشغيل 1H منذ {age:.1f} دقيقة (<25) — تخطٍّ")
+                  raise SystemExit(0)
+          print("🚀 إطلاق nw-bot.yml على main")
+          data = b'{"ref":"main"}'
+          req = urllib.request.Request(base + "/actions/workflows/nw-bot.yml/dispatches",
+                                       data=data, method="POST",
+                                       headers={**H, "Content-Type": "application/json"})
+          try:
+              with urllib.request.urlopen(req, timeout=20) as r:
+                  print("dispatch HTTP", r.status)
+          except urllib.error.HTTPError as e:
+              print("::error::فشل الإرسال", e.code, e.read().decode()[:300])
+              raise SystemExit(1)
+          PY
