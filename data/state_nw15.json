@@ -2547,10 +2547,16 @@
       "last_entry_price": 3.05
     },
     "KSTRBUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 18.04,
+        "entry_time": 1794196800000,
+        "signal_bar_time": 1794195900000,
+        "signal_price": 18.05,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794195900000,
+      "last_entry_price": 18.04
     },
     "LAUSDT": {
       "position": {
@@ -5336,7 +5342,9 @@
     "KNCUSDT": [],
     "KORUBUSDT": [],
     "KSMUSDT": [],
-    "KSTRBUSDT": [],
+    "KSTRBUSDT": [
+      1794195900000
+    ],
     "LAUSDT": [],
     "LAYERUSDT": [],
     "LAZIOUSDT": [],
@@ -5614,9 +5622,7 @@
     "AEROUSDT": [],
     "AEVOUSDT": [],
     "AGLDUSDT": [],
-    "AGPUBUSDT": [
-      1794195000000
-    ],
+    "AGPUBUSDT": [],
     "AIGENSYNUSDT": [],
     "AIUSDT": [],
     "AIXBTUSDT": [],
@@ -5808,9 +5814,7 @@
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
-    "HOTUSDT": [
-      1794195000000
-    ],
+    "HOTUSDT": [],
     "HPEBUSDT": [],
     "HUMAUSDT": [],
     "HYPERUSDT": [],
@@ -5843,7 +5847,9 @@
     "KAVAUSDT": [],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
-    "KITEUSDT": [],
+    "KITEUSDT": [
+      1794195900000
+    ],
     "KMNOUSDT": [],
     "KNCUSDT": [],
     "KORUBUSDT": [],
@@ -5874,9 +5880,7 @@
     "MAVUSDT": [],
     "MBLUSDT": [],
     "MDBBUSDT": [],
-    "MEGAUSDT": [
-      1794195000000
-    ],
+    "MEGAUSDT": [],
     "MEMEUSDT": [],
     "METABUSDT": [],
     "METISUSDT": [],
@@ -6033,7 +6037,9 @@
     "SYNUSDT": [],
     "SYRUPUSDT": [],
     "TAOUSDT": [],
-    "TFUELUSDT": [],
+    "TFUELUSDT": [
+      1794195900000
+    ],
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
@@ -6105,9 +6111,7 @@
     "ZROUSDT": [],
     "ZRXUSDT": [],
     "币安人生USDT": [],
-    "牛来USDT": [
-      1794195000000
-    ]
+    "牛来USDT": []
   },
   "buy_history": {
     "0GUSDT": [
@@ -6834,7 +6838,9 @@
     "KSMUSDT": [
       1794174300000
     ],
-    "KSTRBUSDT": [],
+    "KSTRBUSDT": [
+      1794195900000
+    ],
     "LAUSDT": [
       1794174300000,
       1794176100000
@@ -8228,7 +8234,6 @@
     "牛来USDT": []
   },
   "sent": [
-    "buy:FORMUSDT:1794174300000:1",
     "buy:FRAXUSDT:1794174300000:2",
     "buy:FUSDT:1794174300000:1",
     "buy:GALAUSDT:1794174300000:1",
@@ -8627,11 +8632,12 @@
     "exit:TKOUSDT:1794191400000",
     "exit:GPSUSDT:1794192300000",
     "exit:RADUSDT:1794193200000",
-    "exit:MEGAUSDT:1794195000000"
+    "exit:MEGAUSDT:1794195000000",
+    "buy:KSTRBUSDT:1794195900000:1"
   ],
-  "cycles": 120,
-  "messages_sent": 597,
-  "last_cycle_ms": 1794197004039,
+  "cycles": 121,
+  "messages_sent": 598,
+  "last_cycle_ms": 1794197906252,
   "daily_report_nw15": {
     "last_report_day": "2026-11-08",
     "reported_trade_keys": [
