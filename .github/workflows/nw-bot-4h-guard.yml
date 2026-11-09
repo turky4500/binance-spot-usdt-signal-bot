@@ -72,17 +72,23 @@ jobs:
           if active:
               print("⏭ يوجد تشغيل 4H نشط:", [(r["id"], r["status"]) for r in active])
               raise SystemExit(0)
-          # نجاح حديث فقط هو الذي يمنع الإطلاق: تشغيل فاشل لا يُفوّت نافذة 4H،
-          # والحاجز الفردي داخل الوركفلو يمنع أي تصادم معه إن كان لا يزال نشطًا.
-          ok = [r for r in runs if r.get("status") == "completed"
-                and r.get("conclusion") == "success"]
-          if ok:
-              last = max(datetime.datetime.fromisoformat(r["created_at"].replace("Z", "+00:00"))
-                         for r in ok)
-              age = (datetime.datetime.now(datetime.timezone.utc) - last).total_seconds() / 60
-              if age < 180:
-                  print(f"⏭ آخر تشغيل 4H ناجح منذ {age:.1f} دقيقة (<180) — تخطٍّ")
-                  raise SystemExit(0)
+          # قاعدة صريحة: **دورة ناجحة واحدة لكل شمعة 4h**. نافذة الشمعة الحالية
+          # تبدأ عند آخر حدّ 4 ساعات (00/04/08/12/16/20 UTC). أي تشغيل ناجح
+          # داخلها ⇒ تخطٍّ؛ تشغيل فاشل لا يُفوّت النافذة، والحاجز الفردي داخل
+          # الوركفلو يمنع التصادم معه إن كان لا يزال نشطًا. تشغيل يدوي في نافذة
+          # سابقة لا يؤثر إطلاقًا على النافذة التالية.
+          now = datetime.datetime.now(datetime.timezone.utc)
+          window_start = now.replace(hour=(now.hour // 4) * 4, minute=0,
+                                     second=0, microsecond=0)
+          ok_this_window = [r for r in runs
+                            if r.get("status") == "completed"
+                            and r.get("conclusion") == "success"
+                            and datetime.datetime.fromisoformat(
+                                r["created_at"].replace("Z", "+00:00")) >= window_start]
+          if ok_this_window:
+              print("⏭ توجد دورة 4H ناجحة داخل شمعة هذه النافذة بالفعل:",
+                    [r["id"] for r in ok_this_window], "— تخطٍّ")
+              raise SystemExit(0)
           print("🚀 إطلاق nw-bot-4h.yml على main")
           data = b'{"ref":"main"}'
           req = urllib.request.Request(base + "/actions/workflows/nw-bot-4h.yml/dispatches",
