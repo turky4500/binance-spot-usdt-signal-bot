@@ -15,8 +15,11 @@ name: NW 1H Bot (Nadaraya-Watson)
 #    الحماية if على مستوى المهمة — لا تُستخدم خطوة `exit 0` كبوابة إطلاقًا
 #    (الدرس الموثّق في handoff.md §5).
 #
-# جدولتان في الساعة لأن cron قد يتأخر 2–66 دقيقة؛ التكرار آمن لأن الحالة
-# تمنع إعادة إرسال التسمية نفسها (_send_once + prev_buy_bars).
+# إصلاح 2026-11-09: جدولة GitHub الأصلية ('5,35') قد تتوقف ساعات، فأضفنا
+# مُشغّلًا محميًا (nw-bot-1h-guard.yml) يعتمد على نبض Signal Bot Cron.
+# حاجز «التشغيل الفردي» أدناه + تحديث checkout إلى أحدث main قبل قراءة
+# الحالة يمنعان تكرار حادثة 07:02/07:03 (حالتان قديمتان أُرسلتا مرتين).
+# الجدولتان الأصليتان تبقيان كنسخة احتياطية فقط.
 
 on:
   schedule:
@@ -26,6 +29,7 @@ on:
 
 permissions:
   contents: write
+  actions: read
 
 concurrency:
   group: nw-1h-bot
@@ -74,10 +78,51 @@ jobs:
       NW_EXCLUDE_TOKENIZED_STOCKS: "0"    # 1 = استثناء الأسهم المرمّزة
       NW_USE_EXCLUDE_FILE: "0"            # 1 = تفعيل config/zz_exclude.txt
     steps:
+      - name: Guard against concurrent 1H runs
+        id: guard
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request
+          token = os.environ["GH_TOKEN"]
+          repo = os.environ["REPO"]
+          me = int(os.environ["RUN_ID"])
+          H = {"Authorization": f"Bearer {token}",
+               "Accept": "application/vnd.github+json",
+               "X-GitHub-Api-Version": "2022-11-28",
+               "User-Agent": "nw-1h-singleton"}
+          url = f"https://api.github.com/repos/{repo}/actions/workflows/nw-bot.yml/runs?per_page=30"
+          try:
+              with urllib.request.urlopen(urllib.request.Request(url, headers=H), timeout=20) as r:
+                  runs = json.load(r)["workflow_runs"]
+          except Exception as e:
+              print("::error::تعذّر فحص التشغيلات النشطة:", e)
+              raise SystemExit(1)
+          active = [r for r in runs
+                    if r["id"] != me
+                    and r.get("status") in ("queued", "in_progress", "pending", "waiting", "requested")]
+          older = [r for r in active if r["id"] < me]
+          proceed = "false" if older else "true"
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write(f"proceed={proceed}\n")
+          if older:
+              print("⏭ تشغيل أقدم ما زال نشطًا — انسحاب لمنع التكرار:", [r["id"] for r in older])
+          else:
+              print("✅ لا يوجد تشغيل أقدم نشط — متابعة الدورة")
+          PY
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Refresh checkout to latest main (prevent stale state)
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -88,9 +133,11 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run NW bot once
+        if: steps.guard.outputs.proceed == 'true'
         run: python run_nw_once.py
 
       - name: Commit NW state updates
+        if: steps.guard.outputs.proceed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -104,7 +151,7 @@ jobs:
           git commit -m "chore: update NW bot state [skip ci]"
           for attempt in 1 2 3 4 5; do
             git fetch origin main
-            if git rebase -X theirs origin/main; then
+            if git rebase origin/main; then
               if git push origin HEAD:main; then
                 echo "NW state pushed on attempt $attempt"
                 exit 0
