@@ -18,7 +18,8 @@ name: NW 1H Bot (Nadaraya-Watson)
 # إصلاح 2026-11-09: جدولة GitHub الأصلية ('5,35') قد تتوقف ساعات، فأضفنا
 # مُشغّلًا محميًا (nw-bot-1h-guard.yml) يعتمد على نبض Signal Bot Cron.
 # حاجز «التشغيل الفردي» أدناه + تحديث checkout إلى أحدث main قبل قراءة
-# الحالة يمنعان تكرار حادثة 07:02/07:03 (حالتان قديمتان أُرسلتا مرتين).
+# الحالة + غلاف run_nw1h_once_safe.py (حفظ تدريجي + دفتر غير مكرّر) يمنعان
+# تكرار حادثة 07:02/07:03 والفقد عند انقطاع شبكي عابر.
 # الجدولتان الأصليتان تبقيان كنسخة احتياطية فقط.
 
 on:
@@ -134,10 +135,19 @@ jobs:
 
       - name: Run NW bot once
         if: steps.guard.outputs.proceed == 'true'
-        run: python run_nw_once.py
+        run: |
+          for attempt in 1 2 3; do
+            if python run_nw1h_once_safe.py; then
+              exit 0
+            fi
+            echo "⟳ محاولة $attempt فشلت بخطأ شبكي عابر؛ إعادة بعد $((attempt * 5)) ثانية"
+            sleep $((attempt * 5))
+          done
+          echo "::error::فشل نظام 1H بعد 3 محاولات"
+          exit 1
 
       - name: Commit NW state updates
-        if: steps.guard.outputs.proceed == 'true'
+        if: always() && steps.guard.outputs.proceed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
