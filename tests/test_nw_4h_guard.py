@@ -33,8 +33,9 @@ def test_4h_guard_kicks_bot_and_report_with_barriers():
     assert guard["concurrency"]["cancel-in-progress"] is False
     assert list(guard["jobs"]) == ["kick"]
     job = guard["jobs"]["kick"]
-    assert "NW4H_ENABLED" in str(job.get("if"))
-    assert "workflow_run.conclusion" in str(job.get("if"))
+    # بوابة بسيطة: لا يُفقد أي نبضة بسبب conclusion النبض المُحفِّز.
+    assert job["if"] == "vars.NW4H_ENABLED != 'false'"
+    assert "workflow_run.conclusion" not in str(job.get("if"))
     script = "\n".join(str(s.get("run", "")) for s in job["steps"])
 
     assert "nw-bot-4h.yml/dispatches" in script or "dispatch(\"nw-bot-4h.yml\")" in script
