@@ -4805,15 +4805,11 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
-    "GNSUSDT": [
-      1794193200000
-    ],
+    "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
-    "GRAMUSDT": [
-      1794193200000
-    ],
+    "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
     "GTCUSDT": [],
@@ -4927,14 +4923,14 @@
     "NOKBUSDT": [],
     "NOMUSDT": [],
     "NOTUSDT": [],
-    "NVDABUSDT": [
-      1794193200000
-    ],
+    "NVDABUSDT": [],
     "NXPCUSDT": [],
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [],
+    "ONEUSDT": [
+      1794196800000
+    ],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -5137,7 +5133,9 @@
     "ACMUSDT": [],
     "ACTUSDT": [],
     "ADAUSDT": [],
-    "ADBEBUSDT": [],
+    "ADBEBUSDT": [
+      1794196800000
+    ],
     "ADXUSDT": [],
     "AEROUSDT": [],
     "AEVOUSDT": [],
@@ -5362,7 +5360,9 @@
     "KAVAUSDT": [],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
-    "KITEUSDT": [],
+    "KITEUSDT": [
+      1794196800000
+    ],
     "KMNOUSDT": [],
     "KNCUSDT": [],
     "KORUBUSDT": [],
@@ -5392,7 +5392,9 @@
     "MAVUSDT": [],
     "MBLUSDT": [],
     "MDBBUSDT": [],
-    "MEGAUSDT": [],
+    "MEGAUSDT": [
+      1794196800000
+    ],
     "MEMEUSDT": [],
     "METABUSDT": [],
     "METISUSDT": [],
@@ -5444,7 +5446,9 @@
     "ORDIUSDT": [],
     "OSMOUSDT": [],
     "PARTIUSDT": [],
-    "PAXGUSDT": [],
+    "PAXGUSDT": [
+      1794196800000
+    ],
     "PDDBUSDT": [],
     "PENDLEUSDT": [],
     "PENGBUSDT": [],
@@ -5593,7 +5597,9 @@
     "WOOUSDT": [],
     "WUSDT": [],
     "XAIUSDT": [],
-    "XAUTUSDT": [],
+    "XAUTUSDT": [
+      1794196800000
+    ],
     "XECUSDT": [],
     "XLMUSDT": [],
     "XNOUSDT": [],
@@ -7083,7 +7089,8 @@
     "ONEUSDT": [
       1794096000000,
       1794132000000,
-      1794164400000
+      1794164400000,
+      1794196800000
     ],
     "ONGUSDT": [],
     "ONTUSDT": [],
@@ -7631,9 +7638,9 @@
     "exit:JASMYUSDT:1794189600000",
     "buy:GRAMUSDT:1794193200000:3"
   ],
-  "cycles": 161,
+  "cycles": 162,
   "messages_sent": 404,
-  "last_cycle_ms": 1794202403884,
+  "last_cycle_ms": 1794204204169,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
