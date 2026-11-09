@@ -1,13 +1,4676 @@
 {
   "version": 1,
   "system": "nw-4h",
-  "symbols": {},
-  "prev_buy_bars": {},
-  "prev_sell_bars": {},
-  "buy_history": {},
-  "cancelled_buy_bars": {},
-  "sent": [],
-  "cycles": 0,
-  "messages_sent": 0,
-  "last_cycle_ms": 0
+  "symbols": {
+    "0GUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "1000CATUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "1000CHEEMSUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "1000SATSUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "1INCHUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "1MBABYDOGEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "2ZUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AAOIBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AAPLBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AAVEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ACEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ACHUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ACMUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ACTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ADAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ADXUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AEROUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AEVOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AGLDUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AIGENSYNUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AIUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AIXBTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ALABBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ALGOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ALICEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ALLOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ALPINEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ALTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AMATBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AMDBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AMPUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AMZNBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ANIMEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ANKRUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "APEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "API3USDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "APTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ARBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ARKMUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ARKUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ARMBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ARPAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ARUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ASMLBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ASRUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ASTERUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ASTRUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ASTSBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ATMUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ATOMUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ATUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AUCTIONUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AUDIOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AVAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AVAXUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AVGOBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AVNTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AWEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AXLUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AXSUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "AXTIBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BABABUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BABYUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BANANAS31USDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BANANAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BANDUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BANKUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BARDUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BARUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BATUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BCHUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BEAMXUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BEBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BELUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BERAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BICOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BIGTIMEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BIOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BLURUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BMNRBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BMTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BNBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BNSOLUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BNTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BOMEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BONKUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BREVUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BROCCOLI714USDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BTCUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BTTCUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "C98USDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CAKEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CATIUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CBRSBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CELOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CELRUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CETUSUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CFGUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CFXUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CGPTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CHIPUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CHRUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CHZUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CITYUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CKBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "COHRBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "COINBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "COMPUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "COOKIEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "COTIUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "COWUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CRCLBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CRDOBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CRVUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CRWVBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CTKUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CTSIUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CVCUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CVXUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "CYBERUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "DASHUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "DCRUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "DELLBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "DEXEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "DGBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "DIAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "DODOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "DOGEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "DOGSUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "DOLOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "DOTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "DRAMBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "DUSKUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "DYDXUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "DYMUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "EDENUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "EDUUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "EGLDUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "EIGENUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ENAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ENJUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ENSOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ENSUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ERAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ESPUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ETCUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ETHFIUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ETHUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "EULUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "EWYBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "FETUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "FFUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "FIDAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "FILUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "FLNCBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "FLOKIUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "FLOWUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "FLUXUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "FOGOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "FORMUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "FRAXUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "FTTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "FUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GALAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GASUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GENIUSUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GIGGLEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GLMRUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GLMUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GLWBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GMEBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GMTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GMXUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GNOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GNSUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GOOGLBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GPSUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GRAMUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GRTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GSBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GTCUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GUNUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "HAEDALUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "HBARUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "HEIUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "HEMIUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "HIVEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "HMSTRUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "HOLOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "HOMEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "HOODBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "HOTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "HUMAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "HYPERUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "IBMBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ICPUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "IDUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ILVUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "IMXUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "INITUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "INJUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "INTCBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "INTWBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "IOSTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "IOTAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "IOTXUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "IOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "IQUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "IRENBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "JASMYUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "JOEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "JSTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "JTOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "JUPUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "JUVUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "KAIAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "KAITOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "KATUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "KAVAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "KERNELUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "KGSTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "KITEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "KMNOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "KNCUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "KORUBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "KSMUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "LAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "LAYERUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "LAZIOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "LDOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "LINEAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "LINKUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "LISTAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "LITEBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "LPTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "LQTYUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "LSKUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "LTCUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "LUMIAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "LUNAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "LUNCUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MAGICUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MANAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MANTAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MANTRAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MASKUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MAVUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MBLUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MEGAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MEMEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "METABUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "METISUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "METUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MINAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MIRAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MITOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MMTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MORPHOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MOVEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MOVRUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MRVLBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MSFTBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MSTRBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MTLUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MUBARAKUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MUBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MUUBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MVLLBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "NBISBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "NEARUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "NEIROUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "NEOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "NEWTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "NEXOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "NFLXBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "NIGHTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "NILUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "NMRUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "NOKBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "NOMUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "NOTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "NVDABUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "NXPCUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "OGNUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "OGUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ONDOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ONEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ONGUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ONTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "OPENUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "OPGUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "OPNUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "OPUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ORCAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ORCLBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ORDIUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "OSMOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PARTIUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PAXGUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PENDLEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PENGUUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PEOPLEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PEPEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PHAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PIXELUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PLTRBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PLUMEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PNUTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "POLUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "POLYXUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PORTALUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PORTOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "POWRUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PROMUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PROVEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PSGUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PUMPUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PUNDIXUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PYPLBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "PYTHUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "QCOMBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "QIUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "QKCUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "QNTBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "QNTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "QQQBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "QTUMUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "RADUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "RAREUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "RAYUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "REDUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "RENDERUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "REQUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "RESOLVUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "REUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "REZUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "RIFUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "RKLBBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "RLCUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ROBOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "RONINUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ROSEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "RPLUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "RSRUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "RUNEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "RVNUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SAGAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SAHARAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SANDUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SANTOSUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SAPIENUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SCRUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SCUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SEIUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SENTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SFPUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SHELLUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SHIBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SIGNUSDT": {
+      "position": {
+        "entry_price": 0.00822,
+        "entry_time": 1794196800000,
+        "signal_bar_time": 1794182400000,
+        "signal_price": 0.0081,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794182400000,
+      "last_entry_price": 0.00822
+    },
+    "SKHYBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SKLUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SKYUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SLPUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SMCIBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SMHBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SNDKBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SNXUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SNXXBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SOLUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SOLVUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SOMIUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SOPHUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SOXLBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SOXSBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SPCXBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SPELLUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SPKUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SPYBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SSVUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "STEEMUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "STOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "STRAXUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "STRKUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "STXUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SUIUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SUNUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SUPERUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SUSHIUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SXTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SYNUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SYRUPUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TAOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TFUELUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "THETAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "THEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TIAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TKOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TLMUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TNSRUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TOWNSUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TQQQBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TRBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TREEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TRUMPUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TRXUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TSLABUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TSMBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TSTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TURBOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TURTLEUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TUTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "TWTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "UMAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "UNIUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "USARBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "USTCUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "USUALUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "VANAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "VETUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "VIRTUALUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "VTHOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "WALUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "WAXPUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "WBETHUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "WBTCUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "WCTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "WDCBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "WIFUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "WINUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "WLDUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "WLFIUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "WOOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "WUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "XAIUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "XAUTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "XECUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "XLMUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "XNOUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "XPLUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "XRPUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "XTZUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "XVGUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "XVSUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "YBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "YFIUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "YGGUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ZAMAUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ZBTUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ZECUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ZENUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ZILUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ZKCUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ZKPUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ZKUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ZROUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "ZRXUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "币安人生USDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    }
+  },
+  "prev_buy_bars": {
+    "0GUSDT": [],
+    "1000CATUSDT": [],
+    "1000CHEEMSUSDT": [],
+    "1000SATSUSDT": [],
+    "1INCHUSDT": [],
+    "1MBABYDOGEUSDT": [],
+    "2ZUSDT": [],
+    "AAOIBUSDT": [],
+    "AAPLBUSDT": [],
+    "AAVEUSDT": [],
+    "ACEUSDT": [],
+    "ACHUSDT": [],
+    "ACMUSDT": [],
+    "ACTUSDT": [],
+    "ADAUSDT": [],
+    "ADXUSDT": [],
+    "AEROUSDT": [],
+    "AEVOUSDT": [],
+    "AGLDUSDT": [],
+    "AIGENSYNUSDT": [],
+    "AIUSDT": [],
+    "AIXBTUSDT": [],
+    "ALABBUSDT": [],
+    "ALGOUSDT": [],
+    "ALICEUSDT": [],
+    "ALLOUSDT": [],
+    "ALPINEUSDT": [],
+    "ALTUSDT": [],
+    "AMATBUSDT": [],
+    "AMDBUSDT": [],
+    "AMPUSDT": [],
+    "AMZNBUSDT": [],
+    "ANIMEUSDT": [],
+    "ANKRUSDT": [],
+    "APEUSDT": [],
+    "API3USDT": [],
+    "APTUSDT": [],
+    "ARBUSDT": [],
+    "ARKMUSDT": [],
+    "ARKUSDT": [],
+    "ARMBUSDT": [],
+    "ARPAUSDT": [],
+    "ARUSDT": [],
+    "ASMLBUSDT": [],
+    "ASRUSDT": [],
+    "ASTERUSDT": [],
+    "ASTRUSDT": [],
+    "ASTSBUSDT": [],
+    "ATMUSDT": [],
+    "ATOMUSDT": [],
+    "ATUSDT": [],
+    "AUCTIONUSDT": [],
+    "AUDIOUSDT": [],
+    "AUSDT": [],
+    "AVAUSDT": [],
+    "AVAXUSDT": [],
+    "AVGOBUSDT": [],
+    "AVNTUSDT": [],
+    "AWEUSDT": [],
+    "AXLUSDT": [],
+    "AXSUSDT": [],
+    "AXTIBUSDT": [],
+    "BABABUSDT": [],
+    "BABYUSDT": [],
+    "BANANAS31USDT": [],
+    "BANANAUSDT": [],
+    "BANDUSDT": [],
+    "BANKUSDT": [],
+    "BARDUSDT": [],
+    "BARUSDT": [],
+    "BATUSDT": [],
+    "BBUSDT": [],
+    "BCHUSDT": [],
+    "BEAMXUSDT": [],
+    "BEBUSDT": [],
+    "BELUSDT": [],
+    "BERAUSDT": [],
+    "BICOUSDT": [],
+    "BIGTIMEUSDT": [],
+    "BIOUSDT": [],
+    "BLURUSDT": [],
+    "BMNRBUSDT": [],
+    "BMTUSDT": [],
+    "BNBUSDT": [],
+    "BNSOLUSDT": [],
+    "BNTUSDT": [],
+    "BOMEUSDT": [],
+    "BONKUSDT": [],
+    "BREVUSDT": [],
+    "BROCCOLI714USDT": [],
+    "BTCUSDT": [],
+    "BTTCUSDT": [],
+    "C98USDT": [],
+    "CAKEUSDT": [],
+    "CATIUSDT": [],
+    "CBRSBUSDT": [],
+    "CELOUSDT": [],
+    "CELRUSDT": [],
+    "CETUSUSDT": [],
+    "CFGUSDT": [],
+    "CFXUSDT": [],
+    "CGPTUSDT": [],
+    "CHIPUSDT": [],
+    "CHRUSDT": [],
+    "CHZUSDT": [],
+    "CITYUSDT": [],
+    "CKBUSDT": [],
+    "COHRBUSDT": [],
+    "COINBUSDT": [],
+    "COMPUSDT": [],
+    "COOKIEUSDT": [],
+    "COTIUSDT": [],
+    "COWUSDT": [],
+    "CRCLBUSDT": [],
+    "CRDOBUSDT": [],
+    "CRVUSDT": [],
+    "CRWVBUSDT": [],
+    "CTKUSDT": [],
+    "CTSIUSDT": [],
+    "CUSDT": [],
+    "CVCUSDT": [],
+    "CVXUSDT": [],
+    "CYBERUSDT": [
+      1794182400000
+    ],
+    "DASHUSDT": [],
+    "DCRUSDT": [],
+    "DELLBUSDT": [],
+    "DEXEUSDT": [],
+    "DGBUSDT": [],
+    "DIAUSDT": [],
+    "DODOUSDT": [],
+    "DOGEUSDT": [],
+    "DOGSUSDT": [],
+    "DOLOUSDT": [],
+    "DOTUSDT": [],
+    "DRAMBUSDT": [],
+    "DUSKUSDT": [],
+    "DYDXUSDT": [],
+    "DYMUSDT": [],
+    "EDENUSDT": [],
+    "EDUUSDT": [],
+    "EGLDUSDT": [],
+    "EIGENUSDT": [],
+    "ENAUSDT": [],
+    "ENJUSDT": [],
+    "ENSOUSDT": [],
+    "ENSUSDT": [],
+    "ERAUSDT": [],
+    "ESPUSDT": [],
+    "ETCUSDT": [],
+    "ETHFIUSDT": [],
+    "ETHUSDT": [],
+    "EULUSDT": [],
+    "EWYBUSDT": [],
+    "FETUSDT": [],
+    "FFUSDT": [],
+    "FIDAUSDT": [],
+    "FILUSDT": [],
+    "FLNCBUSDT": [],
+    "FLOKIUSDT": [],
+    "FLOWUSDT": [],
+    "FLUXUSDT": [],
+    "FOGOUSDT": [],
+    "FORMUSDT": [],
+    "FRAXUSDT": [],
+    "FTTUSDT": [],
+    "FUSDT": [],
+    "GALAUSDT": [],
+    "GASUSDT": [],
+    "GENIUSUSDT": [],
+    "GIGGLEUSDT": [],
+    "GLMRUSDT": [],
+    "GLMUSDT": [],
+    "GLWBUSDT": [],
+    "GMEBUSDT": [],
+    "GMTUSDT": [],
+    "GMXUSDT": [],
+    "GNOUSDT": [],
+    "GNSUSDT": [],
+    "GOOGLBUSDT": [],
+    "GPSUSDT": [],
+    "GRAMUSDT": [],
+    "GRTUSDT": [],
+    "GSBUSDT": [],
+    "GTCUSDT": [],
+    "GUNUSDT": [],
+    "GUSDT": [],
+    "HAEDALUSDT": [],
+    "HBARUSDT": [],
+    "HEIUSDT": [],
+    "HEMIUSDT": [],
+    "HIVEUSDT": [],
+    "HMSTRUSDT": [],
+    "HOLOUSDT": [],
+    "HOMEUSDT": [],
+    "HOODBUSDT": [],
+    "HOTUSDT": [],
+    "HUMAUSDT": [],
+    "HYPERUSDT": [],
+    "IBMBUSDT": [],
+    "ICPUSDT": [],
+    "IDUSDT": [],
+    "ILVUSDT": [],
+    "IMXUSDT": [],
+    "INITUSDT": [],
+    "INJUSDT": [],
+    "INTCBUSDT": [],
+    "INTWBUSDT": [],
+    "IOSTUSDT": [],
+    "IOTAUSDT": [],
+    "IOTXUSDT": [],
+    "IOUSDT": [],
+    "IQUSDT": [],
+    "IRENBUSDT": [],
+    "JASMYUSDT": [],
+    "JOEUSDT": [],
+    "JSTUSDT": [],
+    "JTOUSDT": [],
+    "JUPUSDT": [],
+    "JUVUSDT": [],
+    "KAIAUSDT": [],
+    "KAITOUSDT": [],
+    "KATUSDT": [],
+    "KAVAUSDT": [],
+    "KERNELUSDT": [],
+    "KGSTUSDT": [],
+    "KITEUSDT": [],
+    "KMNOUSDT": [],
+    "KNCUSDT": [],
+    "KORUBUSDT": [],
+    "KSMUSDT": [],
+    "LAUSDT": [],
+    "LAYERUSDT": [],
+    "LAZIOUSDT": [],
+    "LDOUSDT": [],
+    "LINEAUSDT": [],
+    "LINKUSDT": [],
+    "LISTAUSDT": [],
+    "LITEBUSDT": [],
+    "LPTUSDT": [],
+    "LQTYUSDT": [],
+    "LSKUSDT": [],
+    "LTCUSDT": [],
+    "LUMIAUSDT": [],
+    "LUNAUSDT": [],
+    "LUNCUSDT": [],
+    "MAGICUSDT": [],
+    "MANAUSDT": [],
+    "MANTAUSDT": [],
+    "MANTRAUSDT": [],
+    "MASKUSDT": [],
+    "MAVUSDT": [],
+    "MBLUSDT": [],
+    "MEGAUSDT": [],
+    "MEMEUSDT": [],
+    "METABUSDT": [],
+    "METISUSDT": [],
+    "METUSDT": [],
+    "MEUSDT": [],
+    "MINAUSDT": [],
+    "MIRAUSDT": [],
+    "MITOUSDT": [],
+    "MMTUSDT": [],
+    "MORPHOUSDT": [],
+    "MOVEUSDT": [],
+    "MOVRUSDT": [],
+    "MRVLBUSDT": [],
+    "MSFTBUSDT": [],
+    "MSTRBUSDT": [],
+    "MTLUSDT": [],
+    "MUBARAKUSDT": [],
+    "MUBUSDT": [],
+    "MUUBUSDT": [],
+    "MVLLBUSDT": [],
+    "NBISBUSDT": [],
+    "NEARUSDT": [],
+    "NEIROUSDT": [],
+    "NEOUSDT": [],
+    "NEWTUSDT": [],
+    "NEXOUSDT": [],
+    "NFLXBUSDT": [],
+    "NIGHTUSDT": [],
+    "NILUSDT": [],
+    "NMRUSDT": [],
+    "NOKBUSDT": [],
+    "NOMUSDT": [],
+    "NOTUSDT": [],
+    "NVDABUSDT": [],
+    "NXPCUSDT": [],
+    "OGNUSDT": [],
+    "OGUSDT": [],
+    "ONDOUSDT": [],
+    "ONEUSDT": [],
+    "ONGUSDT": [],
+    "ONTUSDT": [],
+    "OPENUSDT": [],
+    "OPGUSDT": [],
+    "OPNUSDT": [],
+    "OPUSDT": [],
+    "ORCAUSDT": [],
+    "ORCLBUSDT": [],
+    "ORDIUSDT": [],
+    "OSMOUSDT": [],
+    "PARTIUSDT": [],
+    "PAXGUSDT": [],
+    "PENDLEUSDT": [],
+    "PENGUUSDT": [],
+    "PEOPLEUSDT": [],
+    "PEPEUSDT": [],
+    "PHAUSDT": [],
+    "PIXELUSDT": [],
+    "PLTRBUSDT": [],
+    "PLUMEUSDT": [],
+    "PNUTUSDT": [],
+    "POLUSDT": [],
+    "POLYXUSDT": [],
+    "PORTALUSDT": [],
+    "PORTOUSDT": [],
+    "POWRUSDT": [],
+    "PROMUSDT": [],
+    "PROVEUSDT": [],
+    "PSGUSDT": [],
+    "PUMPUSDT": [],
+    "PUNDIXUSDT": [],
+    "PYPLBUSDT": [],
+    "PYTHUSDT": [],
+    "QCOMBUSDT": [],
+    "QIUSDT": [],
+    "QKCUSDT": [],
+    "QNTBUSDT": [],
+    "QNTUSDT": [],
+    "QQQBUSDT": [],
+    "QTUMUSDT": [],
+    "RADUSDT": [],
+    "RAREUSDT": [],
+    "RAYUSDT": [],
+    "REDUSDT": [],
+    "RENDERUSDT": [],
+    "REQUSDT": [],
+    "RESOLVUSDT": [],
+    "REUSDT": [],
+    "REZUSDT": [],
+    "RIFUSDT": [],
+    "RKLBBUSDT": [],
+    "RLCUSDT": [],
+    "ROBOUSDT": [],
+    "RONINUSDT": [],
+    "ROSEUSDT": [],
+    "RPLUSDT": [],
+    "RSRUSDT": [],
+    "RUNEUSDT": [],
+    "RVNUSDT": [],
+    "SAGAUSDT": [],
+    "SAHARAUSDT": [],
+    "SANDUSDT": [],
+    "SANTOSUSDT": [],
+    "SAPIENUSDT": [],
+    "SCRUSDT": [],
+    "SCUSDT": [],
+    "SEIUSDT": [],
+    "SENTUSDT": [],
+    "SFPUSDT": [],
+    "SHELLUSDT": [],
+    "SHIBUSDT": [],
+    "SIGNUSDT": [
+      1794182400000
+    ],
+    "SKHYBUSDT": [],
+    "SKLUSDT": [],
+    "SKYUSDT": [],
+    "SLPUSDT": [],
+    "SMCIBUSDT": [],
+    "SMHBUSDT": [],
+    "SNDKBUSDT": [],
+    "SNXUSDT": [],
+    "SNXXBUSDT": [],
+    "SOLUSDT": [],
+    "SOLVUSDT": [],
+    "SOMIUSDT": [],
+    "SOPHUSDT": [],
+    "SOXLBUSDT": [],
+    "SOXSBUSDT": [],
+    "SPCXBUSDT": [],
+    "SPELLUSDT": [],
+    "SPKUSDT": [],
+    "SPYBUSDT": [],
+    "SSVUSDT": [],
+    "STEEMUSDT": [],
+    "STOUSDT": [],
+    "STRAXUSDT": [],
+    "STRKUSDT": [],
+    "STXUSDT": [],
+    "SUIUSDT": [],
+    "SUNUSDT": [],
+    "SUPERUSDT": [],
+    "SUSDT": [],
+    "SUSHIUSDT": [],
+    "SXTUSDT": [],
+    "SYNUSDT": [],
+    "SYRUPUSDT": [],
+    "TAOUSDT": [],
+    "TFUELUSDT": [],
+    "THETAUSDT": [],
+    "THEUSDT": [],
+    "TIAUSDT": [],
+    "TKOUSDT": [],
+    "TLMUSDT": [],
+    "TNSRUSDT": [],
+    "TOWNSUSDT": [],
+    "TQQQBUSDT": [],
+    "TRBUSDT": [],
+    "TREEUSDT": [],
+    "TRUMPUSDT": [],
+    "TRXUSDT": [],
+    "TSLABUSDT": [],
+    "TSMBUSDT": [],
+    "TSTUSDT": [],
+    "TURBOUSDT": [],
+    "TURTLEUSDT": [],
+    "TUSDT": [],
+    "TUTUSDT": [],
+    "TWTUSDT": [],
+    "UMAUSDT": [],
+    "UNIUSDT": [],
+    "USARBUSDT": [],
+    "USTCUSDT": [],
+    "USUALUSDT": [],
+    "VANAUSDT": [],
+    "VETUSDT": [],
+    "VIRTUALUSDT": [],
+    "VTHOUSDT": [],
+    "WALUSDT": [],
+    "WAXPUSDT": [],
+    "WBETHUSDT": [],
+    "WBTCUSDT": [],
+    "WCTUSDT": [],
+    "WDCBUSDT": [],
+    "WIFUSDT": [],
+    "WINUSDT": [],
+    "WLDUSDT": [],
+    "WLFIUSDT": [],
+    "WOOUSDT": [],
+    "WUSDT": [],
+    "XAIUSDT": [],
+    "XAUTUSDT": [],
+    "XECUSDT": [],
+    "XLMUSDT": [],
+    "XNOUSDT": [],
+    "XPLUSDT": [],
+    "XRPUSDT": [],
+    "XTZUSDT": [],
+    "XVGUSDT": [],
+    "XVSUSDT": [],
+    "YBUSDT": [],
+    "YFIUSDT": [],
+    "YGGUSDT": [],
+    "ZAMAUSDT": [],
+    "ZBTUSDT": [],
+    "ZECUSDT": [],
+    "ZENUSDT": [],
+    "ZILUSDT": [],
+    "ZKCUSDT": [],
+    "ZKPUSDT": [],
+    "ZKUSDT": [],
+    "ZROUSDT": [],
+    "ZRXUSDT": [],
+    "币安人生USDT": []
+  },
+  "prev_sell_bars": {
+    "0GUSDT": [],
+    "1000CATUSDT": [],
+    "1000CHEEMSUSDT": [],
+    "1000SATSUSDT": [],
+    "1INCHUSDT": [],
+    "1MBABYDOGEUSDT": [],
+    "2ZUSDT": [],
+    "AAOIBUSDT": [],
+    "AAPLBUSDT": [],
+    "AAVEUSDT": [],
+    "ACEUSDT": [],
+    "ACHUSDT": [],
+    "ACMUSDT": [],
+    "ACTUSDT": [],
+    "ADAUSDT": [],
+    "ADXUSDT": [],
+    "AEROUSDT": [],
+    "AEVOUSDT": [],
+    "AGLDUSDT": [],
+    "AIGENSYNUSDT": [],
+    "AIUSDT": [],
+    "AIXBTUSDT": [],
+    "ALABBUSDT": [],
+    "ALGOUSDT": [],
+    "ALICEUSDT": [],
+    "ALLOUSDT": [],
+    "ALPINEUSDT": [],
+    "ALTUSDT": [],
+    "AMATBUSDT": [],
+    "AMDBUSDT": [],
+    "AMPUSDT": [],
+    "AMZNBUSDT": [],
+    "ANIMEUSDT": [],
+    "ANKRUSDT": [],
+    "APEUSDT": [],
+    "API3USDT": [],
+    "APTUSDT": [],
+    "ARBUSDT": [],
+    "ARKMUSDT": [],
+    "ARKUSDT": [],
+    "ARMBUSDT": [],
+    "ARPAUSDT": [],
+    "ARUSDT": [],
+    "ASMLBUSDT": [],
+    "ASRUSDT": [],
+    "ASTERUSDT": [],
+    "ASTRUSDT": [],
+    "ASTSBUSDT": [],
+    "ATMUSDT": [],
+    "ATOMUSDT": [],
+    "ATUSDT": [],
+    "AUCTIONUSDT": [],
+    "AUDIOUSDT": [],
+    "AUSDT": [],
+    "AVAUSDT": [],
+    "AVAXUSDT": [],
+    "AVGOBUSDT": [],
+    "AVNTUSDT": [],
+    "AWEUSDT": [],
+    "AXLUSDT": [],
+    "AXSUSDT": [],
+    "AXTIBUSDT": [],
+    "BABABUSDT": [],
+    "BABYUSDT": [],
+    "BANANAS31USDT": [],
+    "BANANAUSDT": [],
+    "BANDUSDT": [],
+    "BANKUSDT": [],
+    "BARDUSDT": [],
+    "BARUSDT": [],
+    "BATUSDT": [],
+    "BBUSDT": [],
+    "BCHUSDT": [],
+    "BEAMXUSDT": [],
+    "BEBUSDT": [],
+    "BELUSDT": [],
+    "BERAUSDT": [],
+    "BICOUSDT": [],
+    "BIGTIMEUSDT": [],
+    "BIOUSDT": [],
+    "BLURUSDT": [],
+    "BMNRBUSDT": [],
+    "BMTUSDT": [],
+    "BNBUSDT": [],
+    "BNSOLUSDT": [],
+    "BNTUSDT": [],
+    "BOMEUSDT": [],
+    "BONKUSDT": [],
+    "BREVUSDT": [],
+    "BROCCOLI714USDT": [],
+    "BTCUSDT": [],
+    "BTTCUSDT": [],
+    "C98USDT": [],
+    "CAKEUSDT": [],
+    "CATIUSDT": [],
+    "CBRSBUSDT": [],
+    "CELOUSDT": [],
+    "CELRUSDT": [],
+    "CETUSUSDT": [],
+    "CFGUSDT": [],
+    "CFXUSDT": [],
+    "CGPTUSDT": [],
+    "CHIPUSDT": [],
+    "CHRUSDT": [],
+    "CHZUSDT": [],
+    "CITYUSDT": [],
+    "CKBUSDT": [],
+    "COHRBUSDT": [],
+    "COINBUSDT": [],
+    "COMPUSDT": [],
+    "COOKIEUSDT": [],
+    "COTIUSDT": [],
+    "COWUSDT": [],
+    "CRCLBUSDT": [],
+    "CRDOBUSDT": [],
+    "CRVUSDT": [],
+    "CRWVBUSDT": [],
+    "CTKUSDT": [],
+    "CTSIUSDT": [],
+    "CUSDT": [],
+    "CVCUSDT": [],
+    "CVXUSDT": [],
+    "CYBERUSDT": [],
+    "DASHUSDT": [],
+    "DCRUSDT": [],
+    "DELLBUSDT": [],
+    "DEXEUSDT": [],
+    "DGBUSDT": [],
+    "DIAUSDT": [],
+    "DODOUSDT": [],
+    "DOGEUSDT": [],
+    "DOGSUSDT": [],
+    "DOLOUSDT": [],
+    "DOTUSDT": [],
+    "DRAMBUSDT": [],
+    "DUSKUSDT": [],
+    "DYDXUSDT": [],
+    "DYMUSDT": [],
+    "EDENUSDT": [],
+    "EDUUSDT": [],
+    "EGLDUSDT": [],
+    "EIGENUSDT": [],
+    "ENAUSDT": [],
+    "ENJUSDT": [],
+    "ENSOUSDT": [],
+    "ENSUSDT": [],
+    "ERAUSDT": [],
+    "ESPUSDT": [],
+    "ETCUSDT": [],
+    "ETHFIUSDT": [],
+    "ETHUSDT": [],
+    "EULUSDT": [],
+    "EWYBUSDT": [],
+    "FETUSDT": [],
+    "FFUSDT": [],
+    "FIDAUSDT": [],
+    "FILUSDT": [],
+    "FLNCBUSDT": [],
+    "FLOKIUSDT": [],
+    "FLOWUSDT": [],
+    "FLUXUSDT": [],
+    "FOGOUSDT": [],
+    "FORMUSDT": [],
+    "FRAXUSDT": [],
+    "FTTUSDT": [],
+    "FUSDT": [],
+    "GALAUSDT": [],
+    "GASUSDT": [],
+    "GENIUSUSDT": [],
+    "GIGGLEUSDT": [],
+    "GLMRUSDT": [],
+    "GLMUSDT": [],
+    "GLWBUSDT": [],
+    "GMEBUSDT": [],
+    "GMTUSDT": [],
+    "GMXUSDT": [],
+    "GNOUSDT": [],
+    "GNSUSDT": [],
+    "GOOGLBUSDT": [],
+    "GPSUSDT": [],
+    "GRAMUSDT": [],
+    "GRTUSDT": [],
+    "GSBUSDT": [],
+    "GTCUSDT": [],
+    "GUNUSDT": [],
+    "GUSDT": [],
+    "HAEDALUSDT": [],
+    "HBARUSDT": [],
+    "HEIUSDT": [],
+    "HEMIUSDT": [],
+    "HIVEUSDT": [],
+    "HMSTRUSDT": [],
+    "HOLOUSDT": [],
+    "HOMEUSDT": [],
+    "HOODBUSDT": [],
+    "HOTUSDT": [
+      1794182400000
+    ],
+    "HUMAUSDT": [],
+    "HYPERUSDT": [],
+    "IBMBUSDT": [],
+    "ICPUSDT": [],
+    "IDUSDT": [],
+    "ILVUSDT": [],
+    "IMXUSDT": [],
+    "INITUSDT": [],
+    "INJUSDT": [],
+    "INTCBUSDT": [],
+    "INTWBUSDT": [],
+    "IOSTUSDT": [],
+    "IOTAUSDT": [],
+    "IOTXUSDT": [],
+    "IOUSDT": [],
+    "IQUSDT": [],
+    "IRENBUSDT": [],
+    "JASMYUSDT": [],
+    "JOEUSDT": [],
+    "JSTUSDT": [],
+    "JTOUSDT": [],
+    "JUPUSDT": [],
+    "JUVUSDT": [],
+    "KAIAUSDT": [],
+    "KAITOUSDT": [],
+    "KATUSDT": [],
+    "KAVAUSDT": [],
+    "KERNELUSDT": [],
+    "KGSTUSDT": [],
+    "KITEUSDT": [],
+    "KMNOUSDT": [],
+    "KNCUSDT": [],
+    "KORUBUSDT": [],
+    "KSMUSDT": [],
+    "LAUSDT": [],
+    "LAYERUSDT": [],
+    "LAZIOUSDT": [],
+    "LDOUSDT": [],
+    "LINEAUSDT": [],
+    "LINKUSDT": [],
+    "LISTAUSDT": [],
+    "LITEBUSDT": [],
+    "LPTUSDT": [],
+    "LQTYUSDT": [],
+    "LSKUSDT": [],
+    "LTCUSDT": [],
+    "LUMIAUSDT": [],
+    "LUNAUSDT": [],
+    "LUNCUSDT": [],
+    "MAGICUSDT": [],
+    "MANAUSDT": [],
+    "MANTAUSDT": [],
+    "MANTRAUSDT": [],
+    "MASKUSDT": [],
+    "MAVUSDT": [],
+    "MBLUSDT": [],
+    "MEGAUSDT": [],
+    "MEMEUSDT": [],
+    "METABUSDT": [],
+    "METISUSDT": [],
+    "METUSDT": [],
+    "MEUSDT": [],
+    "MINAUSDT": [],
+    "MIRAUSDT": [],
+    "MITOUSDT": [],
+    "MMTUSDT": [],
+    "MORPHOUSDT": [],
+    "MOVEUSDT": [],
+    "MOVRUSDT": [],
+    "MRVLBUSDT": [],
+    "MSFTBUSDT": [],
+    "MSTRBUSDT": [],
+    "MTLUSDT": [],
+    "MUBARAKUSDT": [],
+    "MUBUSDT": [],
+    "MUUBUSDT": [],
+    "MVLLBUSDT": [],
+    "NBISBUSDT": [],
+    "NEARUSDT": [],
+    "NEIROUSDT": [],
+    "NEOUSDT": [],
+    "NEWTUSDT": [],
+    "NEXOUSDT": [],
+    "NFLXBUSDT": [],
+    "NIGHTUSDT": [],
+    "NILUSDT": [],
+    "NMRUSDT": [],
+    "NOKBUSDT": [],
+    "NOMUSDT": [],
+    "NOTUSDT": [],
+    "NVDABUSDT": [],
+    "NXPCUSDT": [],
+    "OGNUSDT": [],
+    "OGUSDT": [],
+    "ONDOUSDT": [],
+    "ONEUSDT": [],
+    "ONGUSDT": [],
+    "ONTUSDT": [],
+    "OPENUSDT": [],
+    "OPGUSDT": [],
+    "OPNUSDT": [],
+    "OPUSDT": [],
+    "ORCAUSDT": [],
+    "ORCLBUSDT": [],
+    "ORDIUSDT": [],
+    "OSMOUSDT": [],
+    "PARTIUSDT": [],
+    "PAXGUSDT": [],
+    "PENDLEUSDT": [],
+    "PENGUUSDT": [],
+    "PEOPLEUSDT": [],
+    "PEPEUSDT": [],
+    "PHAUSDT": [],
+    "PIXELUSDT": [],
+    "PLTRBUSDT": [],
+    "PLUMEUSDT": [],
+    "PNUTUSDT": [],
+    "POLUSDT": [],
+    "POLYXUSDT": [],
+    "PORTALUSDT": [],
+    "PORTOUSDT": [],
+    "POWRUSDT": [],
+    "PROMUSDT": [],
+    "PROVEUSDT": [],
+    "PSGUSDT": [],
+    "PUMPUSDT": [],
+    "PUNDIXUSDT": [],
+    "PYPLBUSDT": [],
+    "PYTHUSDT": [],
+    "QCOMBUSDT": [],
+    "QIUSDT": [],
+    "QKCUSDT": [],
+    "QNTBUSDT": [],
+    "QNTUSDT": [],
+    "QQQBUSDT": [],
+    "QTUMUSDT": [],
+    "RADUSDT": [],
+    "RAREUSDT": [],
+    "RAYUSDT": [],
+    "REDUSDT": [],
+    "RENDERUSDT": [],
+    "REQUSDT": [],
+    "RESOLVUSDT": [],
+    "REUSDT": [],
+    "REZUSDT": [],
+    "RIFUSDT": [],
+    "RKLBBUSDT": [],
+    "RLCUSDT": [],
+    "ROBOUSDT": [],
+    "RONINUSDT": [],
+    "ROSEUSDT": [],
+    "RPLUSDT": [],
+    "RSRUSDT": [],
+    "RUNEUSDT": [],
+    "RVNUSDT": [],
+    "SAGAUSDT": [],
+    "SAHARAUSDT": [],
+    "SANDUSDT": [],
+    "SANTOSUSDT": [],
+    "SAPIENUSDT": [],
+    "SCRUSDT": [],
+    "SCUSDT": [],
+    "SEIUSDT": [],
+    "SENTUSDT": [],
+    "SFPUSDT": [],
+    "SHELLUSDT": [],
+    "SHIBUSDT": [],
+    "SIGNUSDT": [],
+    "SKHYBUSDT": [],
+    "SKLUSDT": [],
+    "SKYUSDT": [],
+    "SLPUSDT": [],
+    "SMCIBUSDT": [],
+    "SMHBUSDT": [],
+    "SNDKBUSDT": [],
+    "SNXUSDT": [],
+    "SNXXBUSDT": [],
+    "SOLUSDT": [],
+    "SOLVUSDT": [],
+    "SOMIUSDT": [],
+    "SOPHUSDT": [],
+    "SOXLBUSDT": [],
+    "SOXSBUSDT": [],
+    "SPCXBUSDT": [],
+    "SPELLUSDT": [],
+    "SPKUSDT": [],
+    "SPYBUSDT": [],
+    "SSVUSDT": [],
+    "STEEMUSDT": [],
+    "STOUSDT": [],
+    "STRAXUSDT": [],
+    "STRKUSDT": [],
+    "STXUSDT": [],
+    "SUIUSDT": [],
+    "SUNUSDT": [],
+    "SUPERUSDT": [],
+    "SUSDT": [],
+    "SUSHIUSDT": [],
+    "SXTUSDT": [],
+    "SYNUSDT": [],
+    "SYRUPUSDT": [],
+    "TAOUSDT": [],
+    "TFUELUSDT": [],
+    "THETAUSDT": [],
+    "THEUSDT": [],
+    "TIAUSDT": [],
+    "TKOUSDT": [],
+    "TLMUSDT": [],
+    "TNSRUSDT": [],
+    "TOWNSUSDT": [],
+    "TQQQBUSDT": [],
+    "TRBUSDT": [],
+    "TREEUSDT": [],
+    "TRUMPUSDT": [],
+    "TRXUSDT": [],
+    "TSLABUSDT": [],
+    "TSMBUSDT": [],
+    "TSTUSDT": [],
+    "TURBOUSDT": [],
+    "TURTLEUSDT": [],
+    "TUSDT": [],
+    "TUTUSDT": [],
+    "TWTUSDT": [],
+    "UMAUSDT": [],
+    "UNIUSDT": [],
+    "USARBUSDT": [],
+    "USTCUSDT": [],
+    "USUALUSDT": [],
+    "VANAUSDT": [],
+    "VETUSDT": [],
+    "VIRTUALUSDT": [],
+    "VTHOUSDT": [],
+    "WALUSDT": [],
+    "WAXPUSDT": [],
+    "WBETHUSDT": [],
+    "WBTCUSDT": [],
+    "WCTUSDT": [],
+    "WDCBUSDT": [],
+    "WIFUSDT": [],
+    "WINUSDT": [],
+    "WLDUSDT": [],
+    "WLFIUSDT": [],
+    "WOOUSDT": [],
+    "WUSDT": [],
+    "XAIUSDT": [],
+    "XAUTUSDT": [],
+    "XECUSDT": [],
+    "XLMUSDT": [],
+    "XNOUSDT": [],
+    "XPLUSDT": [],
+    "XRPUSDT": [],
+    "XTZUSDT": [],
+    "XVGUSDT": [],
+    "XVSUSDT": [],
+    "YBUSDT": [],
+    "YFIUSDT": [],
+    "YGGUSDT": [],
+    "ZAMAUSDT": [],
+    "ZBTUSDT": [],
+    "ZECUSDT": [],
+    "ZENUSDT": [],
+    "ZILUSDT": [],
+    "ZKCUSDT": [],
+    "ZKPUSDT": [],
+    "ZKUSDT": [],
+    "ZROUSDT": [],
+    "ZRXUSDT": [],
+    "币安人生USDT": []
+  },
+  "buy_history": {
+    "0GUSDT": [],
+    "1000CATUSDT": [],
+    "1000CHEEMSUSDT": [],
+    "1000SATSUSDT": [],
+    "1INCHUSDT": [],
+    "1MBABYDOGEUSDT": [],
+    "2ZUSDT": [],
+    "AAOIBUSDT": [],
+    "AAPLBUSDT": [],
+    "AAVEUSDT": [],
+    "ACEUSDT": [],
+    "ACHUSDT": [],
+    "ACMUSDT": [],
+    "ACTUSDT": [],
+    "ADAUSDT": [],
+    "ADXUSDT": [],
+    "AEROUSDT": [],
+    "AEVOUSDT": [],
+    "AGLDUSDT": [],
+    "AIGENSYNUSDT": [],
+    "AIUSDT": [],
+    "AIXBTUSDT": [],
+    "ALABBUSDT": [],
+    "ALGOUSDT": [],
+    "ALICEUSDT": [],
+    "ALLOUSDT": [],
+    "ALPINEUSDT": [],
+    "ALTUSDT": [],
+    "AMATBUSDT": [],
+    "AMDBUSDT": [],
+    "AMPUSDT": [],
+    "AMZNBUSDT": [],
+    "ANIMEUSDT": [],
+    "ANKRUSDT": [],
+    "APEUSDT": [],
+    "API3USDT": [],
+    "APTUSDT": [],
+    "ARBUSDT": [],
+    "ARKMUSDT": [],
+    "ARKUSDT": [],
+    "ARMBUSDT": [],
+    "ARPAUSDT": [],
+    "ARUSDT": [],
+    "ASMLBUSDT": [],
+    "ASRUSDT": [],
+    "ASTERUSDT": [],
+    "ASTRUSDT": [],
+    "ASTSBUSDT": [],
+    "ATMUSDT": [],
+    "ATOMUSDT": [],
+    "ATUSDT": [],
+    "AUCTIONUSDT": [],
+    "AUDIOUSDT": [],
+    "AUSDT": [],
+    "AVAUSDT": [],
+    "AVAXUSDT": [],
+    "AVGOBUSDT": [],
+    "AVNTUSDT": [],
+    "AWEUSDT": [],
+    "AXLUSDT": [],
+    "AXSUSDT": [],
+    "AXTIBUSDT": [],
+    "BABABUSDT": [],
+    "BABYUSDT": [],
+    "BANANAS31USDT": [],
+    "BANANAUSDT": [],
+    "BANDUSDT": [],
+    "BANKUSDT": [],
+    "BARDUSDT": [],
+    "BARUSDT": [],
+    "BATUSDT": [],
+    "BBUSDT": [],
+    "BCHUSDT": [],
+    "BEAMXUSDT": [],
+    "BEBUSDT": [],
+    "BELUSDT": [],
+    "BERAUSDT": [],
+    "BICOUSDT": [],
+    "BIGTIMEUSDT": [],
+    "BIOUSDT": [],
+    "BLURUSDT": [],
+    "BMNRBUSDT": [],
+    "BMTUSDT": [],
+    "BNBUSDT": [],
+    "BNSOLUSDT": [],
+    "BNTUSDT": [],
+    "BOMEUSDT": [],
+    "BONKUSDT": [],
+    "BREVUSDT": [],
+    "BROCCOLI714USDT": [],
+    "BTCUSDT": [],
+    "BTTCUSDT": [],
+    "C98USDT": [],
+    "CAKEUSDT": [],
+    "CATIUSDT": [],
+    "CBRSBUSDT": [],
+    "CELOUSDT": [],
+    "CELRUSDT": [],
+    "CETUSUSDT": [],
+    "CFGUSDT": [],
+    "CFXUSDT": [],
+    "CGPTUSDT": [],
+    "CHIPUSDT": [],
+    "CHRUSDT": [],
+    "CHZUSDT": [],
+    "CITYUSDT": [],
+    "CKBUSDT": [],
+    "COHRBUSDT": [],
+    "COINBUSDT": [],
+    "COMPUSDT": [],
+    "COOKIEUSDT": [],
+    "COTIUSDT": [],
+    "COWUSDT": [],
+    "CRCLBUSDT": [],
+    "CRDOBUSDT": [],
+    "CRVUSDT": [],
+    "CRWVBUSDT": [],
+    "CTKUSDT": [],
+    "CTSIUSDT": [],
+    "CUSDT": [],
+    "CVCUSDT": [],
+    "CVXUSDT": [],
+    "CYBERUSDT": [],
+    "DASHUSDT": [],
+    "DCRUSDT": [],
+    "DELLBUSDT": [],
+    "DEXEUSDT": [],
+    "DGBUSDT": [],
+    "DIAUSDT": [],
+    "DODOUSDT": [],
+    "DOGEUSDT": [],
+    "DOGSUSDT": [],
+    "DOLOUSDT": [],
+    "DOTUSDT": [],
+    "DRAMBUSDT": [],
+    "DUSKUSDT": [],
+    "DYDXUSDT": [],
+    "DYMUSDT": [],
+    "EDENUSDT": [],
+    "EDUUSDT": [],
+    "EGLDUSDT": [],
+    "EIGENUSDT": [],
+    "ENAUSDT": [],
+    "ENJUSDT": [],
+    "ENSOUSDT": [],
+    "ENSUSDT": [],
+    "ERAUSDT": [],
+    "ESPUSDT": [],
+    "ETCUSDT": [],
+    "ETHFIUSDT": [],
+    "ETHUSDT": [],
+    "EULUSDT": [],
+    "EWYBUSDT": [],
+    "FETUSDT": [],
+    "FFUSDT": [],
+    "FIDAUSDT": [],
+    "FILUSDT": [],
+    "FLNCBUSDT": [],
+    "FLOKIUSDT": [],
+    "FLOWUSDT": [],
+    "FLUXUSDT": [],
+    "FOGOUSDT": [],
+    "FORMUSDT": [],
+    "FRAXUSDT": [],
+    "FTTUSDT": [],
+    "FUSDT": [],
+    "GALAUSDT": [],
+    "GASUSDT": [],
+    "GENIUSUSDT": [],
+    "GIGGLEUSDT": [],
+    "GLMRUSDT": [],
+    "GLMUSDT": [],
+    "GLWBUSDT": [],
+    "GMEBUSDT": [],
+    "GMTUSDT": [],
+    "GMXUSDT": [],
+    "GNOUSDT": [],
+    "GNSUSDT": [],
+    "GOOGLBUSDT": [],
+    "GPSUSDT": [],
+    "GRAMUSDT": [],
+    "GRTUSDT": [],
+    "GSBUSDT": [],
+    "GTCUSDT": [],
+    "GUNUSDT": [],
+    "GUSDT": [],
+    "HAEDALUSDT": [],
+    "HBARUSDT": [],
+    "HEIUSDT": [],
+    "HEMIUSDT": [],
+    "HIVEUSDT": [],
+    "HMSTRUSDT": [],
+    "HOLOUSDT": [],
+    "HOMEUSDT": [],
+    "HOODBUSDT": [],
+    "HOTUSDT": [],
+    "HUMAUSDT": [],
+    "HYPERUSDT": [],
+    "IBMBUSDT": [],
+    "ICPUSDT": [],
+    "IDUSDT": [],
+    "ILVUSDT": [],
+    "IMXUSDT": [],
+    "INITUSDT": [],
+    "INJUSDT": [],
+    "INTCBUSDT": [],
+    "INTWBUSDT": [],
+    "IOSTUSDT": [],
+    "IOTAUSDT": [],
+    "IOTXUSDT": [],
+    "IOUSDT": [],
+    "IQUSDT": [],
+    "IRENBUSDT": [],
+    "JASMYUSDT": [],
+    "JOEUSDT": [],
+    "JSTUSDT": [],
+    "JTOUSDT": [],
+    "JUPUSDT": [],
+    "JUVUSDT": [],
+    "KAIAUSDT": [],
+    "KAITOUSDT": [],
+    "KATUSDT": [],
+    "KAVAUSDT": [],
+    "KERNELUSDT": [],
+    "KGSTUSDT": [],
+    "KITEUSDT": [],
+    "KMNOUSDT": [],
+    "KNCUSDT": [],
+    "KORUBUSDT": [],
+    "KSMUSDT": [],
+    "LAUSDT": [],
+    "LAYERUSDT": [],
+    "LAZIOUSDT": [],
+    "LDOUSDT": [],
+    "LINEAUSDT": [],
+    "LINKUSDT": [],
+    "LISTAUSDT": [],
+    "LITEBUSDT": [],
+    "LPTUSDT": [],
+    "LQTYUSDT": [],
+    "LSKUSDT": [],
+    "LTCUSDT": [],
+    "LUMIAUSDT": [],
+    "LUNAUSDT": [],
+    "LUNCUSDT": [],
+    "MAGICUSDT": [],
+    "MANAUSDT": [],
+    "MANTAUSDT": [],
+    "MANTRAUSDT": [],
+    "MASKUSDT": [],
+    "MAVUSDT": [],
+    "MBLUSDT": [],
+    "MEGAUSDT": [],
+    "MEMEUSDT": [],
+    "METABUSDT": [],
+    "METISUSDT": [],
+    "METUSDT": [],
+    "MEUSDT": [],
+    "MINAUSDT": [],
+    "MIRAUSDT": [],
+    "MITOUSDT": [],
+    "MMTUSDT": [],
+    "MORPHOUSDT": [],
+    "MOVEUSDT": [],
+    "MOVRUSDT": [],
+    "MRVLBUSDT": [],
+    "MSFTBUSDT": [],
+    "MSTRBUSDT": [],
+    "MTLUSDT": [],
+    "MUBARAKUSDT": [],
+    "MUBUSDT": [],
+    "MUUBUSDT": [],
+    "MVLLBUSDT": [],
+    "NBISBUSDT": [],
+    "NEARUSDT": [],
+    "NEIROUSDT": [],
+    "NEOUSDT": [],
+    "NEWTUSDT": [],
+    "NEXOUSDT": [],
+    "NFLXBUSDT": [],
+    "NIGHTUSDT": [],
+    "NILUSDT": [],
+    "NMRUSDT": [],
+    "NOKBUSDT": [],
+    "NOMUSDT": [],
+    "NOTUSDT": [],
+    "NVDABUSDT": [],
+    "NXPCUSDT": [],
+    "OGNUSDT": [],
+    "OGUSDT": [],
+    "ONDOUSDT": [],
+    "ONEUSDT": [],
+    "ONGUSDT": [],
+    "ONTUSDT": [],
+    "OPENUSDT": [],
+    "OPGUSDT": [],
+    "OPNUSDT": [],
+    "OPUSDT": [],
+    "ORCAUSDT": [],
+    "ORCLBUSDT": [],
+    "ORDIUSDT": [],
+    "OSMOUSDT": [],
+    "PARTIUSDT": [],
+    "PAXGUSDT": [],
+    "PENDLEUSDT": [],
+    "PENGUUSDT": [],
+    "PEOPLEUSDT": [],
+    "PEPEUSDT": [],
+    "PHAUSDT": [],
+    "PIXELUSDT": [],
+    "PLTRBUSDT": [],
+    "PLUMEUSDT": [],
+    "PNUTUSDT": [],
+    "POLUSDT": [],
+    "POLYXUSDT": [],
+    "PORTALUSDT": [],
+    "PORTOUSDT": [],
+    "POWRUSDT": [],
+    "PROMUSDT": [],
+    "PROVEUSDT": [],
+    "PSGUSDT": [],
+    "PUMPUSDT": [],
+    "PUNDIXUSDT": [],
+    "PYPLBUSDT": [],
+    "PYTHUSDT": [],
+    "QCOMBUSDT": [],
+    "QIUSDT": [],
+    "QKCUSDT": [],
+    "QNTBUSDT": [],
+    "QNTUSDT": [],
+    "QQQBUSDT": [],
+    "QTUMUSDT": [],
+    "RADUSDT": [],
+    "RAREUSDT": [],
+    "RAYUSDT": [],
+    "REDUSDT": [],
+    "RENDERUSDT": [],
+    "REQUSDT": [],
+    "RESOLVUSDT": [],
+    "REUSDT": [],
+    "REZUSDT": [],
+    "RIFUSDT": [],
+    "RKLBBUSDT": [],
+    "RLCUSDT": [],
+    "ROBOUSDT": [],
+    "RONINUSDT": [],
+    "ROSEUSDT": [],
+    "RPLUSDT": [],
+    "RSRUSDT": [],
+    "RUNEUSDT": [],
+    "RVNUSDT": [],
+    "SAGAUSDT": [],
+    "SAHARAUSDT": [],
+    "SANDUSDT": [],
+    "SANTOSUSDT": [],
+    "SAPIENUSDT": [],
+    "SCRUSDT": [],
+    "SCUSDT": [],
+    "SEIUSDT": [],
+    "SENTUSDT": [],
+    "SFPUSDT": [],
+    "SHELLUSDT": [],
+    "SHIBUSDT": [],
+    "SIGNUSDT": [
+      1794182400000
+    ],
+    "SKHYBUSDT": [],
+    "SKLUSDT": [],
+    "SKYUSDT": [],
+    "SLPUSDT": [],
+    "SMCIBUSDT": [],
+    "SMHBUSDT": [],
+    "SNDKBUSDT": [],
+    "SNXUSDT": [],
+    "SNXXBUSDT": [],
+    "SOLUSDT": [],
+    "SOLVUSDT": [],
+    "SOMIUSDT": [],
+    "SOPHUSDT": [],
+    "SOXLBUSDT": [],
+    "SOXSBUSDT": [],
+    "SPCXBUSDT": [],
+    "SPELLUSDT": [],
+    "SPKUSDT": [],
+    "SPYBUSDT": [],
+    "SSVUSDT": [],
+    "STEEMUSDT": [],
+    "STOUSDT": [],
+    "STRAXUSDT": [],
+    "STRKUSDT": [],
+    "STXUSDT": [],
+    "SUIUSDT": [],
+    "SUNUSDT": [],
+    "SUPERUSDT": [],
+    "SUSDT": [],
+    "SUSHIUSDT": [],
+    "SXTUSDT": [],
+    "SYNUSDT": [],
+    "SYRUPUSDT": [],
+    "TAOUSDT": [],
+    "TFUELUSDT": [],
+    "THETAUSDT": [],
+    "THEUSDT": [],
+    "TIAUSDT": [],
+    "TKOUSDT": [],
+    "TLMUSDT": [],
+    "TNSRUSDT": [],
+    "TOWNSUSDT": [],
+    "TQQQBUSDT": [],
+    "TRBUSDT": [],
+    "TREEUSDT": [],
+    "TRUMPUSDT": [],
+    "TRXUSDT": [],
+    "TSLABUSDT": [],
+    "TSMBUSDT": [],
+    "TSTUSDT": [],
+    "TURBOUSDT": [],
+    "TURTLEUSDT": [],
+    "TUSDT": [],
+    "TUTUSDT": [],
+    "TWTUSDT": [],
+    "UMAUSDT": [],
+    "UNIUSDT": [],
+    "USARBUSDT": [],
+    "USTCUSDT": [],
+    "USUALUSDT": [],
+    "VANAUSDT": [],
+    "VETUSDT": [],
+    "VIRTUALUSDT": [],
+    "VTHOUSDT": [],
+    "WALUSDT": [],
+    "WAXPUSDT": [],
+    "WBETHUSDT": [],
+    "WBTCUSDT": [],
+    "WCTUSDT": [],
+    "WDCBUSDT": [],
+    "WIFUSDT": [],
+    "WINUSDT": [],
+    "WLDUSDT": [],
+    "WLFIUSDT": [],
+    "WOOUSDT": [],
+    "WUSDT": [],
+    "XAIUSDT": [],
+    "XAUTUSDT": [],
+    "XECUSDT": [],
+    "XLMUSDT": [],
+    "XNOUSDT": [],
+    "XPLUSDT": [],
+    "XRPUSDT": [],
+    "XTZUSDT": [],
+    "XVGUSDT": [],
+    "XVSUSDT": [],
+    "YBUSDT": [],
+    "YFIUSDT": [],
+    "YGGUSDT": [],
+    "ZAMAUSDT": [],
+    "ZBTUSDT": [],
+    "ZECUSDT": [],
+    "ZENUSDT": [],
+    "ZILUSDT": [],
+    "ZKCUSDT": [],
+    "ZKPUSDT": [],
+    "ZKUSDT": [],
+    "ZROUSDT": [],
+    "ZRXUSDT": [],
+    "币安人生USDT": []
+  },
+  "cancelled_buy_bars": {
+    "0GUSDT": [],
+    "1000CATUSDT": [],
+    "1000CHEEMSUSDT": [],
+    "1000SATSUSDT": [],
+    "1INCHUSDT": [],
+    "1MBABYDOGEUSDT": [],
+    "2ZUSDT": [],
+    "AAOIBUSDT": [],
+    "AAPLBUSDT": [],
+    "AAVEUSDT": [],
+    "ACEUSDT": [],
+    "ACHUSDT": [],
+    "ACMUSDT": [],
+    "ACTUSDT": [],
+    "ADAUSDT": [],
+    "ADXUSDT": [],
+    "AEROUSDT": [],
+    "AEVOUSDT": [],
+    "AGLDUSDT": [],
+    "AIGENSYNUSDT": [],
+    "AIUSDT": [],
+    "AIXBTUSDT": [],
+    "ALABBUSDT": [],
+    "ALGOUSDT": [],
+    "ALICEUSDT": [],
+    "ALLOUSDT": [],
+    "ALPINEUSDT": [],
+    "ALTUSDT": [],
+    "AMATBUSDT": [],
+    "AMDBUSDT": [],
+    "AMPUSDT": [],
+    "AMZNBUSDT": [],
+    "ANIMEUSDT": [],
+    "ANKRUSDT": [],
+    "APEUSDT": [],
+    "API3USDT": [],
+    "APTUSDT": [],
+    "ARBUSDT": [],
+    "ARKMUSDT": [],
+    "ARKUSDT": [],
+    "ARMBUSDT": [],
+    "ARPAUSDT": [],
+    "ARUSDT": [],
+    "ASMLBUSDT": [],
+    "ASRUSDT": [],
+    "ASTERUSDT": [],
+    "ASTRUSDT": [],
+    "ASTSBUSDT": [],
+    "ATMUSDT": [],
+    "ATOMUSDT": [],
+    "ATUSDT": [],
+    "AUCTIONUSDT": [],
+    "AUDIOUSDT": [],
+    "AUSDT": [],
+    "AVAUSDT": [],
+    "AVAXUSDT": [],
+    "AVGOBUSDT": [],
+    "AVNTUSDT": [],
+    "AWEUSDT": [],
+    "AXLUSDT": [],
+    "AXSUSDT": [],
+    "AXTIBUSDT": [],
+    "BABABUSDT": [],
+    "BABYUSDT": [],
+    "BANANAS31USDT": [],
+    "BANANAUSDT": [],
+    "BANDUSDT": [],
+    "BANKUSDT": [],
+    "BARDUSDT": [],
+    "BARUSDT": [],
+    "BATUSDT": [],
+    "BBUSDT": [],
+    "BCHUSDT": [],
+    "BEAMXUSDT": [],
+    "BEBUSDT": [],
+    "BELUSDT": [],
+    "BERAUSDT": [],
+    "BICOUSDT": [],
+    "BIGTIMEUSDT": [],
+    "BIOUSDT": [],
+    "BLURUSDT": [],
+    "BMNRBUSDT": [],
+    "BMTUSDT": [],
+    "BNBUSDT": [],
+    "BNSOLUSDT": [],
+    "BNTUSDT": [],
+    "BOMEUSDT": [],
+    "BONKUSDT": [],
+    "BREVUSDT": [],
+    "BROCCOLI714USDT": [],
+    "BTCUSDT": [],
+    "BTTCUSDT": [],
+    "C98USDT": [],
+    "CAKEUSDT": [],
+    "CATIUSDT": [],
+    "CBRSBUSDT": [],
+    "CELOUSDT": [],
+    "CELRUSDT": [],
+    "CETUSUSDT": [],
+    "CFGUSDT": [],
+    "CFXUSDT": [],
+    "CGPTUSDT": [],
+    "CHIPUSDT": [],
+    "CHRUSDT": [],
+    "CHZUSDT": [],
+    "CITYUSDT": [],
+    "CKBUSDT": [],
+    "COHRBUSDT": [],
+    "COINBUSDT": [],
+    "COMPUSDT": [],
+    "COOKIEUSDT": [],
+    "COTIUSDT": [],
+    "COWUSDT": [],
+    "CRCLBUSDT": [],
+    "CRDOBUSDT": [],
+    "CRVUSDT": [],
+    "CRWVBUSDT": [],
+    "CTKUSDT": [],
+    "CTSIUSDT": [],
+    "CUSDT": [],
+    "CVCUSDT": [],
+    "CVXUSDT": [],
+    "CYBERUSDT": [
+      1794182400000
+    ],
+    "DASHUSDT": [],
+    "DCRUSDT": [],
+    "DELLBUSDT": [],
+    "DEXEUSDT": [],
+    "DGBUSDT": [],
+    "DIAUSDT": [],
+    "DODOUSDT": [],
+    "DOGEUSDT": [],
+    "DOGSUSDT": [],
+    "DOLOUSDT": [],
+    "DOTUSDT": [],
+    "DRAMBUSDT": [],
+    "DUSKUSDT": [],
+    "DYDXUSDT": [],
+    "DYMUSDT": [],
+    "EDENUSDT": [],
+    "EDUUSDT": [],
+    "EGLDUSDT": [],
+    "EIGENUSDT": [],
+    "ENAUSDT": [],
+    "ENJUSDT": [],
+    "ENSOUSDT": [],
+    "ENSUSDT": [],
+    "ERAUSDT": [],
+    "ESPUSDT": [],
+    "ETCUSDT": [],
+    "ETHFIUSDT": [],
+    "ETHUSDT": [],
+    "EULUSDT": [],
+    "EWYBUSDT": [],
+    "FETUSDT": [],
+    "FFUSDT": [],
+    "FIDAUSDT": [],
+    "FILUSDT": [],
+    "FLNCBUSDT": [],
+    "FLOKIUSDT": [],
+    "FLOWUSDT": [],
+    "FLUXUSDT": [],
+    "FOGOUSDT": [],
+    "FORMUSDT": [],
+    "FRAXUSDT": [],
+    "FTTUSDT": [],
+    "FUSDT": [],
+    "GALAUSDT": [],
+    "GASUSDT": [],
+    "GENIUSUSDT": [],
+    "GIGGLEUSDT": [],
+    "GLMRUSDT": [],
+    "GLMUSDT": [],
+    "GLWBUSDT": [],
+    "GMEBUSDT": [],
+    "GMTUSDT": [],
+    "GMXUSDT": [],
+    "GNOUSDT": [],
+    "GNSUSDT": [],
+    "GOOGLBUSDT": [],
+    "GPSUSDT": [],
+    "GRAMUSDT": [],
+    "GRTUSDT": [],
+    "GSBUSDT": [],
+    "GTCUSDT": [],
+    "GUNUSDT": [],
+    "GUSDT": [],
+    "HAEDALUSDT": [],
+    "HBARUSDT": [],
+    "HEIUSDT": [],
+    "HEMIUSDT": [],
+    "HIVEUSDT": [],
+    "HMSTRUSDT": [],
+    "HOLOUSDT": [],
+    "HOMEUSDT": [],
+    "HOODBUSDT": [],
+    "HOTUSDT": [],
+    "HUMAUSDT": [],
+    "HYPERUSDT": [],
+    "IBMBUSDT": [],
+    "ICPUSDT": [],
+    "IDUSDT": [],
+    "ILVUSDT": [],
+    "IMXUSDT": [],
+    "INITUSDT": [],
+    "INJUSDT": [],
+    "INTCBUSDT": [],
+    "INTWBUSDT": [],
+    "IOSTUSDT": [],
+    "IOTAUSDT": [],
+    "IOTXUSDT": [],
+    "IOUSDT": [],
+    "IQUSDT": [],
+    "IRENBUSDT": [],
+    "JASMYUSDT": [],
+    "JOEUSDT": [],
+    "JSTUSDT": [],
+    "JTOUSDT": [],
+    "JUPUSDT": [],
+    "JUVUSDT": [],
+    "KAIAUSDT": [],
+    "KAITOUSDT": [],
+    "KATUSDT": [],
+    "KAVAUSDT": [],
+    "KERNELUSDT": [],
+    "KGSTUSDT": [],
+    "KITEUSDT": [],
+    "KMNOUSDT": [],
+    "KNCUSDT": [],
+    "KORUBUSDT": [],
+    "KSMUSDT": [],
+    "LAUSDT": [],
+    "LAYERUSDT": [],
+    "LAZIOUSDT": [],
+    "LDOUSDT": [],
+    "LINEAUSDT": [],
+    "LINKUSDT": [],
+    "LISTAUSDT": [],
+    "LITEBUSDT": [],
+    "LPTUSDT": [],
+    "LQTYUSDT": [],
+    "LSKUSDT": [],
+    "LTCUSDT": [],
+    "LUMIAUSDT": [],
+    "LUNAUSDT": [],
+    "LUNCUSDT": [],
+    "MAGICUSDT": [],
+    "MANAUSDT": [],
+    "MANTAUSDT": [],
+    "MANTRAUSDT": [],
+    "MASKUSDT": [],
+    "MAVUSDT": [],
+    "MBLUSDT": [],
+    "MEGAUSDT": [],
+    "MEMEUSDT": [],
+    "METABUSDT": [],
+    "METISUSDT": [],
+    "METUSDT": [],
+    "MEUSDT": [],
+    "MINAUSDT": [],
+    "MIRAUSDT": [],
+    "MITOUSDT": [],
+    "MMTUSDT": [],
+    "MORPHOUSDT": [],
+    "MOVEUSDT": [],
+    "MOVRUSDT": [],
+    "MRVLBUSDT": [],
+    "MSFTBUSDT": [],
+    "MSTRBUSDT": [],
+    "MTLUSDT": [],
+    "MUBARAKUSDT": [],
+    "MUBUSDT": [],
+    "MUUBUSDT": [],
+    "MVLLBUSDT": [],
+    "NBISBUSDT": [],
+    "NEARUSDT": [],
+    "NEIROUSDT": [],
+    "NEOUSDT": [],
+    "NEWTUSDT": [],
+    "NEXOUSDT": [],
+    "NFLXBUSDT": [],
+    "NIGHTUSDT": [],
+    "NILUSDT": [],
+    "NMRUSDT": [],
+    "NOKBUSDT": [],
+    "NOMUSDT": [],
+    "NOTUSDT": [],
+    "NVDABUSDT": [],
+    "NXPCUSDT": [],
+    "OGNUSDT": [],
+    "OGUSDT": [],
+    "ONDOUSDT": [],
+    "ONEUSDT": [],
+    "ONGUSDT": [],
+    "ONTUSDT": [],
+    "OPENUSDT": [],
+    "OPGUSDT": [],
+    "OPNUSDT": [],
+    "OPUSDT": [],
+    "ORCAUSDT": [],
+    "ORCLBUSDT": [],
+    "ORDIUSDT": [],
+    "OSMOUSDT": [],
+    "PARTIUSDT": [],
+    "PAXGUSDT": [],
+    "PENDLEUSDT": [],
+    "PENGUUSDT": [],
+    "PEOPLEUSDT": [],
+    "PEPEUSDT": [],
+    "PHAUSDT": [],
+    "PIXELUSDT": [],
+    "PLTRBUSDT": [],
+    "PLUMEUSDT": [],
+    "PNUTUSDT": [],
+    "POLUSDT": [],
+    "POLYXUSDT": [],
+    "PORTALUSDT": [],
+    "PORTOUSDT": [],
+    "POWRUSDT": [],
+    "PROMUSDT": [],
+    "PROVEUSDT": [],
+    "PSGUSDT": [],
+    "PUMPUSDT": [],
+    "PUNDIXUSDT": [],
+    "PYPLBUSDT": [],
+    "PYTHUSDT": [],
+    "QCOMBUSDT": [],
+    "QIUSDT": [],
+    "QKCUSDT": [],
+    "QNTBUSDT": [],
+    "QNTUSDT": [],
+    "QQQBUSDT": [],
+    "QTUMUSDT": [],
+    "RADUSDT": [],
+    "RAREUSDT": [],
+    "RAYUSDT": [],
+    "REDUSDT": [],
+    "RENDERUSDT": [],
+    "REQUSDT": [],
+    "RESOLVUSDT": [],
+    "REUSDT": [],
+    "REZUSDT": [],
+    "RIFUSDT": [],
+    "RKLBBUSDT": [],
+    "RLCUSDT": [],
+    "ROBOUSDT": [],
+    "RONINUSDT": [],
+    "ROSEUSDT": [],
+    "RPLUSDT": [],
+    "RSRUSDT": [],
+    "RUNEUSDT": [],
+    "RVNUSDT": [],
+    "SAGAUSDT": [],
+    "SAHARAUSDT": [],
+    "SANDUSDT": [],
+    "SANTOSUSDT": [],
+    "SAPIENUSDT": [],
+    "SCRUSDT": [],
+    "SCUSDT": [],
+    "SEIUSDT": [],
+    "SENTUSDT": [],
+    "SFPUSDT": [],
+    "SHELLUSDT": [],
+    "SHIBUSDT": [],
+    "SIGNUSDT": [],
+    "SKHYBUSDT": [],
+    "SKLUSDT": [],
+    "SKYUSDT": [],
+    "SLPUSDT": [],
+    "SMCIBUSDT": [],
+    "SMHBUSDT": [],
+    "SNDKBUSDT": [],
+    "SNXUSDT": [],
+    "SNXXBUSDT": [],
+    "SOLUSDT": [],
+    "SOLVUSDT": [],
+    "SOMIUSDT": [],
+    "SOPHUSDT": [],
+    "SOXLBUSDT": [],
+    "SOXSBUSDT": [],
+    "SPCXBUSDT": [],
+    "SPELLUSDT": [],
+    "SPKUSDT": [],
+    "SPYBUSDT": [],
+    "SSVUSDT": [],
+    "STEEMUSDT": [],
+    "STOUSDT": [],
+    "STRAXUSDT": [],
+    "STRKUSDT": [],
+    "STXUSDT": [],
+    "SUIUSDT": [],
+    "SUNUSDT": [],
+    "SUPERUSDT": [],
+    "SUSDT": [],
+    "SUSHIUSDT": [],
+    "SXTUSDT": [],
+    "SYNUSDT": [],
+    "SYRUPUSDT": [],
+    "TAOUSDT": [],
+    "TFUELUSDT": [],
+    "THETAUSDT": [],
+    "THEUSDT": [],
+    "TIAUSDT": [],
+    "TKOUSDT": [],
+    "TLMUSDT": [],
+    "TNSRUSDT": [],
+    "TOWNSUSDT": [],
+    "TQQQBUSDT": [],
+    "TRBUSDT": [],
+    "TREEUSDT": [],
+    "TRUMPUSDT": [],
+    "TRXUSDT": [],
+    "TSLABUSDT": [],
+    "TSMBUSDT": [],
+    "TSTUSDT": [],
+    "TURBOUSDT": [],
+    "TURTLEUSDT": [],
+    "TUSDT": [],
+    "TUTUSDT": [],
+    "TWTUSDT": [],
+    "UMAUSDT": [],
+    "UNIUSDT": [],
+    "USARBUSDT": [],
+    "USTCUSDT": [],
+    "USUALUSDT": [],
+    "VANAUSDT": [],
+    "VETUSDT": [],
+    "VIRTUALUSDT": [],
+    "VTHOUSDT": [],
+    "WALUSDT": [],
+    "WAXPUSDT": [],
+    "WBETHUSDT": [],
+    "WBTCUSDT": [],
+    "WCTUSDT": [],
+    "WDCBUSDT": [],
+    "WIFUSDT": [],
+    "WINUSDT": [],
+    "WLDUSDT": [],
+    "WLFIUSDT": [],
+    "WOOUSDT": [],
+    "WUSDT": [],
+    "XAIUSDT": [],
+    "XAUTUSDT": [],
+    "XECUSDT": [],
+    "XLMUSDT": [],
+    "XNOUSDT": [],
+    "XPLUSDT": [],
+    "XRPUSDT": [],
+    "XTZUSDT": [],
+    "XVGUSDT": [],
+    "XVSUSDT": [],
+    "YBUSDT": [],
+    "YFIUSDT": [],
+    "YGGUSDT": [],
+    "ZAMAUSDT": [],
+    "ZBTUSDT": [],
+    "ZECUSDT": [],
+    "ZENUSDT": [],
+    "ZILUSDT": [],
+    "ZKCUSDT": [],
+    "ZKPUSDT": [],
+    "ZKUSDT": [],
+    "ZROUSDT": [],
+    "ZRXUSDT": [],
+    "币安人生USDT": []
+  },
+  "sent": [
+    "buy:SIGNUSDT:1794182400000:1"
+  ],
+  "cycles": 1,
+  "messages_sent": 1,
+  "last_cycle_ms": 1794214111431
 }
