@@ -281,8 +281,10 @@ def test_no_unguarded_4h_trigger_and_only_guarded_dispatch():
         assert "Signal Bot Cron" not in text
         assert "فحص مفتاح التشغيل" not in text
     g = guard.read_text(encoding="utf-8")
-    assert "nw-bot-4h.yml/dispatches" in g
-    assert "nw-bot-4h-report.yml/dispatches" in g
+    # المُشغّل يبني مسار dispatch من اسم الوركفلو داخل دالة واحدة.
+    assert "dispatch(\"nw-bot-4h.yml\")" in g
+    assert "dispatch(\"nw-bot-4h-report.yml\")" in g
+    assert "/actions/workflows/{wf}/dispatches" in g
     assert '{"ref":"main"}' in g
     assert "PAT" not in g and "ghp_" not in g
     assert "nw-bot.yml/dispatches" not in g and "nw-bot-15m" not in g
