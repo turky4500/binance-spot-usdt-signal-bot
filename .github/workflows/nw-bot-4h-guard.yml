@@ -5,9 +5,9 @@ name: NW 4H Bot — Guarded Kick
 # «اجعل فريم 4 ساعات يعمل لا يحتاج أن اقول لك في كل مرة... أجلس وانتظر
 # الرسائل والنظام يعمل». هذا المُشغّل:
 #   • يستمع لاكتمال "Signal Bot Cron" (نبض موثوق كل ~5 دقائق) + جدولة احتياطية.
-#   • دورات الإشارات: نوافذ UTC 00/04/08/12/16/20 (:00–:19) ⇒ 6 دورات/يوم.
+#   • دورات الإشارات: نوافذ UTC 00/04/08/12/16/20 (:03–:19) ⇒ 6 دورات/يوم.
 #   • التقرير اليومي: نافذة 21:00–21:19 UTC = 12:00–12:19 AM الرياض.
-#   • يرفض الإطلاق إن وُجد تشغيل نشط، أو آخر تشغيل 4H أحدث من 180 دقيقة،
+#   • يرفض الإطلاق إن وُجد تشغيل نشط، أو دورة ناجحة داخل شمعة 4h الحالية،
 #     أو كان تقرير اليوم قد أُرسل بالفعل (last_report_day) ⇒ لا تكرار.
 #   • يرسل {"ref":"main"} فقط؛ nw-bot-4h.yml نفسه يحدّث checkout إلى أحدث
 #     main ويمنع التشغيل المتزامن ⇒ لا حالة قديمة ولا رسائل مكرّرة.
@@ -27,98 +27,20 @@ permissions:
 
 concurrency:
   group: nw-4h-guard
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
-  kick-bot:
+  kick:
     if: ${{ vars.NW4H_ENABLED != 'false' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success') }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Guarded dispatch of NW 4H bot
+      - name: Guarded dispatch of NW 4H bot / daily report
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
-          h=$(date -u +%H); h=$((10#$h))
-          m=$(date -u +%M); m=$((10#$m))
-          # بعد إغلاق شمعة 4h بثلاث دقائق على الأقل (مطابق للجدول الأصلي :03)
-          # وحتى :19 ⇒ لا نقرأ شمعة لم تُغلق بعد، ولا نُعيد دورة قديمة.
-          if ! { [ $((h % 4)) -eq 0 ] && [ "$m" -ge 3 ] && [ "$m" -lt 20 ]; }; then
-            echo "⏭ خارج نافذة دورات 4H (UTC $(printf '%02d:%02d' "$h" "$m")) — تخطٍّ"
-            exit 0
-          fi
-          python3 - <<'PY'
-          import json, os, urllib.request, urllib.error, datetime
-          token = os.environ["GH_TOKEN"]
-          repo = os.environ["REPO"]
-          H = {"Authorization": f"Bearer {token}",
-               "Accept": "application/vnd.github+json",
-               "X-GitHub-Api-Version": "2022-11-28",
-               "User-Agent": "nw-4h-guard"}
-          base = f"https://api.github.com/repos/{repo}"
-          def get(path):
-              req = urllib.request.Request(base + path, headers=H)
-              with urllib.request.urlopen(req, timeout=20) as r:
-                  return json.load(r)
-          try:
-              runs = get("/actions/workflows/nw-bot-4h.yml/runs?per_page=20")["workflow_runs"]
-          except Exception as e:
-              print("::error::تعذّر قراءة تشغيلات 4H:", e)
-              raise SystemExit(1)
-          active = [r for r in runs
-                    if r.get("status") in ("queued", "in_progress", "pending", "waiting", "requested")]
-          if active:
-              print("⏭ يوجد تشغيل 4H نشط:", [(r["id"], r["status"]) for r in active])
-              raise SystemExit(0)
-          # قاعدة صريحة: **دورة ناجحة واحدة لكل شمعة 4h**. نافذة الشمعة الحالية
-          # تبدأ عند آخر حدّ 4 ساعات (00/04/08/12/16/20 UTC). أي تشغيل ناجح
-          # داخلها ⇒ تخطٍّ؛ تشغيل فاشل لا يُفوّت النافذة، والحاجز الفردي داخل
-          # الوركفلو يمنع التصادم معه إن كان لا يزال نشطًا. تشغيل يدوي في نافذة
-          # سابقة لا يؤثر إطلاقًا على النافذة التالية.
-          now = datetime.datetime.now(datetime.timezone.utc)
-          window_start = now.replace(hour=(now.hour // 4) * 4, minute=0,
-                                     second=0, microsecond=0)
-          ok_this_window = [r for r in runs
-                            if r.get("status") == "completed"
-                            and r.get("conclusion") == "success"
-                            and datetime.datetime.fromisoformat(
-                                r["created_at"].replace("Z", "+00:00")) >= window_start]
-          if ok_this_window:
-              print("⏭ توجد دورة 4H ناجحة داخل شمعة هذه النافذة بالفعل:",
-                    [r["id"] for r in ok_this_window], "— تخطٍّ")
-              raise SystemExit(0)
-          print("🚀 إطلاق nw-bot-4h.yml على main")
-          data = b'{"ref":"main"}'
-          req = urllib.request.Request(base + "/actions/workflows/nw-bot-4h.yml/dispatches",
-                                       data=data, method="POST",
-                                       headers={**H, "Content-Type": "application/json"})
-          try:
-              with urllib.request.urlopen(req, timeout=20) as r:
-                  print("dispatch HTTP", r.status)
-          except urllib.error.HTTPError as e:
-              print("::error::فشل الإرسال", e.code, e.read().decode()[:300])
-              raise SystemExit(1)
-          PY
-
-  kick-report:
-    if: ${{ vars.NW4H_ENABLED != 'false' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success') }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: Guarded dispatch of NW 4H daily report
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO: ${{ github.repository }}
-        run: |
-          set -euo pipefail
-          h=$(date -u +%H); h=$((10#$h))
-          m=$(date -u +%M); m=$((10#$m))
-          if ! { [ "$h" -eq 21 ] && [ "$m" -lt 20 ]; }; then
-            echo "⏭ خارج نافذة التقرير اليومي 4H (UTC $(printf '%02d:%02d' "$h" "$m")) — تخطٍّ"
-            exit 0
-          fi
           python3 - <<'PY'
           import json, os, base64, urllib.request, urllib.error, datetime
           token = os.environ["GH_TOKEN"]
@@ -126,9 +48,10 @@ jobs:
           H = {"Authorization": f"Bearer {token}",
                "Accept": "application/vnd.github+json",
                "X-GitHub-Api-Version": "2022-11-28",
-               "User-Agent": "nw-4h-report-guard"}
+               "User-Agent": "nw-4h-guard"}
           base = f"https://api.github.com/repos/{repo}"
           now = datetime.datetime.now(datetime.timezone.utc)
+          h, m = now.hour, now.minute
           riyadh = datetime.timezone(datetime.timedelta(hours=3))
           expected = (now.astimezone(riyadh).date() - datetime.timedelta(days=1)).isoformat()
 
@@ -139,7 +62,58 @@ jobs:
                   body = r.read()
               return body if raw else json.loads(body)
 
-          # 1) الحالة نفسها: إن أُرسل تقرير هذا اليوم فلا نُطلق تشغيلًا ثانيًا.
+          def runs_of(wf):
+              return get(f"/actions/workflows/{wf}/runs?per_page=20")["workflow_runs"]
+
+          def dispatch(wf):
+              print("🚀 إطلاق", wf, "على main")
+              data = b'{"ref":"main"}'
+              req = urllib.request.Request(base + f"/actions/workflows/{wf}/dispatches",
+                                           data=data, method="POST",
+                                           headers={**H, "Content-Type": "application/json"})
+              try:
+                  with urllib.request.urlopen(req, timeout=20) as r:
+                      print("dispatch HTTP", r.status)
+              except urllib.error.HTTPError as e:
+                  print("::error::فشل الإرسال", e.code, e.read().decode()[:300])
+                  raise SystemExit(1)
+
+          ACTIVE = ("queued", "in_progress", "pending", "waiting", "requested")
+          clock = now.strftime("%Y-%m-%d %H:%M UTC")
+
+          # ── نافذة دورات الإشارات: بعد إغلاق شمعة 4h بثلاث دقائق وحتى :19 ──
+          bot_window = (h % 4 == 0) and 3 <= m < 20
+          # ── نافذة التقرير اليومي: 12:00–12:19 AM الرياض = 21:00–21:19 UTC ──
+          report_window = (h == 21) and m < 20
+          if not bot_window and not report_window:
+              print(f"⏭ خارج نوافذ 4H ({clock}) — تخطٍّ")
+              raise SystemExit(0)
+
+          if bot_window:
+              try:
+                  runs = runs_of("nw-bot-4h.yml")
+              except Exception as e:
+                  print("::error::تعذّر قراءة تشغيلات 4H:", e)
+                  raise SystemExit(1)
+              active = [r for r in runs if r.get("status") in ACTIVE]
+              if active:
+                  print("⏭ يوجد تشغيل 4H نشط:", [(r["id"], r["status"]) for r in active])
+                  raise SystemExit(0)
+              # **دورة ناجحة واحدة لكل شمعة 4h**: فاشل لا يُفوّت النافذة،
+              # وتشغيل يدوي في نافذة سابقة لا يؤثر على النافذة التالية.
+              window_start = now.replace(hour=(h // 4) * 4, minute=0, second=0, microsecond=0)
+              ok = [r for r in runs
+                    if r.get("status") == "completed"
+                    and r.get("conclusion") == "success"
+                    and datetime.datetime.fromisoformat(
+                        r["created_at"].replace("Z", "+00:00")) >= window_start]
+              if ok:
+                  print("⏭ توجد دورة 4H ناجحة داخل شمعة هذه النافذة:", [r["id"] for r in ok])
+                  raise SystemExit(0)
+              dispatch("nw-bot-4h.yml")
+              raise SystemExit(0)
+
+          # ── التقرير اليومي ──────────────────────────────────────────────
           try:
               body = get("/contents/data/state_nw4h.json?ref=main", raw=True)
               try:
@@ -155,15 +129,12 @@ jobs:
           if report_state.get("last_report_day") == expected:
               print("⏭ تقرير 4H أُرسل بالفعل لليوم", expected, "— تخطٍّ")
               raise SystemExit(0)
-
-          # 2) لا تشغيل نشط ولا تقرير حديث ⇒ حاجز إضافي ضد التكرار.
           try:
-              runs = get("/actions/workflows/nw-bot-4h-report.yml/runs?per_page=20")["workflow_runs"]
+              runs = runs_of("nw-bot-4h-report.yml")
           except Exception as e:
               print("::error::تعذّر قراءة تشغيلات التقرير:", e)
               raise SystemExit(1)
-          active = [r for r in runs
-                    if r.get("status") in ("queued", "in_progress", "pending", "waiting", "requested")]
+          active = [r for r in runs if r.get("status") in ACTIVE]
           if active:
               print("⏭ يوجد تشغيل تقرير نشط:", [(r["id"], r["status"]) for r in active])
               raise SystemExit(0)
@@ -174,15 +145,5 @@ jobs:
               if age_h < 20:
                   print(f"⏭ آخر تشغيل تقرير منذ {age_h:.1f} ساعة (<20) — تخطٍّ")
                   raise SystemExit(0)
-          print("🚀 إطلاق nw-bot-4h-report.yml على main")
-          data = b'{"ref":"main"}'
-          req = urllib.request.Request(base + "/actions/workflows/nw-bot-4h-report.yml/dispatches",
-                                       data=data, method="POST",
-                                       headers={**H, "Content-Type": "application/json"})
-          try:
-              with urllib.request.urlopen(req, timeout=20) as r:
-                  print("dispatch HTTP", r.status)
-          except urllib.error.HTTPError as e:
-              print("::error::فشل الإرسال", e.code, e.read().decode()[:300])
-              raise SystemExit(1)
+          dispatch("nw-bot-4h-report.yml")
           PY
