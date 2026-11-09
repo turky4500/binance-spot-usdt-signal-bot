@@ -18,7 +18,7 @@ def _on(doc: dict) -> dict:
     return doc.get("on") or doc.get(True)
 
 
-def test_4h_guard_kicks_both_bot_and_report_with_barriers():
+def test_4h_guard_kicks_bot_and_report_with_barriers():
     guard = _doc("nw-bot-4h-guard.yml")
     on = _on(guard)
     assert on["workflow_run"]["workflows"] == ["Signal Bot Cron"]
@@ -29,33 +29,26 @@ def test_4h_guard_kicks_both_bot_and_report_with_barriers():
     assert guard["permissions"]["actions"] == "write"
     assert guard["permissions"]["contents"] == "read"
     assert guard["concurrency"]["group"] == "nw-4h-guard"
+    # مهمة واحدة بقرار واحد: لا تلغي مهمةٌ مهمةً أخرى عند تزامن النبضات.
+    assert guard["concurrency"]["cancel-in-progress"] is False
+    assert list(guard["jobs"]) == ["kick"]
+    job = guard["jobs"]["kick"]
+    assert "NW4H_ENABLED" in str(job.get("if"))
+    assert "workflow_run.conclusion" in str(job.get("if"))
+    script = "\n".join(str(s.get("run", "")) for s in job["steps"])
 
-    assert set(guard["jobs"]) == {"kick-bot", "kick-report"}
-    for job in guard["jobs"].values():
-        assert "NW4H_ENABLED" in str(job.get("if"))
-        assert "workflow_run.conclusion" in str(job.get("if"))
-        script = "\n".join(str(s.get("run", "")) for s in job["steps"])
-        assert "date -u +%H" in script and "date -u +%M" in script
-        assert '{"ref":"main"}' in script
-        assert "in_progress" in script and "queued" in script
-        assert "⏭" in script
-
-    bot_script = "\n".join(str(s.get("run", "")) for s in guard["jobs"]["kick-bot"]["steps"])
-    assert "nw-bot-4h.yml/dispatches" in bot_script
-    assert "h % 4" in bot_script                 # نوافذ 00/04/08/12/16/20 UTC
-    assert '"$m" -ge 3' in bot_script            # بعد إغلاق الشمعة بثلاث دقائق
-    assert '"$m" -lt 20' in bot_script
-    assert "window_start" in bot_script and "now.hour // 4" in bot_script
-    assert "ok_this_window" in bot_script                 # نجاح واحد/شمعة 4h
-    assert "conclusion" in bot_script and "success" in bot_script  # فاشل لا يحجب
-    assert "nw-bot-4h-report.yml/dispatches" not in bot_script
-
-    rep_script = "\n".join(str(s.get("run", "")) for s in guard["jobs"]["kick-report"]["steps"])
-    assert "nw-bot-4h-report.yml/dispatches" in rep_script
-    assert '"$h" -eq 21' in rep_script           # 12 AM الرياض = 21 UTC
-    assert "last_report_day" in rep_script       # منع تقرير مكرر
-    assert "data/state_nw4h.json" in rep_script
-    assert "age_h < 20" in rep_script
+    assert "nw-bot-4h.yml/dispatches" in script or "dispatch(\"nw-bot-4h.yml\")" in script
+    assert "nw-bot-4h-report.yml/dispatches" in script or "dispatch(\"nw-bot-4h-report.yml\")" in script
+    assert '{"ref":"main"}' in script
+    assert "h % 4 == 0" in script and "3 <= m < 20" in script  # نوافذ الإشارات
+    assert 'h == 21' in script and 'm < 20' in script          # نافذة التقرير
+    assert "window_start" in script and "h // 4" in script      # نجاح واحد/شمعة
+    assert "last_report_day" in script                          # منع تقرير مكرر
+    assert "data/state_nw4h.json" in script
+    assert "age_h < 20" in script
+    assert "in_progress" in script and "queued" in script
+    assert "conclusion" in script and "success" in script       # فاشل لا يحجب
+    assert "⏭" in script and "🚀" in script
 
     text = (WF / "nw-bot-4h-guard.yml").read_text(encoding="utf-8")
     assert "PAT" not in text and "ghp_" not in text
@@ -123,7 +116,6 @@ def test_4h_safe_wrapper_persists_after_each_send_and_dedupes_journal():
     assert "nw_bot.append_trade = _append_trade_once" in text
     assert "_row_exists" in text
     assert "run_nw4h_once.py" not in text
-    # لا يلمس مسارات 1H/15M
     assert "data/state_nw.json" not in text
     assert "data/state_nw15.json" not in text
     assert "data/state_nw4h.json" in text
