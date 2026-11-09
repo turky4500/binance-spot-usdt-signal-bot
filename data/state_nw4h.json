@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "system": "nw-4h",
+  "symbols": {},
+  "prev_buy_bars": {},
+  "prev_sell_bars": {},
+  "buy_history": {},
+  "cancelled_buy_bars": {},
+  "sent": [],
+  "cycles": 0,
+  "messages_sent": 0,
+  "last_cycle_ms": 0
+}

@@ -430,3 +430,66 @@ def test_build_report_text_accepts_explicit_sent_today():
     """الدالة العامة تبقى قابلة للاستدعاء مباشرة مع العدّاد الجديد."""
     text = dr.build_report_text("2026-11-08", {"symbols": {}}, [], "NW 1H", 20)
     assert "📥 إجمالي التوصيات المرسلة لليوم: 20" in text
+
+
+# ── تقرير فريم 4H المستقل (طلب المستخدم 2026-11-09) ─────────────────────────
+
+def test_4h_bot_sends_its_own_report_at_same_time(monkeypatch, tmp_path):
+    """تقرير 4H مستقل: نفس توقيت/صيغة 1H، بعنوانه ومفتاح حالته."""
+    from src.nw_4h_bot import (
+        FRAME_LABEL_4H, REPORT_STATE_KEY_4H, build_nw_4h_bot,
+    )
+
+    monkeypatch.setenv("TELEGRAM_MUTE", "1")
+    state4 = tmp_path / "state4.json"
+    log4 = tmp_path / "trades4.csv"
+    monkeypatch.setenv("NW_STATE_FILE", str(state4))
+    monkeypatch.setenv("NW_TRADE_LOG", str(log4))
+    bot = build_nw_4h_bot()
+    bot.tg = FakeTelegram()
+
+    write_trades(str(log4), [trade("S4HUSDT", ms(2026, 11, 8, 5, 0), 3.0)])
+    with_open_positions(bot, "OPEN4HUSDT")
+
+    assert bot.send_daily_report_if_due(ms(2026, 11, 9, 0, 10)) is None
+    text = bot.tg.messages[-1]
+    assert f"({FRAME_LABEL_4H})" in text
+    assert "(NW 1H)" not in text and "(NW 15M)" not in text
+    assert "📥 إجمالي التوصيات المرسلة لليوم: 0" in text
+    assert "📌 مفتوحة حاليًا: 1" in text
+    assert "🔒 الصفقات المغلقة: 1" in text
+    assert "✅ نجاح: 1 • 🛑 خسارة: 0" in text
+    assert "📈 نسبة النجاح: 100.0%" in text
+    assert "`+3.00%`" in text
+    assert "12:00 AM" in text and "`2026-11-08`" in text
+
+    saved = json.loads(state4.read_text(encoding="utf-8"))
+    assert saved[REPORT_STATE_KEY_4H]["last_report_day"] == "2026-11-08"
+    assert len(saved[REPORT_STATE_KEY_4H]["reported_trade_keys"]) == 1
+    assert "daily_report_nw" not in saved       # لا يلمس مفتاح 1H
+    assert "daily_report_nw15" not in saved     # ولا مفتاح 15M
+
+
+def test_4h_total_uses_4_hour_interval(monkeypatch, tmp_path):
+    """شمعة 20:00 اليوم السابق ⇒ رسالة 00:00 داخل اليوم بـ4h، وخارجه بـ1h."""
+    from src.nw_4h_bot import INTERVAL_MS_4H, build_nw_4h_bot
+
+    monkeypatch.setenv("TELEGRAM_MUTE", "1")
+    monkeypatch.setenv("NW_STATE_FILE", str(tmp_path / "state4.json"))
+    monkeypatch.setenv("NW_TRADE_LOG", str(tmp_path / "trades4.csv"))
+    bot = build_nw_4h_bot()
+    bot.tg = FakeTelegram()
+    bar = ms(2026, 11, 7, 20, 0)                # +4h = 00:00 يوم التقرير
+    with_sent_keys(bot, f"buy:S4HUSDT:{bar}:1")
+    assert INTERVAL_MS_4H == 14_400_000
+
+    assert bot.send_daily_report_if_due(ms(2026, 11, 9, 0, 10)) is None
+    text4 = bot.tg.messages[-1]
+    assert "📥 إجمالي التوصيات المرسلة لليوم: 1" in text4
+    assert "(NW 4H)" in text4
+
+    # نفس المفتاح مع طول شمعة 1H ⇒ 21:00 اليوم السابق ⇒ لا يُعدّ
+    bot1h = FakeBot(tmp_path / "1h")
+    with_sent_keys(bot1h, f"buy:S4HUSDT:{bar}:1")
+    text1h = dr.send_daily_report_if_due(bot1h, ms(2026, 11, 9, 0, 10))
+    assert "📥 إجمالي التوصيات المرسلة لليوم: 0" in text1h

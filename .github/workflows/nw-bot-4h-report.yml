@@ -1,0 +1,94 @@
+name: NW 4H Daily Report
+
+# تقرير يومي واحد لنظام 4H بنفس صيغة/tوقيت تقرير 1H (12:00 AM الرياض،
+# اليوم السابق). دورات 4h نفسها لا تصادف ساعة 12 AM، لذلك هذا الوركفلو
+# منفصل: يشغّل run_nw4h_report_once.py الذي يستدعي send_daily_report_if_due
+# مباشرة بلا فحص إشارات ولا دورة ولا كتابة في دفتر الصفقات.
+# 21:10 UTC = 00:10 AM بتوقيت الرياض. التنبيهات مفعّلة، والبوابة مستقلة.
+
+on:
+  schedule:
+    - cron: '10 21 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nw-4h-report
+  cancel-in-progress: false
+
+jobs:
+  send-daily-report:
+    if: vars.NW4H_ENABLED != 'false'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TELEGRAM_MUTE: "0"
+      TELEGRAM_MIN_INTERVAL_SECONDS: "1.05"
+      TIMEZONE: Asia/Riyadh
+      BINANCE_BASE_URL: https://data-api.binance.vision
+      BINANCE_QUOTE_ASSET: USDT
+      REQUEST_TIMEOUT: "20"
+      MAX_WORKERS: "10"
+      LOG_LEVEL: INFO
+      NW_STATE_FILE: data/state_nw4h.json
+      NW_TRADE_LOG: data/trades_log_nw4h.csv
+      NW_HALAL_PRIMARY: data/daily_trend/halal_academy.json
+      NW_HALAL_EXTRA: data/daily_trend/halal_extra.json
+      NW_HALAL_CACHE: data/zigzag/halal_verdicts.json
+      NW_EXCLUDE_FILE: config/zz_exclude.txt
+      NW_BANDWIDTH: "8"
+      NW_WINDOW: "500"
+      NW_MODE: "envelope"
+      NW_MULT: "3"
+      NW_KLINE_LIMIT: "560"
+      NW_REQUIRE_NEWEST_GREEN: "0"
+      NW_COMMISSION_SIDE_PCT: "0.1"
+      NW_SHOW_REPAINT_WARNING: "0"
+      NW_INCLUDE_ALL: "1"
+      NW_EXCLUDE_PEGGED_STABLES: "1"
+      NW_EXCLUDE_TOKENIZED_STOCKS: "0"
+      NW_USE_EXCLUDE_FILE: "0"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Send NW 4H daily report if due
+        run: python run_nw4h_report_once.py
+
+      - name: Commit NW 4H report state
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -f data/state_nw4h.json ]; then git add data/state_nw4h.json; fi
+          if git diff --cached --quiet; then
+            echo "No NW 4H report state changes to commit"
+            exit 0
+          fi
+          git commit -m "chore: update NW 4H daily report state [skip ci]"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase -X theirs origin/main; then
+              if git push origin HEAD:main; then
+                echo "NW 4H report state pushed on attempt $attempt"
+                exit 0
+              fi
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "Retry $attempt: another run updated main first"
+            sleep $((attempt * 5))
+          done
+          echo "::warning::Could not push NW 4H report state after 5 attempts."

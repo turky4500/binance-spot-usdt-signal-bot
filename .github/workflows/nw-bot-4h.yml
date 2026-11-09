@@ -1,0 +1,111 @@
+name: NW 4H Bot (Nadaraya-Watson Envelope)
+
+# النظام البديل تشغيليًا عن فريم 15M — يعمل بالتوازي مع نظام 1H بلا أي تعديل
+# عليه. حالة ودفتر ووركفلو خاصّة به فقط. ملفات 15M باقية مُسكتة بلا حذف.
+# المصدر: Nadaraya-Watson Envelope [LuxAlgo] © LuxAlgo، CC BY-NC-SA 4.0.
+# الشروط مطابقة حرفيًا لشروط فريم الساعة الحالية على main: التسميات ▲/▼ كما
+# يطبعها الكود على الشارت، شمعة تالية خضراء ⇒ توصية، حمراء ⇒ إلغاء نهائي،
+# ▼ ⇒ خروج مع سعري الدخول/الخروج والنسبة الصافية، تكرار ▲ ⇒ إشارة دخول ثانية.
+# لا أهداف ولا وقف ولا بوابة BTC ولا أي فلتر إضافي. كل أزواج USDT بجميع أحكامها.
+# الفرق الوحيد: interval=4h، state/trade log مستقلان، وسطر «🕐 فريم 4 ساعات
+# (4H) · Nadaraya» في الرسالة. يرسل توصيات فقط لا ينفّذ صفقات.
+#
+# ⚠️ الإيقاف الصحيح: اضبط المتغيّر NW4H_ENABLED = false (أو Disable workflow).
+#    الحماية if على مستوى المهمة — لا تُستخدم خطوة `exit 0` كبوابة إطلاقًا.
+#    البوابة مستقلة عن الأنظمة الأخرى.
+#
+# ست دورات في اليوم بعد إغلاق شمعة 4h بثلاث دقائق (UTC 00/04/08/12/16/20 ⇒
+# :03). مثل نظام 1H الحالي: وركفلو واحد بلا محفّز موازٍ ⇒ لا تكرار الرسائل،
+# ومفاتيح sent تمنع إعادة إرسال التسمية نفسها. التنبيهات مفعّلة.
+
+on:
+  schedule:
+    - cron: '3 0,4,8,12,16,20 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nw-4h-bot
+  cancel-in-progress: false
+
+jobs:
+  run-once:
+    if: vars.NW4H_ENABLED != 'false'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TELEGRAM_MUTE: "0"
+      TELEGRAM_MIN_INTERVAL_SECONDS: "1.05"
+      TIMEZONE: Asia/Riyadh
+      BINANCE_BASE_URL: https://data-api.binance.vision
+      BINANCE_QUOTE_ASSET: USDT
+      REQUEST_TIMEOUT: "20"
+      MAX_WORKERS: "10"
+      LOG_LEVEL: INFO
+      # ── مسارات هذا النظام وحده (لا يلمس ملفات أي نظام آخر) ──
+      NW_STATE_FILE: data/state_nw4h.json
+      NW_TRADE_LOG: data/trades_log_nw4h.csv
+      NW_HALAL_PRIMARY: data/daily_trend/halal_academy.json
+      NW_HALAL_EXTRA: data/daily_trend/halal_extra.json
+      NW_HALAL_CACHE: data/zigzag/halal_verdicts.json
+      NW_EXCLUDE_FILE: config/zz_exclude.txt
+      # ── ثوابت المؤشر: نفس قيم 1H بالحرف ──
+      NW_BANDWIDTH: "8"
+      NW_WINDOW: "500"
+      NW_MODE: "envelope"
+      NW_MULT: "3"
+      NW_KLINE_LIMIT: "560"
+      NW_REQUIRE_NEWEST_GREEN: "0"
+      NW_COMMISSION_SIDE_PCT: "0.1"
+      NW_SHOW_REPAINT_WARNING: "0"
+      # ── كل العملات بجميع أحكامها (نفس 1H) ──
+      NW_INCLUDE_ALL: "1"
+      NW_EXCLUDE_PEGGED_STABLES: "1"
+      NW_EXCLUDE_TOKENIZED_STOCKS: "0"
+      NW_USE_EXCLUDE_FILE: "0"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run NW 4H bot once
+        run: python run_nw4h_once.py
+
+      - name: Commit NW 4H state updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for f in data/state_nw4h.json data/trades_log_nw4h.csv; do
+            if [ -f "$f" ]; then git add "$f"; fi
+          done
+          if git diff --cached --quiet; then
+            echo "No NW 4H state changes to commit"
+            exit 0
+          fi
+          git commit -m "chore: update NW 4H bot state [skip ci]"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase -X theirs origin/main; then
+              if git push origin HEAD:main; then
+                echo "NW 4H state pushed on attempt $attempt"
+                exit 0
+              fi
+            fi
+            git rebase --abort 2>/dev/null || true
+            echo "Retry $attempt: another run updated main first"
+            sleep $((attempt * 5))
+          done
+          echo "::warning::Could not push NW 4H state after 5 attempts; next run will pick it up."
