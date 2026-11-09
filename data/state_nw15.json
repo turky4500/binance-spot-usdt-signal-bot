@@ -1988,11 +1988,11 @@
         "entry_time": 1794123000000,
         "signal_bar_time": 1794122100000,
         "signal_price": 110.32,
-        "entry_count": 8
+        "entry_count": 9
       },
-      "entry_count": 8,
-      "last_buy_bar": 1794180600000,
-      "last_entry_price": 104.91
+      "entry_count": 9,
+      "last_buy_bar": 1794202200000,
+      "last_entry_price": 105.84
     },
     "GNSUSDT": {
       "position": null,
@@ -5271,7 +5271,9 @@
     "GMEBUSDT": [],
     "GMTUSDT": [],
     "GMXUSDT": [],
-    "GNOUSDT": [],
+    "GNOUSDT": [
+      1794202200000
+    ],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -5780,9 +5782,7 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
-    "GNSUSDT": [
-      1794201300000
-    ],
+    "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
@@ -5949,7 +5949,9 @@
     "QNTUSDT": [],
     "QQQBUSDT": [],
     "QTUMUSDT": [],
-    "RADUSDT": [],
+    "RADUSDT": [
+      1794202200000
+    ],
     "RAREUSDT": [],
     "RAYUSDT": [],
     "RDDTBUSDT": [],
@@ -6650,7 +6652,8 @@
       1794151800000,
       1794156300000,
       1794175200000,
-      1794180600000
+      1794180600000,
+      1794202200000
     ],
     "GNSUSDT": [
       1794129300000,
@@ -8224,7 +8227,6 @@
     "牛来USDT": []
   },
   "sent": [
-    "buy:GLMUSDT:1794174300000:1",
     "buy:GMTUSDT:1794174300000:1",
     "buy:GMXUSDT:1794174300000:1",
     "buy:GNSUSDT:1794174300000:1",
@@ -8623,11 +8625,12 @@
     "buy:LAZIOUSDT:1794198600000:2",
     "buy:LAZIOUSDT:1794200400000:3",
     "buy:TFUELUSDT:1794200400000:1",
-    "exit:GNSUSDT:1794201300000"
+    "exit:GNSUSDT:1794201300000",
+    "buy:GNOUSDT:1794202200000:9"
   ],
-  "cycles": 127,
-  "messages_sent": 604,
-  "last_cycle_ms": 1794203302590,
+  "cycles": 128,
+  "messages_sent": 605,
+  "last_cycle_ms": 1794204199427,
   "daily_report_nw15": {
     "last_report_day": "2026-11-08",
     "reported_trade_keys": [
