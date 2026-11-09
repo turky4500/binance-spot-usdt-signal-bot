@@ -722,11 +722,11 @@
         "entry_time": 1794175200000,
         "signal_bar_time": 1794171600000,
         "signal_price": 1.006,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1794182400000,
-      "last_entry_price": 1.014
+      "entry_count": 3,
+      "last_buy_bar": 1794193200000,
+      "last_entry_price": 1.008
     },
     "GRTUSDT": {
       "position": null,
@@ -4805,11 +4805,15 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
-    "GNSUSDT": [],
+    "GNSUSDT": [
+      1794193200000
+    ],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
-    "GRAMUSDT": [],
+    "GRAMUSDT": [
+      1794193200000
+    ],
     "GRTUSDT": [],
     "GSBUSDT": [],
     "GTCUSDT": [],
@@ -4924,7 +4928,7 @@
     "NOMUSDT": [],
     "NOTUSDT": [],
     "NVDABUSDT": [
-      1794189600000
+      1794193200000
     ],
     "NXPCUSDT": [],
     "OGNUSDT": [],
@@ -5334,9 +5338,7 @@
     "ICPUSDT": [],
     "IDUSDT": [],
     "ILVUSDT": [],
-    "IMXUSDT": [
-      1794189600000
-    ],
+    "IMXUSDT": [],
     "INITUSDT": [],
     "INJUSDT": [],
     "INTCBUSDT": [],
@@ -5347,9 +5349,7 @@
     "IOUSDT": [],
     "IQUSDT": [],
     "IRENBUSDT": [],
-    "JASMYUSDT": [
-      1794189600000
-    ],
+    "JASMYUSDT": [],
     "JOEUSDT": [],
     "JPMBUSDT": [],
     "JSTUSDT": [],
@@ -5561,9 +5561,7 @@
     "TRUMPUSDT": [],
     "TRXUSDT": [],
     "TSLABUSDT": [],
-    "TSMBUSDT": [
-      1794189600000
-    ],
+    "TSMBUSDT": [],
     "TSTUSDT": [],
     "TURBOUSDT": [],
     "TURTLEUSDT": [],
@@ -6048,7 +6046,8 @@
     ],
     "GRAMUSDT": [
       1794171600000,
-      1794182400000
+      1794182400000,
+      1794193200000
     ],
     "GRTUSDT": [],
     "GSBUSDT": [],
@@ -6949,7 +6948,8 @@
     ],
     "GNSUSDT": [
       1793988000000,
-      1793991600000
+      1793991600000,
+      1794193200000
     ],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -7073,7 +7073,8 @@
     "NVDABUSDT": [
       1794168000000,
       1794175200000,
-      1794189600000
+      1794189600000,
+      1794193200000
     ],
     "NXPCUSDT": [],
     "OGNUSDT": [],
@@ -7627,11 +7628,12 @@
     "buy:SCRUSDT:1794178800000:2",
     "buy:DGBUSDT:1794182400000:1",
     "buy:GRAMUSDT:1794182400000:2",
-    "exit:JASMYUSDT:1794189600000"
+    "exit:JASMYUSDT:1794189600000",
+    "buy:GRAMUSDT:1794193200000:3"
   ],
-  "cycles": 159,
-  "messages_sent": 403,
-  "last_cycle_ms": 1794198806982,
+  "cycles": 160,
+  "messages_sent": 404,
+  "last_cycle_ms": 1794200601664,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
