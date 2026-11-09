@@ -216,14 +216,15 @@ def test_15m_trigger_is_independent_and_uses_job_level_if():
 def test_1h_files_are_byte_identical_to_main():
     """حماية من أي تعديل على ملفات المستخدم: لا أثر لـ 15m داخلها.
 
-    الاستثناء الوحيد والمُصرَّح به من المستخدم (2026-11-08): دالة
-    ``send_daily_report_if_due`` في ``nw_bot.py`` لضبط التقرير اليومي.
+    استثناءات مُصرَّح بها: دالة ``send_daily_report_if_due`` في ``nw_bot.py``
+    (2026-11-08)، وإصلاح جدولة فريم 1H في ``.github/workflows/nw-bot.yml``
+    (2026-11-09) مع تحديث اختبار الحماية هذا.
     """
     import subprocess
 
     tracked = ["src/nw_messages.py", "src/nw_signals.py",
                "src/nw_state.py", "src/nw_envelope.py", "run_nw_once.py",
-               ".github/workflows/nw-bot.yml", ".github/workflows/nw-bot-trigger.yml",
+               ".github/workflows/nw-bot-trigger.yml",
                "tests/test_nw_messages.py", "tests/test_nw_envelope.py",
                "README_NW_SYSTEM.md", "data/state_nw.json", "data/trades_log_nw.csv"]
     diff = subprocess.run(["git", "diff", "--name-only", "HEAD", "--", *tracked],
