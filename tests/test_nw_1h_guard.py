@@ -42,7 +42,7 @@ def test_guarded_kick_workflow_exists_and_is_isolated():
     assert "data/state_nw.json" not in text
 
 
-def test_1h_bot_has_singleton_guard_and_fresh_checkout():
+def test_1h_bot_has_singleton_guard_fresh_checkout_and_safe_wrapper():
     doc = _doc("nw-bot.yml")
     on = _on(doc)
     assert "push" not in on
@@ -62,10 +62,24 @@ def test_1h_bot_has_singleton_guard_and_fresh_checkout():
     assert "GITHUB_OUTPUT" in runs
     assert "rebase -X theirs" not in runs
     assert "git rebase origin/main" in runs
+    assert "run_nw1h_once_safe.py" in runs
+    assert "run_nw_once.py" not in runs
     for s in steps:
-        if "Run NW bot once" in str(s.get("name", "")) or "Commit NW state updates" in str(s.get("name", "")):
+        name = str(s.get("name", ""))
+        if name == "Run NW bot once":
             assert s.get("if") == "steps.guard.outputs.proceed == 'true'"
+        if name == "Commit NW state updates":
+            assert "always()" in str(s.get("if"))
     assert job["env"]["TELEGRAM_MUTE"] == "0"
+
+
+def test_safe_wrapper_persists_state_after_each_send_and_dedupes_journal():
+    text = (ROOT / "run_nw1h_once_safe.py").read_text(encoding="utf-8")
+    assert "bot.store.save(state)" in text
+    assert "nw_bot.append_trade = _append_trade_once" in text
+    assert "_row_exists" in text
+    assert "build_nw_bot()" in text
+    assert "run_nw_once.py" not in text
 
 
 def test_old_trigger_file_is_unchanged_and_no_parallel_dispatch():
