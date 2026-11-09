@@ -2013,14 +2013,8 @@
       "last_entry_price": 281.43
     },
     "GPROBUSDT": {
-      "position": {
-        "entry_price": 0.89,
-        "entry_time": 1794187800000,
-        "signal_bar_time": 1794186900000,
-        "signal_price": 0.88,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794186900000,
       "last_entry_price": 0.89
     },
@@ -4617,14 +4611,8 @@
       "last_entry_price": 0.00408
     },
     "USUALUSDT": {
-      "position": {
-        "entry_price": 0.00969,
-        "entry_time": 1794175200000,
-        "signal_bar_time": 1794174300000,
-        "signal_price": 0.00959,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794174300000,
       "last_entry_price": 0.00969
     },
@@ -5342,9 +5330,7 @@
     "KNCUSDT": [],
     "KORUBUSDT": [],
     "KSMUSDT": [],
-    "KSTRBUSDT": [
-      1794195900000
-    ],
+    "KSTRBUSDT": [],
     "LAUSDT": [],
     "LAYERUSDT": [],
     "LAZIOUSDT": [],
@@ -5796,7 +5782,9 @@
     "GNOUSDT": [],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
-    "GPROBUSDT": [],
+    "GPROBUSDT": [
+      1794196800000
+    ],
     "GPSUSDT": [],
     "GRAMUSDT": [],
     "GRTUSDT": [],
@@ -5848,7 +5836,7 @@
     "KERNELUSDT": [],
     "KGSTUSDT": [],
     "KITEUSDT": [
-      1794195900000
+      1794196800000
     ],
     "KMNOUSDT": [],
     "KNCUSDT": [],
@@ -5957,7 +5945,9 @@
     "PYPLBUSDT": [],
     "PYTHUSDT": [],
     "QCOMBUSDT": [],
-    "QIUSDT": [],
+    "QIUSDT": [
+      1794196800000
+    ],
     "QKCUSDT": [],
     "QNTBUSDT": [],
     "QNTUSDT": [],
@@ -6037,9 +6027,7 @@
     "SYNUSDT": [],
     "SYRUPUSDT": [],
     "TAOUSDT": [],
-    "TFUELUSDT": [
-      1794195900000
-    ],
+    "TFUELUSDT": [],
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
@@ -6066,7 +6054,9 @@
     "USARBUSDT": [],
     "USDEBUSDT": [],
     "USTCUSDT": [],
-    "USUALUSDT": [],
+    "USUALUSDT": [
+      1794196800000
+    ],
     "UVXYBUSDT": [],
     "VANAUSDT": [],
     "VETUSDT": [],
@@ -8234,8 +8224,6 @@
     "牛来USDT": []
   },
   "sent": [
-    "buy:FRAXUSDT:1794174300000:2",
-    "buy:FUSDT:1794174300000:1",
     "buy:GALAUSDT:1794174300000:1",
     "buy:GASUSDT:1794174300000:1",
     "buy:GENIUSUSDT:1794174300000:1",
@@ -8633,11 +8621,13 @@
     "exit:GPSUSDT:1794192300000",
     "exit:RADUSDT:1794193200000",
     "exit:MEGAUSDT:1794195000000",
-    "buy:KSTRBUSDT:1794195900000:1"
+    "buy:KSTRBUSDT:1794195900000:1",
+    "exit:GPROBUSDT:1794196800000",
+    "exit:USUALUSDT:1794196800000"
   ],
-  "cycles": 121,
-  "messages_sent": 598,
-  "last_cycle_ms": 1794197906252,
+  "cycles": 122,
+  "messages_sent": 600,
+  "last_cycle_ms": 1794198798845,
   "daily_report_nw15": {
     "last_report_day": "2026-11-08",
     "reported_trade_keys": [
