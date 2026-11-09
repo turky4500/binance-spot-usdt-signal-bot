@@ -2582,11 +2582,11 @@
         "entry_time": 1794167100000,
         "signal_bar_time": 1794166200000,
         "signal_price": 0.335,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794166200000,
-      "last_entry_price": 0.341
+      "entry_count": 2,
+      "last_buy_bar": 1794198600000,
+      "last_entry_price": 0.324
     },
     "LDOUSDT": {
       "position": {
@@ -5272,7 +5272,9 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
-    "GNSUSDT": [],
+    "GNSUSDT": [
+      1794198600000
+    ],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
@@ -5333,7 +5335,9 @@
     "KSTRBUSDT": [],
     "LAUSDT": [],
     "LAYERUSDT": [],
-    "LAZIOUSDT": [],
+    "LAZIOUSDT": [
+      1794198600000
+    ],
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
@@ -5864,7 +5868,9 @@
     "MAVUSDT": [],
     "MBLUSDT": [],
     "MDBBUSDT": [],
-    "MEGAUSDT": [],
+    "MEGAUSDT": [
+      1794198600000
+    ],
     "MEMEUSDT": [],
     "METABUSDT": [],
     "METISUSDT": [],
@@ -5941,7 +5947,9 @@
     "PYPLBUSDT": [],
     "PYTHUSDT": [],
     "QCOMBUSDT": [],
-    "QIUSDT": [],
+    "QIUSDT": [
+      1794198600000
+    ],
     "QKCUSDT": [],
     "QNTBUSDT": [],
     "QNTUSDT": [],
@@ -5964,9 +5972,7 @@
     "RONINUSDT": [],
     "ROSEUSDT": [],
     "RPLUSDT": [],
-    "RSRUSDT": [
-      1794197700000
-    ],
+    "RSRUSDT": [],
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
@@ -6095,9 +6101,7 @@
     "ZROUSDT": [],
     "ZRXUSDT": [],
     "币安人生USDT": [],
-    "牛来USDT": [
-      1794197700000
-    ]
+    "牛来USDT": []
   },
   "buy_history": {
     "0GUSDT": [
@@ -6837,7 +6841,8 @@
       1794176100000
     ],
     "LAZIOUSDT": [
-      1794166200000
+      1794166200000,
+      1794198600000
     ],
     "LDOUSDT": [
       1794174300000
@@ -7804,7 +7809,8 @@
       1794124800000,
       1794186000000,
       1794189600000,
-      1794194100000
+      1794194100000,
+      1794198600000
     ],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -8220,7 +8226,6 @@
     "牛来USDT": []
   },
   "sent": [
-    "buy:GALAUSDT:1794174300000:1",
     "buy:GASUSDT:1794174300000:1",
     "buy:GENIUSUSDT:1794174300000:1",
     "buy:GIGGLEUSDT:1794174300000:1",
@@ -8619,11 +8624,12 @@
     "exit:MEGAUSDT:1794195000000",
     "buy:KSTRBUSDT:1794195900000:1",
     "exit:GPROBUSDT:1794196800000",
-    "exit:USUALUSDT:1794196800000"
+    "exit:USUALUSDT:1794196800000",
+    "buy:LAZIOUSDT:1794198600000:2"
   ],
-  "cycles": 123,
-  "messages_sent": 600,
-  "last_cycle_ms": 1794199711559,
+  "cycles": 124,
+  "messages_sent": 601,
+  "last_cycle_ms": 1794200598088,
   "daily_report_nw15": {
     "last_report_day": "2026-11-08",
     "reported_trade_keys": [
