@@ -1,6 +1,6 @@
 {
   "vendor": "cryptohalal.cc",
-  "fetched_at_ms": 1794229363395,
+  "fetched_at_ms": 1794251265880,
   "note": "مصدر الأحكام: CryptoHalal.cc",
   "judgements": {
     "BTC": 0,
@@ -67,6 +67,7 @@
     "DGB": 0,
     "RSR": 0,
     "HOT": 1,
-    "GNS": 1
+    "GNS": 1,
+    "ETHFI": 1
   }
 }
