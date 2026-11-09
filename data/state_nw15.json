@@ -3627,14 +3627,8 @@
       "last_entry_price": 0.676
     },
     "RADUSDT": {
-      "position": {
-        "entry_price": 0.219,
-        "entry_time": 1794176100000,
-        "signal_bar_time": 1794175200000,
-        "signal_price": 0.217,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794175200000,
       "last_entry_price": 0.219
     },
@@ -5164,9 +5158,7 @@
     "AXLUSDT": [],
     "AXSUSDT": [],
     "AXTIBUSDT": [],
-    "BABABUSDT": [
-      1794192300000
-    ],
+    "BABABUSDT": [],
     "BABYUSDT": [],
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
@@ -5803,9 +5795,7 @@
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
-    "GPSUSDT": [
-      1794192300000
-    ],
+    "GPSUSDT": [],
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
@@ -5969,13 +5959,17 @@
     "QNTUSDT": [],
     "QQQBUSDT": [],
     "QTUMUSDT": [],
-    "RADUSDT": [],
+    "RADUSDT": [
+      1794193200000
+    ],
     "RAREUSDT": [],
     "RAYUSDT": [],
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [],
+    "REQUSDT": [
+      1794193200000
+    ],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -6111,9 +6105,7 @@
     "ZKCUSDT": [],
     "ZKPUSDT": [],
     "ZKUSDT": [],
-    "ZMBUSDT": [
-      1794192300000
-    ],
+    "ZMBUSDT": [],
     "ZROUSDT": [],
     "ZRXUSDT": [],
     "币安人生USDT": [],
@@ -8235,7 +8227,6 @@
     "牛来USDT": []
   },
   "sent": [
-    "buy:FLUXUSDT:1794174300000:1",
     "buy:FOGOUSDT:1794174300000:1",
     "buy:FORMUSDT:1794174300000:1",
     "buy:FRAXUSDT:1794174300000:2",
@@ -8634,11 +8625,12 @@
     "exit:JUVUSDT:1794191400000",
     "exit:NXPCUSDT:1794191400000",
     "exit:TKOUSDT:1794191400000",
-    "exit:GPSUSDT:1794192300000"
+    "exit:GPSUSDT:1794192300000",
+    "exit:RADUSDT:1794193200000"
   ],
-  "cycles": 117,
-  "messages_sent": 595,
-  "last_cycle_ms": 1794194306133,
+  "cycles": 118,
+  "messages_sent": 596,
+  "last_cycle_ms": 1794195197636,
   "daily_report_nw15": {
     "last_report_day": "2026-11-08",
     "reported_trade_keys": [
