@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1794009600000,
+  "last_processed_open_time": 1794096000000,
   "last_entry_bar_time": {
     "GTCUSDT": 1793404800000,
     "HUMAUSDT": 1793059200000,
@@ -87,10 +87,11 @@
     "NMRUSDT": 1793404800000,
     "RLCUSDT": 1793404800000,
     "WBTCUSDT": 1793404800000,
-    "BMTUSDT": 1793664000000,
+    "BMTUSDT": 1794096000000,
     "ARUSDT": 1793923200000,
     "DASHUSDT": 1793923200000,
-    "PARTIUSDT": 1793923200000
+    "PARTIUSDT": 1793923200000,
+    "HOTUSDT": 1794096000000
   },
   "last_exit_bar_time": {
     "GTCUSDT": 1793491200000,
@@ -196,7 +197,7 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1794182400000,
+      "last_check_ms": 1794203580000,
       "peak_price": 0.14462,
       "last_stop_alert_price": 0.13515,
       "stop_updates_count": 0,
@@ -214,7 +215,7 @@
       "size_suggest_pct": 0.15561236623067756,
       "entry_time": 1794009599999,
       "entry_bar_open_time": 1793923200000,
-      "last_check_ms": 1794182400000,
+      "last_check_ms": 1794203580000,
       "peak_price": 133.56,
       "last_stop_alert_price": 122.46,
       "stop_updates_count": 0,
@@ -232,7 +233,7 @@
       "size_suggest_pct": 0.08098611111111115,
       "entry_time": 1794009599999,
       "entry_bar_open_time": 1793923200000,
-      "last_check_ms": 1794182400000,
+      "last_check_ms": 1794203580000,
       "peak_price": 0.6042,
       "last_stop_alert_price": 0.55154,
       "stop_updates_count": 2,
@@ -250,7 +251,7 @@
       "size_suggest_pct": 0.33005076142132034,
       "entry_time": 1794009599999,
       "entry_bar_open_time": 1793923200000,
-      "last_check_ms": 1794182400000,
+      "last_check_ms": 1794203580000,
       "peak_price": 6.811e-05,
       "last_stop_alert_price": 6.305e-05,
       "stop_updates_count": 0,
@@ -268,11 +269,47 @@
       "size_suggest_pct": 0.1279999999999999,
       "entry_time": 1794009599999,
       "entry_bar_open_time": 1793923200000,
-      "last_check_ms": 1794182400000,
+      "last_check_ms": 1794203580000,
       "peak_price": 0.521,
       "last_stop_alert_price": 0.47757200000000005,
       "stop_updates_count": 1,
       "halal_verdict": "ℹ️ لا يوجد حكم",
+      "silent": true
+    },
+    "BMTUSDT": {
+      "trade_id": "BMTUSDT-1794096000000",
+      "symbol": "BMTUSDT",
+      "entry_price": 0.02506,
+      "stop_price": 0.02243,
+      "pivot_stop": 0.02243,
+      "target_price": 0.03032,
+      "stop_dist_pct": 10.494812450119714,
+      "size_suggest_pct": 0.09528517110266159,
+      "entry_time": 1794182399999,
+      "entry_bar_open_time": 1794096000000,
+      "last_check_ms": 1794182459999,
+      "peak_price": 0.02756,
+      "last_stop_alert_price": 0.02243,
+      "stop_updates_count": 0,
+      "halal_verdict": "ℹ️ لا يوجد حكم",
+      "silent": true
+    },
+    "HOTUSDT": {
+      "trade_id": "HOTUSDT-1794096000000",
+      "symbol": "HOTUSDT",
+      "entry_price": 0.000412,
+      "stop_price": 0.000346,
+      "pivot_stop": 0.000346,
+      "target_price": 0.000544,
+      "stop_dist_pct": 16.01941747572815,
+      "size_suggest_pct": 0.062424242424242445,
+      "entry_time": 1794182399999,
+      "entry_bar_open_time": 1794096000000,
+      "last_check_ms": 1794182459999,
+      "peak_price": 0.000526,
+      "last_stop_alert_price": 0.000346,
+      "stop_updates_count": 0,
+      "halal_verdict": "⛔ غير مباح",
       "silent": true
     }
   },
@@ -3906,6 +3943,16 @@
       "type": "exit_loss",
       "symbol": "NIGHTUSDT",
       "time_ms": 1794174959999
+    },
+    {
+      "type": "entry",
+      "symbol": "BMTUSDT",
+      "time_ms": 1794182399999
+    },
+    {
+      "type": "entry",
+      "symbol": "HOTUSDT",
+      "time_ms": 1794182399999
     }
   ],
   "daily_report": {
