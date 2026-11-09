@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0a1120">
+<meta name="description" content="لوحة قياس النظام — صحة التشغيل، سلامة الرسائل، وقياس أثر الإشارات لفريمات 1H و4H و15M.">
+<title>لوحة قياس النظام</title>
+<script>
+/* يُطبَّق قبل أول رسم لتجنّب وميض المظهر */
+(function(){
+  try{
+    var t=localStorage.getItem('nw-theme');
+    if(!t && window.matchMedia) t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+    document.documentElement.setAttribute('data-theme',t||'dark');
+  }catch(e){document.documentElement.setAttribute('data-theme','dark');}
+})();
+</script>
+<style>
+  :root{
+    --bg:#0a1120; --bg2:#152544; --panel:#111c30; --panel2:#0e1829; --line:#20304a;
+    --txt:#e9f0fb; --muted:#8fa3c0; --dim:#5f7392;
+    --mint:#2dd4a7; --mint2:#15806a; --blue:#5aa9ff; --violet:#a78bfa; --red:#ff6f6f;
+    --ok-fg:#2dd4a7; --ok-bg:rgba(45,212,167,.12); --ok-line:rgba(45,212,167,.32);
+    --warn-fg:#f5b544; --warn-bg:rgba(245,181,68,.12); --warn-line:rgba(245,181,68,.38);
+    --bad-fg:#ff6f6f; --bad-bg:rgba(255,111,111,.12); --bad-line:rgba(255,111,111,.38);
+    --off-fg:#8fa3c0; --off-bg:rgba(143,163,192,.08); --off-line:rgba(143,163,192,.25);
+    --track:#1b2a42; --heat0:rgba(45,212,167,.10); --heat1:rgba(45,212,167,.34);
+    --heat2:rgba(45,212,167,.62); --heat3:rgba(45,212,167,.95); --heat-line:rgba(45,212,167,.12);
+    --shadow:0 10px 30px rgba(0,0,0,.28); --sage:rgba(245,181,68,.07); --sage-line:rgba(245,181,68,.22); --sage-fg:#e7cf9c;
+  }
+  [data-theme="light"]{
+    --bg:#f2f6fc; --bg2:#dfe9f8; --panel:#ffffff; --panel2:#f7faff; --line:#d9e3f1;
+    --txt:#14243e; --muted:#5b6d88; --dim:#7c8da6;
+    --mint:#0f9c78; --mint2:#0b7459; --blue:#2f7fd8; --violet:#7c5cd6; --red:#d64545;
+    --ok-fg:#0b7d60; --ok-bg:rgba(15,156,120,.10); --ok-line:rgba(15,156,120,.30);
+    --warn-fg:#a86b09; --warn-bg:rgba(200,135,16,.10); --warn-line:rgba(200,135,16,.30);
+    --bad-fg:#c73c3c; --bad-bg:rgba(214,69,69,.09); --bad-line:rgba(214,69,69,.28);
+    --off-fg:#6b7d97; --off-bg:rgba(107,125,151,.08); --off-line:rgba(107,125,151,.24);
+    --track:#e2eaf6; --heat0:rgba(15,156,120,.11); --heat1:rgba(15,156,120,.32);
+    --heat2:rgba(15,156,120,.58); --heat3:rgba(15,156,120,.90); --heat-line:rgba(15,156,120,.16);
+    --shadow:0 8px 24px rgba(20,36,62,.08); --sage:rgba(200,135,16,.07); --sage-line:rgba(200,135,16,.24); --sage-fg:#8a640c;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:radial-gradient(1200px 600px at 20% -10%,var(--bg2) 0%,var(--bg) 60%);
+       color:var(--txt);font-family:system-ui,"Segoe UI",Tahoma,Arial,"Noto Kufi Arabic",sans-serif;
+       line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none}
+  a:hover{text-decoration:underline}
+  button{font-family:inherit}
+  :focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+  [hidden]{display:none!important}
+  .wrap{max-width:1240px;margin:0 auto;padding:24px 20px 60px}
+  .demo,.offline,.partial{border-radius:12px;padding:10px 15px;font-size:12.5px;margin-bottom:16px;display:flex;gap:10px;align-items:flex-start}
+  .offline{background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn-fg)}
+  .partial{background:var(--off-bg);border:1px solid var(--off-line);color:var(--muted)}
+  header.top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px;align-items:flex-end;margin-bottom:18px}
+  .brand{display:flex;gap:14px;align-items:center;min-width:0}
+  .logo{width:46px;height:46px;border-radius:14px;background:linear-gradient(145deg,var(--mint),var(--mint2));
+        display:grid;place-items:center;box-shadow:0 0 0 4px var(--ok-bg);font-size:20px;font-weight:800;color:#fff;flex:none}
+  h1{font-size:21px;margin:0;letter-spacing:.2px;line-height:1.35}
+  .sub{color:var(--muted);font-size:12px;margin-top:3px}
+  .tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .pill{border:1px solid var(--line);background:var(--panel2);color:var(--muted);
+        border-radius:999px;padding:7px 13px;font-size:11.5px;white-space:nowrap}
+  .pill.live{color:var(--ok-fg);border-color:var(--ok-line)}
+  .btn,.theme-btn{border:1px solid var(--ok-line);background:var(--ok-bg);color:var(--ok-fg);
+        border-radius:10px;padding:8px 14px;font-size:12px;cursor:pointer;min-height:40px;
+        display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap}
+  .theme-btn{border-color:var(--line);background:var(--panel2);color:var(--muted)}
+  .btn:hover,.theme-btn:hover{filter:brightness(1.12)}
+  .btn:disabled{opacity:.6;cursor:progress}
+  .overall{display:flex;align-items:center;gap:14px;border-radius:16px;padding:14px 18px;margin-bottom:22px;transition:.25s}
+  .overall.ok{background:linear-gradient(100deg,var(--ok-bg),var(--panel));border:1px solid var(--ok-line)}
+  .overall.warn{background:linear-gradient(100deg,var(--warn-bg),var(--panel));border:1px solid var(--warn-line)}
+  .overall.bad{background:linear-gradient(100deg,var(--bad-bg),var(--panel));border:1px solid var(--bad-line)}
+  .dot{width:11px;height:11px;border-radius:50%;flex:none;background:var(--mint);box-shadow:0 0 0 6px var(--ok-bg)}
+  .overall.warn .dot{background:var(--warn-fg);box-shadow:0 0 0 6px var(--warn-bg)}
+  .overall.bad .dot{background:var(--bad-fg);box-shadow:0 0 0 6px var(--bad-bg)}
+  .overall strong{font-size:14.5px;display:block}
+  .overall span{color:var(--muted);font-size:12px}
+  .grid{display:grid;gap:14px}
+  .kpis{grid-template-columns:repeat(auto-fit,minmax(min(100%,225px),1fr))}
+  .card{background:linear-gradient(160deg,var(--panel),var(--panel2));border:1px solid var(--line);
+        border-radius:16px;padding:16px 18px;box-shadow:var(--shadow);min-width:0}
+  .card .lbl{color:var(--muted);font-size:11.5px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .card .val{font-size:25px;font-weight:800;letter-spacing:.3px;margin:8px 0 2px;font-variant-numeric:tabular-nums;line-height:1.25}
+  .card .hint{font-size:11px;color:var(--dim)}
+  .tag{font-size:10px;border-radius:999px;padding:3px 9px;border:1px solid;font-weight:700;white-space:nowrap}
+  .t-ok{color:var(--ok-fg);border-color:var(--ok-line);background:var(--ok-bg)}
+  .t-warn{color:var(--warn-fg);border-color:var(--warn-line);background:var(--warn-bg)}
+  .t-bad{color:var(--bad-fg);border-color:var(--bad-line);background:var(--bad-bg)}
+  .t-off{color:var(--off-fg);border-color:var(--off-line);background:var(--off-bg)}
+  .bar{height:6px;border-radius:99px;background:var(--track);overflow:hidden;margin-top:12px}
+  .bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--mint),var(--blue));transition:width .4s ease}
+  .bar.warn i{background:linear-gradient(90deg,var(--warn-fg),var(--bad-fg))}
+  section{margin-top:26px}
+  .sec-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+  h2{font-size:15px;margin:0;display:flex;align-items:center;gap:9px}
+  h2::before{content:"";width:4px;height:17px;border-radius:4px;background:var(--mint)}
+  .note{font-size:11px;color:var(--dim)}
+  .table-wrap{overflow:hidden}
+  table{width:100%;border-collapse:collapse;font-size:12.5px}
+  th{text-align:right;color:var(--muted);font-weight:600;padding:10px 12px;border-bottom:1px solid var(--line);font-size:11px}
+  td{padding:11px 12px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+  tr:last-child td{border-bottom:0}
+  tbody tr:hover{background:var(--off-bg)}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--muted);direction:ltr;display:inline-block;unicode-bidi:isolate}
+  .two{grid-template-columns:1.35fr 1fr}
+  .chart-scroll{overflow-x:auto;scrollbar-width:thin}
+  .chart{display:flex;align-items:flex-end;gap:14px;height:172px;padding:10px 4px 0;min-width:430px}
+  .day{flex:1;min-width:44px;display:flex;flex-direction:column;align-items:center;gap:7px;height:100%;justify-content:flex-end}
+  .bars{display:flex;gap:5px;align-items:flex-end;height:135px;width:100%;justify-content:center}
+  .bars i{width:15px;border-radius:5px 5px 2px 2px;display:block;min-height:3px;transition:height .4s ease}
+  .b1{background:linear-gradient(180deg,var(--mint),var(--mint2))}
+  .b4{background:linear-gradient(180deg,var(--violet),#6d4fc4)}
+  .day small{color:var(--dim);font-size:10.5px;white-space:nowrap}
+  .legend{display:flex;gap:16px;font-size:11px;color:var(--muted);margin-top:10px;flex-wrap:wrap}
+  .legend i{width:10px;height:10px;border-radius:3px;display:inline-block;margin-left:6px}
+  .donut-wrap{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .donut{position:relative;width:150px;height:150px;flex:none}
+  .donut svg{transform:rotate(-90deg)}
+  .donut .mid{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+  .donut .mid b{font-size:25px;font-variant-numeric:tabular-nums;line-height:1.2}
+  .donut .mid small{color:var(--muted);font-size:10px}
+  .mini-stats{flex:1;min-width:145px;display:grid;gap:8px}
+  .mini-stats div{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dashed var(--line);padding-bottom:6px;font-size:12px}
+  .mini-stats span{color:var(--muted)}
+  .mini-stats b{font-variant-numeric:tabular-nums;white-space:nowrap}
+  .disc{background:var(--sage);border:1px solid var(--sage-line);border-radius:12px;
+        padding:12px 15px;color:var(--sage-fg);font-size:11.5px;margin-top:14px}
+  .heat-scroll{overflow-x:auto;scrollbar-width:thin}
+  .heat-inner{min-width:460px}
+  .heat-row{display:flex;align-items:center;gap:10px;margin:9px 0}
+  .heat-row .name{width:118px;font-size:11.5px;color:var(--muted);flex:none}
+  .cells{display:grid;grid-template-columns:repeat(24,1fr);gap:3px;flex:1}
+  .cells i{height:17px;border-radius:3px;background:var(--heat0);border:1px solid var(--heat-line);display:block}
+  .cells i.lv1{background:var(--heat1)}.cells i.lv2{background:var(--heat2)}.cells i.lv3{background:var(--heat3)}
+  .axis{display:flex;justify-content:space-between;color:var(--dim);font-size:10px;margin-right:128px;margin-top:2px}
+  .tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+  .tab{border:1px solid var(--line);background:var(--panel2);color:var(--muted);border-radius:10px;
+       padding:8px 15px;font-size:12px;cursor:pointer;min-height:40px;white-space:nowrap}
+  .tab.on{background:var(--ok-bg);border-color:var(--ok-line);color:var(--ok-fg);font-weight:700}
+  .metrics{grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px}
+  .metric{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:13px}
+  .metric span{display:block;color:var(--muted);font-size:11px}
+  .metric b{font-size:20px;font-variant-numeric:tabular-nums;line-height:1.4}
+  .frame-note{margin-top:13px;font-size:11.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:11px}
+  .checks{grid-template-columns:repeat(auto-fit,minmax(min(100%,265px),1fr));gap:10px}
+  .check{display:flex;gap:10px;align-items:flex-start;background:var(--panel2);border:1px solid var(--line);
+         border-radius:12px;padding:12px 14px;font-size:12px;min-width:0}
+  .check .ic{color:var(--ok-fg);font-weight:800;flex:none}
+  .check div{min-width:0;flex:1}
+  .check small{display:block;color:var(--dim);font-size:10.5px;margin-top:3px;word-break:break-word}
+  .check .tag{margin-right:auto;flex:none}
+  .p2-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px}
+  .p2{border:1px dashed var(--line);background:var(--panel2);border-radius:12px;padding:14px}
+  .p2 b{font-size:12.5px;display:block}
+  .p2 small{color:var(--muted);font-size:11px;display:block;margin-top:5px}
+  footer{margin-top:30px;border-top:1px solid var(--line);padding-top:16px;color:var(--dim);font-size:11px;display:grid;gap:6px}
+  .loading{color:var(--dim);font-size:12px;padding:8px 2px}
+  @media(max-width:880px){.two{grid-template-columns:1fr}}
+  @media(max-width:780px){
+    .wrap{padding:14px 12px 44px}
+    header.top{align-items:flex-start;gap:12px}
+    .brand{width:100%}
+    .tools{width:100%;gap:7px}
+    .pill,.btn,.theme-btn{flex:1 1 auto;text-align:center;justify-content:center}
+    .overall{padding:12px 14px;align-items:flex-start}
+    .overall strong{font-size:13px}
+    .kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .card{padding:14px}
+    .card .val{font-size:21px}
+    .two{gap:12px}
+    .chart{min-width:430px}
+    .health-table thead{display:none}
+    .health-table,.health-table tbody,.health-table tr,.health-table td{display:block;width:100%}
+    .health-table tr{border:1px solid var(--line);border-radius:12px;margin-bottom:10px;padding:6px 12px;background:var(--panel2)}
+    .health-table td{border:0;padding:6px 0;display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:11.8px;text-align:left}
+    .health-table td::before{content:attr(data-l);color:var(--muted);font-weight:600;flex:none}
+    .health-table td[data-l=""]::before{content:""}
+    .health-table td:first-child{font-weight:700;font-size:13px;padding-bottom:9px;border-bottom:1px dashed var(--line)}
+    .heat-inner{min-width:430px}
+    .heat-row .name{width:94px;font-size:10.5px}
+    .axis{margin-right:104px}
+    .tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:3px}
+    .tab{flex:none}
+    .metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .donut-wrap{justify-content:center}
+    .checks{grid-template-columns:1fr}
+    .p2-grid{grid-template-columns:1fr}
+    .sec-head{gap:6px}
+  }
+  @media(max-width:420px){
+    .kpis{grid-template-columns:1fr}
+    h1{font-size:18px}
+    .logo{width:40px;height:40px;font-size:17px}
+    .tools .pill{font-size:10.5px}
+  }
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+  @media print{.tools,.btn,.theme-btn{display:none}body{background:#fff;color:#000}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div id="offlineNote" class="offline" hidden>
+    ⚠️ <span>تعذّر جلب البيانات الحية — قد تكون داخل معاينة محلية بلا اتصال. افتح
+    <a id="offlineLink" href="https://turky4500.github.io/binance-spot-usdt-signal-bot/" target="_blank" rel="noopener">الرابط المنشور على GitHub Pages</a>
+    لرؤية اللوحة ببياناتها الحية.</span>
+  </div>
+  <div id="partialNote" class="partial" hidden></div>
+
+  <header class="top">
+    <div class="brand">
+      <div class="logo">NW</div>
+      <div>
+        <h1>لوحة قياس النظام</h1>
+        <div class="sub">صحة التشغيل · سلامة الرسائل · قياس أثر الإشارات — 1H / 4H / 15M</div>
+      </div>
+    </div>
+    <div class="tools">
+      <span class="pill">🕒 كل الأوقات بتوقيت الرياض</span>
+      <span class="pill live">● <span id="cacheBadge">جارٍ التحميل</span> · <span id="lastUpdate">—</span></span>
+      <span class="pill">تحديث آلي كل 15 د</span>
+      <button id="themeBtn" class="theme-btn" type="button" aria-pressed="false" aria-label="تبديل المظهر">
+        <span id="themeIco">☀️</span><span id="themeTxt">الوضع النهاري</span>
+      </button>
+      <button id="refreshBtn" class="btn" type="button" aria-label="تحديث البيانات الآن">⟳ <span id="refreshTxt">تحديث الآن</span></button>
+    </div>
+  </header>
+
+  <div id="overall" class="overall ok" role="status" aria-live="polite">
+    <span class="dot"></span>
+    <div>
+      <strong id="overallTitle">جارٍ تحميل البيانات الحية من المستودع…</strong>
+      <span id="overallSub">تُقرأ ملفات الحالة والدفاتر وسجلات التشغيل مباشرة، بلا أي توكن أو بيانات حساسة.</span>
+    </div>
+  </div>
+
+  <div id="kpis" class="grid kpis"></div>
+
+  <section>
+    <div class="sec-head"><h2>صحة الجدولة والخدمات</h2><span class="note">المؤشر الأهم: يكشف التوقف الصامت قبل أن تسأل «هل يعمل؟»</span></div>
+    <div class="card table-wrap">
+      <table class="health-table">
+        <thead><tr><th>الخدمة</th><th>الحالة</th><th>آخر تشغيل</th><th>العمر</th><th>الإيقاع المتوقع</th><th>ملاحظة</th></tr></thead>
+        <tbody id="healthBody"><tr><td colspan="6" class="loading">جارٍ التحميل…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>الرسائل وقياس أثر الإشارات</h2><span class="note">قسم منفصل تمامًا عن «صحة التشغيل» — أرقام مجمّعة فقط، بلا أسماء عملات ولا أسعار</span></div>
+    <div class="grid two">
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;margin-bottom:4px">التوصيات المرسلة — آخر 7 أيام</div>
+        <div class="note" id="weekNote">من مفاتيح buy: مع طول الشمعة، وتشمل «إشارة دخول ثانية»</div>
+        <div class="chart-scroll" tabindex="0" aria-label="رسم التوصيات الأسبوعي — قابل للسحب أفقيًا على الجوال">
+          <div class="chart" id="weekChart"></div>
+        </div>
+        <div class="legend"><span><i class="b1"></i>فريم 1H</span><span><i class="b4"></i>فريم 4H</span><span style="color:var(--dim)">المصدر: مفاتيح buy: في ملفات الحالة</span></div>
+      </div>
+
+      <div class="card">
+        <div id="donutTitle" style="font-size:13px;font-weight:700;margin-bottom:14px">حصيلة الصفقات المُبلَّغ عنها «قياس أثر»</div>
+        <div class="donut-wrap">
+          <div class="donut">
+            <svg width="150" height="150" viewBox="0 0 150 150" role="img" aria-label="نسبة النجاح">
+              <circle cx="75" cy="75" r="56" fill="none" style="stroke:var(--track)" stroke-width="15"></circle>
+              <circle id="donutWin" cx="75" cy="75" r="56" fill="none" style="stroke:var(--mint)" stroke-width="15" stroke-linecap="round" stroke-dasharray="0 352"></circle>
+              <circle id="donutLoss" cx="75" cy="75" r="56" fill="none" style="stroke:var(--red)" stroke-width="15" stroke-linecap="round" stroke-dasharray="0 352" stroke-dashoffset="0" opacity=".9"></circle>
+            </svg>
+            <div class="mid"><b id="donutRate">—</b><small>نسبة النجاح</small></div>
+          </div>
+          <div class="mini-stats" id="miniStats"></div>
+        </div>
+        <div class="disc">البوت يرسل <b>توصيات فقط</b> ولا ينفّذ صفقات. الأرقام قياس أثر للإشارات بعد عمولة 0.2% «مجموع نسب الصفقات»، وليست أداءً ماليًا حقيقيًا ولا باكتيست ولا وعد ربح. لا تُعرض أسماء عملات ولا أسعار.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>خريطة النشاط — آخر 24 ساعة</h2><span class="note">كل خانة = ساعة بالرياض · من سجلات الحالة وملفات الدفتر</span></div>
+    <div class="card">
+      <div class="heat-scroll" tabindex="0" aria-label="خريطة النشاط — قابلة للسحب أفقيًا على الجوال">
+        <div class="heat-inner">
+          <div id="heatRows"></div>
+          <div class="axis" id="heatAxis"></div>
+        </div>
+      </div>
+      <div class="legend"><span><i style="background:var(--heat0)"></i>لا نشاط</span><span><i style="background:var(--heat1)"></i>نشاط</span><span><i style="background:var(--heat2)"></i>نشاط متوسط</span><span><i style="background:var(--heat3)"></i>نشاط كثيف</span></div>
+      <div class="note" id="heatNote" style="margin-top:9px"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>مؤشرات الأداء حسب الفريم</h2><span class="note">نفس أرقام التقرير اليومي، قابلة للاستعراض في أي لحظة</span></div>
+    <div class="tabs" id="tabs" role="tablist" aria-label="اختيار الفريم">
+      <button class="tab on" data-t="1h" role="tab" aria-selected="true" type="button">فريم 1H</button>
+      <button class="tab" data-t="4h" role="tab" aria-selected="false" type="button">فريم 4H</button>
+      <button class="tab" data-t="15m" role="tab" aria-selected="false" type="button">فريم 15M «صامت»</button>
+    </div>
+    <div class="card" id="frameMetrics"><div class="loading">جارٍ التحميل…</div></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>سلامة النظام والبيانات</h2><span class="note">«مباشر» = محسوب من البيانات الآن · «إعداد» = ثابت في الوركفلو ولا يُقاس من المتصفح</span></div>
+    <div class="checks" id="checks"></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>المرحلة الثانية «اختيارية»</h2><span class="note">لم تُنفَّذ — كما اتفقنا، بانتظار طلبك</span></div>
+    <div class="card">
+      <div class="grid p2-grid">
+        <div class="p2"><b>📜 سجل الأحداث</b><small>سرد عمليات الإصلاح والتشغيلات الفاشلة من سجلات Actions؛ يحتاج صلاحية قراءة Logs.</small></div>
+        <div class="p2"><b>⏱️ زمن الاستجابة</b><small>زمن كل دورة وزمن وصول الحالة؛ يحتاج ملف قياسات خفيفًا ووركفلو كتابة دوري.</small></div>
+      </div>
+      <div class="disc">لم يُضف أي وركفلو جديد، ولم تُلمس نواة البوت ولا شروط الإشارة ولا ملفات الحالة والدفاتر. الصفحة <b>تقرأ فقط</b>.</div>
+    </div>
+  </section>
+
+  <div class="disc">
+    <b>إخلاء مسؤولية:</b> النظام يرسل توصيات فقط ولا ينفّذ صفقات؛ لا أهداف ولا وقف خسارة ولا بوابة BTC ولا باكتيست ولا وعود ربح. مؤشر Nadaraya-Watson Envelope © LuxAlgo «CC BY-NC-SA 4.0». جميع الأوقات بتوقيت الرياض. البيانات العامة قد تتأخر حتى 5 دقائق بسبب كاش CDN، وسجل <span class="mono">api.github.com</span> العام محدود بـ 60 طلب/ساعة «اللوحة تخزّن مؤقتًا 15 دقيقة».
+  </div>
+
+  <footer>
+    <span>المصادر: <span class="mono">data/state_nw.json</span> · <span class="mono">data/state_nw4h.json</span> · <span class="mono">data/state_nw15.json</span> · <span class="mono">data/trades_log_nw*.csv</span> · <span class="mono">/actions/workflows</span> · <span class="mono">/actions/runs</span> · <span class="mono">/commits?path=…</span></span>
+    <span>النشر: <span class="mono">docs/index.html</span> + <span class="mono">docs/.nojekyll</span> على <span class="mono">main</span> عبر GitHub Pages — <b>بلا أي وركفلو جديد</b>.</span>
+    <span>الرابط الدائم: <a id="footerLink" href="https://turky4500.github.io/binance-spot-usdt-signal-bot/" target="_blank" rel="noopener">turky4500.github.io/binance-spot-usdt-signal-bot/</a> · المستودع: <a href="https://github.com/turky4500/binance-spot-usdt-signal-bot" target="_blank" rel="noopener">github.com/turky4500/binance-spot-usdt-signal-bot</a></span>
+  </footer>
+</div>
+
+<!-- ══════════ محرك الحساب: دوال نقية بلا DOM ══════════ -->
+<script id="nw-engine">
+(function(){
+'use strict';
+const RIY = 3*3600000;
+const CFG = {
+  owner:'turky4500', repo:'binance-spot-usdt-signal-bot', branch:'main', riy:RIY,
+  api:'https://api.github.com/repos/turky4500/binance-spot-usdt-signal-bot',
+  raw:'https://raw.githubusercontent.com/turky4500/binance-spot-usdt-signal-bot/main/',
+  site:'https://turky4500.github.io/binance-spot-usdt-signal-bot/'
+};
+const WF = {
+  bot1h:408673593, guard1h:412275269, bot4h:411860858, guard4h:412420073,
+  report4h:411860857, heartbeat:375062554, bot15m:410732268, oldTrigger:409220950
+};
+const FRAMES = [
+  {id:'1h', label:'فريم 1H', state:'data/state_nw.json', log:'data/trades_log_nw.csv',
+   reportKey:'daily_report_nw', interval:3600000, bot:WF.bot1h, guard:WF.guard1h, expected:30, enabled:true},
+  {id:'4h', label:'فريم 4H', state:'data/state_nw4h.json', log:'data/trades_log_nw4h.csv',
+   reportKey:'daily_report_nw4h', interval:14400000, bot:WF.bot4h, guard:WF.guard4h, report:WF.report4h, expected:240, enabled:true},
+  {id:'15m', label:'فريم 15M', state:'data/state_nw15.json', log:'data/trades_log_nw15.csv',
+   reportKey:'daily_report_nw15', interval:900000, bot:WF.bot15m, expected:15, enabled:false, silent:true}
+];
+const WEEKDAY = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+
+function pad(n){return String(n).padStart(2,'0');}
+function fmtNum(n){return (n===null||n===undefined||Number.isNaN(n))?'—':Number(n).toLocaleString('en-US');}
+function fmtPct(v){if(v===null||v===undefined||Number.isNaN(v))return '—';const x=Number(v);return (x>=0?'+':'')+x.toFixed(2)+'%';}
+function fmtRate(v){return (v===null||v===undefined||Number.isNaN(v))?'—':Number(v).toFixed(1)+'%';}
+function fmtDay(iso){return iso?String(iso).replace(/-/g,'/'):'—';}
+function riyadhParts(ms){const d=new Date(ms+RIY);return {y:d.getUTCFullYear(),m:d.getUTCMonth(),day:d.getUTCDate(),h:d.getUTCHours(),mi:d.getUTCMinutes(),dow:d.getUTCDay()};}
+function fmtTime(ms){if(!ms||!Number.isFinite(ms))return '—';const p=riyadhParts(ms);const ap=p.h<12?'ص':'م';let hh=p.h%12;if(hh===0)hh=12;return pad(hh)+':'+pad(p.mi)+' '+ap;}
+function fmtHour(ms){const p=riyadhParts(ms);return pad(p.h)+':00';}
+function fmtAge(ms){if(!ms||!Number.isFinite(ms))return '—';const s=Math.max(0,Math.floor((Date.now()-ms)/1000));
+  if(s<60)return s+' ث';const m=Math.floor(s/60);if(m<60)return m+' د';
+  const h=Math.floor(m/60),mm=m%60;if(h<24)return mm?h+' س '+mm+' د':h+' س';
+  const d=Math.floor(h/24);return d+' ي '+(h%24)+' س';}
+function dayWindow(offset){
+  const p=riyadhParts(Date.now());
+  const base=Date.UTC(p.y,p.m,p.day,0,0,0)-(offset||0)*86400000;
+  const start=base-RIY;
+  return {start:start,end:start+86400000,iso:new Date(base).toISOString().slice(0,10)};
+}
+function net(r){const v=Number(String(r.net_pct||'').trim());return Number.isFinite(v)?v:0;}
+function splitCSVLine(line){
+  const out=[];let cur='',q=false;
+  for(let i=0;i<line.length;i++){
+    const ch=line[i];
+    if(ch==='"'){if(q&&line[i+1]==='"'){cur+='"';i++;}else q=!q;}
+    else if(ch===','&&!q){out.push(cur);cur='';}
+    else cur+=ch;
+  }
+  out.push(cur);return out;
+}
+function parseCSV(text){
+  if(!text)return [];
+  const lines=String(text).replace(/^\uFEFF/,'').split(/\r?\n/).filter(l=>l.trim()!=='');
+  if(lines.length<2)return [];
+  const head=splitCSVLine(lines[0]).map(h=>h.trim());
+  return lines.slice(1).map(l=>{const c=splitCSVLine(l);const o={};head.forEach((h,i)=>{o[h]=(c[i]||'').trim();});return o;});
+}
+function countKeys(sent,interval,win,kind){
+  let n=0;
+  for(const k of sent||[]){
+    if(typeof k!=='string')continue;
+    const p=k.split(':');
+    if(p[0]!==kind||p.length<3)continue;
+    const bar=Number(p[2]);
+    if(!Number.isFinite(bar)||bar<1e12)continue;
+    const msg=bar+interval;
+    if(msg>=win.start&&msg<win.end)n++;
+  }
+  return n;
+}
+function reportStatus(lastReportDay){
+  const p=riyadhParts(Date.now()), prev=dayWindow(1).iso;
+  if(lastReportDay===prev)return {key:'sent',cls:'t-ok',txt:'أُرسل'};
+  if(p.h===0&&p.mi<20)return {key:'window',cls:'t-off',txt:'في نافذة الإرسال'};
+  if(p.h===0)return {key:'late',cls:'t-bad',txt:'متأخر'};
+  return {key:'waiting',cls:'t-off',txt:'بانتظار 12:00 AM'};
+}
+function computeFrame(f,state,rows){
+  const sent=Array.isArray(state&&state.sent)?state.sent:[];
+  const symbols=(state&&state.symbols)||{};
+  const open=Object.values(symbols).filter(v=>v&&typeof v==='object'&&v.position&&typeof v.position==='object').length;
+  const closedRows=rows.filter(r=>/^\d{10,}$/.test(String(r.exit_time||'').trim()));
+  const wins=closedRows.filter(r=>net(r)>0).length;
+  const losses=closedRows.filter(r=>net(r)<0).length;
+  const total=closedRows.reduce((a,r)=>a+net(r),0);
+  const rate=(wins+losses)>0?wins/(wins+losses)*100:null;
+  const day=dayWindow(0);
+  const sentToday=countKeys(sent,f.interval,day,'buy');
+  const closedToday=closedRows.filter(r=>{const t=Number(String(r.confirm_bar_time||r.exit_time||'').trim());return t>=day.start&&t<day.end;}).length;
+  const rep=(state&&state[f.reportKey])||{};
+  const lastReportDay=rep.last_report_day||null;
+  /* الفريم المُسكت عمدًا لا يُقاس تقريره كـ«متأخر» */
+  const repStatus=f.silent?{key:'off',cls:'t-off',txt:'صامت — لا تقارير'}:reportStatus(lastReportDay);
+  return {
+    id:f.id,label:f.label,statePath:f.state,logPath:f.log,reportKey:f.reportKey,
+    interval:f.interval,expected:f.expected,enabled:f.enabled,silent:!!f.silent,
+    system:(state&&state.system)||'—',cycles:(state&&state.cycles)??null,
+    msgs:(state&&state.messages_sent)??null,lastCycleMs:(state&&state.last_cycle_ms)??null,
+    sentLen:sent.length,dup:sent.length-new Set(sent).size,
+    open:open,closed:closedRows.length,wins:wins,losses:losses,rate:rate,total:total,
+    sentToday:sentToday,closedToday:closedToday,lastReportDay:lastReportDay,
+    reportStatus:repStatus,_sent:sent
+  };
+}
+function lastMs(r){if(!r)return null;const t=Date.parse(r.run_started_at||r.created_at||'');return Number.isFinite(t)?t:null;}
+function runRow(name,r,wfId,expected,expectedTxt,note,wfState,overrideTag){
+  const t=lastMs(r),age=t?Date.now()-t:null;
+  const st=wfState[wfId]||'unknown';
+  let cls='t-off',txt='لا بيانات';
+  if(st==='disabled_manually'){cls='t-off';txt='معطّل';}
+  else if(!r){cls='t-off';txt='لا بيانات';}
+  else if(age!==null&&age>expected*2*60000){cls='t-warn';txt='متأخر';}
+  else if(r.conclusion==='failure'){cls='t-warn';txt='فشل';}
+  else if(r.conclusion==='skipped'||r.conclusion==='cancelled'){cls='t-off';txt='تخطٍّ';}
+  else{cls='t-ok';txt='نشط';}
+  if(overrideTag){cls=overrideTag.cls;txt=overrideTag.txt;}
+  return {name:name,tagCls:cls,tagTxt:txt,last:t?fmtTime(t):'—',age:t?fmtAge(t):'—',expected:expectedTxt,note:note};
+}
+function buildHealth(frames,wfState,lastByWf){
+  const f4=frames['4h'],f15=frames['15m'];
+  const rows=[];
+  rows.push(runRow('بوت 1H',lastByWf[WF.bot1h],WF.bot1h,30,'كل ~30 د','حاجز فردي + حالة طازجة + حفظ تدريجي',wfState));
+  rows.push(runRow('حارس 1H',lastByWf[WF.guard1h],WF.guard1h,5,'كل ~5 د «نبض»','يُطلق الدورة عند اكتمال النبض + جدولة احتياطية',wfState));
+  rows.push(runRow('بوت 4H',lastByWf[WF.bot4h],WF.bot4h,240,'كل 4 ساعات','مُشغّل محمي + حاجز فردي + 3 محاولات',wfState));
+  rows.push(runRow('حارس 4H',lastByWf[WF.guard4h],WF.guard4h,5,'كل ~5 د «نبض»','نجاح واحد لكل شمعة 4h · لا إطلاق مكرّر',wfState));
+  rows.push(runRow('تقرير 4H اليومي',lastByWf[WF.report4h],WF.report4h,1440,'12:00 ص الرياض',
+    'last_report_day = '+(f4.lastReportDay||'—')+' · '+f4.reportStatus.txt,wfState,
+    {cls:f4.reportStatus.cls,txt:f4.reportStatus.txt}));
+  rows.push(runRow('النبض «Signal Bot Cron»',lastByWf[WF.heartbeat],WF.heartbeat,5,'كل ~5 د','يُحفّز حارسي 1H و4H',wfState));
+  rows.push({name:'فريم 15M',tagCls:'t-off',tagTxt:'صامت',
+    last:f15.lastCycleMs?fmtTime(f15.lastCycleMs):'—',age:f15.lastCycleMs?fmtAge(f15.lastCycleMs):'—',
+    expected:'—',note:'معطّل بلا حذف · لا فحص ولا رسائل ولا سجلات جديدة'});
+  rows.push({name:'التريغر القديم 1H',tagCls:'t-off',tagTxt:'معطّل',last:'—',age:'—',expected:'—',
+    note:'سبب التكرار السابق · يبقى معطّلًا'});
+  return rows;
+}
+function buildIssues(frames,wfState,lastByWf,got){
+  const issues=[],f1=frames['1h'],f4=frames['4h'],f15=frames['15m'];
+  if(!f1.lastCycleMs||Date.now()-f1.lastCycleMs>f1.expected*2*60000)issues.push('تأخر دورة 1H');
+  if(!f4.lastCycleMs||Date.now()-f4.lastCycleMs>f4.expected*2*60000)issues.push('تأخر دورة 4H');
+  [[WF.guard1h,'حارس 1H'],[WF.guard4h,'حارس 4H'],[WF.heartbeat,'النبض']].forEach(function(x){
+    const r=lastByWf[x[0]];
+    if(!r){issues.push('لا بيانات '+x[1]);return;}
+    const t=lastMs(r);
+    if(t&&Date.now()-t>20*60000)issues.push('توقف '+x[1]);
+  });
+  const dup=f1.dup+f4.dup+f15.dup;
+  if(dup>0)issues.push('يوجد '+dup+' مفتاح مكرّر');
+  if(wfState[WF.bot15m]==='active')issues.push('فريم 15M نشط بشكل غير متوقع');
+  if(f4.reportStatus.key==='late')issues.push('تقرير 4H اليومي لم يُرسل');
+  if(!got.workflows)issues.push('تعذّر قراءة حالة الوركفلوات');
+  if(!got.runs)issues.push('تعذّر قراءة سجل التشغيلات');
+  if(!f1.cycles&&!f4.cycles)issues.push('تعذّر قراءة ملفات الحالة');
+  return issues;
+}
+function buildWeek(frames){
+  const out=[];
+  for(let k=6;k>=0;k--){
+    const w=dayWindow(k);
+    const dow=new Date(w.start+RIY).getUTCDay();
+    out.push({iso:w.iso,label:k===0?'اليوم':WEEKDAY[dow],
+      v1:countKeys(frames['1h']._sent,frames['1h'].interval,w,'buy'),
+      v2:countKeys(frames['4h']._sent,frames['4h'].interval,w,'buy')});
+  }
+  return out;
+}
+function buildHeat(frames,got){
+  const shifted=Date.now()+RIY;
+  const hourStart=Math.floor(shifted/3600000)*3600000-RIY;
+  const start=hourStart-23*3600000,end=hourStart+3600000;
+  function counts(times){const a=Array(24).fill(0);times.forEach(t=>{if(t>=start&&t<end)a[Math.floor((t-start)/3600000)]++;});return a;}
+  function commitTimes(x){return Array.isArray(x)?x.map(c=>Date.parse((c&&c.commit&&c.commit.author&&c.commit.author.date)||'')).filter(Number.isFinite):[];}
+  function keyTimes(sent,interval,kind){return (sent||[]).filter(k=>typeof k==='string'&&k.split(':')[0]===kind).map(k=>{const p=k.split(':');const b=Number(p[2]);return Number.isFinite(b)&&b>=1e12?b+interval:NaN;}).filter(Number.isFinite);}
+  const rows=[
+    {name:'دورات 1H',vals:counts(commitTimes(got.commits1h))},
+    {name:'دورات 4H',vals:counts(commitTimes(got.commits4h))},
+    {name:'توصيات 1H',vals:counts(keyTimes(frames['1h']._sent,frames['1h'].interval,'buy'))}
+  ];
+  const labels=[0,6,12,18,23].map(i=>'<span>'+(i===23?'الآن':fmtHour(start+i*3600000))+'</span>').join('');
+  let note='آخر 24 ساعة بتوقيت الرياض · الدورات من سجل commits للحالة، والتوصيات من مفاتيح buy: · غياب الرسائل ليس عطلًا؛ شروط الإشارة قد لا تتحقق، وفجوات الجدولة تظهر في بطاقات «عمر آخر دورة».';
+  if(!Array.isArray(got.commits1h)||!Array.isArray(got.commits4h))note+=' · بعض سجلات الدورات غير متاح حاليًا.';
+  return {rows:rows,labels:labels,note:note,start:start};
+}
+function computeAll(got){
+  got=got||{};
+  const frames={};let parsed=0;
+  FRAMES.forEach(function(f){
+    let s=null;try{s=JSON.parse(got['state:'+f.id]||'null');}catch(e){s=null;}
+    if(s)parsed++;
+    frames[f.id]=computeFrame(f,s,parseCSV(got['log:'+f.id]||''));
+  });
+  const wfState={};
+  if(got.workflows&&got.workflows.workflows)got.workflows.workflows.forEach(w=>{wfState[w.id]=w.state;});
+  const lastByWf={};
+  if(got.runs&&got.runs.workflow_runs)got.runs.workflow_runs.forEach(r=>{if(!lastByWf[r.workflow_id])lastByWf[r.workflow_id]=r;});
+  const week=buildWeek(frames);
+  const heat=buildHeat(frames,got);
+  const health=buildHealth(frames,wfState,lastByWf);
+  const issues=buildIssues(frames,wfState,lastByWf,got);
+  FRAMES.forEach(f=>{delete frames[f.id]._sent;});
+  return {frames:frames,health:health,issues:issues,week:week,heat:heat,
+    meta:{ts:Date.now(),parsed:parsed,hasWf:!!got.workflows,hasRuns:!!got.runs,missing:[]}};
+}
+globalThis.NWEngine={CFG:CFG,FRAMES:FRAMES,WF:WF,RIY:RIY,
+  fmtNum:fmtNum,fmtPct:fmtPct,fmtRate:fmtRate,fmtDay:fmtDay,fmtTime:fmtTime,fmtHour:fmtHour,fmtAge:fmtAge,
+  dayWindow:dayWindow,parseCSV:parseCSV,countKeys:countKeys,reportStatus:reportStatus,computeAll:computeAll};
+})();
+</script>
+
+<!-- ══════════ واجهة العرض + الجلب الحي ══════════ -->
+<script id="nw-ui">
+(function(){
+'use strict';
+const E=globalThis.NWEngine;
+const CFG=E.CFG,FRAMES=E.FRAMES,WF=E.WF;
+const fmtNum=E.fmtNum,fmtPct=E.fmtPct,fmtRate=E.fmtRate,fmtDay=E.fmtDay,fmtTime=E.fmtTime,fmtHour=E.fmtHour,fmtAge=E.fmtAge;
+const CACHE='nw-dash-cache-v3',SNAP='nw-dash-snapshot-v3',THEME='nw-theme',TTL=15*60*1000;
+let currentModel=null,currentFrame='1h',lastFetch=0;
+
+/* ── المظهر ── */
+function setTheme(t,persist){
+  document.documentElement.setAttribute('data-theme',t);
+  if(persist){try{localStorage.setItem(THEME,t);}catch(e){}}
+  const ico=document.getElementById('themeIco'),txt=document.getElementById('themeTxt'),btn=document.getElementById('themeBtn');
+  const light=t==='light';
+  if(ico)ico.textContent=light?'🌙':'☀️';
+  if(txt)txt.textContent=light?'الوضع الليلي':'الوضع النهاري';
+  if(btn){btn.setAttribute('aria-pressed',String(!light));btn.setAttribute('aria-label',light?'التبديل إلى الوضع الليلي':'التبديل إلى الوضع النهاري');}
+  const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=light?'#f2f6fc':'#0a1120';
+}
+setTheme(document.documentElement.getAttribute('data-theme')||'dark',false);
+document.getElementById('themeBtn').addEventListener('click',function(){
+  const next=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';setTheme(next,true);
+});
+if(window.matchMedia){try{const mq=matchMedia('(prefers-color-scheme: light)');
+  if(mq.addEventListener)mq.addEventListener('change',function(ev){try{if(!localStorage.getItem(THEME))setTheme(ev.matches?'light':'dark',false);}catch(e){}});
+}catch(e){}}
+
+/* ── أدوات ── */
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function tag(cls,txt){return '<span class="tag '+cls+'">'+esc(txt)+'</span>';}
+function readCache(){try{const c=JSON.parse(localStorage.getItem(CACHE)||'null');if(c&&c.ts&&c.model&&Date.now()-c.ts<TTL)return c;}catch(e){}return null;}
+function writeCache(c){try{localStorage.setItem(CACHE,JSON.stringify(c));}catch(e){}}
+function setLoading(on){
+  const b=$('refreshBtn'),t=$('refreshTxt');
+  if(b)b.disabled=on;
+  if(t)t.textContent=on?'جارٍ التحديث…':'تحديث الآن';
+}
+function flash(msg){const t=$('refreshTxt');if(!t)return;const old=t.textContent;t.textContent=msg;setTimeout(function(){t.textContent=old;},1700);}
+async function getJson(u){const r=await fetch(u,{cache:'no-store',headers:{Accept:'application/vnd.github+json'}});if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}
+async function getText(u){const r=await fetch(u,{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);return r.text();}
+
+/* ── Δ الرسائل بين زيارتين ── */
+function computeDelta(model){
+  let prev=null;try{prev=JSON.parse(localStorage.getItem(SNAP)||'null');}catch(e){}
+  const now={ts:Date.now(),frames:{}};
+  FRAMES.forEach(f=>{const m=model.frames[f.id];now.frames[f.id]={msgs:m.msgs,sent:m.sentLen};});
+  let out={status:'wait',text:'بانتظار تحديث قادم للمقارنة بين زيارتين'};
+  if(prev&&prev.frames){
+    let ok=true,any=false;const cap=[];
+    FRAMES.forEach(f=>{
+      const a=prev.frames[f.id],b=now.frames[f.id];
+      if(!a||!b||a.msgs==null||b.msgs==null)return;
+      const dM=b.msgs-a.msgs,dS=b.sent-a.sent;
+      if(a.sent>=400||b.sent>=400){cap.push(f.label);return;}
+      any=true;if(dM!==dS){ok=false;}
+    });
+    if(any)out={status:ok?'ok':'bad',text:ok?'مطابق في الفريمات المتاحة':'عدم تطابق — راجع ملفات الحالة'};
+    else out={status:'off',text:'سجل المفاتيح عند السقف (400) ⇒ يُقاس من الدفتر'};
+    if(cap.length)out.text+=' · '+cap.join(' / ')+' عند السقف';
+  }
+  try{localStorage.setItem(SNAP,JSON.stringify(now));}catch(e){}
+  return out;
+}
+
+/* ── البطاقات ── */
+function kpiCard(lbl,cls,txt,val,hint,pct,warn){
+  return '<div class="card"><div class="lbl">'+esc(lbl)+tag(cls,txt)+'</div>'+
+    '<div class="val">'+esc(val)+'</div><div class="hint">'+hint+'</div>'+
+    '<div class="bar'+(warn?' warn':'')+'"><i style="width:'+Math.max(0,Math.min(100,pct||0))+'%"></i></div></div>';
+}
+function renderKpis(m){
+  const f1=m.frames['1h'],f4=m.frames['4h'],f15=m.frames['15m'];
+  const a1=f1.lastCycleMs?Date.now()-f1.lastCycleMs:null,a4=f4.lastCycleMs?Date.now()-f4.lastCycleMs:null;
+  const t1=a1===null?'t-off':(a1>f1.expected*2*60000?'t-warn':'t-ok');
+  const t4=a4===null?'t-off':(a4>f4.expected*2*60000?'t-warn':'t-ok');
+  const today=f1.sentToday+f4.sentToday;
+  const maxDay=Math.max(1,...m.week.map(d=>d.v1+d.v2));
+  const dup=f1.dup+f4.dup+f15.dup;
+  $('kpis').innerHTML=
+    kpiCard('آخر دورة 1H',t1,t1==='t-warn'?'متأخر':'يعمل',f1.lastCycleMs?fmtAge(f1.lastCycleMs):'—',
+      'عمر آخر دورة · الإيقاع المتوقع '+f1.expected+' دقيقة',a1===null?0:a1/(f1.expected*60000)*100,t1==='t-warn')+
+    kpiCard('آخر دورة 4H',t4,t4==='t-warn'?'متأخر':'يعمل',f4.lastCycleMs?fmtAge(f4.lastCycleMs):'—',
+      'الإيقاع المتوقع 4 ساعات · الدورة التالية بعد إغلاق الشمعة',a4===null?0:a4/(f4.expected*60000)*100,t4==='t-warn')+
+    kpiCard('رسائل اليوم','t-ok','مطابق',fmtNum(today),
+      '1H: '+fmtNum(f1.sentToday)+' · 4H: '+fmtNum(f4.sentToday)+' · من مفاتيح buy: مع طول الشمعة',maxDay?today/maxDay*100:0,false)+
+    kpiCard('سلامة عدم التكرار',dup?'t-bad':'t-ok',dup?'تحذير':'0 مكرّر',fmtNum(dup),
+      'مفاتيح مكرّرة في sent · السجل مقتطع عند 400 مفتاح',dup?0:100,!!dup);
+}
+
+/* ── جدول الصحة ── */
+function renderHealth(m){
+  $('healthBody').innerHTML=m.health.map(r=>
+    '<tr><td data-l="">'+esc(r.name)+'</td>'+
+    '<td data-l="الحالة">'+tag(r.tagCls,r.tagTxt)+'</td>'+
+    '<td data-l="آخر تشغيل">'+esc(r.last)+'</td>'+
+    '<td data-l="العمر">'+esc(r.age)+'</td>'+
+    '<td data-l="الإيقاع المتوقع">'+esc(r.expected)+'</td>'+
+    '<td data-l="ملاحظة">'+esc(r.note)+'</td></tr>').join('');
+}
+
+/* ── الرسم الأسبوعي ── */
+function renderWeek(m){
+  const max=Math.max(1,...m.week.map(d=>Math.max(d.v1,d.v2)));
+  $('weekChart').innerHTML=m.week.map(d=>{
+    const h1=Math.max(3,d.v1/max*100),h4=Math.max(3,d.v2/max*100);
+    return '<div class="day" title="'+esc(d.iso)+' — 1H: '+d.v1+' · 4H: '+d.v2+'">'+
+      '<div class="bars"><i class="b1" style="height:'+h1.toFixed(1)+'%"></i><i class="b4" style="height:'+h4.toFixed(1)+'%"></i></div>'+
+      '<small>'+esc(d.label)+'</small></div>';
+  }).join('');
+  $('weekNote').textContent='آخر 7 أيام بالرياض · تُحسب من مفاتيح buy: مع طول الشمعة 1H=3,600,000 ms و4H=14,400,000 ms · تشمل «إشارة دخول ثانية» وتستبعد الخروج';
+}
+
+/* ── الدونات ── */
+function renderDonut(f,m){
+  const C=2*Math.PI*56,total=m.wins+m.losses;
+  const winDash=total>0?C*m.wins/total:0;
+  $('donutWin').setAttribute('stroke-dasharray',winDash.toFixed(2)+' '+C.toFixed(2));
+  $('donutLoss').setAttribute('stroke-dasharray',(C-winDash).toFixed(2)+' '+C.toFixed(2));
+  $('donutLoss').setAttribute('stroke-dashoffset',(-winDash).toFixed(2));
+  $('donutRate').textContent=fmtRate(m.rate);
+  $('donutTitle').textContent='حصيلة الصفقات المُبلَّغ عنها «قياس أثر» — '+f.label;
+  $('miniStats').innerHTML=
+    '<div><span>📌 مفتوحة حاليًا</span><b>'+fmtNum(m.open)+'</b></div>'+
+    '<div><span>🔒 مغلقة «الدفتر»</span><b>'+fmtNum(m.closed)+'</b></div>'+
+    '<div><span>✅ نجاح</span><b style="color:var(--ok-fg)">'+fmtNum(m.wins)+'</b></div>'+
+    '<div><span>🛑 خسارة</span><b style="color:var(--bad-fg)">'+fmtNum(m.losses)+'</b></div>'+
+    '<div><span>💰 إجمالي صافي P/L</span><b>'+fmtPct(m.total)+'</b></div>';
+}
+
+/* ── تبويب الفريم ── */
+function renderFrame(id){
+  if(!currentModel)return;
+  const f=FRAMES.find(x=>x.id===id)||FRAMES[0],m=currentModel.frames[id];
+  const items=[
+    ['📥 توصيات اليوم',fmtNum(m.sentToday)],
+    ['📌 مفتوحة حاليًا',fmtNum(m.open)],
+    ['🔒 مغلقة «الدفتر»',fmtNum(m.closed)],
+    ['✅ نجاح «الدفتر»',fmtNum(m.wins)],
+    ['🛑 خسارة «الدفتر»',fmtNum(m.losses)],
+    ['📈 نسبة النجاح',fmtRate(m.rate)],
+    ['💰 صافي P/L',fmtPct(m.total)],
+    ['🔄 عدد الدورات',fmtNum(m.cycles)]
+  ];
+  let html='';
+  if(f.silent)html+='<div class="disc">فريم 15M <b>مُسكت بإرادتك</b>: لا فحص إشارات، لا رسائل، لا دورات جديدة، ولا كتابة في الحالة أو الدفتر. الأرقام أدناه <b>أرشيف محفوظ قبل الإسكات فقط</b> ولا تُحدَّث.</div>';
+  html+='<div class="grid metrics">'+items.map(x=>'<div class="metric"><span>'+esc(x[0])+'</span><b>'+esc(x[1])+'</b></div>').join('')+'</div>';
+  html+='<div class="frame-note">📅 آخر تقرير: <b>'+fmtDay(m.lastReportDay)+'</b> '+tag(m.reportStatus.cls,m.reportStatus.txt)+
+    ' · 🔒 مغلقة اليوم: <b>'+fmtNum(m.closedToday)+'</b> · ✉️ عدّاد الرسائل التراكمي: <b>'+fmtNum(m.msgs)+'</b> «داخلي فقط»<br>'+
+    '⚙️ النظام: <span class="mono">'+esc(m.system)+'</span> · الحالة: <span class="mono">'+esc(m.statePath)+'</span> · الدفتر: <span class="mono">'+esc(m.logPath)+'</span> · طول الشمعة: <span class="mono">'+fmtNum(m.interval)+' ms</span></div>';
+  $('frameMetrics').innerHTML=html;
+  renderDonut(f,m);
+}
+function setActiveFrame(id){
+  currentFrame=id;
+  document.querySelectorAll('.tab').forEach(b=>{const on=b.dataset.t===id;b.classList.toggle('on',on);b.setAttribute('aria-selected',String(on));});
+  renderFrame(id);
+}
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',function(){setActiveFrame(b.dataset.t);}));
+
+/* ── خريطة النشاط ── */
+function renderHeat(m){
+  $('heatRows').innerHTML=m.heat.rows.map(r=>
+    '<div class="heat-row"><div class="name">'+esc(r.name)+'</div><div class="cells">'+
+    r.vals.map((v,i)=>'<i class="'+(v>=4?'lv3':v>=2?'lv2':v>=1?'lv1':'lv0')+'" title="'+fmtHour(m.heat.start+i*3600000)+' — '+v+'"></i>').join('')+
+    '</div></div>').join('');
+  $('heatAxis').innerHTML=m.heat.labels;
+  $('heatNote').textContent=m.heat.note;
+}
+
+/* ── سلامة النظام ── */
+function renderChecks(m,delta){
+  const f1=m.frames['1h'],f4=m.frames['4h'],f15=m.frames['15m'];
+  const dup=f1.dup+f4.dup+f15.dup;
+  const systems=[f1.system,f4.system,f15.system].filter(x=>x&&x!=='—');
+  const deltaCls=delta.status==='bad'?'t-bad':delta.status==='ok'?'t-ok':'t-off';
+  const deltaTag=delta.status==='ok'||delta.status==='bad'?'مباشر':'إعداد';
+  const list=[
+    {ic:dup?'!':'✓',title:'لا تكرار رسائل',sub:'مفاتيح مكرّرة = '+fmtNum(dup)+' · العدّادات التراكمية داخلية فقط',cls:dup?'t-bad':'t-ok',tag:'مباشر'},
+    {ic:'✓',title:'عزل الفريمات',sub:'أنظمة مستقلة: '+systems.join(' · ')+' — ثلاث حالات وثلاثة دفاتر',cls:'t-ok',tag:'مباشر'},
+    {ic:delta.status==='bad'?'!':'✓',title:'تطابق Δ الرسائل',sub:delta.text,cls:deltaCls,tag:deltaTag},
+    {ic:'✓',title:'حالة طازجة قبل القراءة',sub:'fetch + reset إلى origin/main، وrebase بلا -X theirs — مُثبّت في nw-bot.yml / nw-bot-4h.yml',cls:'t-off',tag:'إعداد'},
+    {ic:'✓',title:'ثوابت الإشارة مقفلة',sub:'envelope · h=8 · mult=3 · window=500 · limit=560 · bars_ago=1',cls:'t-off',tag:'إعداد'},
+    {ic:'✓',title:'التقرير مرة واحدة/يوم',sub:'1H: '+fmtDay(f1.lastReportDay)+' ('+f1.reportStatus.txt+') · 4H: '+fmtDay(f4.lastReportDay)+' ('+f4.reportStatus.txt+')',cls:(f1.reportStatus.key==='late'||f4.reportStatus.key==='late')?'t-warn':'t-ok',tag:'مباشر'},
+    {ic:'✓',title:'لا أسرار في الصفحة',sub:'لا توكنات · لا معرّفات تلقرام · لا PAT · قراءة عامة فقط',cls:'t-off',tag:'إعداد'}
+  ];
+  $('checks').innerHTML=list.map(c=>
+    '<div class="check"><span class="ic">'+c.ic+'</span><div><b>'+esc(c.title)+'</b><small>'+esc(c.sub)+'</small></div>'+tag(c.cls,c.tag)+'</div>').join('');
+}
+
+/* ── الشريط العلوي ── */
+function renderOverall(m){
+  const el=$('overall'),title=$('overallTitle'),sub=$('overallSub');
+  const missingAll=m.meta.parsed===0&&!m.meta.hasWf&&!m.meta.hasRuns;
+  if(missingAll){el.className='overall bad';title.textContent='تعذّر جلب البيانات الحية';sub.textContent='تحقق من الاتصال أو حد GitHub API العام، ثم اضغط «تحديث الآن».';}
+  else if(m.issues.length){el.className='overall warn';title.textContent='يوجد ما يستحق الانتباه';sub.textContent=m.issues.join(' · ');}
+  else{el.className='overall ok';title.textContent='جميع الأنظمة تعمل ضمن الإيقاع المتوقع';
+    sub.textContent='آخر فحص آلي: '+fmtTime(m.meta.ts)+' · لا دورات متأخرة · لا رسائل مكرّرة · فريم 15M صامت كما طُلب';}
+  $('offlineNote').hidden=!missingAll;
+  $('offlineLink').href=CFG.site;
+  $('footerLink').href=CFG.site;
+  const miss=m.meta.missing||[];
+  if(miss.length&&!missingAll){$('partialNote').hidden=false;$('partialNote').textContent='⚠️ تعذّر جلب '+miss.length+' مصدر: '+miss.join(' · ')+' — بقية المؤشرات معروضة من المصادر المتاحة.';}
+  else $('partialNote').hidden=true;
+}
+
+function render(model,fromCache,delta){
+  currentModel=model;
+  $('cacheBadge').textContent=fromCache?'مخزّن مؤقتًا':'بيانات حية';
+  $('lastUpdate').textContent=fmtTime(model.meta.ts);
+  renderOverall(model);renderKpis(model);renderHealth(model);renderWeek(model);renderHeat(model);
+  renderChecks(model,delta||{status:'wait',text:'بانتظار تحديث قادم'});
+  setActiveFrame(currentFrame);
+}
+
+/* ── الجلب ── */
+const LABEL={workflows:'حالة الوركفلوات',runs:'سجل التشغيلات',commits1h:'سجل دورات 1H',commits4h:'سجل دورات 4H',
+  'state:1h':'حالة 1H','log:1h':'دفتر 1H','state:4h':'حالة 4H','log:4h':'دفتر 4H','state:15m':'حالة 15M','log:15m':'دفتر 15M'};
+async function loadData(force){
+  const cached=readCache();
+  if(cached&&!force){render(cached.model,true,cached.delta);return;}
+  if(force&&Date.now()-lastFetch<60000){flash('انتظر دقيقة');return;}
+  lastFetch=Date.now();setLoading(true);
+  const jobs=[
+    ['workflows',()=>getJson(CFG.api+'/actions/workflows?per_page=100')],
+    ['runs',()=>getJson(CFG.api+'/actions/runs?per_page=100')],
+    ['commits1h',()=>getJson(CFG.api+'/commits?path=data/state_nw.json&per_page=100')],
+    ['commits4h',()=>getJson(CFG.api+'/commits?path=data/state_nw4h.json&per_page=100')]
+  ];
+  FRAMES.forEach(f=>{
+    jobs.push(['state:'+f.id,()=>getText(CFG.raw+f.state+'?cb='+Date.now())]);
+    jobs.push(['log:'+f.id,()=>getText(CFG.raw+f.log+'?cb='+Date.now())]);
+  });
+  const res=await Promise.allSettled(jobs.map(j=>j[1]()));
+  const got={},missing=[];
+  jobs.forEach((j,i)=>{if(res[i].status==='fulfilled')got[j[0]]=res[i].value;else missing.push(LABEL[j[0]]||j[0]);});
+  /* إن لم تغطِّ آخر 100 تشغيل وركفلوًا مطلوبًا، نقرأ آخر تشغيلاته فقط */
+  if(got.runs&&got.runs.workflow_runs){
+    const seen=new Set(got.runs.workflow_runs.map(r=>r.workflow_id));
+    for(const id of [WF.bot1h,WF.guard1h,WF.bot4h,WF.guard4h,WF.report4h,WF.heartbeat]){
+      if(seen.has(id))continue;
+      try{const j=await getJson(CFG.api+'/actions/workflows/'+id+'/runs?per_page=3');
+        const r=j.workflow_runs&&j.workflow_runs[0];
+        if(r){got.runs.workflow_runs.push(r);seen.add(id);}
+      }catch(e){}
+    }
+  }
+  const model=E.computeAll(got);
+  model.meta.missing=missing;
+  const delta=computeDelta(model);
+  writeCache({ts:Date.now(),model:model,delta:delta});
+  render(model,false,delta);
+  setLoading(false);
+}
+$('refreshBtn').addEventListener('click',function(){loadData(true);});
+setInterval(function(){if(document.visibilityState==='visible'&&!readCache())loadData(false);},60000);
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible'&&!readCache())loadData(false);});
+const c=readCache();
+if(c)render(c.model,true,c.delta);else loadData(false);
+})();
+</script>
+</body>
+</html>
