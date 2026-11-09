@@ -1995,14 +1995,8 @@
       "last_entry_price": 104.91
     },
     "GNSUSDT": {
-      "position": {
-        "entry_price": 0.502,
-        "entry_time": 1794175200000,
-        "signal_bar_time": 1794174300000,
-        "signal_price": 0.488,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794181500000,
       "last_entry_price": 0.497
     },
@@ -5339,9 +5333,7 @@
     "KSTRBUSDT": [],
     "LAUSDT": [],
     "LAYERUSDT": [],
-    "LAZIOUSDT": [
-      1794200400000
-    ],
+    "LAZIOUSDT": [],
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
@@ -5441,9 +5433,7 @@
     "PYPLBUSDT": [],
     "PYTHUSDT": [],
     "QCOMBUSDT": [],
-    "QIUSDT": [
-      1794200400000
-    ],
+    "QIUSDT": [],
     "QKCUSDT": [],
     "QNTBUSDT": [],
     "QNTUSDT": [],
@@ -5523,9 +5513,7 @@
     "SYNUSDT": [],
     "SYRUPUSDT": [],
     "TAOUSDT": [],
-    "TFUELUSDT": [
-      1794200400000
-    ],
+    "TFUELUSDT": [],
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
@@ -5792,7 +5780,9 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
-    "GNSUSDT": [],
+    "GNSUSDT": [
+      1794201300000
+    ],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
@@ -5912,9 +5902,7 @@
     "NOMUSDT": [],
     "NOTUSDT": [],
     "NVDABUSDT": [],
-    "NXPCUSDT": [
-      1794200400000
-    ],
+    "NXPCUSDT": [],
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
@@ -8236,7 +8224,6 @@
     "牛来USDT": []
   },
   "sent": [
-    "buy:GIGGLEUSDT:1794174300000:1",
     "buy:GLMUSDT:1794174300000:1",
     "buy:GMTUSDT:1794174300000:1",
     "buy:GMXUSDT:1794174300000:1",
@@ -8635,11 +8622,12 @@
     "exit:USUALUSDT:1794196800000",
     "buy:LAZIOUSDT:1794198600000:2",
     "buy:LAZIOUSDT:1794200400000:3",
-    "buy:TFUELUSDT:1794200400000:1"
+    "buy:TFUELUSDT:1794200400000:1",
+    "exit:GNSUSDT:1794201300000"
   ],
-  "cycles": 126,
-  "messages_sent": 603,
-  "last_cycle_ms": 1794202411861,
+  "cycles": 127,
+  "messages_sent": 604,
+  "last_cycle_ms": 1794203302590,
   "daily_report_nw15": {
     "last_report_day": "2026-11-08",
     "reported_trade_keys": [
