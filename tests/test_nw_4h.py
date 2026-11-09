@@ -200,13 +200,26 @@ def test_4h_workflow_matches_1h_conditions_except_paths_and_frame():
     assert w4["concurrency"]["group"] != w1["concurrency"]["group"]
 
     steps = "\n".join(s.get("run", "") for s in w4["jobs"]["run-once"]["steps"])
-    assert "python run_nw4h_once.py" in steps
+    assert "python run_nw4h_once_safe.py" in steps
+    assert "run_nw4h_once.py" not in steps      # الغلاف الآمن فقط
     assert "data/state_nw4h.json data/trades_log_nw4h.csv" in steps
     assert "data/state_nw.json" not in steps.replace("data/state_nw4h.json", "")
     assert "data/state_nw15.json" not in steps
     assert "git fetch origin main" in steps and "git rebase" in steps
+    assert "rebase -X theirs" not in steps       # لا إخفاء لتعارض الحالة
     assert "[skip ci]" in steps
-    assert steps.count("exit 0") == 2          # داخل خطوة الحفظ فقط، لا كبوابة
+    # 3: نجاح الدورة / لا تغييرات / نجاح الدفع — ولا يُستخدم أي exit 0 كبوابة.
+    assert steps.count("exit 0") == 3
+    assert w4["permissions"]["actions"] == "read"   # حاجز التشغيل الفردي
+    names = [str(s.get("name", "")) for s in w4["jobs"]["run-once"]["steps"]]
+    assert any("Guard against concurrent 4H" in n for n in names)
+    assert any("Refresh checkout to latest main" in n for n in names)
+    for s in w4["jobs"]["run-once"]["steps"]:
+        if s.get("name") == "Run NW 4H bot once":
+            assert s.get("if") == "steps.guard.outputs.proceed == 'true'"
+        if s.get("name") == "Commit NW 4H state updates":
+            assert "always()" in str(s.get("if"))
+    assert "for attempt in 1 2 3" in steps          # إعادة محاولة شبكية آمنة
 
     on = w4.get("on", w4.get(True))
     assert on["schedule"][0]["cron"] == "3 0,4,8,12,16,20 * * *"
@@ -239,12 +252,25 @@ def test_4h_report_workflow_is_report_only_and_midnight_riyadh():
     assert steps.count("exit 0") == 2
 
 
-def test_no_4h_trigger_workflow_exists_and_nothing_dispatches_it():
-    """مثل نظام 1H الحالي: لا محفّز موازٍ ⇒ لا تكرار 07:02/07:03."""
+def test_no_unguarded_4h_trigger_and_only_guarded_dispatch():
+    """تأمين الجدولة (2026-11-09): لا تريغر قديم بلا حاجز.
+
+    جدولة GitHub native فاتت دورات 4H، فأُضيف مُشغّل **محمي** واحد فقط
+    (nw-bot-4h-guard.yml) يطلق البوت/Tقرير عبر ``{"ref":"main"}`` بعد فحص
+    النافذة + التشغيلات النشطة + عُمر آخر تشغيل + ``last_report_day``.
+    وركفلوا البوت والتقرير نفسيهما يظلان بلا ``workflow_run`` وبلا dispatch،
+    ومع حاجز تشغيل فردي داخلي ⇒ لا تكرار رسائل.
+    """
     wf_dir = ROOT / ".github/workflows"
     assert not (wf_dir / "nw-bot-4h-trigger.yml").exists()
-    all_workflows = "\n".join(p.read_text(encoding="utf-8") for p in wf_dir.glob("*.yml"))
-    assert "nw-bot-4h.yml/dispatches" not in all_workflows
+    guard = wf_dir / "nw-bot-4h-guard.yml"
+    assert guard.exists()
+    for p in wf_dir.glob("*.yml"):
+        if p.name == "nw-bot-4h-guard.yml":
+            continue
+        text = p.read_text(encoding="utf-8")
+        assert "nw-bot-4h.yml/dispatches" not in text, p.name
+        assert "nw-bot-4h-report.yml/dispatches" not in text, p.name
     for name in ("nw-bot-4h.yml", "nw-bot-4h-report.yml"):
         text = (wf_dir / name).read_text(encoding="utf-8")
         doc = _workflow(name)
@@ -254,6 +280,13 @@ def test_no_4h_trigger_workflow_exists_and_nothing_dispatches_it():
         assert "PAT" not in text and "ghp_" not in text
         assert "Signal Bot Cron" not in text
         assert "فحص مفتاح التشغيل" not in text
+    g = guard.read_text(encoding="utf-8")
+    assert "nw-bot-4h.yml/dispatches" in g
+    assert "nw-bot-4h-report.yml/dispatches" in g
+    assert '{"ref":"main"}' in g
+    assert "PAT" not in g and "ghp_" not in g
+    assert "nw-bot.yml/dispatches" not in g and "nw-bot-15m" not in g
+    assert "data/state_nw.json" not in g and "data/state_nw15.json" not in g
 
 
 def test_4h_state_and_log_are_isolated():
