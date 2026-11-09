@@ -3873,14 +3873,8 @@
       "last_entry_price": 0.0
     },
     "RLCUSDT": {
-      "position": {
-        "entry_price": 0.4076,
-        "entry_time": 1794175200000,
-        "signal_bar_time": 1794174300000,
-        "signal_price": 0.4014,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794176100000,
       "last_entry_price": 0.4048
     },
@@ -5561,9 +5555,7 @@
     "MSTRBUSDT": [],
     "MTLUSDT": [],
     "MUBARAKUSDT": [],
-    "MUBUSDT": [
-      1794182400000
-    ],
+    "MUBUSDT": [],
     "MUUBUSDT": [],
     "MVLLBUSDT": [],
     "NBISBUSDT": [],
@@ -5707,7 +5699,9 @@
     "TIAUSDT": [],
     "TKOUSDT": [],
     "TLMUSDT": [],
-    "TMFBUSDT": [],
+    "TMFBUSDT": [
+      1794183300000
+    ],
     "TNSRUSDT": [],
     "TOWNSUSDT": [],
     "TQQQBUSDT": [],
@@ -5817,9 +5811,7 @@
     "API3USDT": [],
     "APPBUSDT": [],
     "APTUSDT": [],
-    "ARBUSDT": [
-      1794182400000
-    ],
+    "ARBUSDT": [],
     "ARKMUSDT": [],
     "ARKUSDT": [],
     "ARMBUSDT": [],
@@ -6125,9 +6117,7 @@
     "POWRUSDT": [],
     "PROMUSDT": [],
     "PROVEUSDT": [],
-    "PSGUSDT": [
-      1794182400000
-    ],
+    "PSGUSDT": [],
     "PUMPUSDT": [],
     "PUNDIXUSDT": [],
     "PYPLBUSDT": [],
@@ -6143,9 +6133,7 @@
     "RAREUSDT": [],
     "RAYUSDT": [],
     "RDDTBUSDT": [],
-    "REDUSDT": [
-      1794182400000
-    ],
+    "REDUSDT": [],
     "RENDERUSDT": [],
     "REQUSDT": [],
     "RESOLVUSDT": [],
@@ -6153,7 +6141,9 @@
     "REZUSDT": [],
     "RIFUSDT": [],
     "RKLBBUSDT": [],
-    "RLCUSDT": [],
+    "RLCUSDT": [
+      1794183300000
+    ],
     "ROBOUSDT": [],
     "RONINUSDT": [],
     "ROSEUSDT": [],
@@ -6165,9 +6155,7 @@
     "SAGAUSDT": [],
     "SAHARAUSDT": [],
     "SANDUSDT": [],
-    "SANTOSUSDT": [
-      1794182400000
-    ],
+    "SANTOSUSDT": [],
     "SAPIENUSDT": [],
     "SCRUSDT": [],
     "SCUSDT": [],
@@ -8298,7 +8286,9 @@
       1794175200000
     ],
     "TLMUSDT": [],
-    "TMFBUSDT": [],
+    "TMFBUSDT": [
+      1794183300000
+    ],
     "TNSRUSDT": [],
     "TOWNSUSDT": [],
     "TQQQBUSDT": [],
@@ -8380,7 +8370,6 @@
     "牛来USDT": []
   },
   "sent": [
-    "buy:CITYUSDT:1794174300000:1",
     "buy:CKBUSDT:1794174300000:2",
     "buy:COINBUSDT:1794174300000:1",
     "buy:COMPUSDT:1794174300000:1",
@@ -8779,11 +8768,12 @@
     "buy:MUBUSDT:1794182400000:1",
     "exit:PSGUSDT:1794182400000",
     "exit:REDUSDT:1794182400000",
-    "exit:SANTOSUSDT:1794182400000"
+    "exit:SANTOSUSDT:1794182400000",
+    "exit:RLCUSDT:1794183300000"
   ],
-  "cycles": 106,
-  "messages_sent": 552,
-  "last_cycle_ms": 1794184408010,
+  "cycles": 107,
+  "messages_sent": 553,
+  "last_cycle_ms": 1794185304432,
   "daily_report_nw15": {
     "last_report_day": "2026-11-08",
     "reported_trade_keys": [
