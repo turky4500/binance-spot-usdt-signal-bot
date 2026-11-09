@@ -2024,11 +2024,11 @@
         "entry_time": 1794175200000,
         "signal_bar_time": 1794174300000,
         "signal_price": 0.488,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794174300000,
-      "last_entry_price": 0.502
+      "entry_count": 2,
+      "last_buy_bar": 1794181500000,
+      "last_entry_price": 0.497
     },
     "GOOGLBUSDT": {
       "position": {
@@ -3272,11 +3272,11 @@
         "entry_time": 1794170700000,
         "signal_bar_time": 1794169800000,
         "signal_price": 182.9,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794169800000,
-      "last_entry_price": 183.44
+      "entry_count": 2,
+      "last_buy_bar": 1794181500000,
+      "last_entry_price": 180.62
     },
     "NXPCUSDT": {
       "position": {
@@ -5447,9 +5447,7 @@
     "ESPUSDT": [],
     "ETCUSDT": [],
     "ETHFIUSDT": [],
-    "ETHUSDT": [
-      1794180600000
-    ],
+    "ETHUSDT": [],
     "EULUSDT": [],
     "EWYBUSDT": [],
     "FETUSDT": [],
@@ -5477,10 +5475,10 @@
     "GMEBUSDT": [],
     "GMTUSDT": [],
     "GMXUSDT": [],
-    "GNOUSDT": [
-      1794180600000
+    "GNOUSDT": [],
+    "GNSUSDT": [
+      1794181500000
     ],
-    "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
@@ -5588,9 +5586,7 @@
     "MVLLBUSDT": [],
     "NBISBUSDT": [],
     "NEARUSDT": [],
-    "NEIROUSDT": [
-      1794180600000
-    ],
+    "NEIROUSDT": [],
     "NEOUSDT": [],
     "NEWTUSDT": [],
     "NEXOUSDT": [],
@@ -5601,7 +5597,9 @@
     "NOKBUSDT": [],
     "NOMUSDT": [],
     "NOTUSDT": [],
-    "NVDABUSDT": [],
+    "NVDABUSDT": [
+      1794181500000
+    ],
     "NXPCUSDT": [],
     "OGNUSDT": [],
     "OGUSDT": [],
@@ -5710,7 +5708,9 @@
     "SSVUSDT": [],
     "STEEMUSDT": [],
     "STOUSDT": [],
-    "STRAXUSDT": [],
+    "STRAXUSDT": [
+      1794181500000
+    ],
     "STRKUSDT": [],
     "STXBUSDT": [],
     "STXUSDT": [],
@@ -5759,9 +5759,7 @@
     "VTHOUSDT": [],
     "WALUSDT": [],
     "WAXPUSDT": [],
-    "WBETHUSDT": [
-      1794180600000
-    ],
+    "WBETHUSDT": [],
     "WBTCUSDT": [],
     "WCTUSDT": [],
     "WDCBUSDT": [],
@@ -5942,9 +5940,7 @@
     "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
-    "DODOUSDT": [
-      1794180600000
-    ],
+    "DODOUSDT": [],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -6861,7 +6857,8 @@
     "GNSUSDT": [
       1794129300000,
       1794132900000,
-      1794174300000
+      1794174300000,
+      1794181500000
     ],
     "GOOGLBUSDT": [
       1794174300000
@@ -7193,7 +7190,8 @@
       1794174300000
     ],
     "NVDABUSDT": [
-      1794169800000
+      1794169800000,
+      1794181500000
     ],
     "NXPCUSDT": [
       1794174300000,
@@ -8289,7 +8287,9 @@
     "SSVUSDT": [],
     "STEEMUSDT": [],
     "STOUSDT": [],
-    "STRAXUSDT": [],
+    "STRAXUSDT": [
+      1794181500000
+    ],
     "STRKUSDT": [],
     "STXBUSDT": [],
     "STXUSDT": [],
@@ -8392,8 +8392,6 @@
     "牛来USDT": []
   },
   "sent": [
-    "buy:CETUSUSDT:1794174300000:1",
-    "buy:CFGUSDT:1794174300000:1",
     "buy:CFXUSDT:1794174300000:1",
     "buy:CGPTUSDT:1794174300000:1",
     "buy:CHIPUSDT:1794174300000:1",
@@ -8791,11 +8789,13 @@
     "buy:YFIUSDT:1794177900000:2",
     "exit:DODOUSDT:1794179700000",
     "exit:PROMUSDT:1794179700000",
-    "buy:GNOUSDT:1794180600000:8"
+    "buy:GNOUSDT:1794180600000:8",
+    "buy:GNSUSDT:1794181500000:2",
+    "buy:NVDABUSDT:1794181500000:2"
   ],
-  "cycles": 104,
-  "messages_sent": 545,
-  "last_cycle_ms": 1794182926206,
+  "cycles": 105,
+  "messages_sent": 547,
+  "last_cycle_ms": 1794183503048,
   "daily_report_nw15": {
     "last_report_day": "2026-11-08",
     "reported_trade_keys": [
