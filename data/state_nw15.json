@@ -3453,14 +3453,8 @@
       "last_entry_price": 0.00567
     },
     "PEPEUSDT": {
-      "position": {
-        "entry_price": 4.93e-06,
-        "entry_time": 1794175200000,
-        "signal_bar_time": 1794174300000,
-        "signal_price": 4.87e-06,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794174300000,
       "last_entry_price": 4.93e-06
     },
@@ -5583,7 +5577,9 @@
     "SHELLUSDT": [],
     "SHIBUSDT": [],
     "SIGNUSDT": [],
-    "SKDDBUSDT": [],
+    "SKDDBUSDT": [
+      1794188700000
+    ],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
     "SKUUBUSDT": [],
@@ -5649,9 +5645,7 @@
     "USDEBUSDT": [],
     "USTCUSDT": [],
     "USUALUSDT": [],
-    "UVXYBUSDT": [
-      1794187800000
-    ],
+    "UVXYBUSDT": [],
     "VANAUSDT": [],
     "VETUSDT": [],
     "VIRTUALUSDT": [],
@@ -5700,9 +5694,7 @@
   "prev_sell_bars": {
     "0GUSDT": [],
     "1000CATUSDT": [],
-    "1000CHEEMSUSDT": [
-      1794187800000
-    ],
+    "1000CHEEMSUSDT": [],
     "1000SATSUSDT": [],
     "1INCHUSDT": [],
     "1MBABYDOGEUSDT": [],
@@ -5739,13 +5731,9 @@
     "ANKRUSDT": [],
     "APEUSDT": [],
     "API3USDT": [],
-    "APPBUSDT": [
-      1794187800000
-    ],
+    "APPBUSDT": [],
     "APTUSDT": [],
-    "ARBUSDT": [
-      1794187800000
-    ],
+    "ARBUSDT": [],
     "ARKMUSDT": [],
     "ARKUSDT": [],
     "ARMBUSDT": [],
@@ -5903,13 +5891,9 @@
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
-    "GTCUSDT": [
-      1794187800000
-    ],
+    "GTCUSDT": [],
     "GUNUSDT": [],
-    "GUSDT": [
-      1794187800000
-    ],
+    "GUSDT": [],
     "HAEDALUSDT": [],
     "HBARUSDT": [],
     "HEIUSDT": [],
@@ -5929,9 +5913,7 @@
     "ICPUSDT": [],
     "IDUSDT": [],
     "ILVUSDT": [],
-    "IMXUSDT": [
-      1794187800000
-    ],
+    "IMXUSDT": [],
     "INITUSDT": [],
     "INJUSDT": [],
     "INTCBUSDT": [],
@@ -5944,9 +5926,7 @@
     "IRENBUSDT": [],
     "JASMYUSDT": [],
     "JOEUSDT": [],
-    "JPMBUSDT": [
-      1794187800000
-    ],
+    "JPMBUSDT": [],
     "JSTUSDT": [],
     "JTOUSDT": [],
     "JUPUSDT": [],
@@ -5980,12 +5960,12 @@
     "LUNAUSDT": [],
     "LUNCUSDT": [],
     "MAGICUSDT": [],
-    "MANAUSDT": [
-      1794187800000
-    ],
+    "MANAUSDT": [],
     "MANTAUSDT": [],
     "MANTRAUSDT": [],
-    "MARSCOINUSDT": [],
+    "MARSCOINUSDT": [
+      1794188700000
+    ],
     "MASKUSDT": [],
     "MAVUSDT": [],
     "MBLUSDT": [],
@@ -6005,9 +5985,7 @@
     "MOVRUSDT": [],
     "MRNABUSDT": [],
     "MRVLBUSDT": [],
-    "MSFTBUSDT": [
-      1794187800000
-    ],
+    "MSFTBUSDT": [],
     "MSTRBUSDT": [],
     "MTLUSDT": [],
     "MUBARAKUSDT": [],
@@ -6050,7 +6028,9 @@
     "PENGBUSDT": [],
     "PENGUUSDT": [],
     "PEOPLEUSDT": [],
-    "PEPEUSDT": [],
+    "PEPEUSDT": [
+      1794188700000
+    ],
     "PHAUSDT": [],
     "PIXELUSDT": [],
     "PLTRBUSDT": [],
@@ -6059,9 +6039,7 @@
     "POLUSDT": [],
     "POLYXUSDT": [],
     "PORTALUSDT": [],
-    "PORTOUSDT": [
-      1794187800000
-    ],
+    "PORTOUSDT": [],
     "POWRUSDT": [],
     "PROMUSDT": [],
     "PROVEUSDT": [],
@@ -6071,9 +6049,7 @@
     "PYPLBUSDT": [],
     "PYTHUSDT": [],
     "QCOMBUSDT": [],
-    "QIUSDT": [
-      1794187800000
-    ],
+    "QIUSDT": [],
     "QKCUSDT": [],
     "QNTBUSDT": [],
     "QNTUSDT": [],
@@ -6085,7 +6061,9 @@
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [],
+    "REQUSDT": [
+      1794188700000
+    ],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -6168,7 +6146,9 @@
     "TRUMPUSDT": [],
     "TRXUSDT": [],
     "TSLABUSDT": [],
-    "TSMBUSDT": [],
+    "TSMBUSDT": [
+      1794188700000
+    ],
     "TSTUSDT": [],
     "TURBOUSDT": [],
     "TURTLEUSDT": [],
@@ -8193,7 +8173,9 @@
       1794091500000,
       1794111300000
     ],
-    "SKDDBUSDT": [],
+    "SKDDBUSDT": [
+      1794188700000
+    ],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
     "SKUUBUSDT": [],
@@ -8330,7 +8312,6 @@
     "牛来USDT": []
   },
   "sent": [
-    "buy:DUSKUSDT:1794174300000:1",
     "buy:DYDXUSDT:1794174300000:1",
     "buy:DYMUSDT:1794174300000:1",
     "buy:EDENUSDT:1794174300000:1",
@@ -8729,11 +8710,12 @@
     "exit:1000CHEEMSUSDT:1794187800000",
     "exit:IMXUSDT:1794187800000",
     "exit:MANAUSDT:1794187800000",
-    "exit:PORTOUSDT:1794187800000"
+    "exit:PORTOUSDT:1794187800000",
+    "exit:PEPEUSDT:1794188700000"
   ],
-  "cycles": 112,
-  "messages_sent": 574,
-  "last_cycle_ms": 1794189811162,
+  "cycles": 113,
+  "messages_sent": 575,
+  "last_cycle_ms": 1794190708521,
   "daily_report_nw15": {
     "last_report_day": "2026-11-08",
     "reported_trade_keys": [
