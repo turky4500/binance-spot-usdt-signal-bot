@@ -45,7 +45,8 @@ def test_4h_guard_kicks_both_bot_and_report_with_barriers():
     assert "h % 4" in bot_script                 # نوافذ 00/04/08/12/16/20 UTC
     assert '"$m" -ge 3' in bot_script            # بعد إغلاق الشمعة بثلاث دقائق
     assert '"$m" -lt 20' in bot_script
-    assert "< 180" in bot_script or "180" in bot_script  # فاصل 4 ساعات
+    assert "window_start" in bot_script and "now.hour // 4" in bot_script
+    assert "ok_this_window" in bot_script                 # نجاح واحد/شمعة 4h
     assert "conclusion" in bot_script and "success" in bot_script  # فاشل لا يحجب
     assert "nw-bot-4h-report.yml/dispatches" not in bot_script
 
