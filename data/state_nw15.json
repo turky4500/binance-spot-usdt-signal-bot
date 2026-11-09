@@ -5284,7 +5284,9 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
-    "GNSUSDT": [],
+    "GNSUSDT": [
+      1794194100000
+    ],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
@@ -5421,7 +5423,9 @@
     "OSMOUSDT": [],
     "PARTIUSDT": [],
     "PAXGUSDT": [],
-    "PDDBUSDT": [],
+    "PDDBUSDT": [
+      1794194100000
+    ],
     "PENDLEUSDT": [],
     "PENGBUSDT": [],
     "PENGUUSDT": [],
@@ -5832,7 +5836,9 @@
     "IOUSDT": [],
     "IQUSDT": [],
     "IRENBUSDT": [],
-    "JASMYUSDT": [],
+    "JASMYUSDT": [
+      1794194100000
+    ],
     "JOEUSDT": [],
     "JPMBUSDT": [],
     "JSTUSDT": [],
@@ -5845,7 +5851,9 @@
     "KAVAUSDT": [],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
-    "KITEUSDT": [],
+    "KITEUSDT": [
+      1794194100000
+    ],
     "KMNOUSDT": [],
     "KNCUSDT": [],
     "KORUBUSDT": [],
@@ -5913,7 +5921,9 @@
     "NOTUSDT": [],
     "NVDABUSDT": [],
     "NXPCUSDT": [],
-    "OGNUSDT": [],
+    "OGNUSDT": [
+      1794194100000
+    ],
     "OGUSDT": [],
     "ONDOUSDT": [],
     "ONEUSDT": [],
@@ -5959,17 +5969,13 @@
     "QNTUSDT": [],
     "QQQBUSDT": [],
     "QTUMUSDT": [],
-    "RADUSDT": [
-      1794193200000
-    ],
+    "RADUSDT": [],
     "RAREUSDT": [],
     "RAYUSDT": [],
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [
-      1794193200000
-    ],
+    "REQUSDT": [],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -7813,7 +7819,8 @@
     "GNSUSDT": [
       1794124800000,
       1794186000000,
-      1794189600000
+      1794189600000,
+      1794194100000
     ],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -8000,7 +8007,9 @@
     "OSMOUSDT": [],
     "PARTIUSDT": [],
     "PAXGUSDT": [],
-    "PDDBUSDT": [],
+    "PDDBUSDT": [
+      1794194100000
+    ],
     "PENDLEUSDT": [],
     "PENGBUSDT": [],
     "PENGUUSDT": [],
@@ -8628,9 +8637,9 @@
     "exit:GPSUSDT:1794192300000",
     "exit:RADUSDT:1794193200000"
   ],
-  "cycles": 118,
+  "cycles": 119,
   "messages_sent": 596,
-  "last_cycle_ms": 1794195197636,
+  "last_cycle_ms": 1794196102500,
   "daily_report_nw15": {
     "last_report_day": "2026-11-08",
     "reported_trade_keys": [
