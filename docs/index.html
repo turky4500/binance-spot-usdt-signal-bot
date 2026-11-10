@@ -393,7 +393,7 @@
         <div class="p2"><b>📜 سجل الأحداث</b><small>سرد عمليات الإصلاح والتشغيلات الفاشلة من سجلات Actions؛ يحتاج صلاحية قراءة Logs.</small></div>
         <div class="p2"><b>⏱️ زمن الاستجابة</b><small>زمن كل دورة وزمن وصول الحالة؛ يحتاج ملف قياسات خفيفًا ووركفلو كتابة دوري.</small></div>
       </div>
-      <div class="disc">لم يُضف أي وركفلو جديد، ولم تُلمس نواة البوت ولا شروط الإشارة ولا ملفات الحالة والدفاتر. الصفحة <b>تقرأ فقط</b>.</div>
+      <div class="disc">لم تُلمس نواة البوت ولا شروط الإشارة ولا ملفات الحالة والدفاتر، والصفحة <b>تقرأ فقط</b>. الاستثناء الوحيد هو <b>وركفلو لقطة الأسعار</b> «بعد اعتمادك»: يكتب <span class="mono">data/prices.json</span> فقط كل 10 دقائق ولا يُشغّل أي بوت.</div>
     </div>
   </section>
 
@@ -402,8 +402,8 @@
   </div>
 
   <footer>
-    <span>المصادر: <span class="mono">data/state_nw.json</span> · <span class="mono">data/state_nw4h.json</span> · <span class="mono">data/state_nw15.json</span> · <span class="mono">data/trades_log_nw*.csv</span> · <span class="mono">/actions/workflows</span> · <span class="mono">/actions/runs</span> · <span class="mono">/commits?path=…</span> · <span class="mono">data-api.binance.vision/api/v3/ticker/price</span> «طلب واحد، CORS عام»</span>
-    <span>النشر: <span class="mono">docs/index.html</span> + <span class="mono">docs/.nojekyll</span> على <span class="mono">main</span> عبر GitHub Pages — <b>بلا أي وركفلو جديد</b>.</span>
+    <span>المصادر: <span class="mono">data/state_nw.json</span> · <span class="mono">data/state_nw4h.json</span> · <span class="mono">data/state_nw15.json</span> · <span class="mono">data/trades_log_nw*.csv</span> · <span class="mono">/actions/workflows</span> · <span class="mono">/actions/runs</span> · <span class="mono">/commits?path=…</span> · <span class="mono">data/prices.json</span> «لقطة كل 10 د» · <span class="mono">r.jina.ai</span> · <span class="mono">data-api.binance.vision</span></span>
+    <span>النشر: <span class="mono">docs/index.html</span> + <span class="mono">docs/.nojekyll</span> على <span class="mono">main</span> عبر GitHub Pages. <b>وركفلو واحد جديد</b> للقطة الأسعار فقط «<span class="mono">nw-prices-snapshot.yml</span>»، ووركفلوات البوت كما هي بلا أي تعديل.</span>
     <span>الرابط الدائم: <a id="footerLink" href="https://turky4500.github.io/binance-spot-usdt-signal-bot/" target="_blank" rel="noopener">turky4500.github.io/binance-spot-usdt-signal-bot/</a> · المستودع: <a href="https://github.com/turky4500/binance-spot-usdt-signal-bot" target="_blank" rel="noopener">github.com/turky4500/binance-spot-usdt-signal-bot</a></span>
   </footer>
 </div>
@@ -618,8 +618,9 @@ function isTradeVisible(r,nowMs){
   if(!r.exitMs)return true;
   return r.exitMs >= (nowMs||Date.now())-TRADE_MAX_AGE_MS;
 }
-function applyPrices(tradesObj,prices){
+function applyPrices(tradesObj,prices,meta){
   const px=(prices&&typeof prices==='object')?prices:{};
+  const m=meta||{};
   const count=Object.keys(px).length;
   const rows=tradesObj.rows.map(function(r){
     if(r.kind!=='open')return r;
@@ -631,7 +632,9 @@ function applyPrices(tradesObj,prices){
   const s=Object.assign({},tradesObj.summary,{
     missingPrices:open.filter(r=>r.current===null).length,
     unrealizedSum:open.reduce((a,r)=>a+(Number.isFinite(r.pct)?r.pct:0),0),
-    pricesAvailable:count>0,priceCount:count,priceAt:count>0?Date.now():null
+    pricesAvailable:count>0,priceCount:count,
+    priceAt:m.at||(count>0?Date.now():null),
+    priceSource:m.source||(count>0?'binance':'none')
   });
   return {rows:rows,summary:s};
 }
@@ -662,9 +665,10 @@ function buildTrades(frames,got){
     realizedSum:closed.reduce((a,r)=>a+(Number.isFinite(r.pct)?r.pct:0),0),
     realizedRecentSum:recent.reduce((a,r)=>a+(Number.isFinite(r.pct)?r.pct:0),0),
     unrealizedSum:0,missingPrices:open.length,
-    pricesAvailable:false,priceCount:0,priceAt:null
+    pricesAvailable:false,priceCount:0,priceAt:null,priceSource:'none'
   };
-  return applyPrices({rows:out,summary:summary},(got&&got.prices)||{});
+  return applyPrices({rows:out,summary:summary},(got&&got.prices)||{},
+    {source:(got&&got.priceSource)||'none',at:(got&&got.priceAt)||null});
 }
 function computeAll(got){
   got=got||{};
@@ -705,8 +709,11 @@ const E=globalThis.NWEngine;
 const CFG=E.CFG,FRAMES=E.FRAMES,WF=E.WF;
 const fmtNum=E.fmtNum,fmtPct=E.fmtPct,fmtRate=E.fmtRate,fmtDay=E.fmtDay,fmtTime=E.fmtTime,
       fmtHour=E.fmtHour,fmtAge=E.fmtAge,fmtDateTime=E.fmtDateTime,fmtPrice=E.fmtPrice;
-const CACHE='nw-dash-cache-v5',SNAP='nw-dash-snapshot-v3',THEME='nw-theme',TTL=15*60*1000;
+const CACHE='nw-dash-cache-v6',SNAP='nw-dash-snapshot-v3',THEME='nw-theme',TTL=15*60*1000;
 const TRADE_PAGE=50;
+/* لقطة يكتبها وركفلو GitHub Actions داخل المستودع ⇒ تصل حتى لو حُجبت Binance */
+const PRICE_SNAPSHOT='https://raw.githubusercontent.com/'+CFG.owner+'/'+CFG.repo+'/main/data/prices.json';
+const JINA_URL='https://r.jina.ai/https://data-api.binance.vision/api/v3/ticker/price';
 const PRICE_URLS=[
   'https://data-api.binance.vision/api/v3/ticker/price',
   'https://api-gcp.binance.com/api/v3/ticker/price',
@@ -751,21 +758,58 @@ function setLoading(on){
 function flash(msg){const t=$('refreshTxt');if(!t)return;const old=t.textContent;t.textContent=msg;setTimeout(function(){t.textContent=old;},1700);}
 async function getJson(u){const r=await fetch(u,{cache:'no-store',headers:{Accept:'application/vnd.github+json'}});if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}
 async function getText(u){const r=await fetch(u,{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);return r.text();}
-/* طلب واحد لكل أسعار Binance، مع سلسلة بدائل؛ الفشل لا يكسر اللوحة */
+/* ثلاث طبقات: قارئ عام «لحظي» ← لقطة المستودع «مضمونة» ← Binance مباشر.
+   أي طبقة تفشل لا تكسر اللوحة؛ الفشل الكلي وحده يُظهر تنبيهًا واضحًا. */
+function normalizeTickers(arr){
+  if(!Array.isArray(arr)||arr.length<1000)return null;
+  const out={};
+  arr.forEach(x=>{if(x&&x.symbol){const p=Number(x.price);if(Number.isFinite(p)&&p>0)out[String(x.symbol)]=p;}});
+  return Object.keys(out).length>1000?out:null;
+}
+async function readJina(){
+  try{
+    const r=await fetch(JINA_URL,{cache:'no-store'});
+    if(!r.ok)return null;
+    const t=await r.text(),i=t.indexOf('['),k=t.lastIndexOf(']');
+    if(i<0||k<=i)return null;
+    return normalizeTickers(JSON.parse(t.slice(i,k+1)));
+  }catch(e){return null;}
+}
+async function readSnapshot(){
+  try{
+    const r=await fetch(PRICE_SNAPSHOT+'?cb='+Date.now(),{cache:'no-store'});
+    if(!r.ok)return null;
+    const j=await r.json(),px=j&&j.prices&&typeof j.prices==='object'?j.prices:null;
+    if(!px)return null;
+    const at=Date.parse(j.updated_at||''),age=Number.isFinite(at)?Date.now()-at:Infinity;
+    if(age<0||age>60*60*1000)return null;   /* لقطة أقدم من ساعة لا تُستخدم */
+    const out={};Object.keys(px).forEach(s=>{const p=Number(px[s]);if(Number.isFinite(p)&&p>0)out[s]=p;});
+    if(!Object.keys(out).length)return null;
+    return {prices:out,source:'snapshot',at:Number.isFinite(at)?at:Date.now()};
+  }catch(e){return null;}
+}
 async function getPrices(){
+  const j=await readJina();
+  if(j)return {prices:j,source:'jina',at:Date.now()};
+  const s=await readSnapshot();
+  if(s)return s;
   let lastErr=null;
   for(const u of PRICE_URLS){
     try{
       const r=await fetch(u+'?cb='+Date.now(),{cache:'no-store'});
       if(!r.ok)throw new Error('HTTP '+r.status);
-      const arr=await r.json();
-      if(!Array.isArray(arr)||!arr.length)throw new Error('empty ticker list');
-      const out={};arr.forEach(x=>{if(x&&x.symbol){const p=Number(x.price);if(Number.isFinite(p)&&p>0)out[x.symbol]=p;}});
-      if(!Object.keys(out).length)throw new Error('no valid prices');
-      return out;
+      const px=normalizeTickers(await r.json());
+      if(!px)throw new Error('no valid prices');
+      return {prices:px,source:'binance',at:Date.now()};
     }catch(e){lastErr=e;}
   }
-  throw lastErr||new Error('price sources unavailable');
+  throw lastErr||new Error('all price sources unavailable');
+}
+function sourceLabel(src){
+  if(src==='snapshot')return 'لقطة المستودع «GitHub Actions»';
+  if(src==='jina')return 'Binance عبر قارئ عام';
+  if(src==='binance')return 'Binance مباشر';
+  return 'غير متاح';
 }
 
 /* ── Δ الرسائل بين زيارتين ── */
@@ -926,7 +970,7 @@ function pctCell(r){
 function renderTradeSummary(m){
   const s=m.trades.summary;
   const ps=s.pricesAvailable
-    ? '<b style="color:var(--ok-fg);font-size:13px">🟢 '+fmtNum(s.priceCount)+' سعر صالح</b><small>آخر جلب '+fmtTime(s.priceAt)+' · '+fmtNum(s.missingPrices)+' ناقص من المفتوحة</small>'
+    ? '<b style="color:var(--ok-fg);font-size:13px">🟢 '+fmtNum(s.priceCount)+' سعر صالح</b><small>'+esc(sourceLabel(s.priceSource))+' · '+fmtTime(s.priceAt)+' · '+fmtNum(s.missingPrices)+' ناقص</small>'
     : '<b style="color:var(--bad-fg);font-size:13px">🔴 تعذّر الجلب</b><small>اضغط «⟳ إعادة جلب الأسعار»</small>';
   const cards=[
     '<div class="ts-item"><span>🟢 مصدر الأسعار الحالية</span>'+ps+'</div>',
@@ -939,8 +983,8 @@ function renderTradeSummary(m){
   ];
   $('tradeSummary').innerHTML=cards.join('');
   $('priceHint').innerHTML=s.pricesAvailable
-    ? '✅ <b>يتم جلب السعر الحالي</b>: '+fmtNum(s.priceCount)+' سعر صالح من Binance في طلب واحد · '+fmtNum(s.open)+' صفقة مفتوحة مغطاة «'+fmtNum(s.missingPrices)+' ناقص» · آخر تحديث '+fmtTime(s.priceAt)+'. الأزواج غير النشطة بسعر صفر مستثناة تلقائيًا. السعر الحالي يظهر <b>للمفتوحة فقط</b>؛ للمغلقة <span class="mono">—</span> في هذا العمود.'
-    : '⚠️ <b>تعذّر الوصول إلى Binance من هذا المتصفح/الشبكة</b> — الأعمدة «السعر الحالي» و«غير المحققة» تظهر <span class="mono">—</span> مؤقتًا. اضغط «⟳ إعادة جلب الأسعار» للمحاولة من مصادر بديلة؛ بقية اللوحة والصفقات المغلقة تعمل بشكل كامل.';
+    ? '✅ <b>السعر الحالي مُحمَّل</b>: '+fmtNum(s.priceCount)+' سعر صالح عبر <b>'+esc(sourceLabel(s.priceSource))+'</b> · '+fmtNum(s.open)+' صفقة مفتوحة مغطاة «'+fmtNum(s.missingPrices)+' ناقص» · آخر تحديث '+fmtTime(s.priceAt)+'. الأزواج غير النشطة بسعر صفر مستثناة تلقائيًا. السعر الحالي يظهر <b>للمفتوحة فقط</b>؛ للمغلقة <span class="mono">—</span> في هذا العمود.'
+    : '⚠️ <b>تعذّرت كل مصادر الأسعار</b> «Binance مباشر، القارئ العام، ولقطة المستودع» — الأعمدة «السعر الحالي» و«غير المحققة» تظهر <span class="mono">—</span> مؤقتًا. اضغط «⟳ إعادة جلب الأسعار»؛ بقية اللوحة والصفقات المغلقة تعمل بشكل كامل.';
 }
 function tradesRowsHtml(rows,limit){
   return rows.slice(0,limit).map(function(r){
@@ -1007,7 +1051,7 @@ async function retryPrices(){
   const btn=$('tradeRetry');btn.disabled=true;btn.textContent='⏳ جارٍ الجلب…';
   try{
     const px=await getPrices();
-    currentModel.trades=E.applyPrices(currentModel.trades,px);
+    currentModel.trades=E.applyPrices(currentModel.trades,px.prices,{source:px.source,at:px.at});
     currentModel.meta.hasPrices=true;
     const cc=readCache();
     writeCache({ts:Date.now(),model:currentModel,delta:cc?cc.delta:{status:'wait',text:'بانتظار تحديث قادم للمقارنة بين زيارتين'}});
@@ -1079,7 +1123,7 @@ function render(model,fromCache,delta){
 
 /* ── الجلب ── */
 const LABEL={workflows:'حالة الوركفلوات',runs:'سجل التشغيلات',commits1h:'سجل دورات 1H',commits4h:'سجل دورات 4H',
-  prices:'أسعار Binance الحالية','state:1h':'حالة 1H','log:1h':'دفتر 1H','state:4h':'حالة 4H',
+  prices:'مصادر الأسعار','state:1h':'حالة 1H','log:1h':'دفتر 1H','state:4h':'حالة 4H',
   'log:4h':'دفتر 4H','state:15m':'حالة 15M','log:15m':'دفتر 15M'};
 async function loadData(force){
   const cached=readCache();
@@ -1100,6 +1144,10 @@ async function loadData(force){
   const res=await Promise.allSettled(jobs.map(j=>j[1]()));
   const got={},missing=[];
   jobs.forEach((j,i)=>{if(res[i].status==='fulfilled')got[j[0]]=res[i].value;else missing.push(LABEL[j[0]]||j[0]);});
+  /* getPrices يُعيد {prices,source,at} ⇒ نفكّها قبل الحساب */
+  if(got.prices&&got.prices.prices){
+    const p=got.prices;got.priceSource=p.source;got.priceAt=p.at;got.prices=p.prices;
+  }
   /* إن لم تغطِّ آخر 100 تشغيل وركفلوًا مطلوبًا، نقرأ آخر تشغيلاته فقط */
   if(got.runs&&got.runs.workflow_runs){
     const seen=new Set(got.runs.workflow_runs.map(r=>r.workflow_id));
