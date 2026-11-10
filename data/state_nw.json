@@ -4354,9 +4354,7 @@
     "NOMUSDT": [],
     "NOTUSDT": [],
     "NVDABUSDT": [],
-    "NXPCUSDT": [
-      1794286800000
-    ],
+    "NXPCUSDT": [],
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
@@ -4847,9 +4845,7 @@
     "NEWTUSDT": [],
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [
-      1794286800000
-    ],
+    "NIGHTUSDT": [],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -4864,7 +4860,9 @@
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
-    "OPGUSDT": [],
+    "OPGUSDT": [
+      1794290400000
+    ],
     "OPNUSDT": [],
     "OPUSDT": [],
     "ORCAUSDT": [],
@@ -4897,9 +4895,7 @@
     "PYPLBUSDT": [],
     "PYTHUSDT": [],
     "QCOMBUSDT": [],
-    "QIUSDT": [
-      1794286800000
-    ],
+    "QIUSDT": [],
     "QKCUSDT": [],
     "QNTBUSDT": [],
     "QNTUSDT": [],
@@ -7184,9 +7180,9 @@
     "buy:NXPCUSDT:1794286800000:2",
     "exit:QIUSDT:1794286800000"
   ],
-  "cycles": 195,
+  "cycles": 196,
   "messages_sent": 526,
-  "last_cycle_ms": 1794296035359,
+  "last_cycle_ms": 1794297824953,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
