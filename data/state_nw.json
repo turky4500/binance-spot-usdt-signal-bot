@@ -591,14 +591,8 @@
       "last_entry_price": 0.00579
     },
     "GRAMUSDT": {
-      "position": {
-        "entry_price": 1.021,
-        "entry_time": 1794175200000,
-        "signal_bar_time": 1794171600000,
-        "signal_price": 1.006,
-        "entry_count": 3
-      },
-      "entry_count": 3,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794193200000,
       "last_entry_price": 1.008
     },
@@ -4357,7 +4351,9 @@
     "ORCLBUSDT": [],
     "ORDIUSDT": [],
     "OSMOUSDT": [],
-    "PARTIUSDT": [],
+    "PARTIUSDT": [
+      1794276000000
+    ],
     "PAXGUSDT": [],
     "PDDBUSDT": [],
     "PENDLEUSDT": [],
@@ -4630,9 +4626,7 @@
     "BREVUSDT": [],
     "BROCCOLI714USDT": [],
     "BTCUSDT": [],
-    "BTTCUSDT": [
-      1794272400000
-    ],
+    "BTTCUSDT": [],
     "C98USDT": [],
     "CAKEUSDT": [],
     "CATIUSDT": [],
@@ -4727,13 +4721,17 @@
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
-    "GRAMUSDT": [],
+    "GRAMUSDT": [
+      1794276000000
+    ],
     "GRTUSDT": [],
     "GSBUSDT": [],
     "GTCUSDT": [],
     "GUNUSDT": [],
     "GUSDT": [],
-    "HAEDALUSDT": [],
+    "HAEDALUSDT": [
+      1794276000000
+    ],
     "HBARUSDT": [],
     "HEIUSDT": [],
     "HEMIUSDT": [],
@@ -4743,9 +4741,7 @@
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
-    "HOTUSDT": [
-      1794272400000
-    ],
+    "HOTUSDT": [],
     "HPEBUSDT": [],
     "HUMAUSDT": [],
     "HYPERUSDT": [],
@@ -4919,7 +4915,9 @@
     "SAPIENUSDT": [],
     "SCRUSDT": [],
     "SCUSDT": [],
-    "SECZBUSDT": [],
+    "SECZBUSDT": [
+      1794276000000
+    ],
     "SEIUSDT": [],
     "SENTUSDT": [],
     "SFPUSDT": [],
@@ -6534,7 +6532,9 @@
     "ORCLBUSDT": [],
     "ORDIUSDT": [],
     "OSMOUSDT": [],
-    "PARTIUSDT": [],
+    "PARTIUSDT": [
+      1794276000000
+    ],
     "PAXGUSDT": [],
     "PDDBUSDT": [],
     "PENDLEUSDT": [],
@@ -6754,7 +6754,6 @@
     "牛来USDT": []
   },
   "sent": [
-    "buy:CATIUSDT:1794139200000:1",
     "buy:CYBERUSDT:1794139200000:4",
     "exit:ATMUSDT:1794142800000",
     "exit:BARUSDT:1794142800000",
@@ -7153,11 +7152,12 @@
     "buy:UVXYBUSDT:1794265200000:2",
     "buy:GNSUSDT:1794268800000:2",
     "buy:TSTUSDT:1794268800000:1",
-    "exit:BTTCUSDT:1794272400000"
+    "exit:BTTCUSDT:1794272400000",
+    "exit:GRAMUSDT:1794276000000"
   ],
-  "cycles": 187,
-  "messages_sent": 517,
-  "last_cycle_ms": 1794281614562,
+  "cycles": 188,
+  "messages_sent": 518,
+  "last_cycle_ms": 1794283417789,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
