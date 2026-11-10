@@ -4401,9 +4401,7 @@
     "CVXUSDT": [],
     "CYBERUSDT": [],
     "CYPHBUSDT": [],
-    "DASHUSDT": [
-      1794340800000
-    ],
+    "DASHUSDT": [],
     "DCRUSDT": [],
     "DELLBUSDT": [],
     "DEXEUSDT": [],
@@ -4461,7 +4459,9 @@
     "GNOUSDT": [],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
-    "GPROBUSDT": [],
+    "GPROBUSDT": [
+      1794344400000
+    ],
     "GPSUSDT": [],
     "GRAMUSDT": [],
     "GRTUSDT": [],
@@ -4961,7 +4961,9 @@
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
-    "GRAMUSDT": [],
+    "GRAMUSDT": [
+      1794344400000
+    ],
     "GRTUSDT": [],
     "GSBUSDT": [],
     "GTCUSDT": [],
@@ -5009,9 +5011,7 @@
     "KATUSDT": [],
     "KAVAUSDT": [],
     "KERNELUSDT": [],
-    "KGSTUSDT": [
-      1794340800000
-    ],
+    "KGSTUSDT": [],
     "KITEUSDT": [],
     "KMNOUSDT": [],
     "KNCUSDT": [],
@@ -5136,9 +5136,7 @@
     "REUSDT": [],
     "REZUSDT": [],
     "RIFUSDT": [],
-    "RKLBBUSDT": [
-      1794340800000
-    ],
+    "RKLBBUSDT": [],
     "RLCUSDT": [],
     "ROBOUSDT": [],
     "RONINUSDT": [],
@@ -6770,7 +6768,8 @@
     ],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [
-      1794330000000
+      1794330000000,
+      1794344400000
     ],
     "GPSUSDT": [],
     "GRAMUSDT": [],
@@ -7572,9 +7571,9 @@
     "buy:CYPHBUSDT:1794337200000:3",
     "buy:DASHUSDT:1794340800000:3"
   ],
-  "cycles": 226,
+  "cycles": 227,
   "messages_sent": 604,
-  "last_cycle_ms": 1794350005461,
+  "last_cycle_ms": 1794351803156,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
