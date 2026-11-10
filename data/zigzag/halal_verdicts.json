@@ -1,6 +1,6 @@
 {
   "vendor": "cryptohalal.cc",
-  "fetched_at_ms": 1794247049214,
+  "fetched_at_ms": 1794268656085,
   "note": "مصدر الأحكام: CryptoHalal.cc",
   "judgements": {
     "BTC": 0,
@@ -60,6 +60,7 @@
     "WIN": 1,
     "GTC": 0,
     "PROM": 0,
-    "STX": 0
+    "STX": 0,
+    "ETHFI": 1
   }
 }
