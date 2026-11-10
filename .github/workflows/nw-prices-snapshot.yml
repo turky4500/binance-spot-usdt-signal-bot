@@ -1,0 +1,145 @@
+name: NW Prices Snapshot
+
+# لقطة أسعار للوحة القياس (2026-11-10).
+# المشكلة: متصفح المستخدم في الرياض يحجب كل نطاقات Binance، فكان عمود
+# «السعر الحالي» فارغًا رغم أن api.binance.com/data-api.binance.vision تعمل
+# من سيرفرات GitHub. الحل: هذا الوركفلو يعمل على سيرفر GitHub كل 10 دقائق،
+# يجلب الأسعار، ويكتب data/prices.json عبر Contents API بـ GITHUB_TOKEN فقط؛
+# والصفحة تقرأ الملف من raw.githubusercontent.com الذي يصل إليه المتصفح أصلًا.
+#
+# • يكتب ملفًا واحدًا فقط: data/prices.json — لا يمس الحالة ولا الدفاتر ولا البوت.
+# • لا يوجد أي push trigger في هذا الريبو ⇒ لا يُشغّل أي بوت ولا يرسل رسائل.
+# • يكتب فقط الرموز المطلوبة + كل أزواج USDT ⇒ ~13 KB بدل 159 KB.
+# • يعالج تضارب sha بثلاث محاولات؛ لا rebase ولا -X theirs ولا PAT.
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nw-prices-snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+
+      - name: Build and publish price snapshot
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64, datetime, json, os, time, urllib.error, urllib.request
+
+          repo = os.environ["REPO"]
+          token = os.environ["GH_TOKEN"]
+          H = {
+              "Authorization": f"Bearer {token}",
+              "Accept": "application/vnd.github+json",
+              "X-GitHub-Api-Version": "2022-11-28",
+              "User-Agent": "nw-prices-snapshot",
+          }
+          base = f"https://api.github.com/repos/{repo}"
+
+          # 1) الرموز المطلوبة فعليًا من المراكز المفتوحة في فريمي 1H و4H.
+          needed = set()
+          for path in ("data/state_nw.json", "data/state_nw4h.json"):
+              try:
+                  with open(path, encoding="utf-8") as f:
+                      state = json.load(f)
+                  for sym, val in (state.get("symbols") or {}).items():
+                      if isinstance(val, dict) and isinstance(val.get("position"), dict):
+                          needed.add(str(sym))
+              except Exception as exc:
+                  print("::warning::تعذّر قراءة", path, exc)
+
+          # 2) الأسعار من سيرفر GitHub مع سلسلة بدائل.
+          price_map = {}
+          urls = (
+              "https://data-api.binance.vision/api/v3/ticker/price",
+              "https://api-gcp.binance.com/api/v3/ticker/price",
+              "https://api.binance.com/api/v3/ticker/price",
+          )
+          for url in urls:
+              try:
+                  req = urllib.request.Request(url, headers={"User-Agent": "nw-prices-snapshot"})
+                  with urllib.request.urlopen(req, timeout=25) as resp:
+                      arr = json.load(resp)
+                  for item in arr:
+                      sym = str((item or {}).get("symbol") or "")
+                      try:
+                          price = float((item or {}).get("price"))
+                      except (TypeError, ValueError):
+                          continue
+                      if price > 0 and (sym in needed or sym.endswith("USDT")):
+                          price_map[sym] = price
+                  if price_map:
+                      print("مصدر الأسعار:", url, "عدد:", len(price_map))
+                      break
+              except Exception as exc:
+                  print("::warning::فشل المصدر", url, exc)
+
+          if not price_map:
+              print("::error::لا توجد أسعار صالحة من أي مصدر")
+              raise SystemExit(1)
+
+          missing = sorted(s for s in needed if s not in price_map)
+          payload = {
+              "updated_at": datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+              "source": "GitHub Actions → data-api.binance.vision",
+              "count": len(price_map),
+              "needed": len(needed),
+              "missing": missing,
+              "prices": price_map,
+          }
+          content = base64.b64encode(
+              json.dumps(payload, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+          ).decode("ascii")
+          path = "data/prices.json"
+
+          for attempt in range(1, 4):
+              try:
+                  try:
+                      req = urllib.request.Request(base + "/contents/" + path + "?ref=main", headers=H)
+                      with urllib.request.urlopen(req, timeout=20) as resp:
+                          sha = json.load(resp).get("sha")
+                  except urllib.error.HTTPError as exc:
+                      if exc.code != 404:
+                          raise
+                      sha = None
+                  body = {
+                      "message": "chore(prices): لقطة أسعار للوحة القياس [skip ci]",
+                      "content": content,
+                      "branch": "main",
+                  }
+                  if sha:
+                      body["sha"] = sha
+                  req = urllib.request.Request(
+                      base + "/contents/" + path,
+                      data=json.dumps(body).encode("utf-8"),
+                      method="PUT",
+                      headers={**H, "Content-Type": "application/json"},
+                  )
+                  with urllib.request.urlopen(req, timeout=25) as resp:
+                      print("✅ كُتبت اللقطة محاولة", attempt, "HTTP", resp.status,
+                            "أسعار", len(price_map), "ناقص", len(missing))
+                  break
+              except urllib.error.HTTPError as exc:
+                  print("::warning::محاولة", attempt, "HTTP", exc.code, exc.read().decode()[:200])
+                  if attempt == 3:
+                      raise
+                  time.sleep(3)
+          PY
