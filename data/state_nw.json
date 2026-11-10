@@ -945,10 +945,16 @@
       "last_entry_price": 3.046
     },
     "PARTIUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.0442,
+        "entry_time": 1794265200000,
+        "signal_bar_time": 1794261600000,
+        "signal_price": 0.0438,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794261600000,
+      "last_entry_price": 0.0442
     },
     "PAXGUSDT": {
       "position": null,
@@ -4345,7 +4351,9 @@
     "ORCLBUSDT": [],
     "ORDIUSDT": [],
     "OSMOUSDT": [],
-    "PARTIUSDT": [],
+    "PARTIUSDT": [
+      1794261600000
+    ],
     "PAXGUSDT": [],
     "PDDBUSDT": [],
     "PENDLEUSDT": [],
@@ -4546,9 +4554,7 @@
     "AIGENSYNUSDT": [],
     "AIUSDT": [],
     "AIXBTUSDT": [],
-    "ALABBUSDT": [
-      1794258000000
-    ],
+    "ALABBUSDT": [],
     "ALGOUSDT": [],
     "ALICEUSDT": [],
     "ALLOUSDT": [],
@@ -4574,9 +4580,7 @@
     "ASRUSDT": [],
     "ASTERUSDT": [],
     "ASTRUSDT": [],
-    "ASTSBUSDT": [
-      1794258000000
-    ],
+    "ASTSBUSDT": [],
     "ATMUSDT": [],
     "ATOMUSDT": [],
     "ATUSDT": [],
@@ -4687,9 +4691,7 @@
     "ETHFIUSDT": [],
     "ETHUSDT": [],
     "EULUSDT": [],
-    "EWYBUSDT": [
-      1794258000000
-    ],
+    "EWYBUSDT": [],
     "FETUSDT": [],
     "FFUSDT": [],
     "FIDAUSDT": [],
@@ -4767,9 +4769,7 @@
     "KATUSDT": [],
     "KAVAUSDT": [],
     "KERNELUSDT": [],
-    "KGSTUSDT": [
-      1794258000000
-    ],
+    "KGSTUSDT": [],
     "KITEUSDT": [],
     "KMNOUSDT": [],
     "KNCUSDT": [],
@@ -4822,9 +4822,7 @@
     "MUBUSDT": [],
     "MUUBUSDT": [],
     "MVLLBUSDT": [],
-    "NBISBUSDT": [
-      1794258000000
-    ],
+    "NBISBUSDT": [],
     "NEARUSDT": [],
     "NEIROUSDT": [],
     "NEOUSDT": [],
@@ -4913,9 +4911,7 @@
     "SAPIENUSDT": [],
     "SCRUSDT": [],
     "SCUSDT": [],
-    "SECZBUSDT": [
-      1794258000000
-    ],
+    "SECZBUSDT": [],
     "SEIUSDT": [],
     "SENTUSDT": [],
     "SFPUSDT": [],
@@ -4923,9 +4919,7 @@
     "SHELLUSDT": [],
     "SHIBUSDT": [],
     "SIGNUSDT": [],
-    "SKHYBUSDT": [
-      1794258000000
-    ],
+    "SKHYBUSDT": [],
     "SKLUSDT": [],
     "SKYUSDT": [],
     "SLPUSDT": [],
@@ -4943,9 +4937,7 @@
     "SPCXBUSDT": [],
     "SPELLUSDT": [],
     "SPKUSDT": [],
-    "SPYBUSDT": [
-      1794258000000
-    ],
+    "SPYBUSDT": [],
     "SQQQBUSDT": [],
     "SSVUSDT": [],
     "STEEMUSDT": [],
@@ -4971,9 +4963,7 @@
     "TLMUSDT": [],
     "TNSRUSDT": [],
     "TOWNSUSDT": [],
-    "TQQQBUSDT": [
-      1794258000000
-    ],
+    "TQQQBUSDT": [],
     "TRBUSDT": [],
     "TREEUSDT": [],
     "TRUMPUSDT": [],
@@ -5746,7 +5736,9 @@
       1794171600000
     ],
     "OSMOUSDT": [],
-    "PARTIUSDT": [],
+    "PARTIUSDT": [
+      1794261600000
+    ],
     "PAXGUSDT": [],
     "PDDBUSDT": [],
     "PENDLEUSDT": [
@@ -6747,7 +6739,6 @@
     "牛来USDT": []
   },
   "sent": [
-    "buy:KAVAUSDT:1794106800000:1",
     "buy:CYBERUSDT:1794110400000:2",
     "buy:CYBERUSDT:1794121200000:3",
     "buy:GNOUSDT:1794121200000:1",
@@ -7146,11 +7137,12 @@
     "buy:CYPHBUSDT:1794254400000:1",
     "buy:GNSUSDT:1794254400000:1",
     "exit:HOTUSDT:1794254400000",
-    "exit:JOEUSDT:1794254400000"
+    "exit:JOEUSDT:1794254400000",
+    "buy:PARTIUSDT:1794261600000:1"
   ],
-  "cycles": 179,
-  "messages_sent": 511,
-  "last_cycle_ms": 1794267211149,
+  "cycles": 180,
+  "messages_sent": 512,
+  "last_cycle_ms": 1794269011084,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
