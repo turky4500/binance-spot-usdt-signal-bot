@@ -153,6 +153,7 @@
   .ts-item{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
   .ts-item span{display:block;color:var(--muted);font-size:10.5px}
   .ts-item b{font-size:17px;font-variant-numeric:tabular-nums;line-height:1.45}
+  .ts-item small{display:block;color:var(--dim);font-size:10px;margin-top:2px}
   .trade-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
   .trade-tools input,.trade-tools select{background:var(--panel2);border:1px solid var(--line);color:var(--txt);
        border-radius:10px;padding:8px 11px;font-size:12px;min-height:40px;font-family:inherit;min-width:0}
@@ -352,13 +353,16 @@
           <option value="loss">خاسرة «مغلقة»</option>
         </select>
         <select id="tradeSort" aria-label="ترتيب الصفقات">
+          <option value="openFirst">المفتوحة أولًا «الافتراضي»</option>
           <option value="new">الأحدث أولًا</option>
           <option value="old">الأقدم أولًا</option>
           <option value="high">أعلى نسبة</option>
           <option value="low">أدنى نسبة</option>
         </select>
         <button class="btn" id="tradeExport" type="button">⬇️ تصدير CSV</button>
+        <button class="btn" id="tradeRetry" type="button">⟳ إعادة جلب الأسعار</button>
       </div>
+      <div class="note" id="priceHint" style="margin-bottom:10px">جارٍ جلب الأسعار الحالية…</div>
       <div class="trades-scroll" tabindex="0" aria-label="جدول الصفقات — قابل للسحب أفقيًا على الجوال">
         <table class="trades-table">
           <thead><tr>
@@ -371,7 +375,8 @@
       <div class="trade-more"><button class="btn" id="tradeMore" type="button">تحميل المزيد</button><span class="note" id="tradeCount"></span></div>
       <div class="trade-foot">
         صف واحد لكل <b>مركز</b>؛ «إشارة دخول ثانية» تظهر في عمود رسائل الدخول ولا تُكرَّر كصف. سعر الدخول هو أول سعر، والعمولة 0.2% تُخصم مرة واحدة في <span class="mono">net_pct</span> للمغلقة فقط.
-        السعر الحالي من <span class="mono">data-api.binance.vision</span> «طلب واحد لكل الأسعار» وهو <b>آخر سعر سوق للعرض فقط، ليس سعر تنفيذ</b>. النسبة «غير محققة» = (الحالي ÷ الدخول − 1) قبل العمولة، <b>لا تُضاف</b> إلى الدونات ولا إلى التقرير اليومي. فريم 15M مستبعد من هذا الجدول «أرشيف صامت».
+        السعر الحالي من <span class="mono">data-api.binance.vision</span> «طلب واحد لكل الأسعار + مصادر بديلة» وهو <b>آخر سعر سوق للعرض فقط، ليس سعر تنفيذ</b>، ويظهر <b>للمفتوحة فقط</b>؛ للمغلقة <span class="mono">—</span> في هذا العمود. النسبة «غير محققة» = (الحالي ÷ الدخول − 1) قبل العمولة، <b>لا تُضاف</b> إلى الدونات ولا إلى التقرير اليومي.
+        <br>قاعدة العرض: <b>الصفقة المغلقة التي تجاوز إغلاقها 30 يومًا تُخفى من هذا الجدول فقط</b> «لا تُحذف من الدفتر أو الحالة، والتقرير اليومي والدونات تبقى من الدفتر الكامل»؛ أما <b>المفتوحة فتبقى دائمًا</b> حتى لو تجاوز دخولها الشهر. فريم 15M مستبعد من هذا الجدول «أرشيف صامت».
       </div>
     </div>
   </section>
@@ -393,7 +398,7 @@
   </section>
 
   <div class="disc">
-    <b>إخلاء مسؤولية:</b> النظام يرسل توصيات فقط ولا ينفّذ صفقات؛ لا أهداف ولا وقف خسارة ولا بوابة BTC ولا باكتيست ولا وعود ربح. مؤشر Nadaraya-Watson Envelope © LuxAlgo «CC BY-NC-SA 4.0». جميع الأوقات بتوقيت الرياض. البيانات العامة قد تتأخر حتى 5 دقائق بسبب كاش CDN، وسجل <span class="mono">api.github.com</span> العام محدود بـ 60 طلب/ساعة «اللوحة تخزّن مؤقتًا 15 دقيقة». تبويب «📋 الصفقات» يعرض الرموز والأسعار علنًا بعد اعتمادك الصريح؛ والدفاتر نفسها عامة أصلًا في المستودع. <b>«مجموع النسب» ليس عائدًا مركّبًا ولا ربحًا محققًا</b>، والسعر الحالي للصفقات المفتوحة تقدير لحظي قبل العمولة وليس سعر تنفيذ.
+    <b>إخلاء مسؤولية:</b> النظام يرسل توصيات فقط ولا ينفّذ صفقات؛ لا أهداف ولا وقف خسارة ولا بوابة BTC ولا باكتيست ولا وعود ربح. مؤشر Nadaraya-Watson Envelope © LuxAlgo «CC BY-NC-SA 4.0». جميع الأوقات بتوقيت الرياض. البيانات العامة قد تتأخر حتى 5 دقائق بسبب كاش CDN، وسجل <span class="mono">api.github.com</span> العام محدود بـ 60 طلب/ساعة «اللوحة تخزّن مؤقتًا 15 دقيقة». تبويب «📋 الصفقات» يعرض الرموز والأسعار علنًا بعد اعتمادك الصريح؛ والدفاتر نفسها عامة أصلًا في المستودع. <b>«مجموع النسب» ليس عائدًا مركّبًا ولا ربحًا محققًا</b>، والسعر الحالي للصفقات المفتوحة تقدير لحظي قبل العمولة وليس سعر تنفيذ. إخفاء الصفقات المغلقة الأقدم من 30 يومًا <b>فلترة عرض في المتصفح فقط</b>؛ لا يُحذف أي سطر من الدفتر أو الحالة، ولا يتأثر التقرير اليومي.
   </div>
 
   <footer>
@@ -607,19 +612,37 @@ function buildHeat(frames,got){
   return {rows:rows,labels:labels,note:note,start:start};
 }
 /* ── جدول «كل الصفقات»: 1H + 4H فقط، صف واحد لكل مركز ── */
+const TRADE_MAX_AGE_MS=30*24*3600000;   /* المغلقة الأقدم من 30 يومًا تُخفى من العرض فقط */
+function isTradeVisible(r,nowMs){
+  if(r.kind!=='closed')return true;        /* المفتوحة تبقى دائمًا حتى لو تجاوزت الشهر */
+  if(!r.exitMs)return true;
+  return r.exitMs >= (nowMs||Date.now())-TRADE_MAX_AGE_MS;
+}
+function applyPrices(tradesObj,prices){
+  const px=(prices&&typeof prices==='object')?prices:{};
+  const count=Object.keys(px).length;
+  const rows=tradesObj.rows.map(function(r){
+    if(r.kind!=='open')return r;
+    const cur=Object.prototype.hasOwnProperty.call(px,r.sym)?Number(px[r.sym]):null;
+    const has=cur!==null&&Number.isFinite(cur)&&cur>0&&r.entry!==null&&r.entry>0;
+    return Object.assign({},r,{current:has?cur:null,pct:has?(cur/r.entry-1)*100:null});
+  });
+  const open=rows.filter(r=>r.kind==='open');
+  const s=Object.assign({},tradesObj.summary,{
+    missingPrices:open.filter(r=>r.current===null).length,
+    unrealizedSum:open.reduce((a,r)=>a+(Number.isFinite(r.pct)?r.pct:0),0),
+    pricesAvailable:count>0,priceCount:count,priceAt:count>0?Date.now():null
+  });
+  return {rows:rows,summary:s};
+}
 function buildTrades(frames,got){
-  const prices=(got.prices&&typeof got.prices==='object')?got.prices:{};
-  const out=[];let missingPrices=0;
+  const out=[];
   ['1h','4h'].forEach(function(id){
     const f=FRAMES.find(x=>x.id===id),fr=frames[id];
     const short=f.label.replace('فريم ','');
     (fr._openRows||[]).forEach(function(o){
-      const cur=Object.prototype.hasOwnProperty.call(prices,o.symbol)?Number(prices[o.symbol]):null;
-      const has=cur!==null&&Number.isFinite(cur)&&cur>0&&o.entry!==null&&o.entry>0;
-      if(!has)missingPrices++;
-      const pct=has?(cur/o.entry-1)*100:null;
-      out.push({frame:short,sym:o.symbol,entry:o.entry,current:has?cur:null,exit:null,
-        pct:pct,kind:'open',entries:o.entries,entryMs:o.entryMs,exitMs:null,reason:'—'});
+      out.push({frame:short,sym:o.symbol,entry:o.entry,current:null,exit:null,
+        pct:null,kind:'open',entries:o.entries,entryMs:o.entryMs,exitMs:null,reason:'—'});
     });
     (fr._closedRows||[]).forEach(function(r){
       out.push({frame:short,sym:String(r.symbol||''),entry:Number(r.entry_price)||null,
@@ -628,17 +651,20 @@ function buildTrades(frames,got){
         exitMs:Number(r.exit_time)||null,reason:String(r.exit_reason||'—')});
     });
   });
-  const open=out.filter(r=>r.kind==='open'),closed=out.filter(r=>r.kind==='closed');
+  out.sort(function(a,b){return (b.entryMs||0)-(a.entryMs||0);});
+  const now=Date.now(),open=out.filter(r=>r.kind==='open'),closed=out.filter(r=>r.kind==='closed');
+  const recent=closed.filter(r=>isTradeVisible(r,now));
   const summary={
     total:out.length,open:open.length,closed:closed.length,
-    repeats:out.filter(r=>r.entries>1).length,missingPrices:missingPrices,
+    closedRecent:recent.length,oldClosed:closed.length-recent.length,
+    repeats:out.filter(r=>r.entries>1).length,
     wins:closed.filter(r=>r.pct>0).length,losses:closed.filter(r=>r.pct<0).length,
     realizedSum:closed.reduce((a,r)=>a+(Number.isFinite(r.pct)?r.pct:0),0),
-    unrealizedSum:open.reduce((a,r)=>a+(Number.isFinite(r.pct)?r.pct:0),0),
-    pricesAvailable:Object.keys(prices).length>0
+    realizedRecentSum:recent.reduce((a,r)=>a+(Number.isFinite(r.pct)?r.pct:0),0),
+    unrealizedSum:0,missingPrices:open.length,
+    pricesAvailable:false,priceCount:0,priceAt:null
   };
-  out.sort(function(a,b){return (b.entryMs||0)-(a.entryMs||0);});
-  return {rows:out,summary:summary};
+  return applyPrices({rows:out,summary:summary},(got&&got.prices)||{});
 }
 function computeAll(got){
   got=got||{};
@@ -666,7 +692,8 @@ globalThis.NWEngine={CFG:CFG,FRAMES:FRAMES,WF:WF,RIY:RIY,
   fmtNum:fmtNum,fmtPct:fmtPct,fmtRate:fmtRate,fmtDay:fmtDay,fmtTime:fmtTime,fmtHour:fmtHour,
   fmtAge:fmtAge,fmtDateTime:fmtDateTime,fmtPrice:fmtPrice,
   dayWindow:dayWindow,parseCSV:parseCSV,countKeys:countKeys,reportStatus:reportStatus,
-  buildTrades:buildTrades,computeAll:computeAll};
+  buildTrades:buildTrades,computeAll:computeAll,applyPrices:applyPrices,
+  isTradeVisible:isTradeVisible,TRADE_MAX_AGE_MS:TRADE_MAX_AGE_MS};
 })();
 </script>
 
@@ -678,15 +705,18 @@ const E=globalThis.NWEngine;
 const CFG=E.CFG,FRAMES=E.FRAMES,WF=E.WF;
 const fmtNum=E.fmtNum,fmtPct=E.fmtPct,fmtRate=E.fmtRate,fmtDay=E.fmtDay,fmtTime=E.fmtTime,
       fmtHour=E.fmtHour,fmtAge=E.fmtAge,fmtDateTime=E.fmtDateTime,fmtPrice=E.fmtPrice;
-const CACHE='nw-dash-cache-v4',SNAP='nw-dash-snapshot-v3',THEME='nw-theme',TTL=15*60*1000;
+const CACHE='nw-dash-cache-v5',SNAP='nw-dash-snapshot-v3',THEME='nw-theme',TTL=15*60*1000;
 const TRADE_PAGE=50;
 const PRICE_URLS=[
   'https://data-api.binance.vision/api/v3/ticker/price',
+  'https://api-gcp.binance.com/api/v3/ticker/price',
   'https://api.binance.com/api/v3/ticker/price',
-  'https://api1.binance.com/api/v3/ticker/price'
+  'https://api1.binance.com/api/v3/ticker/price',
+  'https://api2.binance.com/api/v3/ticker/price',
+  'https://api3.binance.com/api/v3/ticker/price'
 ];
 let currentModel=null,currentFrame='1h',lastFetch=0;
-let tradeState={q:'',filter:'all',sort:'new',limit:TRADE_PAGE};
+let tradeState={q:'',filter:'all',sort:'openFirst',limit:TRADE_PAGE};
 
 /* ── المظهر ── */
 function setTheme(t,persist){
@@ -867,6 +897,8 @@ document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',function
 function tradesFiltered(m){
   const st=tradeState,q=String(st.q||'').trim().toUpperCase();
   let rows=((m&&m.trades&&m.trades.rows)||[]).filter(function(r){
+    /* المغلقة الأقدم من 30 يومًا تُخفى من العرض فقط؛ المفتوحة تبقى دائمًا */
+    if(!E.isTradeVisible(r))return false;
     if(q&&!String(r.sym).toUpperCase().includes(q))return false;
     if(st.filter==='open')return r.kind==='open';
     if(st.filter==='closed')return r.kind==='closed';
@@ -876,6 +908,10 @@ function tradesFiltered(m){
   });
   const val=r=>Number.isFinite(r.pct)?r.pct:-Infinity;
   return rows.slice().sort(function(a,b){
+    if(st.sort==='openFirst'){
+      if(a.kind!==b.kind)return a.kind==='open'?-1:1;
+      return (b.entryMs||0)-(a.entryMs||0);
+    }
     if(st.sort==='old')return (a.entryMs||0)-(b.entryMs||0);
     if(st.sort==='high')return val(b)-val(a);
     if(st.sort==='low')return val(a)-val(b);
@@ -889,16 +925,22 @@ function pctCell(r){
 }
 function renderTradeSummary(m){
   const s=m.trades.summary;
-  const items=[
-    ['🔒 مغلقة',fmtNum(s.closed),''],
-    ['📌 لا تزال مفتوحة',fmtNum(s.open),''],
-    ['💰 مجموع النسب المحققة',fmtPct(s.realizedSum),'var(--ok-fg)'],
-    ['📈 مجموع غير المحقق «تقديري»',fmtPct(s.unrealizedSum),'var(--warn-fg)'],
-    ['🔁 صفقات بتكرار دخول',fmtNum(s.repeats),''],
-    ['⚠️ أسعار ناقصة',fmtNum(s.missingPrices),s.missingPrices?'var(--bad-fg)':'']
+  const ps=s.pricesAvailable
+    ? '<b style="color:var(--ok-fg);font-size:13px">🟢 '+fmtNum(s.priceCount)+' سعر صالح</b><small>آخر جلب '+fmtTime(s.priceAt)+' · '+fmtNum(s.missingPrices)+' ناقص من المفتوحة</small>'
+    : '<b style="color:var(--bad-fg);font-size:13px">🔴 تعذّر الجلب</b><small>اضغط «⟳ إعادة جلب الأسعار»</small>';
+  const cards=[
+    '<div class="ts-item"><span>🟢 مصدر الأسعار الحالية</span>'+ps+'</div>',
+    '<div class="ts-item"><span>📌 لا تزال مفتوحة</span><b>'+fmtNum(s.open)+'</b></div>',
+    '<div class="ts-item"><span>🔒 مغلقة «آخر 30 يوم»</span><b>'+fmtNum(s.closedRecent)+'</b></div>',
+    '<div class="ts-item"><span>🗓️ مستبعدة لقدمها</span><b'+(s.oldClosed?' style="color:var(--warn-fg)"':'')+'>'+fmtNum(s.oldClosed)+'</b><small>ما زالت في الدفتر</small></div>',
+    '<div class="ts-item"><span>💰 مجموع المحقق «30 يوم»</span><b style="color:var(--ok-fg)">'+fmtPct(s.realizedRecentSum)+'</b></div>',
+    '<div class="ts-item"><span>📈 مجموع غير المحقق «تقديري»</span><b style="color:var(--warn-fg)">'+fmtPct(s.unrealizedSum)+'</b></div>',
+    '<div class="ts-item"><span>🔁 صفقات بتكرار دخول</span><b>'+fmtNum(s.repeats)+'</b></div>'
   ];
-  $('tradeSummary').innerHTML=items.map(x=>
-    '<div class="ts-item"><span>'+esc(x[0])+'</span><b'+(x[2]?' style="color:'+x[2]+'"':'')+'>'+esc(x[1])+'</b></div>').join('');
+  $('tradeSummary').innerHTML=cards.join('');
+  $('priceHint').innerHTML=s.pricesAvailable
+    ? '✅ <b>يتم جلب السعر الحالي</b>: '+fmtNum(s.priceCount)+' سعر صالح من Binance في طلب واحد · '+fmtNum(s.open)+' صفقة مفتوحة مغطاة «'+fmtNum(s.missingPrices)+' ناقص» · آخر تحديث '+fmtTime(s.priceAt)+'. الأزواج غير النشطة بسعر صفر مستثناة تلقائيًا. السعر الحالي يظهر <b>للمفتوحة فقط</b>؛ للمغلقة <span class="mono">—</span> في هذا العمود.'
+    : '⚠️ <b>تعذّر الوصول إلى Binance من هذا المتصفح/الشبكة</b> — الأعمدة «السعر الحالي» و«غير المحققة» تظهر <span class="mono">—</span> مؤقتًا. اضغط «⟳ إعادة جلب الأسعار» للمحاولة من مصادر بديلة؛ بقية اللوحة والصفقات المغلقة تعمل بشكل كامل.';
 }
 function tradesRowsHtml(rows,limit){
   return rows.slice(0,limit).map(function(r){
@@ -960,6 +1002,24 @@ $('tradeFilter').addEventListener('change',function(){tradeState.filter=$('trade
 $('tradeSort').addEventListener('change',function(){tradeState.sort=$('tradeSort').value;renderTrades(currentModel);});
 $('tradeMore').addEventListener('click',function(){tradeState.limit+=TRADE_PAGE;renderTrades(currentModel);});
 $('tradeExport').addEventListener('click',exportTradesCsv);
+/* إعادة محاولة جلب الأسعار دون إعادة تحميل بقية اللوحة */
+async function retryPrices(){
+  const btn=$('tradeRetry');btn.disabled=true;btn.textContent='⏳ جارٍ الجلب…';
+  try{
+    const px=await getPrices();
+    currentModel.trades=E.applyPrices(currentModel.trades,px);
+    currentModel.meta.hasPrices=true;
+    const cc=readCache();
+    writeCache({ts:Date.now(),model:currentModel,delta:cc?cc.delta:{status:'wait',text:'بانتظار تحديث قادم للمقارنة بين زيارتين'}});
+    renderTrades(currentModel);
+    flash('✅ تم جلب الأسعار');
+  }catch(e){
+    $('priceHint').innerHTML='⚠️ <b>ما زال الوصول إلى Binance محجوبًا من هذا المتصفح/الشبكة</b>. الصفقات المغلقة ونسبها المحققة سليمة، والسعر الحالي يظهر <span class="mono">—</span> مؤقتًا.';
+    flash('تعذّر الجلب');
+  }
+  btn.disabled=false;btn.textContent='⟳ إعادة جلب الأسعار';
+}
+$('tradeRetry').addEventListener('click',retryPrices);
 
 /* ── خريطة النشاط ── */
 function renderHeat(m){
