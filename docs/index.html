@@ -393,7 +393,7 @@
         <div class="p2"><b>📜 سجل الأحداث</b><small>سرد عمليات الإصلاح والتشغيلات الفاشلة من سجلات Actions؛ يحتاج صلاحية قراءة Logs.</small></div>
         <div class="p2"><b>⏱️ زمن الاستجابة</b><small>زمن كل دورة وزمن وصول الحالة؛ يحتاج ملف قياسات خفيفًا ووركفلو كتابة دوري.</small></div>
       </div>
-      <div class="disc">لم تُلمس نواة البوت ولا شروط الإشارة ولا ملفات الحالة والدفاتر، والصفحة <b>تقرأ فقط</b>. الاستثناء الوحيد هو <b>وركفلو لقطة الأسعار</b> «بعد اعتمادك»: يكتب <span class="mono">data/prices.json</span> فقط كل 10 دقائق ولا يُشغّل أي بوت.</div>
+      <div class="disc">لم تُلمس نواة البوت ولا شروط الإشارة ولا ملفات الحالة والدفاتر، والصفحة <b>تقرأ فقط</b>. الاستثناءات: <b>وركفلو لقطة الأسعار</b> «يكتب <span class="mono">data/prices.json</span> فقط كل 10 دقائق»، و<b>طبقة WebSocket</b> للأسعار اللحظية بنفس ربط <span class="mono">crypto-signals-arabic</span>، و<b>نبض احتياطي</b> داخل GitHub لا يُرسل أي رسالة.</div>
     </div>
   </section>
 
@@ -402,8 +402,8 @@
   </div>
 
   <footer>
-    <span>المصادر: <span class="mono">data/state_nw.json</span> · <span class="mono">data/state_nw4h.json</span> · <span class="mono">data/state_nw15.json</span> · <span class="mono">data/trades_log_nw*.csv</span> · <span class="mono">/actions/workflows</span> · <span class="mono">/actions/runs</span> · <span class="mono">/commits?path=…</span> · <span class="mono">data/prices.json</span> «لقطة كل 10 د» · <span class="mono">r.jina.ai</span> · <span class="mono">data-api.binance.vision</span></span>
-    <span>النشر: <span class="mono">docs/index.html</span> + <span class="mono">docs/.nojekyll</span> على <span class="mono">main</span> عبر GitHub Pages. <b>وركفلو واحد جديد</b> للقطة الأسعار فقط «<span class="mono">nw-prices-snapshot.yml</span>»، ووركفلوات البوت كما هي بلا أي تعديل.</span>
+    <span>المصادر: <span class="mono">data/state_nw*.json</span> · <span class="mono">data/trades_log_nw*.csv</span> · <span class="mono">/actions/workflows</span> · <span class="mono">/actions/runs</span> · <span class="mono">/commits?path=…</span> · <span class="mono">data/prices.json</span> «لقطة كل 10 د» · <span class="mono">crypto-signals-arabic/data/current_signals.json</span> · <span class="mono">wss://data-stream.binance.vision</span> · <span class="mono">r.jina.ai</span> · <span class="mono">data-api.binance.vision</span> · <span class="mono">crypto-signals-arabic/data/status.json</span></span>
+    <span>النشر: <span class="mono">docs/index.html</span> + <span class="mono">docs/.nojekyll</span> على <span class="mono">main</span> عبر GitHub Pages. الوركفلوان الجديدان <span class="mono">nw-prices-snapshot.yml</span> و<span class="mono">nw-pulse-fallback.yml</span> لا يلمسان البوت أو شروط الإشارة أو الدفاتر.</span>
     <span>الرابط الدائم: <a id="footerLink" href="https://turky4500.github.io/binance-spot-usdt-signal-bot/" target="_blank" rel="noopener">turky4500.github.io/binance-spot-usdt-signal-bot/</a> · المستودع: <a href="https://github.com/turky4500/binance-spot-usdt-signal-bot" target="_blank" rel="noopener">github.com/turky4500/binance-spot-usdt-signal-bot</a></span>
   </footer>
 </div>
@@ -500,6 +500,16 @@ function reportStatus(lastReportDay){
   if(p.h===0)return {key:'late',cls:'t-bad',txt:'متأخر'};
   return {key:'waiting',cls:'t-off',txt:'بانتظار 12:00 AM'};
 }
+function lastSentMs(sent,interval){
+  let mx=null;
+  (Array.isArray(sent)?sent:[]).forEach(function(k){
+    const m=String(k).match(/(\d{13})/);
+    if(!m)return;
+    const v=Number(m[1])+Number(interval||0);
+    if(Number.isFinite(v)&&(!mx||v>mx))mx=v;
+  });
+  return mx;
+}
 function computeFrame(f,state,rows){
   const sent=Array.isArray(state&&state.sent)?state.sent:[];
   const symbols=(state&&state.symbols)||{};
@@ -527,6 +537,7 @@ function computeFrame(f,state,rows){
     system:(state&&state.system)||'—',cycles:(state&&state.cycles)??null,
     msgs:(state&&state.messages_sent)??null,lastCycleMs:(state&&state.last_cycle_ms)??null,
     sentLen:sent.length,dup:sent.length-new Set(sent).size,
+    lastSentMs:lastSentMs(sent,f.interval),
     open:open,closed:closedRows.length,wins:wins,losses:losses,rate:rate,total:total,
     sentToday:sentToday,closedToday:closedToday,lastReportDay:lastReportDay,
     reportStatus:repStatus,_sent:sent,_openRows:openRows,_closedRows:closedRows
@@ -546,8 +557,8 @@ function runRow(name,r,wfId,expected,expectedTxt,note,wfState,overrideTag){
   if(overrideTag){cls=overrideTag.cls;txt=overrideTag.txt;}
   return {name:name,tagCls:cls,tagTxt:txt,last:t?fmtTime(t):'—',age:t?fmtAge(t):'—',expected:expectedTxt,note:note};
 }
-function buildHealth(frames,wfState,lastByWf){
-  const f4=frames['4h'],f15=frames['15m'];
+function buildHealth(frames,wfState,lastByWf,pulseMuted){
+  const f1=frames['1h'],f4=frames['4h'],f15=frames['15m'];
   const rows=[];
   rows.push(runRow('بوت 1H',lastByWf[WF.bot1h],WF.bot1h,30,'كل ~30 د','حاجز فردي + حالة طازجة + حفظ تدريجي',wfState));
   rows.push(runRow('حارس 1H',lastByWf[WF.guard1h],WF.guard1h,5,'كل ~5 د «نبض»','يُطلق الدورة عند اكتمال النبض + جدولة احتياطية',wfState));
@@ -556,7 +567,14 @@ function buildHealth(frames,wfState,lastByWf){
   rows.push(runRow('تقرير 4H اليومي',lastByWf[WF.report4h],WF.report4h,1440,'12:00 ص الرياض',
     'last_report_day = '+(f4.lastReportDay||'—')+' · '+f4.reportStatus.txt,wfState,
     {cls:f4.reportStatus.cls,txt:f4.reportStatus.txt}));
-  rows.push(runRow('النبض «Signal Bot Cron»',lastByWf[WF.heartbeat],WF.heartbeat,5,'كل ~5 د','يُحفّز حارسي 1H و4H',wfState));
+  rows.push(runRow('النبض «Signal Bot Cron»',lastByWf[WF.heartbeat],WF.heartbeat,5,'كل ~5 د',
+    'يُحفّز حارسي 1H و4H'+(pulseMuted?' · النظام القديم مكتوم TELEGRAM_MUTE=1':''),wfState));
+  rows.push({name:'آخر رسالة فعلية 1H',tagCls:'t-off',tagTxt:f1.lastSentMs?'منذ '+fmtAge(f1.lastSentMs):'—',
+    last:f1.lastSentMs?fmtTime(f1.lastSentMs):'—',age:f1.lastSentMs?fmtAge(f1.lastSentMs):'—',
+    expected:'عند تحقق إشارة',note:'من مفاتيح buy:/exit: في state_nw.json + طول الشمعة · غيابها ليس عطلًا'});
+  rows.push({name:'آخر رسالة فعلية 4H',tagCls:'t-off',tagTxt:f4.lastSentMs?'منذ '+fmtAge(f4.lastSentMs):'—',
+    last:f4.lastSentMs?fmtTime(f4.lastSentMs):'—',age:f4.lastSentMs?fmtAge(f4.lastSentMs):'—',
+    expected:'عند تحقق إشارة',note:'من مفاتيح buy:/exit: في state_nw4h.json + طول الشمعة · غيابها ليس عطلًا'});
   rows.push({name:'فريم 15M',tagCls:'t-off',tagTxt:'صامت',
     last:f15.lastCycleMs?fmtTime(f15.lastCycleMs):'—',age:f15.lastCycleMs?fmtAge(f15.lastCycleMs):'—',
     expected:'—',note:'معطّل بلا حذف · لا فحص ولا رسائل ولا سجلات جديدة'});
@@ -684,13 +702,17 @@ function computeAll(got){
   if(got.runs&&got.runs.workflow_runs)got.runs.workflow_runs.forEach(r=>{if(!lastByWf[r.workflow_id])lastByWf[r.workflow_id]=r;});
   const week=buildWeek(frames);
   const heat=buildHeat(frames,got);
-  const health=buildHealth(frames,wfState,lastByWf);
+  const pulseMuted=/TELEGRAM_MUTE\s*:\s*["']?1/.test(got.pulseYml||'');
+  const ps=(got.peerStatus&&typeof got.peerStatus==='object')?got.peerStatus:null;
+  const peer=ps?{telegramConnected:!!ps.telegram_connected,deliveryFailed:Number(ps.delivery_failed_this_run)||0,
+    lastUpdateMs:Number(ps.last_update)||null,channel:String(ps.delivery_channel||'—')}:null;
+  const health=buildHealth(frames,wfState,lastByWf,pulseMuted);
   const issues=buildIssues(frames,wfState,lastByWf,got);
   const trades=buildTrades(frames,got);
   FRAMES.forEach(f=>{delete frames[f.id]._sent;delete frames[f.id]._openRows;delete frames[f.id]._closedRows;});
   return {frames:frames,health:health,issues:issues,week:week,heat:heat,trades:trades,
     meta:{ts:Date.now(),parsed:parsed,hasWf:!!got.workflows,hasRuns:!!got.runs,
-      hasPrices:!!got.prices,missing:[]}};
+      hasPrices:!!got.prices,pulseMuted:pulseMuted,peer:peer,missing:[]}};
 }
 globalThis.NWEngine={CFG:CFG,FRAMES:FRAMES,WF:WF,RIY:RIY,
   fmtNum:fmtNum,fmtPct:fmtPct,fmtRate:fmtRate,fmtDay:fmtDay,fmtTime:fmtTime,fmtHour:fmtHour,
@@ -709,11 +731,16 @@ const E=globalThis.NWEngine;
 const CFG=E.CFG,FRAMES=E.FRAMES,WF=E.WF;
 const fmtNum=E.fmtNum,fmtPct=E.fmtPct,fmtRate=E.fmtRate,fmtDay=E.fmtDay,fmtTime=E.fmtTime,
       fmtHour=E.fmtHour,fmtAge=E.fmtAge,fmtDateTime=E.fmtDateTime,fmtPrice=E.fmtPrice;
-const CACHE='nw-dash-cache-v6',SNAP='nw-dash-snapshot-v3',THEME='nw-theme',TTL=15*60*1000;
+const CACHE='nw-dash-cache-v7',SNAP='nw-dash-snapshot-v3',THEME='nw-theme',TTL=15*60*1000;
 const TRADE_PAGE=50;
 /* لقطة يكتبها وركفلو GitHub Actions داخل المستودع ⇒ تصل حتى لو حُجبت Binance */
 const PRICE_SNAPSHOT='https://raw.githubusercontent.com/'+CFG.owner+'/'+CFG.repo+'/main/data/prices.json';
 const JINA_URL='https://r.jina.ai/https://data-api.binance.vision/api/v3/ticker/price';
+const PEER_STATUS='https://turky4500.github.io/crypto-signals-arabic/data/status.json';
+const PEER_PRICES='https://turky4500.github.io/crypto-signals-arabic/data/current_signals.json';
+const PULSE_YML=CFG.raw+'.github/workflows/signal-bot-cron.yml';
+/* نفس endpoints المستخدمة في crypto-signals-arabic لعرض الأسعار لحظيًا */
+const WS_ENDPOINTS=['wss://data-stream.binance.vision','wss://stream.binance.com:9443'];
 const PRICE_URLS=[
   'https://data-api.binance.vision/api/v3/ticker/price',
   'https://api-gcp.binance.com/api/v3/ticker/price',
@@ -723,6 +750,7 @@ const PRICE_URLS=[
   'https://api3.binance.com/api/v3/ticker/price'
 ];
 let currentModel=null,currentFrame='1h',lastFetch=0;
+let lastPriceMap={},livePx={},liveWs=null,liveWsKey='',liveWsIdx=0,liveWsTick=0,liveWsOk=false,liveApplyTimer=0;
 let tradeState={q:'',filter:'all',sort:'openFirst',limit:TRADE_PAGE};
 
 /* ── المظهر ── */
@@ -788,28 +816,109 @@ async function readSnapshot(){
     return {prices:out,source:'snapshot',at:Number.isFinite(at)?at:Date.now()};
   }catch(e){return null;}
 }
+async function readPeerPrices(){
+  try{
+    const r=await fetch(PEER_PRICES+'?cb='+Date.now(),{cache:'no-store'});
+    if(!r.ok)return null;
+    const arr=await r.json();
+    if(!Array.isArray(arr)||arr.length<100)return null;
+    const out={};let at=null;
+    arr.forEach(function(x){
+      if(!x||!x.symbol)return;
+      const p=Number(x.price_raw!=null?x.price_raw:x.price);
+      if(Number.isFinite(p)&&p>0)out[String(x.symbol)]=p;
+      const t=Number(x.last_update_ms);
+      if(Number.isFinite(t)&&t>1e12&&(!at||t>at))at=t;
+    });
+    if(Object.keys(out).length<100)return null;
+    if(at&&Date.now()-at>60*60*1000)return null;   /* بيانات أقدم من ساعة لا تُستخدم */
+    return {prices:out,source:'peer',at:at||Date.now()};
+  }catch(e){return null;}
+}
 async function getPrices(){
+  /* دمج كل الطبقات المتاحة بدل الاكتفاء بأول نجاح ⇒ تغطية أعلى للرموز */
+  const merged={};let source='none',at=null,lastErr=null;
+  function add(r){
+    if(!r||!r.prices)return;
+    Object.keys(r.prices).forEach(function(s){const v=Number(r.prices[s]);if(Number.isFinite(v)&&v>0)merged[s]=v;});
+    const stamp=Number(r.at)||0;
+    if(source==='none'||stamp>(at||0)){source=r.source;at=stamp||Date.now();}
+  }
   const j=await readJina();
-  if(j)return {prices:j,source:'jina',at:Date.now()};
-  const s=await readSnapshot();
-  if(s)return s;
-  let lastErr=null;
+  if(j)add({prices:j,source:'jina',at:Date.now()});
+  add(await readPeerPrices());
+  add(await readSnapshot());
   for(const u of PRICE_URLS){
     try{
       const r=await fetch(u+'?cb='+Date.now(),{cache:'no-store'});
       if(!r.ok)throw new Error('HTTP '+r.status);
       const px=normalizeTickers(await r.json());
       if(!px)throw new Error('no valid prices');
-      return {prices:px,source:'binance',at:Date.now()};
+      add({prices:px,source:'binance',at:Date.now()});
+      break;
     }catch(e){lastErr=e;}
   }
+  if(Object.keys(merged).length)return {prices:merged,source:source,at:at||Date.now()};
   throw lastErr||new Error('all price sources unavailable');
 }
 function sourceLabel(src){
   if(src==='snapshot')return 'لقطة المستودع «GitHub Actions»';
   if(src==='jina')return 'Binance عبر قارئ عام';
   if(src==='binance')return 'Binance مباشر';
+  if(src==='ws')return 'WebSocket مباشر «Binance»';
+  if(src==='peer')return 'بيانات crypto-signals-arabic المباشرة';
   return 'غير متاح';
+}
+/* ── أسعار لحظية بنفس ربط crypto-signals-arabic ──
+   WebSocket من data-stream.binance.vision، مع لقطة المستودع/القارئ/Binance كبديل. */
+const WS_SAFE=/^[A-Z0-9._\-]{1,50}$/;
+function openSymbols(){
+  if(!currentModel||!currentModel.trades)return [];
+  const s=new Set();
+  currentModel.trades.rows.forEach(function(r){if(r.kind==='open'&&r.sym&&WS_SAFE.test(r.sym))s.add(r.sym);});
+  return Array.from(s).sort();
+}
+function connectLiveStream(){
+  if(typeof WebSocket==='undefined')return;
+  const syms=openSymbols();if(!syms.length)return;
+  const key=syms.join(',');
+  if(liveWs&&liveWs.readyState===1&&liveWsKey===key)return;
+  liveWsKey=key;
+  if(liveWs){try{liveWs.onclose=null;liveWs.close();}catch(e){}liveWs=null;}
+  const streams=syms.map(function(s){return s.toLowerCase()+'@miniTicker';}).join('/');
+  const url=WS_ENDPOINTS[liveWsIdx%WS_ENDPOINTS.length]+'/stream?streams='+streams;
+  let opened=false;
+  try{liveWs=new WebSocket(url);}catch(e){liveWsIdx++;return;}
+  liveWs.onopen=function(){opened=true;liveWsOk=true;};
+  liveWs.onmessage=function(ev){
+    try{
+      const f=JSON.parse(ev.data),d=f.data||f;
+      if(d&&typeof d.s==='string'&&typeof d.c==='string'){
+        const p=Number(d.c);
+        if(Number.isFinite(p)&&p>0){
+          livePx[d.s]=p;liveWsTick=Date.now();
+          if(!liveApplyTimer)liveApplyTimer=setTimeout(applyLivePrices,700);
+        }
+      }
+    }catch(e){}
+  };
+  liveWs.onerror=function(){liveWsOk=false;};
+  liveWs.onclose=function(){
+    liveWsOk=false;if(!opened)liveWsIdx++;
+    if(liveWsKey===key){liveWs=null;setTimeout(connectLiveStream,5000);}
+  };
+}
+function applyLivePrices(){
+  liveApplyTimer=0;
+  if(!currentModel||!currentModel.trades||!Object.keys(livePx).length)return;
+  const px=Object.assign({},lastPriceMap,livePx);
+  currentModel.trades=E.applyPrices(currentModel.trades,px,{source:'ws',at:liveWsTick||Date.now()});
+  currentModel.meta.hasPrices=true;
+  if(Array.isArray(currentModel.meta.missing))currentModel.meta.missing=currentModel.meta.missing.filter(function(x){return x!=='مصادر الأسعار';});
+  lastPriceMap=px;
+  const cc=readCache();
+  writeCache({ts:Date.now(),model:currentModel,delta:cc?cc.delta:{status:'wait',text:'بانتظار تحديث قادم للمقارنة بين زيارتين'}});
+  renderTrades(currentModel);renderOverall(currentModel);
 }
 
 /* ── Δ الرسائل بين زيارتين ── */
@@ -983,8 +1092,8 @@ function renderTradeSummary(m){
   ];
   $('tradeSummary').innerHTML=cards.join('');
   $('priceHint').innerHTML=s.pricesAvailable
-    ? '✅ <b>السعر الحالي مُحمَّل</b>: '+fmtNum(s.priceCount)+' سعر صالح عبر <b>'+esc(sourceLabel(s.priceSource))+'</b> · '+fmtNum(s.open)+' صفقة مفتوحة مغطاة «'+fmtNum(s.missingPrices)+' ناقص» · آخر تحديث '+fmtTime(s.priceAt)+'. الأزواج غير النشطة بسعر صفر مستثناة تلقائيًا. السعر الحالي يظهر <b>للمفتوحة فقط</b>؛ للمغلقة <span class="mono">—</span> في هذا العمود.'
-    : '⚠️ <b>تعذّرت كل مصادر الأسعار</b> «Binance مباشر، القارئ العام، ولقطة المستودع» — الأعمدة «السعر الحالي» و«غير المحققة» تظهر <span class="mono">—</span> مؤقتًا. اضغط «⟳ إعادة جلب الأسعار»؛ بقية اللوحة والصفقات المغلقة تعمل بشكل كامل.';
+    ? '✅ <b>السعر الحالي مُحمَّل</b>: '+fmtNum(s.priceCount)+' سعر صالح عبر <b>'+esc(sourceLabel(s.priceSource))+'</b> · '+fmtNum(s.open)+' صفقة مفتوحة مغطاة «'+fmtNum(s.missingPrices)+' ناقص» · آخر تحديث '+fmtTime(s.priceAt)+(s.priceSource==='ws'?' · <b>يتحدّث لحظيًا عبر WebSocket</b>؛ لقطة المستودع تبقى احتياط':'')+'. الأزواج غير النشطة بسعر صفر مستثناة تلقائيًا. السعر الحالي يظهر <b>للمفتوحة فقط</b>؛ للمغلقة <span class="mono">—</span> في هذا العمود.'
+    : '⚠️ <b>تعذّرت كل مصادر الأسعار</b> «WebSocket، بيانات المستودع الآخر، Binance مباشر، القارئ العام، ولقطة المستودع» — الأعمدة «السعر الحالي» و«غير المحققة» تظهر <span class="mono">—</span> مؤقتًا. اضغط «⟳ إعادة جلب الأسعار»؛ بقية اللوحة والصفقات المغلقة تعمل بشكل كامل.';
 }
 function tradesRowsHtml(rows,limit){
   return rows.slice(0,limit).map(function(r){
@@ -1051,15 +1160,19 @@ async function retryPrices(){
   const btn=$('tradeRetry');btn.disabled=true;btn.textContent='⏳ جارٍ الجلب…';
   try{
     const px=await getPrices();
+    lastPriceMap=px.prices||{};
     currentModel.trades=E.applyPrices(currentModel.trades,px.prices,{source:px.source,at:px.at});
     currentModel.meta.hasPrices=true;
     const cc=readCache();
     writeCache({ts:Date.now(),model:currentModel,delta:cc?cc.delta:{status:'wait',text:'بانتظار تحديث قادم للمقارنة بين زيارتين'}});
-    renderTrades(currentModel);
+    renderTrades(currentModel);connectLiveStream();
     flash('✅ تم جلب الأسعار');
   }catch(e){
-    $('priceHint').innerHTML='⚠️ <b>ما زال الوصول إلى Binance محجوبًا من هذا المتصفح/الشبكة</b>. الصفقات المغلقة ونسبها المحققة سليمة، والسعر الحالي يظهر <span class="mono">—</span> مؤقتًا.';
-    flash('تعذّر الجلب');
+    if(liveWsOk&&Object.keys(livePx).length){applyLivePrices();flash('✅ WebSocket يعمل');}
+    else{
+      $('priceHint').innerHTML='⚠️ <b>ما زال الوصول إلى كل مصادر الأسعار محجوبًا من هذا المتصفح/الشبكة</b> «WebSocket وبيانات المستودع الآخر وBinance والقارئ واللقطة». الصفقات المغلقة ونسبها المحققة سليمة، والسعر الحالي يظهر <span class="mono">—</span> مؤقتًا.';
+      flash('تعذّر الجلب');
+    }
   }
   btn.disabled=false;btn.textContent='⟳ إعادة جلب الأسعار';
 }
@@ -1082,7 +1195,11 @@ function renderChecks(m,delta){
   const systems=[f1.system,f4.system,f15.system].filter(x=>x&&x!=='—');
   const deltaCls=delta.status==='bad'?'t-bad':delta.status==='ok'?'t-ok':'t-off';
   const deltaTag=delta.status==='ok'||delta.status==='bad'?'مباشر':'إعداد';
+  const peer=m.meta.peer;
   const list=[
+    ...(peer?[{ic:'🔗',title:'ربط المستودع الآخر',
+      sub:'crypto-signals-arabic · Telegram '+(peer.telegramConnected?'متصل':'غير متصل')+' · قناة '+peer.channel+' · فشل تسليم الدورة: '+fmtNum(peer.deliveryFailed)+' · آخر تحديث '+(peer.lastUpdateMs?fmtTime(peer.lastUpdateMs):'—'),
+      cls:(peer.telegramConnected&&!peer.deliveryFailed)?'t-ok':'t-warn',tag:'مقارنة'}]:[]),
     {ic:dup?'!':'✓',title:'لا تكرار رسائل',sub:'مفاتيح مكرّرة = '+fmtNum(dup)+' · العدّادات التراكمية داخلية فقط',cls:dup?'t-bad':'t-ok',tag:'مباشر'},
     {ic:'✓',title:'عزل الفريمات',sub:'أنظمة مستقلة: '+systems.join(' · ')+' — ثلاث حالات وثلاثة دفاتر',cls:'t-ok',tag:'مباشر'},
     {ic:delta.status==='bad'?'!':'✓',title:'تطابق Δ الرسائل',sub:delta.text,cls:deltaCls,tag:deltaTag},
@@ -1101,8 +1218,15 @@ function renderOverall(m){
   const missingAll=m.meta.parsed===0&&!m.meta.hasWf&&!m.meta.hasRuns;
   if(missingAll){el.className='overall bad';title.textContent='تعذّر جلب البيانات الحية';sub.textContent='تحقق من الاتصال أو حد GitHub API العام، ثم اضغط «تحديث الآن».';}
   else if(m.issues.length){el.className='overall warn';title.textContent='يوجد ما يستحق الانتباه';sub.textContent=m.issues.join(' · ');}
-  else{el.className='overall ok';title.textContent='جميع الأنظمة تعمل ضمن الإيقاع المتوقع';
-    sub.textContent='آخر فحص آلي: '+fmtTime(m.meta.ts)+' · لا دورات متأخرة · لا رسائل مكرّرة · فريم 15M صامت كما طُلب';}
+  else{
+    const f1=m.frames['1h'],f4=m.frames['4h'];
+    const l1=f1.lastSentMs?fmtTime(f1.lastSentMs)+' «'+fmtAge(f1.lastSentMs)+'»':'—';
+    const l4=f4.lastSentMs?fmtTime(f4.lastSentMs)+' «'+fmtAge(f4.lastSentMs)+'»':'—';
+    el.className='overall ok';
+    title.textContent='الدورات تعمل — لا تُرسل رسالة إلا عند تحقق إشارة';
+    sub.textContent='آخر فحص آلي: '+fmtTime(m.meta.ts)+' · آخر رسالة 1H: '+l1+' · 4H: '+l4+
+      ' · النبض القديم '+(m.meta.pulseMuted?'مكتوم «TELEGRAM_MUTE=1»':'مفعل')+' · 15M صامت كما طُلب';
+  }
   $('offlineNote').hidden=!missingAll;
   $('offlineLink').href=CFG.site;
   $('footerLink').href=CFG.site;
@@ -1119,12 +1243,14 @@ function render(model,fromCache,delta){
   renderChecks(model,delta||{status:'wait',text:'بانتظار تحديث قادم'});
   if(model.trades)renderTrades(model);
   setActiveFrame(currentFrame);
+  setTimeout(connectLiveStream,120);
 }
 
 /* ── الجلب ── */
 const LABEL={workflows:'حالة الوركفلوات',runs:'سجل التشغيلات',commits1h:'سجل دورات 1H',commits4h:'سجل دورات 4H',
   prices:'مصادر الأسعار','state:1h':'حالة 1H','log:1h':'دفتر 1H','state:4h':'حالة 4H',
-  'log:4h':'دفتر 4H','state:15m':'حالة 15M','log:15m':'دفتر 15M'};
+  'log:4h':'دفتر 4H','state:15m':'حالة 15M','log:15m':'دفتر 15M',
+  pulseYml:'إعدادات النبض القديم',peerStatus:'حالة المستودع الآخر'};
 async function loadData(force){
   const cached=readCache();
   if(cached&&!force){render(cached.model,true,cached.delta);return;}
@@ -1135,7 +1261,9 @@ async function loadData(force){
     ['runs',()=>getJson(CFG.api+'/actions/runs?per_page=100')],
     ['commits1h',()=>getJson(CFG.api+'/commits?path=data/state_nw.json&per_page=100')],
     ['commits4h',()=>getJson(CFG.api+'/commits?path=data/state_nw4h.json&per_page=100')],
-    ['prices',()=>getPrices()]
+    ['prices',()=>getPrices()],
+    ['pulseYml',()=>getText(PULSE_YML+'?cb='+Date.now()).catch(()=>'')],
+    ['peerStatus',()=>getJson(PEER_STATUS+'?cb='+Date.now()).catch(()=>({}))]
   ];
   FRAMES.forEach(f=>{
     jobs.push(['state:'+f.id,()=>getText(CFG.raw+f.state+'?cb='+Date.now())]);
@@ -1147,6 +1275,7 @@ async function loadData(force){
   /* getPrices يُعيد {prices,source,at} ⇒ نفكّها قبل الحساب */
   if(got.prices&&got.prices.prices){
     const p=got.prices;got.priceSource=p.source;got.priceAt=p.at;got.prices=p.prices;
+    lastPriceMap=got.prices||{};
   }
   /* إن لم تغطِّ آخر 100 تشغيل وركفلوًا مطلوبًا، نقرأ آخر تشغيلاته فقط */
   if(got.runs&&got.runs.workflow_runs){
