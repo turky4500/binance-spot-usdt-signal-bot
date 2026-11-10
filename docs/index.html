@@ -148,6 +148,29 @@
   .metric span{display:block;color:var(--muted);font-size:11px}
   .metric b{font-size:20px;font-variant-numeric:tabular-nums;line-height:1.4}
   .frame-note{margin-top:13px;font-size:11.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:11px}
+  /* ── تبويب «كل الصفقات» ── */
+  .trade-summary{grid-template-columns:repeat(auto-fit,minmax(min(100%,148px),1fr));gap:10px;margin-bottom:14px}
+  .ts-item{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+  .ts-item span{display:block;color:var(--muted);font-size:10.5px}
+  .ts-item b{font-size:17px;font-variant-numeric:tabular-nums;line-height:1.45}
+  .trade-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+  .trade-tools input,.trade-tools select{background:var(--panel2);border:1px solid var(--line);color:var(--txt);
+       border-radius:10px;padding:8px 11px;font-size:12px;min-height:40px;font-family:inherit;min-width:0}
+  .trade-tools input{flex:1 1 190px}
+  .trade-tools select{flex:0 1 auto}
+  .trade-tools .btn{flex:0 0 auto}
+  .trades-scroll{overflow-x:auto;scrollbar-width:thin}
+  .trades-table{width:100%;border-collapse:collapse;font-size:11.8px;min-width:900px}
+  .trades-table th{position:sticky;top:0;background:var(--panel2);z-index:1;white-space:nowrap}
+  .trades-table td{white-space:nowrap;border-bottom:1px solid var(--line);padding:9px 10px;font-variant-numeric:tabular-nums}
+  .trades-table tbody tr:hover{background:var(--off-bg)}
+  .trades-table .sym{font-weight:700;color:var(--txt)}
+  .trades-table .pos{color:var(--ok-fg)}.trades-table .neg{color:var(--bad-fg)}
+  .trades-table .muted{color:var(--dim)}
+  .trades-table td.t-time{white-space:normal;min-width:190px;font-size:10.5px;color:var(--muted);direction:ltr;text-align:right}
+  .trade-more{display:flex;justify-content:center;gap:10px;align-items:center;margin-top:12px}
+  .trade-more .note{font-size:11px}
+  .trade-foot{margin-top:11px;font-size:10.8px;color:var(--dim);border-top:1px dashed var(--line);padding-top:10px}
   .checks{grid-template-columns:repeat(auto-fit,minmax(min(100%,265px),1fr));gap:10px}
   .check{display:flex;gap:10px;align-items:flex-start;background:var(--panel2);border:1px solid var(--line);
          border-radius:12px;padding:12px 14px;font-size:12px;min-width:0}
@@ -182,6 +205,17 @@
     .health-table td::before{content:attr(data-l);color:var(--muted);font-weight:600;flex:none}
     .health-table td[data-l=""]::before{content:""}
     .health-table td:first-child{font-weight:700;font-size:13px;padding-bottom:9px;border-bottom:1px dashed var(--line)}
+    .trade-tools input,.trade-tools select,.trade-tools .btn{flex:1 1 100%}
+    .trades-scroll{overflow:visible}
+    .trades-table,.trades-table tbody,.trades-table tr,.trades-table td{display:block;width:100%;min-width:0}
+    .trades-table thead{display:none}
+    .trades-table tr{border:1px solid var(--line);border-radius:12px;margin-bottom:10px;padding:6px 12px;background:var(--panel2)}
+    .trades-table td{border:0;padding:5px 0;display:flex;justify-content:space-between;gap:12px;align-items:center;
+                     font-size:11.6px;text-align:left;white-space:normal}
+    .trades-table td::before{content:attr(data-l);color:var(--muted);font-weight:600;flex:none}
+    .trades-table td[data-l=""]::before{content:""}
+    .trades-table td:first-child{font-weight:700;font-size:13px;padding-bottom:8px;border-bottom:1px dashed var(--line)}
+    .trades-table td.t-time{min-width:0;direction:rtl;text-align:left}
     .heat-inner{min-width:430px}
     .heat-row .name{width:94px;font-size:10.5px}
     .axis{margin-right:104px}
@@ -253,7 +287,7 @@
   </section>
 
   <section>
-    <div class="sec-head"><h2>الرسائل وقياس أثر الإشارات</h2><span class="note">قسم منفصل تمامًا عن «صحة التشغيل» — أرقام مجمّعة فقط، بلا أسماء عملات ولا أسعار</span></div>
+    <div class="sec-head"><h2>الرسائل وقياس أثر الإشارات</h2><span class="note">قسم منفصل تمامًا عن «صحة التشغيل» — أرقام مجمّعة هنا، والتفصيل في تبويب «📋 الصفقات»</span></div>
     <div class="grid two">
       <div class="card">
         <div style="font-size:13px;font-weight:700;margin-bottom:4px">التوصيات المرسلة — آخر 7 أيام</div>
@@ -277,7 +311,7 @@
           </div>
           <div class="mini-stats" id="miniStats"></div>
         </div>
-        <div class="disc">البوت يرسل <b>توصيات فقط</b> ولا ينفّذ صفقات. الأرقام قياس أثر للإشارات بعد عمولة 0.2% «مجموع نسب الصفقات»، وليست أداءً ماليًا حقيقيًا ولا باكتيست ولا وعد ربح. لا تُعرض أسماء عملات ولا أسعار.</div>
+        <div class="disc">البوت يرسل <b>توصيات فقط</b> ولا ينفّذ صفقات. الأرقام قياس أثر للإشارات بعد عمولة 0.2% «مجموع نسب الصفقات»، وليست أداءً ماليًا حقيقيًا ولا باكتيست ولا وعد ربح. هذا القسم مجمّع بلا تفاصيل؛ الرموز والأسعار مفردة في تبويب <b>«📋 الصفقات»</b> بعد اعتمادك. الدونات <b>للمغلقة فقط</b> ولا يخلط النسبة غير المحققة.</div>
       </div>
     </div>
   </section>
@@ -297,13 +331,49 @@
   </section>
 
   <section>
-    <div class="sec-head"><h2>مؤشرات الأداء حسب الفريم</h2><span class="note">نفس أرقام التقرير اليومي، قابلة للاستعراض في أي لحظة</span></div>
-    <div class="tabs" id="tabs" role="tablist" aria-label="اختيار الفريم">
+    <div class="sec-head"><h2 id="framesSectionTitle">مؤشرات الأداء حسب الفريم</h2><span class="note" id="framesSectionNote">نفس أرقام التقرير اليومي، قابلة للاستعراض في أي لحظة</span></div>
+    <div class="tabs" id="tabs" role="tablist" aria-label="اختيار الفريم أو جدول الصفقات">
       <button class="tab on" data-t="1h" role="tab" aria-selected="true" type="button">فريم 1H</button>
       <button class="tab" data-t="4h" role="tab" aria-selected="false" type="button">فريم 4H</button>
       <button class="tab" data-t="15m" role="tab" aria-selected="false" type="button">فريم 15M «صامت»</button>
+      <button class="tab" data-t="trades" role="tab" aria-selected="false" type="button">📋 الصفقات</button>
     </div>
     <div class="card" id="frameMetrics"><div class="loading">جارٍ التحميل…</div></div>
+
+    <div class="card" id="tradesPanel" hidden>
+      <div class="grid trade-summary" id="tradeSummary"></div>
+      <div class="trade-tools">
+        <input id="tradeSearch" type="search" placeholder="🔎 بحث بالرمز…" aria-label="بحث بالرمز" autocomplete="off">
+        <select id="tradeFilter" aria-label="فلترة الصفقات">
+          <option value="all">الكل</option>
+          <option value="open">لا تزال مفتوحة</option>
+          <option value="closed">مغلقة</option>
+          <option value="win">رابحة «مغلقة»</option>
+          <option value="loss">خاسرة «مغلقة»</option>
+        </select>
+        <select id="tradeSort" aria-label="ترتيب الصفقات">
+          <option value="new">الأحدث أولًا</option>
+          <option value="old">الأقدم أولًا</option>
+          <option value="high">أعلى نسبة</option>
+          <option value="low">أدنى نسبة</option>
+        </select>
+        <button class="btn" id="tradeExport" type="button">⬇️ تصدير CSV</button>
+      </div>
+      <div class="trades-scroll" tabindex="0" aria-label="جدول الصفقات — قابل للسحب أفقيًا على الجوال">
+        <table class="trades-table">
+          <thead><tr>
+            <th>الفريم / الرمز</th><th>سعر الدخول</th><th>السعر الحالي</th><th>سعر الخروج</th>
+            <th>النسبة</th><th>الحالة</th><th>رسائل الدخول</th><th>الوقت «الرياض»</th><th>السبب</th>
+          </tr></thead>
+          <tbody id="tradesBody"></tbody>
+        </table>
+      </div>
+      <div class="trade-more"><button class="btn" id="tradeMore" type="button">تحميل المزيد</button><span class="note" id="tradeCount"></span></div>
+      <div class="trade-foot">
+        صف واحد لكل <b>مركز</b>؛ «إشارة دخول ثانية» تظهر في عمود رسائل الدخول ولا تُكرَّر كصف. سعر الدخول هو أول سعر، والعمولة 0.2% تُخصم مرة واحدة في <span class="mono">net_pct</span> للمغلقة فقط.
+        السعر الحالي من <span class="mono">data-api.binance.vision</span> «طلب واحد لكل الأسعار» وهو <b>آخر سعر سوق للعرض فقط، ليس سعر تنفيذ</b>. النسبة «غير محققة» = (الحالي ÷ الدخول − 1) قبل العمولة، <b>لا تُضاف</b> إلى الدونات ولا إلى التقرير اليومي. فريم 15M مستبعد من هذا الجدول «أرشيف صامت».
+      </div>
+    </div>
   </section>
 
   <section>
@@ -323,11 +393,11 @@
   </section>
 
   <div class="disc">
-    <b>إخلاء مسؤولية:</b> النظام يرسل توصيات فقط ولا ينفّذ صفقات؛ لا أهداف ولا وقف خسارة ولا بوابة BTC ولا باكتيست ولا وعود ربح. مؤشر Nadaraya-Watson Envelope © LuxAlgo «CC BY-NC-SA 4.0». جميع الأوقات بتوقيت الرياض. البيانات العامة قد تتأخر حتى 5 دقائق بسبب كاش CDN، وسجل <span class="mono">api.github.com</span> العام محدود بـ 60 طلب/ساعة «اللوحة تخزّن مؤقتًا 15 دقيقة».
+    <b>إخلاء مسؤولية:</b> النظام يرسل توصيات فقط ولا ينفّذ صفقات؛ لا أهداف ولا وقف خسارة ولا بوابة BTC ولا باكتيست ولا وعود ربح. مؤشر Nadaraya-Watson Envelope © LuxAlgo «CC BY-NC-SA 4.0». جميع الأوقات بتوقيت الرياض. البيانات العامة قد تتأخر حتى 5 دقائق بسبب كاش CDN، وسجل <span class="mono">api.github.com</span> العام محدود بـ 60 طلب/ساعة «اللوحة تخزّن مؤقتًا 15 دقيقة». تبويب «📋 الصفقات» يعرض الرموز والأسعار علنًا بعد اعتمادك الصريح؛ والدفاتر نفسها عامة أصلًا في المستودع. <b>«مجموع النسب» ليس عائدًا مركّبًا ولا ربحًا محققًا</b>، والسعر الحالي للصفقات المفتوحة تقدير لحظي قبل العمولة وليس سعر تنفيذ.
   </div>
 
   <footer>
-    <span>المصادر: <span class="mono">data/state_nw.json</span> · <span class="mono">data/state_nw4h.json</span> · <span class="mono">data/state_nw15.json</span> · <span class="mono">data/trades_log_nw*.csv</span> · <span class="mono">/actions/workflows</span> · <span class="mono">/actions/runs</span> · <span class="mono">/commits?path=…</span></span>
+    <span>المصادر: <span class="mono">data/state_nw.json</span> · <span class="mono">data/state_nw4h.json</span> · <span class="mono">data/state_nw15.json</span> · <span class="mono">data/trades_log_nw*.csv</span> · <span class="mono">/actions/workflows</span> · <span class="mono">/actions/runs</span> · <span class="mono">/commits?path=…</span> · <span class="mono">data-api.binance.vision/api/v3/ticker/price</span> «طلب واحد، CORS عام»</span>
     <span>النشر: <span class="mono">docs/index.html</span> + <span class="mono">docs/.nojekyll</span> على <span class="mono">main</span> عبر GitHub Pages — <b>بلا أي وركفلو جديد</b>.</span>
     <span>الرابط الدائم: <a id="footerLink" href="https://turky4500.github.io/binance-spot-usdt-signal-bot/" target="_blank" rel="noopener">turky4500.github.io/binance-spot-usdt-signal-bot/</a> · المستودع: <a href="https://github.com/turky4500/binance-spot-usdt-signal-bot" target="_blank" rel="noopener">github.com/turky4500/binance-spot-usdt-signal-bot</a></span>
   </footer>
@@ -366,6 +436,17 @@ function fmtDay(iso){return iso?String(iso).replace(/-/g,'/'):'—';}
 function riyadhParts(ms){const d=new Date(ms+RIY);return {y:d.getUTCFullYear(),m:d.getUTCMonth(),day:d.getUTCDate(),h:d.getUTCHours(),mi:d.getUTCMinutes(),dow:d.getUTCDay()};}
 function fmtTime(ms){if(!ms||!Number.isFinite(ms))return '—';const p=riyadhParts(ms);const ap=p.h<12?'ص':'م';let hh=p.h%12;if(hh===0)hh=12;return pad(hh)+':'+pad(p.mi)+' '+ap;}
 function fmtHour(ms){const p=riyadhParts(ms);return pad(p.h)+':00';}
+function fmtDateTime(ms){
+  if(!ms||!Number.isFinite(ms))return '—';
+  const p=riyadhParts(ms),ap=p.h<12?'ص':'م';let hh=p.h%12;if(hh===0)hh=12;
+  return p.y+'/'+pad(p.m+1)+'/'+pad(p.day)+' '+pad(hh)+':'+pad(p.mi)+' '+ap;
+}
+function fmtPrice(v){
+  if(v===null||v===undefined||v==='')return '—';
+  const x=Number(v);if(!Number.isFinite(x))return '—';if(x===0)return '0';
+  if(Math.abs(x)<0.001)return String(Number(x.toPrecision(6)));
+  return Number(x.toFixed(6)).toLocaleString('en-US',{maximumFractionDigits:6});
+}
 function fmtAge(ms){if(!ms||!Number.isFinite(ms))return '—';const s=Math.max(0,Math.floor((Date.now()-ms)/1000));
   if(s<60)return s+' ث';const m=Math.floor(s/60);if(m<60)return m+' د';
   const h=Math.floor(m/60),mm=m%60;if(h<24)return mm?h+' س '+mm+' د':h+' س';
@@ -419,6 +500,11 @@ function computeFrame(f,state,rows){
   const symbols=(state&&state.symbols)||{};
   const open=Object.values(symbols).filter(v=>v&&typeof v==='object'&&v.position&&typeof v.position==='object').length;
   const closedRows=rows.filter(r=>/^\d{10,}$/.test(String(r.exit_time||'').trim()));
+  const openRows=Object.entries(symbols)
+    .filter(function(kv){const v=kv[1];return v&&typeof v==='object'&&v.position&&typeof v.position==='object';})
+    .map(function(kv){const p=kv[1].position;return {
+      symbol:String(kv[0]),entry:Number(p.entry_price)||null,
+      entryMs:Number(p.entry_time)||null,entries:Number(p.entry_count)||1};});
   const wins=closedRows.filter(r=>net(r)>0).length;
   const losses=closedRows.filter(r=>net(r)<0).length;
   const total=closedRows.reduce((a,r)=>a+net(r),0);
@@ -438,7 +524,7 @@ function computeFrame(f,state,rows){
     sentLen:sent.length,dup:sent.length-new Set(sent).size,
     open:open,closed:closedRows.length,wins:wins,losses:losses,rate:rate,total:total,
     sentToday:sentToday,closedToday:closedToday,lastReportDay:lastReportDay,
-    reportStatus:repStatus,_sent:sent
+    reportStatus:repStatus,_sent:sent,_openRows:openRows,_closedRows:closedRows
   };
 }
 function lastMs(r){if(!r)return null;const t=Date.parse(r.run_started_at||r.created_at||'');return Number.isFinite(t)?t:null;}
@@ -520,6 +606,40 @@ function buildHeat(frames,got){
   if(!Array.isArray(got.commits1h)||!Array.isArray(got.commits4h))note+=' · بعض سجلات الدورات غير متاح حاليًا.';
   return {rows:rows,labels:labels,note:note,start:start};
 }
+/* ── جدول «كل الصفقات»: 1H + 4H فقط، صف واحد لكل مركز ── */
+function buildTrades(frames,got){
+  const prices=(got.prices&&typeof got.prices==='object')?got.prices:{};
+  const out=[];let missingPrices=0;
+  ['1h','4h'].forEach(function(id){
+    const f=FRAMES.find(x=>x.id===id),fr=frames[id];
+    const short=f.label.replace('فريم ','');
+    (fr._openRows||[]).forEach(function(o){
+      const cur=Object.prototype.hasOwnProperty.call(prices,o.symbol)?Number(prices[o.symbol]):null;
+      const has=cur!==null&&Number.isFinite(cur)&&cur>0&&o.entry!==null&&o.entry>0;
+      if(!has)missingPrices++;
+      const pct=has?(cur/o.entry-1)*100:null;
+      out.push({frame:short,sym:o.symbol,entry:o.entry,current:has?cur:null,exit:null,
+        pct:pct,kind:'open',entries:o.entries,entryMs:o.entryMs,exitMs:null,reason:'—'});
+    });
+    (fr._closedRows||[]).forEach(function(r){
+      out.push({frame:short,sym:String(r.symbol||''),entry:Number(r.entry_price)||null,
+        current:null,exit:Number(r.exit_price)||null,pct:net(r),kind:'closed',
+        entries:Number(r.entries_count)||1,entryMs:Number(r.entry_time)||null,
+        exitMs:Number(r.exit_time)||null,reason:String(r.exit_reason||'—')});
+    });
+  });
+  const open=out.filter(r=>r.kind==='open'),closed=out.filter(r=>r.kind==='closed');
+  const summary={
+    total:out.length,open:open.length,closed:closed.length,
+    repeats:out.filter(r=>r.entries>1).length,missingPrices:missingPrices,
+    wins:closed.filter(r=>r.pct>0).length,losses:closed.filter(r=>r.pct<0).length,
+    realizedSum:closed.reduce((a,r)=>a+(Number.isFinite(r.pct)?r.pct:0),0),
+    unrealizedSum:open.reduce((a,r)=>a+(Number.isFinite(r.pct)?r.pct:0),0),
+    pricesAvailable:Object.keys(prices).length>0
+  };
+  out.sort(function(a,b){return (b.entryMs||0)-(a.entryMs||0);});
+  return {rows:out,summary:summary};
+}
 function computeAll(got){
   got=got||{};
   const frames={};let parsed=0;
@@ -536,13 +656,17 @@ function computeAll(got){
   const heat=buildHeat(frames,got);
   const health=buildHealth(frames,wfState,lastByWf);
   const issues=buildIssues(frames,wfState,lastByWf,got);
-  FRAMES.forEach(f=>{delete frames[f.id]._sent;});
-  return {frames:frames,health:health,issues:issues,week:week,heat:heat,
-    meta:{ts:Date.now(),parsed:parsed,hasWf:!!got.workflows,hasRuns:!!got.runs,missing:[]}};
+  const trades=buildTrades(frames,got);
+  FRAMES.forEach(f=>{delete frames[f.id]._sent;delete frames[f.id]._openRows;delete frames[f.id]._closedRows;});
+  return {frames:frames,health:health,issues:issues,week:week,heat:heat,trades:trades,
+    meta:{ts:Date.now(),parsed:parsed,hasWf:!!got.workflows,hasRuns:!!got.runs,
+      hasPrices:!!got.prices,missing:[]}};
 }
 globalThis.NWEngine={CFG:CFG,FRAMES:FRAMES,WF:WF,RIY:RIY,
-  fmtNum:fmtNum,fmtPct:fmtPct,fmtRate:fmtRate,fmtDay:fmtDay,fmtTime:fmtTime,fmtHour:fmtHour,fmtAge:fmtAge,
-  dayWindow:dayWindow,parseCSV:parseCSV,countKeys:countKeys,reportStatus:reportStatus,computeAll:computeAll};
+  fmtNum:fmtNum,fmtPct:fmtPct,fmtRate:fmtRate,fmtDay:fmtDay,fmtTime:fmtTime,fmtHour:fmtHour,
+  fmtAge:fmtAge,fmtDateTime:fmtDateTime,fmtPrice:fmtPrice,
+  dayWindow:dayWindow,parseCSV:parseCSV,countKeys:countKeys,reportStatus:reportStatus,
+  buildTrades:buildTrades,computeAll:computeAll};
 })();
 </script>
 
@@ -552,9 +676,17 @@ globalThis.NWEngine={CFG:CFG,FRAMES:FRAMES,WF:WF,RIY:RIY,
 'use strict';
 const E=globalThis.NWEngine;
 const CFG=E.CFG,FRAMES=E.FRAMES,WF=E.WF;
-const fmtNum=E.fmtNum,fmtPct=E.fmtPct,fmtRate=E.fmtRate,fmtDay=E.fmtDay,fmtTime=E.fmtTime,fmtHour=E.fmtHour,fmtAge=E.fmtAge;
-const CACHE='nw-dash-cache-v3',SNAP='nw-dash-snapshot-v3',THEME='nw-theme',TTL=15*60*1000;
+const fmtNum=E.fmtNum,fmtPct=E.fmtPct,fmtRate=E.fmtRate,fmtDay=E.fmtDay,fmtTime=E.fmtTime,
+      fmtHour=E.fmtHour,fmtAge=E.fmtAge,fmtDateTime=E.fmtDateTime,fmtPrice=E.fmtPrice;
+const CACHE='nw-dash-cache-v4',SNAP='nw-dash-snapshot-v3',THEME='nw-theme',TTL=15*60*1000;
+const TRADE_PAGE=50;
+const PRICE_URLS=[
+  'https://data-api.binance.vision/api/v3/ticker/price',
+  'https://api.binance.com/api/v3/ticker/price',
+  'https://api1.binance.com/api/v3/ticker/price'
+];
 let currentModel=null,currentFrame='1h',lastFetch=0;
+let tradeState={q:'',filter:'all',sort:'new',limit:TRADE_PAGE};
 
 /* ── المظهر ── */
 function setTheme(t,persist){
@@ -589,6 +721,22 @@ function setLoading(on){
 function flash(msg){const t=$('refreshTxt');if(!t)return;const old=t.textContent;t.textContent=msg;setTimeout(function(){t.textContent=old;},1700);}
 async function getJson(u){const r=await fetch(u,{cache:'no-store',headers:{Accept:'application/vnd.github+json'}});if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}
 async function getText(u){const r=await fetch(u,{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);return r.text();}
+/* طلب واحد لكل أسعار Binance، مع سلسلة بدائل؛ الفشل لا يكسر اللوحة */
+async function getPrices(){
+  let lastErr=null;
+  for(const u of PRICE_URLS){
+    try{
+      const r=await fetch(u+'?cb='+Date.now(),{cache:'no-store'});
+      if(!r.ok)throw new Error('HTTP '+r.status);
+      const arr=await r.json();
+      if(!Array.isArray(arr)||!arr.length)throw new Error('empty ticker list');
+      const out={};arr.forEach(x=>{if(x&&x.symbol){const p=Number(x.price);if(Number.isFinite(p)&&p>0)out[x.symbol]=p;}});
+      if(!Object.keys(out).length)throw new Error('no valid prices');
+      return out;
+    }catch(e){lastErr=e;}
+  }
+  throw lastErr||new Error('price sources unavailable');
+}
 
 /* ── Δ الرسائل بين زيارتين ── */
 function computeDelta(model){
@@ -704,9 +852,114 @@ function renderFrame(id){
 function setActiveFrame(id){
   currentFrame=id;
   document.querySelectorAll('.tab').forEach(b=>{const on=b.dataset.t===id;b.classList.toggle('on',on);b.setAttribute('aria-selected',String(on));});
-  renderFrame(id);
+  const isTrades=id==='trades';
+  $('frameMetrics').hidden=isTrades;
+  $('tradesPanel').hidden=!isTrades;
+  $('framesSectionTitle').textContent=isTrades?'📋 كل الصفقات «1H + 4H»':'مؤشرات الأداء حسب الفريم';
+  $('framesSectionNote').textContent=isTrades
+    ?'تقيس الأداء في أي وقت بلا انتظار التقرير اليومي · صف واحد لكل مركز'
+    :'نفس أرقام التقرير اليومي، قابلة للاستعراض في أي لحظة';
+  if(isTrades)renderTrades(currentModel);else renderFrame(id);
 }
 document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',function(){setActiveFrame(b.dataset.t);}));
+
+/* ── تبويب «كل الصفقات» ── */
+function tradesFiltered(m){
+  const st=tradeState,q=String(st.q||'').trim().toUpperCase();
+  let rows=((m&&m.trades&&m.trades.rows)||[]).filter(function(r){
+    if(q&&!String(r.sym).toUpperCase().includes(q))return false;
+    if(st.filter==='open')return r.kind==='open';
+    if(st.filter==='closed')return r.kind==='closed';
+    if(st.filter==='win')return r.kind==='closed'&&r.pct>0;
+    if(st.filter==='loss')return r.kind==='closed'&&r.pct<0;
+    return true;
+  });
+  const val=r=>Number.isFinite(r.pct)?r.pct:-Infinity;
+  return rows.slice().sort(function(a,b){
+    if(st.sort==='old')return (a.entryMs||0)-(b.entryMs||0);
+    if(st.sort==='high')return val(b)-val(a);
+    if(st.sort==='low')return val(a)-val(b);
+    return (b.entryMs||0)-(a.entryMs||0);
+  });
+}
+function pctCell(r){
+  if(!Number.isFinite(r.pct))return '<span class="muted">—</span> '+(r.kind==='open'?tag('t-off','غير متاح'):tag('t-off','—'));
+  const cls=r.pct>0?'pos':(r.pct<0?'neg':'muted');
+  return '<b class="'+cls+'">'+fmtPct(r.pct)+'</b> '+(r.kind==='closed'?tag('t-ok','محققة'):tag('t-off','غير محققة'));
+}
+function renderTradeSummary(m){
+  const s=m.trades.summary;
+  const items=[
+    ['🔒 مغلقة',fmtNum(s.closed),''],
+    ['📌 لا تزال مفتوحة',fmtNum(s.open),''],
+    ['💰 مجموع النسب المحققة',fmtPct(s.realizedSum),'var(--ok-fg)'],
+    ['📈 مجموع غير المحقق «تقديري»',fmtPct(s.unrealizedSum),'var(--warn-fg)'],
+    ['🔁 صفقات بتكرار دخول',fmtNum(s.repeats),''],
+    ['⚠️ أسعار ناقصة',fmtNum(s.missingPrices),s.missingPrices?'var(--bad-fg)':'']
+  ];
+  $('tradeSummary').innerHTML=items.map(x=>
+    '<div class="ts-item"><span>'+esc(x[0])+'</span><b'+(x[2]?' style="color:'+x[2]+'"':'')+'>'+esc(x[1])+'</b></div>').join('');
+}
+function tradesRowsHtml(rows,limit){
+  return rows.slice(0,limit).map(function(r){
+    const time=r.kind==='closed'
+      ? fmtDateTime(r.entryMs)+' → '+fmtDateTime(r.exitMs)
+      : fmtDateTime(r.entryMs);
+    const cur=r.kind==='open'&&r.current!==null?fmtPrice(r.current):'<span class="muted">—</span>';
+    const ex=r.kind==='closed'?fmtPrice(r.exit):'<span class="muted">—</span>';
+    const state=r.kind==='open'?tag('t-warn','لا تزال مفتوحة'):tag('t-ok','مغلقة');
+    return '<tr>'+
+      '<td data-l="">'+tag('t-off',r.frame)+' <span class="sym">'+esc(r.sym)+'</span></td>'+
+      '<td data-l="سعر الدخول">'+esc(fmtPrice(r.entry))+'</td>'+
+      '<td data-l="السعر الحالي">'+cur+'</td>'+
+      '<td data-l="سعر الخروج">'+ex+'</td>'+
+      '<td data-l="النسبة">'+pctCell(r)+'</td>'+
+      '<td data-l="الحالة">'+state+'</td>'+
+      '<td data-l="رسائل الدخول">'+(r.entries>1?'<b>'+fmtNum(r.entries)+'</b>':fmtNum(r.entries))+'</td>'+
+      '<td class="t-time" data-l="الوقت «الرياض»">'+esc(time)+'</td>'+
+      '<td data-l="السبب">'+esc(r.reason)+'</td>'+
+    '</tr>';
+  }).join('');
+}
+function renderTrades(m){
+  if(!m||!m.trades)return;
+  const rows=tradesFiltered(m);
+  renderTradeSummary(m);
+  $('tradesBody').innerHTML=rows.length
+    ? tradesRowsHtml(rows,tradeState.limit)
+    : '<tr><td colspan="9" class="loading">لا توجد صفقات مطابقة للبحث أو الفلترة.</td></tr>';
+  const shown=Math.min(rows.length,tradeState.limit);
+  $('tradeCount').textContent='عرض '+fmtNum(shown)+' من '+fmtNum(rows.length)+' صفقة';
+  $('tradeMore').hidden=shown>=rows.length;
+}
+function exportTradesCsv(){
+  if(!currentModel)return;
+  try{
+    const rows=tradesFiltered(currentModel);
+    const head=['الفريم','الرمز','سعر الدخول','السعر الحالي','سعر الخروج','النسبة %','النوع','الحالة','رسائل الدخول','وقت الدخول «الرياض»','وقت الخروج «الرياض»','السبب'];
+    const q=v=>'"'+String(v==null?'':v).replace(/"/g,'""')+'"';
+    const lines=[head.map(q).join(',')];
+    rows.forEach(function(r){
+      lines.push([
+        r.frame,r.sym,r.entry,r.current,r.exit,
+        Number.isFinite(r.pct)?r.pct.toFixed(4):'',
+        r.kind==='open'?'غير محققة':'محققة',
+        r.kind==='open'?'لا تزال مفتوحة':'مغلقة',
+        r.entries,fmtDateTime(r.entryMs),r.kind==='closed'?fmtDateTime(r.exitMs):'',r.reason
+      ].map(q).join(','));
+    });
+    const blob=new Blob(['\uFEFF'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'});
+    const url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download='nw-trades-'+new Date().toISOString().slice(0,10)+'.csv';
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    setTimeout(function(){URL.revokeObjectURL(url);},1000);
+  }catch(e){flash('تعذّر التصدير');}
+}
+$('tradeSearch').addEventListener('input',function(){tradeState.q=$('tradeSearch').value;tradeState.limit=TRADE_PAGE;renderTrades(currentModel);});
+$('tradeFilter').addEventListener('change',function(){tradeState.filter=$('tradeFilter').value;tradeState.limit=TRADE_PAGE;renderTrades(currentModel);});
+$('tradeSort').addEventListener('change',function(){tradeState.sort=$('tradeSort').value;renderTrades(currentModel);});
+$('tradeMore').addEventListener('click',function(){tradeState.limit+=TRADE_PAGE;renderTrades(currentModel);});
+$('tradeExport').addEventListener('click',exportTradesCsv);
 
 /* ── خريطة النشاط ── */
 function renderHeat(m){
@@ -760,12 +1013,14 @@ function render(model,fromCache,delta){
   $('lastUpdate').textContent=fmtTime(model.meta.ts);
   renderOverall(model);renderKpis(model);renderHealth(model);renderWeek(model);renderHeat(model);
   renderChecks(model,delta||{status:'wait',text:'بانتظار تحديث قادم'});
+  if(model.trades)renderTrades(model);
   setActiveFrame(currentFrame);
 }
 
 /* ── الجلب ── */
 const LABEL={workflows:'حالة الوركفلوات',runs:'سجل التشغيلات',commits1h:'سجل دورات 1H',commits4h:'سجل دورات 4H',
-  'state:1h':'حالة 1H','log:1h':'دفتر 1H','state:4h':'حالة 4H','log:4h':'دفتر 4H','state:15m':'حالة 15M','log:15m':'دفتر 15M'};
+  prices:'أسعار Binance الحالية','state:1h':'حالة 1H','log:1h':'دفتر 1H','state:4h':'حالة 4H',
+  'log:4h':'دفتر 4H','state:15m':'حالة 15M','log:15m':'دفتر 15M'};
 async function loadData(force){
   const cached=readCache();
   if(cached&&!force){render(cached.model,true,cached.delta);return;}
@@ -775,7 +1030,8 @@ async function loadData(force){
     ['workflows',()=>getJson(CFG.api+'/actions/workflows?per_page=100')],
     ['runs',()=>getJson(CFG.api+'/actions/runs?per_page=100')],
     ['commits1h',()=>getJson(CFG.api+'/commits?path=data/state_nw.json&per_page=100')],
-    ['commits4h',()=>getJson(CFG.api+'/commits?path=data/state_nw4h.json&per_page=100')]
+    ['commits4h',()=>getJson(CFG.api+'/commits?path=data/state_nw4h.json&per_page=100')],
+    ['prices',()=>getPrices()]
   ];
   FRAMES.forEach(f=>{
     jobs.push(['state:'+f.id,()=>getText(CFG.raw+f.state+'?cb='+Date.now())]);
