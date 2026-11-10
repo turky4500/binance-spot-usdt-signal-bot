@@ -140,12 +140,16 @@ jobs:
           if active:
               print("⏭ يوجد تشغيل تقرير نشط:", [(r["id"], r["status"]) for r in active])
               raise SystemExit(0)
+          # إصلاح 2026-11-10: تشغيل schedule قد يصل متأخرًا خارج نافذة 12 AM،
+          # فينجح بلا إرسال ويترك last_report_day قديمًا. لا يمنع هذا التشغيلُ
+          # تقريرَ اليوم؛ الحاجز الحقيقي هو last_report_day أعلاه، مع فاصل
+          # 5 دقائق فقط بين محاولات dispatch لمنع التكرار «لا حظر 20 ساعة».
           if runs:
               last = max(datetime.datetime.fromisoformat(r["created_at"].replace("Z", "+00:00"))
                          for r in runs)
-              age_h = (now - last).total_seconds() / 3600
-              if age_h < 20:
-                  print(f"⏭ آخر تشغيل تقرير منذ {age_h:.1f} ساعة (<20) — تخطٍّ")
+              age_min = (now - last).total_seconds() / 60
+              if age_min < 5:
+                  print(f"⏭ آخر محاولة تقرير منذ {age_min:.1f} دقيقة (<5) — تخطٍّ مؤقت")
                   raise SystemExit(0)
           dispatch("nw-bot-4h-report.yml")
           PY
