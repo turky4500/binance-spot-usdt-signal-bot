@@ -381,10 +381,16 @@
       "last_entry_price": 0.0
     },
     "BABABUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 103.96,
+        "entry_time": 1794283200000,
+        "signal_bar_time": 1794268800000,
+        "signal_price": 103.38,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794268800000,
+      "last_entry_price": 103.96
     },
     "BABYUSDT": {
       "position": null,
@@ -1755,10 +1761,16 @@
       "last_entry_price": 0.0
     },
     "ONEUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.001637,
+        "entry_time": 1794283200000,
+        "signal_bar_time": 1794268800000,
+        "signal_price": 0.001385,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794268800000,
+      "last_entry_price": 0.001637
     },
     "ONGUSDT": {
       "position": null,
@@ -2862,7 +2874,9 @@
     "AXLUSDT": [],
     "AXSUSDT": [],
     "AXTIBUSDT": [],
-    "BABABUSDT": [],
+    "BABABUSDT": [
+      1794268800000
+    ],
     "BABYUSDT": [],
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
@@ -3091,7 +3105,9 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [],
+    "ONEUSDT": [
+      1794268800000
+    ],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -3102,9 +3118,7 @@
     "ORCLBUSDT": [],
     "ORDIUSDT": [],
     "OSMOUSDT": [],
-    "PARTIUSDT": [
-      1794254400000
-    ],
+    "PARTIUSDT": [],
     "PAXGUSDT": [],
     "PENDLEUSDT": [],
     "PENGUUSDT": [],
@@ -3440,9 +3454,7 @@
     "GIGGLEUSDT": [],
     "GLMRUSDT": [],
     "GLMUSDT": [],
-    "GLWBUSDT": [
-      1794254400000
-    ],
+    "GLWBUSDT": [],
     "GMEBUSDT": [],
     "GMTUSDT": [],
     "GMXUSDT": [],
@@ -3456,7 +3468,9 @@
     "GTCUSDT": [],
     "GUNUSDT": [],
     "GUSDT": [],
-    "HAEDALUSDT": [],
+    "HAEDALUSDT": [
+      1794268800000
+    ],
     "HBARUSDT": [],
     "HEIUSDT": [],
     "HEMIUSDT": [],
@@ -3494,9 +3508,7 @@
     "KATUSDT": [],
     "KAVAUSDT": [],
     "KERNELUSDT": [],
-    "KGSTUSDT": [
-      1794254400000
-    ],
+    "KGSTUSDT": [],
     "KITEUSDT": [],
     "KMNOUSDT": [],
     "KNCUSDT": [],
@@ -3684,9 +3696,7 @@
     "TRUMPUSDT": [],
     "TRXUSDT": [],
     "TSLABUSDT": [],
-    "TSMBUSDT": [
-      1794254400000
-    ],
+    "TSMBUSDT": [],
     "TSTUSDT": [],
     "TURBOUSDT": [],
     "TURTLEUSDT": [],
@@ -3804,7 +3814,9 @@
     "AXLUSDT": [],
     "AXSUSDT": [],
     "AXTIBUSDT": [],
-    "BABABUSDT": [],
+    "BABABUSDT": [
+      1794268800000
+    ],
     "BABYUSDT": [],
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
@@ -4033,7 +4045,9 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [],
+    "ONEUSDT": [
+      1794268800000
+    ],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -4687,11 +4701,13 @@
     "buy:SIGNUSDT:1794182400000:1",
     "exit:SIGNUSDT:1794225600000",
     "buy:SOXSBUSDT:1794225600000:1",
-    "buy:ACTUSDT:1794240000000:1"
+    "buy:ACTUSDT:1794240000000:1",
+    "buy:BABABUSDT:1794268800000:1",
+    "buy:ONEUSDT:1794268800000:1"
   ],
-  "cycles": 7,
-  "messages_sent": 4,
-  "last_cycle_ms": 1794289308116,
+  "cycles": 8,
+  "messages_sent": 6,
+  "last_cycle_ms": 1794297819973,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-09",
     "reported_trade_keys": [
