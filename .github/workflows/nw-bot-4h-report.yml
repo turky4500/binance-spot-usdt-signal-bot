@@ -8,7 +8,11 @@ name: NW 4H Daily Report
 
 on:
   schedule:
+    # 21:10 UTC = 00:10 AM الرياض. نسخ احتياطية داخل نافذة التقرير نفسها؛
+    # last_report_day في data/state_nw4h.json يمنع أي تقرير مكرّر.
     - cron: '10 21 * * *'
+    - cron: '15 21 * * *'
+    - cron: '18 21 * * *'
   workflow_dispatch:
 
 permissions:
