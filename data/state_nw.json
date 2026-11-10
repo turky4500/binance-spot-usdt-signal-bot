@@ -368,11 +368,11 @@
         "entry_time": 1794175200000,
         "signal_bar_time": 1794171600000,
         "signal_price": 44.74,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1794326400000,
-      "last_entry_price": 43.68
+      "entry_count": 3,
+      "last_buy_bar": 1794340800000,
+      "last_entry_price": 43.29
     },
     "DCRUSDT": {
       "position": null,
@@ -4400,11 +4400,9 @@
     "CVCUSDT": [],
     "CVXUSDT": [],
     "CYBERUSDT": [],
-    "CYPHBUSDT": [
-      1794337200000
-    ],
+    "CYPHBUSDT": [],
     "DASHUSDT": [
-      1794337200000
+      1794340800000
     ],
     "DCRUSDT": [],
     "DELLBUSDT": [],
@@ -4613,9 +4611,7 @@
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
-    "PROMUSDT": [
-      1794337200000
-    ],
+    "PROMUSDT": [],
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -4635,9 +4631,7 @@
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [
-      1794337200000
-    ],
+    "REQUSDT": [],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -4651,9 +4645,7 @@
     "RSRUSDT": [],
     "RUNEUSDT": [],
     "RVNUSDT": [],
-    "RWUSDUSDT": [
-      1794337200000
-    ],
+    "RWUSDUSDT": [],
     "SAGAUSDT": [],
     "SAHARAUSDT": [],
     "SANDUSDT": [],
@@ -4837,9 +4829,7 @@
     "AUSDT": [],
     "AVAUSDT": [],
     "AVAXUSDT": [],
-    "AVGOBUSDT": [
-      1794337200000
-    ],
+    "AVGOBUSDT": [],
     "AVNTUSDT": [],
     "AWEUSDT": [],
     "AXLUSDT": [],
@@ -5020,7 +5010,7 @@
     "KAVAUSDT": [],
     "KERNELUSDT": [],
     "KGSTUSDT": [
-      1794337200000
+      1794340800000
     ],
     "KITEUSDT": [],
     "KMNOUSDT": [],
@@ -5146,7 +5136,9 @@
     "REUSDT": [],
     "REZUSDT": [],
     "RIFUSDT": [],
-    "RKLBBUSDT": [],
+    "RKLBBUSDT": [
+      1794340800000
+    ],
     "RLCUSDT": [],
     "ROBOUSDT": [],
     "RONINUSDT": [],
@@ -5614,7 +5606,8 @@
     ],
     "DASHUSDT": [
       1794171600000,
-      1794326400000
+      1794326400000,
+      1794340800000
     ],
     "DCRUSDT": [],
     "DELLBUSDT": [],
@@ -7178,7 +7171,6 @@
     "牛来USDT": []
   },
   "sent": [
-    "buy:CVCUSDT:1794171600000:1",
     "buy:DASHUSDT:1794171600000:1",
     "buy:DEXEUSDT:1794171600000:1",
     "buy:DIAUSDT:1794171600000:1",
@@ -7577,11 +7569,12 @@
     "buy:QIUSDT:1794330000000:1",
     "buy:REDUSDT:1794330000000:1",
     "buy:MRNABUSDT:1794333600000:2",
-    "buy:CYPHBUSDT:1794337200000:3"
+    "buy:CYPHBUSDT:1794337200000:3",
+    "buy:DASHUSDT:1794340800000:3"
   ],
-  "cycles": 224,
-  "messages_sent": 603,
-  "last_cycle_ms": 1794346408693,
+  "cycles": 225,
+  "messages_sent": 604,
+  "last_cycle_ms": 1794348209620,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
