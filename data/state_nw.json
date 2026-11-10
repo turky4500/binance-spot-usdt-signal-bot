@@ -891,14 +891,8 @@
       "last_entry_price": 0.0
     },
     "ONEUSDT": {
-      "position": {
-        "entry_price": 0.001805,
-        "entry_time": 1794157200000,
-        "signal_bar_time": 1794153600000,
-        "signal_price": 0.001743,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794153600000,
       "last_entry_price": 0.001805
     },
@@ -1112,11 +1106,11 @@
         "entry_time": 1794286800000,
         "signal_bar_time": 1794283200000,
         "signal_price": 0.00165,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794283200000,
-      "last_entry_price": 0.001656
+      "entry_count": 2,
+      "last_buy_bar": 1794294000000,
+      "last_entry_price": 0.001639
     },
     "RVNUSDT": {
       "position": {
@@ -4258,7 +4252,9 @@
     "HOTUSDT": [],
     "HPEBUSDT": [],
     "HUMAUSDT": [],
-    "HYPERUSDT": [],
+    "HYPERUSDT": [
+      1794294000000
+    ],
     "HYPEUSDT": [],
     "IBMBUSDT": [],
     "ICPUSDT": [],
@@ -4418,7 +4414,9 @@
     "RONINUSDT": [],
     "ROSEUSDT": [],
     "RPLUSDT": [],
-    "RSRUSDT": [],
+    "RSRUSDT": [
+      1794294000000
+    ],
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
@@ -4856,13 +4854,13 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [],
+    "ONEUSDT": [
+      1794294000000
+    ],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
-    "OPGUSDT": [
-      1794290400000
-    ],
+    "OPGUSDT": [],
     "OPNUSDT": [],
     "OPUSDT": [],
     "ORCAUSDT": [],
@@ -4895,7 +4893,9 @@
     "PYPLBUSDT": [],
     "PYTHUSDT": [],
     "QCOMBUSDT": [],
-    "QIUSDT": [],
+    "QIUSDT": [
+      1794294000000
+    ],
     "QKCUSDT": [],
     "QNTBUSDT": [],
     "QNTUSDT": [],
@@ -5868,7 +5868,8 @@
       1794171600000
     ],
     "RSRUSDT": [
-      1794283200000
+      1794283200000,
+      1794294000000
     ],
     "RUNEUSDT": [],
     "RVNUSDT": [
@@ -6430,7 +6431,9 @@
     "HOTUSDT": [],
     "HPEBUSDT": [],
     "HUMAUSDT": [],
-    "HYPERUSDT": [],
+    "HYPERUSDT": [
+      1794294000000
+    ],
     "HYPEUSDT": [],
     "IBMBUSDT": [],
     "ICPUSDT": [],
@@ -6779,8 +6782,6 @@
     "牛来USDT": []
   },
   "sent": [
-    "buy:HMSTRUSDT:1794153600000:2",
-    "buy:HOMEUSDT:1794153600000:1",
     "buy:ONEUSDT:1794153600000:1",
     "buy:ACMUSDT:1794157200000:1",
     "buy:FRAXUSDT:1794157200000:1",
@@ -7178,11 +7179,13 @@
     "buy:GNSUSDT:1794283200000:3",
     "buy:RSRUSDT:1794283200000:1",
     "buy:NXPCUSDT:1794286800000:2",
-    "exit:QIUSDT:1794286800000"
+    "exit:QIUSDT:1794286800000",
+    "exit:ONEUSDT:1794294000000",
+    "buy:RSRUSDT:1794294000000:2"
   ],
-  "cycles": 197,
-  "messages_sent": 526,
-  "last_cycle_ms": 1794299610641,
+  "cycles": 198,
+  "messages_sent": 528,
+  "last_cycle_ms": 1794301414241,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
