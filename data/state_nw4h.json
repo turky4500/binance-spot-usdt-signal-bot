@@ -1539,10 +1539,16 @@
       "last_entry_price": 0.0
     },
     "MBLUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.000565,
+        "entry_time": 1794384000000,
+        "signal_bar_time": 1794369600000,
+        "signal_price": 0.000546,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794369600000,
+      "last_entry_price": 0.000565
     },
     "MEGAUSDT": {
       "position": null,
@@ -2661,10 +2667,16 @@
       "last_entry_price": 0.0
     },
     "WINUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 6.289e-05,
+        "entry_time": 1794384000000,
+        "signal_bar_time": 1794369600000,
+        "signal_price": 6.23e-05,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794369600000,
+      "last_entry_price": 6.289e-05
     },
     "WLDUSDT": {
       "position": null,
@@ -3093,7 +3105,9 @@
     "MANTRAUSDT": [],
     "MASKUSDT": [],
     "MAVUSDT": [],
-    "MBLUSDT": [],
+    "MBLUSDT": [
+      1794369600000
+    ],
     "MEGAUSDT": [],
     "MEMEUSDT": [],
     "METABUSDT": [],
@@ -3220,9 +3234,7 @@
     "SOMIUSDT": [],
     "SOPHUSDT": [],
     "SOXLBUSDT": [],
-    "SOXSBUSDT": [
-      1794355200000
-    ],
+    "SOXSBUSDT": [],
     "SPCXBUSDT": [],
     "SPELLUSDT": [],
     "SPKUSDT": [],
@@ -3279,7 +3291,9 @@
     "WCTUSDT": [],
     "WDCBUSDT": [],
     "WIFUSDT": [],
-    "WINUSDT": [],
+    "WINUSDT": [
+      1794369600000
+    ],
     "WLDUSDT": [],
     "WLFIUSDT": [],
     "WOOUSDT": [],
@@ -3338,12 +3352,8 @@
     "ALLOUSDT": [],
     "ALPINEUSDT": [],
     "ALTUSDT": [],
-    "AMATBUSDT": [
-      1794355200000
-    ],
-    "AMDBUSDT": [
-      1794355200000
-    ],
+    "AMATBUSDT": [],
+    "AMDBUSDT": [],
     "AMPUSDT": [],
     "AMZNBUSDT": [],
     "ANIMEUSDT": [],
@@ -3357,9 +3367,7 @@
     "ARMBUSDT": [],
     "ARPAUSDT": [],
     "ARUSDT": [],
-    "ASMLBUSDT": [
-      1794355200000
-    ],
+    "ASMLBUSDT": [],
     "ASRUSDT": [],
     "ASTERUSDT": [],
     "ASTRUSDT": [],
@@ -3432,9 +3440,7 @@
     "CRCLBUSDT": [],
     "CRDOBUSDT": [],
     "CRVUSDT": [],
-    "CRWVBUSDT": [
-      1794355200000
-    ],
+    "CRWVBUSDT": [],
     "CTKUSDT": [],
     "CTSIUSDT": [],
     "CUSDT": [],
@@ -3464,9 +3470,7 @@
     "ENJUSDT": [],
     "ENSOUSDT": [],
     "ENSUSDT": [],
-    "ERAUSDT": [
-      1794355200000
-    ],
+    "ERAUSDT": [],
     "ESPUSDT": [],
     "ETCUSDT": [],
     "ETHFIUSDT": [],
@@ -3645,14 +3649,10 @@
     "PUNDIXUSDT": [],
     "PYPLBUSDT": [],
     "PYTHUSDT": [],
-    "QCOMBUSDT": [
-      1794355200000
-    ],
+    "QCOMBUSDT": [],
     "QIUSDT": [],
     "QKCUSDT": [],
-    "QNTBUSDT": [
-      1794355200000
-    ],
+    "QNTBUSDT": [],
     "QNTUSDT": [],
     "QQQBUSDT": [],
     "QTUMUSDT": [],
@@ -3693,9 +3693,7 @@
     "SKYUSDT": [],
     "SLPUSDT": [],
     "SMCIBUSDT": [],
-    "SMHBUSDT": [
-      1794355200000
-    ],
+    "SMHBUSDT": [],
     "SNDKBUSDT": [],
     "SNXUSDT": [],
     "SNXXBUSDT": [],
@@ -3738,9 +3736,7 @@
     "TRUMPUSDT": [],
     "TRXUSDT": [],
     "TSLABUSDT": [],
-    "TSMBUSDT": [
-      1794355200000
-    ],
+    "TSMBUSDT": [],
     "TSTUSDT": [],
     "TURBOUSDT": [],
     "TURTLEUSDT": [],
@@ -4055,7 +4051,9 @@
     "MANTRAUSDT": [],
     "MASKUSDT": [],
     "MAVUSDT": [],
-    "MBLUSDT": [],
+    "MBLUSDT": [
+      1794369600000
+    ],
     "MEGAUSDT": [],
     "MEMEUSDT": [],
     "METABUSDT": [],
@@ -4247,7 +4245,9 @@
     "WCTUSDT": [],
     "WDCBUSDT": [],
     "WIFUSDT": [],
-    "WINUSDT": [],
+    "WINUSDT": [
+      1794369600000
+    ],
     "WLDUSDT": [],
     "WLFIUSDT": [],
     "WOOUSDT": [],
@@ -4771,11 +4771,13 @@
     "buy:ETHUSDT:1794312000000:1",
     "buy:GNOUSDT:1794312000000:1",
     "buy:WBETHUSDT:1794312000000:1",
-    "buy:ZECUSDT:1794326400000:1"
+    "buy:ZECUSDT:1794326400000:1",
+    "buy:MBLUSDT:1794369600000:1",
+    "buy:WINUSDT:1794369600000:1"
   ],
-  "cycles": 15,
-  "messages_sent": 11,
-  "last_cycle_ms": 1794384213658,
+  "cycles": 16,
+  "messages_sent": 13,
+  "last_cycle_ms": 1794398610159,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-10",
     "reported_trade_keys": [
