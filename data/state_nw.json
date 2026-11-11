@@ -3615,14 +3615,8 @@
       "last_entry_price": 0.0
     },
     "SHAZBUSDT": {
-      "position": {
-        "entry_price": 23.96,
-        "entry_time": 1794319200000,
-        "signal_bar_time": 1794315600000,
-        "signal_price": 22.28,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794315600000,
       "last_entry_price": 23.96
     },
@@ -4976,9 +4970,7 @@
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
-    "GRAMUSDT": [
-      1794398400000
-    ],
+    "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
     "GTCUSDT": [],
@@ -5027,7 +5019,9 @@
     "KAVAUSDT": [],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
-    "KITEUSDT": [],
+    "KITEUSDT": [
+      1794402000000
+    ],
     "KMNOUSDT": [],
     "KNCUSDT": [],
     "KORUBUSDT": [],
@@ -5172,7 +5166,9 @@
     "SEIUSDT": [],
     "SENTUSDT": [],
     "SFPUSDT": [],
-    "SHAZBUSDT": [],
+    "SHAZBUSDT": [
+      1794402000000
+    ],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
     "SIGNUSDT": [],
@@ -7223,7 +7219,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:ETHUSDT:1794171600000:1",
     "buy:EULUSDT:1794171600000:1",
     "buy:FETUSDT:1794171600000:1",
     "buy:FIDAUSDT:1794171600000:1",
@@ -7622,11 +7617,12 @@
     "exit:GNOUSDT:1794380400000",
     "exit:GNSUSDT:1794384000000",
     "buy:KGSTUSDT:1794391200000:1",
-    "exit:NXPCUSDT:1794391200000"
+    "exit:NXPCUSDT:1794391200000",
+    "exit:SHAZBUSDT:1794402000000"
   ],
-  "cycles": 259,
-  "messages_sent": 618,
-  "last_cycle_ms": 1794407634294,
+  "cycles": 260,
+  "messages_sent": 619,
+  "last_cycle_ms": 1794409413310,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
