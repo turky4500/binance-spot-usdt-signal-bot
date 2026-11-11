@@ -2985,10 +2985,16 @@
       "last_entry_price": 0.000369
     },
     "METABUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1793970000000,
-      "last_entry_price": 617.08
+      "position": {
+        "entry_price": 630.69,
+        "entry_time": 1794430800000,
+        "signal_bar_time": 1794427200000,
+        "signal_price": 629.13,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794427200000,
+      "last_entry_price": 630.69
     },
     "METUSDT": {
       "position": null,
@@ -3141,14 +3147,8 @@
       "last_entry_price": 0.0
     },
     "NFLXBUSDT": {
-      "position": {
-        "entry_price": 62.85,
-        "entry_time": 1794322800000,
-        "signal_bar_time": 1794319200000,
-        "signal_price": 62.81,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794319200000,
       "last_entry_price": 62.85
     },
@@ -3674,11 +3674,11 @@
         "entry_time": 1794319200000,
         "signal_bar_time": 1794315600000,
         "signal_price": 137.75,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1794405600000,
-      "last_entry_price": 144.36
+      "entry_count": 3,
+      "last_buy_bar": 1794427200000,
+      "last_entry_price": 140.23
     },
     "SPELLUSDT": {
       "position": null,
@@ -4405,9 +4405,7 @@
     "GNOUSDT": [],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
-    "GPROBUSDT": [
-      1794423600000
-    ],
+    "GPROBUSDT": [],
     "GPSUSDT": [],
     "GRAMUSDT": [],
     "GRTUSDT": [],
@@ -4490,7 +4488,9 @@
     "MDBBUSDT": [],
     "MEGAUSDT": [],
     "MEMEUSDT": [],
-    "METABUSDT": [],
+    "METABUSDT": [
+      1794427200000
+    ],
     "METISUSDT": [],
     "METUSDT": [],
     "MEUSDT": [],
@@ -4622,7 +4622,9 @@
     "SOPHUSDT": [],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
-    "SPCXBUSDT": [],
+    "SPCXBUSDT": [
+      1794427200000
+    ],
     "SPELLUSDT": [],
     "SPKUSDT": [],
     "SPYBUSDT": [],
@@ -5019,7 +5021,9 @@
     "NEOUSDT": [],
     "NEWTUSDT": [],
     "NEXOUSDT": [],
-    "NFLXBUSDT": [],
+    "NFLXBUSDT": [
+      1794427200000
+    ],
     "NIGHTUSDT": [],
     "NILUSDT": [],
     "NMRUSDT": [],
@@ -5218,7 +5222,9 @@
     "币安人生USDT": [],
     "牛来USDT": [],
     "BOTBUSDT": [],
-    "BRKBBUSDT": [],
+    "BRKBBUSDT": [
+      1794427200000
+    ],
     "KSTRBUSDT": [],
     "TMFBUSDT": [],
     "VSTBUSDT": []
@@ -5901,7 +5907,9 @@
     "MEMEUSDT": [
       1794171600000
     ],
-    "METABUSDT": [],
+    "METABUSDT": [
+      1794427200000
+    ],
     "METISUSDT": [],
     "METUSDT": [],
     "MEUSDT": [
@@ -6219,7 +6227,8 @@
     ],
     "SPCXBUSDT": [
       1794315600000,
-      1794405600000
+      1794405600000,
+      1794427200000
     ],
     "SPELLUSDT": [
       1794171600000
@@ -7169,9 +7178,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:GPSUSDT:1794171600000:1",
-    "buy:GRAMUSDT:1794171600000:1",
-    "buy:GUNUSDT:1794171600000:1",
     "buy:HBARUSDT:1794171600000:1",
     "buy:HEIUSDT:1794171600000:2",
     "buy:HEMIUSDT:1794171600000:1",
@@ -7568,11 +7574,14 @@
     "exit:XLMUSDT:1794409200000",
     "exit:ASTSBUSDT:1794412800000",
     "exit:BBBUSDT:1794420000000",
-    "buy:GPROBUSDT:1794423600000:3"
+    "buy:GPROBUSDT:1794423600000:3",
+    "buy:METABUSDT:1794427200000:1",
+    "exit:NFLXBUSDT:1794427200000",
+    "buy:SPCXBUSDT:1794427200000:3"
   ],
-  "cycles": 273,
-  "messages_sent": 634,
-  "last_cycle_ms": 1794433930395,
+  "cycles": 274,
+  "messages_sent": 637,
+  "last_cycle_ms": 1794435193955,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
