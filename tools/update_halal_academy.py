@@ -214,11 +214,7 @@ def _get(session: requests.Session, url: str, **kwargs) -> requests.Response:
 
 def fetch_direct_page(session: requests.Session, page: int) -> list[dict]:
     """قناة بديلة 1: GET للصفحة نفسها (صفحات معزولة تعمل بلا تحديد معدل)."""
-    url = DIRECTORY_PAGE + f"?cpage={page}&btca_q=&_={time.time_ns()}"
-    headers = {**SITE_HEADERS, "Accept": "text/html",
-               "Cache-Control": "no-cache", "Pragma": "no-cache"}
-    text = _get(session, url, headers=headers, timeout=45).text
-    return parse_directory_html(text)
+    return parse_directory_html(_direct_html(session, page))
 
 
 def fetch_ajax_pages(pages: list[int]) -> tuple[list[dict], list[int]]:
@@ -270,6 +266,19 @@ def fetch_ajax_pages(pages: list[int]) -> tuple[list[dict], list[int]]:
     return out, failed
 
 
+def _extract_max_page(text: str) -> int:
+    nums = [int(x) for x in re.findall(r"cpage=(\d+)|data-page=\"(\d+)\"", text)
+            for x in x if x]
+    return max(nums) if nums else 0
+
+
+def _direct_html(session: requests.Session, page: int) -> str:
+    url = DIRECTORY_PAGE + f"?cpage={page}&btca_q=&_={time.time_ns()}"
+    headers = {**SITE_HEADERS, "Accept": "text/html",
+               "Cache-Control": "no-cache", "Pragma": "no-cache"}
+    return _get(session, url, headers=headers, timeout=45).text
+
+
 def fetch_directory(session: requests.Session) -> list[dict]:
     """كل صفحات الجدول عبر Jina، مع قناتي بدل، ورفض أي نقص قبل الكتابة."""
     def jina(page: int) -> tuple[str, list[dict]]:
@@ -282,10 +291,19 @@ def fetch_directory(session: requests.Session) -> list[dict]:
         return text, parse_jina_rows(text)
 
     first_text, first_rows = jina(1)
-    pages = [int(x) for x in re.findall(r"cpage=(\d+)", first_text)]
-    max_page = max(pages) if pages else 77
+    max_page = _extract_max_page(first_text)
+    # Jina قد يُعيد نسخة page 1 بلا روابط ترقيم؛ صفحة GET الأصلية موثوقة لذلك
+    if not (1 < max_page <= 200) or not first_rows:
+        try:
+            raw = _direct_html(session, 1)
+            max_page = _extract_max_page(raw) or max_page
+            if not first_rows:
+                first_rows = parse_directory_html(raw)
+                print("  Jina page 1 فارغة — استُخدم GET", flush=True)
+        except Exception as exc:
+            print(f"  GET page 1 failed: {exc}", flush=True)
     if not (1 < max_page <= 200):
-        raise RuntimeError(f"pagination غير منطقي: {max_page}")
+        raise RuntimeError(f"تعذّر تحديد عدد الصفحات: {max_page}")
     rows = list(first_rows)
     missing: list[int] = []
     for page in range(2, max_page + 1):

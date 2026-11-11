@@ -298,6 +298,31 @@ def test_directory_is_complete_or_aborts_without_writing(monkeypatch):
     assert len(rows) == 770, len(rows)
 
 
+def test_pagination_falls_back_to_get_when_jina_omits_it(monkeypatch):
+    """Jina أحيانًا يُعيد page 1 بلا روابط ترقيم ⇒ لا يجوز إلغاء التحديث."""
+    import requests
+
+    class FakeResp:
+        def __init__(self, text):
+            self.text = text
+            self.status_code = 200
+
+    def no_head(page):
+        return _jina_markdown(page).replace("cpage=77\n", "", 1)
+
+    monkeypatch.setattr(U, "_get",
+                        lambda session, url, **kw: FakeResp(
+                            no_head(int(re.search(r"cpage=(\d+)", url).group(1))
+                                    if "cpage=" in url else 1)))
+    item = ('<div class="crypto-item"><p class="crypto-symbol">P1</p>'
+            '<div class="crypto-ruling">حلال</div></div>')
+    monkeypatch.setattr(U, "_direct_html",
+                        lambda session, page: 'data-page="77"' + item * 10)
+    monkeypatch.setattr(U.time, "sleep", lambda *a, **k: None)
+    rows = U.fetch_directory(requests.Session())
+    assert len(rows) == 770, len(rows)
+
+
 def test_publish_does_not_commit_identical_rulings(monkeypatch):
     """كل 6 ساعات يتحقق الموقع، لكن لا كومِت لملف الأحكام إن لم يتغيّر حكم."""
     current = {"AAA": 0}
