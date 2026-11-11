@@ -4488,9 +4488,7 @@
     "MDBBUSDT": [],
     "MEGAUSDT": [],
     "MEMEUSDT": [],
-    "METABUSDT": [
-      1794427200000
-    ],
+    "METABUSDT": [],
     "METISUSDT": [],
     "METUSDT": [],
     "MEUSDT": [],
@@ -4523,7 +4521,9 @@
     "NOKBUSDT": [],
     "NOMUSDT": [],
     "NOTUSDT": [],
-    "NVDABUSDT": [],
+    "NVDABUSDT": [
+      1794430800000
+    ],
     "NXPCUSDT": [],
     "OGNUSDT": [],
     "OGUSDT": [],
@@ -4532,7 +4532,9 @@
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
-    "OPGUSDT": [],
+    "OPGUSDT": [
+      1794430800000
+    ],
     "OPNUSDT": [],
     "OPUSDT": [],
     "ORCAUSDT": [],
@@ -4546,7 +4548,9 @@
     "PENGBUSDT": [],
     "PENGUUSDT": [],
     "PEOPLEUSDT": [],
-    "PEPEUSDT": [],
+    "PEPEUSDT": [
+      1794430800000
+    ],
     "PHAUSDT": [],
     "PIXELUSDT": [],
     "PLTRBUSDT": [],
@@ -4622,9 +4626,7 @@
     "SOPHUSDT": [],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
-    "SPCXBUSDT": [
-      1794427200000
-    ],
+    "SPCXBUSDT": [],
     "SPELLUSDT": [],
     "SPKUSDT": [],
     "SPYBUSDT": [],
@@ -5021,10 +5023,10 @@
     "NEOUSDT": [],
     "NEWTUSDT": [],
     "NEXOUSDT": [],
-    "NFLXBUSDT": [
-      1794427200000
+    "NFLXBUSDT": [],
+    "NIGHTUSDT": [
+      1794430800000
     ],
-    "NIGHTUSDT": [],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -5222,9 +5224,7 @@
     "币安人生USDT": [],
     "牛来USDT": [],
     "BOTBUSDT": [],
-    "BRKBBUSDT": [
-      1794427200000
-    ],
+    "BRKBBUSDT": [],
     "KSTRBUSDT": [],
     "TMFBUSDT": [],
     "VSTBUSDT": []
@@ -6900,7 +6900,8 @@
       1794189600000,
       1794193200000,
       1794315600000,
-      1794319200000
+      1794319200000,
+      1794430800000
     ],
     "NXPCUSDT": [],
     "OGNUSDT": [],
@@ -6917,7 +6918,9 @@
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
-    "OPGUSDT": [],
+    "OPGUSDT": [
+      1794430800000
+    ],
     "OPNUSDT": [],
     "OPUSDT": [],
     "ORCAUSDT": [],
@@ -6942,7 +6945,8 @@
     "PENGUUSDT": [],
     "PEOPLEUSDT": [],
     "PEPEUSDT": [
-      1794384000000
+      1794384000000,
+      1794430800000
     ],
     "PHAUSDT": [],
     "PIXELUSDT": [],
@@ -7579,9 +7583,9 @@
     "exit:NFLXBUSDT:1794427200000",
     "buy:SPCXBUSDT:1794427200000:3"
   ],
-  "cycles": 274,
+  "cycles": 275,
   "messages_sent": 637,
-  "last_cycle_ms": 1794435193955,
+  "last_cycle_ms": 1794438210516,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
