@@ -4976,7 +4976,9 @@
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
-    "GRAMUSDT": [],
+    "GRAMUSDT": [
+      1794398400000
+    ],
     "GRTUSDT": [],
     "GSBUSDT": [],
     "GTCUSDT": [],
@@ -5206,9 +5208,7 @@
     "SUPERUSDT": [],
     "SUSDT": [],
     "SUSHIUSDT": [],
-    "SXTUSDT": [
-      1794394800000
-    ],
+    "SXTUSDT": [],
     "SYNUSDT": [],
     "SYRUPUSDT": [],
     "TAOUSDT": [],
@@ -7624,9 +7624,9 @@
     "buy:KGSTUSDT:1794391200000:1",
     "exit:NXPCUSDT:1794391200000"
   ],
-  "cycles": 256,
+  "cycles": 257,
   "messages_sent": 618,
-  "last_cycle_ms": 1794404012574,
+  "last_cycle_ms": 1794405811616,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
