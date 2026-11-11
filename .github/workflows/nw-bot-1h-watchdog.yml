@@ -1,0 +1,123 @@
+name: NW 1H Bot — Health Watchdog
+
+# حارس صحة «النظام السادس / Nadaraya 1H» فقط — لا يمسّ أي نظام آخر.
+#
+# سبب إنشائه (عطل 2026-11-09): توقّفت جدولة GitHub وحدث workflow_run معًا
+# ~9 ساعات (07:03–15:59Z) بينما ظلّ النبض الخارجي Signal Bot Cron يعمل،
+# فلم يُطلق nw-bot.yml إطلاقًا. وبما أن الإشارة تُقرأ فقط على bars_ago == 1،
+# فإن أي دورة ضائعة تُفقد رسائلها نهائيًا ولا يمكن إعادة إرسالها لاحقًا.
+#
+# هذا الحارس لا يُعيد الرسائل المفقودة ولا يُرسل أي رسالة تيليجرام؛ وظيفته
+# الوحيدة: إن صمتت حالة 1H أكثر من 75 دقيقة ⇒ يُطلق nw-bot.yml فورًا.
+# يتغذّى من نجاح Signal Bot Cron (نبض خارجي موثوق) + جدولة كل 10 دقائق
+# كطبقة ثانية، حتى لو تعطّل أحد المسارين يبقى الآخر.
+#
+# الإيقاف: NW_ENABLED=false أو Disable workflow.
+
+on:
+  workflow_run:
+    workflows: ["Signal Bot Cron"]
+    types: [completed]
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: nw-1h-watchdog
+  cancel-in-progress: true
+
+jobs:
+  check:
+    if: ${{ vars.NW_ENABLED != 'false' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check NW 1H state freshness and recover
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64, datetime, json, os, time, urllib.error, urllib.request
+
+          token = os.environ["GH_TOKEN"]
+          repo = os.environ["REPO"]
+          H = {
+              "Authorization": f"Bearer {token}",
+              "Accept": "application/vnd.github+json",
+              "X-GitHub-Api-Version": "2022-11-28",
+              "User-Agent": "nw-1h-watchdog",
+          }
+          base = f"https://api.github.com/repos/{repo}"
+          MAX_AGE_MIN = 75          # الدورة كل ~30 د ⇒ 75 د تعني دورتين ضائعتين على الأقل
+          FRESH_RUN_MIN = 30        # مهمة أقدم من هذا تُعدّ زومبي ولا تمنع الاستعادة
+
+          def get(path):
+              req = urllib.request.Request(base + path, headers=H)
+              last = None
+              for attempt in range(1, 4):
+                  try:
+                      with urllib.request.urlopen(req, timeout=20) as r:
+                          return json.load(r)
+                  except Exception as e:
+                      last = e
+                      print(f"::warning::محاولة {attempt}/3 لقراءة {path}:", e)
+                      if attempt < 3:
+                          time.sleep(attempt * 5)
+              raise last
+
+          now = datetime.datetime.now(datetime.timezone.utc)
+          now_ms = int(now.timestamp() * 1000)
+          try:
+              doc = get("/contents/data/state_nw.json?ref=main")
+              state = json.loads(base64.b64decode(doc["content"]).decode("utf-8"))
+              last_ms = int(state.get("last_cycle_ms") or 0)
+          except Exception as e:
+              print("::warning::تعذّر قراءة حالة 1H — لا استعادة دون بيانات:", e)
+              raise SystemExit(0)
+
+          age = (now_ms - last_ms) / 60000.0
+          stamp = datetime.datetime.fromtimestamp(last_ms / 1000, datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%SZ") if last_ms else "—"
+          if age <= MAX_AGE_MIN:
+              print(f"✅ حالة 1H طازجة: آخر دورة {stamp} (عمر {age:.1f} دقيقة) — لا إجراء")
+              raise SystemExit(0)
+          print(f"⚠️ صمت نظام 1H: آخر دورة {stamp} (عمر {age:.1f} دقيقة > {MAX_AGE_MIN})")
+
+          try:
+              runs = get("/actions/workflows/nw-bot.yml/runs?per_page=20")["workflow_runs"]
+          except Exception as e:
+              print("::warning::تعذّر فحص التشغيلات النشطة — نُطلق مع الاعتماد على حاجز nw-bot.yml:", e)
+              runs = []
+
+          def fresh(r):
+              ts = r.get("run_started_at") or r.get("created_at") or ""
+              try:
+                  return (now - datetime.datetime.fromisoformat(ts.replace("Z", "+00:00"))).total_seconds() / 60 < FRESH_RUN_MIN
+              except Exception:
+                  return True
+
+          active = [r for r in runs
+                    if r.get("status") in ("queued", "in_progress", "pending", "waiting", "requested")
+                    and fresh(r)]
+          if active:
+              print("⏭ يوجد تشغيل 1H نشط حديثًا — لا استعادة:", [(r["id"], r["status"]) for r in active])
+              raise SystemExit(0)
+
+          body = b'{"ref":"main"}'
+          req = urllib.request.Request(
+              base + "/actions/workflows/nw-bot.yml/dispatches",
+              data=body, method="POST",
+              headers={**H, "Content-Type": "application/json"},
+          )
+          try:
+              with urllib.request.urlopen(req, timeout=20) as r:
+                  print("🚀 استعادة نُفّذت: تم إطلاق nw-bot.yml — HTTP", r.status)
+          except urllib.error.HTTPError as e:
+              print("::warning::فشل إطلاق nw-bot.yml:", e.code, e.read().decode()[:300])
+              raise SystemExit(0)
+          PY

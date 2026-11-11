@@ -43,7 +43,7 @@ jobs:
             exit 0
           fi
           python3 - <<'PY'
-          import json, os, urllib.request, urllib.error, datetime
+          import datetime, json, os, time, urllib.request, urllib.error, datetime
           token = os.environ["GH_TOKEN"]
           repo = os.environ["REPO"]
           H = {"Authorization": f"Bearer {token}",
@@ -53,15 +53,34 @@ jobs:
           base = f"https://api.github.com/repos/{repo}"
           def get(path):
               req = urllib.request.Request(base + path, headers=H)
-              with urllib.request.urlopen(req, timeout=20) as r:
-                  return json.load(r)
+              last = None
+              for attempt in range(1, 4):
+                  try:
+                      with urllib.request.urlopen(req, timeout=20) as r:
+                          return json.load(r)
+                  except Exception as e:
+                      last = e
+                      print(f"::warning::محاولة {attempt}/3 لقراءة {path}:", e)
+                      if attempt < 3:
+                          time.sleep(attempt * 5)
+              raise last
           try:
               runs = get("/actions/workflows/nw-bot.yml/runs?per_page=20")["workflow_runs"]
           except Exception as e:
-              print("::error::تعذّر قراءة تشغيلات 1H:", e)
-              raise SystemExit(1)
+              # عطل GitHub عابر لا يُسقط المُشغّل؛ النبض التالي بعد ~5 دقائق يعيد المحاولة.
+              print("::warning::تعذّر قراءة تشغيلات 1H — تخطٍّ:", e)
+              raise SystemExit(0)
+          now = datetime.datetime.now(datetime.timezone.utc)
+          def is_fresh(r):
+              ts = r.get("run_started_at") or r.get("created_at") or ""
+              try:
+                  age = (now - datetime.datetime.fromisoformat(ts.replace("Z", "+00:00"))).total_seconds() / 60
+              except Exception:
+                  return True
+              return age < 30
           active = [r for r in runs
-                    if r.get("status") in ("queued", "in_progress", "pending", "waiting", "requested")]
+                    if r.get("status") in ("queued", "in_progress", "pending", "waiting", "requested")
+                    and is_fresh(r)]
           if active:
               print("⏭ يوجد تشغيل 1H نشط:", [(r["id"], r["status"]) for r in active])
               raise SystemExit(0)
@@ -81,6 +100,7 @@ jobs:
               with urllib.request.urlopen(req, timeout=20) as r:
                   print("dispatch HTTP", r.status)
           except urllib.error.HTTPError as e:
-              print("::error::فشل الإرسال", e.code, e.read().decode()[:300])
-              raise SystemExit(1)
+              # عطل GitHub عابر في الإطلاق لا يُسقط المُشغّل؛ النبض التالي يعيد المحاولة.
+              print("::warning::فشل الإرسال", e.code, e.read().decode()[:300])
+              raise SystemExit(0)
           PY
