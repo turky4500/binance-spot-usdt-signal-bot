@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import json
 import pathlib
+import re
 import sys
 from datetime import datetime, timezone
 
@@ -239,6 +240,62 @@ def test_workflow_is_valid_yaml_and_single_job():
     doc, _ = _workflow()
     assert isinstance(doc, dict)
     assert len(doc["jobs"]) == 1
+
+
+def test_directory_html_parser_accepts_extra_classes_and_relative_links():
+    html = (
+        '<div class="crypto-item btca-added-article">'
+        '<div class="crypto-details"><h2 class="crypto-name">Ant</h2>'
+        '<p class="crypto-symbol">ANT</p></div>'
+        '<div class="crypto-ruling" style="color:#000">حرام</div>'
+        '<div class="crypto-links"><a class="crypto-external-link dashicons" '
+        'href="/%d9%87%d9%84-%d8%b9%d9%85%d9%84%d8%a9-ant/"></a></div></div>'
+    )
+    rows = U.parse_directory_html(html)
+    assert len(rows) == 1
+    assert rows[0]["symbol"] == "ANT" and rows[0]["label"] == "حرام"
+    assert rows[0]["article"].startswith("https://btcacademy.online/")
+
+
+def _jina_markdown(page: int, count: int = 10) -> str:
+    head = "cpage=77\n" if page == 1 else ""
+    blocks = []
+    for i in range(count):
+        sym = f"C{page}{i}"
+        blocks.append(
+            f"## {sym}\n\n{sym}\n\nحلال\n\n"
+            "[](https://btcacademy.online/x/)\n"
+        )
+    return head + "\n" + "\n".join(blocks)
+
+
+def test_directory_is_complete_or_aborts_without_writing(monkeypatch):
+    """إن أخفقت صفحة في كل القنوات ⇒ لا يُكتب meta بمعلومات ناقصة."""
+    import requests
+
+    class FakeResp:
+        def __init__(self, text):
+            self.text = text
+            self.status_code = 200
+
+    def fake_get(session, url, **kwargs):
+        m = re.search(r"cpage=(\d+)", url)
+        page = int(m.group(1)) if m else 1
+        return FakeResp("" if page in (23, 24, 25) else _jina_markdown(page))
+
+    monkeypatch.setattr(U, "_get", fake_get)
+    monkeypatch.setattr(U.time, "sleep", lambda *a, **k: None)
+    monkeypatch.setattr(U, "fetch_direct_page", lambda session, page: [])
+    monkeypatch.setattr(U, "fetch_ajax_pages", lambda pages: ([], list(pages)))
+
+    with pytest.raises(RuntimeError, match="directory incomplete"):
+        U.fetch_directory(requests.Session())
+
+    # ومع نجاح كل الصفحات ⇒ يكتمل الجدول بلا استثناء
+    monkeypatch.setattr(U, "_get", lambda session, url, **kw: FakeResp(
+        _jina_markdown(int(re.search(r"cpage=(\d+)", url).group(1)) if "cpage=" in url else 1)))
+    rows = U.fetch_directory(requests.Session())
+    assert len(rows) == 770, len(rows)
 
 
 def test_publish_does_not_commit_identical_rulings(monkeypatch):

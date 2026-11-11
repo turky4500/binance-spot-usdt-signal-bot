@@ -162,24 +162,38 @@ def parse_jina_rows(markdown: str) -> list[dict]:
     return rows
 
 
-def parse_ajax_rows(markup: str) -> list[dict]:
-    """قناة بديلة: HTML الخاص بـ admin-ajax.php عند تعذّر Jina لصفحة ما."""
+ITEM_SPLIT = re.compile(r'<div class="crypto-item[^"\'<>]*"')
+
+
+def parse_directory_html(markup: str) -> list[dict]:
+    """قناتا البدل: صفحة GET أو رد admin-ajax.php.
+
+    صنف العنصر قد يحمل كلاسات إضافية («crypto-item btca-added-article»)
+    ورابط المقال قد يكون نسبيًا، لذلك الفتح متسامح معهما.
+    """
     out: list[dict] = []
-    for block in re.split(r'<div class="crypto-item">', markup)[1:]:
+    for block in ITEM_SPLIT.split(markup)[1:]:
+        block = block[:6000]
         sym = re.search(r'<p class="crypto-symbol"[^>]*>\s*([^<]+?)\s*</p>', block)
         ruling = re.search(r'<div class="crypto-ruling"[^>]*>\s*(.*?)\s*</div>', block, re.S)
         name = re.search(r'<h2 class="crypto-name"[^>]*>\s*(.*?)\s*</h2>', block, re.S)
         link = re.search(r'<a class="crypto-external-link[^>]*href=["\']([^"\']+)', block)
         if sym and ruling:
+            article = html.unescape(link.group(1)) if link else ""
+            if article.startswith("/"):
+                article = "https://btcacademy.online" + article
             out.append(
                 {
                     "symbol": sym.group(1).strip().upper(),
                     "label": clean_html(ruling.group(1)),
                     "name": clean_html(name.group(1)) if name else "",
-                    "article": html.unescape(link.group(1)) if link else "",
+                    "article": article,
                 }
             )
     return out
+
+
+parse_ajax_rows = parse_directory_html  # توافق مع الاسم القديم
 
 
 # ────────────────────────────────────────────────────────────── الجلب
@@ -198,8 +212,66 @@ def _get(session: requests.Session, url: str, **kwargs) -> requests.Response:
     raise RuntimeError(f"fetch failed: {url[:110]}: {last}")
 
 
+def fetch_direct_page(session: requests.Session, page: int) -> list[dict]:
+    """قناة بديلة 1: GET للصفحة نفسها (صفحات معزولة تعمل بلا تحديد معدل)."""
+    url = DIRECTORY_PAGE + f"?cpage={page}&btca_q=&_={time.time_ns()}"
+    headers = {**SITE_HEADERS, "Accept": "text/html",
+               "Cache-Control": "no-cache", "Pragma": "no-cache"}
+    text = _get(session, url, headers=headers, timeout=45).text
+    return parse_directory_html(text)
+
+
+def fetch_ajax_pages(pages: list[int]) -> tuple[list[dict], list[int]]:
+    """قناة بديلة 2: admin-ajax.php مع كوكي hc_js_gate.
+
+    يُعيد (الصفوف، الصفحات التي ما زالت ناقصة) حتى لا يُعلَن الاكتمال زورًا.
+    """
+    s = requests.Session()
+    s.headers.update(SITE_HEADERS)
+    post_headers = {
+        "Referer": DIRECTORY_PAGE,
+        "Origin": "https://btcacademy.online",
+        "X-Requested-With": "XMLHttpRequest",
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+    }
+    try:
+        warm = s.post(
+            AJAX_URL,
+            data={"action": "crypto_halal_search", "search": "", "page": "1"},
+            headers=post_headers,
+            timeout=30,
+        )
+        m = re.search(r"document\.cookie=['\"]([^=]+)=([^;]+)", warm.text)
+        name, value = (m.group(1), m.group(2)) if m else ("hc_js_gate", "1")
+        s.cookies.set(name, value, domain="btcacademy.online", path="/")
+    except Exception as exc:
+        print(f"  AJAX warm-up failed: {exc}", flush=True)
+        return [], list(pages)
+    out: list[dict] = []
+    failed: list[int] = []
+    for page in pages:
+        time.sleep(1.2)
+        try:
+            resp = s.post(
+                AJAX_URL,
+                data={"action": "crypto_halal_search", "search": "", "page": str(page)},
+                headers=post_headers,
+                timeout=30,
+            )
+            got = parse_directory_html(resp.text)
+            print(f"  AJAX fallback page {page}: {len(got)} rows", flush=True)
+            if got:
+                out += got
+            else:
+                failed.append(page)
+        except Exception as exc:
+            print(f"  AJAX fallback page {page} failed: {exc}", flush=True)
+            failed.append(page)
+    return out, failed
+
+
 def fetch_directory(session: requests.Session) -> list[dict]:
-    """77 صفحة عبر Jina؛ قناة AJAX بديلة للصفحات الناقصة فقط."""
+    """كل صفحات الجدول عبر Jina، مع قناتي بدل، ورفض أي نقص قبل الكتابة."""
     def jina(page: int) -> tuple[str, list[dict]]:
         url = (
             JINA_PREFIX
@@ -217,12 +289,20 @@ def fetch_directory(session: requests.Session) -> list[dict]:
     rows = list(first_rows)
     missing: list[int] = []
     for page in range(2, max_page + 1):
-        time.sleep(0.35)
-        try:
-            _, page_rows = jina(page)
-        except Exception as exc:
-            print(f"  Jina page {page}: {exc}", flush=True)
-            page_rows = []
+        time.sleep(0.6)
+        if page % 20 == 0:
+            time.sleep(8)  # فاصل يمنع تحديد معدل Jina بعد عشرات الطلبات
+        page_rows: list[dict] = []
+        for attempt in range(2):
+            try:
+                _, page_rows = jina(page)
+            except Exception as exc:
+                print(f"  Jina page {page} attempt {attempt}: {exc}", flush=True)
+                page_rows = []
+            if page_rows:
+                break
+            if attempt == 0:
+                time.sleep(5)
         if not page_rows:
             missing.append(page)
             continue
@@ -230,54 +310,35 @@ def fetch_directory(session: requests.Session) -> list[dict]:
         if page % 10 == 0 or page == max_page:
             print(f"  directory page {page}/{max_page} — rows {len(rows)}", flush=True)
 
+    still_missing: list[int] = []
     if missing:
-        rows += fetch_missing_pages(session, missing)
-    # حماية: إن كان الجلب ناقصًا بشدة لا نكتب شيئًا (الدمج لا يحذف، لكن نفضّل الأمان)
-    if len(rows) < 700:
-        raise RuntimeError(f"directory rows={len(rows)} < 700 — إلغاء التحديث")
-    return rows
+        print(f"  Jina missed pages {missing} — قنوات البدل", flush=True)
+        for page in missing:
+            time.sleep(1.5)
+            try:
+                got = fetch_direct_page(session, page)
+            except Exception as exc:
+                print(f"  GET fallback page {page}: {exc}", flush=True)
+                got = []
+            if got:
+                print(f"  GET fallback page {page}: {len(got)} rows", flush=True)
+                rows += got
+            else:
+                still_missing.append(page)
+        if still_missing:
+            ajax_rows, ajax_failed = fetch_ajax_pages(still_missing)
+            rows += ajax_rows
+            still_missing = ajax_failed
 
-
-def fetch_missing_pages(session: requests.Session, pages: list[int]) -> list[dict]:
-    """محاولة أخيرة عبر AJAX مع كوكي hc_js_gate للصفحات التي أخفق فيها Jina."""
-    s = requests.Session()
-    s.headers.update(SITE_HEADERS)
-    ref = DIRECTORY_PAGE
-    post_headers = {
-        "Referer": ref,
-        "Origin": "https://btcacademy.online",
-        "X-Requested-With": "XMLHttpRequest",
-        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-    }
-    try:
-        warm = s.post(
-            AJAX_URL,
-            data={"action": "crypto_halal_search", "search": "", "page": "1"},
-            headers=post_headers,
-            timeout=30,
+    # لا كتابة على الإطلاق إن بقيت صفحة ناقصة: الأرقام الوصفية يجب أن تكون صادقة،
+    # والدمج وحده لا يكفي لأن meta قد يوحي بجلب 766 بينما جُلب أقل.
+    if still_missing or len(rows) < 10 * (max_page - 1) + 1:
+        raise RuntimeError(
+            f"directory incomplete: rows={len(rows)} max_page={max_page} "
+            f"missing={still_missing} — إلغاء التحديث بلا كتابة"
         )
-        m = re.search(r"document\.cookie=['\"]([^=]+)=([^;]+)", warm.text)
-        name, value = (m.group(1), m.group(2)) if m else ("hc_js_gate", "1")
-        s.cookies.set(name, value, domain="btcacademy.online", path="/")
-    except Exception as exc:
-        print(f"  AJAX warm-up failed: {exc}", flush=True)
-        return []
-    out: list[dict] = []
-    for page in pages:
-        time.sleep(1.0)
-        try:
-            resp = s.post(
-                AJAX_URL,
-                data={"action": "crypto_halal_search", "search": "", "page": str(page)},
-                headers=post_headers,
-                timeout=30,
-            )
-            got = parse_ajax_rows(resp.text)
-            print(f"  AJAX fallback page {page}: {len(got)} rows", flush=True)
-            out += got
-        except Exception as exc:
-            print(f"  AJAX fallback page {page} failed: {exc}", flush=True)
-    return out
+    print(f"  ✅ directory complete: {len(rows)} rows / {max_page} pages", flush=True)
+    return rows
 
 
 def fetch_posts(session: requests.Session) -> list[dict]:
