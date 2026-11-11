@@ -4544,7 +4544,9 @@
     "ORDIUSDT": [],
     "OSMOUSDT": [],
     "PARTIUSDT": [],
-    "PAXGUSDT": [],
+    "PAXGUSDT": [
+      1794416400000
+    ],
     "PDDBUSDT": [],
     "PENDLEUSDT": [],
     "PENGBUSDT": [],
@@ -4571,7 +4573,9 @@
     "QCOMBUSDT": [],
     "QIUSDT": [],
     "QKCUSDT": [],
-    "QNTBUSDT": [],
+    "QNTBUSDT": [
+      1794416400000
+    ],
     "QNTUSDT": [],
     "QQQBUSDT": [],
     "QTUMUSDT": [],
@@ -4625,9 +4629,7 @@
     "SOMIUSDT": [],
     "SOPHUSDT": [],
     "SOXLBUSDT": [],
-    "SOXSBUSDT": [
-      1794412800000
-    ],
+    "SOXSBUSDT": [],
     "SPCXBUSDT": [],
     "SPELLUSDT": [],
     "SPKUSDT": [],
@@ -4747,9 +4749,7 @@
     "AEROUSDT": [],
     "AEVOUSDT": [],
     "AGLDUSDT": [],
-    "AGPUBUSDT": [
-      1794412800000
-    ],
+    "AGPUBUSDT": [],
     "AIGENSYNUSDT": [],
     "AIUSDT": [],
     "AIXBTUSDT": [],
@@ -4779,9 +4779,7 @@
     "ASRUSDT": [],
     "ASTERUSDT": [],
     "ASTRUSDT": [],
-    "ASTSBUSDT": [
-      1794412800000
-    ],
+    "ASTSBUSDT": [],
     "ATMUSDT": [],
     "ATOMUSDT": [],
     "ATUSDT": [],
@@ -4816,7 +4814,9 @@
     "BIGTIMEUSDT": [],
     "BIOUSDT": [],
     "BLURUSDT": [],
-    "BMNRBUSDT": [],
+    "BMNRBUSDT": [
+      1794416400000
+    ],
     "BMTUSDT": [],
     "BNBUSDT": [],
     "BNCBUSDT": [],
@@ -4846,15 +4846,11 @@
     "COHRBUSDT": [],
     "COINBUSDT": [],
     "COMPUSDT": [],
-    "COOKIEUSDT": [
-      1794412800000
-    ],
+    "COOKIEUSDT": [],
     "COTIUSDT": [],
     "COWUSDT": [],
     "CRCLBUSDT": [],
-    "CRDOBUSDT": [
-      1794412800000
-    ],
+    "CRDOBUSDT": [],
     "CRMBUSDT": [],
     "CRVUSDT": [],
     "CRWDBUSDT": [],
@@ -5017,9 +5013,7 @@
     "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
-    "MOVRUSDT": [
-      1794412800000
-    ],
+    "MOVRUSDT": [],
     "MRNABUSDT": [],
     "MRVLBUSDT": [],
     "MSFTBUSDT": [],
@@ -5034,9 +5028,7 @@
     "NEIROUSDT": [],
     "NEOUSDT": [],
     "NEWTUSDT": [],
-    "NEXOUSDT": [
-      1794412800000
-    ],
+    "NEXOUSDT": [],
     "NFLXBUSDT": [],
     "NIGHTUSDT": [],
     "NILUSDT": [],
@@ -5045,7 +5037,9 @@
     "NOMUSDT": [],
     "NOTUSDT": [],
     "NVDABUSDT": [],
-    "NXPCUSDT": [],
+    "NXPCUSDT": [
+      1794416400000
+    ],
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
@@ -5064,7 +5058,9 @@
     "PAXGUSDT": [],
     "PDDBUSDT": [],
     "PENDLEUSDT": [],
-    "PENGBUSDT": [],
+    "PENGBUSDT": [
+      1794416400000
+    ],
     "PENGUUSDT": [],
     "PEOPLEUSDT": [],
     "PEPEUSDT": [],
@@ -5085,7 +5081,9 @@
     "PUNDIXUSDT": [],
     "PYPLBUSDT": [],
     "PYTHUSDT": [],
-    "QCOMBUSDT": [],
+    "QCOMBUSDT": [
+      1794416400000
+    ],
     "QIUSDT": [],
     "QKCUSDT": [],
     "QNTBUSDT": [],
@@ -5095,7 +5093,9 @@
     "RADUSDT": [],
     "RAREUSDT": [],
     "RAYUSDT": [],
-    "RDDTBUSDT": [],
+    "RDDTBUSDT": [
+      1794416400000
+    ],
     "REDUSDT": [],
     "RENDERUSDT": [],
     "REQUSDT": [],
@@ -5124,13 +5124,13 @@
     "SEIUSDT": [],
     "SENTUSDT": [],
     "SFPUSDT": [],
-    "SHAZBUSDT": [],
+    "SHAZBUSDT": [
+      1794416400000
+    ],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
     "SIGNUSDT": [],
-    "SKHYBUSDT": [
-      1794412800000
-    ],
+    "SKHYBUSDT": [],
     "SKLUSDT": [],
     "SKYUSDT": [],
     "SLPUSDT": [],
@@ -5155,9 +5155,7 @@
     "STOUSDT": [],
     "STRAXUSDT": [],
     "STRKUSDT": [],
-    "STXBUSDT": [
-      1794412800000
-    ],
+    "STXBUSDT": [],
     "STXUSDT": [],
     "SUIUSDT": [],
     "SUNUSDT": [],
@@ -6944,7 +6942,8 @@
     ],
     "PAXGUSDT": [
       1794304800000,
-      1794315600000
+      1794315600000,
+      1794416400000
     ],
     "PDDBUSDT": [],
     "PENDLEUSDT": [],
@@ -6978,7 +6977,9 @@
     "QCOMBUSDT": [],
     "QIUSDT": [],
     "QKCUSDT": [],
-    "QNTBUSDT": [],
+    "QNTBUSDT": [
+      1794416400000
+    ],
     "QNTUSDT": [],
     "QQQBUSDT": [],
     "QTUMUSDT": [],
@@ -7587,9 +7588,9 @@
     "exit:XLMUSDT:1794409200000",
     "exit:ASTSBUSDT:1794412800000"
   ],
-  "cycles": 267,
+  "cycles": 268,
   "messages_sent": 632,
-  "last_cycle_ms": 1794422023512,
+  "last_cycle_ms": 1794423814871,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
