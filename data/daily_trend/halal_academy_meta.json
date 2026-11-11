@@ -1,16 +1,107 @@
 {
   "source": "btcacademy.online",
   "source_url": "https://btcacademy.online/عملات-رقمية-حلال-أم-حرام/",
-  "fetched_at": "2026-11-02",
+  "fetched_at": "2026-11-11",
   "methodology": "الموقع: إن لم يجد خدمات حرام أو مشبوهة ⇒ حلال. الحكم يُقرأ من جملة «فإن عملة X …» في المقال؛ وإن لم توجد تُستخدم جملة «جميع الخدمات التي تقدمها حرام أو مشبوهة» ⇒ حرام، أو وسم الموقع «عملة X حلال».",
-  "total": 766,
-  "halal": 428,
-  "haram": 329,
-  "doubtful": 7,
-  "unknown": [
-    "AKRO",
-    "GPS"
-  ],
+  "total": 771,
+  "halal": 432,
+  "haram": 325,
+  "doubtful": 14,
+  "unknown": [],
   "note": "هذا الملف مصدر الحكم الأساسي للبوت (الأولوية على cryptohalal.cc). القيمة: 0=مباح، 1=غير مباح، 2=مشبوه.",
-  "precedence": "halal_academy.json > halal_extra.json > data/zigzag/halal_verdicts.json"
+  "precedence": "halal_academy.json > halal_extra.json > data/zigzag/halal_verdicts.json",
+  "last_check_utc": "2026-11-11T05:27:14Z",
+  "refresh_hours": 6,
+  "merge_only": true,
+  "site_directory_rows": 766,
+  "site_unique_symbols": 765,
+  "articles_scanned": 814,
+  "ambiguous": [
+    "STRK"
+  ],
+  "unclear_articles": [
+    "PI"
+  ],
+  "added_last_run": [
+    "ACH",
+    "AKRO",
+    "GPS",
+    "HEI",
+    "HYPER",
+    "NFP",
+    "OAX"
+  ],
+  "changed_last_run": [
+    {
+      "symbol": "ADF",
+      "from": 1,
+      "to": 2
+    },
+    {
+      "symbol": "AION",
+      "from": 0,
+      "to": 2
+    },
+    {
+      "symbol": "HOME",
+      "from": 1,
+      "to": 2
+    },
+    {
+      "symbol": "HYPE",
+      "from": 0,
+      "to": 1
+    },
+    {
+      "symbol": "KNC",
+      "from": 1,
+      "to": 0
+    },
+    {
+      "symbol": "MAGIC",
+      "from": 0,
+      "to": 1
+    },
+    {
+      "symbol": "OCTA",
+      "from": 1,
+      "to": 2
+    },
+    {
+      "symbol": "OM",
+      "from": 1,
+      "to": 2
+    },
+    {
+      "symbol": "POL",
+      "from": 1,
+      "to": 0
+    },
+    {
+      "symbol": "ROOT",
+      "from": 1,
+      "to": 0
+    },
+    {
+      "symbol": "VANA",
+      "from": 1,
+      "to": 0
+    },
+    {
+      "symbol": "WLD",
+      "from": 0,
+      "to": 2
+    },
+    {
+      "symbol": "WLFI",
+      "from": 0,
+      "to": 1
+    },
+    {
+      "symbol": "XCN",
+      "from": 0,
+      "to": 2
+    }
+  ],
+  "retained_not_on_site": 6
 }

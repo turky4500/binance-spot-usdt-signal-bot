@@ -46,7 +46,10 @@ def test_4h_guard_kicks_bot_and_report_with_barriers():
     assert "window_start" in script and "h // 4" in script      # نجاح واحد/شمعة
     assert "last_report_day" in script                          # منع تقرير مكرر
     assert "data/state_nw4h.json" in script
-    assert "age_h < 20" in script
+    # 2026-11-11: حاجز «age_h < 20» كان سبب فوات تقرير 4H، واستُبدل بفاصل
+    # 5 دقائق + بوابة last_report_day من ملف الحالة. لا يُعاد الحاجز القديم.
+    assert "age_min < 5" in script
+    assert "age_h < 20" not in script
     assert "in_progress" in script and "queued" in script
     assert "conclusion" in script and "success" in script       # فاشل لا يحجب
     assert "⏭" in script and "🚀" in script

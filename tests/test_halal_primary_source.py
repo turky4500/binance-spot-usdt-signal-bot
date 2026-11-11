@@ -53,9 +53,16 @@ def test_missing_primary_file_is_not_fatal(tmp_path):
     assert load_primary_verdicts(str(tmp_path / "nope.json")) == {}
 
 
-def test_unknown_coins_are_absent_not_halal():
+def test_formerly_unknown_coins_have_rulings_after_site_refresh():
+    """2026-11-11: كان AKRO/GPS بلا حكم، ثم نشر الموقع جملة حكم صريحة لهما.
+
+    المُحدِّث كل 6 ساعات يضيف الحكم بدل تركهما «بلا حكم»؛ وما زال أي رمز
+    بلا حكم واضح (مثل اسم مشروع DLICOM) لا يُدرج ولا يُعدّ مباحًا.
+    """
     data = json.loads(PRIMARY.read_text(encoding="utf-8"))
-    assert "AKRO" not in data and "GPS" not in data, "ما لا حكم له لا يُدرج (يُستبعد من التداول)"
+    assert data.get("AKRO") == 1, "AKRO: «فإن عملة AKRO حرام»"
+    assert data.get("GPS") == 0, "GPS: «فإن عملة GPS حلال»"
+    assert "DLICOM" not in data and "STRK" not in data, "ما التبس حكمه لا يُدرج"
 
 
 def test_bot_uses_primary_verdicts(tmp_path, monkeypatch):
