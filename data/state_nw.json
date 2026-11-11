@@ -2703,10 +2703,16 @@
       "last_entry_price": 0.1183
     },
     "INITUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.26332,
+        "entry_time": 1794362400000,
+        "signal_bar_time": 1794358800000,
+        "signal_price": 0.23434,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794358800000,
+      "last_entry_price": 0.26332
     },
     "INJUSDT": {
       "position": {
@@ -4481,7 +4487,9 @@
     "IDUSDT": [],
     "ILVUSDT": [],
     "IMXUSDT": [],
-    "INITUSDT": [],
+    "INITUSDT": [
+      1794358800000
+    ],
     "INJUSDT": [],
     "INTCBUSDT": [],
     "INTWBUSDT": [],
@@ -4821,9 +4829,7 @@
     "AUSDT": [],
     "AVAUSDT": [],
     "AVAXUSDT": [],
-    "AVGOBUSDT": [
-      1794355200000
-    ],
+    "AVGOBUSDT": [],
     "AVNTUSDT": [],
     "AWEUSDT": [],
     "AXLUSDT": [],
@@ -4887,9 +4893,7 @@
     "CRMBUSDT": [],
     "CRVUSDT": [],
     "CRWDBUSDT": [],
-    "CRWVBUSDT": [
-      1794355200000
-    ],
+    "CRWVBUSDT": [],
     "CTKUSDT": [],
     "CTSIUSDT": [],
     "CUSDT": [],
@@ -5058,7 +5062,9 @@
     "MUBUSDT": [],
     "MUUBUSDT": [],
     "MVLLBUSDT": [],
-    "NBISBUSDT": [],
+    "NBISBUSDT": [
+      1794358800000
+    ],
     "NEARUSDT": [],
     "NEIROUSDT": [],
     "NEOUSDT": [],
@@ -5076,7 +5082,9 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [],
+    "ONEUSDT": [
+      1794358800000
+    ],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -5112,7 +5120,9 @@
     "PUNDIXUSDT": [],
     "PYPLBUSDT": [],
     "PYTHUSDT": [],
-    "QCOMBUSDT": [],
+    "QCOMBUSDT": [
+      1794358800000
+    ],
     "QIUSDT": [],
     "QKCUSDT": [],
     "QNTBUSDT": [],
@@ -5806,7 +5816,9 @@
       1794171600000
     ],
     "IMXUSDT": [],
-    "INITUSDT": [],
+    "INITUSDT": [
+      1794358800000
+    ],
     "INJUSDT": [
       1794322800000
     ],
@@ -7164,7 +7176,6 @@
     "牛来USDT": []
   },
   "sent": [
-    "buy:DEXEUSDT:1794171600000:1",
     "buy:DIAUSDT:1794171600000:1",
     "buy:DOGEUSDT:1794171600000:1",
     "buy:DOGSUSDT:1794171600000:1",
@@ -7563,11 +7574,12 @@
     "buy:MRNABUSDT:1794333600000:2",
     "buy:CYPHBUSDT:1794337200000:3",
     "buy:DASHUSDT:1794340800000:3",
-    "exit:CRWVBUSDT:1794351600000"
+    "exit:CRWVBUSDT:1794351600000",
+    "buy:INITUSDT:1794358800000:1"
   ],
-  "cycles": 234,
-  "messages_sent": 605,
-  "last_cycle_ms": 1794364405148,
+  "cycles": 235,
+  "messages_sent": 606,
+  "last_cycle_ms": 1794366211539,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
