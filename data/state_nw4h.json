@@ -3039,9 +3039,7 @@
     "HOODBUSDT": [],
     "HOTUSDT": [],
     "HUMAUSDT": [],
-    "HYPERUSDT": [
-      1794326400000
-    ],
+    "HYPERUSDT": [],
     "IBMBUSDT": [],
     "ICPUSDT": [],
     "IDUSDT": [],
@@ -3222,7 +3220,9 @@
     "SOMIUSDT": [],
     "SOPHUSDT": [],
     "SOXLBUSDT": [],
-    "SOXSBUSDT": [],
+    "SOXSBUSDT": [
+      1794340800000
+    ],
     "SPCXBUSDT": [],
     "SPELLUSDT": [],
     "SPKUSDT": [],
@@ -3299,9 +3299,7 @@
     "YGGUSDT": [],
     "ZAMAUSDT": [],
     "ZBTUSDT": [],
-    "ZECUSDT": [
-      1794326400000
-    ],
+    "ZECUSDT": [],
     "ZENUSDT": [],
     "ZILUSDT": [],
     "ZKCUSDT": [],
@@ -3492,7 +3490,9 @@
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPSUSDT": [],
-    "GRAMUSDT": [],
+    "GRAMUSDT": [
+      1794340800000
+    ],
     "GRTUSDT": [],
     "GSBUSDT": [],
     "GTCUSDT": [],
@@ -3536,7 +3536,9 @@
     "KATUSDT": [],
     "KAVAUSDT": [],
     "KERNELUSDT": [],
-    "KGSTUSDT": [],
+    "KGSTUSDT": [
+      1794340800000
+    ],
     "KITEUSDT": [],
     "KMNOUSDT": [],
     "KNCUSDT": [],
@@ -3655,7 +3657,7 @@
     "REZUSDT": [],
     "RIFUSDT": [],
     "RKLBBUSDT": [
-      1794326400000
+      1794340800000
     ],
     "RLCUSDT": [],
     "ROBOUSDT": [],
@@ -4656,7 +4658,9 @@
     "SOMIUSDT": [],
     "SOPHUSDT": [],
     "SOXLBUSDT": [],
-    "SOXSBUSDT": [],
+    "SOXSBUSDT": [
+      1794340800000
+    ],
     "SPCXBUSDT": [],
     "SPELLUSDT": [],
     "SPKUSDT": [],
@@ -4756,9 +4760,9 @@
     "buy:WBETHUSDT:1794312000000:1",
     "buy:ZECUSDT:1794326400000:1"
   ],
-  "cycles": 13,
+  "cycles": 14,
   "messages_sent": 11,
-  "last_cycle_ms": 1794355414516,
+  "last_cycle_ms": 1794369811490,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-10",
     "reported_trade_keys": [
