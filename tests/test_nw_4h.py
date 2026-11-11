@@ -294,11 +294,12 @@ def test_no_unguarded_4h_trigger_and_only_guarded_dispatch():
 def test_4h_state_and_log_are_isolated():
     s4 = json.loads((ROOT / "data/state_nw4h.json").read_text(encoding="utf-8"))
     assert s4["system"] == "nw-4h"
-    assert s4["cycles"] == 0 and s4["messages_sent"] == 0
-    assert s4["sent"] == [] and s4["last_cycle_ms"] == 0
+    # حالة 4H قد تكون حيّة بعد تشغيل البوت؛ نتحقق من البنية/العزل لا من صففر العدّادات.
+    assert isinstance(s4.get("cycles"), int) and isinstance(s4.get("messages_sent"), int)
+    assert isinstance(s4.get("sent"), list) and isinstance(s4.get("last_cycle_ms"), (int, float))
     assert {"symbols", "prev_buy_bars", "prev_sell_bars", "buy_history",
             "cancelled_buy_bars"} <= set(s4)
-    assert "daily_report_nw4h" not in s4
+    # مفتاح التقرير اليومي مشروع بعد أول تقرير ولا يُعدّ دليلًا على فقدان العزل.
 
     header = (ROOT / "data/trades_log_nw4h.csv").read_text(encoding="utf-8").splitlines()[0]
     assert header.split(",") == [

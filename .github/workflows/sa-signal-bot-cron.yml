@@ -81,8 +81,11 @@ jobs:
         run: pip install "pytest>=9" "PyYAML>=6.0"
 
       # بوابة إلزامية: أي اختبار ساقط يوقف تشغيل البوت (لا إشارة حقيقية عبر اختبار فاشل)
+      # TELEGRAM_MUTE=1 على مستوى المهمة يمنع رسائل البوت، لكنه كان يُسكت أيضًا
+      # عملاء التيليجرام داخل الاختبارات ⇒ نُلغيه للأمر نفسه فقط (لا env خطوة،
+      # حتى تبقى حماية «الأنظمة الأخرى مُسكتة» في اختبارات الاتساق سليمة).
       - name: Run tests (gate the bot)
-        run: python -m pytest tests/ -q
+        run: TELEGRAM_MUTE=0 python -m pytest tests/ -q
 
       - name: Run Saudi bot once
         run: python run_sa_once.py
