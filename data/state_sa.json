@@ -58,7 +58,8 @@
     "4310": 1794121200000,
     "9551": 1794121200000,
     "7200": 1794207600000,
-    "9548": 1794294000000
+    "9548": 1794294000000,
+    "4280": 1794466800000
   },
   "open_trades": {
     "2282": {
@@ -83,33 +84,16 @@
       "code": "4190",
       "company": "Jarir Marketing Company",
       "entry_price": 16.01,
-      "stop_price": 16.07239908,
+      "stop_price": 16.1,
       "pivot_stop": 15.02,
       "target_price": 17.990000000000006,
       "stop_dist_pct": 6.183635227982523,
       "size_suggest_pct": 0.1617171717171714,
       "entry_time": 1793016000000,
       "entry_bar_open_time": 1792998000000,
-      "peak_price": 17.5,
+      "peak_price": 17.9,
       "last_stop_alert_price": 16.07239908,
       "stop_updates_count": 2,
-      "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
-    "4280": {
-      "trade_id": "4280-1792998000000",
-      "code": "4280",
-      "company": "Kingdom Holding Company",
-      "entry_price": 11.7,
-      "stop_price": 12.052,
-      "pivot_stop": 10.98,
-      "target_price": 13.139999999999997,
-      "stop_dist_pct": 6.153846153846144,
-      "size_suggest_pct": 0.16250000000000026,
-      "entry_time": 1793016000000,
-      "entry_bar_open_time": 1792998000000,
-      "peak_price": 13.6,
-      "last_stop_alert_price": 12.052,
-      "stop_updates_count": 4,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     },
     "6015": {
@@ -151,7 +135,7 @@
       "code": "9607",
       "company": "ASG Plastic Factory Company",
       "entry_price": 25.120001,
-      "stop_price": 23.68,
+      "stop_price": 25.575999080000003,
       "pivot_stop": 23.68,
       "target_price": 28.000002999999996,
       "stop_dist_pct": 5.732487829120703,
@@ -159,8 +143,8 @@
       "entry_time": 1793275200000,
       "entry_bar_open_time": 1793257200000,
       "peak_price": 27.799999,
-      "last_stop_alert_price": 23.68,
-      "stop_updates_count": 0,
+      "last_stop_alert_price": 25.575999080000003,
+      "stop_updates_count": 1,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     },
     "2083": {
@@ -186,16 +170,16 @@
       "code": "9514",
       "company": "Mohammed Hasan AlNaqool Sons Co.",
       "entry_price": 55.849998,
-      "stop_price": 59.70800184,
+      "stop_price": 63.02,
       "pivot_stop": 53.150002,
       "target_price": 61.24999,
       "stop_dist_pct": 4.8343708087509665,
       "size_suggest_pct": 0.2068521508920755,
       "entry_time": 1793620800000,
       "entry_bar_open_time": 1793602800000,
-      "peak_price": 68.5,
-      "last_stop_alert_price": 59.70800184,
-      "stop_updates_count": 5,
+      "peak_price": 74.25,
+      "last_stop_alert_price": 63.02,
+      "stop_updates_count": 6,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     },
@@ -222,7 +206,7 @@
       "code": "2283",
       "company": "The First Milling Company",
       "entry_price": 57.200001,
-      "stop_price": 54.188001840000005,
+      "stop_price": 55.01599908,
       "pivot_stop": 52.0,
       "target_price": 67.600003,
       "stop_dist_pct": 9.090910680228834,
@@ -230,8 +214,8 @@
       "entry_time": 1793793600000,
       "entry_bar_open_time": 1793775600000,
       "peak_price": 59.799999,
-      "last_stop_alert_price": 53.774000920000006,
-      "stop_updates_count": 2,
+      "last_stop_alert_price": 55.01599908,
+      "stop_updates_count": 3,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     },
@@ -276,16 +260,16 @@
       "code": "7211",
       "company": "Saudi Azm for Communication and Information Technology Company",
       "entry_price": 29.040001,
-      "stop_price": 29.4216,
+      "stop_price": 29.71599908,
       "pivot_stop": 28.799999,
       "target_price": 29.520005,
       "stop_dist_pct": 0.8264531395849487,
       "size_suggest_pct": 1.2099899584170106,
       "entry_time": 1793793600000,
       "entry_bar_open_time": 1793775600000,
-      "peak_price": 32.299999,
-      "last_stop_alert_price": 29.4216,
-      "stop_updates_count": 1,
+      "peak_price": 34.0,
+      "last_stop_alert_price": 29.71599908,
+      "stop_updates_count": 2,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     },
@@ -294,7 +278,7 @@
       "code": "9517",
       "company": "MOBI Industry Co.",
       "entry_price": 16.700001,
-      "stop_price": 15.91599908,
+      "stop_price": 16.06319908,
       "pivot_stop": 15.5,
       "target_price": 19.100003,
       "stop_dist_pct": 7.1856343002614205,
@@ -302,8 +286,8 @@
       "entry_time": 1793880000000,
       "entry_bar_open_time": 1793862000000,
       "peak_price": 17.459999,
-      "last_stop_alert_price": 15.842399080000002,
-      "stop_updates_count": 1,
+      "last_stop_alert_price": 16.06319908,
+      "stop_updates_count": 2,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     },
@@ -319,7 +303,7 @@
       "size_suggest_pct": 0.2752439024390243,
       "entry_time": 1794225600000,
       "entry_bar_open_time": 1794207600000,
-      "peak_price": 23.25,
+      "peak_price": 23.299999,
       "last_stop_alert_price": 21.75,
       "stop_updates_count": 0,
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -366,7 +350,7 @@
       "code": "9552",
       "company": "Saudi Top for Trading Company",
       "entry_price": 11.58,
-      "stop_price": 10.6536,
+      "stop_price": 11.030800000000001,
       "pivot_stop": 10.16,
       "target_price": 14.42,
       "stop_dist_pct": 12.262521588946457,
@@ -374,8 +358,8 @@
       "entry_time": 1794312000000,
       "entry_bar_open_time": 1794294000000,
       "peak_price": 11.99,
-      "last_stop_alert_price": 10.6536,
-      "stop_updates_count": 1,
+      "last_stop_alert_price": 11.030800000000001,
+      "stop_updates_count": 2,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     },
@@ -427,7 +411,7 @@
       "size_suggest_pct": 0.46464202742495125,
       "entry_time": 1794398400000,
       "entry_bar_open_time": 1794380400000,
-      "peak_price": 26.139999,
+      "peak_price": 26.540001,
       "last_stop_alert_price": 25.459999,
       "stop_updates_count": 0,
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -474,14 +458,14 @@
       "code": "6014",
       "company": "Alamar Foods Company",
       "entry_price": 45.84,
-      "stop_price": 42.0,
+      "stop_price": 42.3016,
       "pivot_stop": 42.0,
       "target_price": 53.52000000000001,
       "stop_dist_pct": 8.376963350785347,
       "size_suggest_pct": 0.1193749999999999,
       "entry_time": 1794398400000,
       "entry_bar_open_time": 1794380400000,
-      "peak_price": 45.98,
+      "peak_price": 46.5,
       "last_stop_alert_price": 42.0,
       "stop_updates_count": 0,
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -499,7 +483,7 @@
       "size_suggest_pct": 0.12931375764130132,
       "entry_time": 1794398400000,
       "entry_bar_open_time": 1794380400000,
-      "peak_price": 264.0,
+      "peak_price": 268.0,
       "last_stop_alert_price": 243.399994,
       "stop_updates_count": 0,
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -510,16 +494,16 @@
       "code": "9543",
       "company": "Saudi Networkers Services Company",
       "entry_price": 62.650002,
-      "stop_price": 55.25,
+      "stop_price": 57.63800184,
       "pivot_stop": 55.25,
       "target_price": 77.450006,
       "stop_dist_pct": 11.81165485038612,
       "size_suggest_pct": 0.08466214198320486,
       "entry_time": 1794398400000,
       "entry_bar_open_time": 1794380400000,
-      "peak_price": 62.650002,
-      "last_stop_alert_price": 55.25,
-      "stop_updates_count": 0,
+      "peak_price": 64.050003,
+      "last_stop_alert_price": 57.63800184,
+      "stop_updates_count": 1,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     }
@@ -1119,6 +1103,46 @@
       "type": "entry",
       "symbol": "9543",
       "time_ms": 1794398400000
+    },
+    {
+      "type": "exit_win",
+      "symbol": "4280",
+      "time_ms": 1794484800000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "9607",
+      "time_ms": 1794484800000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "9514",
+      "time_ms": 1794484800000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "2283",
+      "time_ms": 1794484800000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "7211",
+      "time_ms": 1794484800000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "9517",
+      "time_ms": 1794484800000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "9552",
+      "time_ms": 1794484800000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "9543",
+      "time_ms": 1794484800000
     }
   ],
   "daily_report": {
@@ -1130,5 +1154,5 @@
   "weekly_report": {
     "last_reported_week_start": ""
   },
-  "last_processed_date": "2026-11-11"
+  "last_processed_date": "2026-11-12"
 }
