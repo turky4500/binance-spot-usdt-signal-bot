@@ -909,14 +909,8 @@
       "last_entry_price": 0.0
     },
     "ONEUSDT": {
-      "position": {
-        "entry_price": 0.001772,
-        "entry_time": 1794373200000,
-        "signal_bar_time": 1794369600000,
-        "signal_price": 0.001713,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794369600000,
       "last_entry_price": 0.001772
     },
@@ -4313,9 +4307,7 @@
     "AMZNBUSDT": [],
     "ANIMEUSDT": [],
     "ANKRUSDT": [],
-    "APEUSDT": [
-      1794463200000
-    ],
+    "APEUSDT": [],
     "API3USDT": [],
     "APTUSDT": [],
     "ARBUSDT": [],
@@ -4345,9 +4337,7 @@
     "AXTIBUSDT": [],
     "BABABUSDT": [],
     "BABYUSDT": [],
-    "BANANAS31USDT": [
-      1794463200000
-    ],
+    "BANANAS31USDT": [],
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
@@ -4448,9 +4438,7 @@
     "FILUSDT": [],
     "FLNCBUSDT": [],
     "FLOKIUSDT": [],
-    "FLOWUSDT": [
-      1794463200000
-    ],
+    "FLOWUSDT": [],
     "FLUXUSDT": [],
     "FOGOUSDT": [],
     "FORMUSDT": [],
@@ -5025,9 +5013,7 @@
     "KAVAUSDT": [],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
-    "KITEUSDT": [
-      1794463200000
-    ],
+    "KITEUSDT": [],
     "KMNOUSDT": [],
     "KNCUSDT": [],
     "KORUBUSDT": [],
@@ -5097,7 +5083,9 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [],
+    "ONEUSDT": [
+      1794466800000
+    ],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -5199,9 +5187,7 @@
     "SSVUSDT": [],
     "STEEMUSDT": [],
     "STOUSDT": [],
-    "STRAXUSDT": [
-      1794463200000
-    ],
+    "STRAXUSDT": [],
     "STRKUSDT": [],
     "STXBUSDT": [],
     "STXUSDT": [],
@@ -7304,7 +7290,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:LISTAUSDT:1794171600000:1",
     "buy:LPTUSDT:1794171600000:1",
     "buy:LQTYUSDT:1794171600000:1",
     "buy:LTCUSDT:1794171600000:1",
@@ -7703,11 +7688,12 @@
     "buy:APEUSDT:1794463200000:3",
     "buy:BANANAS31USDT:1794463200000:2",
     "buy:FLOWUSDT:1794463200000:1",
-    "exit:STRAXUSDT:1794463200000"
+    "exit:STRAXUSDT:1794463200000",
+    "exit:ONEUSDT:1794466800000"
   ],
-  "cycles": 294,
-  "messages_sent": 667,
-  "last_cycle_ms": 1794472414665,
+  "cycles": 295,
+  "messages_sent": 668,
+  "last_cycle_ms": 1794474212271,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
