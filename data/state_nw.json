@@ -98,11 +98,11 @@
         "entry_time": 1794175200000,
         "signal_bar_time": 1794171600000,
         "signal_price": 0.0991,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1794445200000,
-      "last_entry_price": 0.0942
+      "entry_count": 3,
+      "last_buy_bar": 1794463200000,
+      "last_entry_price": 0.0939
     },
     "API3USDT": {
       "position": {
@@ -543,10 +543,16 @@
       "last_entry_price": 0.7395
     },
     "FLOWUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1794171600000,
-      "last_entry_price": 0.01963
+      "position": {
+        "entry_price": 0.01926,
+        "entry_time": 1794466800000,
+        "signal_bar_time": 1794463200000,
+        "signal_price": 0.01911,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794463200000,
+      "last_entry_price": 0.01926
     },
     "FLUXUSDT": {
       "position": null,
@@ -1257,14 +1263,8 @@
       "last_entry_price": 1.994
     },
     "STRAXUSDT": {
-      "position": {
-        "entry_price": 0.00945,
-        "entry_time": 1794006000000,
-        "signal_bar_time": 1794002400000,
-        "signal_price": 0.00932,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794326400000,
       "last_entry_price": 0.00871
     },
@@ -1898,11 +1898,11 @@
         "entry_time": 1794175200000,
         "signal_bar_time": 1794171600000,
         "signal_price": 0.005574,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794171600000,
-      "last_entry_price": 0.00566
+      "entry_count": 2,
+      "last_buy_bar": 1794463200000,
+      "last_entry_price": 0.005379
     },
     "BANANAUSDT": {
       "position": null,
@@ -4313,7 +4313,9 @@
     "AMZNBUSDT": [],
     "ANIMEUSDT": [],
     "ANKRUSDT": [],
-    "APEUSDT": [],
+    "APEUSDT": [
+      1794463200000
+    ],
     "API3USDT": [],
     "APTUSDT": [],
     "ARBUSDT": [],
@@ -4322,9 +4324,7 @@
     "ARMBUSDT": [],
     "ARPAUSDT": [],
     "ARUSDT": [],
-    "ASMLBUSDT": [
-      1794459600000
-    ],
+    "ASMLBUSDT": [],
     "ASRUSDT": [],
     "ASTERUSDT": [],
     "ASTRUSDT": [],
@@ -4345,7 +4345,9 @@
     "AXTIBUSDT": [],
     "BABABUSDT": [],
     "BABYUSDT": [],
-    "BANANAS31USDT": [],
+    "BANANAS31USDT": [
+      1794463200000
+    ],
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
@@ -4446,7 +4448,9 @@
     "FILUSDT": [],
     "FLNCBUSDT": [],
     "FLOKIUSDT": [],
-    "FLOWUSDT": [],
+    "FLOWUSDT": [
+      1794463200000
+    ],
     "FLUXUSDT": [],
     "FOGOUSDT": [],
     "FORMUSDT": [],
@@ -5021,7 +5025,9 @@
     "KAVAUSDT": [],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
-    "KITEUSDT": [],
+    "KITEUSDT": [
+      1794463200000
+    ],
     "KMNOUSDT": [],
     "KNCUSDT": [],
     "KORUBUSDT": [],
@@ -5049,9 +5055,7 @@
     "MARSCOINUSDT": [],
     "MASKUSDT": [],
     "MAVUSDT": [],
-    "MBLUSDT": [
-      1794459600000
-    ],
+    "MBLUSDT": [],
     "MDBBUSDT": [],
     "MEGAUSDT": [],
     "MEMEUSDT": [],
@@ -5195,7 +5199,9 @@
     "SSVUSDT": [],
     "STEEMUSDT": [],
     "STOUSDT": [],
-    "STRAXUSDT": [],
+    "STRAXUSDT": [
+      1794463200000
+    ],
     "STRKUSDT": [],
     "STXBUSDT": [],
     "STXUSDT": [],
@@ -5372,7 +5378,8 @@
     ],
     "APEUSDT": [
       1794171600000,
-      1794445200000
+      1794445200000,
+      1794463200000
     ],
     "API3USDT": [
       1794171600000
@@ -5455,7 +5462,8 @@
     ],
     "BABYUSDT": [],
     "BANANAS31USDT": [
-      1794171600000
+      1794171600000,
+      1794463200000
     ],
     "BANANAUSDT": [
       1794171600000,
@@ -5712,7 +5720,8 @@
       1794171600000
     ],
     "FLOWUSDT": [
-      1794171600000
+      1794171600000,
+      1794463200000
     ],
     "FLUXUSDT": [
       1794171600000
@@ -7295,10 +7304,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:LAYERUSDT:1794171600000:1",
-    "buy:LDOUSDT:1794171600000:1",
-    "buy:LINEAUSDT:1794171600000:1",
-    "buy:LINKUSDT:1794171600000:1",
     "buy:LISTAUSDT:1794171600000:1",
     "buy:LPTUSDT:1794171600000:1",
     "buy:LQTYUSDT:1794171600000:1",
@@ -7694,11 +7699,15 @@
     "buy:OPGUSDT:1794452400000:2",
     "exit:BARDUSDT:1794456000000",
     "buy:ASMLBUSDT:1794459600000:3",
-    "exit:MBLUSDT:1794459600000"
+    "exit:MBLUSDT:1794459600000",
+    "buy:APEUSDT:1794463200000:3",
+    "buy:BANANAS31USDT:1794463200000:2",
+    "buy:FLOWUSDT:1794463200000:1",
+    "exit:STRAXUSDT:1794463200000"
   ],
-  "cycles": 292,
-  "messages_sent": 663,
-  "last_cycle_ms": 1794468811585,
+  "cycles": 293,
+  "messages_sent": 667,
+  "last_cycle_ms": 1794470615346,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
