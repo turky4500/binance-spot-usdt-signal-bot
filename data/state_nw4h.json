@@ -879,10 +879,16 @@
       "last_entry_price": 0.0
     },
     "ENJUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.02113,
+        "entry_time": 1794470400000,
+        "signal_bar_time": 1794456000000,
+        "signal_price": 0.0208,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794456000000,
+      "last_entry_price": 0.02113
     },
     "ENSOUSDT": {
       "position": null,
@@ -2928,11 +2934,11 @@
     "AXLUSDT": [],
     "AXSUSDT": [],
     "AXTIBUSDT": [],
-    "BABABUSDT": [
-      1794441600000
-    ],
+    "BABABUSDT": [],
     "BABYUSDT": [],
-    "BANANAS31USDT": [],
+    "BANANAS31USDT": [
+      1794456000000
+    ],
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
@@ -3011,7 +3017,9 @@
     "EGLDUSDT": [],
     "EIGENUSDT": [],
     "ENAUSDT": [],
-    "ENJUSDT": [],
+    "ENJUSDT": [
+      1794456000000
+    ],
     "ENSOUSDT": [],
     "ENSUSDT": [],
     "ERAUSDT": [],
@@ -3120,9 +3128,7 @@
     "MASKUSDT": [],
     "MAVUSDT": [],
     "MBLUSDT": [],
-    "MEGAUSDT": [
-      1794441600000
-    ],
+    "MEGAUSDT": [],
     "MEMEUSDT": [],
     "METABUSDT": [],
     "METISUSDT": [],
@@ -3209,9 +3215,7 @@
     "RENDERUSDT": [],
     "REQUSDT": [],
     "RESOLVUSDT": [],
-    "REUSDT": [
-      1794441600000
-    ],
+    "REUSDT": [],
     "REZUSDT": [],
     "RIFUSDT": [],
     "RKLBBUSDT": [],
@@ -3484,7 +3488,9 @@
     "ENJUSDT": [],
     "ENSOUSDT": [],
     "ENSUSDT": [],
-    "ERAUSDT": [],
+    "ERAUSDT": [
+      1794456000000
+    ],
     "ESPUSDT": [],
     "ETCUSDT": [],
     "ETHFIUSDT": [],
@@ -3953,7 +3959,9 @@
     "EGLDUSDT": [],
     "EIGENUSDT": [],
     "ENAUSDT": [],
-    "ENJUSDT": [],
+    "ENJUSDT": [
+      1794456000000
+    ],
     "ENSOUSDT": [],
     "ENSUSDT": [],
     "ERAUSDT": [],
@@ -4364,7 +4372,9 @@
       1794441600000
     ],
     "BABYUSDT": [],
-    "BANANAS31USDT": [],
+    "BANANAS31USDT": [
+      1794456000000
+    ],
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
@@ -4803,11 +4813,12 @@
     "buy:MBLUSDT:1794369600000:1",
     "buy:WINUSDT:1794369600000:1",
     "buy:NVDABUSDT:1794427200000:1",
-    "buy:PEPEUSDT:1794427200000:1"
+    "buy:PEPEUSDT:1794427200000:1",
+    "buy:ENJUSDT:1794456000000:1"
   ],
-  "cycles": 23,
-  "messages_sent": 15,
-  "last_cycle_ms": 1794470616896,
+  "cycles": 24,
+  "messages_sent": 16,
+  "last_cycle_ms": 1794485051523,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-11",
     "reported_trade_keys": [
