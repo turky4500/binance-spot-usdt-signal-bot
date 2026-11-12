@@ -4350,9 +4350,7 @@
     "AEROUSDT": [],
     "AEVOUSDT": [],
     "AGLDUSDT": [],
-    "AGPUBUSDT": [
-      1794502800000
-    ],
+    "AGPUBUSDT": [],
     "AIGENSYNUSDT": [],
     "AIUSDT": [],
     "AIXBTUSDT": [],
@@ -4487,7 +4485,9 @@
     "ENJUSDT": [],
     "ENSOUSDT": [],
     "ENSUSDT": [],
-    "ERAUSDT": [],
+    "ERAUSDT": [
+      1794506400000
+    ],
     "ESPUSDT": [],
     "ETCUSDT": [],
     "ETHFIUSDT": [],
@@ -4523,7 +4523,9 @@
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
-    "GRAMUSDT": [],
+    "GRAMUSDT": [
+      1794506400000
+    ],
     "GRTUSDT": [],
     "GSBUSDT": [],
     "GTCUSDT": [],
@@ -4557,9 +4559,7 @@
     "IOTAUSDT": [],
     "IOTXUSDT": [],
     "IOUSDT": [],
-    "IQUSDT": [
-      1794502800000
-    ],
+    "IQUSDT": [],
     "IRENBUSDT": [],
     "JASMYUSDT": [],
     "JOEUSDT": [],
@@ -4864,7 +4864,9 @@
     "ALABBUSDT": [],
     "ALGOUSDT": [],
     "ALICEUSDT": [],
-    "ALLOUSDT": [],
+    "ALLOUSDT": [
+      1794506400000
+    ],
     "ALPINEUSDT": [],
     "ALTUSDT": [],
     "AMATBUSDT": [],
@@ -4970,9 +4972,7 @@
     "CYPHBUSDT": [],
     "DASHUSDT": [],
     "DCRUSDT": [],
-    "DELLBUSDT": [
-      1794502800000
-    ],
+    "DELLBUSDT": [],
     "DEXEUSDT": [],
     "DGBUSDT": [],
     "DIAUSDT": [],
@@ -5178,7 +5178,9 @@
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
-    "PROMUSDT": [],
+    "PROMUSDT": [
+      1794506400000
+    ],
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -6904,7 +6906,9 @@
     ],
     "ENSOUSDT": [],
     "ENSUSDT": [],
-    "ERAUSDT": [],
+    "ERAUSDT": [
+      1794506400000
+    ],
     "ESPUSDT": [],
     "ETCUSDT": [],
     "ETHFIUSDT": [],
@@ -6965,7 +6969,9 @@
       1794344400000
     ],
     "GPSUSDT": [],
-    "GRAMUSDT": [],
+    "GRAMUSDT": [
+      1794506400000
+    ],
     "GRTUSDT": [],
     "GSBUSDT": [],
     "GTCUSDT": [],
@@ -7816,9 +7822,9 @@
     "buy:SYRUPUSDT:1794499200000:1",
     "buy:IQUSDT:1794502800000:2"
   ],
-  "cycles": 316,
+  "cycles": 317,
   "messages_sent": 695,
-  "last_cycle_ms": 1794512015511,
+  "last_cycle_ms": 1794513813129,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
