@@ -1707,10 +1707,16 @@
       "last_entry_price": 0.1532
     },
     "AGPUBUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 8.06,
+        "entry_time": 1794517200000,
+        "signal_bar_time": 1794513600000,
+        "signal_price": 7.99,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794513600000,
+      "last_entry_price": 8.06
     },
     "AIGENSYNUSDT": {
       "position": {
@@ -3212,11 +3218,11 @@
         "entry_time": 1794499200000,
         "signal_bar_time": 1794495600000,
         "signal_price": 63.22,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794495600000,
-      "last_entry_price": 63.7
+      "entry_count": 2,
+      "last_buy_bar": 1794513600000,
+      "last_entry_price": 62.89
     },
     "NIGHTUSDT": {
       "position": null,
@@ -3488,11 +3494,11 @@
         "entry_time": 1794409200000,
         "signal_bar_time": 1794405600000,
         "signal_price": 41.83,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1794434400000,
-      "last_entry_price": 39.69
+      "entry_count": 3,
+      "last_buy_bar": 1794513600000,
+      "last_entry_price": 37.77
     },
     "QQQBUSDT": {
       "position": {
@@ -4344,7 +4350,9 @@
     "AEROUSDT": [],
     "AEVOUSDT": [],
     "AGLDUSDT": [],
-    "AGPUBUSDT": [],
+    "AGPUBUSDT": [
+      1794513600000
+    ],
     "AIGENSYNUSDT": [],
     "AIUSDT": [],
     "AIXBTUSDT": [],
@@ -4607,9 +4615,7 @@
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
     "MOVRUSDT": [],
-    "MRNABUSDT": [
-      1794510000000
-    ],
+    "MRNABUSDT": [],
     "MRVLBUSDT": [],
     "MSFTBUSDT": [],
     "MSTRBUSDT": [],
@@ -4624,7 +4630,9 @@
     "NEOUSDT": [],
     "NEWTUSDT": [],
     "NEXOUSDT": [],
-    "NFLXBUSDT": [],
+    "NFLXBUSDT": [
+      1794513600000
+    ],
     "NIGHTUSDT": [],
     "NILUSDT": [],
     "NMRUSDT": [],
@@ -4675,7 +4683,9 @@
     "QCOMBUSDT": [],
     "QIUSDT": [],
     "QKCUSDT": [],
-    "QNTBUSDT": [],
+    "QNTBUSDT": [
+      1794513600000
+    ],
     "QNTUSDT": [],
     "QQQBUSDT": [],
     "QTUMUSDT": [],
@@ -4789,9 +4799,7 @@
     "WBTCUSDT": [],
     "WCTUSDT": [],
     "WDCBUSDT": [],
-    "WENBUSDT": [
-      1794510000000
-    ],
+    "WENBUSDT": [],
     "WIFUSDT": [],
     "WINUSDT": [],
     "WLDUSDT": [],
@@ -4941,9 +4949,7 @@
     "CHIPUSDT": [],
     "CHRUSDT": [],
     "CHZUSDT": [],
-    "CITYUSDT": [
-      1794510000000
-    ],
+    "CITYUSDT": [],
     "CKBUSDT": [],
     "COHRBUSDT": [],
     "COINBUSDT": [],
@@ -5388,7 +5394,9 @@
     "AGLDUSDT": [
       1794171600000
     ],
-    "AGPUBUSDT": [],
+    "AGPUBUSDT": [
+      1794513600000
+    ],
     "AIGENSYNUSDT": [
       1794171600000
     ],
@@ -6102,7 +6110,8 @@
     "NEXOUSDT": [],
     "NFLXBUSDT": [
       1794319200000,
-      1794495600000
+      1794495600000,
+      1794513600000
     ],
     "NIGHTUSDT": [],
     "NILUSDT": [],
@@ -6236,7 +6245,8 @@
     "QKCUSDT": [],
     "QNTBUSDT": [
       1794405600000,
-      1794434400000
+      1794434400000,
+      1794513600000
     ],
     "QNTUSDT": [
       1794326400000,
@@ -7417,9 +7427,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:OPUSDT:1794171600000:1",
-    "buy:ORDIUSDT:1794171600000:1",
-    "buy:PENDLEUSDT:1794171600000:1",
     "buy:PENGUUSDT:1794171600000:1",
     "buy:PEOPLEUSDT:1794171600000:1",
     "buy:PIXELUSDT:1794171600000:1",
@@ -7816,11 +7823,14 @@
     "buy:SMCIBUSDT:1794499200000:2",
     "buy:SYRUPUSDT:1794499200000:1",
     "buy:IQUSDT:1794502800000:2",
-    "exit:CITYUSDT:1794510000000"
+    "exit:CITYUSDT:1794510000000",
+    "buy:AGPUBUSDT:1794513600000:1",
+    "buy:NFLXBUSDT:1794513600000:2",
+    "buy:QNTBUSDT:1794513600000:3"
   ],
-  "cycles": 320,
-  "messages_sent": 696,
-  "last_cycle_ms": 1794519240310,
+  "cycles": 321,
+  "messages_sent": 699,
+  "last_cycle_ms": 1794521002659,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
