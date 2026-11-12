@@ -3704,11 +3704,11 @@
         "entry_time": 1794441600000,
         "signal_bar_time": 1794438000000,
         "signal_price": 28.9,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794438000000,
-      "last_entry_price": 29.01
+      "entry_count": 2,
+      "last_buy_bar": 1794499200000,
+      "last_entry_price": 26.95
     },
     "SMHBUSDT": {
       "position": null,
@@ -3885,10 +3885,16 @@
       "last_entry_price": 0.0
     },
     "SYRUPUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1793970000000,
-      "last_entry_price": 0.1436
+      "position": {
+        "entry_price": 0.1227,
+        "entry_time": 1794502800000,
+        "signal_bar_time": 1794499200000,
+        "signal_price": 0.1227,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794499200000,
+      "last_entry_price": 0.1227
     },
     "TAOUSDT": {
       "position": {
@@ -4420,9 +4426,7 @@
     "BREVUSDT": [],
     "BROCCOLI714USDT": [],
     "BTCUSDT": [],
-    "BTTCUSDT": [
-      1794495600000
-    ],
+    "BTTCUSDT": [],
     "C98USDT": [],
     "CAKEUSDT": [],
     "CATIUSDT": [],
@@ -4624,9 +4628,7 @@
     "NEOUSDT": [],
     "NEWTUSDT": [],
     "NEXOUSDT": [],
-    "NFLXBUSDT": [
-      1794495600000
-    ],
+    "NFLXBUSDT": [],
     "NIGHTUSDT": [],
     "NILUSDT": [],
     "NMRUSDT": [],
@@ -4651,9 +4653,7 @@
     "OSMOUSDT": [],
     "PARTIUSDT": [],
     "PAXGUSDT": [],
-    "PDDBUSDT": [
-      1794495600000
-    ],
+    "PDDBUSDT": [],
     "PENDLEUSDT": [],
     "PENGBUSDT": [],
     "PENGUUSDT": [],
@@ -4723,7 +4723,9 @@
     "SKLUSDT": [],
     "SKYUSDT": [],
     "SLPUSDT": [],
-    "SMCIBUSDT": [],
+    "SMCIBUSDT": [
+      1794499200000
+    ],
     "SMHBUSDT": [],
     "SNDKBUSDT": [],
     "SNXUSDT": [],
@@ -4753,7 +4755,9 @@
     "SUSHIUSDT": [],
     "SXTUSDT": [],
     "SYNUSDT": [],
-    "SYRUPUSDT": [],
+    "SYRUPUSDT": [
+      1794499200000
+    ],
     "TAOUSDT": [],
     "TFUELUSDT": [],
     "THETAUSDT": [],
@@ -4797,9 +4801,7 @@
     "WIFUSDT": [],
     "WINUSDT": [],
     "WLDUSDT": [],
-    "WLFIUSDT": [
-      1794495600000
-    ],
+    "WLFIUSDT": [],
     "WOOUSDT": [],
     "WUSDT": [],
     "XAIUSDT": [],
@@ -4831,7 +4833,9 @@
     "BOTBUSDT": [],
     "BRKBBUSDT": [],
     "KSTRBUSDT": [],
-    "TMFBUSDT": [],
+    "TMFBUSDT": [
+      1794499200000
+    ],
     "VSTBUSDT": []
   },
   "prev_sell_bars": {
@@ -4906,7 +4910,9 @@
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
-    "BARDUSDT": [],
+    "BARDUSDT": [
+      1794499200000
+    ],
     "BARUSDT": [],
     "BATUSDT": [],
     "BBBUSDT": [],
@@ -4973,9 +4979,7 @@
     "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
-    "DODOUSDT": [
-      1794495600000
-    ],
+    "DODOUSDT": [],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -5025,12 +5029,12 @@
     "GMXUSDT": [],
     "GNOUSDT": [],
     "GNSUSDT": [],
-    "GOOGLBUSDT": [],
+    "GOOGLBUSDT": [
+      1794499200000
+    ],
     "GPROBUSDT": [],
     "GPSUSDT": [],
-    "GRAMUSDT": [
-      1794495600000
-    ],
+    "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
     "GTCUSDT": [],
@@ -5152,9 +5156,7 @@
     "ONEUSDT": [],
     "ONGUSDT": [],
     "ONTUSDT": [],
-    "OPENUSDT": [
-      1794495600000
-    ],
+    "OPENUSDT": [],
     "OPGUSDT": [],
     "OPNUSDT": [],
     "OPUSDT": [],
@@ -6362,7 +6364,8 @@
     ],
     "SMCIBUSDT": [
       1794326400000,
-      1794438000000
+      1794438000000,
+      1794499200000
     ],
     "SMHBUSDT": [
       1794315600000
@@ -6444,7 +6447,9 @@
     ],
     "SXTUSDT": [],
     "SYNUSDT": [],
-    "SYRUPUSDT": [],
+    "SYRUPUSDT": [
+      1794499200000
+    ],
     "TAOUSDT": [
       1794171600000,
       1794488400000
@@ -7406,13 +7411,12 @@
     "BRKBBUSDT": [],
     "KSTRBUSDT": [],
     "TMFBUSDT": [
-      1794488400000
+      1794488400000,
+      1794499200000
     ],
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:ONDOUSDT:1794171600000:1",
-    "buy:ONGUSDT:1794171600000:1",
     "buy:ONTUSDT:1794171600000:1",
     "buy:OPNUSDT:1794171600000:1",
     "buy:OPUSDT:1794171600000:1",
@@ -7810,11 +7814,13 @@
     "buy:WBTCUSDT:1794492000000:3",
     "buy:NFLXBUSDT:1794495600000:1",
     "buy:PDDBUSDT:1794495600000:1",
-    "buy:WLFIUSDT:1794495600000:1"
+    "buy:WLFIUSDT:1794495600000:1",
+    "buy:SMCIBUSDT:1794499200000:2",
+    "buy:SYRUPUSDT:1794499200000:1"
   ],
-  "cycles": 312,
-  "messages_sent": 692,
-  "last_cycle_ms": 1794504813373,
+  "cycles": 313,
+  "messages_sent": 694,
+  "last_cycle_ms": 1794506617430,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
