@@ -2385,10 +2385,16 @@
       "last_entry_price": 0.0
     },
     "ETHFIUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.6218,
+        "entry_time": 1794452400000,
+        "signal_bar_time": 1794448800000,
+        "signal_price": 0.6155,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794448800000,
+      "last_entry_price": 0.6218
     },
     "EULUSDT": {
       "position": {
@@ -4319,14 +4325,10 @@
     "AMZNBUSDT": [],
     "ANIMEUSDT": [],
     "ANKRUSDT": [],
-    "APEUSDT": [
-      1794445200000
-    ],
+    "APEUSDT": [],
     "API3USDT": [],
     "APTUSDT": [],
-    "ARBUSDT": [
-      1794445200000
-    ],
+    "ARBUSDT": [],
     "ARKMUSDT": [],
     "ARKUSDT": [],
     "ARMBUSDT": [],
@@ -4351,7 +4353,9 @@
     "AXLUSDT": [],
     "AXSUSDT": [],
     "AXTIBUSDT": [],
-    "BABABUSDT": [],
+    "BABABUSDT": [
+      1794448800000
+    ],
     "BABYUSDT": [],
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
@@ -4438,13 +4442,17 @@
     "EGLDUSDT": [],
     "EIGENUSDT": [],
     "ENAUSDT": [],
-    "ENJUSDT": [],
+    "ENJUSDT": [
+      1794448800000
+    ],
     "ENSOUSDT": [],
     "ENSUSDT": [],
     "ERAUSDT": [],
     "ESPUSDT": [],
     "ETCUSDT": [],
-    "ETHFIUSDT": [],
+    "ETHFIUSDT": [
+      1794448800000
+    ],
     "ETHUSDT": [],
     "EULUSDT": [],
     "EWYBUSDT": [],
@@ -4491,9 +4499,7 @@
     "HIVEUSDT": [],
     "HMSTRUSDT": [],
     "HOLOUSDT": [],
-    "HOMEUSDT": [
-      1794445200000
-    ],
+    "HOMEUSDT": [],
     "HOODBUSDT": [],
     "HOTUSDT": [],
     "HPEBUSDT": [],
@@ -4505,12 +4511,8 @@
     "IDUSDT": [],
     "ILVUSDT": [],
     "IMXUSDT": [],
-    "INITUSDT": [
-      1794445200000
-    ],
-    "INJUSDT": [
-      1794445200000
-    ],
+    "INITUSDT": [],
+    "INJUSDT": [],
     "INTCBUSDT": [],
     "INTWBUSDT": [],
     "IOSTUSDT": [],
@@ -4525,9 +4527,7 @@
     "JSTUSDT": [],
     "JTOUSDT": [],
     "JUPUSDT": [],
-    "JUVUSDT": [
-      1794445200000
-    ],
+    "JUVUSDT": [],
     "KAIAUSDT": [],
     "KAITOUSDT": [],
     "KATUSDT": [],
@@ -4607,12 +4607,8 @@
     "ONEUSDT": [],
     "ONGUSDT": [],
     "ONTUSDT": [],
-    "OPENUSDT": [
-      1794445200000
-    ],
-    "OPGUSDT": [
-      1794445200000
-    ],
+    "OPENUSDT": [],
+    "OPGUSDT": [],
     "OPNUSDT": [],
     "OPUSDT": [],
     "ORCAUSDT": [],
@@ -4659,9 +4655,7 @@
     "RENDERUSDT": [],
     "REQUSDT": [],
     "RESOLVUSDT": [],
-    "REUSDT": [
-      1794445200000
-    ],
+    "REUSDT": [],
     "REZUSDT": [],
     "RIFUSDT": [],
     "RKLBBUSDT": [],
@@ -4747,9 +4741,7 @@
     "TUTUSDT": [],
     "TWTUSDT": [],
     "UMAUSDT": [],
-    "UNIUSDT": [
-      1794445200000
-    ],
+    "UNIUSDT": [],
     "USARBUSDT": [],
     "USDEBUSDT": [],
     "USTCUSDT": [],
@@ -4826,7 +4818,7 @@
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [
-      1794445200000
+      1794448800000
     ],
     "AIGENSYNUSDT": [],
     "AIUSDT": [],
@@ -5272,9 +5264,7 @@
     "WDCBUSDT": [],
     "WENBUSDT": [],
     "WIFUSDT": [],
-    "WINUSDT": [
-      1794445200000
-    ],
+    "WINUSDT": [],
     "WLDUSDT": [],
     "WLFIUSDT": [],
     "WOOUSDT": [],
@@ -5300,16 +5290,16 @@
     "ZKCUSDT": [],
     "ZKPUSDT": [],
     "ZKUSDT": [],
-    "ZMBUSDT": [
-      1794445200000
-    ],
+    "ZMBUSDT": [],
     "ZROUSDT": [],
     "ZRXUSDT": [],
     "币安人生USDT": [],
     "牛来USDT": [],
     "BOTBUSDT": [],
     "BRKBBUSDT": [],
-    "KSTRBUSDT": [],
+    "KSTRBUSDT": [
+      1794448800000
+    ],
     "TMFBUSDT": [],
     "VSTBUSDT": []
   },
@@ -5713,7 +5703,9 @@
     "ETCUSDT": [
       1794171600000
     ],
-    "ETHFIUSDT": [],
+    "ETHFIUSDT": [
+      1794448800000
+    ],
     "ETHUSDT": [
       1794171600000,
       1794315600000
@@ -6679,7 +6671,9 @@
     "AXTIBUSDT": [
       1794326400000
     ],
-    "BABABUSDT": [],
+    "BABABUSDT": [
+      1794448800000
+    ],
     "BABYUSDT": [],
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
@@ -6809,7 +6803,9 @@
     "EGLDUSDT": [],
     "EIGENUSDT": [],
     "ENAUSDT": [],
-    "ENJUSDT": [],
+    "ENJUSDT": [
+      1794448800000
+    ],
     "ENSOUSDT": [],
     "ENSUSDT": [],
     "ERAUSDT": [],
@@ -7311,7 +7307,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:KAITOUSDT:1794171600000:1",
     "buy:KATUSDT:1794171600000:1",
     "buy:KERNELUSDT:1794171600000:1",
     "buy:KNCUSDT:1794171600000:1",
@@ -7710,11 +7705,12 @@
     "buy:JUVUSDT:1794445200000:2",
     "buy:OPENUSDT:1794445200000:1",
     "buy:OPGUSDT:1794445200000:1",
-    "buy:UNIUSDT:1794445200000:2"
+    "buy:UNIUSDT:1794445200000:2",
+    "buy:ETHFIUSDT:1794448800000:1"
   ],
-  "cycles": 284,
-  "messages_sent": 658,
-  "last_cycle_ms": 1794453415083,
+  "cycles": 285,
+  "messages_sent": 659,
+  "last_cycle_ms": 1794456204261,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
