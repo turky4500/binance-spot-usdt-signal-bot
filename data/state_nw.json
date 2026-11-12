@@ -3272,11 +3272,11 @@
         "entry_time": 1794448800000,
         "signal_bar_time": 1794445200000,
         "signal_price": 0.1329,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794445200000,
-      "last_entry_price": 0.1335
+      "entry_count": 2,
+      "last_buy_bar": 1794452400000,
+      "last_entry_price": 0.1358
     },
     "OPUSDT": {
       "position": {
@@ -4334,7 +4334,9 @@
     "ARMBUSDT": [],
     "ARPAUSDT": [],
     "ARUSDT": [],
-    "ASMLBUSDT": [],
+    "ASMLBUSDT": [
+      1794452400000
+    ],
     "ASRUSDT": [],
     "ASTERUSDT": [],
     "ASTRUSDT": [],
@@ -4353,9 +4355,7 @@
     "AXLUSDT": [],
     "AXSUSDT": [],
     "AXTIBUSDT": [],
-    "BABABUSDT": [
-      1794448800000
-    ],
+    "BABABUSDT": [],
     "BABYUSDT": [],
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
@@ -4443,16 +4443,14 @@
     "EIGENUSDT": [],
     "ENAUSDT": [],
     "ENJUSDT": [
-      1794448800000
+      1794452400000
     ],
     "ENSOUSDT": [],
     "ENSUSDT": [],
     "ERAUSDT": [],
     "ESPUSDT": [],
     "ETCUSDT": [],
-    "ETHFIUSDT": [
-      1794448800000
-    ],
+    "ETHFIUSDT": [],
     "ETHUSDT": [],
     "EULUSDT": [],
     "EWYBUSDT": [],
@@ -4608,7 +4606,9 @@
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
-    "OPGUSDT": [],
+    "OPGUSDT": [
+      1794452400000
+    ],
     "OPNUSDT": [],
     "OPUSDT": [],
     "ORCAUSDT": [],
@@ -4817,9 +4817,7 @@
     "AEROUSDT": [],
     "AEVOUSDT": [],
     "AGLDUSDT": [],
-    "AGPUBUSDT": [
-      1794448800000
-    ],
+    "AGPUBUSDT": [],
     "AIGENSYNUSDT": [],
     "AIUSDT": [],
     "AIXBTUSDT": [],
@@ -5297,9 +5295,7 @@
     "牛来USDT": [],
     "BOTBUSDT": [],
     "BRKBBUSDT": [],
-    "KSTRBUSDT": [
-      1794448800000
-    ],
+    "KSTRBUSDT": [],
     "TMFBUSDT": [],
     "VSTBUSDT": []
   },
@@ -6099,7 +6095,8 @@
       1794445200000
     ],
     "OPGUSDT": [
-      1794445200000
+      1794445200000,
+      1794452400000
     ],
     "OPNUSDT": [
       1794171600000
@@ -6640,7 +6637,9 @@
     "ARUSDT": [
       1794434400000
     ],
-    "ASMLBUSDT": [],
+    "ASMLBUSDT": [
+      1794452400000
+    ],
     "ASRUSDT": [],
     "ASTERUSDT": [
       1794171600000,
@@ -6804,7 +6803,8 @@
     "EIGENUSDT": [],
     "ENAUSDT": [],
     "ENJUSDT": [
-      1794448800000
+      1794448800000,
+      1794452400000
     ],
     "ENSOUSDT": [],
     "ENSUSDT": [],
@@ -7307,7 +7307,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:KATUSDT:1794171600000:1",
     "buy:KERNELUSDT:1794171600000:1",
     "buy:KNCUSDT:1794171600000:1",
     "buy:KSMUSDT:1794171600000:1",
@@ -7706,11 +7705,12 @@
     "buy:OPENUSDT:1794445200000:1",
     "buy:OPGUSDT:1794445200000:1",
     "buy:UNIUSDT:1794445200000:2",
-    "buy:ETHFIUSDT:1794448800000:1"
+    "buy:ETHFIUSDT:1794448800000:1",
+    "buy:OPGUSDT:1794452400000:2"
   ],
-  "cycles": 286,
-  "messages_sent": 659,
-  "last_cycle_ms": 1794458012724,
+  "cycles": 287,
+  "messages_sent": 660,
+  "last_cycle_ms": 1794459809169,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
