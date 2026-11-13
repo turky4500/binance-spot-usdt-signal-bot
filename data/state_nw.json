@@ -4522,9 +4522,7 @@
     "GMEBUSDT": [],
     "GMTUSDT": [],
     "GMXUSDT": [],
-    "GNOUSDT": [
-      1794528000000
-    ],
+    "GNOUSDT": [],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -4837,9 +4835,7 @@
     "BOTBUSDT": [],
     "BRKBBUSDT": [],
     "KSTRBUSDT": [],
-    "TMFBUSDT": [
-      1794528000000
-    ],
+    "TMFBUSDT": [],
     "VSTBUSDT": []
   },
   "prev_sell_bars": {
@@ -5163,7 +5159,9 @@
     "ORCAUSDT": [],
     "ORCLBUSDT": [],
     "ORDIUSDT": [],
-    "OSMOUSDT": [],
+    "OSMOUSDT": [
+      1794531600000
+    ],
     "PARTIUSDT": [],
     "PAXGUSDT": [],
     "PDDBUSDT": [],
@@ -5175,7 +5173,9 @@
     "PHAUSDT": [],
     "PIXELUSDT": [],
     "PLTRBUSDT": [],
-    "PLUMEUSDT": [],
+    "PLUMEUSDT": [
+      1794531600000
+    ],
     "PNUTUSDT": [],
     "POLUSDT": [],
     "POLYXUSDT": [],
@@ -5271,9 +5271,7 @@
     "TFUELUSDT": [],
     "THETAUSDT": [],
     "THEUSDT": [],
-    "TIAUSDT": [
-      1794528000000
-    ],
+    "TIAUSDT": [],
     "TKOUSDT": [],
     "TLMUSDT": [],
     "TNSRUSDT": [],
@@ -7838,9 +7836,9 @@
     "buy:GNOUSDT:1794528000000:2",
     "buy:TMFBUSDT:1794528000000:1"
   ],
-  "cycles": 330,
+  "cycles": 331,
   "messages_sent": 703,
-  "last_cycle_ms": 1794537216058,
+  "last_cycle_ms": 1794539012692,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
