@@ -3424,9 +3424,7 @@
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
-    "BARDUSDT": [
-      1794499200000
-    ],
+    "BARDUSDT": [],
     "BARUSDT": [],
     "BATUSDT": [],
     "BBUSDT": [],
@@ -3453,7 +3451,9 @@
     "C98USDT": [],
     "CAKEUSDT": [],
     "CATIUSDT": [],
-    "CBRSBUSDT": [],
+    "CBRSBUSDT": [
+      1794513600000
+    ],
     "CELOUSDT": [],
     "CELRUSDT": [],
     "CETUSUSDT": [],
@@ -4846,9 +4846,9 @@
     "buy:PAXGUSDT:1794484800000:1",
     "buy:XAUTUSDT:1794484800000:1"
   ],
-  "cycles": 28,
+  "cycles": 29,
   "messages_sent": 20,
-  "last_cycle_ms": 1794531102279,
+  "last_cycle_ms": 1794542610432,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-12",
     "reported_trade_keys": [
