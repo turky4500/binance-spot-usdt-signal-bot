@@ -1724,11 +1724,11 @@
         "entry_time": 1794175200000,
         "signal_bar_time": 1794171600000,
         "signal_price": 0.5618,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794171600000,
-      "last_entry_price": 0.5727
+      "entry_count": 2,
+      "last_buy_bar": 1794560400000,
+      "last_entry_price": 0.4826
     },
     "AEVOUSDT": {
       "position": {
@@ -4275,14 +4275,8 @@
       "last_entry_price": 68736.81
     },
     "WCTUSDT": {
-      "position": {
-        "entry_price": 0.02923,
-        "entry_time": 1794175200000,
-        "signal_bar_time": 1794171600000,
-        "signal_price": 0.0288,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794171600000,
       "last_entry_price": 0.02923
     },
@@ -4509,7 +4503,9 @@
     "ADAUSDT": [],
     "ADBEBUSDT": [],
     "ADXUSDT": [],
-    "AEROUSDT": [],
+    "AEROUSDT": [
+      1794560400000
+    ],
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
@@ -4777,7 +4773,9 @@
     "MOVRUSDT": [],
     "MRNABUSDT": [],
     "MRVLBUSDT": [],
-    "MSFTBUSDT": [],
+    "MSFTBUSDT": [
+      1794560400000
+    ],
     "MSTRBUSDT": [],
     "MTLUSDT": [],
     "MUBARAKUSDT": [],
@@ -5066,9 +5064,7 @@
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
-    "BARDUSDT": [
-      1794556800000
-    ],
+    "BARDUSDT": [],
     "BARUSDT": [],
     "BATUSDT": [],
     "BBBUSDT": [],
@@ -5077,9 +5073,7 @@
     "BEAMXUSDT": [],
     "BEBUSDT": [],
     "BELUSDT": [],
-    "BERAUSDT": [
-      1794556800000
-    ],
+    "BERAUSDT": [],
     "BICOUSDT": [],
     "BIGTIMEUSDT": [],
     "BIOUSDT": [],
@@ -5137,7 +5131,9 @@
     "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
-    "DODOUSDT": [],
+    "DODOUSDT": [
+      1794560400000
+    ],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -5162,7 +5158,9 @@
     "EULUSDT": [],
     "EWYBUSDT": [],
     "FETUSDT": [],
-    "FFUSDT": [],
+    "FFUSDT": [
+      1794560400000
+    ],
     "FIDAUSDT": [],
     "FILUSDT": [],
     "FLNCBUSDT": [],
@@ -5202,7 +5200,9 @@
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [],
+    "HMSTRUSDT": [
+      1794560400000
+    ],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -5313,7 +5313,9 @@
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
-    "OPGUSDT": [],
+    "OPGUSDT": [
+      1794560400000
+    ],
     "OPNUSDT": [],
     "OPUSDT": [],
     "ORCAUSDT": [],
@@ -5400,7 +5402,9 @@
     "SOLUSDT": [],
     "SOLVUSDT": [],
     "SOMIUSDT": [],
-    "SOPHUSDT": [],
+    "SOPHUSDT": [
+      1794560400000
+    ],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
     "SPCXBUSDT": [],
@@ -5460,7 +5464,9 @@
     "WAXPUSDT": [],
     "WBETHUSDT": [],
     "WBTCUSDT": [],
-    "WCTUSDT": [],
+    "WCTUSDT": [
+      1794560400000
+    ],
     "WDCBUSDT": [],
     "WENBUSDT": [],
     "WIFUSDT": [],
@@ -5550,7 +5556,8 @@
     ],
     "ADXUSDT": [],
     "AEROUSDT": [
-      1794171600000
+      1794171600000,
+      1794560400000
     ],
     "AEVOUSDT": [
       1794171600000,
@@ -7381,7 +7388,8 @@
     ],
     "MRVLBUSDT": [],
     "MSFTBUSDT": [
-      1794409200000
+      1794409200000,
+      1794560400000
     ],
     "MSTRBUSDT": [],
     "MTLUSDT": [],
@@ -7752,8 +7760,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:WAXPUSDT:1794171600000:1",
-    "buy:WBETHUSDT:1794171600000:1",
     "buy:WBTCUSDT:1794171600000:1",
     "buy:WCTUSDT:1794171600000:1",
     "buy:WIFUSDT:1794171600000:1",
@@ -8151,11 +8157,13 @@
     "buy:MANTRAUSDT:1794553200000:2",
     "exit:STRAXUSDT:1794553200000",
     "buy:WBTCUSDT:1794553200000:4",
-    "exit:BERAUSDT:1794556800000"
+    "exit:BERAUSDT:1794556800000",
+    "buy:AEROUSDT:1794560400000:2",
+    "exit:WCTUSDT:1794560400000"
   ],
-  "cycles": 347,
-  "messages_sent": 769,
-  "last_cycle_ms": 1794566001227,
+  "cycles": 348,
+  "messages_sent": 771,
+  "last_cycle_ms": 1794567808830,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
