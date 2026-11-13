@@ -2319,14 +2319,8 @@
       "last_entry_price": 0.0
     },
     "DEXEUSDT": {
-      "position": {
-        "entry_price": 1.21,
-        "entry_time": 1794175200000,
-        "signal_bar_time": 1794171600000,
-        "signal_price": 1.187,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794171600000,
       "last_entry_price": 1.21
     },
@@ -4522,9 +4516,7 @@
     "GMEBUSDT": [],
     "GMTUSDT": [],
     "GMXUSDT": [],
-    "GNOUSDT": [
-      1794520800000
-    ],
+    "GNOUSDT": [],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -4975,7 +4967,9 @@
     "DASHUSDT": [],
     "DCRUSDT": [],
     "DELLBUSDT": [],
-    "DEXEUSDT": [],
+    "DEXEUSDT": [
+      1794524400000
+    ],
     "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
@@ -5149,9 +5143,7 @@
     "NVDABUSDT": [],
     "NXPCUSDT": [],
     "OGNUSDT": [],
-    "OGUSDT": [
-      1794520800000
-    ],
+    "OGUSDT": [],
     "ONDOUSDT": [],
     "ONEUSDT": [],
     "ONGUSDT": [],
@@ -5175,13 +5167,9 @@
     "PHAUSDT": [],
     "PIXELUSDT": [],
     "PLTRBUSDT": [],
-    "PLUMEUSDT": [
-      1794520800000
-    ],
+    "PLUMEUSDT": [],
     "PNUTUSDT": [],
-    "POLUSDT": [
-      1794520800000
-    ],
+    "POLUSDT": [],
     "POLYXUSDT": [],
     "PORTALUSDT": [],
     "PORTOUSDT": [],
@@ -7436,7 +7424,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:PEOPLEUSDT:1794171600000:1",
     "buy:PIXELUSDT:1794171600000:1",
     "buy:PNUTUSDT:1794171600000:1",
     "buy:POLUSDT:1794171600000:1",
@@ -7835,11 +7822,12 @@
     "buy:AGPUBUSDT:1794513600000:1",
     "buy:NFLXBUSDT:1794513600000:2",
     "buy:QNTBUSDT:1794513600000:3",
-    "buy:GNOUSDT:1794520800000:1"
+    "buy:GNOUSDT:1794520800000:1",
+    "exit:DEXEUSDT:1794524400000"
   ],
-  "cycles": 326,
-  "messages_sent": 700,
-  "last_cycle_ms": 1794528713668,
+  "cycles": 327,
+  "messages_sent": 701,
+  "last_cycle_ms": 1794531805600,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
