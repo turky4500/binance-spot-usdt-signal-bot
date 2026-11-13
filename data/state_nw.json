@@ -266,11 +266,11 @@
         "entry_time": 1794175200000,
         "signal_bar_time": 1794171600000,
         "signal_price": 74135.77,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1794492000000,
-      "last_entry_price": 71710.05
+      "entry_count": 3,
+      "last_buy_bar": 1794553200000,
+      "last_entry_price": 68717.47
     },
     "CELOUSDT": {
       "position": {
@@ -1293,14 +1293,8 @@
       "last_entry_price": 1.994
     },
     "STRAXUSDT": {
-      "position": {
-        "entry_price": 0.00858,
-        "entry_time": 1794488400000,
-        "signal_bar_time": 1794484800000,
-        "signal_price": 0.00852,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794484800000,
       "last_entry_price": 0.00858
     },
@@ -1988,11 +1982,11 @@
         "entry_time": 1794175200000,
         "signal_bar_time": 1794171600000,
         "signal_price": 0.005574,
-        "entry_count": 3
+        "entry_count": 4
       },
-      "entry_count": 3,
-      "last_buy_bar": 1794546000000,
-      "last_entry_price": 0.004706
+      "entry_count": 4,
+      "last_buy_bar": 1794553200000,
+      "last_entry_price": 0.004683
     },
     "BANANAUSDT": {
       "position": null,
@@ -2138,11 +2132,11 @@
         "entry_time": 1794175200000,
         "signal_bar_time": 1794171600000,
         "signal_price": 680.36,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1794326400000,
-      "last_entry_price": 674.31
+      "entry_count": 3,
+      "last_buy_bar": 1794553200000,
+      "last_entry_price": 631.21
     },
     "BNCBUSDT": {
       "position": {
@@ -3128,11 +3122,11 @@
         "entry_time": 1794175200000,
         "signal_bar_time": 1794171600000,
         "signal_price": 0.0028,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794171600000,
-      "last_entry_price": 0.00285
+      "entry_count": 2,
+      "last_buy_bar": 1794553200000,
+      "last_entry_price": 0.00271
     },
     "MARSCOINUSDT": {
       "position": null,
@@ -4280,11 +4274,11 @@
         "entry_time": 1794175200000,
         "signal_bar_time": 1794171600000,
         "signal_price": 73997.64,
-        "entry_count": 3
+        "entry_count": 4
       },
-      "entry_count": 3,
-      "last_buy_bar": 1794492000000,
-      "last_entry_price": 71719.58
+      "entry_count": 4,
+      "last_buy_bar": 1794553200000,
+      "last_entry_price": 68736.81
     },
     "WCTUSDT": {
       "position": {
@@ -4521,7 +4515,9 @@
     "ADAUSDT": [],
     "ADBEBUSDT": [],
     "ADXUSDT": [],
-    "AEROUSDT": [],
+    "AEROUSDT": [
+      1794553200000
+    ],
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
@@ -4571,7 +4567,9 @@
     "AXTIBUSDT": [],
     "BABABUSDT": [],
     "BABYUSDT": [],
-    "BANANAS31USDT": [],
+    "BANANAS31USDT": [
+      1794553200000
+    ],
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
@@ -4591,7 +4589,9 @@
     "BLURUSDT": [],
     "BMNRBUSDT": [],
     "BMTUSDT": [],
-    "BNBUSDT": [],
+    "BNBUSDT": [
+      1794553200000
+    ],
     "BNCBUSDT": [],
     "BNSOLUSDT": [],
     "BNTUSDT": [],
@@ -4599,7 +4599,9 @@
     "BONKUSDT": [],
     "BREVUSDT": [],
     "BROCCOLI714USDT": [],
-    "BTCUSDT": [],
+    "BTCUSDT": [
+      1794553200000
+    ],
     "BTTCUSDT": [],
     "C98USDT": [],
     "CAKEUSDT": [],
@@ -4768,7 +4770,9 @@
     "MAGICUSDT": [],
     "MANAUSDT": [],
     "MANTAUSDT": [],
-    "MANTRAUSDT": [],
+    "MANTRAUSDT": [
+      1794553200000
+    ],
     "MARSCOINUSDT": [],
     "MASKUSDT": [],
     "MAVUSDT": [],
@@ -4964,7 +4968,9 @@
     "WALUSDT": [],
     "WAXPUSDT": [],
     "WBETHUSDT": [],
-    "WBTCUSDT": [],
+    "WBTCUSDT": [
+      1794553200000
+    ],
     "WCTUSDT": [],
     "WDCBUSDT": [],
     "WENBUSDT": [],
@@ -5048,9 +5054,7 @@
     "API3USDT": [],
     "APTUSDT": [],
     "ARBUSDT": [],
-    "ARKMUSDT": [
-      1794549600000
-    ],
+    "ARKMUSDT": [],
     "ARKUSDT": [],
     "ARMBUSDT": [],
     "ARPAUSDT": [],
@@ -5172,7 +5176,9 @@
     "EULUSDT": [],
     "EWYBUSDT": [],
     "FETUSDT": [],
-    "FFUSDT": [],
+    "FFUSDT": [
+      1794553200000
+    ],
     "FIDAUSDT": [],
     "FILUSDT": [],
     "FLNCBUSDT": [],
@@ -5194,7 +5200,9 @@
     "GLWBUSDT": [],
     "GMEBUSDT": [],
     "GMTUSDT": [],
-    "GMXUSDT": [],
+    "GMXUSDT": [
+      1794553200000
+    ],
     "GNOUSDT": [],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
@@ -5274,7 +5282,9 @@
     "MANAUSDT": [],
     "MANTAUSDT": [],
     "MANTRAUSDT": [],
-    "MARSCOINUSDT": [],
+    "MARSCOINUSDT": [
+      1794553200000
+    ],
     "MASKUSDT": [],
     "MAVUSDT": [],
     "MBLUSDT": [],
@@ -5329,7 +5339,9 @@
     "ORCAUSDT": [],
     "ORCLBUSDT": [],
     "ORDIUSDT": [],
-    "OSMOUSDT": [],
+    "OSMOUSDT": [
+      1794553200000
+    ],
     "PARTIUSDT": [],
     "PAXGUSDT": [],
     "PDDBUSDT": [],
@@ -5410,9 +5422,7 @@
     "SOLUSDT": [],
     "SOLVUSDT": [],
     "SOMIUSDT": [],
-    "SOPHUSDT": [
-      1794549600000
-    ],
+    "SOPHUSDT": [],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
     "SPCXBUSDT": [],
@@ -5423,7 +5433,9 @@
     "SSVUSDT": [],
     "STEEMUSDT": [],
     "STOUSDT": [],
-    "STRAXUSDT": [],
+    "STRAXUSDT": [
+      1794553200000
+    ],
     "STRKUSDT": [],
     "STXBUSDT": [],
     "STXUSDT": [],
@@ -5506,7 +5518,9 @@
     "ZROUSDT": [],
     "ZRXUSDT": [],
     "币安人生USDT": [],
-    "牛来USDT": [],
+    "牛来USDT": [
+      1794553200000
+    ],
     "BOTBUSDT": [],
     "BRKBBUSDT": [],
     "KSTRBUSDT": [],
@@ -5698,7 +5712,8 @@
     "BANANAS31USDT": [
       1794171600000,
       1794463200000,
-      1794546000000
+      1794546000000,
+      1794553200000
     ],
     "BANANAUSDT": [
       1794171600000,
@@ -5756,7 +5771,8 @@
     "BMTUSDT": [],
     "BNBUSDT": [
       1794171600000,
-      1794326400000
+      1794326400000,
+      1794553200000
     ],
     "BNCBUSDT": [
       1794492000000
@@ -5781,7 +5797,8 @@
     ],
     "BTCUSDT": [
       1794171600000,
-      1794492000000
+      1794492000000,
+      1794553200000
     ],
     "BTTCUSDT": [
       1794175200000
@@ -6250,7 +6267,8 @@
       1794171600000
     ],
     "MANTRAUSDT": [
-      1794171600000
+      1794171600000,
+      1794553200000
     ],
     "MARSCOINUSDT": [],
     "MASKUSDT": [
@@ -6799,7 +6817,8 @@
     "WBTCUSDT": [
       1794171600000,
       1794326400000,
-      1794492000000
+      1794492000000,
+      1794553200000
     ],
     "WCTUSDT": [
       1794171600000
@@ -6938,7 +6957,9 @@
     "ADAUSDT": [],
     "ADBEBUSDT": [],
     "ADXUSDT": [],
-    "AEROUSDT": [],
+    "AEROUSDT": [
+      1794553200000
+    ],
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [
@@ -7757,12 +7778,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:USTCUSDT:1794171600000:1",
-    "buy:USUALUSDT:1794171600000:1",
-    "buy:VANAUSDT:1794171600000:1",
-    "buy:VETUSDT:1794171600000:1",
-    "buy:VIRTUALUSDT:1794171600000:1",
-    "buy:VTHOUSDT:1794171600000:1",
     "buy:WALUSDT:1794171600000:1",
     "buy:WAXPUSDT:1794171600000:1",
     "buy:WBETHUSDT:1794171600000:1",
@@ -8156,11 +8171,17 @@
     "buy:FTTUSDT:1794546000000:2",
     "buy:ILVUSDT:1794546000000:2",
     "buy:MSTRBUSDT:1794546000000:1",
-    "exit:ARKMUSDT:1794549600000"
+    "exit:ARKMUSDT:1794549600000",
+    "buy:BANANAS31USDT:1794553200000:4",
+    "buy:BNBUSDT:1794553200000:3",
+    "buy:BTCUSDT:1794553200000:3",
+    "buy:MANTRAUSDT:1794553200000:2",
+    "exit:STRAXUSDT:1794553200000",
+    "buy:WBTCUSDT:1794553200000:4"
   ],
-  "cycles": 343,
-  "messages_sent": 762,
-  "last_cycle_ms": 1794559068671,
+  "cycles": 344,
+  "messages_sent": 768,
+  "last_cycle_ms": 1794560614280,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
