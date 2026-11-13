@@ -4547,7 +4547,9 @@
     "AXTIBUSDT": [],
     "BABABUSDT": [],
     "BABYUSDT": [],
-    "BANANAS31USDT": [],
+    "BANANAS31USDT": [
+      1794567600000
+    ],
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
@@ -4719,9 +4721,7 @@
     "KATUSDT": [],
     "KAVAUSDT": [],
     "KERNELUSDT": [],
-    "KGSTUSDT": [
-      1794564000000
-    ],
+    "KGSTUSDT": [],
     "KITEUSDT": [],
     "KMNOUSDT": [],
     "KNCUSDT": [],
@@ -4746,9 +4746,7 @@
     "MAGICUSDT": [],
     "MANAUSDT": [],
     "MANTAUSDT": [],
-    "MANTRAUSDT": [
-      1794564000000
-    ],
+    "MANTRAUSDT": [],
     "MARSCOINUSDT": [],
     "MASKUSDT": [],
     "MAVUSDT": [],
@@ -5067,9 +5065,7 @@
     "BEAMXUSDT": [],
     "BEBUSDT": [],
     "BELUSDT": [],
-    "BERAUSDT": [
-      1794564000000
-    ],
+    "BERAUSDT": [],
     "BICOUSDT": [],
     "BIGTIMEUSDT": [],
     "BIOUSDT": [],
@@ -5152,7 +5148,9 @@
     "EULUSDT": [],
     "EWYBUSDT": [],
     "FETUSDT": [],
-    "FFUSDT": [],
+    "FFUSDT": [
+      1794567600000
+    ],
     "FIDAUSDT": [],
     "FILUSDT": [],
     "FLNCBUSDT": [],
@@ -5294,9 +5292,7 @@
     "NOKBUSDT": [],
     "NOMUSDT": [],
     "NOTUSDT": [],
-    "NVDABUSDT": [
-      1794564000000
-    ],
+    "NVDABUSDT": [],
     "NXPCUSDT": [],
     "OGNUSDT": [],
     "OGUSDT": [],
@@ -7012,7 +7008,8 @@
     "BANANAS31USDT": [
       1794477600000,
       1794481200000,
-      1794538800000
+      1794538800000,
+      1794567600000
     ],
     "BANANAUSDT": [
       1794538800000
@@ -8149,9 +8146,9 @@
     "buy:KGSTUSDT:1794564000000:2",
     "exit:NVDABUSDT:1794564000000"
   ],
-  "cycles": 351,
+  "cycles": 352,
   "messages_sent": 773,
-  "last_cycle_ms": 1794573210979,
+  "last_cycle_ms": 1794575022071,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
