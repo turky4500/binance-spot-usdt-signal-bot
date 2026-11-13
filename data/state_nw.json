@@ -2073,14 +2073,8 @@
       "last_entry_price": 0.0883
     },
     "BERAUSDT": {
-      "position": {
-        "entry_price": 0.1038,
-        "entry_time": 1794175200000,
-        "signal_bar_time": 1794171600000,
-        "signal_price": 0.1017,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794171600000,
       "last_entry_price": 0.1038
     },
@@ -4515,9 +4509,7 @@
     "ADAUSDT": [],
     "ADBEBUSDT": [],
     "ADXUSDT": [],
-    "AEROUSDT": [
-      1794553200000
-    ],
+    "AEROUSDT": [],
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
@@ -4567,9 +4559,7 @@
     "AXTIBUSDT": [],
     "BABABUSDT": [],
     "BABYUSDT": [],
-    "BANANAS31USDT": [
-      1794553200000
-    ],
+    "BANANAS31USDT": [],
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
@@ -4589,9 +4579,7 @@
     "BLURUSDT": [],
     "BMNRBUSDT": [],
     "BMTUSDT": [],
-    "BNBUSDT": [
-      1794553200000
-    ],
+    "BNBUSDT": [],
     "BNCBUSDT": [],
     "BNSOLUSDT": [],
     "BNTUSDT": [],
@@ -4599,9 +4587,7 @@
     "BONKUSDT": [],
     "BREVUSDT": [],
     "BROCCOLI714USDT": [],
-    "BTCUSDT": [
-      1794553200000
-    ],
+    "BTCUSDT": [],
     "BTTCUSDT": [],
     "C98USDT": [],
     "CAKEUSDT": [],
@@ -4770,9 +4756,7 @@
     "MAGICUSDT": [],
     "MANAUSDT": [],
     "MANTAUSDT": [],
-    "MANTRAUSDT": [
-      1794553200000
-    ],
+    "MANTRAUSDT": [],
     "MARSCOINUSDT": [],
     "MASKUSDT": [],
     "MAVUSDT": [],
@@ -4968,9 +4952,7 @@
     "WALUSDT": [],
     "WAXPUSDT": [],
     "WBETHUSDT": [],
-    "WBTCUSDT": [
-      1794553200000
-    ],
+    "WBTCUSDT": [],
     "WCTUSDT": [],
     "WDCBUSDT": [],
     "WENBUSDT": [],
@@ -5084,7 +5066,9 @@
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
-    "BARDUSDT": [],
+    "BARDUSDT": [
+      1794556800000
+    ],
     "BARUSDT": [],
     "BATUSDT": [],
     "BBBUSDT": [],
@@ -5093,7 +5077,9 @@
     "BEAMXUSDT": [],
     "BEBUSDT": [],
     "BELUSDT": [],
-    "BERAUSDT": [],
+    "BERAUSDT": [
+      1794556800000
+    ],
     "BICOUSDT": [],
     "BIGTIMEUSDT": [],
     "BIOUSDT": [],
@@ -5176,9 +5162,7 @@
     "EULUSDT": [],
     "EWYBUSDT": [],
     "FETUSDT": [],
-    "FFUSDT": [
-      1794553200000
-    ],
+    "FFUSDT": [],
     "FIDAUSDT": [],
     "FILUSDT": [],
     "FLNCBUSDT": [],
@@ -5200,9 +5184,7 @@
     "GLWBUSDT": [],
     "GMEBUSDT": [],
     "GMTUSDT": [],
-    "GMXUSDT": [
-      1794553200000
-    ],
+    "GMXUSDT": [],
     "GNOUSDT": [],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
@@ -5282,9 +5264,7 @@
     "MANAUSDT": [],
     "MANTAUSDT": [],
     "MANTRAUSDT": [],
-    "MARSCOINUSDT": [
-      1794553200000
-    ],
+    "MARSCOINUSDT": [],
     "MASKUSDT": [],
     "MAVUSDT": [],
     "MBLUSDT": [],
@@ -5339,9 +5319,7 @@
     "ORCAUSDT": [],
     "ORCLBUSDT": [],
     "ORDIUSDT": [],
-    "OSMOUSDT": [
-      1794553200000
-    ],
+    "OSMOUSDT": [],
     "PARTIUSDT": [],
     "PAXGUSDT": [],
     "PDDBUSDT": [],
@@ -5433,9 +5411,7 @@
     "SSVUSDT": [],
     "STEEMUSDT": [],
     "STOUSDT": [],
-    "STRAXUSDT": [
-      1794553200000
-    ],
+    "STRAXUSDT": [],
     "STRKUSDT": [],
     "STXBUSDT": [],
     "STXUSDT": [],
@@ -5518,9 +5494,7 @@
     "ZROUSDT": [],
     "ZRXUSDT": [],
     "币安人生USDT": [],
-    "牛来USDT": [
-      1794553200000
-    ],
+    "牛来USDT": [],
     "BOTBUSDT": [],
     "BRKBBUSDT": [],
     "KSTRBUSDT": [],
@@ -7778,7 +7752,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:WALUSDT:1794171600000:1",
     "buy:WAXPUSDT:1794171600000:1",
     "buy:WBETHUSDT:1794171600000:1",
     "buy:WBTCUSDT:1794171600000:1",
@@ -8177,11 +8150,12 @@
     "buy:BTCUSDT:1794553200000:3",
     "buy:MANTRAUSDT:1794553200000:2",
     "exit:STRAXUSDT:1794553200000",
-    "buy:WBTCUSDT:1794553200000:4"
+    "buy:WBTCUSDT:1794553200000:4",
+    "exit:BERAUSDT:1794556800000"
   ],
-  "cycles": 345,
-  "messages_sent": 768,
-  "last_cycle_ms": 1794562408721,
+  "cycles": 346,
+  "messages_sent": 769,
+  "last_cycle_ms": 1794564215383,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
