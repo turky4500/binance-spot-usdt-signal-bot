@@ -3674,11 +3674,11 @@
         "entry_time": 1794409200000,
         "signal_bar_time": 1794405600000,
         "signal_price": 41.83,
-        "entry_count": 3
+        "entry_count": 4
       },
-      "entry_count": 3,
-      "last_buy_bar": 1794513600000,
-      "last_entry_price": 37.77
+      "entry_count": 4,
+      "last_buy_bar": 1794589200000,
+      "last_entry_price": 35.12
     },
     "QQQBUSDT": {
       "position": {
@@ -4835,9 +4835,7 @@
     "MSTRBUSDT": [],
     "MTLUSDT": [],
     "MUBARAKUSDT": [],
-    "MUBUSDT": [
-      1794585600000
-    ],
+    "MUBUSDT": [],
     "MUUBUSDT": [],
     "MVLLBUSDT": [],
     "NBISBUSDT": [],
@@ -4846,9 +4844,7 @@
     "NEOUSDT": [],
     "NEWTUSDT": [],
     "NEXOUSDT": [],
-    "NFLXBUSDT": [
-      1794585600000
-    ],
+    "NFLXBUSDT": [],
     "NIGHTUSDT": [],
     "NILUSDT": [],
     "NMRUSDT": [],
@@ -4900,7 +4896,7 @@
     "QIUSDT": [],
     "QKCUSDT": [],
     "QNTBUSDT": [
-      1794585600000
+      1794589200000
     ],
     "QNTUSDT": [],
     "QQQBUSDT": [],
@@ -5077,9 +5073,7 @@
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
     "AIGENSYNUSDT": [],
-    "AIUSDT": [
-      1794585600000
-    ],
+    "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
     "ALGOUSDT": [],
@@ -5296,9 +5290,7 @@
     "KATUSDT": [],
     "KAVAUSDT": [],
     "KERNELUSDT": [],
-    "KGSTUSDT": [
-      1794585600000
-    ],
+    "KGSTUSDT": [],
     "KITEUSDT": [],
     "KMNOUSDT": [],
     "KNCUSDT": [],
@@ -5382,7 +5374,9 @@
     "OSMOUSDT": [],
     "PARTIUSDT": [],
     "PAXGUSDT": [],
-    "PDDBUSDT": [],
+    "PDDBUSDT": [
+      1794589200000
+    ],
     "PENDLEUSDT": [],
     "PENGBUSDT": [],
     "PENGUUSDT": [],
@@ -5445,9 +5439,7 @@
     "SENTUSDT": [],
     "SFPUSDT": [],
     "SHAZBUSDT": [],
-    "SHELLUSDT": [
-      1794585600000
-    ],
+    "SHELLUSDT": [],
     "SHIBUSDT": [],
     "SIGNUSDT": [],
     "SKHYBUSDT": [],
@@ -5472,7 +5464,9 @@
     "SQQQBUSDT": [],
     "SSVUSDT": [],
     "STEEMUSDT": [],
-    "STOUSDT": [],
+    "STOUSDT": [
+      1794589200000
+    ],
     "STRAXUSDT": [],
     "STRKUSDT": [],
     "STXBUSDT": [],
@@ -6568,7 +6562,8 @@
     "QNTBUSDT": [
       1794405600000,
       1794434400000,
-      1794513600000
+      1794513600000,
+      1794589200000
     ],
     "QNTUSDT": [
       1794326400000,
@@ -7911,7 +7906,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "exit:MAVUSDT:1794232800000",
     "exit:STXBUSDT:1794232800000",
     "exit:USUALUSDT:1794232800000",
     "exit:XVGUSDT:1794232800000",
@@ -8310,11 +8304,12 @@
     "exit:AIUSDT:1794585600000",
     "exit:KGSTUSDT:1794585600000",
     "buy:MUBUSDT:1794585600000:1",
-    "buy:NFLXBUSDT:1794585600000:1"
+    "buy:NFLXBUSDT:1794585600000:1",
+    "buy:QNTBUSDT:1794589200000:4"
   ],
-  "cycles": 363,
-  "messages_sent": 816,
-  "last_cycle_ms": 1794594809674,
+  "cycles": 364,
+  "messages_sent": 817,
+  "last_cycle_ms": 1794596619135,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
