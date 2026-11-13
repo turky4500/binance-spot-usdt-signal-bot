@@ -2966,11 +2966,11 @@
         "entry_time": 1794394800000,
         "signal_bar_time": 1794391200000,
         "signal_price": 0.011237,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794391200000,
-      "last_entry_price": 0.011264
+      "entry_count": 2,
+      "last_buy_bar": 1794564000000,
+      "last_entry_price": 0.011043
     },
     "KITEUSDT": {
       "position": null,
@@ -3405,14 +3405,8 @@
       "last_entry_price": 0.001385
     },
     "NVDABUSDT": {
-      "position": {
-        "entry_price": 162.81,
-        "entry_time": 1794492000000,
-        "signal_bar_time": 1794488400000,
-        "signal_price": 156.33,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794488400000,
       "last_entry_price": 162.81
     },
@@ -4503,9 +4497,7 @@
     "ADAUSDT": [],
     "ADBEBUSDT": [],
     "ADXUSDT": [],
-    "AEROUSDT": [
-      1794560400000
-    ],
+    "AEROUSDT": [],
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
@@ -4727,7 +4719,9 @@
     "KATUSDT": [],
     "KAVAUSDT": [],
     "KERNELUSDT": [],
-    "KGSTUSDT": [],
+    "KGSTUSDT": [
+      1794564000000
+    ],
     "KITEUSDT": [],
     "KMNOUSDT": [],
     "KNCUSDT": [],
@@ -4752,7 +4746,9 @@
     "MAGICUSDT": [],
     "MANAUSDT": [],
     "MANTAUSDT": [],
-    "MANTRAUSDT": [],
+    "MANTRAUSDT": [
+      1794564000000
+    ],
     "MARSCOINUSDT": [],
     "MASKUSDT": [],
     "MAVUSDT": [],
@@ -4773,9 +4769,7 @@
     "MOVRUSDT": [],
     "MRNABUSDT": [],
     "MRVLBUSDT": [],
-    "MSFTBUSDT": [
-      1794560400000
-    ],
+    "MSFTBUSDT": [],
     "MSTRBUSDT": [],
     "MTLUSDT": [],
     "MUBARAKUSDT": [],
@@ -5073,7 +5067,9 @@
     "BEAMXUSDT": [],
     "BEBUSDT": [],
     "BELUSDT": [],
-    "BERAUSDT": [],
+    "BERAUSDT": [
+      1794564000000
+    ],
     "BICOUSDT": [],
     "BIGTIMEUSDT": [],
     "BIOUSDT": [],
@@ -5131,9 +5127,7 @@
     "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
-    "DODOUSDT": [
-      1794560400000
-    ],
+    "DODOUSDT": [],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -5158,9 +5152,7 @@
     "EULUSDT": [],
     "EWYBUSDT": [],
     "FETUSDT": [],
-    "FFUSDT": [
-      1794560400000
-    ],
+    "FFUSDT": [],
     "FIDAUSDT": [],
     "FILUSDT": [],
     "FLNCBUSDT": [],
@@ -5200,9 +5192,7 @@
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [
-      1794560400000
-    ],
+    "HMSTRUSDT": [],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -5304,7 +5294,9 @@
     "NOKBUSDT": [],
     "NOMUSDT": [],
     "NOTUSDT": [],
-    "NVDABUSDT": [],
+    "NVDABUSDT": [
+      1794564000000
+    ],
     "NXPCUSDT": [],
     "OGNUSDT": [],
     "OGUSDT": [],
@@ -5313,9 +5305,7 @@
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
-    "OPGUSDT": [
-      1794560400000
-    ],
+    "OPGUSDT": [],
     "OPNUSDT": [],
     "OPUSDT": [],
     "ORCAUSDT": [],
@@ -5402,9 +5392,7 @@
     "SOLUSDT": [],
     "SOLVUSDT": [],
     "SOMIUSDT": [],
-    "SOPHUSDT": [
-      1794560400000
-    ],
+    "SOPHUSDT": [],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
     "SPCXBUSDT": [],
@@ -5464,9 +5452,7 @@
     "WAXPUSDT": [],
     "WBETHUSDT": [],
     "WBTCUSDT": [],
-    "WCTUSDT": [
-      1794560400000
-    ],
+    "WCTUSDT": [],
     "WDCBUSDT": [],
     "WENBUSDT": [],
     "WIFUSDT": [],
@@ -6182,7 +6168,8 @@
       1794171600000
     ],
     "KGSTUSDT": [
-      1794391200000
+      1794391200000,
+      1794564000000
     ],
     "KITEUSDT": [],
     "KMNOUSDT": [],
@@ -7361,7 +7348,8 @@
     ],
     "MANTAUSDT": [],
     "MANTRAUSDT": [
-      1794538800000
+      1794538800000,
+      1794564000000
     ],
     "MARSCOINUSDT": [],
     "MASKUSDT": [],
@@ -7760,8 +7748,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:WBTCUSDT:1794171600000:1",
-    "buy:WCTUSDT:1794171600000:1",
     "buy:WIFUSDT:1794171600000:1",
     "buy:WOOUSDT:1794171600000:2",
     "buy:WUSDT:1794171600000:1",
@@ -8159,11 +8145,13 @@
     "buy:WBTCUSDT:1794553200000:4",
     "exit:BERAUSDT:1794556800000",
     "buy:AEROUSDT:1794560400000:2",
-    "exit:WCTUSDT:1794560400000"
+    "exit:WCTUSDT:1794560400000",
+    "buy:KGSTUSDT:1794564000000:2",
+    "exit:NVDABUSDT:1794564000000"
   ],
-  "cycles": 349,
-  "messages_sent": 771,
-  "last_cycle_ms": 1794569608848,
+  "cycles": 350,
+  "messages_sent": 773,
+  "last_cycle_ms": 1794571411470,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
