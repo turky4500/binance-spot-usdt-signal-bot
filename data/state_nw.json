@@ -2547,10 +2547,16 @@
       "last_entry_price": 8.42
     },
     "GNOUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1794121200000,
-      "last_entry_price": 111.43
+      "position": {
+        "entry_price": 106.6,
+        "entry_time": 1794524400000,
+        "signal_bar_time": 1794520800000,
+        "signal_price": 105.71,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794520800000,
+      "last_entry_price": 106.6
     },
     "GNSUSDT": {
       "position": null,
@@ -4516,7 +4522,9 @@
     "GMEBUSDT": [],
     "GMTUSDT": [],
     "GMXUSDT": [],
-    "GNOUSDT": [],
+    "GNOUSDT": [
+      1794520800000
+    ],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -4933,9 +4941,7 @@
     "C98USDT": [],
     "CAKEUSDT": [],
     "CATIUSDT": [],
-    "CBRSBUSDT": [
-      1794517200000
-    ],
+    "CBRSBUSDT": [],
     "CELOUSDT": [],
     "CELRUSDT": [],
     "CETUSUSDT": [],
@@ -5143,7 +5149,9 @@
     "NVDABUSDT": [],
     "NXPCUSDT": [],
     "OGNUSDT": [],
-    "OGUSDT": [],
+    "OGUSDT": [
+      1794520800000
+    ],
     "ONDOUSDT": [],
     "ONEUSDT": [],
     "ONGUSDT": [],
@@ -5167,9 +5175,13 @@
     "PHAUSDT": [],
     "PIXELUSDT": [],
     "PLTRBUSDT": [],
-    "PLUMEUSDT": [],
+    "PLUMEUSDT": [
+      1794520800000
+    ],
     "PNUTUSDT": [],
-    "POLUSDT": [],
+    "POLUSDT": [
+      1794520800000
+    ],
     "POLYXUSDT": [],
     "PORTALUSDT": [],
     "PORTOUSDT": [],
@@ -5819,7 +5831,8 @@
     ],
     "GMXUSDT": [],
     "GNOUSDT": [
-      1794121200000
+      1794121200000,
+      1794520800000
     ],
     "GNSUSDT": [
       1793995200000,
@@ -7423,7 +7436,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:PENGUUSDT:1794171600000:1",
     "buy:PEOPLEUSDT:1794171600000:1",
     "buy:PIXELUSDT:1794171600000:1",
     "buy:PNUTUSDT:1794171600000:1",
@@ -7822,11 +7834,12 @@
     "exit:CITYUSDT:1794510000000",
     "buy:AGPUBUSDT:1794513600000:1",
     "buy:NFLXBUSDT:1794513600000:2",
-    "buy:QNTBUSDT:1794513600000:3"
+    "buy:QNTBUSDT:1794513600000:3",
+    "buy:GNOUSDT:1794520800000:1"
   ],
-  "cycles": 324,
-  "messages_sent": 699,
-  "last_cycle_ms": 1794526407530,
+  "cycles": 325,
+  "messages_sent": 700,
+  "last_cycle_ms": 1794528206563,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
