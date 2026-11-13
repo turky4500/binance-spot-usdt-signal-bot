@@ -200,7 +200,7 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1794545760000,
+      "last_check_ms": 1794574260000,
       "peak_price": 0.14734,
       "last_stop_alert_price": 0.13515,
       "stop_updates_count": 0,
@@ -218,7 +218,7 @@
       "size_suggest_pct": 0.09297794117647058,
       "entry_time": 1794268799999,
       "entry_bar_open_time": 1794182400000,
-      "last_check_ms": 1794545760000,
+      "last_check_ms": 1794574260000,
       "peak_price": 0.27,
       "last_stop_alert_price": 0.24830799999999997,
       "stop_updates_count": 4,
@@ -236,7 +236,7 @@
       "size_suggest_pct": 0.38022222222222307,
       "entry_time": 1794268799999,
       "entry_bar_open_time": 1794182400000,
-      "last_check_ms": 1794545760000,
+      "last_check_ms": 1794574260000,
       "peak_price": 0.06956,
       "last_stop_alert_price": 0.06664,
       "stop_updates_count": 0,
@@ -247,17 +247,17 @@
       "trade_id": "AVAUSDT-1794441600000",
       "symbol": "AVAUSDT",
       "entry_price": 0.2459,
-      "stop_price": 0.2295,
+      "stop_price": 0.23211600000000004,
       "pivot_stop": 0.2295,
       "target_price": 0.2787,
       "stop_dist_pct": 6.669377795851972,
       "size_suggest_pct": 0.14993902439024392,
       "entry_time": 1794527999999,
       "entry_bar_open_time": 1794441600000,
-      "last_check_ms": 1794528059999,
+      "last_check_ms": 1794574260000,
       "peak_price": 0.2523,
-      "last_stop_alert_price": 0.2295,
-      "stop_updates_count": 0,
+      "last_stop_alert_price": 0.23211600000000004,
+      "stop_updates_count": 1,
       "halal_verdict": "✅ مباح",
       "silent": true
     }
@@ -4167,6 +4167,11 @@
       "type": "entry",
       "symbol": "AVAUSDT",
       "time_ms": 1794527999999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "AVAUSDT",
+      "time_ms": 1794528119999
     }
   ],
   "daily_report": {
