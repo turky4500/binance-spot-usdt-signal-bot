@@ -4885,7 +4885,9 @@
     "NEIROUSDT": [],
     "NEOUSDT": [],
     "NEWTUSDT": [],
-    "NEXOUSDT": [],
+    "NEXOUSDT": [
+      1794632400000
+    ],
     "NFLXBUSDT": [],
     "NIGHTUSDT": [],
     "NILUSDT": [],
@@ -5158,9 +5160,7 @@
     "AXTIBUSDT": [],
     "BABABUSDT": [],
     "BABYUSDT": [],
-    "BANANAS31USDT": [
-      1794628800000
-    ],
+    "BANANAS31USDT": [],
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
@@ -5231,7 +5231,9 @@
     "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
-    "DODOUSDT": [],
+    "DODOUSDT": [
+      1794632400000
+    ],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -7628,7 +7630,8 @@
     ],
     "NEWTUSDT": [],
     "NEXOUSDT": [
-      1794621600000
+      1794621600000,
+      1794632400000
     ],
     "NFLXBUSDT": [],
     "NIGHTUSDT": [],
@@ -8407,9 +8410,9 @@
     "buy:币安人生USDT:1794625200000:1",
     "exit:BANANAS31USDT:1794628800000"
   ],
-  "cycles": 388,
+  "cycles": 389,
   "messages_sent": 859,
-  "last_cycle_ms": 1794638013040,
+  "last_cycle_ms": 1794639815323,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
