@@ -4600,7 +4600,9 @@
     "ARUSDT": [],
     "ASMLBUSDT": [],
     "ASRUSDT": [],
-    "ASTERUSDT": [],
+    "ASTERUSDT": [
+      1794621600000
+    ],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
     "ATMUSDT": [],
@@ -4623,7 +4625,9 @@
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
-    "BARDUSDT": [],
+    "BARDUSDT": [
+      1794621600000
+    ],
     "BARUSDT": [],
     "BATUSDT": [],
     "BBBUSDT": [],
@@ -4641,7 +4645,9 @@
     "BMTUSDT": [],
     "BNBUSDT": [],
     "BNCBUSDT": [],
-    "BNSOLUSDT": [],
+    "BNSOLUSDT": [
+      1794621600000
+    ],
     "BNTUSDT": [],
     "BOMEUSDT": [],
     "BONKUSDT": [],
@@ -4738,7 +4744,9 @@
     "GMEBUSDT": [],
     "GMTUSDT": [],
     "GMXUSDT": [],
-    "GNOUSDT": [],
+    "GNOUSDT": [
+      1794621600000
+    ],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -4765,14 +4773,10 @@
     "HYPERUSDT": [],
     "HYPEUSDT": [],
     "IBMBUSDT": [],
-    "ICPUSDT": [
-      1794618000000
-    ],
+    "ICPUSDT": [],
     "IDUSDT": [],
     "ILVUSDT": [],
-    "IMXUSDT": [
-      1794618000000
-    ],
+    "IMXUSDT": [],
     "INITUSDT": [],
     "INJUSDT": [],
     "INTCBUSDT": [],
@@ -4853,7 +4857,9 @@
     "NEIROUSDT": [],
     "NEOUSDT": [],
     "NEWTUSDT": [],
-    "NEXOUSDT": [],
+    "NEXOUSDT": [
+      1794621600000
+    ],
     "NFLXBUSDT": [],
     "NIGHTUSDT": [],
     "NILUSDT": [],
@@ -4954,7 +4960,9 @@
     "SNDKBUSDT": [],
     "SNXUSDT": [],
     "SNXXBUSDT": [],
-    "SOLUSDT": [],
+    "SOLUSDT": [
+      1794621600000
+    ],
     "SOLVUSDT": [],
     "SOMIUSDT": [],
     "SOPHUSDT": [],
@@ -4977,7 +4985,9 @@
     "SUPERUSDT": [],
     "SUSDT": [],
     "SUSHIUSDT": [],
-    "SXTUSDT": [],
+    "SXTUSDT": [
+      1794621600000
+    ],
     "SYNUSDT": [],
     "SYRUPUSDT": [],
     "TAOUSDT": [],
@@ -5197,9 +5207,7 @@
     "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
-    "DODOUSDT": [
-      1794618000000
-    ],
+    "DODOUSDT": [],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -7112,7 +7120,8 @@
     "ASRUSDT": [],
     "ASTERUSDT": [
       1794171600000,
-      1794322800000
+      1794322800000,
+      1794621600000
     ],
     "ASTRUSDT": [],
     "ASTSBUSDT": [
@@ -7165,7 +7174,8 @@
       1794279600000,
       1794304800000,
       1794322800000,
-      1794607200000
+      1794607200000,
+      1794621600000
     ],
     "BARUSDT": [
       1794150000000
@@ -7202,7 +7212,8 @@
     "BNSOLUSDT": [
       1794171600000,
       1794322800000,
-      1794538800000
+      1794538800000,
+      1794621600000
     ],
     "BNTUSDT": [],
     "BOMEUSDT": [
@@ -7377,7 +7388,8 @@
       1794175200000,
       1794322800000,
       1794387600000,
-      1794535200000
+      1794535200000,
+      1794621600000
     ],
     "GNSUSDT": [
       1793988000000,
@@ -7561,7 +7573,9 @@
       1794538800000
     ],
     "NEWTUSDT": [],
-    "NEXOUSDT": [],
+    "NEXOUSDT": [
+      1794621600000
+    ],
     "NFLXBUSDT": [],
     "NIGHTUSDT": [],
     "NILUSDT": [],
@@ -7747,7 +7761,8 @@
     "SNXXBUSDT": [],
     "SOLUSDT": [
       1794322800000,
-      1794538800000
+      1794538800000,
+      1794621600000
     ],
     "SOLVUSDT": [],
     "SOMIUSDT": [],
@@ -7792,7 +7807,8 @@
     "SUSDT": [],
     "SUSHIUSDT": [],
     "SXTUSDT": [
-      1794171600000
+      1794171600000,
+      1794621600000
     ],
     "SYNUSDT": [],
     "SYRUPUSDT": [],
@@ -8337,9 +8353,9 @@
     "buy:TIAUSDT:1794607200000:2",
     "buy:GNOUSDT:1794610800000:4"
   ],
-  "cycles": 382,
+  "cycles": 383,
   "messages_sent": 834,
-  "last_cycle_ms": 1794626929624,
+  "last_cycle_ms": 1794629009505,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
