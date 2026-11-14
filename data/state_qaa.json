@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1794441600000,
+  "last_processed_open_time": 1794528000000,
   "last_entry_bar_time": {
     "GTCUSDT": 1793404800000,
     "HUMAUSDT": 1793059200000,
@@ -83,7 +83,7 @@
     "RUNEUSDT": 1794182400000,
     "BATUSDT": 1794182400000,
     "BTCUSDT": 1793404800000,
-    "DODOUSDT": 1793404800000,
+    "DODOUSDT": 1794528000000,
     "NMRUSDT": 1793404800000,
     "RLCUSDT": 1793404800000,
     "WBTCUSDT": 1793404800000,
@@ -154,7 +154,7 @@
     "TRXUSDT": 1793059200000,
     "NEARUSDT": 1794009600000,
     "ZAMAUSDT": 1794268800000,
-    "AVAUSDT": 1794096000000,
+    "AVAUSDT": 1794528000000,
     "PYTHUSDT": 1794355200000,
     "ARBUSDT": 1793836800000,
     "INJUSDT": 1794268800000,
@@ -200,7 +200,7 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1794601080000,
+      "last_check_ms": 1794617760000,
       "peak_price": 0.14734,
       "last_stop_alert_price": 0.13515,
       "stop_updates_count": 0,
@@ -218,7 +218,7 @@
       "size_suggest_pct": 0.09297794117647058,
       "entry_time": 1794268799999,
       "entry_bar_open_time": 1794182400000,
-      "last_check_ms": 1794601080000,
+      "last_check_ms": 1794617760000,
       "peak_price": 0.2705,
       "last_stop_alert_price": 0.24830799999999997,
       "stop_updates_count": 4,
@@ -236,29 +236,29 @@
       "size_suggest_pct": 0.38022222222222307,
       "entry_time": 1794268799999,
       "entry_bar_open_time": 1794182400000,
-      "last_check_ms": 1794601080000,
+      "last_check_ms": 1794617760000,
       "peak_price": 0.06956,
       "last_stop_alert_price": 0.06664,
       "stop_updates_count": 0,
       "halal_verdict": "⛔ غير مباح",
       "silent": true
     },
-    "AVAUSDT": {
-      "trade_id": "AVAUSDT-1794441600000",
-      "symbol": "AVAUSDT",
-      "entry_price": 0.2459,
-      "stop_price": 0.23211600000000004,
-      "pivot_stop": 0.2295,
-      "target_price": 0.2787,
-      "stop_dist_pct": 6.669377795851972,
-      "size_suggest_pct": 0.14993902439024392,
-      "entry_time": 1794527999999,
-      "entry_bar_open_time": 1794441600000,
-      "last_check_ms": 1794601080000,
-      "peak_price": 0.2523,
-      "last_stop_alert_price": 0.23211600000000004,
-      "stop_updates_count": 1,
-      "halal_verdict": "✅ مباح",
+    "DODOUSDT": {
+      "trade_id": "DODOUSDT-1794528000000",
+      "symbol": "DODOUSDT",
+      "entry_price": 0.02945,
+      "stop_price": 0.02182,
+      "pivot_stop": 0.02182,
+      "target_price": 0.04471,
+      "stop_dist_pct": 25.908319185059426,
+      "size_suggest_pct": 0.038597640891218865,
+      "entry_time": 1794614399999,
+      "entry_bar_open_time": 1794528000000,
+      "last_check_ms": 1794614459999,
+      "peak_price": 0.03018,
+      "last_stop_alert_price": 0.02182,
+      "stop_updates_count": 0,
+      "halal_verdict": "⛔ غير مباح",
       "silent": true
     }
   },
@@ -4172,6 +4172,16 @@
       "type": "stop_alert",
       "symbol": "AVAUSDT",
       "time_ms": 1794528119999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "AVAUSDT",
+      "time_ms": 1794611519999
+    },
+    {
+      "type": "entry",
+      "symbol": "DODOUSDT",
+      "time_ms": 1794614399999
     }
   ],
   "daily_report": {
