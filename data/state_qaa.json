@@ -108,7 +108,7 @@
     "STXUSDT": 1793491200000,
     "ZROUSDT": 1794441600000,
     "BEAMXUSDT": 1793059200000,
-    "JUPUSDT": 1793232000000,
+    "JUPUSDT": 1794614400000,
     "PEPEUSDT": 1793145600000,
     "PUMPUSDT": 1794268800000,
     "RAYUSDT": 1793577600000,
@@ -200,28 +200,10 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1794666000000,
+      "last_check_ms": 1794683880000,
       "peak_price": 0.14734,
       "last_stop_alert_price": 0.13515,
       "stop_updates_count": 0,
-      "halal_verdict": "⛔ غير مباح",
-      "silent": true
-    },
-    "JUPUSDT": {
-      "trade_id": "JUPUSDT-1794182400000",
-      "symbol": "JUPUSDT",
-      "entry_price": 0.2529,
-      "stop_price": 0.24886000000000003,
-      "pivot_stop": 0.2257,
-      "target_price": 0.3073,
-      "stop_dist_pct": 10.755239224990115,
-      "size_suggest_pct": 0.09297794117647058,
-      "entry_time": 1794268799999,
-      "entry_bar_open_time": 1794182400000,
-      "last_check_ms": 1794666000000,
-      "peak_price": 0.2705,
-      "last_stop_alert_price": 0.24830799999999997,
-      "stop_updates_count": 4,
       "halal_verdict": "⛔ غير مباح",
       "silent": true
     }
@@ -4211,6 +4193,11 @@
       "type": "exit_win",
       "symbol": "DODOUSDT",
       "time_ms": 1794645179999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "JUPUSDT",
+      "time_ms": 1794673799999
     }
   ],
   "daily_report": {
