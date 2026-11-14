@@ -1167,14 +1167,8 @@
       "last_entry_price": 1.481
     },
     "REQUSDT": {
-      "position": {
-        "entry_price": 0.0474,
-        "entry_time": 1794139200000,
-        "signal_bar_time": 1794135600000,
-        "signal_price": 0.0467,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794135600000,
       "last_entry_price": 0.0474
     },
@@ -4679,7 +4673,9 @@
     "ATOMUSDT": [],
     "ATUSDT": [],
     "AUCTIONUSDT": [],
-    "AUDIOUSDT": [],
+    "AUDIOUSDT": [
+      1794657600000
+    ],
     "AUSDT": [],
     "AVAUSDT": [],
     "AVAXUSDT": [],
@@ -5103,7 +5099,9 @@
     "XRPUSDT": [],
     "XTZUSDT": [],
     "XVGUSDT": [],
-    "XVSUSDT": [],
+    "XVSUSDT": [
+      1794657600000
+    ],
     "YBUSDT": [],
     "YFIUSDT": [],
     "YGGUSDT": [],
@@ -5149,14 +5147,14 @@
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
     "AIGENSYNUSDT": [],
-    "AIUSDT": [],
+    "AIUSDT": [
+      1794657600000
+    ],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
     "ALGOUSDT": [],
     "ALICEUSDT": [],
-    "ALLOUSDT": [
-      1794654000000
-    ],
+    "ALLOUSDT": [],
     "ALPINEUSDT": [],
     "ALTUSDT": [],
     "AMATBUSDT": [],
@@ -5488,7 +5486,9 @@
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [],
+    "REQUSDT": [
+      1794657600000
+    ],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -5530,9 +5530,7 @@
     "SOLUSDT": [],
     "SOLVUSDT": [],
     "SOMIUSDT": [],
-    "SOPHUSDT": [
-      1794654000000
-    ],
+    "SOPHUSDT": [],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
     "SPCXBUSDT": [],
@@ -7247,7 +7245,9 @@
     "ATOMUSDT": [],
     "ATUSDT": [],
     "AUCTIONUSDT": [],
-    "AUDIOUSDT": [],
+    "AUDIOUSDT": [
+      1794657600000
+    ],
     "AUSDT": [],
     "AVAUSDT": [],
     "AVAXUSDT": [],
@@ -8044,7 +8044,9 @@
       1794034800000
     ],
     "XVGUSDT": [],
-    "XVSUSDT": [],
+    "XVSUSDT": [
+      1794657600000
+    ],
     "YBUSDT": [
       1794038400000,
       1794052800000,
@@ -8082,7 +8084,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "exit:SEIUSDT:1794236400000",
     "exit:SFPUSDT:1794236400000",
     "exit:SHIBUSDT:1794236400000",
     "exit:SLPUSDT:1794236400000",
@@ -8481,11 +8482,12 @@
     "buy:NXPCUSDT:1794650400000:2",
     "buy:PLUMEUSDT:1794650400000:1",
     "buy:PROVEUSDT:1794650400000:4",
-    "buy:STOUSDT:1794650400000:2"
+    "buy:STOUSDT:1794650400000:2",
+    "exit:REQUSDT:1794657600000"
   ],
-  "cycles": 402,
-  "messages_sent": 881,
-  "last_cycle_ms": 1794663206652,
+  "cycles": 403,
+  "messages_sent": 882,
+  "last_cycle_ms": 1794665002781,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
