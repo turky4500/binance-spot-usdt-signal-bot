@@ -1,6 +1,6 @@
 {
   "vendor": "cryptohalal.cc",
-  "fetched_at_ms": 1794665977214,
+  "fetched_at_ms": 1794697463593,
   "note": "مصدر الأحكام: CryptoHalal.cc",
   "judgements": {
     "BTC": 0,
@@ -67,6 +67,7 @@
     "HOT": 1,
     "JUP": 1,
     "KAVA": 1,
-    "DODO": 1
+    "DODO": 1,
+    "TUSD": 0
   }
 }
