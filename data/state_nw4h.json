@@ -3210,7 +3210,7 @@
     "HMSTRUSDT": [],
     "HOLOUSDT": [],
     "HOMEUSDT": [
-      1794628800000
+      1794643200000
     ],
     "HOODBUSDT": [],
     "HOTUSDT": [],
@@ -3240,7 +3240,9 @@
     "KAIAUSDT": [],
     "KAITOUSDT": [],
     "KATUSDT": [],
-    "KAVAUSDT": [],
+    "KAVAUSDT": [
+      1794643200000
+    ],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
     "KITEUSDT": [],
@@ -3412,9 +3414,7 @@
     "SUPERUSDT": [],
     "SUSDT": [],
     "SUSHIUSDT": [],
-    "SXTUSDT": [
-      1794628800000
-    ],
+    "SXTUSDT": [],
     "SYNUSDT": [],
     "SYRUPUSDT": [],
     "TAOUSDT": [],
@@ -3862,7 +3862,9 @@
     "SOLUSDT": [],
     "SOLVUSDT": [],
     "SOMIUSDT": [],
-    "SOPHUSDT": [],
+    "SOPHUSDT": [
+      1794643200000
+    ],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
     "SPCXBUSDT": [],
@@ -4727,7 +4729,8 @@
     "HMSTRUSDT": [],
     "HOLOUSDT": [],
     "HOMEUSDT": [
-      1794628800000
+      1794628800000,
+      1794643200000
     ],
     "HOODBUSDT": [],
     "HOTUSDT": [],
@@ -4759,7 +4762,9 @@
     "KAIAUSDT": [],
     "KAITOUSDT": [],
     "KATUSDT": [],
-    "KAVAUSDT": [],
+    "KAVAUSDT": [
+      1794643200000
+    ],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
     "KITEUSDT": [],
@@ -5089,9 +5094,9 @@
     "buy:WBETHUSDT:1794614400000:3",
     "buy:WBTCUSDT:1794614400000:2"
   ],
-  "cycles": 40,
+  "cycles": 41,
   "messages_sent": 54,
-  "last_cycle_ms": 1794657809501,
+  "last_cycle_ms": 1794672210680,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-13",
     "reported_trade_keys": [
