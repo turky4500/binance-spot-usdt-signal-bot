@@ -2672,11 +2672,11 @@
         "entry_time": 1794524400000,
         "signal_bar_time": 1794520800000,
         "signal_price": 105.71,
-        "entry_count": 3
+        "entry_count": 4
       },
-      "entry_count": 3,
-      "last_buy_bar": 1794538800000,
-      "last_entry_price": 103.02
+      "entry_count": 4,
+      "last_buy_bar": 1794610800000,
+      "last_entry_price": 98.78
     },
     "GNSUSDT": {
       "position": null,
@@ -4600,9 +4600,7 @@
     "ARUSDT": [],
     "ASMLBUSDT": [],
     "ASRUSDT": [],
-    "ASTERUSDT": [
-      1794607200000
-    ],
+    "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
     "ATMUSDT": [],
@@ -4621,19 +4619,13 @@
     "AXTIBUSDT": [],
     "BABABUSDT": [],
     "BABYUSDT": [],
-    "BANANAS31USDT": [
-      1794607200000
-    ],
+    "BANANAS31USDT": [],
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
-    "BARDUSDT": [
-      1794607200000
-    ],
+    "BARDUSDT": [],
     "BARUSDT": [],
-    "BATUSDT": [
-      1794607200000
-    ],
+    "BATUSDT": [],
     "BBBUSDT": [],
     "BBUSDT": [],
     "BCHUSDT": [],
@@ -4649,9 +4641,7 @@
     "BMTUSDT": [],
     "BNBUSDT": [],
     "BNCBUSDT": [],
-    "BNSOLUSDT": [
-      1794607200000
-    ],
+    "BNSOLUSDT": [],
     "BNTUSDT": [],
     "BOMEUSDT": [],
     "BONKUSDT": [],
@@ -4748,7 +4738,9 @@
     "GMEBUSDT": [],
     "GMTUSDT": [],
     "GMXUSDT": [],
-    "GNOUSDT": [],
+    "GNOUSDT": [
+      1794610800000
+    ],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -4760,9 +4752,7 @@
     "GUNUSDT": [],
     "GUSDT": [],
     "HAEDALUSDT": [],
-    "HBARUSDT": [
-      1794607200000
-    ],
+    "HBARUSDT": [],
     "HEIUSDT": [],
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
@@ -4777,9 +4767,7 @@
     "HYPERUSDT": [],
     "HYPEUSDT": [],
     "IBMBUSDT": [],
-    "ICPUSDT": [
-      1794607200000
-    ],
+    "ICPUSDT": [],
     "IDUSDT": [],
     "ILVUSDT": [],
     "IMXUSDT": [],
@@ -4794,9 +4782,7 @@
     "IQUSDT": [],
     "IRENBUSDT": [],
     "JASMYUSDT": [],
-    "JOEUSDT": [
-      1794607200000
-    ],
+    "JOEUSDT": [],
     "JPMBUSDT": [],
     "JSTUSDT": [],
     "JTOUSDT": [],
@@ -4908,9 +4894,7 @@
     "PORTOUSDT": [],
     "POWRUSDT": [],
     "PROMUSDT": [],
-    "PROVEUSDT": [
-      1794607200000
-    ],
+    "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
     "PUNDIXUSDT": [],
@@ -4968,9 +4952,7 @@
     "SNDKBUSDT": [],
     "SNXUSDT": [],
     "SNXXBUSDT": [],
-    "SOLUSDT": [
-      1794607200000
-    ],
+    "SOLUSDT": [],
     "SOLVUSDT": [],
     "SOMIUSDT": [],
     "SOPHUSDT": [],
@@ -5000,9 +4982,7 @@
     "TFUELUSDT": [],
     "THETAUSDT": [],
     "THEUSDT": [],
-    "TIAUSDT": [
-      1794607200000
-    ],
+    "TIAUSDT": [],
     "TKOUSDT": [],
     "TLMUSDT": [],
     "TNSRUSDT": [],
@@ -5157,9 +5137,7 @@
     "BEAMXUSDT": [],
     "BEBUSDT": [],
     "BELUSDT": [],
-    "BERAUSDT": [
-      1794607200000
-    ],
+    "BERAUSDT": [],
     "BICOUSDT": [],
     "BIGTIMEUSDT": [],
     "BIOUSDT": [],
@@ -6127,7 +6105,8 @@
       1794121200000,
       1794520800000,
       1794528000000,
-      1794538800000
+      1794538800000,
+      1794610800000
     ],
     "GNSUSDT": [
       1793995200000,
@@ -7947,7 +7926,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "exit:BELUSDT:1794236400000",
     "exit:BOMEUSDT:1794236400000",
     "exit:BONKUSDT:1794236400000",
     "exit:BROCCOLI714USDT:1794236400000",
@@ -8346,11 +8324,12 @@
     "buy:ICPUSDT:1794607200000:1",
     "buy:PROVEUSDT:1794607200000:3",
     "buy:SOLUSDT:1794607200000:2",
-    "buy:TIAUSDT:1794607200000:2"
+    "buy:TIAUSDT:1794607200000:2",
+    "buy:GNOUSDT:1794610800000:4"
   ],
-  "cycles": 375,
-  "messages_sent": 833,
-  "last_cycle_ms": 1794616420313,
+  "cycles": 376,
+  "messages_sent": 834,
+  "last_cycle_ms": 1794618212105,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
