@@ -1797,10 +1797,16 @@
       "last_entry_price": 0.0
     },
     "NEXOUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.693,
+        "entry_time": 1794672000000,
+        "signal_bar_time": 1794657600000,
+        "signal_price": 0.67,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794657600000,
+      "last_entry_price": 0.693
     },
     "NFLXBUSDT": {
       "position": null,
@@ -2798,11 +2804,11 @@
         "entry_time": 1794585600000,
         "signal_bar_time": 1794571200000,
         "signal_price": 68888.03,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1794614400000,
-      "last_entry_price": 67224.88
+      "entry_count": 3,
+      "last_buy_bar": 1794657600000,
+      "last_entry_price": 65756.69
     },
     "WCTUSDT": {
       "position": null,
@@ -3086,7 +3092,9 @@
     "BANKUSDT": [],
     "BARDUSDT": [],
     "BARUSDT": [],
-    "BATUSDT": [],
+    "BATUSDT": [
+      1794657600000
+    ],
     "BBUSDT": [],
     "BCHUSDT": [],
     "BEAMXUSDT": [],
@@ -3099,14 +3107,20 @@
     "BLURUSDT": [],
     "BMNRBUSDT": [],
     "BMTUSDT": [],
-    "BNBUSDT": [],
+    "BNBUSDT": [
+      1794657600000
+    ],
     "BNSOLUSDT": [],
-    "BNTUSDT": [],
+    "BNTUSDT": [
+      1794657600000
+    ],
     "BOMEUSDT": [],
     "BONKUSDT": [],
     "BREVUSDT": [],
     "BROCCOLI714USDT": [],
-    "BTCUSDT": [],
+    "BTCUSDT": [
+      1794657600000
+    ],
     "BTTCUSDT": [],
     "C98USDT": [],
     "CAKEUSDT": [],
@@ -3166,7 +3180,9 @@
     "ESPUSDT": [],
     "ETCUSDT": [],
     "ETHFIUSDT": [],
-    "ETHUSDT": [],
+    "ETHUSDT": [
+      1794657600000
+    ],
     "EULUSDT": [],
     "EWYBUSDT": [],
     "FETUSDT": [],
@@ -3210,7 +3226,7 @@
     "HMSTRUSDT": [],
     "HOLOUSDT": [],
     "HOMEUSDT": [
-      1794643200000
+      1794657600000
     ],
     "HOODBUSDT": [],
     "HOTUSDT": [],
@@ -3240,9 +3256,7 @@
     "KAIAUSDT": [],
     "KAITOUSDT": [],
     "KATUSDT": [],
-    "KAVAUSDT": [
-      1794643200000
-    ],
+    "KAVAUSDT": [],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
     "KITEUSDT": [],
@@ -3261,14 +3275,18 @@
     "LPTUSDT": [],
     "LQTYUSDT": [],
     "LSKUSDT": [],
-    "LTCUSDT": [],
+    "LTCUSDT": [
+      1794657600000
+    ],
     "LUMIAUSDT": [],
     "LUNAUSDT": [],
     "LUNCUSDT": [],
     "MAGICUSDT": [],
     "MANAUSDT": [],
     "MANTAUSDT": [],
-    "MANTRAUSDT": [],
+    "MANTRAUSDT": [
+      1794657600000
+    ],
     "MASKUSDT": [],
     "MAVUSDT": [],
     "MBLUSDT": [],
@@ -3298,7 +3316,9 @@
     "NEIROUSDT": [],
     "NEOUSDT": [],
     "NEWTUSDT": [],
-    "NEXOUSDT": [],
+    "NEXOUSDT": [
+      1794657600000
+    ],
     "NFLXBUSDT": [],
     "NIGHTUSDT": [],
     "NILUSDT": [],
@@ -3309,7 +3329,9 @@
     "NVDABUSDT": [],
     "NXPCUSDT": [],
     "OGNUSDT": [],
-    "OGUSDT": [],
+    "OGUSDT": [
+      1794657600000
+    ],
     "ONDOUSDT": [],
     "ONEUSDT": [],
     "ONGUSDT": [],
@@ -3325,9 +3347,13 @@
     "PARTIUSDT": [],
     "PAXGUSDT": [],
     "PENDLEUSDT": [],
-    "PENGUUSDT": [],
+    "PENGUUSDT": [
+      1794657600000
+    ],
     "PEOPLEUSDT": [],
-    "PEPEUSDT": [],
+    "PEPEUSDT": [
+      1794657600000
+    ],
     "PHAUSDT": [],
     "PIXELUSDT": [],
     "PLTRBUSDT": [],
@@ -3357,9 +3383,13 @@
     "RAYUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [],
+    "REQUSDT": [
+      1794657600000
+    ],
     "RESOLVUSDT": [],
-    "REUSDT": [],
+    "REUSDT": [
+      1794657600000
+    ],
     "REZUSDT": [],
     "RIFUSDT": [],
     "RKLBBUSDT": [],
@@ -3450,8 +3480,12 @@
     "VTHOUSDT": [],
     "WALUSDT": [],
     "WAXPUSDT": [],
-    "WBETHUSDT": [],
-    "WBTCUSDT": [],
+    "WBETHUSDT": [
+      1794657600000
+    ],
+    "WBTCUSDT": [
+      1794657600000
+    ],
     "WCTUSDT": [],
     "WDCBUSDT": [],
     "WIFUSDT": [],
@@ -3469,7 +3503,9 @@
     "XRPUSDT": [],
     "XTZUSDT": [],
     "XVGUSDT": [],
-    "XVSUSDT": [],
+    "XVSUSDT": [
+      1794657600000
+    ],
     "YBUSDT": [],
     "YFIUSDT": [],
     "YGGUSDT": [],
@@ -3506,7 +3542,9 @@
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AIGENSYNUSDT": [],
-    "AIUSDT": [],
+    "AIUSDT": [
+      1794657600000
+    ],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
     "ALGOUSDT": [],
@@ -3766,7 +3804,9 @@
     "NEWTUSDT": [],
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [],
+    "NIGHTUSDT": [
+      1794657600000
+    ],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -3862,9 +3902,7 @@
     "SOLUSDT": [],
     "SOLVUSDT": [],
     "SOMIUSDT": [],
-    "SOPHUSDT": [
-      1794643200000
-    ],
+    "SOPHUSDT": [],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
     "SPCXBUSDT": [],
@@ -4282,7 +4320,9 @@
     "NEIROUSDT": [],
     "NEOUSDT": [],
     "NEWTUSDT": [],
-    "NEXOUSDT": [],
+    "NEXOUSDT": [
+      1794657600000
+    ],
     "NFLXBUSDT": [],
     "NIGHTUSDT": [],
     "NILUSDT": [],
@@ -4470,7 +4510,8 @@
     ],
     "WBTCUSDT": [
       1794571200000,
-      1794614400000
+      1794614400000,
+      1794657600000
     ],
     "WCTUSDT": [],
     "WDCBUSDT": [],
@@ -4590,7 +4631,9 @@
       1794412800000
     ],
     "BARUSDT": [],
-    "BATUSDT": [],
+    "BATUSDT": [
+      1794657600000
+    ],
     "BBUSDT": [],
     "BCHUSDT": [],
     "BEAMXUSDT": [],
@@ -4604,16 +4647,20 @@
     "BMNRBUSDT": [],
     "BMTUSDT": [],
     "BNBUSDT": [
-      1794528000000
+      1794528000000,
+      1794657600000
     ],
     "BNSOLUSDT": [],
-    "BNTUSDT": [],
+    "BNTUSDT": [
+      1794657600000
+    ],
     "BOMEUSDT": [],
     "BONKUSDT": [],
     "BREVUSDT": [],
     "BROCCOLI714USDT": [],
     "BTCUSDT": [
-      1794528000000
+      1794528000000,
+      1794657600000
     ],
     "BTTCUSDT": [
       1794484800000
@@ -4682,7 +4729,8 @@
     "ETCUSDT": [],
     "ETHFIUSDT": [],
     "ETHUSDT": [
-      1794528000000
+      1794528000000,
+      1794657600000
     ],
     "EULUSDT": [],
     "EWYBUSDT": [],
@@ -4730,7 +4778,8 @@
     "HOLOUSDT": [],
     "HOMEUSDT": [
       1794628800000,
-      1794643200000
+      1794643200000,
+      1794657600000
     ],
     "HOODBUSDT": [],
     "HOTUSDT": [],
@@ -4783,14 +4832,18 @@
     "LPTUSDT": [],
     "LQTYUSDT": [],
     "LSKUSDT": [],
-    "LTCUSDT": [],
+    "LTCUSDT": [
+      1794657600000
+    ],
     "LUMIAUSDT": [],
     "LUNAUSDT": [],
     "LUNCUSDT": [],
     "MAGICUSDT": [],
     "MANAUSDT": [],
     "MANTAUSDT": [],
-    "MANTRAUSDT": [],
+    "MANTRAUSDT": [
+      1794657600000
+    ],
     "MASKUSDT": [],
     "MAVUSDT": [],
     "MBLUSDT": [],
@@ -4844,7 +4897,9 @@
     ],
     "NXPCUSDT": [],
     "OGNUSDT": [],
-    "OGUSDT": [],
+    "OGUSDT": [
+      1794657600000
+    ],
     "ONDOUSDT": [],
     "ONEUSDT": [
       1794211200000
@@ -4864,9 +4919,13 @@
     ],
     "PAXGUSDT": [],
     "PENDLEUSDT": [],
-    "PENGUUSDT": [],
+    "PENGUUSDT": [
+      1794657600000
+    ],
     "PEOPLEUSDT": [],
-    "PEPEUSDT": [],
+    "PEPEUSDT": [
+      1794657600000
+    ],
     "PHAUSDT": [],
     "PIXELUSDT": [],
     "PLTRBUSDT": [],
@@ -4898,10 +4957,13 @@
     "RAYUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [],
+    "REQUSDT": [
+      1794657600000
+    ],
     "RESOLVUSDT": [],
     "REUSDT": [
-      1794441600000
+      1794441600000,
+      1794657600000
     ],
     "REZUSDT": [],
     "RIFUSDT": [],
@@ -4998,7 +5060,9 @@
     "VTHOUSDT": [],
     "WALUSDT": [],
     "WAXPUSDT": [],
-    "WBETHUSDT": [],
+    "WBETHUSDT": [
+      1794657600000
+    ],
     "WBTCUSDT": [
       1794528000000
     ],
@@ -5022,7 +5086,9 @@
     "XRPUSDT": [],
     "XTZUSDT": [],
     "XVGUSDT": [],
-    "XVSUSDT": [],
+    "XVSUSDT": [
+      1794657600000
+    ],
     "YBUSDT": [],
     "YFIUSDT": [],
     "YGGUSDT": [],
@@ -5092,11 +5158,13 @@
     "buy:PROVEUSDT:1794614400000:1",
     "buy:SOLUSDT:1794614400000:1",
     "buy:WBETHUSDT:1794614400000:3",
-    "buy:WBTCUSDT:1794614400000:2"
+    "buy:WBTCUSDT:1794614400000:2",
+    "buy:NEXOUSDT:1794657600000:1",
+    "buy:WBTCUSDT:1794657600000:3"
   ],
-  "cycles": 42,
-  "messages_sent": 54,
-  "last_cycle_ms": 1794677733317,
+  "cycles": 43,
+  "messages_sent": 56,
+  "last_cycle_ms": 1794686611570,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-13",
     "reported_trade_keys": [
