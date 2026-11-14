@@ -4765,10 +4765,14 @@
     "HYPERUSDT": [],
     "HYPEUSDT": [],
     "IBMBUSDT": [],
-    "ICPUSDT": [],
+    "ICPUSDT": [
+      1794618000000
+    ],
     "IDUSDT": [],
     "ILVUSDT": [],
-    "IMXUSDT": [],
+    "IMXUSDT": [
+      1794618000000
+    ],
     "INITUSDT": [],
     "INJUSDT": [],
     "INTCBUSDT": [],
@@ -4980,9 +4984,7 @@
     "TFUELUSDT": [],
     "THETAUSDT": [],
     "THEUSDT": [],
-    "TIAUSDT": [
-      1794614400000
-    ],
+    "TIAUSDT": [],
     "TKOUSDT": [],
     "TLMUSDT": [],
     "TNSRUSDT": [],
@@ -5137,9 +5139,7 @@
     "BEAMXUSDT": [],
     "BEBUSDT": [],
     "BELUSDT": [],
-    "BERAUSDT": [
-      1794614400000
-    ],
+    "BERAUSDT": [],
     "BICOUSDT": [],
     "BIGTIMEUSDT": [],
     "BIOUSDT": [],
@@ -5197,7 +5197,9 @@
     "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
-    "DODOUSDT": [],
+    "DODOUSDT": [
+      1794618000000
+    ],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -7427,12 +7429,16 @@
     ],
     "HYPEUSDT": [],
     "IBMBUSDT": [],
-    "ICPUSDT": [],
+    "ICPUSDT": [
+      1794618000000
+    ],
     "IDUSDT": [
       1794538800000
     ],
     "ILVUSDT": [],
-    "IMXUSDT": [],
+    "IMXUSDT": [
+      1794618000000
+    ],
     "INITUSDT": [
       1794376800000,
       1794387600000,
@@ -8331,9 +8337,9 @@
     "buy:TIAUSDT:1794607200000:2",
     "buy:GNOUSDT:1794610800000:4"
   ],
-  "cycles": 379,
+  "cycles": 380,
   "messages_sent": 834,
-  "last_cycle_ms": 1794623610984,
+  "last_cycle_ms": 1794625411870,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
