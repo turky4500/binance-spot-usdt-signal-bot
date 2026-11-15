@@ -3129,14 +3129,8 @@
       "last_entry_price": 0.2101
     },
     "FTTUSDT": {
-      "position": {
-        "entry_price": 0.2096,
-        "entry_time": 1794542400000,
-        "signal_bar_time": 1794538800000,
-        "signal_price": 0.2086,
-        "entry_count": 7
-      },
-      "entry_count": 7,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794693600000,
       "last_entry_price": 0.1938
     },
@@ -4779,14 +4773,8 @@
       "last_entry_price": 0.0251
     },
     "STRKUSDT": {
-      "position": {
-        "entry_price": 0.03397,
-        "entry_time": 1794675600000,
-        "signal_bar_time": 1794672000000,
-        "signal_price": 0.03343,
-        "entry_count": 3
-      },
-      "entry_count": 3,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794693600000,
       "last_entry_price": 0.03331
     },
@@ -5598,7 +5586,9 @@
     "HAEDALUSDT": [],
     "HBARUSDT": [],
     "HEIUSDT": [],
-    "HEMIUSDT": [],
+    "HEMIUSDT": [
+      1794711600000
+    ],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
     "HMSTRUSDT": [],
@@ -5799,9 +5789,7 @@
     "SOLUSDT": [],
     "SOLVUSDT": [],
     "SOMIUSDT": [],
-    "SOPHUSDT": [
-      1794708000000
-    ],
+    "SOPHUSDT": [],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
     "SPCXBUSDT": [],
@@ -6066,9 +6054,7 @@
     "EULUSDT": [],
     "EWYBUSDT": [],
     "FETUSDT": [],
-    "FFUSDT": [
-      1794708000000
-    ],
+    "FFUSDT": [],
     "FIDAUSDT": [],
     "FILUSDT": [],
     "FLNCBUSDT": [],
@@ -6078,7 +6064,9 @@
     "FOGOUSDT": [],
     "FORMUSDT": [],
     "FRAXUSDT": [],
-    "FTTUSDT": [],
+    "FTTUSDT": [
+      1794711600000
+    ],
     "FUSDT": [],
     "FWDIBUSDT": [],
     "GALAUSDT": [],
@@ -6095,9 +6083,7 @@
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
-    "GPSUSDT": [
-      1794708000000
-    ],
+    "GPSUSDT": [],
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
@@ -6110,9 +6096,7 @@
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [
-      1794708000000
-    ],
+    "HMSTRUSDT": [],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -6141,9 +6125,7 @@
     "JPMBUSDT": [],
     "JSTUSDT": [],
     "JTOUSDT": [],
-    "JUPUSDT": [
-      1794708000000
-    ],
+    "JUPUSDT": [],
     "JUVUSDT": [],
     "KAIAUSDT": [],
     "KAITOUSDT": [],
@@ -6225,9 +6207,7 @@
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
-    "OPGUSDT": [
-      1794708000000
-    ],
+    "OPGUSDT": [],
     "OPNUSDT": [],
     "OPUSDT": [],
     "ORCAUSDT": [],
@@ -6273,9 +6253,7 @@
     "REDUSDT": [],
     "RENDERUSDT": [],
     "REQUSDT": [],
-    "RESOLVUSDT": [
-      1794708000000
-    ],
+    "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
     "RIFUSDT": [],
@@ -6301,9 +6279,7 @@
     "SENTUSDT": [],
     "SFPUSDT": [],
     "SHAZBUSDT": [],
-    "SHELLUSDT": [
-      1794708000000
-    ],
+    "SHELLUSDT": [],
     "SHIBUSDT": [],
     "SIGNUSDT": [],
     "SKHYBUSDT": [],
@@ -6330,7 +6306,9 @@
     "STEEMUSDT": [],
     "STOUSDT": [],
     "STRAXUSDT": [],
-    "STRKUSDT": [],
+    "STRKUSDT": [
+      1794711600000
+    ],
     "STXBUSDT": [],
     "STXUSDT": [],
     "SUIUSDT": [],
@@ -6411,9 +6389,7 @@
     "ZMBUSDT": [],
     "ZROUSDT": [],
     "ZRXUSDT": [],
-    "币安人生USDT": [
-      1794708000000
-    ],
+    "币安人生USDT": [],
     "牛来USDT": [],
     "BOTBUSDT": [],
     "BRKBBUSDT": [],
@@ -9180,7 +9156,8 @@
     ],
     "HEMIUSDT": [
       1794672000000,
-      1794686400000
+      1794686400000,
+      1794711600000
     ],
     "HIMSBUSDT": [
       1794232800000,
@@ -10136,8 +10113,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:LINKUSDT:1794672000000:3",
-    "buy:LISTAUSDT:1794672000000:3",
     "buy:LPTUSDT:1794672000000:2",
     "buy:LUNAUSDT:1794672000000:1",
     "buy:LUNCUSDT:1794672000000:2",
@@ -10535,11 +10510,13 @@
     "exit:JUPUSDT:1794708000000",
     "exit:OPGUSDT:1794708000000",
     "exit:RESOLVUSDT:1794708000000",
-    "exit:币安人生USDT:1794708000000"
+    "exit:币安人生USDT:1794708000000",
+    "exit:FTTUSDT:1794711600000",
+    "exit:STRKUSDT:1794711600000"
   ],
-  "cycles": 434,
-  "messages_sent": 1423,
-  "last_cycle_ms": 1794717207174,
+  "cycles": 435,
+  "messages_sent": 1425,
+  "last_cycle_ms": 1794719006561,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
