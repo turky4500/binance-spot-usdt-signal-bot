@@ -3285,10 +3285,16 @@
       "last_entry_price": 0.0
     },
     "HMSTRUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1794675600000,
-      "last_entry_price": 0.0001393
+      "position": {
+        "entry_price": 0.0001347,
+        "entry_time": 1794762000000,
+        "signal_bar_time": 1794758400000,
+        "signal_price": 0.0001318,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794758400000,
+      "last_entry_price": 0.0001347
     },
     "HOLOUSDT": {
       "position": {
@@ -5535,7 +5541,9 @@
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [],
+    "HMSTRUSDT": [
+      1794758400000
+    ],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -5692,9 +5700,7 @@
     "REDUSDT": [],
     "RENDERUSDT": [],
     "REQUSDT": [],
-    "RESOLVUSDT": [
-      1794754800000
-    ],
+    "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
     "RIFUSDT": [],
@@ -6000,9 +6006,7 @@
     "EULUSDT": [],
     "EWYBUSDT": [],
     "FETUSDT": [],
-    "FFUSDT": [
-      1794754800000
-    ],
+    "FFUSDT": [],
     "FIDAUSDT": [],
     "FILUSDT": [],
     "FLNCBUSDT": [],
@@ -6198,9 +6202,7 @@
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [
-      1794754800000
-    ],
+    "REQUSDT": [],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -6306,9 +6308,7 @@
     "WDCBUSDT": [],
     "WENBUSDT": [],
     "WIFUSDT": [],
-    "WINUSDT": [
-      1794754800000
-    ],
+    "WINUSDT": [],
     "WLDUSDT": [],
     "WLFIUSDT": [],
     "WOOUSDT": [],
@@ -7222,7 +7222,8 @@
       1794142800000,
       1794153600000,
       1794171600000,
-      1794675600000
+      1794675600000,
+      1794758400000
     ],
     "HOLOUSDT": [
       1794171600000,
@@ -10076,7 +10077,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:ONGUSDT:1794672000000:2",
     "buy:ONTUSDT:1794672000000:2",
     "buy:OPENUSDT:1794672000000:2",
     "buy:OPNUSDT:1794672000000:2",
@@ -10475,11 +10475,12 @@
     "exit:QNTUSDT:1794747600000",
     "exit:VETUSDT:1794747600000",
     "exit:WINUSDT:1794751200000",
-    "buy:RESOLVUSDT:1794754800000:1"
+    "buy:RESOLVUSDT:1794754800000:1",
+    "buy:HMSTRUSDT:1794758400000:1"
   ],
-  "cycles": 461,
-  "messages_sent": 1447,
-  "last_cycle_ms": 1794764402957,
+  "cycles": 462,
+  "messages_sent": 1448,
+  "last_cycle_ms": 1794767601137,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
