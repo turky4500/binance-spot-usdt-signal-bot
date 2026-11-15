@@ -1958,11 +1958,11 @@
         "entry_time": 1794729600000,
         "signal_bar_time": 1794726000000,
         "signal_price": 0.1326,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794726000000,
-      "last_entry_price": 0.1337
+      "entry_count": 2,
+      "last_buy_bar": 1794733200000,
+      "last_entry_price": 0.1331
     },
     "1000CATUSDT": {
       "position": {
@@ -5380,7 +5380,9 @@
     }
   },
   "prev_buy_bars": {
-    "0GUSDT": [],
+    "0GUSDT": [
+      1794733200000
+    ],
     "1000CATUSDT": [],
     "1000CHEEMSUSDT": [],
     "1000SATSUSDT": [],
@@ -6070,9 +6072,7 @@
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
-    "GNSUSDT": [
-      1794729600000
-    ],
+    "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
     "GPSUSDT": [],
@@ -6102,9 +6102,7 @@
     "IDUSDT": [],
     "ILVUSDT": [],
     "IMXUSDT": [],
-    "INITUSDT": [
-      1794729600000
-    ],
+    "INITUSDT": [],
     "INJUSDT": [],
     "INTCBUSDT": [],
     "INTWBUSDT": [],
@@ -6124,9 +6122,7 @@
     "KAIAUSDT": [],
     "KAITOUSDT": [],
     "KATUSDT": [],
-    "KAVAUSDT": [
-      1794729600000
-    ],
+    "KAVAUSDT": [],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
     "KITEUSDT": [],
@@ -6159,7 +6155,9 @@
     "MAVUSDT": [],
     "MBLUSDT": [],
     "MDBBUSDT": [],
-    "MEGAUSDT": [],
+    "MEGAUSDT": [
+      1794733200000
+    ],
     "MEMEUSDT": [],
     "METABUSDT": [],
     "METISUSDT": [],
@@ -6199,7 +6197,9 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [],
+    "ONEUSDT": [
+      1794733200000
+    ],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -6394,7 +6394,8 @@
   "buy_history": {
     "0GUSDT": [
       1794171600000,
-      1794726000000
+      1794726000000,
+      1794733200000
     ],
     "1000CATUSDT": [
       1794171600000,
@@ -10115,7 +10116,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:MINAUSDT:1794672000000:2",
     "buy:MORPHOUSDT:1794672000000:2",
     "buy:MOVEUSDT:1794672000000:2",
     "buy:MOVRUSDT:1794672000000:4",
@@ -10514,11 +10514,12 @@
     "buy:SHELLUSDT:1794722400000:1",
     "exit:SKYUSDT:1794722400000",
     "buy:0GUSDT:1794726000000:1",
-    "exit:KAVAUSDT:1794729600000"
+    "exit:KAVAUSDT:1794729600000",
+    "buy:0GUSDT:1794733200000:2"
   ],
-  "cycles": 447,
-  "messages_sent": 1434,
-  "last_cycle_ms": 1794739343354,
+  "cycles": 448,
+  "messages_sent": 1435,
+  "last_cycle_ms": 1794742403450,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
