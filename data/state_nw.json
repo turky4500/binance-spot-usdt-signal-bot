@@ -4521,14 +4521,8 @@
       "last_entry_price": 0.03831
     },
     "SCRUSDT": {
-      "position": {
-        "entry_price": 0.01722,
-        "entry_time": 1794546000000,
-        "signal_bar_time": 1794542400000,
-        "signal_price": 0.01699,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794542400000,
       "last_entry_price": 0.01722
     },
@@ -4833,14 +4827,8 @@
       "last_entry_price": 0.0
     },
     "SYRUPUSDT": {
-      "position": {
-        "entry_price": 0.1227,
-        "entry_time": 1794502800000,
-        "signal_bar_time": 1794499200000,
-        "signal_price": 0.1227,
-        "entry_count": 6
-      },
-      "entry_count": 6,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794704400000,
       "last_entry_price": 0.1006
     },
@@ -6028,9 +6016,7 @@
     "EULUSDT": [],
     "EWYBUSDT": [],
     "FETUSDT": [],
-    "FFUSDT": [
-      1794740400000
-    ],
+    "FFUSDT": [],
     "FIDAUSDT": [],
     "FILUSDT": [],
     "FLNCBUSDT": [],
@@ -6137,7 +6123,9 @@
     "MAVUSDT": [],
     "MBLUSDT": [],
     "MDBBUSDT": [],
-    "MEGAUSDT": [],
+    "MEGAUSDT": [
+      1794744000000
+    ],
     "MEMEUSDT": [],
     "METABUSDT": [],
     "METISUSDT": [],
@@ -6177,9 +6165,7 @@
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
-    "ONEUSDT": [
-      1794740400000
-    ],
+    "ONEUSDT": [],
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
@@ -6228,9 +6214,7 @@
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [
-      1794740400000
-    ],
+    "REQUSDT": [],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -6250,7 +6234,9 @@
     "SANDUSDT": [],
     "SANTOSUSDT": [],
     "SAPIENUSDT": [],
-    "SCRUSDT": [],
+    "SCRUSDT": [
+      1794744000000
+    ],
     "SCUSDT": [],
     "SECZBUSDT": [],
     "SEIUSDT": [],
@@ -6294,7 +6280,9 @@
     "SUSHIUSDT": [],
     "SXTUSDT": [],
     "SYNUSDT": [],
-    "SYRUPUSDT": [],
+    "SYRUPUSDT": [
+      1794744000000
+    ],
     "TAOUSDT": [],
     "TFUELUSDT": [],
     "THETAUSDT": [],
@@ -10100,8 +10088,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:NEARUSDT:1794672000000:1",
-    "buy:NEIROUSDT:1794672000000:1",
     "buy:NEOUSDT:1794672000000:3",
     "buy:NEWTUSDT:1794672000000:2",
     "buy:NMRUSDT:1794672000000:2",
@@ -10499,11 +10485,13 @@
     "exit:DIAUSDT:1794736800000",
     "exit:FRAXUSDT:1794736800000",
     "exit:JSTUSDT:1794736800000",
-    "buy:SHELLUSDT:1794736800000:2"
+    "buy:SHELLUSDT:1794736800000:2",
+    "exit:SCRUSDT:1794744000000",
+    "exit:SYRUPUSDT:1794744000000"
   ],
-  "cycles": 452,
-  "messages_sent": 1440,
-  "last_cycle_ms": 1794749616051,
+  "cycles": 453,
+  "messages_sent": 1442,
+  "last_cycle_ms": 1794751400189,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
