@@ -10,7 +10,7 @@
   "unknown": [],
   "note": "هذا الملف مصدر الحكم الأساسي للبوت (الأولوية على cryptohalal.cc). القيمة: 0=مباح، 1=غير مباح، 2=مشبوه.",
   "precedence": "halal_academy.json > halal_extra.json > data/zigzag/halal_verdicts.json",
-  "last_check_utc": "2026-11-15T13:10:52Z",
+  "last_check_utc": "2026-11-15T22:19:07Z",
   "refresh_hours": 6,
   "merge_only": true,
   "site_directory_rows": 775,
@@ -22,10 +22,7 @@
   "unclear_articles": [
     "PI"
   ],
-  "added_last_run": [
-    "RENDER",
-    "TRUMP"
-  ],
+  "added_last_run": [],
   "changed_last_run": [],
   "retained_not_on_site": 12
 }
