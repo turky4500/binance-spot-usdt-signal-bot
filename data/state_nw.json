@@ -747,10 +747,16 @@
       "last_entry_price": 0.935
     },
     "GLMRUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1794016800000,
-      "last_entry_price": 0.006971
+      "position": {
+        "entry_price": 0.006586,
+        "entry_time": 1794776400000,
+        "signal_bar_time": 1794772800000,
+        "signal_price": 0.006343,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794772800000,
+      "last_entry_price": 0.006586
     },
     "GLMUSDT": {
       "position": {
@@ -1647,14 +1653,8 @@
       "last_entry_price": 0.3452
     },
     "TLMUSDT": {
-      "position": {
-        "entry_price": 0.000888,
-        "entry_time": 1794690000000,
-        "signal_bar_time": 1794686400000,
-        "signal_price": 0.000885,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794686400000,
       "last_entry_price": 0.000888
     },
@@ -1905,10 +1905,16 @@
       "last_entry_price": 3.931
     },
     "ZILUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.001161,
+        "entry_time": 1794776400000,
+        "signal_bar_time": 1794772800000,
+        "signal_price": 0.001149,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794772800000,
+      "last_entry_price": 0.001161
     },
     "ZKUSDT": {
       "position": {
@@ -2235,14 +2241,8 @@
       "last_entry_price": 0.663
     },
     "ASTERUSDT": {
-      "position": {
-        "entry_price": 0.6496,
-        "entry_time": 1794546000000,
-        "signal_bar_time": 1794542400000,
-        "signal_price": 0.6473,
-        "entry_count": 3
-      },
-      "entry_count": 3,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794672000000,
       "last_entry_price": 0.6274
     },
@@ -4641,14 +4641,8 @@
       "last_entry_price": 140.23
     },
     "SPELLUSDT": {
-      "position": {
-        "entry_price": 6.42e-05,
-        "entry_time": 1794675600000,
-        "signal_bar_time": 1794672000000,
-        "signal_price": 6.39e-05,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794672000000,
       "last_entry_price": 6.42e-05
     },
@@ -5335,9 +5329,7 @@
     "ALABBUSDT": [],
     "ALGOUSDT": [],
     "ALICEUSDT": [],
-    "ALLOUSDT": [
-      1794769200000
-    ],
+    "ALLOUSDT": [],
     "ALPINEUSDT": [],
     "ALTUSDT": [],
     "AMATBUSDT": [],
@@ -5490,7 +5482,9 @@
     "GASUSDT": [],
     "GENIUSUSDT": [],
     "GIGGLEUSDT": [],
-    "GLMRUSDT": [],
+    "GLMRUSDT": [
+      1794772800000
+    ],
     "GLMUSDT": [],
     "GLWBUSDT": [],
     "GMEBUSDT": [],
@@ -5739,7 +5733,9 @@
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
-    "TKOUSDT": [],
+    "TKOUSDT": [
+      1794772800000
+    ],
     "TLMUSDT": [],
     "TNSRUSDT": [],
     "TOWNSUSDT": [],
@@ -5797,7 +5793,9 @@
     "ZBTUSDT": [],
     "ZECUSDT": [],
     "ZENUSDT": [],
-    "ZILUSDT": [],
+    "ZILUSDT": [
+      1794772800000
+    ],
     "ZKCUSDT": [],
     "ZKPUSDT": [],
     "ZKUSDT": [],
@@ -5861,7 +5859,9 @@
     "ARUSDT": [],
     "ASMLBUSDT": [],
     "ASRUSDT": [],
-    "ASTERUSDT": [],
+    "ASTERUSDT": [
+      1794772800000
+    ],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
     "ATMUSDT": [],
@@ -5885,9 +5885,7 @@
     "BANDUSDT": [],
     "BANKUSDT": [],
     "BARDUSDT": [],
-    "BARUSDT": [
-      1794769200000
-    ],
+    "BARUSDT": [],
     "BATUSDT": [],
     "BBBUSDT": [],
     "BBUSDT": [],
@@ -6048,9 +6046,7 @@
     "JSTUSDT": [],
     "JTOUSDT": [],
     "JUPUSDT": [],
-    "JUVUSDT": [
-      1794769200000
-    ],
+    "JUVUSDT": [],
     "KAIAUSDT": [],
     "KAITOUSDT": [],
     "KATUSDT": [],
@@ -6058,7 +6054,7 @@
     "KERNELUSDT": [],
     "KGSTUSDT": [],
     "KITEUSDT": [
-      1794769200000
+      1794772800000
     ],
     "KMNOUSDT": [],
     "KNCUSDT": [],
@@ -6173,9 +6169,7 @@
     "QQQBUSDT": [],
     "QTUMUSDT": [],
     "RADUSDT": [],
-    "RAREUSDT": [
-      1794769200000
-    ],
+    "RAREUSDT": [],
     "RAYUSDT": [],
     "RDDTBUSDT": [],
     "REDUSDT": [],
@@ -6196,9 +6190,7 @@
     "RVNUSDT": [],
     "RWUSDUSDT": [],
     "SAGAUSDT": [],
-    "SAHARAUSDT": [
-      1794769200000
-    ],
+    "SAHARAUSDT": [],
     "SANDUSDT": [],
     "SANTOSUSDT": [],
     "SAPIENUSDT": [],
@@ -6228,7 +6220,9 @@
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
     "SPCXBUSDT": [],
-    "SPELLUSDT": [],
+    "SPELLUSDT": [
+      1794772800000
+    ],
     "SPKUSDT": [],
     "SPYBUSDT": [],
     "SQQQBUSDT": [],
@@ -6246,16 +6240,16 @@
     "SUSHIUSDT": [],
     "SXTUSDT": [],
     "SYNUSDT": [],
-    "SYRUPUSDT": [
-      1794769200000
-    ],
+    "SYRUPUSDT": [],
     "TAOUSDT": [],
     "TFUELUSDT": [],
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
     "TKOUSDT": [],
-    "TLMUSDT": [],
+    "TLMUSDT": [
+      1794772800000
+    ],
     "TNSRUSDT": [],
     "TOWNSUSDT": [],
     "TQQQBUSDT": [],
@@ -7108,7 +7102,8 @@
       1794686400000
     ],
     "GLMRUSDT": [
-      1794016800000
+      1794016800000,
+      1794772800000
     ],
     "GLMUSDT": [
       1794171600000,
@@ -8400,7 +8395,9 @@
       1794672000000,
       1794686400000
     ],
-    "ZILUSDT": [],
+    "ZILUSDT": [
+      1794772800000
+    ],
     "ZKCUSDT": [
       1794171600000
     ],
@@ -9816,7 +9813,8 @@
       1794614400000
     ],
     "TKOUSDT": [
-      1794686400000
+      1794686400000,
+      1794772800000
     ],
     "TLMUSDT": [],
     "TNSRUSDT": [
@@ -10062,11 +10060,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:PLUMEUSDT:1794672000000:3",
-    "buy:PNUTUSDT:1794672000000:2",
-    "buy:POLUSDT:1794672000000:1",
-    "buy:POLYXUSDT:1794672000000:1",
-    "buy:PORTALUSDT:1794672000000:1",
     "buy:PYTHUSDT:1794672000000:1",
     "buy:RADUSDT:1794672000000:1",
     "buy:RENDERUSDT:1794672000000:3",
@@ -10461,11 +10454,16 @@
     "exit:BARUSDT:1794769200000",
     "exit:JUVUSDT:1794769200000",
     "exit:RAREUSDT:1794769200000",
-    "exit:SAHARAUSDT:1794769200000"
+    "exit:SAHARAUSDT:1794769200000",
+    "exit:ASTERUSDT:1794772800000",
+    "buy:GLMRUSDT:1794772800000:1",
+    "exit:SPELLUSDT:1794772800000",
+    "exit:TLMUSDT:1794772800000",
+    "buy:ZILUSDT:1794772800000:1"
   ],
-  "cycles": 469,
-  "messages_sent": 1456,
-  "last_cycle_ms": 1794779994876,
+  "cycles": 470,
+  "messages_sent": 1461,
+  "last_cycle_ms": 1794782010787,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
