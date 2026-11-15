@@ -74,7 +74,7 @@
       "size_suggest_pct": 0.14731697025587537,
       "entry_time": 1793016000000,
       "entry_bar_open_time": 1792998000000,
-      "peak_price": 62.0,
+      "peak_price": 63.450001,
       "last_stop_alert_price": 56.94800184,
       "stop_updates_count": 1,
       "halal_verdict": "ℹ️ لا يوجد حكم"
@@ -84,16 +84,16 @@
       "code": "4190",
       "company": "Jarir Marketing Company",
       "entry_price": 16.01,
-      "stop_price": 16.1,
+      "stop_price": 16.468,
       "pivot_stop": 15.02,
       "target_price": 17.990000000000006,
       "stop_dist_pct": 6.183635227982523,
       "size_suggest_pct": 0.1617171717171714,
       "entry_time": 1793016000000,
       "entry_bar_open_time": 1792998000000,
-      "peak_price": 17.9,
-      "last_stop_alert_price": 16.07239908,
-      "stop_updates_count": 2,
+      "peak_price": 17.91,
+      "last_stop_alert_price": 16.468,
+      "stop_updates_count": 3,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     },
     "6015": {
@@ -159,7 +159,7 @@
       "size_suggest_pct": 0.46704702402394777,
       "entry_time": 1793620800000,
       "entry_bar_open_time": 1793602800000,
-      "peak_price": 45.099998,
+      "peak_price": 45.84,
       "last_stop_alert_price": 41.49199816,
       "stop_updates_count": 1,
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -170,16 +170,16 @@
       "code": "9514",
       "company": "Mohammed Hasan AlNaqool Sons Co.",
       "entry_price": 55.849998,
-      "stop_price": 63.02,
+      "stop_price": 68.31,
       "pivot_stop": 53.150002,
       "target_price": 61.24999,
       "stop_dist_pct": 4.8343708087509665,
       "size_suggest_pct": 0.2068521508920755,
       "entry_time": 1793620800000,
       "entry_bar_open_time": 1793602800000,
-      "peak_price": 74.25,
-      "last_stop_alert_price": 63.02,
-      "stop_updates_count": 6,
+      "peak_price": 74.75,
+      "last_stop_alert_price": 68.31,
+      "stop_updates_count": 7,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     },
@@ -260,16 +260,16 @@
       "code": "7211",
       "company": "Saudi Azm for Communication and Information Technology Company",
       "entry_price": 29.040001,
-      "stop_price": 29.71599908,
+      "stop_price": 31.28,
       "pivot_stop": 28.799999,
       "target_price": 29.520005,
       "stop_dist_pct": 0.8264531395849487,
       "size_suggest_pct": 1.2099899584170106,
       "entry_time": 1793793600000,
       "entry_bar_open_time": 1793775600000,
-      "peak_price": 34.0,
-      "last_stop_alert_price": 29.71599908,
-      "stop_updates_count": 2,
+      "peak_price": 34.220001,
+      "last_stop_alert_price": 31.28,
+      "stop_updates_count": 3,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     },
@@ -411,7 +411,7 @@
       "size_suggest_pct": 0.46464202742495125,
       "entry_time": 1794398400000,
       "entry_bar_open_time": 1794380400000,
-      "peak_price": 26.540001,
+      "peak_price": 26.74,
       "last_stop_alert_price": 25.459999,
       "stop_updates_count": 0,
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -458,7 +458,7 @@
       "code": "6014",
       "company": "Alamar Foods Company",
       "entry_price": 45.84,
-      "stop_price": 42.3016,
+      "stop_price": 42.78,
       "pivot_stop": 42.0,
       "target_price": 53.52000000000001,
       "stop_dist_pct": 8.376963350785347,
@@ -466,8 +466,8 @@
       "entry_time": 1794398400000,
       "entry_bar_open_time": 1794380400000,
       "peak_price": 46.5,
-      "last_stop_alert_price": 42.0,
-      "stop_updates_count": 0,
+      "last_stop_alert_price": 42.78,
+      "stop_updates_count": 1,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     },
@@ -476,7 +476,7 @@
       "code": "7200",
       "company": "Al Moammar Information Systems Company",
       "entry_price": 263.799988,
-      "stop_price": 243.399994,
+      "stop_price": 246.56,
       "pivot_stop": 243.399994,
       "target_price": 304.59997599999997,
       "stop_dist_pct": 7.733129237291698,
@@ -484,8 +484,8 @@
       "entry_time": 1794398400000,
       "entry_bar_open_time": 1794380400000,
       "peak_price": 268.0,
-      "last_stop_alert_price": 243.399994,
-      "stop_updates_count": 0,
+      "last_stop_alert_price": 246.56,
+      "stop_updates_count": 1,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     },
@@ -494,7 +494,7 @@
       "code": "9543",
       "company": "Saudi Networkers Services Company",
       "entry_price": 62.650002,
-      "stop_price": 57.63800184,
+      "stop_price": 58.92600276,
       "pivot_stop": 55.25,
       "target_price": 77.450006,
       "stop_dist_pct": 11.81165485038612,
@@ -502,8 +502,8 @@
       "entry_time": 1794398400000,
       "entry_bar_open_time": 1794380400000,
       "peak_price": 64.050003,
-      "last_stop_alert_price": 57.63800184,
-      "stop_updates_count": 1,
+      "last_stop_alert_price": 58.92600276,
+      "stop_updates_count": 2,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     }
@@ -1143,6 +1143,36 @@
       "type": "stop_alert",
       "symbol": "9543",
       "time_ms": 1794484800000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "4190",
+      "time_ms": 1794744000000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "9514",
+      "time_ms": 1794744000000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "7211",
+      "time_ms": 1794744000000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "6014",
+      "time_ms": 1794744000000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "7200",
+      "time_ms": 1794744000000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "9543",
+      "time_ms": 1794744000000
     }
   ],
   "daily_report": {
@@ -1154,5 +1184,5 @@
   "weekly_report": {
     "last_reported_week_start": ""
   },
-  "last_processed_date": "2026-11-12"
+  "last_processed_date": "2026-11-15"
 }
