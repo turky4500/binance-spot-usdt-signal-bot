@@ -1622,11 +1622,11 @@
         "entry_time": 1794175200000,
         "signal_bar_time": 1794171600000,
         "signal_price": 0.00717,
-        "entry_count": 6
+        "entry_count": 7
       },
-      "entry_count": 6,
-      "last_buy_bar": 1794704400000,
-      "last_entry_price": 0.00657
+      "entry_count": 7,
+      "last_buy_bar": 1794765600000,
+      "last_entry_price": 0.00655
     },
     "THETAUSDT": {
       "position": {
@@ -5692,9 +5692,7 @@
     "REDUSDT": [],
     "RENDERUSDT": [],
     "REQUSDT": [],
-    "RESOLVUSDT": [
-      1794762000000
-    ],
+    "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
     "RIFUSDT": [],
@@ -5759,7 +5757,9 @@
     "SYNUSDT": [],
     "SYRUPUSDT": [],
     "TAOUSDT": [],
-    "TFUELUSDT": [],
+    "TFUELUSDT": [
+      1794765600000
+    ],
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
@@ -6223,9 +6223,7 @@
     "SENTUSDT": [],
     "SFPUSDT": [],
     "SHAZBUSDT": [],
-    "SHELLUSDT": [
-      1794762000000
-    ],
+    "SHELLUSDT": [],
     "SHIBUSDT": [],
     "SIGNUSDT": [],
     "SKHYBUSDT": [],
@@ -8146,7 +8144,8 @@
       1794639600000,
       1794672000000,
       1794679200000,
-      1794704400000
+      1794704400000,
+      1794765600000
     ],
     "THETAUSDT": [
       1794171600000,
@@ -10074,7 +10073,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:OPNUSDT:1794672000000:2",
     "buy:OPUSDT:1794672000000:2",
     "buy:PENDLEUSDT:1794672000000:2",
     "buy:PEOPLEUSDT:1794672000000:2",
@@ -10473,11 +10471,12 @@
     "buy:RESOLVUSDT:1794754800000:1",
     "buy:HMSTRUSDT:1794758400000:1",
     "buy:RESOLVUSDT:1794762000000:2",
-    "exit:SHELLUSDT:1794762000000"
+    "exit:SHELLUSDT:1794762000000",
+    "buy:TFUELUSDT:1794765600000:7"
   ],
-  "cycles": 464,
-  "messages_sent": 1450,
-  "last_cycle_ms": 1794771211229,
+  "cycles": 465,
+  "messages_sent": 1451,
+  "last_cycle_ms": 1794773007337,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
