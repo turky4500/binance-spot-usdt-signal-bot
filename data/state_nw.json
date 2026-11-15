@@ -3284,11 +3284,11 @@
         "entry_time": 1794175200000,
         "signal_bar_time": 1794171600000,
         "signal_price": 0.0041,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1794538800000,
-      "last_entry_price": 0.00397
+      "entry_count": 3,
+      "last_buy_bar": 1794715200000,
+      "last_entry_price": 0.00357
     },
     "HIMSBUSDT": {
       "position": null,
@@ -3771,14 +3771,8 @@
       "last_entry_price": 331.81
     },
     "MEGAUSDT": {
-      "position": {
-        "entry_price": 0.0462,
-        "entry_time": 1794686400000,
-        "signal_bar_time": 1794682800000,
-        "signal_price": 0.04295,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794682800000,
       "last_entry_price": 0.0462
     },
@@ -4017,14 +4011,8 @@
       "last_entry_price": 61.01
     },
     "NIGHTUSDT": {
-      "position": {
-        "entry_price": 0.04748,
-        "entry_time": 1794697200000,
-        "signal_bar_time": 1794693600000,
-        "signal_price": 0.04608,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794693600000,
       "last_entry_price": 0.04748
     },
@@ -5587,7 +5575,7 @@
     "HBARUSDT": [],
     "HEIUSDT": [],
     "HEMIUSDT": [
-      1794711600000
+      1794715200000
     ],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
@@ -5959,7 +5947,9 @@
     "BABABUSDT": [],
     "BABYUSDT": [],
     "BANANAS31USDT": [],
-    "BANANAUSDT": [],
+    "BANANAUSDT": [
+      1794715200000
+    ],
     "BANDUSDT": [],
     "BANKUSDT": [],
     "BARDUSDT": [],
@@ -6064,9 +6054,7 @@
     "FOGOUSDT": [],
     "FORMUSDT": [],
     "FRAXUSDT": [],
-    "FTTUSDT": [
-      1794711600000
-    ],
+    "FTTUSDT": [],
     "FUSDT": [],
     "FWDIBUSDT": [],
     "GALAUSDT": [],
@@ -6083,7 +6071,9 @@
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
-    "GPSUSDT": [],
+    "GPSUSDT": [
+      1794715200000
+    ],
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
@@ -6163,7 +6153,9 @@
     "MAVUSDT": [],
     "MBLUSDT": [],
     "MDBBUSDT": [],
-    "MEGAUSDT": [],
+    "MEGAUSDT": [
+      1794715200000
+    ],
     "MEMEUSDT": [],
     "METABUSDT": [],
     "METISUSDT": [],
@@ -6192,7 +6184,9 @@
     "NEWTUSDT": [],
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [],
+    "NIGHTUSDT": [
+      1794715200000
+    ],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -6306,9 +6300,7 @@
     "STEEMUSDT": [],
     "STOUSDT": [],
     "STRAXUSDT": [],
-    "STRKUSDT": [
-      1794711600000
-    ],
+    "STRKUSDT": [],
     "STXBUSDT": [],
     "STXUSDT": [],
     "SUIUSDT": [],
@@ -7258,7 +7250,8 @@
     ],
     "HEMIUSDT": [
       1794171600000,
-      1794538800000
+      1794538800000,
+      1794715200000
     ],
     "HIMSBUSDT": [],
     "HIVEUSDT": [
@@ -10113,9 +10106,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:LPTUSDT:1794672000000:2",
-    "buy:LUNAUSDT:1794672000000:1",
-    "buy:LUNCUSDT:1794672000000:2",
     "buy:MANAUSDT:1794672000000:2",
     "buy:MANTAUSDT:1794672000000:2",
     "buy:MARSCOINUSDT:1794672000000:1",
@@ -10512,11 +10502,14 @@
     "exit:RESOLVUSDT:1794708000000",
     "exit:币安人生USDT:1794708000000",
     "exit:FTTUSDT:1794711600000",
-    "exit:STRKUSDT:1794711600000"
+    "exit:STRKUSDT:1794711600000",
+    "buy:HEMIUSDT:1794715200000:3",
+    "exit:MEGAUSDT:1794715200000",
+    "exit:NIGHTUSDT:1794715200000"
   ],
-  "cycles": 436,
-  "messages_sent": 1425,
-  "last_cycle_ms": 1794720811774,
+  "cycles": 437,
+  "messages_sent": 1428,
+  "last_cycle_ms": 1794722605532,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
