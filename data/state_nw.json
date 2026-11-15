@@ -1953,10 +1953,16 @@
       "last_entry_price": 0.00769
     },
     "0GUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1794171600000,
-      "last_entry_price": 0.1389
+      "position": {
+        "entry_price": 0.1337,
+        "entry_time": 1794729600000,
+        "signal_bar_time": 1794726000000,
+        "signal_price": 0.1326,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794726000000,
+      "last_entry_price": 0.1337
     },
     "1000CATUSDT": {
       "position": {
@@ -5380,7 +5386,9 @@
     }
   },
   "prev_buy_bars": {
-    "0GUSDT": [],
+    "0GUSDT": [
+      1794726000000
+    ],
     "1000CATUSDT": [],
     "1000CHEEMSUSDT": [],
     "1000SATSUSDT": [],
@@ -5518,9 +5526,7 @@
     "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
-    "DODOUSDT": [
-      1794722400000
-    ],
+    "DODOUSDT": [],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -5768,9 +5774,7 @@
     "SENTUSDT": [],
     "SFPUSDT": [],
     "SHAZBUSDT": [],
-    "SHELLUSDT": [
-      1794722400000
-    ],
+    "SHELLUSDT": [],
     "SHIBUSDT": [],
     "SIGNUSDT": [],
     "SKHYBUSDT": [],
@@ -5786,7 +5790,7 @@
     "SOLVUSDT": [],
     "SOMIUSDT": [],
     "SOPHUSDT": [
-      1794722400000
+      1794726000000
     ],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
@@ -6079,9 +6083,7 @@
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
-    "GPSUSDT": [
-      1794722400000
-    ],
+    "GPSUSDT": [],
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
@@ -6190,9 +6192,7 @@
     "NEWTUSDT": [],
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [
-      1794722400000
-    ],
+    "NIGHTUSDT": [],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -6284,9 +6284,7 @@
     "SIGNUSDT": [],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
-    "SKYUSDT": [
-      1794722400000
-    ],
+    "SKYUSDT": [],
     "SLPUSDT": [],
     "SMCIBUSDT": [],
     "SMHBUSDT": [],
@@ -6399,7 +6397,8 @@
   },
   "buy_history": {
     "0GUSDT": [
-      1794171600000
+      1794171600000,
+      1794726000000
     ],
     "1000CATUSDT": [
       1794171600000,
@@ -9773,7 +9772,8 @@
     "SOMIUSDT": [],
     "SOPHUSDT": [
       1794708000000,
-      1794722400000
+      1794722400000,
+      1794726000000
     ],
     "SOXLBUSDT": [
       1794578400000
@@ -10119,7 +10119,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:MEMEUSDT:1794672000000:2",
     "buy:MEUSDT:1794672000000:1",
     "buy:MINAUSDT:1794672000000:2",
     "buy:MORPHOUSDT:1794672000000:2",
@@ -10518,11 +10517,12 @@
     "buy:STRAXUSDT:1794718800000:1",
     "buy:DODOUSDT:1794722400000:2",
     "buy:SHELLUSDT:1794722400000:1",
-    "exit:SKYUSDT:1794722400000"
+    "exit:SKYUSDT:1794722400000",
+    "buy:0GUSDT:1794726000000:1"
   ],
-  "cycles": 442,
-  "messages_sent": 1432,
-  "last_cycle_ms": 1794731610539,
+  "cycles": 443,
+  "messages_sent": 1433,
+  "last_cycle_ms": 1794733408840,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
