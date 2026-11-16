@@ -3,26 +3,45 @@
   "source_url": "https://btcacademy.online/عملات-رقمية-حلال-أم-حرام/",
   "fetched_at": "2026-11-16",
   "methodology": "الموقع: إن لم يجد خدمات حرام أو مشبوهة ⇒ حلال. الحكم يُقرأ من جملة «فإن عملة X …» في المقال؛ وإن لم توجد تُستخدم جملة «جميع الخدمات التي تقدمها حرام أو مشبوهة» ⇒ حرام، أو وسم الموقع «عملة X حلال».",
-  "total": 786,
-  "halal": 441,
-  "haram": 330,
+  "total": 788,
+  "halal": 445,
+  "haram": 328,
   "doubtful": 15,
   "unknown": [],
   "note": "هذا الملف مصدر الحكم الأساسي للبوت (الأولوية على cryptohalal.cc). القيمة: 0=مباح، 1=غير مباح، 2=مشبوه.",
   "precedence": "halal_academy.json > halal_extra.json > data/zigzag/halal_verdicts.json",
-  "last_check_utc": "2026-11-16T03:34:43Z",
+  "last_check_utc": "2026-11-16T14:13:56Z",
   "refresh_hours": 6,
   "merge_only": true,
-  "site_directory_rows": 775,
-  "site_unique_symbols": 774,
-  "articles_scanned": 828,
+  "site_directory_rows": 777,
+  "site_unique_symbols": 776,
+  "articles_scanned": 830,
   "ambiguous": [
     "STRK"
   ],
   "unclear_articles": [
     "PI"
   ],
-  "added_last_run": [],
-  "changed_last_run": [],
+  "added_last_run": [
+    "AXS",
+    "WIF"
+  ],
+  "changed_last_run": [
+    {
+      "symbol": "DUEL",
+      "from": 1,
+      "to": 0
+    },
+    {
+      "symbol": "TAO",
+      "from": 1,
+      "to": 0
+    },
+    {
+      "symbol": "WAL",
+      "from": 1,
+      "to": 0
+    }
+  ],
   "retained_not_on_site": 12
 }
