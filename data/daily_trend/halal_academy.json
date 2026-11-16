@@ -199,7 +199,7 @@
   "DREP": 0,
   "DSYNC": 1,
   "DTA": 0,
-  "DUEL": 1,
+  "DUEL": 0,
   "DUSK": 0,
   "DVPN": 0,
   "DXL": 1,
@@ -640,7 +640,7 @@
   "SYRUP": 1,
   "SYS": 0,
   "T": 1,
-  "TAO": 1,
+  "TAO": 0,
   "TEL": 0,
   "TFUEL": 0,
   "THALES": 1,
@@ -702,7 +702,7 @@
   "W": 0,
   "WABI": 0,
   "WAG": 1,
-  "WAL": 1,
+  "WAL": 0,
   "WAVES": 0,
   "WAXP": 0,
   "WBETH": 1,
@@ -784,5 +784,7 @@
   "XVG": 0,
   "ZAMA": 0,
   "RENDER": 0,
-  "TRUMP": 1
+  "TRUMP": 1,
+  "AXS": 0,
+  "WIF": 1
 }
