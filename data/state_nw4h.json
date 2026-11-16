@@ -350,11 +350,11 @@
         "entry_time": 1794628800000,
         "signal_bar_time": 1794614400000,
         "signal_price": 0.6196,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794614400000,
-      "last_entry_price": 0.6346
+      "entry_count": 2,
+      "last_buy_bar": 1794772800000,
+      "last_entry_price": 0.5492
     },
     "ASTRUSDT": {
       "position": null,
@@ -3613,7 +3613,9 @@
     "ARUSDT": [],
     "ASMLBUSDT": [],
     "ASRUSDT": [],
-    "ASTERUSDT": [],
+    "ASTERUSDT": [
+      1794772800000
+    ],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
     "ATMUSDT": [],
@@ -3944,9 +3946,7 @@
     "SOLUSDT": [],
     "SOLVUSDT": [],
     "SOMIUSDT": [],
-    "SOPHUSDT": [
-      1794758400000
-    ],
+    "SOPHUSDT": [],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
     "SPCXBUSDT": [],
@@ -3955,9 +3955,7 @@
     "SPYBUSDT": [],
     "SSVUSDT": [],
     "STEEMUSDT": [],
-    "STOUSDT": [
-      1794758400000
-    ],
+    "STOUSDT": [],
     "STRAXUSDT": [],
     "STRKUSDT": [],
     "STXUSDT": [],
@@ -4256,16 +4254,16 @@
     "JSTUSDT": [],
     "JTOUSDT": [],
     "JUPUSDT": [],
-    "JUVUSDT": [
-      1794758400000
-    ],
+    "JUVUSDT": [],
     "KAIAUSDT": [],
     "KAITOUSDT": [],
     "KATUSDT": [],
     "KAVAUSDT": [],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
-    "KITEUSDT": [],
+    "KITEUSDT": [
+      1794772800000
+    ],
     "KMNOUSDT": [],
     "KNCUSDT": [],
     "KORUBUSDT": [],
@@ -4373,9 +4371,7 @@
     "QQQBUSDT": [],
     "QTUMUSDT": [],
     "RADUSDT": [],
-    "RAREUSDT": [
-      1794758400000
-    ],
+    "RAREUSDT": [],
     "RAYUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
@@ -4477,9 +4473,7 @@
     "WCTUSDT": [],
     "WDCBUSDT": [],
     "WIFUSDT": [],
-    "WINUSDT": [
-      1794758400000
-    ],
+    "WINUSDT": [],
     "WLDUSDT": [],
     "WLFIUSDT": [],
     "WOOUSDT": [],
@@ -4582,7 +4576,8 @@
       1794744000000
     ],
     "ASTERUSDT": [
-      1794614400000
+      1794614400000,
+      1794772800000
     ],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
@@ -6013,11 +6008,12 @@
     "buy:TRXUSDT:1794744000000:1",
     "exit:JUVUSDT:1794758400000",
     "buy:STOUSDT:1794758400000:1",
-    "exit:WINUSDT:1794758400000"
+    "exit:WINUSDT:1794758400000",
+    "buy:ASTERUSDT:1794772800000:2"
   ],
-  "cycles": 52,
-  "messages_sent": 173,
-  "last_cycle_ms": 1794787767736,
+  "cycles": 53,
+  "messages_sent": 174,
+  "last_cycle_ms": 1794801812489,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-15",
     "reported_trade_keys": [
