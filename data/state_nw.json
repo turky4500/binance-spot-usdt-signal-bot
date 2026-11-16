@@ -4287,14 +4287,8 @@
       "last_entry_price": 0.1086
     },
     "RESOLVUSDT": {
-      "position": {
-        "entry_price": 0.01232,
-        "entry_time": 1794758400000,
-        "signal_bar_time": 1794754800000,
-        "signal_price": 0.0123,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794762000000,
       "last_entry_price": 0.0124
     },
@@ -5926,7 +5920,9 @@
     "EULUSDT": [],
     "EWYBUSDT": [],
     "FETUSDT": [],
-    "FFUSDT": [],
+    "FFUSDT": [
+      1794801600000
+    ],
     "FIDAUSDT": [],
     "FILUSDT": [],
     "FLNCBUSDT": [],
@@ -6117,13 +6113,17 @@
     "QQQBUSDT": [],
     "QTUMUSDT": [],
     "RADUSDT": [],
-    "RAREUSDT": [],
+    "RAREUSDT": [
+      1794801600000
+    ],
     "RAYUSDT": [],
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
     "REQUSDT": [],
-    "RESOLVUSDT": [],
+    "RESOLVUSDT": [
+      1794801600000
+    ],
     "REUSDT": [],
     "REZUSDT": [],
     "RIFUSDT": [],
@@ -10019,7 +10019,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:SNXUSDT:1794672000000:3",
     "buy:SOLUSDT:1794672000000:3",
     "buy:SOLVUSDT:1794672000000:2",
     "buy:SPELLUSDT:1794672000000:1",
@@ -10418,11 +10417,12 @@
     "exit:ADBEBUSDT:1794790800000",
     "buy:KSTRBUSDT:1794790800000:1",
     "buy:NXPCUSDT:1794790800000:5",
-    "exit:BARDUSDT:1794794400000"
+    "exit:BARDUSDT:1794794400000",
+    "exit:RESOLVUSDT:1794801600000"
   ],
-  "cycles": 483,
-  "messages_sent": 1479,
-  "last_cycle_ms": 1794807206943,
+  "cycles": 484,
+  "messages_sent": 1480,
+  "last_cycle_ms": 1794809006523,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
