@@ -843,14 +843,8 @@
       "last_entry_price": 66.03
     },
     "ICPUSDT": {
-      "position": {
-        "entry_price": 2.501,
-        "entry_time": 1794610800000,
-        "signal_bar_time": 1794607200000,
-        "signal_price": 2.487,
-        "entry_count": 3
-      },
-      "entry_count": 3,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794672000000,
       "last_entry_price": 2.29
     },
@@ -1377,14 +1371,8 @@
       "last_entry_price": 0.0474
     },
     "RIFUSDT": {
-      "position": {
-        "entry_price": 0.0506,
-        "entry_time": 1794708000000,
-        "signal_bar_time": 1794704400000,
-        "signal_price": 0.0489,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794704400000,
       "last_entry_price": 0.0506
     },
@@ -2073,14 +2061,8 @@
       "last_entry_price": 8.06
     },
     "AIGENSYNUSDT": {
-      "position": {
-        "entry_price": 0.01383,
-        "entry_time": 1794175200000,
-        "signal_bar_time": 1794171600000,
-        "signal_price": 0.01355,
-        "entry_count": 4
-      },
-      "entry_count": 4,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794704400000,
       "last_entry_price": 0.01225
     },
@@ -2103,14 +2085,8 @@
       "last_entry_price": 0.0
     },
     "ALLOUSDT": {
-      "position": {
-        "entry_price": 0.1525,
-        "entry_time": 1794690000000,
-        "signal_bar_time": 1794686400000,
-        "signal_price": 0.1482,
-        "entry_count": 3
-      },
-      "entry_count": 3,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794769200000,
       "last_entry_price": 0.1498
     },
@@ -2624,11 +2600,11 @@
         "entry_time": 1794578400000,
         "signal_bar_time": 1794574800000,
         "signal_price": 108.7,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1794582000000,
-      "last_entry_price": 105.59
+      "entry_count": 3,
+      "last_buy_bar": 1794837600000,
+      "last_entry_price": 100.98
     },
     "CETUSUSDT": {
       "position": {
@@ -3603,14 +3579,8 @@
       "last_entry_price": 0.0315
     },
     "LUNCUSDT": {
-      "position": {
-        "entry_price": 3.819e-05,
-        "entry_time": 1794438000000,
-        "signal_bar_time": 1794434400000,
-        "signal_price": 3.799e-05,
-        "entry_count": 3
-      },
-      "entry_count": 3,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794686400000,
       "last_entry_price": 3.355e-05
     },
@@ -4905,10 +4875,16 @@
       "last_entry_price": 8.19
     },
     "USDEBUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 4.51,
+        "entry_time": 1794841200000,
+        "signal_bar_time": 1794837600000,
+        "signal_price": 4.47,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794837600000,
+      "last_entry_price": 4.51
     },
     "USTCUSDT": {
       "position": {
@@ -5157,10 +5133,16 @@
       "last_entry_price": 0.0309
     },
     "ZMBUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1793966400000,
-      "last_entry_price": 89.56
+      "position": {
+        "entry_price": 97.59,
+        "entry_time": 1794841200000,
+        "signal_bar_time": 1794837600000,
+        "signal_price": 97.51,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794837600000,
+      "last_entry_price": 97.59
     },
     "ZROUSDT": {
       "position": {
@@ -5274,7 +5256,9 @@
     "AEROUSDT": [],
     "AEVOUSDT": [],
     "AGLDUSDT": [],
-    "AGPUBUSDT": [],
+    "AGPUBUSDT": [
+      1794837600000
+    ],
     "AIGENSYNUSDT": [],
     "AIUSDT": [],
     "AIXBTUSDT": [],
@@ -5354,7 +5338,9 @@
     "C98USDT": [],
     "CAKEUSDT": [],
     "CATIUSDT": [],
-    "CBRSBUSDT": [],
+    "CBRSBUSDT": [
+      1794837600000
+    ],
     "CELOUSDT": [],
     "CELRUSDT": [],
     "CETUSUSDT": [],
@@ -5639,7 +5625,9 @@
     "SEIUSDT": [],
     "SENTUSDT": [],
     "SFPUSDT": [],
-    "SHAZBUSDT": [],
+    "SHAZBUSDT": [
+      1794837600000
+    ],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
     "SIGNUSDT": [],
@@ -5703,7 +5691,9 @@
     "UMAUSDT": [],
     "UNIUSDT": [],
     "USARBUSDT": [],
-    "USDEBUSDT": [],
+    "USDEBUSDT": [
+      1794837600000
+    ],
     "USTCUSDT": [],
     "USUALUSDT": [],
     "UVXYBUSDT": [],
@@ -5745,7 +5735,9 @@
     "ZKCUSDT": [],
     "ZKPUSDT": [],
     "ZKUSDT": [],
-    "ZMBUSDT": [],
+    "ZMBUSDT": [
+      1794837600000
+    ],
     "ZROUSDT": [],
     "ZRXUSDT": [],
     "币安人生USDT": [],
@@ -5778,13 +5770,17 @@
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
-    "AIGENSYNUSDT": [],
+    "AIGENSYNUSDT": [
+      1794837600000
+    ],
     "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
     "ALGOUSDT": [],
     "ALICEUSDT": [],
-    "ALLOUSDT": [],
+    "ALLOUSDT": [
+      1794837600000
+    ],
     "ALPINEUSDT": [],
     "ALTUSDT": [],
     "AMATBUSDT": [],
@@ -5872,7 +5868,9 @@
     "COHRBUSDT": [],
     "COINBUSDT": [],
     "COMPUSDT": [],
-    "COOKIEUSDT": [],
+    "COOKIEUSDT": [
+      1794837600000
+    ],
     "COTIUSDT": [],
     "COWUSDT": [],
     "CRCLBUSDT": [],
@@ -5970,7 +5968,9 @@
     "HYPERUSDT": [],
     "HYPEUSDT": [],
     "IBMBUSDT": [],
-    "ICPUSDT": [],
+    "ICPUSDT": [
+      1794837600000
+    ],
     "IDUSDT": [],
     "ILVUSDT": [],
     "IMXUSDT": [],
@@ -6017,7 +6017,9 @@
     "LTCUSDT": [],
     "LUMIAUSDT": [],
     "LUNAUSDT": [],
-    "LUNCUSDT": [],
+    "LUNCUSDT": [
+      1794837600000
+    ],
     "MAGICUSDT": [],
     "MANAUSDT": [],
     "MANTAUSDT": [],
@@ -6116,11 +6118,17 @@
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [],
-    "RESOLVUSDT": [],
+    "REQUSDT": [
+      1794837600000
+    ],
+    "RESOLVUSDT": [
+      1794837600000
+    ],
     "REUSDT": [],
     "REZUSDT": [],
-    "RIFUSDT": [],
+    "RIFUSDT": [
+      1794837600000
+    ],
     "RKLBBUSDT": [],
     "RLCUSDT": [],
     "ROBOUSDT": [],
@@ -6697,7 +6705,8 @@
     ],
     "CBRSBUSDT": [
       1794574800000,
-      1794582000000
+      1794582000000,
+      1794837600000
     ],
     "CELOUSDT": [
       1794171600000,
@@ -8177,7 +8186,9 @@
     "USARBUSDT": [
       1794315600000
     ],
-    "USDEBUSDT": [],
+    "USDEBUSDT": [
+      1794837600000
+    ],
     "USTCUSDT": [
       1794171600000,
       1794672000000,
@@ -8367,7 +8378,9 @@
       1794672000000,
       1794686400000
     ],
-    "ZMBUSDT": [],
+    "ZMBUSDT": [
+      1794837600000
+    ],
     "ZROUSDT": [
       1794704400000
     ],
@@ -8465,7 +8478,8 @@
     "AGPUBUSDT": [
       1794492000000,
       1794502800000,
-      1794578400000
+      1794578400000,
+      1794837600000
     ],
     "AIGENSYNUSDT": [
       1794664800000,
@@ -9627,7 +9641,8 @@
       1794686400000
     ],
     "SHAZBUSDT": [
-      1794582000000
+      1794582000000,
+      1794837600000
     ],
     "SHELLUSDT": [
       1794650400000,
@@ -10036,14 +10051,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:THETAUSDT:1794672000000:2",
-    "buy:TKOUSDT:1794672000000:2",
-    "buy:TRBUSDT:1794672000000:1",
-    "buy:TRUMPUSDT:1794672000000:1",
-    "buy:TSTUSDT:1794672000000:3",
-    "buy:TUTUSDT:1794672000000:3",
-    "buy:TWTUSDT:1794672000000:2",
-    "buy:UMAUSDT:1794672000000:1",
     "buy:USTCUSDT:1794672000000:2",
     "buy:USUALUSDT:1794672000000:1",
     "buy:VANAUSDT:1794672000000:1",
@@ -10435,11 +10442,19 @@
     "buy:KITEUSDT:1794830400000:1",
     "buy:NIGHTUSDT:1794830400000:1",
     "buy:OPENUSDT:1794830400000:3",
-    "exit:RADUSDT:1794830400000"
+    "exit:RADUSDT:1794830400000",
+    "exit:AIGENSYNUSDT:1794837600000",
+    "exit:ALLOUSDT:1794837600000",
+    "buy:CBRSBUSDT:1794837600000:3",
+    "exit:ICPUSDT:1794837600000",
+    "exit:LUNCUSDT:1794837600000",
+    "exit:RIFUSDT:1794837600000",
+    "buy:USDEBUSDT:1794837600000:1",
+    "buy:ZMBUSDT:1794837600000:1"
   ],
-  "cycles": 501,
-  "messages_sent": 1496,
-  "last_cycle_ms": 1794843222317,
+  "cycles": 502,
+  "messages_sent": 1504,
+  "last_cycle_ms": 1794845020263,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
