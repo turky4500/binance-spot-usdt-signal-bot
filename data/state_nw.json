@@ -5440,9 +5440,7 @@
     "GASUSDT": [],
     "GENIUSUSDT": [],
     "GIGGLEUSDT": [],
-    "GLMRUSDT": [
-      1794794400000
-    ],
+    "GLMRUSDT": [],
     "GLMUSDT": [],
     "GLWBUSDT": [],
     "GMEBUSDT": [],
@@ -5561,9 +5559,7 @@
     "NEWTUSDT": [],
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [
-      1794794400000
-    ],
+    "NIGHTUSDT": [],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -5838,9 +5834,7 @@
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
-    "BARDUSDT": [
-      1794794400000
-    ],
+    "BARDUSDT": [],
     "BARUSDT": [],
     "BATUSDT": [],
     "BBBUSDT": [],
@@ -5932,9 +5926,7 @@
     "EULUSDT": [],
     "EWYBUSDT": [],
     "FETUSDT": [],
-    "FFUSDT": [
-      1794794400000
-    ],
+    "FFUSDT": [],
     "FIDAUSDT": [],
     "FILUSDT": [],
     "FLNCBUSDT": [],
@@ -5949,9 +5941,7 @@
     "FWDIBUSDT": [],
     "GALAUSDT": [],
     "GASUSDT": [],
-    "GENIUSUSDT": [
-      1794794400000
-    ],
+    "GENIUSUSDT": [],
     "GIGGLEUSDT": [],
     "GLMRUSDT": [],
     "GLMUSDT": [],
@@ -6132,9 +6122,7 @@
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [
-      1794794400000
-    ],
+    "REQUSDT": [],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -10432,9 +10420,9 @@
     "buy:NXPCUSDT:1794790800000:5",
     "exit:BARDUSDT:1794794400000"
   ],
-  "cycles": 481,
+  "cycles": 482,
   "messages_sent": 1479,
-  "last_cycle_ms": 1794803612693,
+  "last_cycle_ms": 1794805406547,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
