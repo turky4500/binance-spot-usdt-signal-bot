@@ -2379,14 +2379,8 @@
       "last_entry_price": 0.0
     },
     "BANANAS31USDT": {
-      "position": {
-        "entry_price": 0.00418,
-        "entry_time": 1794690000000,
-        "signal_bar_time": 1794686400000,
-        "signal_price": 0.004091,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794686400000,
       "last_entry_price": 0.00418
     },
@@ -5350,9 +5344,7 @@
     "ARUSDT": [],
     "ASMLBUSDT": [],
     "ASRUSDT": [],
-    "ASTERUSDT": [
-      1794776400000
-    ],
+    "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
     "ATMUSDT": [],
@@ -5677,9 +5669,7 @@
     "RSRUSDT": [],
     "RUNEUSDT": [],
     "RVNUSDT": [],
-    "RWUSDUSDT": [
-      1794776400000
-    ],
+    "RWUSDUSDT": [],
     "SAGAUSDT": [],
     "SAHARAUSDT": [],
     "SANDUSDT": [],
@@ -5876,7 +5866,9 @@
     "AXTIBUSDT": [],
     "BABABUSDT": [],
     "BABYUSDT": [],
-    "BANANAS31USDT": [],
+    "BANANAS31USDT": [
+      1794780000000
+    ],
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
@@ -5924,9 +5916,7 @@
     "COHRBUSDT": [],
     "COINBUSDT": [],
     "COMPUSDT": [],
-    "COOKIEUSDT": [
-      1794776400000
-    ],
+    "COOKIEUSDT": [],
     "COTIUSDT": [],
     "COWUSDT": [],
     "CRCLBUSDT": [],
@@ -5974,7 +5964,9 @@
     "EULUSDT": [],
     "EWYBUSDT": [],
     "FETUSDT": [],
-    "FFUSDT": [],
+    "FFUSDT": [
+      1794780000000
+    ],
     "FIDAUSDT": [],
     "FILUSDT": [],
     "FLNCBUSDT": [],
@@ -10054,7 +10046,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:RESOLVUSDT:1794672000000:2",
     "buy:ROBOUSDT:1794672000000:2",
     "buy:RONINUSDT:1794672000000:1",
     "buy:ROSEUSDT:1794672000000:2",
@@ -10453,11 +10444,12 @@
     "buy:ZILUSDT:1794772800000:1",
     "buy:ASTERUSDT:1794776400000:1",
     "exit:COOKIEUSDT:1794776400000",
-    "buy:RWUSDUSDT:1794776400000:2"
+    "buy:RWUSDUSDT:1794776400000:2",
+    "exit:BANANAS31USDT:1794780000000"
   ],
-  "cycles": 472,
-  "messages_sent": 1464,
-  "last_cycle_ms": 1794785612305,
+  "cycles": 473,
+  "messages_sent": 1465,
+  "last_cycle_ms": 1794787398872,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
