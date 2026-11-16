@@ -529,7 +529,9 @@
     }
   },
   "trades": [],
-  "day_reports": [],
+  "day_reports": [
+    "2026-11-16"
+  ],
   "counters": {
     "entries": 1,
     "exits": 0,
