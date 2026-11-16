@@ -3773,9 +3773,7 @@
     "HIVEUSDT": [],
     "HMSTRUSDT": [],
     "HOLOUSDT": [],
-    "HOMEUSDT": [
-      1794787200000
-    ],
+    "HOMEUSDT": [],
     "HOODBUSDT": [],
     "HOTUSDT": [],
     "HUMAUSDT": [],
@@ -3862,7 +3860,9 @@
     "NEWTUSDT": [],
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [],
+    "NIGHTUSDT": [
+      1794801600000
+    ],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -3958,9 +3958,7 @@
     "SOLUSDT": [],
     "SOLVUSDT": [],
     "SOMIUSDT": [],
-    "SOPHUSDT": [
-      1794787200000
-    ],
+    "SOPHUSDT": [],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
     "SPCXBUSDT": [],
@@ -4041,9 +4039,7 @@
     "ZBTUSDT": [],
     "ZECUSDT": [],
     "ZENUSDT": [],
-    "ZILUSDT": [
-      1794787200000
-    ],
+    "ZILUSDT": [],
     "ZKCUSDT": [],
     "ZKPUSDT": [],
     "ZKUSDT": [],
@@ -4116,9 +4112,7 @@
     "AXTIBUSDT": [],
     "BABABUSDT": [],
     "BABYUSDT": [],
-    "BANANAS31USDT": [
-      1794787200000
-    ],
+    "BANANAS31USDT": [],
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
@@ -4452,9 +4446,7 @@
     "SYNUSDT": [],
     "SYRUPUSDT": [],
     "TAOUSDT": [],
-    "TFUELUSDT": [
-      1794787200000
-    ],
+    "TFUELUSDT": [],
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
@@ -5630,7 +5622,9 @@
       1794614400000
     ],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [],
+    "NIGHTUSDT": [
+      1794801600000
+    ],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -6037,9 +6031,9 @@
     "buy:HOMEUSDT:1794787200000:1",
     "buy:SOPHUSDT:1794787200000:1"
   ],
-  "cycles": 54,
+  "cycles": 55,
   "messages_sent": 176,
-  "last_cycle_ms": 1794816211349,
+  "last_cycle_ms": 1794830614419,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-15",
     "reported_trade_keys": [
