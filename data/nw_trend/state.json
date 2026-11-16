@@ -1,0 +1,22 @@
+{
+  "system": "nw-trend-1h-experiment",
+  "version": 1,
+  "created_utc": "2026-11-16T04:40:00+00:00",
+  "updated_utc": null,
+  "last_run_utc": null,
+  "runs": 0,
+  "last_bar_ms": {},
+  "sent": [],
+  "positions": {},
+  "trades": [],
+  "day_reports": [],
+  "counters": {
+    "entries": 0,
+    "exits": 0,
+    "messages": 0,
+    "send_errors": 0,
+    "fetch_errors": 0,
+    "insufficient_history": 0
+  },
+  "last_run": {}
+}

@@ -1,0 +1,83 @@
+name: NW Trend Experiment 1H (Daily Report)
+
+# التقرير الختامي اليومي: 23:59 بتوقيت الرياض = 20:59 UTC.
+# يقرأ data/nw_trend/* فقط، ويرسل رسالة واحدة، ويحفظ reports/YYYY-MM-DD.md.
+#
+# بقرار المستخدم 2026-11-16: النظام مستمر بلا إيقاف تلقائي ⇒ التقرير يتكرر
+# كل يوم حتى طلب الإيقاف. مفتاح day_reports يمنع تكرار تقرير اليوم نفسه.
+
+on:
+  schedule:
+    - cron: '59 20 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: nw-trend-experiment
+  cancel-in-progress: false
+
+jobs:
+  daily-report:
+    if: vars.NW_TREND_ENABLED != 'false'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TELEGRAM_MUTE: "0"
+      TELEGRAM_MIN_INTERVAL_SECONDS: "1.05"
+      TIMEZONE: Asia/Riyadh
+      BINANCE_BASE_URL: https://data-api.binance.vision
+      REQUEST_TIMEOUT: "20"
+      LOG_LEVEL: INFO
+      NW_TREND_STATE_FILE: data/nw_trend/state.json
+      NW_TREND_TRADE_LOG: data/nw_trend/trades.csv
+      NW_TREND_REPORT_DIR: data/nw_trend/reports
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Refresh checkout to latest main
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build and send daily report
+        run: python tools/nw_trend_report.py
+
+      - name: Commit report and report marker
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/nw_trend/
+          if git diff --cached --quiet; then
+            echo "No report changes to commit"
+            exit 0
+          fi
+          git commit -m "chore(nw-trend): daily report [skip ci]"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main; then
+              if git push origin HEAD:main; then
+                echo "Daily report pushed on attempt $attempt"
+                exit 0
+              fi
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((attempt * 5))
+          done
+          echo "::warning::Could not push daily report after 5 attempts."
