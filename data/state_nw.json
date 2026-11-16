@@ -3939,14 +3939,8 @@
       "last_entry_price": 0.0
     },
     "NOMUSDT": {
-      "position": {
-        "entry_price": 0.001385,
-        "entry_time": 1794175200000,
-        "signal_bar_time": 1794171600000,
-        "signal_price": 0.001367,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794686400000,
       "last_entry_price": 0.001209
     },
@@ -5579,9 +5573,7 @@
     "POLUSDT": [],
     "POLYXUSDT": [],
     "PORTALUSDT": [],
-    "PORTOUSDT": [
-      1794823200000
-    ],
+    "PORTOUSDT": [],
     "POWRUSDT": [],
     "PROMUSDT": [],
     "PROVEUSDT": [],
@@ -5644,9 +5636,7 @@
     "SNXXBUSDT": [],
     "SOLUSDT": [],
     "SOLVUSDT": [],
-    "SOMIUSDT": [
-      1794823200000
-    ],
+    "SOMIUSDT": [],
     "SOPHUSDT": [],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
@@ -5802,9 +5792,7 @@
     "ASTSBUSDT": [],
     "ATMUSDT": [],
     "ATOMUSDT": [],
-    "ATUSDT": [
-      1794823200000
-    ],
+    "ATUSDT": [],
     "AUCTIONUSDT": [],
     "AUDIOUSDT": [],
     "AUSDT": [],
@@ -6054,7 +6042,9 @@
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
-    "NOMUSDT": [],
+    "NOMUSDT": [
+      1794826800000
+    ],
     "NOTUSDT": [],
     "NVDABUSDT": [],
     "NXPCUSDT": [],
@@ -10020,7 +10010,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:SUPERUSDT:1794672000000:2",
     "buy:SUSDT:1794672000000:1",
     "buy:SUSHIUSDT:1794672000000:1",
     "buy:SXTUSDT:1794672000000:2",
@@ -10419,11 +10408,12 @@
     "buy:XNOUSDT:1794816000000:4",
     "buy:JUPUSDT:1794819600000:1",
     "exit:XNOUSDT:1794819600000",
-    "buy:SOMIUSDT:1794823200000:3"
+    "buy:SOMIUSDT:1794823200000:3",
+    "exit:NOMUSDT:1794826800000"
   ],
-  "cycles": 496,
-  "messages_sent": 1489,
-  "last_cycle_ms": 1794830617620,
+  "cycles": 497,
+  "messages_sent": 1490,
+  "last_cycle_ms": 1794834216077,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
