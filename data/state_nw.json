@@ -1532,11 +1532,11 @@
         "entry_time": 1794488400000,
         "signal_bar_time": 1794484800000,
         "signal_price": 0.1505,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1794690000000,
-      "last_entry_price": 0.1397
+      "entry_count": 3,
+      "last_buy_bar": 1794823200000,
+      "last_entry_price": 0.1409
     },
     "SOPHUSDT": {
       "position": null,
@@ -5474,9 +5474,7 @@
     "JPMBUSDT": [],
     "JSTUSDT": [],
     "JTOUSDT": [],
-    "JUPUSDT": [
-      1794819600000
-    ],
+    "JUPUSDT": [],
     "JUVUSDT": [],
     "KAIAUSDT": [],
     "KAITOUSDT": [],
@@ -5581,7 +5579,9 @@
     "POLUSDT": [],
     "POLYXUSDT": [],
     "PORTALUSDT": [],
-    "PORTOUSDT": [],
+    "PORTOUSDT": [
+      1794823200000
+    ],
     "POWRUSDT": [],
     "PROMUSDT": [],
     "PROVEUSDT": [],
@@ -5644,7 +5644,9 @@
     "SNXXBUSDT": [],
     "SOLUSDT": [],
     "SOLVUSDT": [],
-    "SOMIUSDT": [],
+    "SOMIUSDT": [
+      1794823200000
+    ],
     "SOPHUSDT": [],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
@@ -5800,7 +5802,9 @@
     "ASTSBUSDT": [],
     "ATMUSDT": [],
     "ATOMUSDT": [],
-    "ATUSDT": [],
+    "ATUSDT": [
+      1794823200000
+    ],
     "AUCTIONUSDT": [],
     "AUDIOUSDT": [],
     "AUSDT": [],
@@ -6101,16 +6105,12 @@
     "QQQBUSDT": [],
     "QTUMUSDT": [],
     "RADUSDT": [],
-    "RAREUSDT": [
-      1794819600000
-    ],
+    "RAREUSDT": [],
     "RAYUSDT": [],
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [
-      1794819600000
-    ],
+    "REQUSDT": [],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -6225,9 +6225,7 @@
     "XAUTUSDT": [],
     "XECUSDT": [],
     "XLMUSDT": [],
-    "XNOUSDT": [
-      1794819600000
-    ],
+    "XNOUSDT": [],
     "XPLUSDT": [],
     "XRPUSDT": [],
     "XTZUSDT": [],
@@ -7950,7 +7948,8 @@
     "SOMIUSDT": [
       1794171600000,
       1794484800000,
-      1794690000000
+      1794690000000,
+      1794823200000
     ],
     "SOPHUSDT": [
       1794636000000,
@@ -9476,7 +9475,8 @@
     ],
     "PORTOUSDT": [
       1794056400000,
-      1794686400000
+      1794686400000,
+      1794823200000
     ],
     "POWRUSDT": [
       1794686400000
@@ -10020,7 +10020,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:SUIUSDT:1794672000000:3",
     "buy:SUPERUSDT:1794672000000:2",
     "buy:SUSDT:1794672000000:1",
     "buy:SUSHIUSDT:1794672000000:1",
@@ -10419,11 +10418,12 @@
     "exit:GLMRUSDT:1794816000000",
     "buy:XNOUSDT:1794816000000:4",
     "buy:JUPUSDT:1794819600000:1",
-    "exit:XNOUSDT:1794819600000"
+    "exit:XNOUSDT:1794819600000",
+    "buy:SOMIUSDT:1794823200000:3"
   ],
-  "cycles": 495,
-  "messages_sent": 1488,
-  "last_cycle_ms": 1794828813129,
+  "cycles": 496,
+  "messages_sent": 1489,
+  "last_cycle_ms": 1794830617620,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
