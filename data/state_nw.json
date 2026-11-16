@@ -669,14 +669,8 @@
       "last_entry_price": 0.1305
     },
     "FIDAUSDT": {
-      "position": {
-        "entry_price": 0.01379,
-        "entry_time": 1794675600000,
-        "signal_bar_time": 1794672000000,
-        "signal_price": 0.01373,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794704400000,
       "last_entry_price": 0.01348
     },
@@ -2235,10 +2229,16 @@
       "last_entry_price": 0.664
     },
     "ATUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.0903,
+        "entry_time": 1794808800000,
+        "signal_bar_time": 1794805200000,
+        "signal_price": 0.0845,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794805200000,
+      "last_entry_price": 0.0903
     },
     "AUCTIONUSDT": {
       "position": {
@@ -4814,11 +4814,11 @@
         "entry_time": 1794585600000,
         "signal_bar_time": 1794582000000,
         "signal_price": 394.74,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794582000000,
-      "last_entry_price": 394.83
+      "entry_count": 2,
+      "last_buy_bar": 1794805200000,
+      "last_entry_price": 383.83
     },
     "TSTUSDT": {
       "position": {
@@ -5307,7 +5307,9 @@
     "ASTSBUSDT": [],
     "ATMUSDT": [],
     "ATOMUSDT": [],
-    "ATUSDT": [],
+    "ATUSDT": [
+      1794805200000
+    ],
     "AUCTIONUSDT": [],
     "AUDIOUSDT": [],
     "AUSDT": [],
@@ -5494,7 +5496,9 @@
     "KAVAUSDT": [],
     "KERNELUSDT": [],
     "KGSTUSDT": [],
-    "KITEUSDT": [],
+    "KITEUSDT": [
+      1794805200000
+    ],
     "KMNOUSDT": [],
     "KNCUSDT": [],
     "KORUBUSDT": [],
@@ -5693,7 +5697,9 @@
     "TRUMPUSDT": [],
     "TRXUSDT": [],
     "TSLABUSDT": [],
-    "TSMBUSDT": [],
+    "TSMBUSDT": [
+      1794805200000
+    ],
     "TSTUSDT": [],
     "TURBOUSDT": [],
     "TURTLEUSDT": [],
@@ -5752,7 +5758,9 @@
     "牛来USDT": [],
     "BOTBUSDT": [],
     "BRKBBUSDT": [],
-    "KSTRBUSDT": [],
+    "KSTRBUSDT": [
+      1794805200000
+    ],
     "TMFBUSDT": [],
     "VSTBUSDT": []
   },
@@ -5920,10 +5928,10 @@
     "EULUSDT": [],
     "EWYBUSDT": [],
     "FETUSDT": [],
-    "FFUSDT": [
-      1794801600000
+    "FFUSDT": [],
+    "FIDAUSDT": [
+      1794805200000
     ],
-    "FIDAUSDT": [],
     "FILUSDT": [],
     "FLNCBUSDT": [],
     "FLOKIUSDT": [],
@@ -6113,17 +6121,13 @@
     "QQQBUSDT": [],
     "QTUMUSDT": [],
     "RADUSDT": [],
-    "RAREUSDT": [
-      1794801600000
-    ],
+    "RAREUSDT": [],
     "RAYUSDT": [],
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
     "REQUSDT": [],
-    "RESOLVUSDT": [
-      1794801600000
-    ],
+    "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
     "RIFUSDT": [],
@@ -6489,7 +6493,9 @@
       1794171600000,
       1794704400000
     ],
-    "ATUSDT": [],
+    "ATUSDT": [
+      1794805200000
+    ],
     "AUCTIONUSDT": [
       1794171600000,
       1794672000000,
@@ -8130,7 +8136,8 @@
     ],
     "TSLABUSDT": [],
     "TSMBUSDT": [
-      1794582000000
+      1794582000000,
+      1794805200000
     ],
     "TSTUSDT": [
       1794171600000,
@@ -9175,7 +9182,9 @@
     "KGSTUSDT": [
       1794376800000
     ],
-    "KITEUSDT": [],
+    "KITEUSDT": [
+      1794805200000
+    ],
     "KMNOUSDT": [],
     "KNCUSDT": [],
     "KORUBUSDT": [],
@@ -10010,7 +10019,8 @@
     ],
     "BRKBBUSDT": [],
     "KSTRBUSDT": [
-      1794546000000
+      1794546000000,
+      1794805200000
     ],
     "TMFBUSDT": [
       1794488400000,
@@ -10019,9 +10029,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:SOLUSDT:1794672000000:3",
-    "buy:SOLVUSDT:1794672000000:2",
-    "buy:SPELLUSDT:1794672000000:1",
     "buy:SPKUSDT:1794672000000:2",
     "buy:SSVUSDT:1794672000000:3",
     "buy:STEEMUSDT:1794672000000:2",
@@ -10418,11 +10425,14 @@
     "buy:KSTRBUSDT:1794790800000:1",
     "buy:NXPCUSDT:1794790800000:5",
     "exit:BARDUSDT:1794794400000",
-    "exit:RESOLVUSDT:1794801600000"
+    "exit:RESOLVUSDT:1794801600000",
+    "buy:ATUSDT:1794805200000:1",
+    "exit:FIDAUSDT:1794805200000",
+    "buy:TSMBUSDT:1794805200000:2"
   ],
-  "cycles": 485,
-  "messages_sent": 1480,
-  "last_cycle_ms": 1794810812435,
+  "cycles": 486,
+  "messages_sent": 1483,
+  "last_cycle_ms": 1794812622284,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
