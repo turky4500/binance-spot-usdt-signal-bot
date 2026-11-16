@@ -1665,14 +1665,8 @@
       "last_entry_price": 0.0
     },
     "JUVUSDT": {
-      "position": {
-        "entry_price": 0.225,
-        "entry_time": 1794700800000,
-        "signal_bar_time": 1794686400000,
-        "signal_price": 0.22,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794686400000,
       "last_entry_price": 0.225
     },
@@ -2973,10 +2967,16 @@
       "last_entry_price": 0.0
     },
     "STOUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.0225,
+        "entry_time": 1794772800000,
+        "signal_bar_time": 1794758400000,
+        "signal_price": 0.0221,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794758400000,
+      "last_entry_price": 0.0225
     },
     "STRAXUSDT": {
       "position": null,
@@ -3345,14 +3345,8 @@
       "last_entry_price": 0.1315
     },
     "WINUSDT": {
-      "position": {
-        "entry_price": 6.289e-05,
-        "entry_time": 1794384000000,
-        "signal_bar_time": 1794369600000,
-        "signal_price": 6.23e-05,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794369600000,
       "last_entry_price": 6.289e-05
     },
@@ -3618,9 +3612,7 @@
     "ARPAUSDT": [],
     "ARUSDT": [],
     "ASMLBUSDT": [],
-    "ASRUSDT": [
-      1794744000000
-    ],
+    "ASRUSDT": [],
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
@@ -3865,9 +3857,7 @@
     "NVDABUSDT": [],
     "NXPCUSDT": [],
     "OGNUSDT": [],
-    "OGUSDT": [
-      1794744000000
-    ],
+    "OGUSDT": [],
     "ONDOUSDT": [],
     "ONEUSDT": [],
     "ONGUSDT": [],
@@ -3954,7 +3944,9 @@
     "SOLUSDT": [],
     "SOLVUSDT": [],
     "SOMIUSDT": [],
-    "SOPHUSDT": [],
+    "SOPHUSDT": [
+      1794758400000
+    ],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
     "SPCXBUSDT": [],
@@ -3963,7 +3955,9 @@
     "SPYBUSDT": [],
     "SSVUSDT": [],
     "STEEMUSDT": [],
-    "STOUSDT": [],
+    "STOUSDT": [
+      1794758400000
+    ],
     "STRAXUSDT": [],
     "STRKUSDT": [],
     "STXUSDT": [],
@@ -3988,9 +3982,7 @@
     "TRBUSDT": [],
     "TREEUSDT": [],
     "TRUMPUSDT": [],
-    "TRXUSDT": [
-      1794744000000
-    ],
+    "TRXUSDT": [],
     "TSLABUSDT": [],
     "TSMBUSDT": [],
     "TSTUSDT": [],
@@ -4216,9 +4208,7 @@
     "GASUSDT": [],
     "GENIUSUSDT": [],
     "GIGGLEUSDT": [],
-    "GLMRUSDT": [
-      1794744000000
-    ],
+    "GLMRUSDT": [],
     "GLMUSDT": [],
     "GLWBUSDT": [],
     "GMEBUSDT": [],
@@ -4266,7 +4256,9 @@
     "JSTUSDT": [],
     "JTOUSDT": [],
     "JUPUSDT": [],
-    "JUVUSDT": [],
+    "JUVUSDT": [
+      1794758400000
+    ],
     "KAIAUSDT": [],
     "KAITOUSDT": [],
     "KATUSDT": [],
@@ -4381,7 +4373,9 @@
     "QQQBUSDT": [],
     "QTUMUSDT": [],
     "RADUSDT": [],
-    "RAREUSDT": [],
+    "RAREUSDT": [
+      1794758400000
+    ],
     "RAYUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
@@ -4483,7 +4477,9 @@
     "WCTUSDT": [],
     "WDCBUSDT": [],
     "WIFUSDT": [],
-    "WINUSDT": [],
+    "WINUSDT": [
+      1794758400000
+    ],
     "WLDUSDT": [],
     "WLFIUSDT": [],
     "WOOUSDT": [],
@@ -5149,7 +5145,9 @@
     "SPYBUSDT": [],
     "SSVUSDT": [],
     "STEEMUSDT": [],
-    "STOUSDT": [],
+    "STOUSDT": [
+      1794758400000
+    ],
     "STRAXUSDT": [],
     "STRKUSDT": [],
     "STXUSDT": [],
@@ -5734,7 +5732,9 @@
     "SOLUSDT": [],
     "SOLVUSDT": [],
     "SOMIUSDT": [],
-    "SOPHUSDT": [],
+    "SOPHUSDT": [
+      1794758400000
+    ],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [
       1794340800000,
@@ -6010,11 +6010,14 @@
     "buy:ZBTUSDT:1794715200000:2",
     "buy:ASRUSDT:1794744000000:1",
     "buy:OGUSDT:1794744000000:1",
-    "buy:TRXUSDT:1794744000000:1"
+    "buy:TRXUSDT:1794744000000:1",
+    "exit:JUVUSDT:1794758400000",
+    "buy:STOUSDT:1794758400000:1",
+    "exit:WINUSDT:1794758400000"
   ],
-  "cycles": 51,
-  "messages_sent": 170,
-  "last_cycle_ms": 1794775474741,
+  "cycles": 52,
+  "messages_sent": 173,
+  "last_cycle_ms": 1794787767736,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-15",
     "reported_trade_keys": [
