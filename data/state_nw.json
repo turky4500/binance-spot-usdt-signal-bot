@@ -2373,14 +2373,8 @@
       "last_entry_price": 0.0188
     },
     "BARDUSDT": {
-      "position": {
-        "entry_price": 0.1398,
-        "entry_time": 1794596400000,
-        "signal_bar_time": 1794592800000,
-        "signal_price": 0.1383,
-        "entry_count": 3
-      },
-      "entry_count": 3,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794704400000,
       "last_entry_price": 0.1124
     },
@@ -5446,7 +5440,9 @@
     "GASUSDT": [],
     "GENIUSUSDT": [],
     "GIGGLEUSDT": [],
-    "GLMRUSDT": [],
+    "GLMRUSDT": [
+      1794794400000
+    ],
     "GLMUSDT": [],
     "GLWBUSDT": [],
     "GMEBUSDT": [],
@@ -5565,16 +5561,16 @@
     "NEWTUSDT": [],
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [],
+    "NIGHTUSDT": [
+      1794794400000
+    ],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
     "NOMUSDT": [],
     "NOTUSDT": [],
     "NVDABUSDT": [],
-    "NXPCUSDT": [
-      1794790800000
-    ],
+    "NXPCUSDT": [],
     "OGNUSDT": [],
     "OGUSDT": [],
     "ONDOUSDT": [],
@@ -5766,9 +5762,7 @@
     "牛来USDT": [],
     "BOTBUSDT": [],
     "BRKBBUSDT": [],
-    "KSTRBUSDT": [
-      1794790800000
-    ],
+    "KSTRBUSDT": [],
     "TMFBUSDT": [],
     "VSTBUSDT": []
   },
@@ -5788,9 +5782,7 @@
     "ACMUSDT": [],
     "ACTUSDT": [],
     "ADAUSDT": [],
-    "ADBEBUSDT": [
-      1794790800000
-    ],
+    "ADBEBUSDT": [],
     "ADXUSDT": [],
     "AEROUSDT": [],
     "AEVOUSDT": [],
@@ -5846,7 +5838,9 @@
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
-    "BARDUSDT": [],
+    "BARDUSDT": [
+      1794794400000
+    ],
     "BARUSDT": [],
     "BATUSDT": [],
     "BBBUSDT": [],
@@ -5938,7 +5932,9 @@
     "EULUSDT": [],
     "EWYBUSDT": [],
     "FETUSDT": [],
-    "FFUSDT": [],
+    "FFUSDT": [
+      1794794400000
+    ],
     "FIDAUSDT": [],
     "FILUSDT": [],
     "FLNCBUSDT": [],
@@ -5953,7 +5949,9 @@
     "FWDIBUSDT": [],
     "GALAUSDT": [],
     "GASUSDT": [],
-    "GENIUSUSDT": [],
+    "GENIUSUSDT": [
+      1794794400000
+    ],
     "GIGGLEUSDT": [],
     "GLMRUSDT": [],
     "GLMUSDT": [],
@@ -6134,7 +6132,9 @@
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
-    "REQUSDT": [],
+    "REQUSDT": [
+      1794794400000
+    ],
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
@@ -8998,7 +8998,9 @@
       1794700800000
     ],
     "GIGGLEUSDT": [],
-    "GLMRUSDT": [],
+    "GLMRUSDT": [
+      1794794400000
+    ],
     "GLMUSDT": [],
     "GLWBUSDT": [],
     "GMEBUSDT": [],
@@ -9354,7 +9356,9 @@
       1794632400000
     ],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [],
+    "NIGHTUSDT": [
+      1794794400000
+    ],
     "NILUSDT": [],
     "NMRUSDT": [
       1794664800000,
@@ -10027,7 +10031,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:SLPUSDT:1794672000000:2",
     "buy:SNXUSDT:1794672000000:3",
     "buy:SOLUSDT:1794672000000:3",
     "buy:SOLVUSDT:1794672000000:2",
@@ -10426,11 +10429,12 @@
     "buy:UVXYBUSDT:1794787200000:1",
     "exit:ADBEBUSDT:1794790800000",
     "buy:KSTRBUSDT:1794790800000:1",
-    "buy:NXPCUSDT:1794790800000:5"
+    "buy:NXPCUSDT:1794790800000:5",
+    "exit:BARDUSDT:1794794400000"
   ],
-  "cycles": 479,
-  "messages_sent": 1478,
-  "last_cycle_ms": 1794800016807,
+  "cycles": 480,
+  "messages_sent": 1479,
+  "last_cycle_ms": 1794801809705,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
