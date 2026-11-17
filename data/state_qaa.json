@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1794700800000,
+  "last_processed_open_time": 1794787200000,
   "last_entry_bar_time": {
     "GTCUSDT": 1793404800000,
     "HUMAUSDT": 1793059200000,
@@ -45,7 +45,7 @@
     "AUSDT": 1792454400000,
     "FFUSDT": 1792886400000,
     "RSRUSDT": 1792454400000,
-    "WINUSDT": 1793923200000,
+    "WINUSDT": 1794787200000,
     "CKBUSDT": 1792540800000,
     "MAGICUSDT": 1794700800000,
     "MUBARAKUSDT": 1793750400000,
@@ -200,7 +200,7 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1794853500000,
+      "last_check_ms": 1794880620000,
       "peak_price": 0.14734,
       "last_stop_alert_price": 0.13515,
       "stop_updates_count": 0,
@@ -218,7 +218,7 @@
       "size_suggest_pct": 0.0929479768786127,
       "entry_time": 1794787199999,
       "entry_bar_open_time": 1794700800000,
-      "last_check_ms": 1794853500000,
+      "last_check_ms": 1794880620000,
       "peak_price": 3.264,
       "last_stop_alert_price": 2.98264,
       "stop_updates_count": 1,
@@ -236,7 +236,7 @@
       "size_suggest_pct": 0.08483297413793102,
       "entry_time": 1794787199999,
       "entry_bar_open_time": 1794700800000,
-      "last_check_ms": 1794853500000,
+      "last_check_ms": 1794880620000,
       "peak_price": 162.0,
       "last_stop_alert_price": 149.04000000000002,
       "stop_updates_count": 2,
@@ -254,10 +254,28 @@
       "size_suggest_pct": 0.11169914263445044,
       "entry_time": 1794787199999,
       "entry_bar_open_time": 1794700800000,
-      "last_check_ms": 1794853500000,
+      "last_check_ms": 1794880620000,
       "peak_price": 1.4456,
       "last_stop_alert_price": 1.329952,
       "stop_updates_count": 1,
+      "halal_verdict": "⛔ غير مباح",
+      "silent": true
+    },
+    "WINUSDT": {
+      "trade_id": "WINUSDT-1794787200000",
+      "symbol": "WINUSDT",
+      "entry_price": 5.706e-05,
+      "stop_price": 4.416e-05,
+      "pivot_stop": 4.416e-05,
+      "target_price": 8.286e-05,
+      "stop_dist_pct": 22.607781282860152,
+      "size_suggest_pct": 0.044232558139534875,
+      "entry_time": 1794873599999,
+      "entry_bar_open_time": 1794787200000,
+      "last_check_ms": 1794873659999,
+      "peak_price": 5.825e-05,
+      "last_stop_alert_price": 4.416e-05,
+      "stop_updates_count": 0,
       "halal_verdict": "⛔ غير مباح",
       "silent": true
     }
@@ -4347,6 +4365,11 @@
       "type": "exit_loss",
       "symbol": "ZECUSDT",
       "time_ms": 1794834239999
+    },
+    {
+      "type": "entry",
+      "symbol": "WINUSDT",
+      "time_ms": 1794873599999
     }
   ],
   "daily_report": {
