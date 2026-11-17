@@ -2036,11 +2036,11 @@
         "entry_time": 1794517200000,
         "signal_bar_time": 1794513600000,
         "signal_price": 7.99,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1794859200000,
-      "last_entry_price": 7.42
+      "entry_count": 3,
+      "last_buy_bar": 1794906000000,
+      "last_entry_price": 7.44
     },
     "AIGENSYNUSDT": {
       "position": null,
@@ -3003,10 +3003,16 @@
       "last_entry_price": 0.2101
     },
     "FTTUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1794693600000,
-      "last_entry_price": 0.1938
+      "position": {
+        "entry_price": 0.1962,
+        "entry_time": 1794909600000,
+        "signal_bar_time": 1794906000000,
+        "signal_price": 0.1961,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794906000000,
+      "last_entry_price": 0.1962
     },
     "FUSDT": {
       "position": {
@@ -5190,7 +5196,9 @@
     "AEROUSDT": [],
     "AEVOUSDT": [],
     "AGLDUSDT": [],
-    "AGPUBUSDT": [],
+    "AGPUBUSDT": [
+      1794906000000
+    ],
     "AIGENSYNUSDT": [],
     "AIUSDT": [],
     "AIXBTUSDT": [],
@@ -5343,7 +5351,9 @@
     "FOGOUSDT": [],
     "FORMUSDT": [],
     "FRAXUSDT": [],
-    "FTTUSDT": [],
+    "FTTUSDT": [
+      1794906000000
+    ],
     "FUSDT": [],
     "FWDIBUSDT": [],
     "GALAUSDT": [],
@@ -5932,9 +5942,7 @@
     "LSKUSDT": [],
     "LTCUSDT": [],
     "LUMIAUSDT": [],
-    "LUNAUSDT": [
-      1794902400000
-    ],
+    "LUNAUSDT": [],
     "LUNCUSDT": [],
     "MAGICUSDT": [],
     "MANAUSDT": [],
@@ -6014,9 +6022,7 @@
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
-    "PROMUSDT": [
-      1794902400000
-    ],
+    "PROMUSDT": [],
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -6056,7 +6062,9 @@
     "SANDUSDT": [],
     "SANTOSUSDT": [],
     "SAPIENUSDT": [],
-    "SCRUSDT": [],
+    "SCRUSDT": [
+      1794906000000
+    ],
     "SCUSDT": [],
     "SECZBUSDT": [],
     "SEIUSDT": [],
@@ -6268,7 +6276,8 @@
     ],
     "AGPUBUSDT": [
       1794513600000,
-      1794859200000
+      1794859200000,
+      1794906000000
     ],
     "AIGENSYNUSDT": [
       1794171600000,
@@ -6944,7 +6953,8 @@
       1794664800000,
       1794675600000,
       1794686400000,
-      1794693600000
+      1794693600000,
+      1794906000000
     ],
     "FUSDT": [
       1794171600000
@@ -10004,8 +10014,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:SYRUPUSDT:1794679200000:4",
-    "buy:TFUELUSDT:1794679200000:5",
     "buy:MEGAUSDT:1794682800000:1",
     "buy:SIGNUSDT:1794682800000:1",
     "buy:2ZUSDT:1794686400000:2",
@@ -10403,11 +10411,13 @@
     "buy:BABABUSDT:1794895200000:3",
     "exit:JUPUSDT:1794895200000",
     "exit:GNOUSDT:1794898800000",
-    "exit:LUNAUSDT:1794902400000"
+    "exit:LUNAUSDT:1794902400000",
+    "buy:AGPUBUSDT:1794906000000:3",
+    "buy:FTTUSDT:1794906000000:1"
   ],
-  "cycles": 538,
-  "messages_sent": 1540,
-  "last_cycle_ms": 1794911606614,
+  "cycles": 539,
+  "messages_sent": 1542,
+  "last_cycle_ms": 1794913413821,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
