@@ -2067,10 +2067,16 @@
       "last_entry_price": 0.0
     },
     "ALLOUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1794769200000,
-      "last_entry_price": 0.1498
+      "position": {
+        "entry_price": 0.1355,
+        "entry_time": 1794895200000,
+        "signal_bar_time": 1794891600000,
+        "signal_price": 0.1351,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794891600000,
+      "last_entry_price": 0.1355
     },
     "AMATBUSDT": {
       "position": null,
@@ -5209,7 +5215,9 @@
     "ALABBUSDT": [],
     "ALGOUSDT": [],
     "ALICEUSDT": [],
-    "ALLOUSDT": [],
+    "ALLOUSDT": [
+      1794891600000
+    ],
     "ALPINEUSDT": [],
     "ALTUSDT": [],
     "AMATBUSDT": [],
@@ -5354,7 +5362,9 @@
     "FLUXUSDT": [],
     "FOGOUSDT": [],
     "FORMUSDT": [],
-    "FRAXUSDT": [],
+    "FRAXUSDT": [
+      1794891600000
+    ],
     "FTTUSDT": [],
     "FUSDT": [],
     "FWDIBUSDT": [],
@@ -5903,9 +5913,7 @@
     "ILVUSDT": [],
     "IMXUSDT": [],
     "INITUSDT": [],
-    "INJUSDT": [
-      1794888000000
-    ],
+    "INJUSDT": [],
     "INTCBUSDT": [],
     "INTWBUSDT": [],
     "IOSTUSDT": [],
@@ -6041,9 +6049,7 @@
     "QQQBUSDT": [],
     "QTUMUSDT": [],
     "RADUSDT": [],
-    "RAREUSDT": [
-      1794888000000
-    ],
+    "RAREUSDT": [],
     "RAYUSDT": [],
     "RDDTBUSDT": [],
     "REDUSDT": [],
@@ -6114,7 +6120,9 @@
     "SYNUSDT": [],
     "SYRUPUSDT": [],
     "TAOUSDT": [],
-    "TFUELUSDT": [],
+    "TFUELUSDT": [
+      1794891600000
+    ],
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
@@ -6183,7 +6191,9 @@
     "ZMBUSDT": [],
     "ZROUSDT": [],
     "ZRXUSDT": [],
-    "币安人生USDT": [],
+    "币安人生USDT": [
+      1794891600000
+    ],
     "牛来USDT": [],
     "BOTBUSDT": [],
     "BRKBBUSDT": [],
@@ -6311,7 +6321,8 @@
     "ALLOUSDT": [
       1794686400000,
       1794736800000,
-      1794769200000
+      1794769200000,
+      1794891600000
     ],
     "ALPINEUSDT": [
       1794171600000,
@@ -8933,7 +8944,9 @@
       1794679200000,
       1794682800000
     ],
-    "FRAXUSDT": [],
+    "FRAXUSDT": [
+      1794891600000
+    ],
     "FTTUSDT": [
       1794319200000,
       1794672000000
@@ -10012,7 +10025,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:DGBUSDT:1794679200000:3",
     "buy:GLMUSDT:1794679200000:3",
     "buy:JUVUSDT:1794679200000:3",
     "buy:REUSDT:1794679200000:1",
@@ -10411,11 +10423,12 @@
     "exit:KITEUSDT:1794884400000",
     "exit:KSTRBUSDT:1794884400000",
     "exit:INJUSDT:1794888000000",
-    "exit:RAREUSDT:1794888000000"
+    "exit:RAREUSDT:1794888000000",
+    "buy:ALLOUSDT:1794891600000:1"
   ],
-  "cycles": 530,
-  "messages_sent": 1535,
-  "last_cycle_ms": 1794897208106,
+  "cycles": 531,
+  "messages_sent": 1536,
+  "last_cycle_ms": 1794899014554,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
