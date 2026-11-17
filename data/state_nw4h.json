@@ -1545,14 +1545,8 @@
       "last_entry_price": 0.0
     },
     "ICPUSDT": {
-      "position": {
-        "entry_price": 2.212,
-        "entry_time": 1794700800000,
-        "signal_bar_time": 1794686400000,
-        "signal_price": 2.171,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794715200000,
       "last_entry_price": 2.248
     },
@@ -2163,10 +2157,16 @@
       "last_entry_price": 0.0
     },
     "NIGHTUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.04735,
+        "entry_time": 1794859200000,
+        "signal_bar_time": 1794844800000,
+        "signal_price": 0.0434,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794844800000,
+      "last_entry_price": 0.04735
     },
     "NILUSDT": {
       "position": null,
@@ -3654,9 +3654,7 @@
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
-    "BARDUSDT": [
-      1794830400000
-    ],
+    "BARDUSDT": [],
     "BARUSDT": [],
     "BATUSDT": [],
     "BBUSDT": [],
@@ -3868,7 +3866,9 @@
     "NEWTUSDT": [],
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [],
+    "NIGHTUSDT": [
+      1794844800000
+    ],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -3970,7 +3970,9 @@
     "SPCXBUSDT": [],
     "SPELLUSDT": [],
     "SPKUSDT": [],
-    "SPYBUSDT": [],
+    "SPYBUSDT": [
+      1794844800000
+    ],
     "SSVUSDT": [],
     "STEEMUSDT": [],
     "STOUSDT": [],
@@ -4000,9 +4002,7 @@
     "TRUMPUSDT": [],
     "TRXUSDT": [],
     "TSLABUSDT": [],
-    "TSMBUSDT": [
-      1794830400000
-    ],
+    "TSMBUSDT": [],
     "TSTUSDT": [],
     "TURBOUSDT": [],
     "TURTLEUSDT": [],
@@ -4120,7 +4120,9 @@
     "AXTIBUSDT": [],
     "BABABUSDT": [],
     "BABYUSDT": [],
-    "BANANAS31USDT": [],
+    "BANANAS31USDT": [
+      1794844800000
+    ],
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
@@ -4185,7 +4187,9 @@
     "DEXEUSDT": [],
     "DGBUSDT": [],
     "DIAUSDT": [],
-    "DODOUSDT": [],
+    "DODOUSDT": [
+      1794844800000
+    ],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -4255,7 +4259,9 @@
     "HUMAUSDT": [],
     "HYPERUSDT": [],
     "IBMBUSDT": [],
-    "ICPUSDT": [],
+    "ICPUSDT": [
+      1794844800000
+    ],
     "IDUSDT": [],
     "ILVUSDT": [],
     "IMXUSDT": [],
@@ -4987,7 +4993,9 @@
       1794686400000
     ],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [],
+    "NIGHTUSDT": [
+      1794844800000
+    ],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -5767,7 +5775,9 @@
     "SPCXBUSDT": [],
     "SPELLUSDT": [],
     "SPKUSDT": [],
-    "SPYBUSDT": [],
+    "SPYBUSDT": [
+      1794844800000
+    ],
     "SSVUSDT": [],
     "STEEMUSDT": [],
     "STOUSDT": [],
@@ -6044,11 +6054,13 @@
     "buy:HOMEUSDT:1794787200000:1",
     "buy:SOPHUSDT:1794787200000:1",
     "buy:BARDUSDT:1794830400000:1",
-    "buy:TSMBUSDT:1794830400000:2"
+    "buy:TSMBUSDT:1794830400000:2",
+    "exit:ICPUSDT:1794844800000",
+    "buy:NIGHTUSDT:1794844800000:1"
   ],
-  "cycles": 58,
-  "messages_sent": 178,
-  "last_cycle_ms": 1794859439940,
+  "cycles": 59,
+  "messages_sent": 180,
+  "last_cycle_ms": 1794873805703,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-16",
     "reported_trade_keys": [
