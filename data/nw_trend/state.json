@@ -636,7 +636,9 @@
       "exit_reason": "trail_stop"
     }
   ],
-  "day_reports": [],
+  "day_reports": [
+    "2026-11-17"
+  ],
   "counters": {
     "entries": 9,
     "exits": 2,
