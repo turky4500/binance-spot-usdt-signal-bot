@@ -3525,14 +3525,8 @@
       "last_entry_price": 0.0
     },
     "LUNAUSDT": {
-      "position": {
-        "entry_price": 0.0319,
-        "entry_time": 1794675600000,
-        "signal_bar_time": 1794672000000,
-        "signal_price": 0.0316,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794704400000,
       "last_entry_price": 0.0315
     },
@@ -5865,9 +5859,7 @@
     "GMEBUSDT": [],
     "GMTUSDT": [],
     "GMXUSDT": [],
-    "GNOUSDT": [
-      1794898800000
-    ],
+    "GNOUSDT": [],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
@@ -5940,10 +5932,10 @@
     "LSKUSDT": [],
     "LTCUSDT": [],
     "LUMIAUSDT": [],
-    "LUNAUSDT": [],
-    "LUNCUSDT": [
-      1794898800000
+    "LUNAUSDT": [
+      1794902400000
     ],
+    "LUNCUSDT": [],
     "MAGICUSDT": [],
     "MANAUSDT": [],
     "MANTAUSDT": [],
@@ -6022,7 +6014,9 @@
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
-    "PROMUSDT": [],
+    "PROMUSDT": [
+      1794902400000
+    ],
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -6177,9 +6171,7 @@
     "ZMBUSDT": [],
     "ZROUSDT": [],
     "ZRXUSDT": [],
-    "币安人生USDT": [
-      1794898800000
-    ],
+    "币安人生USDT": [],
     "牛来USDT": [],
     "BOTBUSDT": [],
     "BRKBBUSDT": [],
@@ -10012,7 +10004,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:ROSEUSDT:1794679200000:3",
     "buy:SYRUPUSDT:1794679200000:4",
     "buy:TFUELUSDT:1794679200000:5",
     "buy:MEGAUSDT:1794682800000:1",
@@ -10411,11 +10402,12 @@
     "buy:ALLOUSDT:1794891600000:1",
     "buy:BABABUSDT:1794895200000:3",
     "exit:JUPUSDT:1794895200000",
-    "exit:GNOUSDT:1794898800000"
+    "exit:GNOUSDT:1794898800000",
+    "exit:LUNAUSDT:1794902400000"
   ],
-  "cycles": 536,
-  "messages_sent": 1539,
-  "last_cycle_ms": 1794908006008,
+  "cycles": 537,
+  "messages_sent": 1540,
+  "last_cycle_ms": 1794909812355,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
