@@ -183,10 +183,16 @@
       "last_entry_price": 0.0
     },
     "ALLOUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.1452,
+        "entry_time": 1794902400000,
+        "signal_bar_time": 1794888000000,
+        "signal_price": 0.1329,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794888000000,
+      "last_entry_price": 0.1452
     },
     "ALPINEUSDT": {
       "position": null,
@@ -345,14 +351,8 @@
       "last_entry_price": 0.667
     },
     "ASTERUSDT": {
-      "position": {
-        "entry_price": 0.6346,
-        "entry_time": 1794628800000,
-        "signal_bar_time": 1794614400000,
-        "signal_price": 0.6196,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794772800000,
       "last_entry_price": 0.5492
     },
@@ -1281,10 +1281,16 @@
       "last_entry_price": 0.174
     },
     "FRAXUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.1961,
+        "entry_time": 1794902400000,
+        "signal_bar_time": 1794888000000,
+        "signal_price": 0.1867,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794888000000,
+      "last_entry_price": 0.1961
     },
     "FTTUSDT": {
       "position": {
@@ -1377,14 +1383,8 @@
       "last_entry_price": 0.0
     },
     "GNOUSDT": {
-      "position": {
-        "entry_price": 106.9,
-        "entry_time": 1794326400000,
-        "signal_bar_time": 1794312000000,
-        "signal_price": 104.65,
-        "entry_count": 3
-      },
-      "entry_count": 3,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794571200000,
       "last_entry_price": 102.24
     },
@@ -3605,7 +3605,9 @@
     "ALABBUSDT": [],
     "ALGOUSDT": [],
     "ALICEUSDT": [],
-    "ALLOUSDT": [],
+    "ALLOUSDT": [
+      1794888000000
+    ],
     "ALPINEUSDT": [],
     "ALTUSDT": [],
     "AMATBUSDT": [],
@@ -3642,9 +3644,7 @@
     "AXLUSDT": [],
     "AXSUSDT": [],
     "AXTIBUSDT": [],
-    "BABABUSDT": [
-      1794873600000
-    ],
+    "BABABUSDT": [],
     "BABYUSDT": [],
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
@@ -3745,7 +3745,9 @@
     "FLUXUSDT": [],
     "FOGOUSDT": [],
     "FORMUSDT": [],
-    "FRAXUSDT": [],
+    "FRAXUSDT": [
+      1794888000000
+    ],
     "FTTUSDT": [],
     "FUSDT": [],
     "GALAUSDT": [],
@@ -4093,7 +4095,9 @@
     "ARUSDT": [],
     "ASMLBUSDT": [],
     "ASRUSDT": [],
-    "ASTERUSDT": [],
+    "ASTERUSDT": [
+      1794888000000
+    ],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
     "ATMUSDT": [],
@@ -4224,7 +4228,9 @@
     "GMEBUSDT": [],
     "GMTUSDT": [],
     "GMXUSDT": [],
-    "GNOUSDT": [],
+    "GNOUSDT": [
+      1794888000000
+    ],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPSUSDT": [],
@@ -4381,7 +4387,9 @@
     "QQQBUSDT": [],
     "QTUMUSDT": [],
     "RADUSDT": [],
-    "RAREUSDT": [],
+    "RAREUSDT": [
+      1794888000000
+    ],
     "RAYUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
@@ -4450,9 +4458,7 @@
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
-    "TKOUSDT": [
-      1794873600000
-    ],
+    "TKOUSDT": [],
     "TLMUSDT": [],
     "TNSRUSDT": [],
     "TOWNSUSDT": [],
@@ -4552,7 +4558,9 @@
     "ALABBUSDT": [],
     "ALGOUSDT": [],
     "ALICEUSDT": [],
-    "ALLOUSDT": [],
+    "ALLOUSDT": [
+      1794888000000
+    ],
     "ALPINEUSDT": [],
     "ALTUSDT": [],
     "AMATBUSDT": [
@@ -4797,7 +4805,9 @@
     "FORMUSDT": [
       1794686400000
     ],
-    "FRAXUSDT": [],
+    "FRAXUSDT": [
+      1794888000000
+    ],
     "FTTUSDT": [
       1794686400000
     ],
@@ -6047,11 +6057,15 @@
     "exit:ICPUSDT:1794844800000",
     "buy:NIGHTUSDT:1794844800000:1",
     "buy:BABABUSDT:1794873600000:3",
-    "exit:TKOUSDT:1794873600000"
+    "exit:TKOUSDT:1794873600000",
+    "buy:ALLOUSDT:1794888000000:1",
+    "exit:ASTERUSDT:1794888000000",
+    "buy:FRAXUSDT:1794888000000:1",
+    "exit:GNOUSDT:1794888000000"
   ],
-  "cycles": 62,
-  "messages_sent": 182,
-  "last_cycle_ms": 1794902621057,
+  "cycles": 63,
+  "messages_sent": 186,
+  "last_cycle_ms": 1794917016420,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-16",
     "reported_trade_keys": [
