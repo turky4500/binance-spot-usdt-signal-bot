@@ -476,11 +476,11 @@
         "entry_time": 1794283200000,
         "signal_bar_time": 1794268800000,
         "signal_price": 103.38,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1794484800000,
-      "last_entry_price": 94.8
+      "entry_count": 3,
+      "last_buy_bar": 1794873600000,
+      "last_entry_price": 87.66
     },
     "BABYUSDT": {
       "position": null,
@@ -3105,14 +3105,8 @@
       "last_entry_price": 0.0
     },
     "TKOUSDT": {
-      "position": {
-        "entry_price": 0.0397,
-        "entry_time": 1794700800000,
-        "signal_bar_time": 1794686400000,
-        "signal_price": 0.0384,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794686400000,
       "last_entry_price": 0.0397
     },
@@ -3648,7 +3642,9 @@
     "AXLUSDT": [],
     "AXSUSDT": [],
     "AXTIBUSDT": [],
-    "BABABUSDT": [],
+    "BABABUSDT": [
+      1794873600000
+    ],
     "BABYUSDT": [],
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
@@ -4248,9 +4244,7 @@
     "HOMEUSDT": [],
     "HOODBUSDT": [],
     "HOTUSDT": [],
-    "HUMAUSDT": [
-      1794859200000
-    ],
+    "HUMAUSDT": [],
     "HYPERUSDT": [],
     "IBMBUSDT": [],
     "ICPUSDT": [],
@@ -4456,7 +4450,9 @@
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
-    "TKOUSDT": [],
+    "TKOUSDT": [
+      1794873600000
+    ],
     "TLMUSDT": [],
     "TNSRUSDT": [],
     "TOWNSUSDT": [],
@@ -4619,7 +4615,8 @@
     "AXTIBUSDT": [],
     "BABABUSDT": [
       1794268800000,
-      1794484800000
+      1794484800000,
+      1794873600000
     ],
     "BABYUSDT": [],
     "BANANAS31USDT": [],
@@ -6048,11 +6045,13 @@
     "buy:BARDUSDT:1794830400000:1",
     "buy:TSMBUSDT:1794830400000:2",
     "exit:ICPUSDT:1794844800000",
-    "buy:NIGHTUSDT:1794844800000:1"
+    "buy:NIGHTUSDT:1794844800000:1",
+    "buy:BABABUSDT:1794873600000:3",
+    "exit:TKOUSDT:1794873600000"
   ],
-  "cycles": 61,
-  "messages_sent": 180,
-  "last_cycle_ms": 1794888213224,
+  "cycles": 62,
+  "messages_sent": 182,
+  "last_cycle_ms": 1794902621057,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-16",
     "reported_trade_keys": [
