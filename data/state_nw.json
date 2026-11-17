@@ -729,14 +729,8 @@
       "last_entry_price": 0.935
     },
     "GLMRUSDT": {
-      "position": {
-        "entry_price": 0.00686,
-        "entry_time": 1794862800000,
-        "signal_bar_time": 1794859200000,
-        "signal_price": 0.006447,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794859200000,
       "last_entry_price": 0.00686
     },
@@ -5239,7 +5233,9 @@
     "ALABBUSDT": [],
     "ALGOUSDT": [],
     "ALICEUSDT": [],
-    "ALLOUSDT": [],
+    "ALLOUSDT": [
+      1794880800000
+    ],
     "ALPINEUSDT": [],
     "ALTUSDT": [],
     "AMATBUSDT": [],
@@ -5277,9 +5273,7 @@
     "AXLUSDT": [],
     "AXSUSDT": [],
     "AXTIBUSDT": [],
-    "BABABUSDT": [
-      1794877200000
-    ],
+    "BABABUSDT": [],
     "BABYUSDT": [],
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
@@ -5568,9 +5562,7 @@
     "QQQBUSDT": [],
     "QTUMUSDT": [],
     "RADUSDT": [],
-    "RAREUSDT": [
-      1794877200000
-    ],
+    "RAREUSDT": [],
     "RAYUSDT": [],
     "RDDTBUSDT": [],
     "REDUSDT": [],
@@ -5899,7 +5891,9 @@
     "GASUSDT": [],
     "GENIUSUSDT": [],
     "GIGGLEUSDT": [],
-    "GLMRUSDT": [],
+    "GLMRUSDT": [
+      1794880800000
+    ],
     "GLMUSDT": [],
     "GLWBUSDT": [],
     "GMEBUSDT": [],
@@ -6048,7 +6042,9 @@
     "PENGUUSDT": [],
     "PEOPLEUSDT": [],
     "PEPEUSDT": [],
-    "PHAUSDT": [],
+    "PHAUSDT": [
+      1794880800000
+    ],
     "PIXELUSDT": [],
     "PLTRBUSDT": [],
     "PLUMEUSDT": [],
@@ -8467,7 +8463,9 @@
       1794686400000
     ],
     "ALICEUSDT": [],
-    "ALLOUSDT": [],
+    "ALLOUSDT": [
+      1794880800000
+    ],
     "ALPINEUSDT": [
       1794686400000
     ],
@@ -10040,7 +10038,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:GRAMUSDT:1794675600000:1",
     "buy:HMSTRUSDT:1794675600000:1",
     "buy:TRXUSDT:1794675600000:1",
     "buy:AMPUSDT:1794679200000:2",
@@ -10439,11 +10436,12 @@
     "exit:HYPEUSDT:1794862800000",
     "exit:HMSTRUSDT:1794866400000",
     "exit:NIGHTUSDT:1794866400000",
-    "buy:BABABUSDT:1794877200000:2"
+    "buy:BABABUSDT:1794877200000:2",
+    "exit:GLMRUSDT:1794880800000"
   ],
-  "cycles": 524,
-  "messages_sent": 1530,
-  "last_cycle_ms": 1794887076623,
+  "cycles": 525,
+  "messages_sent": 1531,
+  "last_cycle_ms": 1794888414215,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
