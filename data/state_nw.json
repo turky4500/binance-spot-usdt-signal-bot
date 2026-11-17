@@ -6140,7 +6140,9 @@
     "SYNUSDT": [],
     "SYRUPUSDT": [],
     "TAOUSDT": [],
-    "TFUELUSDT": [],
+    "TFUELUSDT": [
+      1794873600000
+    ],
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
@@ -10435,9 +10437,9 @@
     "exit:HMSTRUSDT:1794866400000",
     "exit:NIGHTUSDT:1794866400000"
   ],
-  "cycles": 519,
+  "cycles": 520,
   "messages_sent": 1529,
-  "last_cycle_ms": 1794879203276,
+  "last_cycle_ms": 1794881012453,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
