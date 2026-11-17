@@ -1911,10 +1911,16 @@
       "last_entry_price": 0.01564
     },
     "AAOIBUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1794582000000,
-      "last_entry_price": 48.67
+      "position": {
+        "entry_price": 40.63,
+        "entry_time": 1794952800000,
+        "signal_bar_time": 1794949200000,
+        "signal_price": 40.4,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1794949200000,
+      "last_entry_price": 40.63
     },
     "AAPLBUSDT": {
       "position": null,
@@ -5093,7 +5099,9 @@
     "1INCHUSDT": [],
     "1MBABYDOGEUSDT": [],
     "2ZUSDT": [],
-    "AAOIBUSDT": [],
+    "AAOIBUSDT": [
+      1794949200000
+    ],
     "AAPLBUSDT": [],
     "AAVEUSDT": [],
     "ACEUSDT": [],
@@ -5640,9 +5648,7 @@
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
-    "ATMUSDT": [
-      1794945600000
-    ],
+    "ATMUSDT": [],
     "ATOMUSDT": [],
     "ATUSDT": [],
     "AUCTIONUSDT": [],
@@ -5754,9 +5760,7 @@
     "EULUSDT": [],
     "EWYBUSDT": [],
     "FETUSDT": [],
-    "FFUSDT": [
-      1794945600000
-    ],
+    "FFUSDT": [],
     "FIDAUSDT": [],
     "FILUSDT": [],
     "FLNCBUSDT": [],
@@ -5978,7 +5982,9 @@
     "SEIUSDT": [],
     "SENTUSDT": [],
     "SFPUSDT": [],
-    "SHAZBUSDT": [],
+    "SHAZBUSDT": [
+      1794949200000
+    ],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
     "SIGNUSDT": [],
@@ -6023,9 +6029,7 @@
     "THEUSDT": [],
     "TIAUSDT": [],
     "TKOUSDT": [],
-    "TLMUSDT": [
-      1794945600000
-    ],
+    "TLMUSDT": [],
     "TNSRUSDT": [],
     "TOWNSUSDT": [],
     "TQQQBUSDT": [],
@@ -6091,9 +6095,7 @@
     "ZRXUSDT": [],
     "币安人生USDT": [],
     "牛来USDT": [],
-    "BOTBUSDT": [
-      1794945600000
-    ],
+    "BOTBUSDT": [],
     "BRKBBUSDT": [],
     "KSTRBUSDT": [],
     "TMFBUSDT": [],
@@ -6137,7 +6139,8 @@
       1794686400000
     ],
     "AAOIBUSDT": [
-      1794582000000
+      1794582000000,
+      1794949200000
     ],
     "AAPLBUSDT": [],
     "AAVEUSDT": [
@@ -9983,7 +9986,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:ETHFIUSDT:1794686400000:5",
     "buy:EULUSDT:1794686400000:3",
     "buy:FLUXUSDT:1794686400000:2",
     "buy:FORMUSDT:1794686400000:2",
@@ -10382,11 +10384,12 @@
     "buy:ASMLBUSDT:1794942000000:4",
     "buy:SPYBUSDT:1794942000000:3",
     "exit:ATMUSDT:1794945600000",
-    "exit:BOTBUSDT:1794945600000"
+    "exit:BOTBUSDT:1794945600000",
+    "buy:AAOIBUSDT:1794949200000:1"
   ],
-  "cycles": 562,
-  "messages_sent": 1582,
-  "last_cycle_ms": 1794954889653,
+  "cycles": 563,
+  "messages_sent": 1583,
+  "last_cycle_ms": 1794956606848,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
