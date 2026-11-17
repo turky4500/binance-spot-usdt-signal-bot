@@ -2288,11 +2288,11 @@
         "entry_time": 1794283200000,
         "signal_bar_time": 1794279600000,
         "signal_price": 103.38,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794279600000,
-      "last_entry_price": 103.48
+      "entry_count": 2,
+      "last_buy_bar": 1794877200000,
+      "last_entry_price": 88.37
     },
     "BABYUSDT": {
       "position": null,
@@ -5277,7 +5277,9 @@
     "AXLUSDT": [],
     "AXSUSDT": [],
     "AXTIBUSDT": [],
-    "BABABUSDT": [],
+    "BABABUSDT": [
+      1794877200000
+    ],
     "BABYUSDT": [],
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
@@ -5566,7 +5568,9 @@
     "QQQBUSDT": [],
     "QTUMUSDT": [],
     "RADUSDT": [],
-    "RAREUSDT": [],
+    "RAREUSDT": [
+      1794877200000
+    ],
     "RAYUSDT": [],
     "RDDTBUSDT": [],
     "REDUSDT": [],
@@ -6140,9 +6144,7 @@
     "SYNUSDT": [],
     "SYRUPUSDT": [],
     "TAOUSDT": [],
-    "TFUELUSDT": [
-      1794873600000
-    ],
+    "TFUELUSDT": [],
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
@@ -6499,7 +6501,8 @@
       1794582000000
     ],
     "BABABUSDT": [
-      1794279600000
+      1794279600000,
+      1794877200000
     ],
     "BABYUSDT": [],
     "BANANAS31USDT": [
@@ -9527,7 +9530,8 @@
     "RAREUSDT": [
       1794668400000,
       1794672000000,
-      1794855600000
+      1794855600000,
+      1794877200000
     ],
     "RAYUSDT": [],
     "RDDTBUSDT": [],
@@ -10036,7 +10040,6 @@
     "VSTBUSDT": []
   },
   "sent": [
-    "buy:FTTUSDT:1794675600000:5",
     "buy:GRAMUSDT:1794675600000:1",
     "buy:HMSTRUSDT:1794675600000:1",
     "buy:TRXUSDT:1794675600000:1",
@@ -10435,11 +10438,12 @@
     "buy:USDEBUSDT:1794859200000:2",
     "exit:HYPEUSDT:1794862800000",
     "exit:HMSTRUSDT:1794866400000",
-    "exit:NIGHTUSDT:1794866400000"
+    "exit:NIGHTUSDT:1794866400000",
+    "buy:BABABUSDT:1794877200000:2"
   ],
-  "cycles": 521,
-  "messages_sent": 1529,
-  "last_cycle_ms": 1794882804882,
+  "cycles": 522,
+  "messages_sent": 1530,
+  "last_cycle_ms": 1794884619273,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
