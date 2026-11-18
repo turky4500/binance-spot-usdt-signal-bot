@@ -1803,14 +1803,8 @@
       "last_entry_price": 0.001161
     },
     "ZKUSDT": {
-      "position": {
-        "entry_price": 0.00877,
-        "entry_time": 1794175200000,
-        "signal_bar_time": 1794171600000,
-        "signal_price": 0.00862,
-        "entry_count": 3
-      },
-      "entry_count": 3,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794686400000,
       "last_entry_price": 0.00769
     },
@@ -5119,7 +5113,9 @@
     "BNTUSDT": [],
     "BOMEUSDT": [],
     "BONKUSDT": [],
-    "BREVUSDT": [],
+    "BREVUSDT": [
+      1794992400000
+    ],
     "BROCCOLI714USDT": [],
     "BTCUSDT": [],
     "BTTCUSDT": [],
@@ -5555,7 +5551,9 @@
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
-    "AIGENSYNUSDT": [],
+    "AIGENSYNUSDT": [
+      1794992400000
+    ],
     "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
@@ -5687,7 +5685,9 @@
     "EIGENUSDT": [],
     "ENAUSDT": [],
     "ENJUSDT": [],
-    "ENSOUSDT": [],
+    "ENSOUSDT": [
+      1794992400000
+    ],
     "ENSUSDT": [],
     "ERAUSDT": [],
     "ESPUSDT": [],
@@ -5917,9 +5917,7 @@
     "SCUSDT": [],
     "SECZBUSDT": [],
     "SEIUSDT": [],
-    "SENTUSDT": [
-      1794988800000
-    ],
+    "SENTUSDT": [],
     "SFPUSDT": [],
     "SHAZBUSDT": [],
     "SHELLUSDT": [],
@@ -5978,9 +5976,7 @@
     "TSMBUSDT": [],
     "TSTUSDT": [],
     "TURBOUSDT": [],
-    "TURTLEUSDT": [
-      1794988800000
-    ],
+    "TURTLEUSDT": [],
     "TUSDT": [],
     "TUTUSDT": [],
     "TWTUSDT": [],
@@ -6022,15 +6018,17 @@
     "YFIUSDT": [],
     "YGGUSDT": [],
     "ZAMAUSDT": [],
-    "ZBTUSDT": [],
+    "ZBTUSDT": [
+      1794992400000
+    ],
     "ZECUSDT": [],
     "ZENUSDT": [],
     "ZILUSDT": [],
-    "ZKCUSDT": [
-      1794988800000
-    ],
+    "ZKCUSDT": [],
     "ZKPUSDT": [],
-    "ZKUSDT": [],
+    "ZKUSDT": [
+      1794992400000
+    ],
     "ZMBUSDT": [],
     "ZROUSDT": [],
     "ZRXUSDT": [],
@@ -8585,7 +8583,8 @@
       1794686400000
     ],
     "BREVUSDT": [
-      1794686400000
+      1794686400000,
+      1794992400000
     ],
     "BROCCOLI714USDT": [],
     "BTCUSDT": [
@@ -9954,7 +9953,6 @@
     "SKUUBUSDT": []
   },
   "sent": [
-    "buy:MORPHOUSDT:1794686400000:3",
     "buy:MOVEUSDT:1794686400000:3",
     "buy:MTLUSDT:1794686400000:2",
     "buy:NOMUSDT:1794686400000:2",
@@ -10353,11 +10351,12 @@
     "exit:ZILUSDT:1794978000000",
     "buy:TLMUSDT:1794981600000:1",
     "exit:ZKCUSDT:1794981600000",
-    "exit:STEEMUSDT:1794985200000"
+    "exit:STEEMUSDT:1794985200000",
+    "exit:ZKUSDT:1794992400000"
   ],
-  "cycles": 586,
-  "messages_sent": 1611,
-  "last_cycle_ms": 1794998022926,
+  "cycles": 587,
+  "messages_sent": 1612,
+  "last_cycle_ms": 1794999812037,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
