@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1794787200000,
+  "last_processed_open_time": 1794873600000,
   "last_entry_bar_time": {
     "GTCUSDT": 1793404800000,
     "HUMAUSDT": 1793059200000,
@@ -115,7 +115,7 @@
     "SKYUSDT": 1793577600000,
     "WLDUSDT": 1792454400000,
     "ZECUSDT": 1794787200000,
-    "WINUSDT": 1794355200000,
+    "WINUSDT": 1794873600000,
     "METUSDT": 1793664000000,
     "QNTUSDT": 1793664000000,
     "SUPERUSDT": 1794528000000,
@@ -152,7 +152,7 @@
     "GMXUSDT": 1793750400000,
     "SYNUSDT": 1794096000000,
     "TRXUSDT": 1793059200000,
-    "NEARUSDT": 1794009600000,
+    "NEARUSDT": 1794873600000,
     "ZAMAUSDT": 1794268800000,
     "AVAUSDT": 1794528000000,
     "PYTHUSDT": 1794355200000,
@@ -200,29 +200,11 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1794942840000,
+      "last_check_ms": 1794966000000,
       "peak_price": 0.14734,
       "last_stop_alert_price": 0.13515,
       "stop_updates_count": 0,
       "halal_verdict": "⛔ غير مباح",
-      "silent": true
-    },
-    "NEARUSDT": {
-      "trade_id": "NEARUSDT-1794700800000",
-      "symbol": "NEARUSDT",
-      "entry_price": 3.216,
-      "stop_price": 3.0479600000000002,
-      "pivot_stop": 2.87,
-      "target_price": 3.9080000000000004,
-      "stop_dist_pct": 10.758706467661694,
-      "size_suggest_pct": 0.0929479768786127,
-      "entry_time": 1794787199999,
-      "entry_bar_open_time": 1794700800000,
-      "last_check_ms": 1794942840000,
-      "peak_price": 3.313,
-      "last_stop_alert_price": 3.04428,
-      "stop_updates_count": 3,
-      "halal_verdict": "✅ مباح",
       "silent": true
     },
     "QNTUSDT": {
@@ -236,7 +218,7 @@
       "size_suggest_pct": 0.08483297413793102,
       "entry_time": 1794787199999,
       "entry_bar_open_time": 1794700800000,
-      "last_check_ms": 1794942840000,
+      "last_check_ms": 1794966000000,
       "peak_price": 162.0,
       "last_stop_alert_price": 149.04000000000002,
       "stop_updates_count": 2,
@@ -247,35 +229,17 @@
       "trade_id": "RAYUSDT-1794700800000",
       "symbol": "RAYUSDT",
       "entry_price": 1.4331,
-      "stop_price": 1.3476160000000001,
+      "stop_price": 1.3540560000000001,
       "pivot_stop": 1.3048,
       "target_price": 1.6897000000000002,
       "stop_dist_pct": 8.952620193985073,
       "size_suggest_pct": 0.11169914263445044,
       "entry_time": 1794787199999,
       "entry_bar_open_time": 1794700800000,
-      "last_check_ms": 1794942840000,
-      "peak_price": 1.4648,
+      "last_check_ms": 1794966000000,
+      "peak_price": 1.4718,
       "last_stop_alert_price": 1.3438440000000003,
       "stop_updates_count": 2,
-      "halal_verdict": "⛔ غير مباح",
-      "silent": true
-    },
-    "WINUSDT": {
-      "trade_id": "WINUSDT-1794787200000",
-      "symbol": "WINUSDT",
-      "entry_price": 5.706e-05,
-      "stop_price": 5.6414400000000007e-05,
-      "pivot_stop": 4.416e-05,
-      "target_price": 8.286e-05,
-      "stop_dist_pct": 22.607781282860152,
-      "size_suggest_pct": 0.044232558139534875,
-      "entry_time": 1794873599999,
-      "entry_bar_open_time": 1794787200000,
-      "last_check_ms": 1794942840000,
-      "peak_price": 6.132e-05,
-      "last_stop_alert_price": 5.60096e-05,
-      "stop_updates_count": 4,
       "halal_verdict": "⛔ غير مباح",
       "silent": true
     }
@@ -4405,6 +4369,26 @@
       "type": "stop_alert",
       "symbol": "NEARUSDT",
       "time_ms": 1794918299999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "NEARUSDT",
+      "time_ms": 1794956819999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "NEARUSDT",
+      "time_ms": 1794957179999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "NEARUSDT",
+      "time_ms": 1794959999999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "WINUSDT",
+      "time_ms": 1794959999999
     }
   ],
   "daily_report": {
