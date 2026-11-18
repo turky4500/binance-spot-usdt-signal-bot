@@ -1965,10 +1965,16 @@
       "last_entry_price": 0.0
     },
     "ADBEBUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1794330000000,
-      "last_entry_price": 234.53
+      "position": {
+        "entry_price": 226.16,
+        "entry_time": 1795039200000,
+        "signal_bar_time": 1795035600000,
+        "signal_price": 226.29,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795035600000,
+      "last_entry_price": 226.16
     },
     "AEROUSDT": {
       "position": {
@@ -5113,7 +5119,9 @@
     "ACMUSDT": [],
     "ACTUSDT": [],
     "ADAUSDT": [],
-    "ADBEBUSDT": [],
+    "ADBEBUSDT": [
+      1795035600000
+    ],
     "ADXUSDT": [],
     "AEROUSDT": [],
     "AEVOUSDT": [],
@@ -5129,9 +5137,7 @@
     "ALPINEUSDT": [],
     "ALTUSDT": [],
     "AMATBUSDT": [],
-    "AMCBUSDT": [
-      1795032000000
-    ],
+    "AMCBUSDT": [],
     "AMDBUSDT": [],
     "AMPUSDT": [],
     "AMZNBUSDT": [],
@@ -5193,7 +5199,9 @@
     "BNTUSDT": [],
     "BOMEUSDT": [],
     "BONKUSDT": [],
-    "BREVUSDT": [],
+    "BREVUSDT": [
+      1795035600000
+    ],
     "BROCCOLI714USDT": [],
     "BTCUSDT": [],
     "BTTCUSDT": [],
@@ -5204,7 +5212,9 @@
     "CELOUSDT": [],
     "CELRUSDT": [],
     "CETUSUSDT": [],
-    "CFGUSDT": [],
+    "CFGUSDT": [
+      1795035600000
+    ],
     "CFXUSDT": [],
     "CGPTUSDT": [],
     "CHIPUSDT": [],
@@ -5330,7 +5340,7 @@
     "JASMYUSDT": [],
     "JOEUSDT": [],
     "JPMBUSDT": [
-      1795032000000
+      1795035600000
     ],
     "JSTUSDT": [],
     "JTOUSDT": [],
@@ -5388,9 +5398,7 @@
     "MRNABUSDT": [],
     "MRVLBUSDT": [],
     "MSFTBUSDT": [],
-    "MSTRBUSDT": [
-      1795032000000
-    ],
+    "MSTRBUSDT": [],
     "MTLUSDT": [],
     "MUBARAKUSDT": [],
     "MUBUSDT": [],
@@ -5489,9 +5497,7 @@
     "SEIUSDT": [],
     "SENTUSDT": [],
     "SFPUSDT": [],
-    "SHAZBUSDT": [
-      1795032000000
-    ],
+    "SHAZBUSDT": [],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
     "SIGNUSDT": [],
@@ -5736,7 +5742,9 @@
     "CRDOBUSDT": [],
     "CRMBUSDT": [],
     "CRVUSDT": [],
-    "CRWDBUSDT": [],
+    "CRWDBUSDT": [
+      1795035600000
+    ],
     "CRWVBUSDT": [],
     "CTKUSDT": [],
     "CTSIUSDT": [],
@@ -5874,7 +5882,9 @@
     "LTCUSDT": [],
     "LUMIAUSDT": [],
     "LUNAUSDT": [],
-    "LUNCUSDT": [],
+    "LUNCUSDT": [
+      1795035600000
+    ],
     "MAGICUSDT": [],
     "MANAUSDT": [],
     "MANTAUSDT": [],
@@ -6191,7 +6201,8 @@
       1794672000000
     ],
     "ADBEBUSDT": [
-      1794330000000
+      1794330000000,
+      1795035600000
     ],
     "ADXUSDT": [],
     "AEROUSDT": [
@@ -8701,7 +8712,8 @@
     ],
     "BREVUSDT": [
       1794686400000,
-      1794992400000
+      1794992400000,
+      1795035600000
     ],
     "BROCCOLI714USDT": [],
     "BTCUSDT": [
@@ -8749,7 +8761,8 @@
       1794679200000
     ],
     "CFGUSDT": [
-      1794686400000
+      1794686400000,
+      1795035600000
     ],
     "CFXUSDT": [
       1794664800000
@@ -9151,7 +9164,8 @@
     "JPMBUSDT": [
       1794852000000,
       1794927600000,
-      1795014000000
+      1795014000000,
+      1795035600000
     ],
     "JSTUSDT": [
       1794700800000,
@@ -10084,7 +10098,6 @@
     "SKUUBUSDT": []
   },
   "sent": [
-    "buy:YGGUSDT:1794686400000:2",
     "buy:ZAMAUSDT:1794686400000:1",
     "buy:ZENUSDT:1794686400000:4",
     "buy:ZKUSDT:1794686400000:3",
@@ -10483,11 +10496,12 @@
     "buy:TOWNSUSDT:1795028400000:3",
     "buy:AMCBUSDT:1795032000000:1",
     "buy:JPMBUSDT:1795032000000:1",
-    "buy:SHAZBUSDT:1795032000000:1"
+    "buy:SHAZBUSDT:1795032000000:1",
+    "buy:ADBEBUSDT:1795035600000:1"
   ],
-  "cycles": 610,
-  "messages_sent": 1652,
-  "last_cycle_ms": 1795041214196,
+  "cycles": 611,
+  "messages_sent": 1653,
+  "last_cycle_ms": 1795043026384,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
