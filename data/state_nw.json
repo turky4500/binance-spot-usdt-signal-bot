@@ -2277,14 +2277,8 @@
       "last_entry_price": 0.207
     },
     "BBBUSDT": {
-      "position": {
-        "entry_price": 9.12,
-        "entry_time": 1794441600000,
-        "signal_bar_time": 1794438000000,
-        "signal_price": 9.06,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794582000000,
       "last_entry_price": 8.82
     },
@@ -5001,14 +4995,8 @@
       "last_entry_price": 0.05356
     },
     "BOTBUSDT": {
-      "position": {
-        "entry_price": 18.86,
-        "entry_time": 1795021200000,
-        "signal_bar_time": 1795017600000,
-        "signal_price": 17.63,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795017600000,
       "last_entry_price": 18.86
     },
@@ -5479,9 +5467,7 @@
     "SNXUSDT": [],
     "SNXXBUSDT": [],
     "SOLUSDT": [],
-    "SOLVUSDT": [
-      1795021200000
-    ],
+    "SOLVUSDT": [],
     "SOMIUSDT": [],
     "SOPHUSDT": [],
     "SOXLBUSDT": [],
@@ -5664,7 +5650,9 @@
     "BARDUSDT": [],
     "BARUSDT": [],
     "BATUSDT": [],
-    "BBBUSDT": [],
+    "BBBUSDT": [
+      1795024800000
+    ],
     "BBUSDT": [],
     "BCHUSDT": [],
     "BEAMXUSDT": [],
@@ -5674,7 +5662,9 @@
     "BICOUSDT": [],
     "BIGTIMEUSDT": [],
     "BIOUSDT": [],
-    "BLURUSDT": [],
+    "BLURUSDT": [
+      1795024800000
+    ],
     "BMNRBUSDT": [],
     "BMTUSDT": [],
     "BNBUSDT": [],
@@ -5712,9 +5702,7 @@
     "CRDOBUSDT": [],
     "CRMBUSDT": [],
     "CRVUSDT": [],
-    "CRWDBUSDT": [
-      1795021200000
-    ],
+    "CRWDBUSDT": [],
     "CRWVBUSDT": [],
     "CTKUSDT": [],
     "CTSIUSDT": [],
@@ -5801,9 +5789,7 @@
     "HOODBUSDT": [],
     "HOTUSDT": [],
     "HPEBUSDT": [],
-    "HUMAUSDT": [
-      1795021200000
-    ],
+    "HUMAUSDT": [],
     "HYPERUSDT": [],
     "HYPEUSDT": [],
     "IBMBUSDT": [],
@@ -6082,9 +6068,7 @@
     "ZECUSDT": [],
     "ZENUSDT": [],
     "ZILUSDT": [],
-    "ZKCUSDT": [
-      1795021200000
-    ],
+    "ZKCUSDT": [],
     "ZKPUSDT": [],
     "ZKUSDT": [],
     "ZMBUSDT": [],
@@ -6092,7 +6076,9 @@
     "ZRXUSDT": [],
     "币安人生USDT": [],
     "牛来USDT": [],
-    "BOTBUSDT": [],
+    "BOTBUSDT": [
+      1795024800000
+    ],
     "BRKBBUSDT": [],
     "KSTRBUSDT": [],
     "TMFBUSDT": [],
@@ -10054,8 +10040,6 @@
     "SKUUBUSDT": []
   },
   "sent": [
-    "buy:TREEUSDT:1794686400000:2",
-    "buy:TWTUSDT:1794686400000:3",
     "buy:WAXPUSDT:1794686400000:2",
     "buy:WLDUSDT:1794686400000:2",
     "buy:WLFIUSDT:1794686400000:2",
@@ -10453,11 +10437,13 @@
     "buy:RUNEUSDT:1795017600000:1",
     "buy:TSMBUSDT:1795017600000:1",
     "buy:WBETHUSDT:1795017600000:3",
-    "buy:WBTCUSDT:1795017600000:6"
+    "buy:WBTCUSDT:1795017600000:6",
+    "exit:BBBUSDT:1795024800000",
+    "exit:BOTBUSDT:1795024800000"
   ],
-  "cycles": 604,
-  "messages_sent": 1642,
-  "last_cycle_ms": 1795030391322,
+  "cycles": 605,
+  "messages_sent": 1644,
+  "last_cycle_ms": 1795032213997,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
