@@ -4993,6 +4993,36 @@
       "entry_count": 0,
       "last_buy_bar": 0,
       "last_entry_price": 0.0
+    },
+    "APPBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "BSPBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "GEVBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SKDDBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SKUUBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
     }
   },
   "prev_buy_bars": {
@@ -5496,7 +5526,12 @@
     "BRKBBUSDT": [],
     "KSTRBUSDT": [],
     "TMFBUSDT": [],
-    "VSTBUSDT": []
+    "VSTBUSDT": [],
+    "APPBUSDT": [],
+    "BSPBUSDT": [],
+    "GEVBUSDT": [],
+    "SKDDBUSDT": [],
+    "SKUUBUSDT": []
   },
   "prev_sell_bars": {
     "0GUSDT": [],
@@ -5614,9 +5649,7 @@
     "COHRBUSDT": [],
     "COINBUSDT": [],
     "COMPUSDT": [],
-    "COOKIEUSDT": [
-      1794985200000
-    ],
+    "COOKIEUSDT": [],
     "COTIUSDT": [],
     "COWUSDT": [],
     "CRCLBUSDT": [],
@@ -5670,9 +5703,7 @@
     "FLNCBUSDT": [],
     "FLOKIUSDT": [],
     "FLOWUSDT": [],
-    "FLUXUSDT": [
-      1794985200000
-    ],
+    "FLUXUSDT": [],
     "FOGOUSDT": [],
     "FORMUSDT": [],
     "FRAXUSDT": [],
@@ -5886,7 +5917,9 @@
     "SCUSDT": [],
     "SECZBUSDT": [],
     "SEIUSDT": [],
-    "SENTUSDT": [],
+    "SENTUSDT": [
+      1794988800000
+    ],
     "SFPUSDT": [],
     "SHAZBUSDT": [],
     "SHELLUSDT": [],
@@ -5913,9 +5946,7 @@
     "SPYBUSDT": [],
     "SQQQBUSDT": [],
     "SSVUSDT": [],
-    "STEEMUSDT": [
-      1794985200000
-    ],
+    "STEEMUSDT": [],
     "STOUSDT": [],
     "STRAXUSDT": [],
     "STRKUSDT": [],
@@ -5947,7 +5978,9 @@
     "TSMBUSDT": [],
     "TSTUSDT": [],
     "TURBOUSDT": [],
-    "TURTLEUSDT": [],
+    "TURTLEUSDT": [
+      1794988800000
+    ],
     "TUSDT": [],
     "TUTUSDT": [],
     "TWTUSDT": [],
@@ -5993,7 +6026,9 @@
     "ZECUSDT": [],
     "ZENUSDT": [],
     "ZILUSDT": [],
-    "ZKCUSDT": [],
+    "ZKCUSDT": [
+      1794988800000
+    ],
     "ZKPUSDT": [],
     "ZKUSDT": [],
     "ZMBUSDT": [],
@@ -6005,7 +6040,12 @@
     "BRKBBUSDT": [],
     "KSTRBUSDT": [],
     "TMFBUSDT": [],
-    "VSTBUSDT": []
+    "VSTBUSDT": [],
+    "APPBUSDT": [],
+    "BSPBUSDT": [],
+    "GEVBUSDT": [],
+    "SKDDBUSDT": [],
+    "SKUUBUSDT": []
   },
   "buy_history": {
     "0GUSDT": [
@@ -8199,7 +8239,12 @@
       1794528000000,
       1794571200000
     ],
-    "VSTBUSDT": []
+    "VSTBUSDT": [],
+    "APPBUSDT": [],
+    "BSPBUSDT": [],
+    "GEVBUSDT": [],
+    "SKDDBUSDT": [],
+    "SKUUBUSDT": []
   },
   "cancelled_buy_bars": {
     "0GUSDT": [
@@ -9901,7 +9946,12 @@
       1794488400000,
       1794499200000
     ],
-    "VSTBUSDT": []
+    "VSTBUSDT": [],
+    "APPBUSDT": [],
+    "BSPBUSDT": [],
+    "GEVBUSDT": [],
+    "SKDDBUSDT": [],
+    "SKUUBUSDT": []
   },
   "sent": [
     "buy:MORPHOUSDT:1794686400000:3",
@@ -10305,9 +10355,9 @@
     "exit:ZKCUSDT:1794981600000",
     "exit:STEEMUSDT:1794985200000"
   ],
-  "cycles": 584,
+  "cycles": 585,
   "messages_sent": 1611,
-  "last_cycle_ms": 1794994404190,
+  "last_cycle_ms": 1794996218077,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
