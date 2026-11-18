@@ -872,11 +872,11 @@
         "entry_time": 1794700800000,
         "signal_bar_time": 1794686400000,
         "signal_price": 0.0077,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1794931200000,
-      "last_entry_price": 0.0078
+      "entry_count": 3,
+      "last_buy_bar": 1794960000000,
+      "last_entry_price": 0.00831
     },
     "COTIUSDT": {
       "position": null,
@@ -3696,7 +3696,9 @@
     "COHRBUSDT": [],
     "COINBUSDT": [],
     "COMPUSDT": [],
-    "COOKIEUSDT": [],
+    "COOKIEUSDT": [
+      1794960000000
+    ],
     "COTIUSDT": [],
     "COWUSDT": [],
     "CRCLBUSDT": [],
@@ -4109,9 +4111,7 @@
     "AUSDT": [],
     "AVAUSDT": [],
     "AVAXUSDT": [],
-    "AVGOBUSDT": [
-      1794945600000
-    ],
+    "AVGOBUSDT": [],
     "AVNTUSDT": [],
     "AWEUSDT": [],
     "AXLUSDT": [],
@@ -4184,9 +4184,7 @@
     "DEXEUSDT": [],
     "DGBUSDT": [],
     "DIAUSDT": [],
-    "DODOUSDT": [
-      1794945600000
-    ],
+    "DODOUSDT": [],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -4721,7 +4719,8 @@
     "COMPUSDT": [],
     "COOKIEUSDT": [
       1794686400000,
-      1794931200000
+      1794931200000,
+      1794960000000
     ],
     "COTIUSDT": [],
     "COWUSDT": [],
@@ -6091,11 +6090,12 @@
     "buy:MUBUSDT:1794916800000:1",
     "buy:COOKIEUSDT:1794931200000:2",
     "buy:FRAXUSDT:1794931200000:2",
-    "exit:AVGOBUSDT:1794945600000"
+    "exit:AVGOBUSDT:1794945600000",
+    "buy:COOKIEUSDT:1794960000000:3"
   ],
-  "cycles": 70,
-  "messages_sent": 192,
-  "last_cycle_ms": 1794980334183,
+  "cycles": 71,
+  "messages_sent": 193,
+  "last_cycle_ms": 1794989020273,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-17",
     "reported_trade_keys": [
