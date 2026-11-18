@@ -2840,11 +2840,11 @@
         "entry_time": 1794981600000,
         "signal_bar_time": 1794978000000,
         "signal_price": 0.10028,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794978000000,
-      "last_entry_price": 0.10253
+      "entry_count": 2,
+      "last_buy_bar": 1794996000000,
+      "last_entry_price": 0.1002
     },
     "FLNCBUSDT": {
       "position": null,
@@ -4407,14 +4407,8 @@
       "last_entry_price": 0.04308
     },
     "STOUSDT": {
-      "position": {
-        "entry_price": 0.0259,
-        "entry_time": 1794639600000,
-        "signal_bar_time": 1794636000000,
-        "signal_price": 0.0257,
-        "entry_count": 3
-      },
-      "entry_count": 3,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794672000000,
       "last_entry_price": 0.0251
     },
@@ -4749,14 +4743,8 @@
       "last_entry_price": 67105.81
     },
     "WCTUSDT": {
-      "position": {
-        "entry_price": 0.02697,
-        "entry_time": 1794675600000,
-        "signal_bar_time": 1794672000000,
-        "signal_price": 0.02679,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794672000000,
       "last_entry_price": 0.02697
     },
@@ -5113,9 +5101,7 @@
     "BNTUSDT": [],
     "BOMEUSDT": [],
     "BONKUSDT": [],
-    "BREVUSDT": [
-      1794992400000
-    ],
+    "BREVUSDT": [],
     "BROCCOLI714USDT": [],
     "BTCUSDT": [],
     "BTTCUSDT": [],
@@ -5185,7 +5171,9 @@
     "EULUSDT": [],
     "EWYBUSDT": [],
     "FETUSDT": [],
-    "FFUSDT": [],
+    "FFUSDT": [
+      1794996000000
+    ],
     "FIDAUSDT": [],
     "FILUSDT": [],
     "FLNCBUSDT": [],
@@ -5551,9 +5539,7 @@
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
-    "AIGENSYNUSDT": [
-      1794992400000
-    ],
+    "AIGENSYNUSDT": [],
     "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
@@ -5685,9 +5671,7 @@
     "EIGENUSDT": [],
     "ENAUSDT": [],
     "ENJUSDT": [],
-    "ENSOUSDT": [
-      1794992400000
-    ],
+    "ENSOUSDT": [],
     "ENSUSDT": [],
     "ERAUSDT": [],
     "ESPUSDT": [],
@@ -5703,7 +5687,9 @@
     "FLNCBUSDT": [],
     "FLOKIUSDT": [],
     "FLOWUSDT": [],
-    "FLUXUSDT": [],
+    "FLUXUSDT": [
+      1794996000000
+    ],
     "FOGOUSDT": [],
     "FORMUSDT": [],
     "FRAXUSDT": [],
@@ -5779,7 +5765,9 @@
     "KNCUSDT": [],
     "KORUBUSDT": [],
     "KSMUSDT": [],
-    "LAUSDT": [],
+    "LAUSDT": [
+      1794996000000
+    ],
     "LAYERUSDT": [],
     "LAZIOUSDT": [],
     "LDOUSDT": [],
@@ -5940,12 +5928,16 @@
     "SOXSBUSDT": [],
     "SPCXBUSDT": [],
     "SPELLUSDT": [],
-    "SPKUSDT": [],
+    "SPKUSDT": [
+      1794996000000
+    ],
     "SPYBUSDT": [],
     "SQQQBUSDT": [],
     "SSVUSDT": [],
     "STEEMUSDT": [],
-    "STOUSDT": [],
+    "STOUSDT": [
+      1794996000000
+    ],
     "STRAXUSDT": [],
     "STRKUSDT": [],
     "STXBUSDT": [],
@@ -5995,7 +5987,9 @@
     "WAXPUSDT": [],
     "WBETHUSDT": [],
     "WBTCUSDT": [],
-    "WCTUSDT": [],
+    "WCTUSDT": [
+      1794996000000
+    ],
     "WDCBUSDT": [],
     "WENBUSDT": [],
     "WIFUSDT": [],
@@ -6018,17 +6012,13 @@
     "YFIUSDT": [],
     "YGGUSDT": [],
     "ZAMAUSDT": [],
-    "ZBTUSDT": [
-      1794992400000
-    ],
+    "ZBTUSDT": [],
     "ZECUSDT": [],
     "ZENUSDT": [],
     "ZILUSDT": [],
     "ZKCUSDT": [],
     "ZKPUSDT": [],
-    "ZKUSDT": [
-      1794992400000
-    ],
+    "ZKUSDT": [],
     "ZMBUSDT": [],
     "ZROUSDT": [],
     "ZRXUSDT": [],
@@ -6768,7 +6758,8 @@
     ],
     "FFUSDT": [
       1794830400000,
-      1794978000000
+      1794978000000,
+      1794996000000
     ],
     "FIDAUSDT": [
       1794171600000,
@@ -9953,9 +9944,6 @@
     "SKUUBUSDT": []
   },
   "sent": [
-    "buy:MOVEUSDT:1794686400000:3",
-    "buy:MTLUSDT:1794686400000:2",
-    "buy:NOMUSDT:1794686400000:2",
     "buy:OPGUSDT:1794686400000:1",
     "buy:ORCAUSDT:1794686400000:1",
     "buy:PEOPLEUSDT:1794686400000:3",
@@ -10352,11 +10340,14 @@
     "buy:TLMUSDT:1794981600000:1",
     "exit:ZKCUSDT:1794981600000",
     "exit:STEEMUSDT:1794985200000",
-    "exit:ZKUSDT:1794992400000"
+    "exit:ZKUSDT:1794992400000",
+    "buy:FFUSDT:1794996000000:2",
+    "exit:STOUSDT:1794996000000",
+    "exit:WCTUSDT:1794996000000"
   ],
-  "cycles": 588,
-  "messages_sent": 1612,
-  "last_cycle_ms": 1795001607316,
+  "cycles": 589,
+  "messages_sent": 1615,
+  "last_cycle_ms": 1795003416725,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
