@@ -3866,9 +3866,7 @@
     "NEWTUSDT": [],
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [
-      1794974400000
-    ],
+    "NIGHTUSDT": [],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -3921,7 +3919,9 @@
     "QQQBUSDT": [],
     "QTUMUSDT": [],
     "RADUSDT": [],
-    "RAREUSDT": [],
+    "RAREUSDT": [
+      1794988800000
+    ],
     "RAYUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
@@ -4184,7 +4184,9 @@
     "DEXEUSDT": [],
     "DGBUSDT": [],
     "DIAUSDT": [],
-    "DODOUSDT": [],
+    "DODOUSDT": [
+      1794988800000
+    ],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -4478,9 +4480,7 @@
     "UNIUSDT": [],
     "USARBUSDT": [],
     "USTCUSDT": [],
-    "USUALUSDT": [
-      1794974400000
-    ],
+    "USUALUSDT": [],
     "VANAUSDT": [],
     "VETUSDT": [],
     "VIRTUALUSDT": [],
@@ -4515,10 +4515,10 @@
     "ZECUSDT": [],
     "ZENUSDT": [],
     "ZILUSDT": [],
-    "ZKCUSDT": [],
-    "ZKPUSDT": [
-      1794974400000
+    "ZKCUSDT": [
+      1794988800000
     ],
+    "ZKPUSDT": [],
     "ZKUSDT": [],
     "ZROUSDT": [],
     "ZRXUSDT": [],
@@ -5735,7 +5735,9 @@
     ],
     "QTUMUSDT": [],
     "RADUSDT": [],
-    "RAREUSDT": [],
+    "RAREUSDT": [
+      1794988800000
+    ],
     "RAYUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
@@ -6099,9 +6101,9 @@
     "buy:COOKIEUSDT:1794960000000:3",
     "buy:NIGHTUSDT:1794974400000:2"
   ],
-  "cycles": 72,
+  "cycles": 73,
   "messages_sent": 194,
-  "last_cycle_ms": 1795003410695,
+  "last_cycle_ms": 1795017819812,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-17",
     "reported_trade_keys": [
