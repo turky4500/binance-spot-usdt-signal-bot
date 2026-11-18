@@ -117,7 +117,7 @@
     "ZECUSDT": 1794787200000,
     "WINUSDT": 1794873600000,
     "METUSDT": 1793664000000,
-    "QNTUSDT": 1793664000000,
+    "QNTUSDT": 1794960000000,
     "SUPERUSDT": 1794528000000,
     "AUSDT": 1792540800000,
     "OGNUSDT": 1793491200000,
@@ -200,29 +200,11 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1794992880000,
+      "last_check_ms": 1795024800000,
       "peak_price": 0.14734,
       "last_stop_alert_price": 0.13515,
       "stop_updates_count": 0,
       "halal_verdict": "⛔ غير مباح",
-      "silent": true
-    },
-    "QNTUSDT": {
-      "trade_id": "QNTUSDT-1794700800000",
-      "symbol": "QNTUSDT",
-      "entry_price": 157.45,
-      "stop_price": 149.04000000000002,
-      "pivot_stop": 138.89,
-      "target_price": 194.57,
-      "stop_dist_pct": 11.787869164814229,
-      "size_suggest_pct": 0.08483297413793102,
-      "entry_time": 1794787199999,
-      "entry_bar_open_time": 1794700800000,
-      "last_check_ms": 1794992880000,
-      "peak_price": 162.0,
-      "last_stop_alert_price": 149.04000000000002,
-      "stop_updates_count": 2,
-      "halal_verdict": "✅ مباح",
       "silent": true
     },
     "RAYUSDT": {
@@ -236,7 +218,7 @@
       "size_suggest_pct": 0.11169914263445044,
       "entry_time": 1794787199999,
       "entry_bar_open_time": 1794700800000,
-      "last_check_ms": 1794992880000,
+      "last_check_ms": 1795024800000,
       "peak_price": 1.4718,
       "last_stop_alert_price": 1.3438440000000003,
       "stop_updates_count": 2,
@@ -4389,6 +4371,11 @@
       "type": "exit_loss",
       "symbol": "WINUSDT",
       "time_ms": 1794959999999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "QNTUSDT",
+      "time_ms": 1795020359999
     }
   ],
   "daily_report": {
