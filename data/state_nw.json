@@ -1179,10 +1179,16 @@
       "last_entry_price": 0.0442
     },
     "PAXGUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1794470400000,
-      "last_entry_price": 3940.63
+      "position": {
+        "entry_price": 3777.45,
+        "entry_time": 1795006800000,
+        "signal_bar_time": 1795003200000,
+        "signal_price": 3740.01,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795003200000,
+      "last_entry_price": 3777.45
     },
     "PHAUSDT": {
       "position": null,
@@ -1701,10 +1707,16 @@
       "last_entry_price": 0.00536
     },
     "XAUTUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1794470400000,
-      "last_entry_price": 3938.84
+      "position": {
+        "entry_price": 3776.36,
+        "entry_time": 1795006800000,
+        "signal_bar_time": 1795003200000,
+        "signal_price": 3739.49,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795003200000,
+      "last_entry_price": 3776.36
     },
     "XECUSDT": {
       "position": {
@@ -5330,7 +5342,9 @@
     "ORDIUSDT": [],
     "OSMOUSDT": [],
     "PARTIUSDT": [],
-    "PAXGUSDT": [],
+    "PAXGUSDT": [
+      1795003200000
+    ],
     "PDDBUSDT": [],
     "PENDLEUSDT": [],
     "PENGBUSDT": [],
@@ -5479,7 +5493,9 @@
     "WOOUSDT": [],
     "WUSDT": [],
     "XAIUSDT": [],
-    "XAUTUSDT": [],
+    "XAUTUSDT": [
+      1795003200000
+    ],
     "XECUSDT": [],
     "XLMUSDT": [],
     "XNOUSDT": [],
@@ -5715,9 +5731,7 @@
     "GUSDT": [],
     "HAEDALUSDT": [],
     "HBARUSDT": [],
-    "HEIUSDT": [
-      1794999600000
-    ],
+    "HEIUSDT": [],
     "HEMIUSDT": [],
     "HIMSBUSDT": [],
     "HIVEUSDT": [],
@@ -5817,9 +5831,7 @@
     "NEWTUSDT": [],
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [
-      1794999600000
-    ],
+    "NIGHTUSDT": [],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -5906,7 +5918,9 @@
     "SENTUSDT": [],
     "SFPUSDT": [],
     "SHAZBUSDT": [],
-    "SHELLUSDT": [],
+    "SHELLUSDT": [
+      1795003200000
+    ],
     "SHIBUSDT": [],
     "SIGNUSDT": [],
     "SKHYBUSDT": [],
@@ -5931,7 +5945,9 @@
     "SQQQBUSDT": [],
     "SSVUSDT": [],
     "STEEMUSDT": [],
-    "STOUSDT": [],
+    "STOUSDT": [
+      1795003200000
+    ],
     "STRAXUSDT": [],
     "STRKUSDT": [],
     "STXBUSDT": [],
@@ -5962,7 +5978,9 @@
     "TSMBUSDT": [],
     "TSTUSDT": [],
     "TURBOUSDT": [],
-    "TURTLEUSDT": [],
+    "TURTLEUSDT": [
+      1795003200000
+    ],
     "TUSDT": [],
     "TUTUSDT": [],
     "TWTUSDT": [],
@@ -7436,7 +7454,8 @@
       1794261600000
     ],
     "PAXGUSDT": [
-      1794470400000
+      1794470400000,
+      1795003200000
     ],
     "PDDBUSDT": [
       1794495600000
@@ -8092,7 +8111,8 @@
       1794686400000
     ],
     "XAUTUSDT": [
-      1794470400000
+      1794470400000,
+      1795003200000
     ],
     "XECUSDT": [
       1794171600000,
@@ -9936,8 +9956,6 @@
     "SKUUBUSDT": []
   },
   "sent": [
-    "buy:OPGUSDT:1794686400000:1",
-    "buy:ORCAUSDT:1794686400000:1",
     "buy:PEOPLEUSDT:1794686400000:3",
     "buy:PHAUSDT:1794686400000:1",
     "buy:PSGUSDT:1794686400000:1",
@@ -10335,11 +10353,13 @@
     "exit:ZKUSDT:1794992400000",
     "buy:FFUSDT:1794996000000:2",
     "exit:STOUSDT:1794996000000",
-    "exit:WCTUSDT:1794996000000"
+    "exit:WCTUSDT:1794996000000",
+    "buy:PAXGUSDT:1795003200000:1",
+    "buy:XAUTUSDT:1795003200000:1"
   ],
-  "cycles": 593,
-  "messages_sent": 1615,
-  "last_cycle_ms": 1795009902244,
+  "cycles": 594,
+  "messages_sent": 1617,
+  "last_cycle_ms": 1795012411747,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
