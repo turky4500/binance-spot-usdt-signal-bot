@@ -2162,11 +2162,11 @@
         "entry_time": 1794859200000,
         "signal_bar_time": 1794844800000,
         "signal_price": 0.0434,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794844800000,
-      "last_entry_price": 0.04735
+      "entry_count": 2,
+      "last_buy_bar": 1794974400000,
+      "last_entry_price": 0.04697
     },
     "NILUSDT": {
       "position": null,
@@ -3696,9 +3696,7 @@
     "COHRBUSDT": [],
     "COINBUSDT": [],
     "COMPUSDT": [],
-    "COOKIEUSDT": [
-      1794960000000
-    ],
+    "COOKIEUSDT": [],
     "COTIUSDT": [],
     "COWUSDT": [],
     "CRCLBUSDT": [],
@@ -3868,7 +3866,9 @@
     "NEWTUSDT": [],
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [],
+    "NIGHTUSDT": [
+      1794974400000
+    ],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -4478,7 +4478,9 @@
     "UNIUSDT": [],
     "USARBUSDT": [],
     "USTCUSDT": [],
-    "USUALUSDT": [],
+    "USUALUSDT": [
+      1794974400000
+    ],
     "VANAUSDT": [],
     "VETUSDT": [],
     "VIRTUALUSDT": [],
@@ -4514,7 +4516,9 @@
     "ZENUSDT": [],
     "ZILUSDT": [],
     "ZKCUSDT": [],
-    "ZKPUSDT": [],
+    "ZKPUSDT": [
+      1794974400000
+    ],
     "ZKUSDT": [],
     "ZROUSDT": [],
     "ZRXUSDT": [],
@@ -5000,7 +5004,8 @@
     ],
     "NFLXBUSDT": [],
     "NIGHTUSDT": [
-      1794844800000
+      1794844800000,
+      1794974400000
     ],
     "NILUSDT": [],
     "NMRUSDT": [],
@@ -6091,11 +6096,12 @@
     "buy:COOKIEUSDT:1794931200000:2",
     "buy:FRAXUSDT:1794931200000:2",
     "exit:AVGOBUSDT:1794945600000",
-    "buy:COOKIEUSDT:1794960000000:3"
+    "buy:COOKIEUSDT:1794960000000:3",
+    "buy:NIGHTUSDT:1794974400000:2"
   ],
-  "cycles": 71,
-  "messages_sent": 193,
-  "last_cycle_ms": 1794989020273,
+  "cycles": 72,
+  "messages_sent": 194,
+  "last_cycle_ms": 1795003410695,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-17",
     "reported_trade_keys": [
