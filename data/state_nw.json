@@ -3927,14 +3927,8 @@
       "last_entry_price": 0.00477
     },
     "PEPEUSDT": {
-      "position": {
-        "entry_price": 4.56e-06,
-        "entry_time": 1794441600000,
-        "signal_bar_time": 1794438000000,
-        "signal_price": 4.52e-06,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794672000000,
       "last_entry_price": 3.99e-06
     },
@@ -4923,10 +4917,16 @@
       "last_entry_price": 0.0348
     },
     "ZMBUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1794837600000,
-      "last_entry_price": 97.59
+      "position": {
+        "entry_price": 93.18,
+        "entry_time": 1795093200000,
+        "signal_bar_time": 1795089600000,
+        "signal_price": 92.51,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795089600000,
+      "last_entry_price": 93.18
     },
     "ZROUSDT": {
       "position": {
@@ -5182,9 +5182,7 @@
     "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
-    "DODOUSDT": [
-      1795086000000
-    ],
+    "DODOUSDT": [],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -5537,7 +5535,9 @@
     "ZKCUSDT": [],
     "ZKPUSDT": [],
     "ZKUSDT": [],
-    "ZMBUSDT": [],
+    "ZMBUSDT": [
+      1795089600000
+    ],
     "ZROUSDT": [],
     "ZRXUSDT": [],
     "币安人生USDT": [],
@@ -5661,9 +5661,7 @@
     "CFGUSDT": [],
     "CFXUSDT": [],
     "CGPTUSDT": [],
-    "CHIPUSDT": [
-      1795086000000
-    ],
+    "CHIPUSDT": [],
     "CHRUSDT": [],
     "CHZUSDT": [],
     "CITYUSDT": [],
@@ -5879,14 +5877,14 @@
     "OSMOUSDT": [],
     "PARTIUSDT": [],
     "PAXGUSDT": [],
-    "PDDBUSDT": [
-      1795086000000
-    ],
+    "PDDBUSDT": [],
     "PENDLEUSDT": [],
     "PENGBUSDT": [],
     "PENGUUSDT": [],
     "PEOPLEUSDT": [],
-    "PEPEUSDT": [],
+    "PEPEUSDT": [
+      1795089600000
+    ],
     "PHAUSDT": [],
     "PIXELUSDT": [],
     "PLTRBUSDT": [],
@@ -8272,7 +8270,8 @@
       1794686400000
     ],
     "ZMBUSDT": [
-      1794837600000
+      1794837600000,
+      1795089600000
     ],
     "ZROUSDT": [
       1794704400000
@@ -10056,8 +10055,6 @@
     "SKUUBUSDT": []
   },
   "sent": [
-    "buy:ERAUSDT:1794693600000:1",
-    "buy:FOGOUSDT:1794693600000:1",
     "buy:FTTUSDT:1794693600000:7",
     "buy:GASUSDT:1794693600000:5",
     "buy:GRTUSDT:1794693600000:3",
@@ -10455,11 +10452,13 @@
     "exit:PYTHUSDT:1795071600000",
     "exit:REQUSDT:1795075200000",
     "exit:GOOGLBUSDT:1795078800000",
-    "buy:OPGUSDT:1795082400000:2"
+    "buy:OPGUSDT:1795082400000:2",
+    "exit:PEPEUSDT:1795089600000",
+    "buy:ZMBUSDT:1795089600000:1"
   ],
-  "cycles": 640,
-  "messages_sent": 1678,
-  "last_cycle_ms": 1795095211712,
+  "cycles": 641,
+  "messages_sent": 1680,
+  "last_cycle_ms": 1795097018306,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
