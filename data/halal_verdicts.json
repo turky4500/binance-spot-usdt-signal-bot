@@ -78,6 +78,8 @@
     "SCR": 0,
     "PROM": 0,
     "LUNC": 1,
-    "EDU": 0
+    "EDU": 0,
+    "SNX": 1,
+    "USTC": 1
   }
 }
