@@ -2480,11 +2480,11 @@
         "entry_time": 1794697200000,
         "signal_bar_time": 1794693600000,
         "signal_price": 3.1e-07,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794693600000,
-      "last_entry_price": 3.1e-07
+      "entry_count": 2,
+      "last_buy_bar": 1795053600000,
+      "last_entry_price": 3.2e-07
     },
     "C98USDT": {
       "position": {
@@ -3806,11 +3806,11 @@
         "entry_time": 1794175200000,
         "signal_bar_time": 1794171600000,
         "signal_price": 8.93,
-        "entry_count": 4
+        "entry_count": 5
       },
-      "entry_count": 4,
-      "last_buy_bar": 1795046400000,
-      "last_entry_price": 7.49
+      "entry_count": 5,
+      "last_buy_bar": 1795053600000,
+      "last_entry_price": 7.51
     },
     "NOKBUSDT": {
       "position": null,
@@ -4365,10 +4365,16 @@
       "last_entry_price": 124.88
     },
     "SKYUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1794672000000,
-      "last_entry_price": 0.05528
+      "position": {
+        "entry_price": 0.04909,
+        "entry_time": 1795057200000,
+        "signal_bar_time": 1795053600000,
+        "signal_price": 0.04827,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795053600000,
+      "last_entry_price": 0.04909
     },
     "SMCIBUSDT": {
       "position": {
@@ -5151,9 +5157,7 @@
     "AXLUSDT": [],
     "AXSUSDT": [],
     "AXTIBUSDT": [],
-    "BABABUSDT": [
-      1795050000000
-    ],
+    "BABABUSDT": [],
     "BABYUSDT": [],
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
@@ -5184,7 +5188,9 @@
     "BREVUSDT": [],
     "BROCCOLI714USDT": [],
     "BTCUSDT": [],
-    "BTTCUSDT": [],
+    "BTTCUSDT": [
+      1795053600000
+    ],
     "C98USDT": [],
     "CAKEUSDT": [],
     "CATIUSDT": [],
@@ -5389,7 +5395,9 @@
     "NFLXBUSDT": [],
     "NIGHTUSDT": [],
     "NILUSDT": [],
-    "NMRUSDT": [],
+    "NMRUSDT": [
+      1795053600000
+    ],
     "NOKBUSDT": [],
     "NOMUSDT": [],
     "NOTUSDT": [],
@@ -5479,7 +5487,9 @@
     "SIGNUSDT": [],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
-    "SKYUSDT": [],
+    "SKYUSDT": [
+      1795053600000
+    ],
     "SLPUSDT": [],
     "SMCIBUSDT": [],
     "SMHBUSDT": [],
@@ -5577,9 +5587,7 @@
     "ZENUSDT": [],
     "ZILUSDT": [],
     "ZKCUSDT": [],
-    "ZKPUSDT": [
-      1795050000000
-    ],
+    "ZKPUSDT": [],
     "ZKUSDT": [],
     "ZMBUSDT": [],
     "ZROUSDT": [],
@@ -5720,7 +5728,9 @@
     "CRDOBUSDT": [],
     "CRMBUSDT": [],
     "CRVUSDT": [],
-    "CRWDBUSDT": [],
+    "CRWDBUSDT": [
+      1795053600000
+    ],
     "CRWVBUSDT": [],
     "CTKUSDT": [],
     "CTSIUSDT": [],
@@ -5792,7 +5802,9 @@
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
-    "GTCUSDT": [],
+    "GTCUSDT": [
+      1795053600000
+    ],
     "GUNUSDT": [],
     "GUSDT": [],
     "HAEDALUSDT": [],
@@ -5857,7 +5869,9 @@
     "LSKUSDT": [],
     "LTCUSDT": [],
     "LUMIAUSDT": [],
-    "LUNAUSDT": [],
+    "LUNAUSDT": [
+      1795053600000
+    ],
     "LUNCUSDT": [],
     "MAGICUSDT": [],
     "MANAUSDT": [],
@@ -6540,7 +6554,8 @@
     ],
     "BTTCUSDT": [
       1794175200000,
-      1794693600000
+      1794693600000,
+      1795053600000
     ],
     "C98USDT": [
       1794171600000,
@@ -7451,7 +7466,8 @@
       1794171600000,
       1794672000000,
       1795039200000,
-      1795046400000
+      1795046400000,
+      1795053600000
     ],
     "NOKBUSDT": [],
     "NOMUSDT": [
@@ -7843,7 +7859,8 @@
     ],
     "SKYUSDT": [
       1794171600000,
-      1794672000000
+      1794672000000,
+      1795053600000
     ],
     "SLPUSDT": [
       1794171600000,
@@ -10081,9 +10098,6 @@
     "SKUUBUSDT": []
   },
   "sent": [
-    "buy:AAVEUSDT:1794693600000:3",
-    "buy:ALPINEUSDT:1794693600000:2",
-    "buy:ANKRUSDT:1794693600000:3",
     "buy:AUSDT:1794693600000:4",
     "buy:BIGTIMEUSDT:1794693600000:2",
     "buy:BMNRBUSDT:1794693600000:3",
@@ -10480,11 +10494,14 @@
     "buy:NMRUSDT:1795046400000:4",
     "exit:USTCUSDT:1795046400000",
     "exit:ZMBUSDT:1795046400000",
-    "buy:BABABUSDT:1795050000000:4"
+    "buy:BABABUSDT:1795050000000:4",
+    "buy:BTTCUSDT:1795053600000:2",
+    "buy:NMRUSDT:1795053600000:5",
+    "buy:SKYUSDT:1795053600000:1"
   ],
-  "cycles": 620,
-  "messages_sent": 1662,
-  "last_cycle_ms": 1795058178889,
+  "cycles": 621,
+  "messages_sent": 1665,
+  "last_cycle_ms": 1795061008008,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
