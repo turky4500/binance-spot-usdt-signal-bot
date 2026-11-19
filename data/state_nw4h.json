@@ -2348,11 +2348,11 @@
         "entry_time": 1794499200000,
         "signal_bar_time": 1794484800000,
         "signal_price": 3870.63,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1794686400000,
-      "last_entry_price": 3825.01
+      "entry_count": 3,
+      "last_buy_bar": 1795017600000,
+      "last_entry_price": 3736.31
     },
     "PENDLEUSDT": {
       "position": null,
@@ -2522,11 +2522,11 @@
         "entry_time": 1794585600000,
         "signal_bar_time": 1794571200000,
         "signal_price": 168.44,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794571200000,
-      "last_entry_price": 172.86
+      "entry_count": 2,
+      "last_buy_bar": 1795017600000,
+      "last_entry_price": 161.96
     },
     "QIUSDT": {
       "position": null,
@@ -3182,11 +3182,11 @@
         "entry_time": 1794585600000,
         "signal_bar_time": 1794571200000,
         "signal_price": 394.74,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1794830400000,
-      "last_entry_price": 376.67
+      "entry_count": 3,
+      "last_buy_bar": 1795017600000,
+      "last_entry_price": 366.55
     },
     "TSTUSDT": {
       "position": null,
@@ -3410,11 +3410,11 @@
         "entry_time": 1794499200000,
         "signal_bar_time": 1794484800000,
         "signal_price": 3867.35,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794484800000,
-      "last_entry_price": 3881.29
+      "entry_count": 2,
+      "last_buy_bar": 1795017600000,
+      "last_entry_price": 3735.09
     },
     "XECUSDT": {
       "position": {
@@ -3889,7 +3889,9 @@
     "ORDIUSDT": [],
     "OSMOUSDT": [],
     "PARTIUSDT": [],
-    "PAXGUSDT": [],
+    "PAXGUSDT": [
+      1795017600000
+    ],
     "PENDLEUSDT": [],
     "PENGUUSDT": [],
     "PEOPLEUSDT": [],
@@ -3911,7 +3913,9 @@
     "PUNDIXUSDT": [],
     "PYPLBUSDT": [],
     "PYTHUSDT": [],
-    "QCOMBUSDT": [],
+    "QCOMBUSDT": [
+      1795017600000
+    ],
     "QIUSDT": [],
     "QKCUSDT": [],
     "QNTBUSDT": [],
@@ -3998,7 +4002,9 @@
     "TRUMPUSDT": [],
     "TRXUSDT": [],
     "TSLABUSDT": [],
-    "TSMBUSDT": [],
+    "TSMBUSDT": [
+      1795017600000
+    ],
     "TSTUSDT": [],
     "TURBOUSDT": [],
     "TURTLEUSDT": [],
@@ -4027,7 +4033,9 @@
     "WOOUSDT": [],
     "WUSDT": [],
     "XAIUSDT": [],
-    "XAUTUSDT": [],
+    "XAUTUSDT": [
+      1795017600000
+    ],
     "XECUSDT": [],
     "XLMUSDT": [],
     "XNOUSDT": [],
@@ -4226,7 +4234,9 @@
     "GLMRUSDT": [],
     "GLMUSDT": [],
     "GLWBUSDT": [],
-    "GMEBUSDT": [],
+    "GMEBUSDT": [
+      1795017600000
+    ],
     "GMTUSDT": [],
     "GMXUSDT": [],
     "GNOUSDT": [],
@@ -5040,7 +5050,8 @@
     "PARTIUSDT": [],
     "PAXGUSDT": [
       1794484800000,
-      1794686400000
+      1794686400000,
+      1795017600000
     ],
     "PENDLEUSDT": [],
     "PENGUUSDT": [],
@@ -5077,7 +5088,8 @@
     "PYPLBUSDT": [],
     "PYTHUSDT": [],
     "QCOMBUSDT": [
-      1794571200000
+      1794571200000,
+      1795017600000
     ],
     "QIUSDT": [],
     "QKCUSDT": [],
@@ -5218,7 +5230,8 @@
     "TSLABUSDT": [],
     "TSMBUSDT": [
       1794571200000,
-      1794830400000
+      1794830400000,
+      1795017600000
     ],
     "TSTUSDT": [],
     "TURBOUSDT": [],
@@ -5275,7 +5288,8 @@
       1794686400000
     ],
     "XAUTUSDT": [
-      1794484800000
+      1794484800000,
+      1795017600000
     ],
     "XECUSDT": [
       1794686400000
@@ -6093,11 +6107,15 @@
     "buy:FRAXUSDT:1794931200000:2",
     "exit:AVGOBUSDT:1794945600000",
     "buy:COOKIEUSDT:1794960000000:3",
-    "buy:NIGHTUSDT:1794974400000:2"
+    "buy:NIGHTUSDT:1794974400000:2",
+    "buy:PAXGUSDT:1795017600000:3",
+    "buy:QCOMBUSDT:1795017600000:2",
+    "buy:TSMBUSDT:1795017600000:3",
+    "buy:XAUTUSDT:1795017600000:2"
   ],
-  "cycles": 75,
-  "messages_sent": 194,
-  "last_cycle_ms": 1795032212882,
+  "cycles": 76,
+  "messages_sent": 198,
+  "last_cycle_ms": 1795046605463,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-18",
     "reported_trade_keys": [
