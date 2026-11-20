@@ -4322,11 +4322,11 @@
         "entry_time": 1795096800000,
         "signal_bar_time": 1795093200000,
         "signal_price": 0.02157,
-        "entry_count": 5
+        "entry_count": 6
       },
-      "entry_count": 5,
-      "last_buy_bar": 1795143600000,
-      "last_entry_price": 0.02047
+      "entry_count": 6,
+      "last_buy_bar": 1795150800000,
+      "last_entry_price": 0.02069
     },
     "SHAZBUSDT": {
       "position": {
@@ -4971,10 +4971,16 @@
       "last_entry_price": 0.0
     },
     "ZKCUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1794171600000,
-      "last_entry_price": 0.0267
+      "position": {
+        "entry_price": 0.0253,
+        "entry_time": 1795154400000,
+        "signal_bar_time": 1795150800000,
+        "signal_price": 0.0252,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795150800000,
+      "last_entry_price": 0.0253
     },
     "ZKPUSDT": {
       "position": null,
@@ -5133,9 +5139,7 @@
     "1000CHEEMSUSDT": [],
     "1000SATSUSDT": [],
     "1INCHUSDT": [],
-    "1MBABYDOGEUSDT": [
-      1795147200000
-    ],
+    "1MBABYDOGEUSDT": [],
     "2ZUSDT": [],
     "AAOIBUSDT": [],
     "AAPLBUSDT": [],
@@ -5153,9 +5157,7 @@
     "AGPUBUSDT": [],
     "AIGENSYNUSDT": [],
     "AIUSDT": [],
-    "AIXBTUSDT": [
-      1795147200000
-    ],
+    "AIXBTUSDT": [],
     "ALABBUSDT": [],
     "ALGOUSDT": [],
     "ALICEUSDT": [],
@@ -5192,9 +5194,7 @@
     "AVAUSDT": [],
     "AVAXUSDT": [],
     "AVGOBUSDT": [],
-    "AVNTUSDT": [
-      1795147200000
-    ],
+    "AVNTUSDT": [],
     "AWEUSDT": [],
     "AXLUSDT": [],
     "AXSUSDT": [],
@@ -5221,9 +5221,7 @@
     "BLURUSDT": [],
     "BMNRBUSDT": [],
     "BMTUSDT": [],
-    "BNBUSDT": [
-      1795147200000
-    ],
+    "BNBUSDT": [],
     "BNCBUSDT": [],
     "BNSOLUSDT": [],
     "BNTUSDT": [],
@@ -5239,15 +5237,11 @@
     "CBRSBUSDT": [],
     "CELOUSDT": [],
     "CELRUSDT": [],
-    "CETUSUSDT": [
-      1795147200000
-    ],
+    "CETUSUSDT": [],
     "CFGUSDT": [],
     "CFXUSDT": [],
     "CGPTUSDT": [],
-    "CHIPUSDT": [
-      1795147200000
-    ],
+    "CHIPUSDT": [],
     "CHRUSDT": [],
     "CHZUSDT": [],
     "CITYUSDT": [],
@@ -5268,9 +5262,7 @@
     "CTSIUSDT": [],
     "CUSDT": [],
     "CVCUSDT": [],
-    "CVXUSDT": [
-      1795147200000
-    ],
+    "CVXUSDT": [],
     "CYBERUSDT": [],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
@@ -5360,9 +5352,7 @@
     "ILVUSDT": [],
     "IMXUSDT": [],
     "INITUSDT": [],
-    "INJUSDT": [
-      1795147200000
-    ],
+    "INJUSDT": [],
     "INTCBUSDT": [],
     "INTWBUSDT": [],
     "IOSTUSDT": [],
@@ -5398,16 +5388,12 @@
     "LISTAUSDT": [],
     "LITEBUSDT": [],
     "LLYBUSDT": [],
-    "LPTUSDT": [
-      1795147200000
-    ],
+    "LPTUSDT": [],
     "LQTYUSDT": [],
     "LSKUSDT": [],
     "LTCUSDT": [],
     "LUMIAUSDT": [],
-    "LUNAUSDT": [
-      1795147200000
-    ],
+    "LUNAUSDT": [],
     "LUNCUSDT": [],
     "MAGICUSDT": [],
     "MANAUSDT": [],
@@ -5441,9 +5427,7 @@
     "MUUBUSDT": [],
     "MVLLBUSDT": [],
     "NBISBUSDT": [],
-    "NEARUSDT": [
-      1795147200000
-    ],
+    "NEARUSDT": [],
     "NEIROUSDT": [],
     "NEOUSDT": [],
     "NEWTUSDT": [],
@@ -5500,13 +5484,9 @@
     "QIUSDT": [],
     "QKCUSDT": [],
     "QNTBUSDT": [],
-    "QNTUSDT": [
-      1795147200000
-    ],
+    "QNTUSDT": [],
     "QQQBUSDT": [],
-    "QTUMUSDT": [
-      1795147200000
-    ],
+    "QTUMUSDT": [],
     "RADUSDT": [],
     "RAREUSDT": [],
     "RAYUSDT": [],
@@ -5537,7 +5517,9 @@
     "SCUSDT": [],
     "SECZBUSDT": [],
     "SEIUSDT": [],
-    "SENTUSDT": [],
+    "SENTUSDT": [
+      1795150800000
+    ],
     "SFPUSDT": [],
     "SHAZBUSDT": [],
     "SHELLUSDT": [],
@@ -5574,15 +5556,11 @@
     "SUNUSDT": [],
     "SUPERUSDT": [],
     "SUSDT": [],
-    "SUSHIUSDT": [
-      1795147200000
-    ],
+    "SUSHIUSDT": [],
     "SXTUSDT": [],
     "SYNUSDT": [],
     "SYRUPUSDT": [],
-    "TAOUSDT": [
-      1795147200000
-    ],
+    "TAOUSDT": [],
     "TFUELUSDT": [],
     "THETAUSDT": [],
     "THEUSDT": [],
@@ -5608,9 +5586,7 @@
     "UNIUSDT": [],
     "USARBUSDT": [],
     "USDEBUSDT": [],
-    "USTCUSDT": [
-      1795147200000
-    ],
+    "USTCUSDT": [],
     "USUALUSDT": [],
     "UVXYBUSDT": [],
     "VANAUSDT": [],
@@ -5618,9 +5594,7 @@
     "VIRTUALUSDT": [],
     "VTHOUSDT": [],
     "WALUSDT": [],
-    "WAXPUSDT": [
-      1795147200000
-    ],
+    "WAXPUSDT": [],
     "WBETHUSDT": [],
     "WBTCUSDT": [],
     "WCTUSDT": [],
@@ -5632,9 +5606,7 @@
     "WLFIUSDT": [],
     "WOOUSDT": [],
     "WUSDT": [],
-    "XAIUSDT": [
-      1795147200000
-    ],
+    "XAIUSDT": [],
     "XAUTUSDT": [],
     "XECUSDT": [],
     "XLMUSDT": [],
@@ -5652,7 +5624,9 @@
     "ZECUSDT": [],
     "ZENUSDT": [],
     "ZILUSDT": [],
-    "ZKCUSDT": [],
+    "ZKCUSDT": [
+      1795150800000
+    ],
     "ZKPUSDT": [],
     "ZKUSDT": [],
     "ZMBUSDT": [],
@@ -7972,7 +7946,8 @@
       1795100400000,
       1795107600000,
       1795114800000,
-      1795143600000
+      1795143600000,
+      1795150800000
     ],
     "SFPUSDT": [
       1794171600000,
@@ -8481,7 +8456,8 @@
       1794772800000
     ],
     "ZKCUSDT": [
-      1794171600000
+      1794171600000,
+      1795150800000
     ],
     "ZKPUSDT": [
       1794171600000,
@@ -10370,8 +10346,6 @@
     "SKUUBUSDT": []
   },
   "sent": [
-    "buy:VETUSDT:1794704400000:3",
-    "buy:VTHOUSDT:1794704400000:2",
     "buy:WAXPUSDT:1794704400000:3",
     "buy:WIFUSDT:1794704400000:2",
     "buy:XLMUSDT:1794704400000:2",
@@ -10769,11 +10743,13 @@
     "buy:TAOUSDT:1795147200000:4",
     "buy:USTCUSDT:1795147200000:1",
     "buy:WAXPUSDT:1795147200000:4",
-    "buy:XAIUSDT:1795147200000:3"
+    "buy:XAIUSDT:1795147200000:3",
+    "buy:SENTUSDT:1795150800000:6",
+    "buy:ZKCUSDT:1795150800000:1"
   ],
-  "cycles": 674,
-  "messages_sent": 1805,
-  "last_cycle_ms": 1795156407461,
+  "cycles": 675,
+  "messages_sent": 1807,
+  "last_cycle_ms": 1795158207621,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
