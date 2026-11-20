@@ -181,7 +181,7 @@
     "NMRUSDT": 1793577600000,
     "BTCUSDT": 1793750400000,
     "WBTCUSDT": 1793750400000,
-    "BMTUSDT": 1794787200000,
+    "BMTUSDT": 1795132800000,
     "PARTIUSDT": 1794009600000,
     "ARUSDT": 1794096000000,
     "DASHUSDT": 1794096000000,
@@ -193,17 +193,17 @@
       "trade_id": "JSTUSDT-1793577600000",
       "symbol": "JSTUSDT",
       "entry_price": 0.14037,
-      "stop_price": 0.1355528,
+      "stop_price": 0.1366476,
       "pivot_stop": 0.13515,
       "target_price": 0.15081,
       "stop_dist_pct": 3.7187433212224854,
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1795147380000,
-      "peak_price": 0.14734,
-      "last_stop_alert_price": 0.13515,
-      "stop_updates_count": 0,
+      "last_check_ms": 1795178820000,
+      "peak_price": 0.14853,
+      "last_stop_alert_price": 0.1365372,
+      "stop_updates_count": 1,
       "halal_verdict": "⛔ غير مباح",
       "silent": true
     },
@@ -218,29 +218,11 @@
       "size_suggest_pct": 0.11169914263445044,
       "entry_time": 1794787199999,
       "entry_bar_open_time": 1794700800000,
-      "last_check_ms": 1795147380000,
+      "last_check_ms": 1795178820000,
       "peak_price": 1.4718,
       "last_stop_alert_price": 1.3438440000000003,
       "stop_updates_count": 2,
       "halal_verdict": "⛔ غير مباح",
-      "silent": true
-    },
-    "BMTUSDT": {
-      "trade_id": "BMTUSDT-1795046400000",
-      "symbol": "BMTUSDT",
-      "entry_price": 0.0201,
-      "stop_price": 0.01856,
-      "pivot_stop": 0.01856,
-      "target_price": 0.02318,
-      "stop_dist_pct": 7.661691542288556,
-      "size_suggest_pct": 0.13051948051948054,
-      "entry_time": 1795132799999,
-      "entry_bar_open_time": 1795046400000,
-      "last_check_ms": 1795132859999,
-      "peak_price": 0.0236,
-      "last_stop_alert_price": 0.01856,
-      "stop_updates_count": 0,
-      "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     }
   },
@@ -4399,6 +4381,16 @@
       "type": "entry",
       "symbol": "BMTUSDT",
       "time_ms": 1795132799999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "JSTUSDT",
+      "time_ms": 1795169519999
+    },
+    {
+      "type": "exit_win",
+      "symbol": "BMTUSDT",
+      "time_ms": 1795132919999
     }
   ],
   "daily_report": {
