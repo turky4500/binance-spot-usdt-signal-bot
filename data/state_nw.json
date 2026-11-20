@@ -1017,10 +1017,16 @@
       "last_entry_price": 0.0458
     },
     "MMTUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1795057200000,
-      "last_entry_price": 0.2204
+      "position": {
+        "entry_price": 0.2474,
+        "entry_time": 1795161600000,
+        "signal_bar_time": 1795158000000,
+        "signal_price": 0.2424,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795158000000,
+      "last_entry_price": 0.2474
     },
     "MOVRUSDT": {
       "position": {
@@ -5204,9 +5210,7 @@
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
     "BANDUSDT": [],
-    "BANKUSDT": [
-      1795154400000
-    ],
+    "BANKUSDT": [],
     "BARDUSDT": [],
     "BARUSDT": [],
     "BATUSDT": [],
@@ -5414,8 +5418,12 @@
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
-    "MITOUSDT": [],
-    "MMTUSDT": [],
+    "MITOUSDT": [
+      1795158000000
+    ],
+    "MMTUSDT": [
+      1795158000000
+    ],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
     "MOVRUSDT": [],
@@ -5527,12 +5535,16 @@
     "SIGNUSDT": [],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
-    "SKYUSDT": [],
+    "SKYUSDT": [
+      1795158000000
+    ],
     "SLPUSDT": [],
     "SMCIBUSDT": [],
     "SMHBUSDT": [],
     "SNDKBUSDT": [],
-    "SNXUSDT": [],
+    "SNXUSDT": [
+      1795158000000
+    ],
     "SNXXBUSDT": [],
     "SOLUSDT": [],
     "SOLVUSDT": [],
@@ -7457,7 +7469,8 @@
     "MMTUSDT": [
       1794171600000,
       1794700800000,
-      1795057200000
+      1795057200000,
+      1795158000000
     ],
     "MORPHOUSDT": [
       1794171600000,
@@ -9506,7 +9519,8 @@
     ],
     "MITOUSDT": [
       1794679200000,
-      1794682800000
+      1794682800000,
+      1795158000000
     ],
     "MMTUSDT": [
       1794664800000,
@@ -9915,7 +9929,8 @@
       1794700800000,
       1794816000000,
       1794830400000,
-      1795071600000
+      1795071600000,
+      1795158000000
     ],
     "SLPUSDT": [
       1794679200000,
@@ -9933,7 +9948,8 @@
     ],
     "SNDKBUSDT": [],
     "SNXUSDT": [
-      1794679200000
+      1794679200000,
+      1795158000000
     ],
     "SNXXBUSDT": [],
     "SOLUSDT": [
@@ -10346,7 +10362,6 @@
     "SKUUBUSDT": []
   },
   "sent": [
-    "buy:WAXPUSDT:1794704400000:3",
     "buy:WIFUSDT:1794704400000:2",
     "buy:XLMUSDT:1794704400000:2",
     "buy:XNOUSDT:1794704400000:3",
@@ -10745,11 +10760,12 @@
     "buy:WAXPUSDT:1795147200000:4",
     "buy:XAIUSDT:1795147200000:3",
     "buy:SENTUSDT:1795150800000:6",
-    "buy:ZKCUSDT:1795150800000:1"
+    "buy:ZKCUSDT:1795150800000:1",
+    "buy:MMTUSDT:1795158000000:1"
   ],
-  "cycles": 678,
-  "messages_sent": 1807,
-  "last_cycle_ms": 1795163606645,
+  "cycles": 679,
+  "messages_sent": 1808,
+  "last_cycle_ms": 1795165419079,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
