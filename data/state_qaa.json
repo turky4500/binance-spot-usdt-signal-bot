@@ -111,7 +111,7 @@
     "JUPUSDT": 1794787200000,
     "PEPEUSDT": 1793145600000,
     "PUMPUSDT": 1794268800000,
-    "RAYUSDT": 1793577600000,
+    "RAYUSDT": 1795132800000,
     "SKYUSDT": 1793577600000,
     "WLDUSDT": 1792454400000,
     "ZECUSDT": 1794787200000,
@@ -200,28 +200,10 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1795178820000,
+      "last_check_ms": 1795207620000,
       "peak_price": 0.14853,
       "last_stop_alert_price": 0.1365372,
       "stop_updates_count": 1,
-      "halal_verdict": "⛔ غير مباح",
-      "silent": true
-    },
-    "RAYUSDT": {
-      "trade_id": "RAYUSDT-1794700800000",
-      "symbol": "RAYUSDT",
-      "entry_price": 1.4331,
-      "stop_price": 1.3540560000000001,
-      "pivot_stop": 1.3048,
-      "target_price": 1.6897000000000002,
-      "stop_dist_pct": 8.952620193985073,
-      "size_suggest_pct": 0.11169914263445044,
-      "entry_time": 1794787199999,
-      "entry_bar_open_time": 1794700800000,
-      "last_check_ms": 1795178820000,
-      "peak_price": 1.4718,
-      "last_stop_alert_price": 1.3438440000000003,
-      "stop_updates_count": 2,
       "halal_verdict": "⛔ غير مباح",
       "silent": true
     }
@@ -4391,6 +4373,11 @@
       "type": "exit_win",
       "symbol": "BMTUSDT",
       "time_ms": 1795132919999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "RAYUSDT",
+      "time_ms": 1795180379999
     }
   ],
   "daily_report": {
