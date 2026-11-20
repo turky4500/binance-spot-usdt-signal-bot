@@ -729,7 +729,7 @@
     "CRWVBUSDT": 1794571200000,
     "NBISBUSDT": 1794484800000,
     "USTCUSDT": 1795147200000,
-    "SCRUSDT": 1793304000000,
+    "SCRUSDT": 1795176000000,
     "SMCIBUSDT": 1793304000000,
     "BABYUSDT": 1793304000000,
     "LISTAUSDT": 1793318400000,
@@ -752,7 +752,7 @@
     "MORPHOUSDT": 1793635200000,
     "RKLBBUSDT": 1795003200000,
     "DRAMBUSDT": 1793635200000,
-    "WDCBUSDT": 1793635200000,
+    "WDCBUSDT": 1795176000000,
     "1000CATUSDT": 1793664000000,
     "BABABUSDT": 1793721600000,
     "BREVUSDT": 1794960000000,
@@ -771,7 +771,8 @@
     "ONEUSDT": 1794686400000,
     "PYPLBUSDT": 1794916800000,
     "MMTUSDT": 1794974400000,
-    "ZKCUSDT": 1795147200000
+    "ZKCUSDT": 1795147200000,
+    "STXBUSDT": 1795176000000
   },
   "open_trades": {
     "AAPLBUSDT": {
@@ -791,7 +792,7 @@
       ],
       "entry_time": 1794239999999,
       "entry_bar_open_time": 1794225600000,
-      "last_target_check_ms": 1795185480000,
+      "last_target_check_ms": 1795185780000,
       "atr_at_entry": 1.5644284592509603,
       "trend_length": 89,
       "peak_price": 360.97,
@@ -820,7 +821,7 @@
       ],
       "entry_time": 1794239999999,
       "entry_bar_open_time": 1794225600000,
-      "last_target_check_ms": 1795185480000,
+      "last_target_check_ms": 1795185780000,
       "atr_at_entry": 0.0028766700247732065,
       "trend_length": 89,
       "peak_price": 0.1641,
@@ -849,7 +850,7 @@
       ],
       "entry_time": 1794297599999,
       "entry_bar_open_time": 1794283200000,
-      "last_target_check_ms": 1795185480000,
+      "last_target_check_ms": 1795185780000,
       "atr_at_entry": 0.001029160532616,
       "trend_length": 89,
       "peak_price": 0.05126,
@@ -878,7 +879,7 @@
       ],
       "entry_time": 1794340799999,
       "entry_bar_open_time": 1794326400000,
-      "last_target_check_ms": 1795185480000,
+      "last_target_check_ms": 1795185780000,
       "atr_at_entry": 2.8821839977265364,
       "trend_length": 89,
       "peak_price": 369.98,
@@ -907,7 +908,7 @@
       ],
       "entry_time": 1794369599999,
       "entry_bar_open_time": 1794355200000,
-      "last_target_check_ms": 1795185480000,
+      "last_target_check_ms": 1795185780000,
       "atr_at_entry": 0.00281469261530538,
       "trend_length": 89,
       "peak_price": 0.1446,
@@ -936,7 +937,7 @@
       ],
       "entry_time": 1794571199999,
       "entry_bar_open_time": 1794556800000,
-      "last_target_check_ms": 1795185480000,
+      "last_target_check_ms": 1795185780000,
       "atr_at_entry": 3.1787750392163175e-06,
       "trend_length": 89,
       "peak_price": 0.000169,
@@ -965,7 +966,7 @@
       ],
       "entry_time": 1794743999999,
       "entry_bar_open_time": 1794729600000,
-      "last_target_check_ms": 1795185480000,
+      "last_target_check_ms": 1795185780000,
       "atr_at_entry": 0.0030727952079556346,
       "trend_length": 89,
       "peak_price": 0.10654,
@@ -989,7 +990,7 @@
       ],
       "entry_time": 1794743999999,
       "entry_bar_open_time": 1794729600000,
-      "last_target_check_ms": 1795185480000,
+      "last_target_check_ms": 1795185780000,
       "atr_at_entry": 0.0013029088377763893,
       "trend_length": 89,
       "peak_price": 0.0607,
@@ -1018,7 +1019,7 @@
       ],
       "entry_time": 1794772799999,
       "entry_bar_open_time": 1794758400000,
-      "last_target_check_ms": 1795185480000,
+      "last_target_check_ms": 1795185780000,
       "atr_at_entry": 0.00034755527081538936,
       "trend_length": 89,
       "peak_price": 0.01834,
@@ -1047,35 +1048,11 @@
       ],
       "entry_time": 1794873599999,
       "entry_bar_open_time": 1794859200000,
-      "last_target_check_ms": 1795185480000,
+      "last_target_check_ms": 1795185780000,
       "atr_at_entry": 0.00024267585336162236,
       "trend_length": 89,
       "peak_price": 0.00881,
       "halal_verdict": "ℹ️ لا يوجد حكم",
-      "silent": true
-    },
-    "SCRUSDT": {
-      "trade_id": "SCRUSDT-1794873600000",
-      "symbol": "SCRUSDT",
-      "entry_price": 0.01971,
-      "stop_price": 0.01735676483103406,
-      "targets": [
-        0.023312130901009465,
-        0.026914261802018932,
-        0.030516392703028403
-      ],
-      "hit": [
-        false,
-        false,
-        false
-      ],
-      "entry_time": 1794887999999,
-      "entry_bar_open_time": 1794873600000,
-      "last_target_check_ms": 1795185480000,
-      "atr_at_entry": 0.0007204261802018935,
-      "trend_length": 89,
-      "peak_price": 0.02084,
-      "halal_verdict": "✅ مباح",
       "silent": true
     },
     "PROMUSDT": {
@@ -1095,7 +1072,7 @@
       ],
       "entry_time": 1794902399999,
       "entry_bar_open_time": 1794888000000,
-      "last_target_check_ms": 1795185480000,
+      "last_target_check_ms": 1795185780000,
       "atr_at_entry": 0.20065335041406462,
       "trend_length": 89,
       "peak_price": 5.929,
@@ -1119,7 +1096,7 @@
       ],
       "entry_time": 1794945599999,
       "entry_bar_open_time": 1794931200000,
-      "last_target_check_ms": 1795185480000,
+      "last_target_check_ms": 1795185780000,
       "atr_at_entry": 8.278108816879454e-07,
       "trend_length": 89,
       "peak_price": 4.978e-05,
@@ -1148,7 +1125,7 @@
       ],
       "entry_time": 1795031999999,
       "entry_bar_open_time": 1795017600000,
-      "last_target_check_ms": 1795185480000,
+      "last_target_check_ms": 1795185780000,
       "atr_at_entry": 4.342663187262876,
       "trend_length": 89,
       "peak_price": 256.25,
@@ -1172,34 +1149,10 @@
       ],
       "entry_time": 1795060799999,
       "entry_bar_open_time": 1795046400000,
-      "last_target_check_ms": 1795185480000,
+      "last_target_check_ms": 1795185780000,
       "atr_at_entry": 0.0009648984221552828,
       "trend_length": 89,
       "peak_price": 0.0329,
-      "halal_verdict": "ℹ️ لا يوجد حكم",
-      "silent": true
-    },
-    "STXBUSDT": {
-      "trade_id": "STXBUSDT-1795060800000",
-      "symbol": "STXBUSDT",
-      "entry_price": 532.82,
-      "stop_price": 485.0164150282816,
-      "targets": [
-        609.424441712525,
-        686.0288834250499,
-        762.6333251375748
-      ],
-      "hit": [
-        false,
-        false,
-        false
-      ],
-      "entry_time": 1795075199999,
-      "entry_bar_open_time": 1795060800000,
-      "last_target_check_ms": 1795185480000,
-      "atr_at_entry": 15.320888342504986,
-      "trend_length": 89,
-      "peak_price": 567.69,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     },
@@ -1220,7 +1173,7 @@
       ],
       "entry_time": 1795089599999,
       "entry_bar_open_time": 1795075200000,
-      "last_target_check_ms": 1795185480000,
+      "last_target_check_ms": 1795185780000,
       "atr_at_entry": 0.0016138451669218,
       "trend_length": 89,
       "peak_price": 0.048,
@@ -1244,34 +1197,10 @@
       ],
       "entry_time": 1795089599999,
       "entry_bar_open_time": 1795075200000,
-      "last_target_check_ms": 1795185480000,
+      "last_target_check_ms": 1795185780000,
       "atr_at_entry": 0.0064771985260433755,
       "trend_length": 89,
       "peak_price": 0.3035,
-      "halal_verdict": "ℹ️ لا يوجد حكم",
-      "silent": true
-    },
-    "WDCBUSDT": {
-      "trade_id": "WDCBUSDT-1795075200000",
-      "symbol": "WDCBUSDT",
-      "entry_price": 304.71,
-      "stop_price": 275.9574457646269,
-      "targets": [
-        342.68344533416854,
-        380.6568906683371,
-        418.63033600250566
-      ],
-      "hit": [
-        false,
-        false,
-        false
-      ],
-      "entry_time": 1795089599999,
-      "entry_bar_open_time": 1795075200000,
-      "last_target_check_ms": 1795185480000,
-      "atr_at_entry": 7.594689066833711,
-      "trend_length": 89,
-      "peak_price": 316.0,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     },
@@ -1292,7 +1221,7 @@
       ],
       "entry_time": 1795103999999,
       "entry_bar_open_time": 1795089600000,
-      "last_target_check_ms": 1795185480000,
+      "last_target_check_ms": 1795185780000,
       "atr_at_entry": 0.00450646762403433,
       "trend_length": 89,
       "peak_price": 0.1697,
@@ -1316,7 +1245,7 @@
       ],
       "entry_time": 1795103999999,
       "entry_bar_open_time": 1795089600000,
-      "last_target_check_ms": 1795185480000,
+      "last_target_check_ms": 1795185780000,
       "atr_at_entry": 0.0021906893278277966,
       "trend_length": 89,
       "peak_price": 0.0659,
@@ -1340,7 +1269,7 @@
       ],
       "entry_time": 1795175999999,
       "entry_bar_open_time": 1795161600000,
-      "last_target_check_ms": 1795185480000,
+      "last_target_check_ms": 1795185780000,
       "atr_at_entry": 0.001048338935762333,
       "trend_length": 89,
       "peak_price": 0.0638,
@@ -9688,6 +9617,21 @@
       "type": "target",
       "symbol": "KERNELUSDT",
       "time_ms": 1795177019999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "SCRUSDT",
+      "time_ms": 1795185659999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "STXBUSDT",
+      "time_ms": 1795185659999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "WDCBUSDT",
+      "time_ms": 1795185659999
     }
   ],
   "daily_report": {
@@ -9811,7 +9755,7 @@
     "KERNELUSDT": 1793652479999,
     "CHIPUSDT": 1793652359999,
     "EULUSDT": 1793652239999,
-    "SCRUSDT": 1793652479999,
+    "SCRUSDT": 1795531259999,
     "BOMEUSDT": 1793652479999,
     "BEBUSDT": 1794927839999,
     "SMCIBUSDT": 1793659319999,
@@ -9884,6 +9828,8 @@
     "USUALUSDT": 1795110659999,
     "COHRBUSDT": 1795185059999,
     "ZKPUSDT": 1795386659999,
-    "ZKCUSDT": 1795496219999
+    "ZKCUSDT": 1795496219999,
+    "STXBUSDT": 1795531259999,
+    "WDCBUSDT": 1795531259999
   }
 }
