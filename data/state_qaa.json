@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1794960000000,
+  "last_processed_open_time": 1795046400000,
   "last_entry_bar_time": {
     "GTCUSDT": 1793404800000,
     "HUMAUSDT": 1793059200000,
@@ -87,7 +87,7 @@
     "NMRUSDT": 1793404800000,
     "RLCUSDT": 1793404800000,
     "WBTCUSDT": 1793404800000,
-    "BMTUSDT": 1794700800000,
+    "BMTUSDT": 1795046400000,
     "ARUSDT": 1793923200000,
     "DASHUSDT": 1793923200000,
     "PARTIUSDT": 1793923200000,
@@ -200,7 +200,7 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1795130220000,
+      "last_check_ms": 1795147380000,
       "peak_price": 0.14734,
       "last_stop_alert_price": 0.13515,
       "stop_updates_count": 0,
@@ -218,11 +218,29 @@
       "size_suggest_pct": 0.11169914263445044,
       "entry_time": 1794787199999,
       "entry_bar_open_time": 1794700800000,
-      "last_check_ms": 1795130220000,
+      "last_check_ms": 1795147380000,
       "peak_price": 1.4718,
       "last_stop_alert_price": 1.3438440000000003,
       "stop_updates_count": 2,
       "halal_verdict": "⛔ غير مباح",
+      "silent": true
+    },
+    "BMTUSDT": {
+      "trade_id": "BMTUSDT-1795046400000",
+      "symbol": "BMTUSDT",
+      "entry_price": 0.0201,
+      "stop_price": 0.01856,
+      "pivot_stop": 0.01856,
+      "target_price": 0.02318,
+      "stop_dist_pct": 7.661691542288556,
+      "size_suggest_pct": 0.13051948051948054,
+      "entry_time": 1795132799999,
+      "entry_bar_open_time": 1795046400000,
+      "last_check_ms": 1795132859999,
+      "peak_price": 0.0236,
+      "last_stop_alert_price": 0.01856,
+      "stop_updates_count": 0,
+      "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     }
   },
@@ -4376,6 +4394,11 @@
       "type": "exit_loss",
       "symbol": "QNTUSDT",
       "time_ms": 1795020359999
+    },
+    {
+      "type": "entry",
+      "symbol": "BMTUSDT",
+      "time_ms": 1795132799999
     }
   ],
   "daily_report": {
