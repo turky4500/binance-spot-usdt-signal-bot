@@ -5589,9 +5589,7 @@
     "ASTSBUSDT": [],
     "ATMUSDT": [],
     "ATOMUSDT": [],
-    "ATUSDT": [
-      1795258800000
-    ],
+    "ATUSDT": [],
     "AUCTIONUSDT": [],
     "AUDIOUSDT": [],
     "AUSDT": [],
@@ -5622,9 +5620,7 @@
     "BICOUSDT": [],
     "BIGTIMEUSDT": [],
     "BIOUSDT": [],
-    "BLURUSDT": [
-      1795258800000
-    ],
+    "BLURUSDT": [],
     "BMNRBUSDT": [],
     "BMTUSDT": [],
     "BNBUSDT": [],
@@ -5819,9 +5815,7 @@
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
-    "MMTUSDT": [
-      1795258800000
-    ],
+    "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
     "MOVRUSDT": [],
@@ -6405,7 +6399,7 @@
     "QTUMUSDT": [],
     "RADUSDT": [],
     "RAREUSDT": [
-      1795258800000
+      1795262400000
     ],
     "RAYUSDT": [],
     "RDDTBUSDT": [],
@@ -6430,11 +6424,11 @@
     "SAHARAUSDT": [],
     "SANDUSDT": [],
     "SANTOSUSDT": [],
-    "SAPIENUSDT": [
-      1795258800000
-    ],
+    "SAPIENUSDT": [],
     "SCRUSDT": [],
-    "SCUSDT": [],
+    "SCUSDT": [
+      1795262400000
+    ],
     "SECZBUSDT": [],
     "SEIUSDT": [],
     "SENTUSDT": [],
@@ -6499,9 +6493,7 @@
     "TURTLEUSDT": [],
     "TUSDT": [],
     "TUTUSDT": [],
-    "TWTUSDT": [
-      1795258800000
-    ],
+    "TWTUSDT": [],
     "UMAUSDT": [],
     "UNIUSDT": [],
     "USARBUSDT": [],
@@ -6509,9 +6501,7 @@
     "USTCUSDT": [],
     "USUALUSDT": [],
     "UVXYBUSDT": [],
-    "VANAUSDT": [
-      1795258800000
-    ],
+    "VANAUSDT": [],
     "VETUSDT": [],
     "VIRTUALUSDT": [],
     "VTHOUSDT": [],
@@ -12336,9 +12326,9 @@
     "buy:BLURUSDT:1795258800000:3",
     "exit:VANAUSDT:1795258800000"
   ],
-  "cycles": 736,
+  "cycles": 737,
   "messages_sent": 2519,
-  "last_cycle_ms": 1795268014272,
+  "last_cycle_ms": 1795269808002,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
