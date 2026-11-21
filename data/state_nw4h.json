@@ -3946,9 +3946,7 @@
     "AAVEUSDT": [],
     "ACEUSDT": [],
     "ACHUSDT": [],
-    "ACMUSDT": [
-      1795248000000
-    ],
+    "ACMUSDT": [],
     "ACTUSDT": [],
     "ADAUSDT": [],
     "ADXUSDT": [],
@@ -4151,9 +4149,7 @@
     "IRENBUSDT": [],
     "JASMYUSDT": [],
     "JOEUSDT": [],
-    "JSTUSDT": [
-      1795248000000
-    ],
+    "JSTUSDT": [],
     "JTOUSDT": [],
     "JUPUSDT": [],
     "JUVUSDT": [],
@@ -4182,9 +4178,7 @@
     "LTCUSDT": [],
     "LUMIAUSDT": [],
     "LUNAUSDT": [],
-    "LUNCUSDT": [
-      1795248000000
-    ],
+    "LUNCUSDT": [],
     "MAGICUSDT": [],
     "MANAUSDT": [],
     "MANTAUSDT": [],
@@ -4201,7 +4195,9 @@
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
-    "MMTUSDT": [],
+    "MMTUSDT": [
+      1795262400000
+    ],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
     "MOVRUSDT": [],
@@ -4342,9 +4338,7 @@
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
-    "TKOUSDT": [
-      1795248000000
-    ],
+    "TKOUSDT": [],
     "TLMUSDT": [],
     "TNSRUSDT": [],
     "TOWNSUSDT": [],
@@ -4742,9 +4736,7 @@
     "QQQBUSDT": [],
     "QTUMUSDT": [],
     "RADUSDT": [],
-    "RAREUSDT": [
-      1795248000000
-    ],
+    "RAREUSDT": [],
     "RAYUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
@@ -4766,9 +4758,7 @@
     "SAHARAUSDT": [],
     "SANDUSDT": [],
     "SANTOSUSDT": [],
-    "SAPIENUSDT": [
-      1795248000000
-    ],
+    "SAPIENUSDT": [],
     "SCRUSDT": [],
     "SCUSDT": [],
     "SEIUSDT": [],
@@ -4836,7 +4826,9 @@
     "UNIUSDT": [],
     "USARBUSDT": [],
     "USTCUSDT": [],
-    "USUALUSDT": [],
+    "USUALUSDT": [
+      1795262400000
+    ],
     "VANAUSDT": [],
     "VETUSDT": [],
     "VIRTUALUSDT": [],
@@ -6255,7 +6247,9 @@
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
-    "MMTUSDT": [],
+    "MMTUSDT": [
+      1795262400000
+    ],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
     "MOVRUSDT": [],
@@ -6946,9 +6940,9 @@
     "exit:SAPIENUSDT:1795248000000",
     "buy:TKOUSDT:1795248000000:2"
   ],
-  "cycles": 98,
+  "cycles": 99,
   "messages_sent": 341,
-  "last_cycle_ms": 1795286728264,
+  "last_cycle_ms": 1795291402914,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-20",
     "reported_trade_keys": [
