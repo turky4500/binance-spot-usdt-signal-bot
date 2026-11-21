@@ -14,11 +14,14 @@ from typing import Any, Callable
 from zoneinfo import ZoneInfo
 
 from . import lh1m_messages as messages
-from .lh1m_indicator import MINUTE_MS, confirmed_labels, normalize_klines
+from .lh1m_indicator import (LEFT_BARS, RIGHT_BARS, MIN_CLOSED_BARS, MINUTE_MS,
+                             confirmed_labels, normalize_klines)
 from .lh1m_telegram import SignalDeadlineExpired
 
 LOG = logging.getLogger(__name__)
 RIYADH = ZoneInfo("Asia/Riyadh")
+CURRENT_SETTINGS = {"left": LEFT_BARS, "right": RIGHT_BARS}
+LEGACY_SETTINGS = {"left": 30, "right": 30}
 
 
 class DurableStoreError(RuntimeError):
@@ -36,6 +39,9 @@ def day_of(ms: int) -> str:
 def empty_state(start_ms: int) -> dict:
     return {"schema": 1, "system": "lh-1m", "started_at_ms": start_ms,
             "last_heartbeat_ms": start_ms, "first_day": day_of(start_ms),
+            "indicator_settings": dict(CURRENT_SETTINGS),
+            # A fresh system keeps the documented one-minute initial grace.
+            "indicator_since_ms": start_ms - MINUTE_MS,
             "cursors": {}, "positions": {}, "events": {}, "daily": {}, "reports": {},
             "coverage_misses": {}}
 
@@ -77,7 +83,7 @@ class Lh1mBot:
         for key in ("cursors", "positions", "events", "daily", "reports", "coverage_misses"):
             if not isinstance(self.state.get(key), dict):
                 raise ValueError(f"invalid state: {key}")
-        changed = False
+        changed = self._migrate_settings()
         for e in self.state["events"].values():
             if e.get("status") == "sending":
                 e["status"] = "uncertain"
@@ -85,6 +91,44 @@ class Lh1mBot:
                 LOG.error("Ambiguous prior Telegram send %s; manual resolution required", e.get("id"))
         if changed:
             self._save()
+
+    def _migrate_settings(self) -> bool:
+        """Switch 30/30 to 90/90 once, preserving open virtual positions.
+
+        A legacy state has no settings field. Pending 30/30 signals are never
+        relabelled as 90/90. Uncertain sends are retained for manual review.
+        New 90/90 labels must confirm after the migration, not in the past.
+        """
+        old = self.state.get("indicator_settings", LEGACY_SETTINGS)
+        if old == CURRENT_SETTINGS:
+            if not isinstance(self.state.get("indicator_since_ms"), int):
+                raise ValueError("missing 90/90 activation time")
+            return False
+        if old != LEGACY_SETTINGS:
+            raise ValueError("unknown prior indicator settings; refusing automatic migration")
+        activation_ms = self.clock()
+        for pos in self.state["positions"].values():
+            if not isinstance(pos, dict):
+                raise ValueError("invalid legacy position")
+            pos.setdefault("entry_settings", dict(LEGACY_SETTINGS))
+            # A missed H under 30/30 must not suppress a new warning under 90/90.
+            pos.pop("missed_exit_notified", None)
+        for event in self.state["events"].values():
+            if (event.get("status") == "pending" and
+                    event.get("type") in ("signal", "missed_exit")):
+                event["status"] = "superseded_settings_change"
+                event.pop("message", None)
+                event.pop("effect", None)
+        today = day_of(activation_ms)
+        if self.state["positions"] or today in self.state["daily"]:
+            _daily(self.state, today)["mixed_settings"] = True
+        self.state["indicator_settings"] = dict(CURRENT_SETTINGS)
+        self.state["indicator_since_ms"] = activation_ms
+        self.state["cursors"] = {}  # do not mix confirmation cursors across configurations
+        eid = f"settings:{LEFT_BARS}:{RIGHT_BARS}"
+        self.state["events"][eid] = {"id": eid, "type": "settings_notice",
+                                     "status": "pending", "created_ms": activation_ms}
+        return True
 
     def _save(self) -> None:
         try:
@@ -164,11 +208,13 @@ class Lh1mBot:
             return False
         entry_id = pos.get("entry_id")
         if any(e.get("type") == "missed_exit" and e.get("entry_id") == entry_id
+               and e.get("indicator_settings", LEGACY_SETTINGS) == CURRENT_SETTINGS
                for e in self.state["events"].values()):
             return False
-        eid = f"missed-H:{sym}:{confirmation_ms}:{entry_id}"
+        eid = f"missed-H:{LEFT_BARS}x{RIGHT_BARS}:{sym}:{confirmation_ms}:{entry_id}"
         self.state["events"][eid] = {"id": eid, "type": "missed_exit", "symbol": sym,
                                      "entry_id": entry_id, "confirmation_time_ms": confirmation_ms,
+                                     "indicator_settings": dict(CURRENT_SETTINGS),
                                      "status": "pending", "created_ms": current_ms}
         return True
 
@@ -208,8 +254,8 @@ class Lh1mBot:
                 continue
             try:
                 bars = normalize_klines(raw, server_ms)
-                if len(bars) < 62:
-                    raise ValueError("not enough closed 1m candles")
+                if len(bars) < MIN_CLOSED_BARS:
+                    raise ValueError("not enough closed 1m candles for 90/90")
                 if server_ms - (bars[-1].open_ms + MINUTE_MS) > self.max_age_ms:
                     raise ValueError("latest 1m candle is stale")
                 last = int(self.state["cursors"].get(sym, -1))
@@ -222,20 +268,22 @@ class Lh1mBot:
                     # a warning only, never a backdated or simulated sell.
                     earliest = min(earliest, server_ms - 35 * MINUTE_MS)
                 after = max(last, earliest - 1)
-                labels = confirmed_labels(bars, left=30, right=30, after_open_ms=after)
+                labels = confirmed_labels(bars, left=LEFT_BARS, right=RIGHT_BARS,
+                                          after_open_ms=after)
                 for label in labels:
-                    if label.confirmation_time_ms < self.state["started_at_ms"] - MINUTE_MS:
+                    if label.confirmation_time_ms < self.state["indicator_since_ms"]:
                         continue
                     if server_ms - label.confirmation_time_ms > self.max_age_ms:
                         if label.kind == "H" and self._add_missed_exit(sym, label.confirmation_time_ms, server_ms):
                             missed += 1
                             changed = True
                         continue
-                    eid = f"{sym}:{label.kind}:{label.confirmation_open_ms}"
+                    eid = f"{sym}:{label.kind}:{label.confirmation_open_ms}:{LEFT_BARS}x{RIGHT_BARS}"
                     if eid in existing:
                         continue
                     existing[eid] = {
                         "id": eid, "type": "signal", "symbol": sym, "kind": label.kind,
+                        "indicator_settings": dict(CURRENT_SETTINGS),
                         "pivot_open_ms": label.pivot_open_ms,
                         "confirmation_open_ms": label.confirmation_open_ms,
                         "confirmation_time_ms": label.confirmation_time_ms,
@@ -258,6 +306,8 @@ class Lh1mBot:
         return {"new_labels": signals, "invalid": invalid, "missed_exit_warnings": missed}
 
     def _plan(self, e: dict, snapshot: Any, when_ms: int) -> tuple[str, dict] | None:
+        if e["type"] == "settings_notice":
+            return messages.settings_changed(sorted(self.state["positions"])), {"action": "notice"}
         if e["type"] == "gap_notice":
             return messages.gap_notice(int(e["last_ms"]), when_ms), {"action": "notice"}
         if e["type"] == "blocked_notice":
@@ -291,6 +341,9 @@ class Lh1mBot:
             return text, {"action": "report", "day": day}
 
         sym, kind = e["symbol"], e["kind"]
+        if e.get("indicator_settings", LEGACY_SETTINGS) != CURRENT_SETTINGS:
+            e["status"] = "superseded_settings_change"
+            return None
         if when_ms - int(e["confirmation_time_ms"]) > self.max_age_ms:
             e["status"] = "expired"
             if kind == "H":
@@ -323,6 +376,7 @@ class Lh1mBot:
         new_pos = dict(pos) if isinstance(pos, dict) else {
             "entry_id": e["id"], "entry_price": float(e["confirmation_close"]),
             "entry_time_ms": int(e["confirmation_time_ms"]),
+            "entry_settings": dict(CURRENT_SETTINGS),
         }
         new_pos["entry_count"] = count
         return text, {"action": "entry" if count == 1 else "repeat",
@@ -345,14 +399,22 @@ class Lh1mBot:
         daily = _daily(self.state, day_of(sent_ms))
         sym = effect["symbol"]
         if action in ("entry", "repeat"):
-            self.state["positions"][sym] = effect["position_after"]
+            position = dict(effect["position_after"])
+            # A manually resolved old send can still create an old-settings
+            # position after migration; preserve its true entry provenance.
+            position.setdefault("entry_settings", dict(e.get("indicator_settings", LEGACY_SETTINGS)))
+            self.state["positions"][sym] = position
             daily["entries"] += 1
+            if position["entry_settings"] != CURRENT_SETTINGS:
+                daily["mixed_settings"] = True
         elif action == "unmatched_exit":
             daily["unmatched_exits"] = int(daily.get("unmatched_exits", 0)) + 1
         elif action == "exit":
             pos = self.state["positions"].get(sym)
             if not isinstance(pos, dict) or pos.get("entry_id") != effect["entry_id"]:
                 raise ValueError("exit no longer matches the original position")
+            if pos.get("entry_settings", LEGACY_SETTINGS) != e.get("indicator_settings", LEGACY_SETTINGS):
+                daily["mixed_settings"] = True
             del self.state["positions"][sym]
             self.state["coverage_misses"].pop(sym, None)
             net = float(effect["net_pct"])
@@ -466,9 +528,16 @@ class Lh1mBot:
             e["status"], e["sent_ms"] = "sent", int(e["attempted_ms"])
             e["manually_resolved"] = "sent"
         else:
-            e["status"], e["manually_resolved"] = "pending", "not_sent"
-            if e["type"] == "report":
-                self.state["reports"][e["day"]] = "queued"
+            e["manually_resolved"] = "not_sent"
+            if (e.get("type") in ("signal", "missed_exit") and
+                    e.get("indicator_settings", LEGACY_SETTINGS) != CURRENT_SETTINGS):
+                e["status"] = "superseded_settings_change"
+                e.pop("message", None)
+                e.pop("effect", None)
+            else:
+                e["status"] = "pending"
+                if e["type"] == "report":
+                    self.state["reports"][e["day"]] = "queued"
         self._save()
 
     def _prune(self, current_ms: int) -> None:
@@ -509,7 +578,8 @@ class Lh1mBot:
         if not second["uncertain"] and server_ms - int(self.state.get("last_heartbeat_ms") or 0) >= 5 * MINUTE_MS:
             self.state["last_heartbeat_ms"] = server_ms
             self._save()
-        return {"active_spot_usdt": len(active), "eligible_halal": len(allowed),
+        return {"indicator_settings": dict(CURRENT_SETTINGS),
+                "active_spot_usdt": len(active), "eligible_halal": len(allowed),
                 "rulings_fresh": _healthy(snapshot, server_ms, self.max_halal_age_ms),
                 "positions": len(self.state["positions"]), **scan,
                 "sent": first["sent"] + second["sent"],

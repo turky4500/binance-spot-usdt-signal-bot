@@ -76,7 +76,9 @@ class SpotMarket:
         return list(self.symbols)
 
     def _candles(self, symbol: str) -> list:
-        data = self._get("/api/v3/klines", {"symbol": symbol, "interval": "1m", "limit": 100})
+        # 90/90 needs at least 182 closed candles. 250 retains the existing
+        # ~35-minute missed-exit warning lookback as well as an open candle.
+        data = self._get("/api/v3/klines", {"symbol": symbol, "interval": "1m", "limit": 250})
         if not isinstance(data, list):
             raise RuntimeError("unexpected klines response")
         return data

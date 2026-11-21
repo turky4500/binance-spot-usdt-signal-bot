@@ -13,7 +13,7 @@ from pathlib import Path
 
 from src.lh1m_bot import DurableStoreError, Lh1mBot
 from src.lh1m_github import GitHubFiles, GitHubStateStore, parse_snapshot, HalalProvider
-from src.lh1m_indicator import confirmed_labels, normalize_klines
+from src.lh1m_indicator import LEFT_BARS, RIGHT_BARS, confirmed_labels, normalize_klines
 from src.lh1m_market import SpotMarket
 from src.lh1m_telegram import SignalTelegramClient
 from src.telegram_client import install_redaction, is_muted
@@ -116,6 +116,7 @@ def main() -> int:
             bars = normalize_klines(raw, t)
             found = confirmed_labels(bars)
             print(json.dumps({"pair": symbol, "closed_1m_candles": len(bars),
+                              "indicator_settings": {"left": LEFT_BARS, "right": RIGHT_BARS},
                               "confirmed_labels_in_retrieved_window": len(found),
                               "latest": vars(found[-1]) if found else None,
                               "mode": "read-only inspection; no recommendation or message"},

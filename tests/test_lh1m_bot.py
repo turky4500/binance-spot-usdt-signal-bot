@@ -16,7 +16,7 @@ BASE = int(datetime(2026, 11, 5, 10, tzinfo=timezone.utc).timestamp() * 1000)
 
 
 class Clock:
-    def __init__(self, t=BASE + 62 * MINUTE_MS + 5000): self.t = t
+    def __init__(self, t=BASE + 182 * MINUTE_MS + 5000): self.t = t
     def __call__(self): return self.t
 
 
@@ -52,11 +52,11 @@ class Telegram:
 
 def candles():
     out = []
-    for i in range(63):
+    for i in range(183):
         high, low, close = 10.0, 8.0, 9.0
-        if i == 31: low = 1.0      # L confirmed at candle 61
-        if i == 32: high = 20.0    # H confirmed at candle 62
-        if i == 62: close = 9.9
+        if i == 91: low = 1.0      # L confirmed at candle 181
+        if i == 92: high = 20.0    # H confirmed at candle 182
+        if i == 182: close = 9.9
         t = BASE + i * MINUTE_MS
         out.append([t, str(close), str(high), str(low), str(close), '1',
                     t + MINUTE_MS - 1, '1', 1, '0', '0', '0'])
@@ -92,7 +92,8 @@ def test_fresh_spot_halal_L_entry_then_H_exit_with_reference_prices_and_no_dupli
     assert len(tg.texts) == 1 and '📥 توصية دخول — AAAUSDT' in tg.texts[0]
     assert 'إغلاق شمعة التأكيد: 9.00' in tg.texts[0]
     pos = bot.state['positions']['AAAUSDT']
-    assert pos['entry_price'] == 9 and pos['entry_time_ms'] == BASE + 62 * MINUTE_MS
+    assert pos['entry_price'] == 9 and pos['entry_time_ms'] == BASE + 182 * MINUTE_MS
+    assert pos['entry_settings'] == {'left': 90, 'right': 90}
     bot.cycle()
     assert len(tg.texts) == 1
     clock.t += MINUTE_MS
@@ -112,7 +113,7 @@ def test_repeated_L_does_not_create_a_second_position():
     bot, _, tg, clock, _ = setup_bot()
     bot.cycle()
     original = copy.deepcopy(bot.state['positions']['AAAUSDT'])
-    e = {'id': 'AAAUSDT:L:later', 'type': 'signal', 'symbol': 'AAAUSDT', 'kind': 'L',
+    e = {'id': 'AAAUSDT:L:later', 'type': 'signal', 'indicator_settings': {'left': 90, 'right': 90}, 'symbol': 'AAAUSDT', 'kind': 'L',
          'confirmation_time_ms': clock(), 'confirmation_open_ms': clock() - MINUTE_MS,
          'confirmation_close': 9.7, 'confirmation_trades': 1, 'confirmation_volume': 1,
          'status': 'pending', 'created_ms': clock()}
@@ -155,7 +156,7 @@ def test_pending_signal_is_not_sent_if_pair_no_longer_active_on_spot():
     clock = Clock()
     market = Market(clock, symbols=[], frames={})
     bot, _, tg, _, _ = setup_bot(clock=clock, market=market)
-    e = {'id': 'AAAUSDT:L:pending', 'type': 'signal', 'symbol': 'AAAUSDT', 'kind': 'L',
+    e = {'id': 'AAAUSDT:L:pending', 'type': 'signal', 'indicator_settings': {'left': 90, 'right': 90}, 'symbol': 'AAAUSDT', 'kind': 'L',
          'confirmation_time_ms': clock(), 'confirmation_open_ms': clock() - MINUTE_MS,
          'confirmation_close': 9, 'confirmation_trades': 1, 'confirmation_volume': 1,
          'status': 'pending', 'created_ms': clock()}
@@ -167,7 +168,7 @@ def test_pending_signal_is_not_sent_if_pair_no_longer_active_on_spot():
 
 def test_H_without_recorded_entry_is_still_sent_without_inventing_a_trade():
     bot, _, tg, clock, _ = setup_bot()
-    e = {'id': 'AAAUSDT:H:only', 'type': 'signal', 'symbol': 'AAAUSDT', 'kind': 'H',
+    e = {'id': 'AAAUSDT:H:only', 'type': 'signal', 'indicator_settings': {'left': 90, 'right': 90}, 'symbol': 'AAAUSDT', 'kind': 'H',
          'confirmation_time_ms': clock(), 'confirmation_open_ms': clock() - MINUTE_MS,
          'confirmation_close': 9, 'confirmation_trades': 1, 'confirmation_volume': 1,
          'status': 'pending', 'created_ms': clock()}
@@ -183,7 +184,7 @@ def test_H_without_recorded_entry_is_still_sent_without_inventing_a_trade():
 def test_simultaneous_H_L_is_ordered_H_first_and_does_not_invent_previous_entry():
     bot, _, tg, clock, _ = setup_bot()
     for kind in ('L', 'H'):  # input order intentionally reversed
-        event = {'id': f'AAAUSDT:{kind}:same', 'type': 'signal', 'symbol': 'AAAUSDT',
+        event = {'id': f'AAAUSDT:{kind}:same', 'type': 'signal', 'indicator_settings': {'left': 90, 'right': 90}, 'symbol': 'AAAUSDT',
                  'kind': kind, 'confirmation_time_ms': clock(),
                  'confirmation_open_ms': clock() - MINUTE_MS, 'confirmation_close': 9,
                  'confirmation_trades': 1, 'confirmation_volume': 1,
@@ -285,7 +286,7 @@ def test_halal_snapshot_expiring_during_pacing_also_blocks_signal():
 def test_zero_volume_candle_warning_is_present():
     clock = Clock()
     data = candles()
-    data[61][5], data[61][8] = '0', 0
+    data[181][5], data[181][8] = '0', 0
     market = Market(clock, symbols=['AAAUSDT'], frames={'AAAUSDT': data})
     bot, _, tg, _, _ = setup_bot(clock=clock, market=market)
     bot.cycle()
@@ -303,7 +304,7 @@ def test_missed_exit_warns_without_creating_a_backdated_close():
     bot, _, tg, clock, market = setup_bot()
     bot.cycle()  # initial L
     clock.t += 5 * MINUTE_MS
-    market.frames['AAAUSDT'] = extend_candles(candles(), 69)
+    market.frames['AAAUSDT'] = extend_candles(candles(), 189)
     out = bot.cycle()
     assert out['missed_exit_warnings'] == 1
     assert any('إشارة H فائتة — AAAUSDT' in text for text in tg.texts)
@@ -319,7 +320,7 @@ def test_monitoring_gap_warns_without_claiming_all_exits_were_seen():
     bot, _, tg, clock, market = setup_bot()
     bot.cycle()
     clock.t += 10 * MINUTE_MS
-    market.frames['AAAUSDT'] = extend_candles(candles(), 74)
+    market.frames['AAAUSDT'] = extend_candles(candles(), 194)
     bot.cycle()
     assert any('فجوة في متابعة نظام L/H' in text for text in tg.texts)
     assert bot.state['last_heartbeat_ms'] == clock()
@@ -357,9 +358,110 @@ def test_open_position_missing_two_market_cycles_produces_one_safety_warning():
     assert sum('تعذرت متابعة الزوج المفتوح' in t for t in tg.texts) == 1
     clock.t += MINUTE_MS; bot.cycle()
     assert sum('تعذرت متابعة الزوج المفتوح' in t for t in tg.texts) == 1
-    market.frames['AAAUSDT'] = extend_candles(candles(), 72)
+    market.frames['AAAUSDT'] = extend_candles(candles(), 192)
     clock.t += MINUTE_MS; bot.cycle()
     market.frames.pop('AAAUSDT')
     clock.t += MINUTE_MS; bot.cycle()
     clock.t += MINUTE_MS; bot.cycle()
     assert sum('تعذرت متابعة الزوج المفتوح' in t for t in tg.texts) == 2
+
+
+def legacy_state(clock):
+    """Real pre-change schema: no indicator_settings field, all entries were 30/30."""
+    st = empty_state(clock() - 600_000)
+    st.pop('indicator_settings'); st.pop('indicator_since_ms')
+    st['last_heartbeat_ms'] = clock() - MINUTE_MS
+    st['positions']['AAAUSDT'] = {'entry_id': 'legacy-entry', 'entry_price': 8,
+                                  'entry_time_ms': BASE + 120 * MINUTE_MS,
+                                  'entry_count': 1, 'missed_exit_notified': True}
+    st['cursors']['AAAUSDT'] = BASE + 180 * MINUTE_MS
+    st['daily'][day_of(clock())] = {'entries': 1, 'closed': 0, 'wins': 0, 'losses': 0,
+                                    'breakeven': 0, 'net_sum': 0.0}
+    st['events']['old-signal'] = {'id': 'old-signal', 'type': 'signal', 'status': 'pending',
+                                  'symbol': 'AAAUSDT', 'kind': 'H',
+                                  'confirmation_time_ms': clock() - 15_000, 'created_ms': clock() - 10_000}
+    st['events']['old-warning'] = {'id': 'old-warning', 'type': 'missed_exit', 'status': 'pending',
+                                   'entry_id': 'legacy-entry', 'symbol': 'AAAUSDT',
+                                   'confirmation_time_ms': clock() - 120_000, 'created_ms': clock() - 100_000}
+    return st
+
+
+def test_migration_preserves_open_positions_discards_pending_30_signals_and_does_not_backfill():
+    clock = Clock()
+    legacy = legacy_state(clock)
+    store, tg = Store(legacy), Telegram()
+    bot, _, _, _, _ = setup_bot(clock=clock, store=store, telegram=tg)
+    assert bot.state['indicator_settings'] == {'left': 90, 'right': 90}
+    assert bot.state['indicator_since_ms'] == clock()
+    pos = bot.state['positions']['AAAUSDT']
+    assert (pos['entry_id'], pos['entry_price'], pos['entry_time_ms']) == (
+        'legacy-entry', 8, BASE + 120 * MINUTE_MS)
+    assert pos['entry_settings'] == {'left': 30, 'right': 30}
+    assert 'missed_exit_notified' not in pos
+    assert bot.state['cursors'] == {}
+    assert bot.state['events']['old-signal']['status'] == 'superseded_settings_change'
+    assert bot.state['events']['old-warning']['status'] == 'superseded_settings_change'
+    assert bot.state['daily'][day_of(clock())]['mixed_settings'] is True
+    bot.cycle()
+    assert len(tg.texts) == 1 and 'Left Bars = 90' in tg.texts[0] and 'AAAUSDT' in tg.texts[0]
+    assert not any(e.get('type') == 'signal' and e.get('status') == 'sent'
+                   for e in bot.state['events'].values())  # 90/90 confirmation before migration skipped
+    assert 'AAAUSDT' in bot.state['positions']
+    restarted = Lh1mBot(bot.market, tg, store, bot.provider, clock=clock)
+    assert restarted.state['indicator_since_ms'] == clock()
+    restarted.cycle()
+    assert len(tg.texts) == 1  # settings notice is not repeated
+    clock.t += MINUTE_MS
+    restarted.cycle()  # first H confirmed after activation: closes preserved legacy position
+    assert 'AAAUSDT' not in restarted.state['positions']
+    assert any('الدخول مسجّل بإعداد 30/30 والخروج بإعداد 90/90' in x for x in tg.texts)
+    assert restarted.state['daily'][day_of(clock())]['mixed_settings'] is True
+
+
+def test_uncertain_legacy_signal_is_preserved_for_review_then_not_resent_after_settings_change():
+    clock = Clock()
+    st = legacy_state(clock)
+    st['events']['old-signal'].update({
+        'status': 'sending', 'attempted_ms': clock(), 'message': 'old signal',
+        'effect': {'action': 'exit', 'symbol': 'AAAUSDT', 'entry_id': 'legacy-entry',
+                   'gross_pct': 0, 'net_pct': -.2}})
+    store, tg = Store(st), Telegram()
+    bot, _, _, _, _ = setup_bot(clock=clock, store=store, telegram=tg)
+    assert bot.state['events']['old-signal']['status'] == 'uncertain'
+    assert bot.cycle()['paused_uncertain'] and not tg.texts
+    bot.resolve('old-signal', was_sent=False)
+    assert bot.state['events']['old-signal']['status'] == 'superseded_settings_change'
+    bot.cycle()
+    assert len(tg.texts) == 1 and 'تحديث إعداد' in tg.texts[0]
+    assert 'AAAUSDT' in bot.state['positions']
+
+
+def test_manual_resolution_of_legacy_entry_preserves_its_30_30_provenance():
+    clock = Clock()
+    st = legacy_state(clock)
+    st['positions'] = {}
+    st['events']['old-signal'].update({
+        'status': 'uncertain', 'attempted_ms': clock(), 'kind': 'L',
+        'effect': {'action': 'entry', 'symbol': 'AAAUSDT',
+                   'position_after': {'entry_id': 'old-signal', 'entry_price': 9,
+                                      'entry_time_ms': clock(), 'entry_count': 1}}})
+    bot, _, _, _, _ = setup_bot(clock=clock, store=Store(st))
+    bot.resolve('old-signal', was_sent=True)
+    assert bot.state['positions']['AAAUSDT']['entry_settings'] == {'left': 30, 'right': 30}
+    assert bot.state['daily'][day_of(clock())]['mixed_settings'] is True
+
+
+def test_unknown_settings_refuse_automatic_migration():
+    clock = Clock(); st = empty_state(clock())
+    st['indicator_settings'] = {'left': 75, 'right': 75}
+    with pytest.raises(ValueError, match='unknown prior'):
+        setup_bot(clock=clock, store=Store(st))
+
+
+def test_less_than_182_closed_candles_never_evaluates_90_90():
+    clock = Clock()
+    data = candles()[:181]
+    market = Market(clock, symbols=['AAAUSDT'], frames={'AAAUSDT': data})
+    bot, _, tg, _, _ = setup_bot(clock=clock, market=market)
+    result = bot.cycle()
+    assert result['invalid'] == 1 and not tg.texts and not bot.state['positions']

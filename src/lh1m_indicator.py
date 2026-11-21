@@ -2,7 +2,7 @@
 # Trend Lines pivot-marker logic adapted from LonesomeTheBlue's Pine Script v4,
 # "Trend Lines" (© LonesomeTheBlue), supplied by the user. MPL-2.0:
 # https://mozilla.org/MPL/2.0/. This file implements only its H/L markers, not
-# trend-line breakouts or trading. The 30-right-bar offset is never lookahead.
+# trend-line breakouts or trading. The right-bar offset is never lookahead.
 """Confirmed 1m pivot labels from the supplied Trend Lines indicator.
 
 The Pine code uses highestbars/lowestbars, not trend-line breakouts. Following
@@ -18,6 +18,10 @@ from dataclasses import dataclass
 from typing import Any, Iterable
 
 MINUTE_MS = 60_000
+LEFT_BARS = 90
+RIGHT_BARS = 90
+# Pine's high[lb + rb + 1] additionally needs one bar before the window.
+MIN_CLOSED_BARS = LEFT_BARS + RIGHT_BARS + 2
 
 
 @dataclass(frozen=True)
@@ -71,7 +75,7 @@ def normalize_klines(raw: Iterable[Any], server_now_ms: int) -> list[Bar]:
     return bars
 
 
-def confirmed_labels(bars: list[Bar], left: int = 30, right: int = 30,
+def confirmed_labels(bars: list[Bar], left: int = LEFT_BARS, right: int = RIGHT_BARS,
                      after_open_ms: int = -1) -> list[Label]:
     """Return H/L only when their *confirmation candle* is closed.
 
