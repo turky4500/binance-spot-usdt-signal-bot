@@ -5571,15 +5571,15 @@
     "ADXUSDT": [],
     "AEROUSDT": [],
     "AEVOUSDT": [],
-    "AGLDUSDT": [],
+    "AGLDUSDT": [
+      1795276800000
+    ],
     "AGPUBUSDT": [],
     "AIGENSYNUSDT": [],
     "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
-    "ALGOUSDT": [
-      1795273200000
-    ],
+    "ALGOUSDT": [],
     "ALICEUSDT": [],
     "ALLOUSDT": [],
     "ALPINEUSDT": [],
@@ -5727,7 +5727,9 @@
     "FOGOUSDT": [],
     "FORMUSDT": [],
     "FRAXUSDT": [],
-    "FTTUSDT": [],
+    "FTTUSDT": [
+      1795276800000
+    ],
     "FUSDT": [],
     "FWDIBUSDT": [],
     "GALAUSDT": [],
@@ -5784,9 +5786,7 @@
     "JASMYUSDT": [],
     "JOEUSDT": [],
     "JPMBUSDT": [],
-    "JSTUSDT": [
-      1795273200000
-    ],
+    "JSTUSDT": [],
     "JTOUSDT": [],
     "JUPUSDT": [],
     "JUVUSDT": [],
@@ -5803,9 +5803,7 @@
     "KSMUSDT": [],
     "LAUSDT": [],
     "LAYERUSDT": [],
-    "LAZIOUSDT": [
-      1795273200000
-    ],
+    "LAZIOUSDT": [],
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
@@ -5824,9 +5822,7 @@
     "MANTAUSDT": [],
     "MANTRAUSDT": [],
     "MARSCOINUSDT": [],
-    "MASKUSDT": [
-      1795273200000
-    ],
+    "MASKUSDT": [],
     "MAVUSDT": [],
     "MBLUSDT": [],
     "MDBBUSDT": [],
@@ -5895,9 +5891,7 @@
     "PLUMEUSDT": [],
     "PNUTUSDT": [],
     "POLUSDT": [],
-    "POLYXUSDT": [
-      1795273200000
-    ],
+    "POLYXUSDT": [],
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
@@ -5942,9 +5936,7 @@
     "SANTOSUSDT": [],
     "SAPIENUSDT": [],
     "SCRUSDT": [],
-    "SCUSDT": [
-      1795273200000
-    ],
+    "SCUSDT": [],
     "SECZBUSDT": [],
     "SEIUSDT": [],
     "SENTUSDT": [],
@@ -5975,7 +5967,7 @@
     "SQQQBUSDT": [],
     "SSVUSDT": [],
     "STEEMUSDT": [
-      1795273200000
+      1795276800000
     ],
     "STOUSDT": [],
     "STRAXUSDT": [],
@@ -6011,7 +6003,9 @@
     "TURTLEUSDT": [],
     "TUSDT": [],
     "TUTUSDT": [],
-    "TWTUSDT": [],
+    "TWTUSDT": [
+      1795276800000
+    ],
     "UMAUSDT": [],
     "UNIUSDT": [],
     "USARBUSDT": [],
@@ -11845,9 +11839,9 @@
     "exit:LAZIOUSDT:1795273200000",
     "exit:MASKUSDT:1795273200000"
   ],
-  "cycles": 744,
+  "cycles": 745,
   "messages_sent": 2601,
-  "last_cycle_ms": 1795281860955,
+  "last_cycle_ms": 1795284209628,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
