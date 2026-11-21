@@ -339,14 +339,8 @@
       "last_entry_price": 0.000785
     },
     "COOKIEUSDT": {
-      "position": {
-        "entry_price": 0.00735,
-        "entry_time": 1795194000000,
-        "signal_bar_time": 1795190400000,
-        "signal_price": 0.00737,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795190400000,
       "last_entry_price": 0.00735
     },
@@ -4161,10 +4155,16 @@
       "last_entry_price": 0.318
     },
     "SAPIENUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1794704400000,
-      "last_entry_price": 0.03831
+      "position": {
+        "entry_price": 0.04159,
+        "entry_time": 1795298400000,
+        "signal_bar_time": 1795294800000,
+        "signal_price": 0.04098,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795294800000,
+      "last_entry_price": 0.04159
     },
     "SCRUSDT": {
       "position": {
@@ -5386,7 +5386,9 @@
     "SAHARAUSDT": [],
     "SANDUSDT": [],
     "SANTOSUSDT": [],
-    "SAPIENUSDT": [],
+    "SAPIENUSDT": [
+      1795294800000
+    ],
     "SCRUSDT": [],
     "SCUSDT": [],
     "SECZBUSDT": [],
@@ -5631,7 +5633,9 @@
     "COHRBUSDT": [],
     "COINBUSDT": [],
     "COMPUSDT": [],
-    "COOKIEUSDT": [],
+    "COOKIEUSDT": [
+      1795294800000
+    ],
     "COTIUSDT": [],
     "COWUSDT": [],
     "CRCLBUSDT": [],
@@ -8324,7 +8328,8 @@
       1794171600000,
       1794672000000,
       1794686400000,
-      1794704400000
+      1794704400000,
+      1795294800000
     ],
     "SCRUSDT": [
       1794171600000,
@@ -11395,8 +11400,6 @@
     ]
   },
   "sent": [
-    "buy:MIRAUSDT:1795204800000:3",
-    "buy:MOVRUSDT:1795204800000:5",
     "buy:MSTRBUSDT:1795204800000:10",
     "buy:MTLUSDT:1795204800000:6",
     "buy:NEIROUSDT:1795204800000:3",
@@ -11794,11 +11797,13 @@
     "exit:GASUSDT:1795280400000",
     "exit:NIGHTUSDT:1795280400000",
     "exit:QNTUSDT:1795280400000",
-    "exit:FLOWUSDT:1795287600000"
+    "exit:FLOWUSDT:1795287600000",
+    "exit:COOKIEUSDT:1795294800000",
+    "buy:SAPIENUSDT:1795294800000:1"
   ],
-  "cycles": 754,
-  "messages_sent": 2607,
-  "last_cycle_ms": 1795299509258,
+  "cycles": 755,
+  "messages_sent": 2609,
+  "last_cycle_ms": 1795302206618,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
