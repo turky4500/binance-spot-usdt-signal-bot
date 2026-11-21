@@ -104,11 +104,11 @@
         "entry_time": 1794700800000,
         "signal_bar_time": 1794686400000,
         "signal_price": 0.201,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1795219200000,
-      "last_entry_price": 0.197
+      "entry_count": 3,
+      "last_buy_bar": 1795248000000,
+      "last_entry_price": 0.201
     },
     "ACTUSDT": {
       "position": {
@@ -1803,10 +1803,16 @@
       "last_entry_price": 0.0
     },
     "JSTUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.14433,
+        "entry_time": 1795262400000,
+        "signal_bar_time": 1795248000000,
+        "signal_price": 0.13952,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795248000000,
+      "last_entry_price": 0.14433
     },
     "JTOUSDT": {
       "position": null,
@@ -2060,11 +2066,11 @@
         "entry_time": 1795204800000,
         "signal_bar_time": 1795190400000,
         "signal_price": 4.203e-05,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1795219200000,
-      "last_entry_price": 4.093e-05
+      "entry_count": 3,
+      "last_buy_bar": 1795248000000,
+      "last_entry_price": 4.064e-05
     },
     "MAGICUSDT": {
       "position": null,
@@ -2997,14 +3003,8 @@
       "last_entry_price": 0.318
     },
     "SAPIENUSDT": {
-      "position": {
-        "entry_price": 0.03833,
-        "entry_time": 1794700800000,
-        "signal_bar_time": 1794686400000,
-        "signal_price": 0.03771,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794686400000,
       "last_entry_price": 0.03833
     },
@@ -3404,11 +3404,11 @@
         "entry_time": 1795233600000,
         "signal_bar_time": 1795219200000,
         "signal_price": 0.0349,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1795219200000,
-      "last_entry_price": 0.0363
+      "entry_count": 2,
+      "last_buy_bar": 1795248000000,
+      "last_entry_price": 0.037
     },
     "TLMUSDT": {
       "position": null,
@@ -3946,7 +3946,9 @@
     "AAVEUSDT": [],
     "ACEUSDT": [],
     "ACHUSDT": [],
-    "ACMUSDT": [],
+    "ACMUSDT": [
+      1795248000000
+    ],
     "ACTUSDT": [],
     "ADAUSDT": [],
     "ADXUSDT": [],
@@ -3959,9 +3961,7 @@
     "ALABBUSDT": [],
     "ALGOUSDT": [],
     "ALICEUSDT": [],
-    "ALLOUSDT": [
-      1795233600000
-    ],
+    "ALLOUSDT": [],
     "ALPINEUSDT": [],
     "ALTUSDT": [],
     "AMATBUSDT": [],
@@ -4151,11 +4151,11 @@
     "IRENBUSDT": [],
     "JASMYUSDT": [],
     "JOEUSDT": [],
-    "JSTUSDT": [],
-    "JTOUSDT": [],
-    "JUPUSDT": [
-      1795233600000
+    "JSTUSDT": [
+      1795248000000
     ],
+    "JTOUSDT": [],
+    "JUPUSDT": [],
     "JUVUSDT": [],
     "KAIAUSDT": [],
     "KAITOUSDT": [],
@@ -4182,7 +4182,9 @@
     "LTCUSDT": [],
     "LUMIAUSDT": [],
     "LUNAUSDT": [],
-    "LUNCUSDT": [],
+    "LUNCUSDT": [
+      1795248000000
+    ],
     "MAGICUSDT": [],
     "MANAUSDT": [],
     "MANTAUSDT": [],
@@ -4218,9 +4220,7 @@
     "NEWTUSDT": [],
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [
-      1795233600000
-    ],
+    "NIGHTUSDT": [],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -4342,7 +4342,9 @@
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
-    "TKOUSDT": [],
+    "TKOUSDT": [
+      1795248000000
+    ],
     "TLMUSDT": [],
     "TNSRUSDT": [],
     "TOWNSUSDT": [],
@@ -4740,7 +4742,9 @@
     "QQQBUSDT": [],
     "QTUMUSDT": [],
     "RADUSDT": [],
-    "RAREUSDT": [],
+    "RAREUSDT": [
+      1795248000000
+    ],
     "RAYUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
@@ -4762,7 +4766,9 @@
     "SAHARAUSDT": [],
     "SANDUSDT": [],
     "SANTOSUSDT": [],
-    "SAPIENUSDT": [],
+    "SAPIENUSDT": [
+      1795248000000
+    ],
     "SCRUSDT": [],
     "SCUSDT": [],
     "SEIUSDT": [],
@@ -4857,9 +4863,7 @@
     "XTZUSDT": [],
     "XVGUSDT": [],
     "XVSUSDT": [],
-    "YBUSDT": [
-      1795233600000
-    ],
+    "YBUSDT": [],
     "YFIUSDT": [],
     "YGGUSDT": [],
     "ZAMAUSDT": [],
@@ -4904,7 +4908,8 @@
     "ACHUSDT": [],
     "ACMUSDT": [
       1794686400000,
-      1795219200000
+      1795219200000,
+      1795248000000
     ],
     "ACTUSDT": [
       1794240000000
@@ -5331,7 +5336,9 @@
     ],
     "JASMYUSDT": [],
     "JOEUSDT": [],
-    "JSTUSDT": [],
+    "JSTUSDT": [
+      1795248000000
+    ],
     "JTOUSDT": [],
     "JUPUSDT": [
       1795147200000,
@@ -5398,7 +5405,8 @@
     "LUNCUSDT": [
       1794686400000,
       1795190400000,
-      1795219200000
+      1795219200000,
+      1795248000000
     ],
     "MAGICUSDT": [],
     "MANAUSDT": [],
@@ -5727,7 +5735,8 @@
     "TIAUSDT": [],
     "TKOUSDT": [
       1794686400000,
-      1795219200000
+      1795219200000,
+      1795248000000
     ],
     "TLMUSDT": [],
     "TNSRUSDT": [],
@@ -6930,11 +6939,16 @@
     "buy:ZROUSDT:1795219200000:1",
     "buy:ALLOUSDT:1795233600000:3",
     "buy:JUPUSDT:1795233600000:3",
-    "buy:NIGHTUSDT:1795233600000:4"
+    "buy:NIGHTUSDT:1795233600000:4",
+    "buy:ACMUSDT:1795248000000:3",
+    "buy:JSTUSDT:1795248000000:1",
+    "buy:LUNCUSDT:1795248000000:3",
+    "exit:SAPIENUSDT:1795248000000",
+    "buy:TKOUSDT:1795248000000:2"
   ],
-  "cycles": 96,
-  "messages_sent": 336,
-  "last_cycle_ms": 1795262416993,
+  "cycles": 97,
+  "messages_sent": 341,
+  "last_cycle_ms": 1795277016524,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-20",
     "reported_trade_keys": [
