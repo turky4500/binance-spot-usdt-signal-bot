@@ -3147,14 +3147,8 @@
       "last_entry_price": 0.1904
     },
     "FTTUSDT": {
-      "position": {
-        "entry_price": 0.1721,
-        "entry_time": 1795143600000,
-        "signal_bar_time": 1795140000000,
-        "signal_price": 0.1668,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795186800000,
       "last_entry_price": 0.1653
     },
@@ -4388,11 +4382,11 @@
         "entry_time": 1794326400000,
         "signal_bar_time": 1794322800000,
         "signal_price": 58.85,
-        "entry_count": 2
+        "entry_count": 3
       },
-      "entry_count": 2,
-      "last_buy_bar": 1794330000000,
-      "last_entry_price": 58.8
+      "entry_count": 3,
+      "last_buy_bar": 1795219200000,
+      "last_entry_price": 53.37
     },
     "QCOMBUSDT": {
       "position": {
@@ -5892,7 +5886,9 @@
     "PSGUSDT": [],
     "PUMPUSDT": [],
     "PUNDIXUSDT": [],
-    "PYPLBUSDT": [],
+    "PYPLBUSDT": [
+      1795219200000
+    ],
     "PYTHUSDT": [],
     "QCOMBUSDT": [],
     "QIUSDT": [],
@@ -6001,7 +5997,9 @@
     "USTCUSDT": [],
     "USUALUSDT": [],
     "UVXYBUSDT": [],
-    "VANAUSDT": [],
+    "VANAUSDT": [
+      1795219200000
+    ],
     "VETUSDT": [],
     "VIRTUALUSDT": [],
     "VTHOUSDT": [],
@@ -6229,7 +6227,9 @@
     "FOGOUSDT": [],
     "FORMUSDT": [],
     "FRAXUSDT": [],
-    "FTTUSDT": [],
+    "FTTUSDT": [
+      1795219200000
+    ],
     "FUSDT": [],
     "FWDIBUSDT": [],
     "GALAUSDT": [],
@@ -6335,7 +6335,9 @@
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
-    "MMTUSDT": [],
+    "MMTUSDT": [
+      1795219200000
+    ],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
     "MOVRUSDT": [],
@@ -8488,7 +8490,8 @@
     ],
     "PYPLBUSDT": [
       1794322800000,
-      1794330000000
+      1794330000000,
+      1795219200000
     ],
     "PYTHUSDT": [
       1794171600000,
@@ -11320,7 +11323,8 @@
       1794664800000,
       1794679200000,
       1794686400000,
-      1795186800000
+      1795186800000,
+      1795219200000
     ],
     "VETUSDT": [
       1794686400000
@@ -11536,8 +11540,6 @@
     ]
   },
   "sent": [
-    "buy:BANDUSDT:1795186800000:4",
-    "buy:BATUSDT:1795186800000:4",
     "buy:BBUSDT:1795186800000:1",
     "buy:BEBUSDT:1795186800000:1",
     "buy:BELUSDT:1795186800000:4",
@@ -11935,11 +11937,13 @@
     "exit:MMTUSDT:1795212000000",
     "buy:RIFUSDT:1795212000000:1",
     "exit:SUSHIUSDT:1795212000000",
-    "exit:USTCUSDT:1795212000000"
+    "exit:USTCUSDT:1795212000000",
+    "exit:FTTUSDT:1795219200000",
+    "buy:PYPLBUSDT:1795219200000:3"
   ],
-  "cycles": 712,
-  "messages_sent": 2266,
-  "last_cycle_ms": 1795224416268,
+  "cycles": 713,
+  "messages_sent": 2268,
+  "last_cycle_ms": 1795226602976,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
