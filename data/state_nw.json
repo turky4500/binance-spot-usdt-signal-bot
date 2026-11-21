@@ -435,14 +435,8 @@
       "last_entry_price": 0.0692
     },
     "CTSIUSDT": {
-      "position": {
-        "entry_price": 0.02299,
-        "entry_time": 1794668400000,
-        "signal_bar_time": 1794664800000,
-        "signal_price": 0.02288,
-        "entry_count": 5
-      },
-      "entry_count": 5,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795204800000,
       "last_entry_price": 0.02005
     },
@@ -5575,9 +5569,7 @@
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
-    "AIGENSYNUSDT": [
-      1795248000000
-    ],
+    "AIGENSYNUSDT": [],
     "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
@@ -5770,9 +5762,7 @@
     "HYPEUSDT": [],
     "IBMBUSDT": [],
     "ICPUSDT": [],
-    "IDUSDT": [
-      1795248000000
-    ],
+    "IDUSDT": [],
     "ILVUSDT": [],
     "IMXUSDT": [],
     "INITUSDT": [],
@@ -5855,9 +5845,7 @@
     "NEIROUSDT": [],
     "NEOUSDT": [],
     "NEWTUSDT": [],
-    "NEXOUSDT": [
-      1795248000000
-    ],
+    "NEXOUSDT": [],
     "NFLXBUSDT": [],
     "NIGHTUSDT": [],
     "NILUSDT": [],
@@ -6193,7 +6181,9 @@
     "CRWDBUSDT": [],
     "CRWVBUSDT": [],
     "CTKUSDT": [],
-    "CTSIUSDT": [],
+    "CTSIUSDT": [
+      1795251600000
+    ],
     "CUSDT": [],
     "CVCUSDT": [],
     "CVXUSDT": [],
@@ -6206,9 +6196,7 @@
     "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
-    "DODOUSDT": [
-      1795248000000
-    ],
+    "DODOUSDT": [],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -6391,9 +6379,7 @@
     "ORCLBUSDT": [],
     "ORDIUSDT": [],
     "OSMOUSDT": [],
-    "PARTIUSDT": [
-      1795248000000
-    ],
+    "PARTIUSDT": [],
     "PAXGUSDT": [],
     "PDDBUSDT": [],
     "PENDLEUSDT": [],
@@ -11945,7 +11931,6 @@
     ]
   },
   "sent": [
-    "buy:SCRUSDT:1795194000000:2",
     "buy:SFPUSDT:1795194000000:5",
     "buy:SKLUSDT:1795194000000:3",
     "buy:SPCXBUSDT:1795194000000:2",
@@ -12344,11 +12329,12 @@
     "exit:YGGUSDT:1795244400000",
     "buy:AIGENSYNUSDT:1795248000000:2",
     "buy:IDUSDT:1795248000000:3",
-    "buy:NEXOUSDT:1795248000000:6"
+    "buy:NEXOUSDT:1795248000000:6",
+    "exit:CTSIUSDT:1795251600000"
   ],
-  "cycles": 730,
-  "messages_sent": 2512,
-  "last_cycle_ms": 1795257211906,
+  "cycles": 731,
+  "messages_sent": 2513,
+  "last_cycle_ms": 1795259010085,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
