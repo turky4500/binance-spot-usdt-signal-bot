@@ -1,47 +1,101 @@
 {
   "source": "btcacademy.online",
   "source_url": "https://btcacademy.online/عملات-رقمية-حلال-أم-حرام/",
-  "fetched_at": "2026-11-16",
+  "fetched_at": "2026-11-21",
   "methodology": "الموقع: إن لم يجد خدمات حرام أو مشبوهة ⇒ حلال. الحكم يُقرأ من جملة «فإن عملة X …» في المقال؛ وإن لم توجد تُستخدم جملة «جميع الخدمات التي تقدمها حرام أو مشبوهة» ⇒ حرام، أو وسم الموقع «عملة X حلال».",
-  "total": 788,
-  "halal": 445,
-  "haram": 328,
-  "doubtful": 15,
+  "total": 806,
+  "halal": 455,
+  "haram": 324,
+  "doubtful": 27,
   "unknown": [],
   "note": "هذا الملف مصدر الحكم الأساسي للبوت (الأولوية على cryptohalal.cc). القيمة: 0=مباح، 1=غير مباح، 2=مشبوه.",
   "precedence": "halal_academy.json > halal_extra.json > data/zigzag/halal_verdicts.json",
-  "last_check_utc": "2026-11-16T14:13:56Z",
-  "refresh_hours": 6,
+  "last_check_utc": "2026-11-21T02:52:03Z",
+  "refresh_hours": 0.5,
   "merge_only": true,
-  "site_directory_rows": 777,
-  "site_unique_symbols": 776,
-  "articles_scanned": 830,
+  "site_directory_rows": 797,
+  "site_unique_symbols": 797,
+  "articles_scanned": 835,
   "ambiguous": [
     "STRK"
   ],
-  "unclear_articles": [
-    "PI"
-  ],
+  "unclear_articles": [],
   "added_last_run": [
-    "AXS",
-    "WIF"
+    "0G",
+    "ASTER",
+    "BANANAGUN",
+    "DLICOM",
+    "GO",
+    "HMSTR",
+    "HYPERX",
+    "IMX",
+    "LUNC",
+    "MORPHO",
+    "NEO",
+    "NIGHT",
+    "OP",
+    "SD",
+    "STRIKE",
+    "UNILAYER",
+    "XPL",
+    "XSPECTAR"
   ],
   "changed_last_run": [
     {
-      "symbol": "DUEL",
+      "symbol": "EIGEN",
       "from": 1,
-      "to": 0
+      "to": 2
     },
     {
-      "symbol": "TAO",
+      "symbol": "ETHFI",
       "from": 1,
-      "to": 0
+      "to": 2
     },
     {
-      "symbol": "WAL",
+      "symbol": "FIS",
       "from": 1,
-      "to": 0
+      "to": 2
+    },
+    {
+      "symbol": "KERNEL",
+      "from": 1,
+      "to": 2
+    },
+    {
+      "symbol": "LDO",
+      "from": 1,
+      "to": 2
+    },
+    {
+      "symbol": "PI",
+      "from": 0,
+      "to": 2
+    },
+    {
+      "symbol": "PSTAKE",
+      "from": 1,
+      "to": 2
+    },
+    {
+      "symbol": "REZ",
+      "from": 1,
+      "to": 2
+    },
+    {
+      "symbol": "RPL",
+      "from": 1,
+      "to": 2
+    },
+    {
+      "symbol": "STO",
+      "from": 1,
+      "to": 2
     }
   ],
-  "retained_not_on_site": 12
+  "retained_not_on_site": 10,
+  "unverified_symbols": [],
+  "primary_sha256": "ab6146d869249295571b5205a07ec5569d53fe5f0ea0b75841d7ae290b52fdcf",
+  "supplemental_verified": [
+    "BTC"
+  ]
 }
