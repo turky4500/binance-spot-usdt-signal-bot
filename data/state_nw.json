@@ -5293,9 +5293,7 @@
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
-    "MMTUSDT": [
-      1795280400000
-    ],
+    "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
     "MOVRUSDT": [],
@@ -5575,9 +5573,7 @@
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
-    "ATMUSDT": [
-      1795280400000
-    ],
+    "ATMUSDT": [],
     "ATOMUSDT": [],
     "ATUSDT": [],
     "AUCTIONUSDT": [],
@@ -5597,12 +5593,8 @@
     "BANANAUSDT": [],
     "BANDUSDT": [],
     "BANKUSDT": [],
-    "BARDUSDT": [
-      1795280400000
-    ],
-    "BARUSDT": [
-      1795280400000
-    ],
+    "BARDUSDT": [],
+    "BARUSDT": [],
     "BATUSDT": [],
     "BBBUSDT": [],
     "BBUSDT": [],
@@ -5707,9 +5699,7 @@
     "FUSDT": [],
     "FWDIBUSDT": [],
     "GALAUSDT": [],
-    "GASUSDT": [
-      1795280400000
-    ],
+    "GASUSDT": [],
     "GENIUSUSDT": [],
     "GIGGLEUSDT": [],
     "GLMRUSDT": [],
@@ -5762,9 +5752,7 @@
     "JASMYUSDT": [],
     "JOEUSDT": [],
     "JPMBUSDT": [],
-    "JSTUSDT": [
-      1795280400000
-    ],
+    "JSTUSDT": [],
     "JTOUSDT": [],
     "JUPUSDT": [],
     "JUVUSDT": [],
@@ -5833,9 +5821,7 @@
     "NEWTUSDT": [],
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [
-      1795280400000
-    ],
+    "NIGHTUSDT": [],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -5886,14 +5872,14 @@
     "QIUSDT": [],
     "QKCUSDT": [],
     "QNTBUSDT": [],
-    "QNTUSDT": [
-      1795280400000
-    ],
+    "QNTUSDT": [],
     "QQQBUSDT": [],
     "QTUMUSDT": [],
     "RADUSDT": [],
     "RAREUSDT": [],
-    "RAYUSDT": [],
+    "RAYUSDT": [
+      1795284000000
+    ],
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
@@ -11818,9 +11804,9 @@
     "exit:NIGHTUSDT:1795280400000",
     "exit:QNTUSDT:1795280400000"
   ],
-  "cycles": 748,
+  "cycles": 749,
   "messages_sent": 2606,
-  "last_cycle_ms": 1795289606862,
+  "last_cycle_ms": 1795291407846,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
