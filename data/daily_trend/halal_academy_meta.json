@@ -3,98 +3,30 @@
   "source_url": "https://btcacademy.online/عملات-رقمية-حلال-أم-حرام/",
   "fetched_at": "2026-11-21",
   "methodology": "الموقع: إن لم يجد خدمات حرام أو مشبوهة ⇒ حلال. الحكم يُقرأ من جملة «فإن عملة X …» في المقال؛ وإن لم توجد تُستخدم جملة «جميع الخدمات التي تقدمها حرام أو مشبوهة» ⇒ حرام، أو وسم الموقع «عملة X حلال».",
-  "total": 806,
-  "halal": 455,
+  "total": 807,
+  "halal": 456,
   "haram": 324,
   "doubtful": 27,
   "unknown": [],
   "note": "هذا الملف مصدر الحكم الأساسي للبوت (الأولوية على cryptohalal.cc). القيمة: 0=مباح، 1=غير مباح، 2=مشبوه.",
   "precedence": "halal_academy.json > halal_extra.json > data/zigzag/halal_verdicts.json",
-  "last_check_utc": "2026-11-21T02:52:03Z",
+  "last_check_utc": "2026-11-21T10:30:06Z",
   "refresh_hours": 0.5,
   "merge_only": true,
   "site_directory_rows": 797,
   "site_unique_symbols": 797,
-  "articles_scanned": 835,
+  "articles_scanned": 836,
   "ambiguous": [
     "STRK"
   ],
   "unclear_articles": [],
   "added_last_run": [
-    "0G",
-    "ASTER",
-    "BANANAGUN",
-    "DLICOM",
-    "GO",
-    "HMSTR",
-    "HYPERX",
-    "IMX",
-    "LUNC",
-    "MORPHO",
-    "NEO",
-    "NIGHT",
-    "OP",
-    "SD",
-    "STRIKE",
-    "UNILAYER",
-    "XPL",
-    "XSPECTAR"
+    "MEGA"
   ],
-  "changed_last_run": [
-    {
-      "symbol": "EIGEN",
-      "from": 1,
-      "to": 2
-    },
-    {
-      "symbol": "ETHFI",
-      "from": 1,
-      "to": 2
-    },
-    {
-      "symbol": "FIS",
-      "from": 1,
-      "to": 2
-    },
-    {
-      "symbol": "KERNEL",
-      "from": 1,
-      "to": 2
-    },
-    {
-      "symbol": "LDO",
-      "from": 1,
-      "to": 2
-    },
-    {
-      "symbol": "PI",
-      "from": 0,
-      "to": 2
-    },
-    {
-      "symbol": "PSTAKE",
-      "from": 1,
-      "to": 2
-    },
-    {
-      "symbol": "REZ",
-      "from": 1,
-      "to": 2
-    },
-    {
-      "symbol": "RPL",
-      "from": 1,
-      "to": 2
-    },
-    {
-      "symbol": "STO",
-      "from": 1,
-      "to": 2
-    }
-  ],
-  "retained_not_on_site": 10,
+  "changed_last_run": [],
+  "retained_not_on_site": 11,
   "unverified_symbols": [],
-  "primary_sha256": "ab6146d869249295571b5205a07ec5569d53fe5f0ea0b75841d7ae290b52fdcf",
+  "primary_sha256": "4608a3ccfb90a7e2a4573bf0fe74baf68ed691857f21c8956e0999642dc0d28c",
   "supplemental_verified": [
     "BTC"
   ]
