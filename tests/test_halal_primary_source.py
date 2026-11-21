@@ -22,9 +22,9 @@ PRIMARY = ROOT / "data" / "daily_trend" / "halal_academy.json"
 def test_primary_file_is_sane():
     data = json.loads(PRIMARY.read_text(encoding="utf-8"))
     assert len(data) >= 700, "المصدر الأساسي يجب أن يغطي مئات العملات"
-    assert set(data.values()) <= {0, 1, 2}
-    assert data["BTC"] == 0 and data["ETH"] == 0
-    assert data["BNB"] == 1 and data["UNI"] == 1  # حرام حسب هذا المصدر
+    assert all(type(v) is int and v in (0, 1, 2) for v in data.values())
+    assert {"BTC", "ETH", "USDT"} <= set(data)
+    # لا نثبّت الأحكام في الاختبارات؛ المصدر نفسه قد يغيّر حكمًا بعد التحديث.
 
 
 def test_primary_overrides_secondary():
@@ -35,34 +35,35 @@ def test_primary_overrides_secondary():
     assert merged["BTC"] == 0, "ما لا يوجد في الأساسي يبقى من الثانوي"
 
 
-def test_conflict_coins_become_non_halal():
-    """ACT/BANANA/TAO/ZRO: كنّا نعدّها حلالًا والمصدر الأساسي يحرّمها."""
+def test_live_primary_wins_even_when_rulings_change():
+    """تعارض الثانوي لا يتغلب على حكم الملف الحالي، سواء تغيّر حكم TAO أم لا."""
     data = json.loads(PRIMARY.read_text(encoding="utf-8"))
-    for sym in ("ACT", "BANANA", "TAO", "ZRO"):
-        assert data.get(sym) == 1, f"{sym} يجب أن يصبح غير مباح"
+    symbols = ("ACT", "BANANA", "TAO", "ZRO")
+    assert all(sym in data for sym in symbols)
+    secondary = {sym: (1 if data[sym] == 0 else 0) for sym in symbols}
+    merged = merge_with_primary(secondary, data)
+    assert all(merged[sym] == data[sym] for sym in symbols)
 
 
-def test_source_expands_halal_universe():
-    """عملات يحلّلها المصدر الأساسي وكان مصدرنا يحرّمها."""
-    data = json.loads(PRIMARY.read_text(encoding="utf-8"))
-    for sym in ("CRO", "DAI", "PAXG", "CTK", "FIDA"):
-        assert data.get(sym) == 0, f"{sym} يجب أن يصبح مباحًا"
+def test_halal_universe_respects_primary_override_with_fixtures():
+    """حالة ثابتة للاختبار بدل افتراض أحكام الأصول الحقيقية للأبد."""
+    secondary = {"AAA": 1, "BBB": 0}
+    merged = merge_with_primary(secondary, {"AAA": 0, "BBB": 1})
+    assert {sym for sym, verdict in merged.items() if verdict == 0} == {"AAA"}
 
 
 def test_missing_primary_file_is_not_fatal(tmp_path):
     assert load_primary_verdicts(str(tmp_path / "nope.json")) == {}
 
 
-def test_formerly_unknown_coins_have_rulings_after_site_refresh():
-    """2026-11-11: كان AKRO/GPS بلا حكم، ثم نشر الموقع جملة حكم صريحة لهما.
-
-    المُحدِّث كل 6 ساعات يضيف الحكم بدل تركهما «بلا حكم»؛ وما زال أي رمز
-    بلا حكم واضح (مثل اسم مشروع DLICOM) لا يُدرج ولا يُعدّ مباحًا.
-    """
-    data = json.loads(PRIMARY.read_text(encoding="utf-8"))
-    assert data.get("AKRO") == 1, "AKRO: «فإن عملة AKRO حرام»"
-    assert data.get("GPS") == 0, "GPS: «فإن عملة GPS حلال»"
-    assert "DLICOM" not in data and "STRK" not in data, "ما التبس حكمه لا يُدرج"
+def test_unclear_new_coin_is_not_invented():
+    """المراجعة غير حكم، بصرف النظر عن أحكام الموقع التي قد تتغير لاحقًا."""
+    from datetime import datetime, timezone
+    from tools.update_halal_academy import build_merge
+    rows = [{"symbol": "WAIT", "label": "قيد المراجعة", "name": "Wait", "article": ""}]
+    merged, meta, _ = build_merge({}, {"source": "btcacademy.online"}, {}, {"prices": {}},
+                                  rows, [], {"WAIT"}, datetime(2026, 1, 1, tzinfo=timezone.utc))
+    assert "WAIT" not in merged and "WAIT" in meta["unknown"]
 
 
 def test_bot_uses_primary_verdicts(tmp_path, monkeypatch):

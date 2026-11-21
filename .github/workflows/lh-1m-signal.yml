@@ -1,0 +1,64 @@
+name: L H 1m Spot Signals
+
+# نظام سابع مستقل — مؤشرات فقط، بلا أوامر شراء/بيع. يعمل افتراضيًا بعد الدمج.
+# GitHub يتيح جدولة كل 5 دقائق لا كل دقيقة. كل تشغيل يراقب قرابة 50 دقيقة؛
+# concurrency يمنع التداخل، لكن بدء المهام وتأخر GitHub/الشبكة قد يسببان فجوات.
+# الحالة في فرع indicator-lh-1m-state فقط، لا كتابة على main أو حالات الأنظمة الأخرى.
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+    inputs:
+      resolve_event:
+        description: 'معرّف إرسال غير محسوم بعد مراجعة تيليجرام؛ اتركه فارغًا عادة'
+        required: false
+        default: ''
+        type: string
+      resolve_decision:
+        description: 'هل وصلت الرسالة غير المحسومة فعلًا؟'
+        required: false
+        default: 'none'
+        type: choice
+        options:
+          - none
+          - sent
+          - not_sent
+
+permissions:
+  contents: write
+
+concurrency:
+  group: isolated-lh-1m-signals
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    if: vars.LH1M_DISABLED != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_REPOSITORY: ${{ github.repository }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TELEGRAM_MUTE: '0'
+      TELEGRAM_MIN_INTERVAL_SECONDS: '1.05'
+      REQUEST_TIMEOUT: '8'
+      LH1_MAX_WORKERS: '10'
+      LH1_RESOLVE_EVENT: ${{ inputs.resolve_event || '' }}
+      LH1_RESOLVE_DECISION: ${{ inputs.resolve_decision || 'none' }}
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install requests
+        run: python -m pip install --quiet 'requests>=2.31.0'
+      - name: Monitor closed one-minute bars
+        run: python run_lh1m.py --seconds 3000

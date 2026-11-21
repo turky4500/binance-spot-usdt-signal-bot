@@ -1,4 +1,4 @@
-"""اختبارات مُحدِّث أحكام أكاديمية البيتكوين (تحديث كل 6 ساعات).
+"""اختبارات مُحدِّث أحكام أكاديمية البيتكوين (تحديث كل نصف ساعة).
 
 القواعد المحمية هنا — كلها من طلب المستخدم:
   - «يحدث ما يحتاج إلى تحديث» ⇒ تغيير الأحكام وإضافة الجديد،
@@ -70,6 +70,7 @@ def test_existing_symbol_absent_from_site_is_retained():
     current = {"AAA": 0, "OLDCOIN": 1}
     merged, meta, report = merge(current, [row("AAA")], [post("AAA", "حلال")])
     assert merged["OLDCOIN"] == 1, "غياب الرمز عن الموقع ليس سببًا لحذفه"
+    assert "OLDCOIN" in meta["unverified_symbols"] and "AAA" not in meta["unverified_symbols"]
     assert meta["retained_not_on_site"] >= 1
     assert report["total_before"] == 2 and report["total_after"] == 2
 
@@ -182,7 +183,7 @@ def test_meta_counts_and_original_keys_survive():
         assert meta[key] == meta0[key]
     assert meta["total"] == len(merged) == 1
     assert meta["halal"] + meta["haram"] + meta["doubtful"] == meta["total"]
-    assert meta["merge_only"] is True and meta["refresh_hours"] == 6
+    assert meta["merge_only"] is True and meta["refresh_hours"] == 0.5
     assert meta["last_check_utc"] == "2026-11-11T06:00:00Z"
 
 
@@ -195,15 +196,16 @@ def test_values_are_strictly_0_1_2_and_loader_reads_them(tmp_path):
 
 
 def test_real_primary_file_is_still_sane_after_refresh():
+    # أحكام الموقع تتغير: لا نثبّت حكم عملة في اختبار يفحص ملفًا متجددًا.
     data = json.loads((ROOT / "data/daily_trend/halal_academy.json").read_text(encoding="utf-8"))
     assert len(data) >= 700
-    assert set(data.values()) <= {0, 1, 2}
-    assert data["BTC"] == 0 and data["ETH"] == 0
-    assert data["BNB"] == 1 and data["UNI"] == 1
-    for sym in ("ACT", "BANANA", "TAO", "ZRO"):
-        assert data[sym] == 1
-    for sym in ("CRO", "DAI", "PAXG", "CTK", "FIDA"):
-        assert data[sym] == 0
+    assert all(isinstance(k, str) and k and type(v) is int and v in (0, 1, 2)
+               for k, v in data.items())
+    assert {"BTC", "ETH", "USDT"} <= set(data)
+    # اختبار الأولوية الديناميكية على الحكم الحالي، مهما تغير بعد التحديث.
+    conflicting = {k: (1 if data[k] == 0 else 0) for k in ("BTC", "ETH", "USDT")}
+    from src.halal import merge_with_primary
+    assert all(merge_with_primary(conflicting, data)[k] == data[k] for k in conflicting)
 
 
 # ─────────────────────────────────────────────────────────── الوركفلو
@@ -212,10 +214,10 @@ def _workflow():
     return yaml.safe_load(path.read_text(encoding="utf-8")), path.read_text(encoding="utf-8")
 
 
-def test_workflow_schedule_is_every_6_hours_and_has_no_push():
+def test_workflow_schedule_is_every_half_hour_and_has_no_push():
     doc, text = _workflow()
     triggers = doc.get("on", doc.get(True, {}))
-    assert triggers["schedule"][0]["cron"] == "0 */6 * * *"
+    assert triggers["schedule"][0]["cron"] == "*/30 * * * *"
     assert "workflow_dispatch" in triggers
     assert "push" not in triggers, "لا يجوز تشغيل البوتات عند push"
     assert "push:" not in text

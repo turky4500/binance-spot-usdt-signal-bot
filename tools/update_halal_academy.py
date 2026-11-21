@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""تحديث ملف أحكام أكاديمية البيتكوين كل 6 ساعات — دمج فقط، بلا حذف.
+"""تحديث ملف أحكام أكاديمية البيتكوين كل نصف ساعة — دمج فقط، بلا حذف.
 
 المصدران:
-  1. جدول العملات في صفحة «عملات رقمية حلال أم حرام؟» (766 صفًا / 77 صفحة)
-     عبر r.jina.ai، لأن الجلب المباشر يتوقف بعد ~22 طلبًا.
+  1. جدول العملات في صفحة «عملات رقمية حلال أم حرام؟»؛ يُقرأ التصميم الحالي
+     من GET، وتبقى Jina وGET وAJAX كقنوات للترقيم القديم.
   2. مقالات التصنيف 3181 عبر WordPress REST (814 مقالًا)، ومنها تُقرأ
      الجملة الختامية «فإن عملة X …» أو ما يعادلها.
 
@@ -28,6 +28,7 @@ from __future__ import annotations
 
 import argparse
 import base64
+import hashlib
 import html
 import json
 import os
@@ -37,6 +38,7 @@ import time
 import urllib.parse
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
 
@@ -53,6 +55,7 @@ SITE_ORIGIN = "https://btcacademy.online/"
 DIRECTORY_PAGE = SITE_ORIGIN + urllib.parse.quote("عملات-رقمية-حلال-أم-حرام/")
 WP_POSTS_URL = SITE_ORIGIN + "wp-json/wp/v2/posts"
 WP_CATEGORY = 3181
+BTC_ARTICLE = SITE_ORIGIN + urllib.parse.quote("هل-عملة-btc-حلال-أم-حرام؟/")
 JINA_PREFIX = "https://r.jina.ai/"
 BINANCE_TICKERS = "https://data-api.binance.vision/api/v3/ticker/price"
 AJAX_URL = SITE_ORIGIN + "wp-admin/admin-ajax.php"
@@ -165,12 +168,74 @@ def parse_jina_rows(markdown: str) -> list[dict]:
 ITEM_SPLIT = re.compile(r'<div class="crypto-item[^"\'<>]*"')
 
 
+class _DirectoryListParser(HTMLParser):
+    """تصميم الدليل الجديد: ``li.bhd-row`` ويحتوي الرمز والوسم والرابط.
+
+    لا تُخمن الأحكام: أي صف ناقص أو وسم غير معروف يجعل الجلب الكامل يُرفض.
+    """
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.total = 0
+        self.invalid = 0
+        self.rows: list[dict] = []
+        self.row: dict | None = None
+        self.capture: str | None = None
+        self.parts: list[str] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        attributes = dict(attrs)
+        classes = set((attributes.get("class") or "").split())
+        if tag == "li" and "bhd-row" in classes:
+            self.total += 1
+            self.row = {"symbol": "", "label": "", "name": "", "article": ""}
+        elif self.row is not None:
+            if tag == "a" and not self.row["article"]:
+                href = attributes.get("href") or ""
+                self.row["article"] = urllib.parse.urljoin(SITE_ORIGIN, href) if href else ""
+            if tag == "strong":
+                self.capture, self.parts = "symbol", []
+            elif tag == "small":
+                self.capture, self.parts = "name", []
+            elif tag == "span" and "bhd-badge" in classes:
+                self.capture, self.parts = "label", []
+
+    def handle_data(self, data: str) -> None:
+        if self.row is not None and self.capture:
+            self.parts.append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        expected = {"symbol": "strong", "name": "small", "label": "span"}
+        if self.row is not None and self.capture and expected[self.capture] == tag:
+            self.row[self.capture] = " ".join("".join(self.parts).split())
+            self.capture, self.parts = None, []
+        if tag == "li" and self.row is not None:
+            row = self.row
+            row["symbol"] = row["symbol"].upper()
+            article = urllib.parse.urlparse(row["article"])
+            valid = (
+                re.fullmatch(r"[A-Z0-9]{1,20}", row["symbol"] or "")
+                and row["label"] in LABEL_WORDS
+                and article.scheme in ("http", "https")
+                and article.hostname in ("btcacademy.online", "www.btcacademy.online")
+            )
+            if valid:
+                self.rows.append(row)
+            else:
+                self.invalid += 1
+            self.row, self.capture, self.parts = None, None, []
+
+
 def parse_directory_html(markup: str) -> list[dict]:
     """قناتا البدل: صفحة GET أو رد admin-ajax.php.
 
     صنف العنصر قد يحمل كلاسات إضافية («crypto-item btca-added-article»)
     ورابط المقال قد يكون نسبيًا، لذلك الفتح متسامح معهما.
     """
+    modern = _DirectoryListParser()
+    modern.feed(markup)
+    if modern.total:
+        return modern.rows
     out: list[dict] = []
     for block in ITEM_SPLIT.split(markup)[1:]:
         block = block[:6000]
@@ -279,8 +344,8 @@ def _direct_html(session: requests.Session, page: int) -> str:
     return _get(session, url, headers=headers, timeout=45).text
 
 
-def fetch_directory(session: requests.Session) -> list[dict]:
-    """كل صفحات الجدول عبر Jina، مع قناتي بدل، ورفض أي نقص قبل الكتابة."""
+def fetch_directory(session: requests.Session, previous_rows: int = 0) -> list[dict]:
+    """كل الدليل: صفحة حديثة مكتملة أو الصفحات القديمة، بلا كتابة عند النقص."""
     def jina(page: int) -> tuple[str, list[dict]]:
         url = (
             JINA_PREFIX
@@ -290,18 +355,42 @@ def fetch_directory(session: requests.Session) -> list[dict]:
         text = _get(session, url, headers=JINA_HEADERS, timeout=60).text
         return text, parse_jina_rows(text)
 
-    first_text, first_rows = jina(1)
+    # التصميم الجديد يحمّل الدليل كله في صفحة واحدة؛ لا نعتمد نسخة Jina
+    # قديمة إذا كانت الصفحة الأصلية تعرض التصميم الجديد فعلًا.
+    raw = ""
+    try:
+        raw = _direct_html(session, 1)
+    except Exception as exc:
+        print(f"  GET page 1 failed: {exc} — تجربة Jina", flush=True)
+    if raw:
+        modern = _DirectoryListParser()
+        modern.feed(raw)
+        if modern.total:
+            # لا نعتمد صفحة مبتورة أو رموزًا متعارضة.
+            minimum = max(700, int(max(0, previous_rows) * 0.9))
+            unique = {r["symbol"] for r in modern.rows}
+            pages = _extract_max_page(raw)
+            if (modern.invalid or len(modern.rows) != modern.total
+                    or len(modern.rows) < minimum or len(unique) != len(modern.rows)
+                    or pages > 1):
+                raise RuntimeError(
+                    f"directory incomplete: modern rows={len(modern.rows)} "
+                    f"total={modern.total} invalid={modern.invalid} "
+                    f"unique={len(unique)} minimum={minimum} pages={pages}"
+                )
+            print(f"  ✅ modern directory complete: {len(modern.rows)} rows / one page", flush=True)
+            return modern.rows
+    try:
+        first_text, first_rows = jina(1)
+    except Exception as exc:
+        print(f"  Jina page 1 failed: {exc} — تجربة GET", flush=True)
+        first_text, first_rows = "", []
     max_page = _extract_max_page(first_text)
-    # Jina قد يُعيد نسخة page 1 بلا روابط ترقيم؛ صفحة GET الأصلية موثوقة لذلك
-    if not (1 < max_page <= 200) or not first_rows:
-        try:
-            raw = _direct_html(session, 1)
-            max_page = _extract_max_page(raw) or max_page
-            if not first_rows:
-                first_rows = parse_directory_html(raw)
-                print("  Jina page 1 فارغة — استُخدم GET", flush=True)
-        except Exception as exc:
-            print(f"  GET page 1 failed: {exc}", flush=True)
+    if (not (1 < max_page <= 200) or not first_rows) and raw:
+        max_page = _extract_max_page(raw) or max_page
+        if not first_rows:
+            first_rows = parse_directory_html(raw)
+            print("  Jina page 1 فارغة — استُخدم GET", flush=True)
     if not (1 < max_page <= 200):
         raise RuntimeError(f"تعذّر تحديد عدد الصفحات: {max_page}")
     rows = list(first_rows)
@@ -363,6 +452,7 @@ def fetch_posts(session: requests.Session) -> list[dict]:
     posts: list[dict] = []
     page = 1
     total_pages = 1
+    expected_total = 0
     while page <= total_pages:
         resp = _get(
             session,
@@ -378,15 +468,73 @@ def fetch_posts(session: requests.Session) -> list[dict]:
         )
         batch = resp.json()
         if not isinstance(batch, list) or not batch:
-            break
+            raise RuntimeError(f"REST posts page {page}/{total_pages} empty — إلغاء التحديث")
+        tp_header = resp.headers.get("X-WP-TotalPages")
+        total_header = resp.headers.get("X-WP-Total")
+        if page == 1 and (not tp_header or not total_header):
+            raise RuntimeError("REST pagination headers missing — إلغاء التحديث")
+        total_pages = max(total_pages, int(tp_header or 0))
+        expected_total = max(expected_total, int(total_header or 0))
         posts += batch
-        tp = int(resp.headers.get("X-WP-TotalPages") or 1)
-        total_pages = max(total_pages, tp)
         page += 1
-    if len(posts) < 700:
-        raise RuntimeError(f"REST posts={len(posts)} < 700 — إلغاء التحديث")
-    print(f"  REST posts {len(posts)}", flush=True)
+    ids = [p.get("id") for p in posts if isinstance(p, dict)]
+    if (len(posts) < 700 or len(posts) < expected_total or len(ids) != len(posts)
+            or any(i is None for i in ids) or len(set(ids)) != len(ids)):
+        raise RuntimeError(
+            f"REST incomplete: posts={len(posts)} expected={expected_total} "
+            f"unique_ids={len(set(ids))} — إلغاء التحديث"
+        )
+    print(f"  REST posts {len(posts)} / expected {expected_total}", flush=True)
     return posts
+
+
+class _BitcoinVerdictSection(HTMLParser):
+    """يحصر القراءة في عنوان حكم الأكاديمية، لا بقية الآراء الفقهية في المقال."""
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.reading = False
+        self.done = False
+        self.found = False
+        self.parts: list[str] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if self.reading and tag in ("h1", "h2"):
+            self.reading, self.done = False, True
+        if not self.done and tag == "h2" and dict(attrs).get("id") == "btca-verdict":
+            self.found, self.reading = True, True
+
+    def handle_data(self, data: str) -> None:
+        if self.reading:
+            self.parts.append(data)
+
+
+def parse_bitcoin_verdict(markup: str) -> int | None:
+    """لا يُقبل سوى حكم صريح في القسم المعنون؛ التعارض أو تغيّر الصيغة ⇒ مجهول."""
+    parser = _BitcoinVerdictSection()
+    parser.feed(markup)
+    if not parser.found:
+        return None
+    text = " ".join(" ".join(parser.parts).split())
+    matches = re.findall(r"فإن\s+عملة\s+البيتكوين\s+(حلال|حرام|مشبوهة|مشبوه)\b", text)
+    values = {DIRECT_LABEL[x] for x in matches if x in DIRECT_LABEL}
+    return next(iter(values)) if len(values) == 1 and matches else None
+
+
+def fetch_bitcoin_verdict(session: requests.Session) -> int | None:
+    """مقال BTC المنفصل غائب عن الدليل والتصنيف، فلا نعتبره متحققًا ضمنيًا."""
+    try:
+        resp = _get(session, BTC_ARTICLE, headers=SITE_HEADERS, timeout=45)
+        if urllib.parse.urlparse(resp.url).hostname not in ("btcacademy.online", "www.btcacademy.online"):
+            raise RuntimeError("BTC article redirected outside source")
+        result = parse_bitcoin_verdict(resp.text)
+        if result is None:
+            print("  BTC article has no unambiguous Academy verdict — not verified", flush=True)
+        else:
+            print(f"  BTC Academy section verified: {result}", flush=True)
+        return result
+    except Exception as exc:
+        print(f"  BTC article unavailable ({type(exc).__name__}) — not verified", flush=True)
+        return None
 
 
 def fetch_binance_symbols(session: requests.Session) -> set[str]:
@@ -499,6 +647,13 @@ def build_site_verdicts(
     return site, stats
 
 
+def primary_digest(verdicts: dict[str, int]) -> str:
+    """Canonical semantic digest pairs metadata with the exact rulings map."""
+    data = json.dumps(verdicts, ensure_ascii=False, sort_keys=True,
+                      separators=(",", ":"), allow_nan=False).encode("utf-8")
+    return hashlib.sha256(data).hexdigest()
+
+
 def build_merge(
     current: dict[str, int],
     meta: dict,
@@ -508,6 +663,7 @@ def build_merge(
     posts: list[dict],
     binance_symbols: set[str],
     now: datetime,
+    supplemental: dict[str, int] | None = None,
 ) -> tuple[dict[str, int], dict, dict]:
     """الدمج النهائي: لا حذف، لا اختراع، لا تعديل ملفات أخرى."""
     current = {str(k).upper(): int(v) for k, v in current.items() if isinstance(v, (int, float))}
@@ -516,6 +672,18 @@ def build_merge(
     validated = set(current) | set(extra) | price_symbols(prices) | binance_symbols
 
     site, stats = build_site_verdicts(rows, posts, known, validated)
+    # BTC له مقال حكم مستقل خارج الدليل والتصنيف. عند تعارضه مع مصدر آخر
+    # لا نخترع حكمًا؛ نحتفظ بالقيمة القديمة ونضعه في قائمة غير المتحقق منه.
+    supplemental_verified: list[str] = []
+    if supplemental and "BTC" in supplemental and supplemental["BTC"] in (0, 1, 2):
+        value = supplemental["BTC"]
+        if "BTC" in stats["ambiguous"] or ("BTC" in site and site["BTC"] != value):
+            site.pop("BTC", None)
+            stats["ambiguous"] = sorted(set(stats["ambiguous"]) | {"BTC"})
+        else:
+            site["BTC"] = value
+            supplemental_verified.append("BTC")
+    stats["supplemental_verified"] = supplemental_verified
     # الرموز الخارجة عن الجدول لا تُقبل إلا إذا تحقّقنا أنها عملة متداولة/معروفة
     dir_symbols = {r["symbol"].upper() for r in rows}
     site = {
@@ -546,7 +714,7 @@ def build_merge(
         {
             "fetched_at": now_iso[:10],
             "last_check_utc": now_iso,
-            "refresh_hours": 6,
+            "refresh_hours": 0.5,
             "merge_only": True,
             "total": len(merged),
             "halal": counts[0],
@@ -558,6 +726,13 @@ def build_merge(
             "articles_scanned": stats["articles_scanned"],
             "ambiguous": stats["ambiguous"],
             "unclear_articles": stats["unclear_articles"],
+            # الدمج لا يحذف أحكامًا قديمة، لكنه لا يعني أن كل المحتفَظ به
+            # تحقق منه المصدر في هذه الدورة. الأنظمة الحساسة يمكنها استبعاده.
+            "unverified_symbols": sorted(set(merged) - set(site)),
+            # يُرفع الملفان في كومِتين متعاقبين؛ البصمة تسمح للنظام السابع
+            # برفض اللقطة البينية أو أي رفع جزئي بدل خلط ملفين غير متوافقين.
+            "primary_sha256": primary_digest(merged),
+            "supplemental_verified": supplemental_verified,
             "added_last_run": [x["symbol"] for x in added],
             "changed_last_run": changed,
             "retained_not_on_site": len(
@@ -697,18 +872,23 @@ def main(argv: list[str] | None = None) -> int:
         rows, posts = read_fixtures(args.directory_json, args.posts_json)
         print(f"  fixtures: {len(rows)} rows / {len(posts)} posts", flush=True)
     else:
-        print("  fetching directory (77 pages) …", flush=True)
-        rows = fetch_directory(session)
+        print("  fetching complete directory …", flush=True)
+        rows = fetch_directory(session, previous_rows=int(meta.get("site_directory_rows") or 0))
         print("  fetching REST articles …", flush=True)
         posts = fetch_posts(session)
 
+    supplemental: dict[str, int] = {}
+    if not (args.directory_json and args.posts_json):
+        btc = fetch_bitcoin_verdict(session)
+        if btc is not None:
+            supplemental["BTC"] = btc
     binance_symbols = fetch_binance_symbols(session)
     now = datetime.now(timezone.utc)
 
     def compute(fresh_current: dict, fresh_meta: dict):
         return build_merge(
             fresh_current, fresh_meta, extra, prices, rows, posts,
-            binance_symbols, now,
+            binance_symbols, now, supplemental=supplemental,
         )
 
     merged, new_meta, report = compute(current, meta)
