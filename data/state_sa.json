@@ -2,7 +2,7 @@
   "last_processed_open_time": 0,
   "last_entry_bar_time": {
     "9521": 1792652400000,
-    "9618": 1794207600000,
+    "9618": 1795071600000,
     "1325": 1792998000000,
     "2001": 1794207600000,
     "2083": 1793602800000,
@@ -21,7 +21,7 @@
     "4310": 1793084400000,
     "9540": 1793084400000,
     "9559": 1793084400000,
-    "9579": 1794121200000,
+    "9579": 1795071600000,
     "9607": 1793257200000,
     "9514": 1793602800000,
     "9552": 1794294000000,
@@ -37,7 +37,10 @@
     "2222": 1794380400000,
     "2382": 1794380400000,
     "6014": 1794380400000,
-    "9543": 1794380400000
+    "9543": 1795071600000,
+    "4327": 1794898800000,
+    "9541": 1794985200000,
+    "8250": 1795330800000
   },
   "last_exit_bar_time": {
     "9521": 1792911600000,
@@ -45,21 +48,27 @@
     "9557": 1793170800000,
     "9559": 1793170800000,
     "1325": 1793257200000,
-    "9579": 1794380400000,
-    "2001": 1793516400000,
+    "9579": 1795330800000,
+    "2001": 1794812400000,
     "2083": 1793516400000,
     "2380": 1793516400000,
     "4144": 1793516400000,
     "7211": 1793516400000,
     "4030": 1793689200000,
-    "9517": 1793689200000,
-    "9552": 1793689200000,
-    "2180": 1794121200000,
+    "9517": 1794812400000,
+    "9552": 1795330800000,
+    "2180": 1794985200000,
     "4310": 1794121200000,
     "9551": 1794121200000,
     "7200": 1794207600000,
     "9548": 1794294000000,
-    "4280": 1794466800000
+    "4280": 1794466800000,
+    "9607": 1794812400000,
+    "4340": 1794812400000,
+    "9543": 1795330800000,
+    "2382": 1795071600000,
+    "9541": 1795071600000,
+    "1030": 1795330800000
   },
   "open_trades": {
     "2282": {
@@ -67,7 +76,7 @@
       "code": "2282",
       "company": "Naqi Water Company",
       "entry_price": 60.400002,
-      "stop_price": 57.04,
+      "stop_price": 58.37400092,
       "pivot_stop": 56.299999,
       "target_price": 68.600008,
       "stop_dist_pct": 6.788084212315095,
@@ -75,8 +84,8 @@
       "entry_time": 1793016000000,
       "entry_bar_open_time": 1792998000000,
       "peak_price": 63.450001,
-      "last_stop_alert_price": 56.94800184,
-      "stop_updates_count": 1,
+      "last_stop_alert_price": 58.37400092,
+      "stop_updates_count": 2,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     },
     "4190": {
@@ -84,7 +93,7 @@
       "code": "4190",
       "company": "Jarir Marketing Company",
       "entry_price": 16.01,
-      "stop_price": 16.468,
+      "stop_price": 16.4772,
       "pivot_stop": 15.02,
       "target_price": 17.990000000000006,
       "stop_dist_pct": 6.183635227982523,
@@ -101,16 +110,16 @@
       "code": "6015",
       "company": "Americana Restaurants International PLC",
       "entry_price": 2.42,
-      "stop_price": 2.4472,
+      "stop_price": 2.5300000000000002,
       "pivot_stop": 2.21,
       "target_price": 2.84,
       "stop_dist_pct": 8.677685950413222,
       "size_suggest_pct": 0.11523809523809525,
       "entry_time": 1793016000000,
       "entry_bar_open_time": 1792998000000,
-      "peak_price": 2.66,
-      "last_stop_alert_price": 2.4288000000000003,
-      "stop_updates_count": 3,
+      "peak_price": 2.75,
+      "last_stop_alert_price": 2.5300000000000002,
+      "stop_updates_count": 6,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     },
     "9540": {
@@ -118,33 +127,16 @@
       "code": "9540",
       "company": "National Environmental Recycling Company",
       "entry_price": 5.86,
-      "stop_price": 6.3296,
+      "stop_price": 6.5228,
       "pivot_stop": 5.5,
       "target_price": 6.580000000000001,
       "stop_dist_pct": 6.143344709897616,
       "size_suggest_pct": 0.16277777777777763,
       "entry_time": 1793102400000,
       "entry_bar_open_time": 1793084400000,
-      "peak_price": 6.88,
-      "last_stop_alert_price": 6.3296,
-      "stop_updates_count": 4,
-      "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
-    "9607": {
-      "trade_id": "9607-1793257200000",
-      "code": "9607",
-      "company": "ASG Plastic Factory Company",
-      "entry_price": 25.120001,
-      "stop_price": 25.575999080000003,
-      "pivot_stop": 23.68,
-      "target_price": 28.000002999999996,
-      "stop_dist_pct": 5.732487829120703,
-      "size_suggest_pct": 0.17444433024699302,
-      "entry_time": 1793275200000,
-      "entry_bar_open_time": 1793257200000,
-      "peak_price": 27.799999,
-      "last_stop_alert_price": 25.575999080000003,
-      "stop_updates_count": 1,
+      "peak_price": 7.09,
+      "last_stop_alert_price": 6.5228,
+      "stop_updates_count": 6,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     },
     "2083": {
@@ -152,16 +144,16 @@
       "code": "2083",
       "company": "Power and Water Utility Company for Jubail and Yanbu",
       "entry_price": 41.099998,
-      "stop_price": 41.49199816,
+      "stop_price": 43.24,
       "pivot_stop": 40.220001,
       "target_price": 42.85999199999999,
       "stop_dist_pct": 2.1411120263314753,
       "size_suggest_pct": 0.46704702402394777,
       "entry_time": 1793620800000,
       "entry_bar_open_time": 1793602800000,
-      "peak_price": 45.84,
-      "last_stop_alert_price": 41.49199816,
-      "stop_updates_count": 1,
+      "peak_price": 47.0,
+      "last_stop_alert_price": 43.24,
+      "stop_updates_count": 3,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     },
@@ -170,7 +162,7 @@
       "code": "9514",
       "company": "Mohammed Hasan AlNaqool Sons Co.",
       "entry_price": 55.849998,
-      "stop_price": 68.31,
+      "stop_price": 68.77,
       "pivot_stop": 53.150002,
       "target_price": 61.24999,
       "stop_dist_pct": 4.8343708087509665,
@@ -206,14 +198,14 @@
       "code": "2283",
       "company": "The First Milling Company",
       "entry_price": 57.200001,
-      "stop_price": 55.01599908,
+      "stop_price": 55.2,
       "pivot_stop": 52.0,
       "target_price": 67.600003,
       "stop_dist_pct": 9.090910680228834,
       "size_suggest_pct": 0.10999998076923446,
       "entry_time": 1793793600000,
       "entry_bar_open_time": 1793775600000,
-      "peak_price": 59.799999,
+      "peak_price": 60.0,
       "last_stop_alert_price": 55.01599908,
       "stop_updates_count": 3,
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -231,7 +223,7 @@
       "size_suggest_pct": 0.2887037037037042,
       "entry_time": 1793793600000,
       "entry_bar_open_time": 1793775600000,
-      "peak_price": 31.620001,
+      "peak_price": 31.66,
       "last_stop_alert_price": 30.1,
       "stop_updates_count": 0,
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -260,106 +252,16 @@
       "code": "7211",
       "company": "Saudi Azm for Communication and Information Technology Company",
       "entry_price": 29.040001,
-      "stop_price": 31.28,
+      "stop_price": 32.23680092,
       "pivot_stop": 28.799999,
       "target_price": 29.520005,
       "stop_dist_pct": 0.8264531395849487,
       "size_suggest_pct": 1.2099899584170106,
       "entry_time": 1793793600000,
       "entry_bar_open_time": 1793775600000,
-      "peak_price": 34.220001,
-      "last_stop_alert_price": 31.28,
-      "stop_updates_count": 3,
-      "halal_verdict": "ℹ️ لا يوجد حكم",
-      "silent": true
-    },
-    "9517": {
-      "trade_id": "9517-1793862000000",
-      "code": "9517",
-      "company": "MOBI Industry Co.",
-      "entry_price": 16.700001,
-      "stop_price": 16.06319908,
-      "pivot_stop": 15.5,
-      "target_price": 19.100003,
-      "stop_dist_pct": 7.1856343002614205,
-      "size_suggest_pct": 0.13916655902786745,
-      "entry_time": 1793880000000,
-      "entry_bar_open_time": 1793862000000,
-      "peak_price": 17.459999,
-      "last_stop_alert_price": 16.06319908,
-      "stop_updates_count": 2,
-      "halal_verdict": "ℹ️ لا يوجد حكم",
-      "silent": true
-    },
-    "2001": {
-      "trade_id": "2001-1794207600000",
-      "code": "2001",
-      "company": "Methanol Chemicals Company",
-      "entry_price": 22.57,
-      "stop_price": 21.75,
-      "pivot_stop": 21.75,
-      "target_price": 24.21,
-      "stop_dist_pct": 3.6331413380593722,
-      "size_suggest_pct": 0.2752439024390243,
-      "entry_time": 1794225600000,
-      "entry_bar_open_time": 1794207600000,
-      "peak_price": 23.299999,
-      "last_stop_alert_price": 21.75,
-      "stop_updates_count": 0,
-      "halal_verdict": "ℹ️ لا يوجد حكم",
-      "silent": true
-    },
-    "2180": {
-      "trade_id": "2180-1794294000000",
-      "code": "2180",
-      "company": "Filling and Packing Materials Manufacturing Company",
-      "entry_price": 36.119999,
-      "stop_price": 35.419998,
-      "pivot_stop": 35.419998,
-      "target_price": 37.520001,
-      "stop_dist_pct": 1.937987318327446,
-      "size_suggest_pct": 0.5159992485725018,
-      "entry_time": 1794312000000,
-      "entry_bar_open_time": 1794294000000,
-      "peak_price": 37.299999,
-      "last_stop_alert_price": 35.419998,
-      "stop_updates_count": 0,
-      "halal_verdict": "ℹ️ لا يوجد حكم",
-      "silent": true
-    },
-    "4340": {
-      "trade_id": "4340-1794294000000",
-      "code": "4340",
-      "company": "Al Rajhi REIT Fund",
-      "entry_price": 7.93,
-      "stop_price": 7.82,
-      "pivot_stop": 7.82,
-      "target_price": 8.149999999999999,
-      "stop_dist_pct": 1.387137452711216,
-      "size_suggest_pct": 0.7209090909090947,
-      "entry_time": 1794312000000,
-      "entry_bar_open_time": 1794294000000,
-      "peak_price": 7.95,
-      "last_stop_alert_price": 7.82,
-      "stop_updates_count": 0,
-      "halal_verdict": "ℹ️ لا يوجد حكم",
-      "silent": true
-    },
-    "9552": {
-      "trade_id": "9552-1794294000000",
-      "code": "9552",
-      "company": "Saudi Top for Trading Company",
-      "entry_price": 11.58,
-      "stop_price": 11.030800000000001,
-      "pivot_stop": 10.16,
-      "target_price": 14.42,
-      "stop_dist_pct": 12.262521588946457,
-      "size_suggest_pct": 0.0815492957746479,
-      "entry_time": 1794312000000,
-      "entry_bar_open_time": 1794294000000,
-      "peak_price": 11.99,
-      "last_stop_alert_price": 11.030800000000001,
-      "stop_updates_count": 2,
+      "peak_price": 35.040001,
+      "last_stop_alert_price": 32.23680092,
+      "stop_updates_count": 4,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     },
@@ -377,24 +279,6 @@
       "entry_bar_open_time": 1794294000000,
       "peak_price": 99.0,
       "last_stop_alert_price": 94.0,
-      "stop_updates_count": 0,
-      "halal_verdict": "ℹ️ لا يوجد حكم",
-      "silent": true
-    },
-    "1030": {
-      "trade_id": "1030-1794380400000",
-      "code": "1030",
-      "company": "The Saudi Investment Bank",
-      "entry_price": 11.56,
-      "stop_price": 11.36,
-      "pivot_stop": 11.36,
-      "target_price": 11.960000000000003,
-      "stop_dist_pct": 1.730103806228383,
-      "size_suggest_pct": 0.577999999999997,
-      "entry_time": 1794398400000,
-      "entry_bar_open_time": 1794380400000,
-      "peak_price": 11.6,
-      "last_stop_alert_price": 11.36,
       "stop_updates_count": 0,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
@@ -422,33 +306,15 @@
       "code": "2380",
       "company": "Rabigh Refining and Petrochemical Company",
       "entry_price": 14.59,
-      "stop_price": 13.8,
+      "stop_price": 13.873600000000001,
       "pivot_stop": 13.8,
       "target_price": 16.169999999999998,
       "stop_dist_pct": 5.414667580534608,
       "size_suggest_pct": 0.18468354430379763,
       "entry_time": 1794398400000,
       "entry_bar_open_time": 1794380400000,
-      "peak_price": 14.97,
+      "peak_price": 15.08,
       "last_stop_alert_price": 13.8,
-      "stop_updates_count": 0,
-      "halal_verdict": "ℹ️ لا يوجد حكم",
-      "silent": true
-    },
-    "2382": {
-      "trade_id": "2382-1794380400000",
-      "code": "2382",
-      "company": "ADES Holding Company",
-      "entry_price": 8.71,
-      "stop_price": 8.31,
-      "pivot_stop": 8.31,
-      "target_price": 9.510000000000002,
-      "stop_dist_pct": 4.592422502870268,
-      "size_suggest_pct": 0.2177499999999998,
-      "entry_time": 1794398400000,
-      "entry_bar_open_time": 1794380400000,
-      "peak_price": 8.83,
-      "last_stop_alert_price": 8.31,
       "stop_updates_count": 0,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
@@ -458,14 +324,14 @@
       "code": "6014",
       "company": "Alamar Foods Company",
       "entry_price": 45.84,
-      "stop_price": 42.78,
+      "stop_price": 43.05599908,
       "pivot_stop": 42.0,
       "target_price": 53.52000000000001,
       "stop_dist_pct": 8.376963350785347,
       "size_suggest_pct": 0.1193749999999999,
       "entry_time": 1794398400000,
       "entry_bar_open_time": 1794380400000,
-      "peak_price": 46.5,
+      "peak_price": 46.799999,
       "last_stop_alert_price": 42.78,
       "stop_updates_count": 1,
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -489,21 +355,57 @@
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     },
-    "9543": {
-      "trade_id": "9543-1794380400000",
-      "code": "9543",
-      "company": "Saudi Networkers Services Company",
-      "entry_price": 62.650002,
-      "stop_price": 58.92600276,
-      "pivot_stop": 55.25,
-      "target_price": 77.450006,
-      "stop_dist_pct": 11.81165485038612,
-      "size_suggest_pct": 0.08466214198320486,
-      "entry_time": 1794398400000,
-      "entry_bar_open_time": 1794380400000,
-      "peak_price": 64.050003,
-      "last_stop_alert_price": 58.92600276,
-      "stop_updates_count": 2,
+    "4327": {
+      "trade_id": "4327-1794898800000",
+      "code": "4327",
+      "company": "Al Ramz Real Estate Company",
+      "entry_price": 54.400002,
+      "stop_price": 52.025999080000005,
+      "pivot_stop": 52.0,
+      "target_price": 59.200006,
+      "stop_dist_pct": 4.411768220155581,
+      "size_suggest_pct": 0.22666648611126153,
+      "entry_time": 1794916800000,
+      "entry_bar_open_time": 1794898800000,
+      "peak_price": 56.549999,
+      "last_stop_alert_price": 52.0,
+      "stop_updates_count": 0,
+      "halal_verdict": "ℹ️ لا يوجد حكم",
+      "silent": true
+    },
+    "9618": {
+      "trade_id": "9618-1795071600000",
+      "code": "9618",
+      "company": "Al-Fakhera Men's Tailoring Company",
+      "entry_price": 24.799999,
+      "stop_price": 24.472,
+      "pivot_stop": 22.879999,
+      "target_price": 28.639998999999996,
+      "stop_dist_pct": 7.74193579604579,
+      "size_suggest_pct": 0.12916666145833347,
+      "entry_time": 1795089600000,
+      "entry_bar_open_time": 1795071600000,
+      "peak_price": 28.9,
+      "last_stop_alert_price": 24.472,
+      "stop_updates_count": 1,
+      "halal_verdict": "ℹ️ لا يوجد حكم",
+      "silent": true
+    },
+    "8250": {
+      "trade_id": "8250-1795330800000",
+      "code": "8250",
+      "company": "Gulf Insurance Group",
+      "entry_price": 28.32,
+      "stop_price": 27.34,
+      "pivot_stop": 27.34,
+      "target_price": 30.28,
+      "stop_dist_pct": 3.4604519774011315,
+      "size_suggest_pct": 0.28897959183673455,
+      "entry_time": 1795348800000,
+      "entry_bar_open_time": 1795330800000,
+      "peak_price": 28.6,
+      "last_stop_alert_price": 27.34,
+      "stop_updates_count": 0,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     }
@@ -1173,6 +1075,146 @@
       "type": "stop_alert",
       "symbol": "9543",
       "time_ms": 1794744000000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "2282",
+      "time_ms": 1794830400000
+    },
+    {
+      "type": "exit_win",
+      "symbol": "9607",
+      "time_ms": 1794830400000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "2083",
+      "time_ms": 1794830400000
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "9517",
+      "time_ms": 1794830400000
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "2001",
+      "time_ms": 1794830400000
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "4340",
+      "time_ms": 1794830400000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "7211",
+      "time_ms": 1794916800000
+    },
+    {
+      "type": "entry",
+      "symbol": "4327",
+      "time_ms": 1794916800000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "6015",
+      "time_ms": 1795003200000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "9540",
+      "time_ms": 1795003200000
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "2180",
+      "time_ms": 1795003200000
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "9543",
+      "time_ms": 1795003200000
+    },
+    {
+      "type": "entry",
+      "symbol": "9541",
+      "time_ms": 1795003200000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "6015",
+      "time_ms": 1795089600000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "9540",
+      "time_ms": 1795089600000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "2083",
+      "time_ms": 1795089600000
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "2382",
+      "time_ms": 1795089600000
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "9541",
+      "time_ms": 1795089600000
+    },
+    {
+      "type": "entry",
+      "symbol": "9543",
+      "time_ms": 1795089600000
+    },
+    {
+      "type": "entry",
+      "symbol": "9579",
+      "time_ms": 1795089600000
+    },
+    {
+      "type": "entry",
+      "symbol": "9618",
+      "time_ms": 1795089600000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "6015",
+      "time_ms": 1795348800000
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "9552",
+      "time_ms": 1795348800000
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "1030",
+      "time_ms": 1795348800000
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "9543",
+      "time_ms": 1795348800000
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "9579",
+      "time_ms": 1795348800000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "9618",
+      "time_ms": 1795348800000
+    },
+    {
+      "type": "entry",
+      "symbol": "8250",
+      "time_ms": 1795348800000
     }
   ],
   "daily_report": {
@@ -1184,5 +1226,5 @@
   "weekly_report": {
     "last_reported_week_start": ""
   },
-  "last_processed_date": "2026-11-15"
+  "last_processed_date": "2026-11-22"
 }
