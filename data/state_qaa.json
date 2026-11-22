@@ -175,7 +175,7 @@
     "MORPHOUSDT": 1793836800000,
     "JSTUSDT": 1793318400000,
     "RUNEUSDT": 1794528000000,
-    "DODOUSDT": 1794614400000,
+    "DODOUSDT": 1795305600000,
     "RLCUSDT": 1793491200000,
     "BATUSDT": 1794268800000,
     "NMRUSDT": 1793577600000,
@@ -200,28 +200,10 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1795312440000,
+      "last_check_ms": 1795339080000,
       "peak_price": 0.14853,
       "last_stop_alert_price": 0.1365372,
       "stop_updates_count": 1,
-      "halal_verdict": "⛔ غير مباح",
-      "silent": true
-    },
-    "DODOUSDT": {
-      "trade_id": "DODOUSDT-1795219200000",
-      "symbol": "DODOUSDT",
-      "entry_price": 0.03962,
-      "stop_price": 0.02965,
-      "pivot_stop": 0.02965,
-      "target_price": 0.05956000000000001,
-      "stop_dist_pct": 25.16405855628471,
-      "size_suggest_pct": 0.03973921765295887,
-      "entry_time": 1795305599999,
-      "entry_bar_open_time": 1795219200000,
-      "last_check_ms": 1795305659999,
-      "peak_price": 0.04366,
-      "last_stop_alert_price": 0.02965,
-      "stop_updates_count": 0,
       "halal_verdict": "⛔ غير مباح",
       "silent": true
     },
@@ -229,17 +211,17 @@
       "trade_id": "PROMUSDT-1795219200000",
       "symbol": "PROMUSDT",
       "entry_price": 5.024,
-      "stop_price": 4.348,
+      "stop_price": 4.73892,
       "pivot_stop": 4.348,
       "target_price": 6.376,
       "stop_dist_pct": 13.455414012738856,
       "size_suggest_pct": 0.07431952662721891,
       "entry_time": 1795305599999,
       "entry_bar_open_time": 1795219200000,
-      "last_check_ms": 1795305659999,
-      "peak_price": 5.117,
-      "last_stop_alert_price": 4.348,
-      "stop_updates_count": 0,
+      "last_check_ms": 1795339080000,
+      "peak_price": 5.151,
+      "last_stop_alert_price": 4.7076400000000005,
+      "stop_updates_count": 1,
       "halal_verdict": "✅ مباح",
       "silent": true
     }
@@ -4424,6 +4406,16 @@
       "type": "entry",
       "symbol": "PROMUSDT",
       "time_ms": 1795305599999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "DODOUSDT",
+      "time_ms": 1795305719999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "PROMUSDT",
+      "time_ms": 1795305719999
     }
   ],
   "daily_report": {
