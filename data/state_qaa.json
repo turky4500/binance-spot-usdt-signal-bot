@@ -97,7 +97,7 @@
   "last_exit_bar_time": {
     "GTCUSDT": 1793491200000,
     "HUMAUSDT": 1793145600000,
-    "PROMUSDT": 1793318400000,
+    "PROMUSDT": 1795305600000,
     "COMPUSDT": 1793232000000,
     "ENAUSDT": 1793836800000,
     "LSKUSDT": 1793836800000,
@@ -200,29 +200,11 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1795339080000,
+      "last_check_ms": 1795367700000,
       "peak_price": 0.14853,
       "last_stop_alert_price": 0.1365372,
       "stop_updates_count": 1,
       "halal_verdict": "⛔ غير مباح",
-      "silent": true
-    },
-    "PROMUSDT": {
-      "trade_id": "PROMUSDT-1795219200000",
-      "symbol": "PROMUSDT",
-      "entry_price": 5.024,
-      "stop_price": 4.73892,
-      "pivot_stop": 4.348,
-      "target_price": 6.376,
-      "stop_dist_pct": 13.455414012738856,
-      "size_suggest_pct": 0.07431952662721891,
-      "entry_time": 1795305599999,
-      "entry_bar_open_time": 1795219200000,
-      "last_check_ms": 1795339080000,
-      "peak_price": 5.151,
-      "last_stop_alert_price": 4.7076400000000005,
-      "stop_updates_count": 1,
-      "halal_verdict": "✅ مباح",
       "silent": true
     }
   },
@@ -4416,6 +4398,16 @@
       "type": "stop_alert",
       "symbol": "PROMUSDT",
       "time_ms": 1795305719999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "PROMUSDT",
+      "time_ms": 1795341239999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "PROMUSDT",
+      "time_ms": 1795347899999
     }
   ],
   "daily_report": {
