@@ -4110,9 +4110,7 @@
     "GMEBUSDT": [],
     "GMTUSDT": [],
     "GMXUSDT": [],
-    "GNOUSDT": [
-      1795305600000
-    ],
+    "GNOUSDT": [],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPSUSDT": [],
@@ -4547,9 +4545,7 @@
     "EIGENUSDT": [],
     "ENAUSDT": [],
     "ENJUSDT": [],
-    "ENSOUSDT": [
-      1795305600000
-    ],
+    "ENSOUSDT": [],
     "ENSUSDT": [],
     "ERAUSDT": [],
     "ESPUSDT": [],
@@ -6943,9 +6939,9 @@
     "exit:SAPIENUSDT:1795248000000",
     "buy:TKOUSDT:1795248000000:2"
   ],
-  "cycles": 103,
+  "cycles": 104,
   "messages_sent": 341,
-  "last_cycle_ms": 1795334614034,
+  "last_cycle_ms": 1795349014520,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-21",
     "reported_trade_keys": [
