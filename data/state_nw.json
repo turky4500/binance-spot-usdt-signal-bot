@@ -1209,10 +1209,16 @@
       "last_entry_price": 0.205
     },
     "RAREUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1794952800000,
-      "last_entry_price": 0.01254
+      "position": {
+        "entry_price": 0.01386,
+        "entry_time": 1795312800000,
+        "signal_bar_time": 1795309200000,
+        "signal_price": 0.0138,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795309200000,
+      "last_entry_price": 0.01386
     },
     "RENDERUSDT": {
       "position": null,
@@ -1851,14 +1857,8 @@
       "last_entry_price": 5.69
     },
     "AIGENSYNUSDT": {
-      "position": {
-        "entry_price": 0.01353,
-        "entry_time": 1795240800000,
-        "signal_bar_time": 1795237200000,
-        "signal_price": 0.01336,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795248000000,
       "last_entry_price": 0.01349
     },
@@ -5356,7 +5356,9 @@
     "QQQBUSDT": [],
     "QTUMUSDT": [],
     "RADUSDT": [],
-    "RAREUSDT": [],
+    "RAREUSDT": [
+      1795309200000
+    ],
     "RAYUSDT": [],
     "RDDTBUSDT": [],
     "REDUSDT": [],
@@ -5531,7 +5533,9 @@
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
-    "AIGENSYNUSDT": [],
+    "AIGENSYNUSDT": [
+      1795309200000
+    ],
     "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
@@ -5663,9 +5667,7 @@
     "EIGENUSDT": [],
     "ENAUSDT": [],
     "ENJUSDT": [],
-    "ENSOUSDT": [
-      1795305600000
-    ],
+    "ENSOUSDT": [],
     "ENSUSDT": [],
     "ERAUSDT": [],
     "ESPUSDT": [],
@@ -8176,7 +8178,8 @@
     "RAREUSDT": [
       1794171600000,
       1794848400000,
-      1794952800000
+      1794952800000,
+      1795309200000
     ],
     "RAYUSDT": [
       1794171600000,
@@ -11392,8 +11395,6 @@
     ]
   },
   "sent": [
-    "buy:MTLUSDT:1795204800000:6",
-    "buy:NEIROUSDT:1795204800000:3",
     "buy:NEOUSDT:1795204800000:2",
     "buy:NEWTUSDT:1795204800000:6",
     "buy:NFLXBUSDT:1795204800000:4",
@@ -11791,11 +11792,13 @@
     "exit:FLOWUSDT:1795287600000",
     "exit:COOKIEUSDT:1795294800000",
     "buy:SAPIENUSDT:1795294800000:1",
-    "exit:JUVUSDT:1795298400000"
+    "exit:JUVUSDT:1795298400000",
+    "exit:AIGENSYNUSDT:1795309200000",
+    "buy:RAREUSDT:1795309200000:1"
   ],
-  "cycles": 763,
-  "messages_sent": 2610,
-  "last_cycle_ms": 1795314800411,
+  "cycles": 764,
+  "messages_sent": 2612,
+  "last_cycle_ms": 1795316618691,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
