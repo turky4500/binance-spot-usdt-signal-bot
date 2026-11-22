@@ -5629,7 +5629,9 @@
     "KATUSDT": [],
     "KAVAUSDT": [],
     "KERNELUSDT": [],
-    "KGSTUSDT": [],
+    "KGSTUSDT": [
+      1795377600000
+    ],
     "KITEUSDT": [],
     "KMNOUSDT": [],
     "KNCUSDT": [],
@@ -11692,9 +11694,9 @@
     "exit:CUSDT:1795366800000",
     "exit:DODOUSDT:1795366800000"
   ],
-  "cycles": 803,
+  "cycles": 804,
   "messages_sent": 2646,
-  "last_cycle_ms": 1795383798502,
+  "last_cycle_ms": 1795386806779,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
