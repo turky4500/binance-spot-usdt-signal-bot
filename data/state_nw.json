@@ -1119,14 +1119,8 @@
       "last_entry_price": 0.039
     },
     "PROMUSDT": {
-      "position": {
-        "entry_price": 4.564,
-        "entry_time": 1795348800000,
-        "signal_bar_time": 1795345200000,
-        "signal_price": 4.458,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795345200000,
       "last_entry_price": 4.564
     },
@@ -4683,14 +4677,8 @@
       "last_entry_price": 0.04211
     },
     "XVGUSDT": {
-      "position": {
-        "entry_price": 0.001488,
-        "entry_time": 1795190400000,
-        "signal_bar_time": 1795186800000,
-        "signal_price": 0.001457,
-        "entry_count": 5
-      },
-      "entry_count": 5,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795237200000,
       "last_entry_price": 0.001418
     },
@@ -4996,9 +4984,7 @@
     "BREVUSDT": [],
     "BROCCOLI714USDT": [],
     "BTCUSDT": [],
-    "BTTCUSDT": [
-      1795352400000
-    ],
+    "BTTCUSDT": [],
     "C98USDT": [],
     "CAKEUSDT": [],
     "CATIUSDT": [],
@@ -5538,9 +5524,7 @@
     "CTSIUSDT": [],
     "CUSDT": [],
     "CVCUSDT": [],
-    "CVXUSDT": [
-      1795352400000
-    ],
+    "CVXUSDT": [],
     "CYBERUSDT": [],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
@@ -5711,9 +5695,7 @@
     "NEWTUSDT": [],
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [
-      1795352400000
-    ],
+    "NIGHTUSDT": [],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -5753,7 +5735,9 @@
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
-    "PROMUSDT": [],
+    "PROMUSDT": [
+      1795356000000
+    ],
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -5892,7 +5876,9 @@
     "XPLUSDT": [],
     "XRPUSDT": [],
     "XTZUSDT": [],
-    "XVGUSDT": [],
+    "XVGUSDT": [
+      1795356000000
+    ],
     "XVSUSDT": [],
     "YBUSDT": [],
     "YFIUSDT": [],
@@ -11310,8 +11296,6 @@
     ]
   },
   "sent": [
-    "buy:STXBUSDT:1795204800000:1",
-    "buy:SXTUSDT:1795204800000:6",
     "buy:TKOUSDT:1795204800000:1",
     "buy:TLMUSDT:1795204800000:2",
     "buy:TREEUSDT:1795204800000:1",
@@ -11709,11 +11693,13 @@
     "exit:CVXUSDT:1795345200000",
     "buy:MMTUSDT:1795345200000:1",
     "buy:PROMUSDT:1795345200000:1",
-    "exit:BERAUSDT:1795348800000"
+    "exit:BERAUSDT:1795348800000",
+    "exit:PROMUSDT:1795356000000",
+    "exit:XVGUSDT:1795356000000"
   ],
-  "cycles": 790,
-  "messages_sent": 2639,
-  "last_cycle_ms": 1795360425572,
+  "cycles": 791,
+  "messages_sent": 2641,
+  "last_cycle_ms": 1795363408170,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
