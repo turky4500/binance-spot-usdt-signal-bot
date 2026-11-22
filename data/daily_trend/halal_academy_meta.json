@@ -3,28 +3,30 @@
   "source_url": "https://btcacademy.online/عملات-رقمية-حلال-أم-حرام/",
   "fetched_at": "2026-11-22",
   "methodology": "الموقع: إن لم يجد خدمات حرام أو مشبوهة ⇒ حلال. الحكم يُقرأ من جملة «فإن عملة X …» في المقال؛ وإن لم توجد تُستخدم جملة «جميع الخدمات التي تقدمها حرام أو مشبوهة» ⇒ حرام، أو وسم الموقع «عملة X حلال».",
-  "total": 809,
-  "halal": 457,
+  "total": 810,
+  "halal": 458,
   "haram": 325,
   "doubtful": 27,
   "unknown": [],
   "note": "هذا الملف مصدر الحكم الأساسي للبوت (الأولوية على cryptohalal.cc). القيمة: 0=مباح، 1=غير مباح، 2=مشبوه.",
   "precedence": "halal_academy.json > halal_extra.json > data/zigzag/halal_verdicts.json",
-  "last_check_utc": "2026-11-22T02:46:16Z",
+  "last_check_utc": "2026-11-22T10:35:37Z",
   "refresh_hours": 0.5,
   "merge_only": true,
   "site_directory_rows": 797,
   "site_unique_symbols": 797,
-  "articles_scanned": 838,
+  "articles_scanned": 839,
   "ambiguous": [
     "STRK"
   ],
   "unclear_articles": [],
-  "added_last_run": [],
+  "added_last_run": [
+    "KITE"
+  ],
   "changed_last_run": [],
-  "retained_not_on_site": 13,
+  "retained_not_on_site": 14,
   "unverified_symbols": [],
-  "primary_sha256": "04eaec203cf8064cf5a2aed23e7b3e5eb7736de89929a58d97484afa8d72149e",
+  "primary_sha256": "77fb1c1a2521fe3901ae90f0e536aba93b6ca18f68811133ec370f8cadf828e5",
   "supplemental_verified": [
     "BTC"
   ]
