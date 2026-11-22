@@ -1863,14 +1863,8 @@
       "last_entry_price": 0.01349
     },
     "AIUSDT": {
-      "position": {
-        "entry_price": 0.0131,
-        "entry_time": 1795208400000,
-        "signal_bar_time": 1795204800000,
-        "signal_price": 0.0128,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795204800000,
       "last_entry_price": 0.0131
     },
@@ -5229,9 +5223,7 @@
     "JSTUSDT": [],
     "JTOUSDT": [],
     "JUPUSDT": [],
-    "JUVUSDT": [
-      1795316400000
-    ],
+    "JUVUSDT": [],
     "KAIAUSDT": [],
     "KAITOUSDT": [],
     "KATUSDT": [],
@@ -5352,9 +5344,7 @@
     "QQQBUSDT": [],
     "QTUMUSDT": [],
     "RADUSDT": [],
-    "RAREUSDT": [
-      1795316400000
-    ],
+    "RAREUSDT": [],
     "RAYUSDT": [],
     "RDDTBUSDT": [],
     "REDUSDT": [],
@@ -5429,7 +5419,9 @@
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
-    "TKOUSDT": [],
+    "TKOUSDT": [
+      1795320000000
+    ],
     "TLMUSDT": [],
     "TNSRUSDT": [],
     "TOWNSUSDT": [],
@@ -5529,10 +5521,10 @@
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
-    "AIGENSYNUSDT": [
-      1795316400000
+    "AIGENSYNUSDT": [],
+    "AIUSDT": [
+      1795320000000
     ],
-    "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
     "ALGOUSDT": [],
@@ -5663,7 +5655,9 @@
     "EIGENUSDT": [],
     "ENAUSDT": [],
     "ENJUSDT": [],
-    "ENSOUSDT": [],
+    "ENSOUSDT": [
+      1795320000000
+    ],
     "ENSUSDT": [],
     "ERAUSDT": [],
     "ESPUSDT": [],
@@ -5939,9 +5933,7 @@
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
-    "TKOUSDT": [
-      1795316400000
-    ],
+    "TKOUSDT": [],
     "TLMUSDT": [],
     "TNSRUSDT": [],
     "TOWNSUSDT": [],
@@ -11044,7 +11036,8 @@
     ],
     "TKOUSDT": [
       1794686400000,
-      1794772800000
+      1794772800000,
+      1795320000000
     ],
     "TLMUSDT": [],
     "TNSRUSDT": [
@@ -11396,7 +11389,6 @@
     ]
   },
   "sent": [
-    "buy:NOKBUSDT:1795204800000:1",
     "buy:NOMUSDT:1795204800000:1",
     "buy:NOTUSDT:1795204800000:2",
     "buy:ONGUSDT:1795204800000:6",
@@ -11795,11 +11787,12 @@
     "buy:RAREUSDT:1795309200000:1",
     "buy:SSVUSDT:1795312800000:7",
     "buy:RAREUSDT:1795316400000:2",
-    "exit:TKOUSDT:1795316400000"
+    "exit:TKOUSDT:1795316400000",
+    "exit:AIUSDT:1795320000000"
   ],
-  "cycles": 769,
-  "messages_sent": 2615,
-  "last_cycle_ms": 1795325603701,
+  "cycles": 770,
+  "messages_sent": 2616,
+  "last_cycle_ms": 1795327410790,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
