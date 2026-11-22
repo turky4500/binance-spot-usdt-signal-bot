@@ -267,14 +267,8 @@
       "last_entry_price": 0.00982
     },
     "BLURUSDT": {
-      "position": {
-        "entry_price": 0.00706,
-        "entry_time": 1795233600000,
-        "signal_bar_time": 1795230000000,
-        "signal_price": 0.00703,
-        "entry_count": 3
-      },
-      "entry_count": 3,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795258800000,
       "last_entry_price": 0.0071
     },
@@ -1119,10 +1113,16 @@
       "last_entry_price": 0.039
     },
     "PROMUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1795345200000,
-      "last_entry_price": 4.564
+      "position": {
+        "entry_price": 5.025,
+        "entry_time": 1795363200000,
+        "signal_bar_time": 1795359600000,
+        "signal_price": 4.679,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795359600000,
+      "last_entry_price": 5.025
     },
     "PROVEUSDT": {
       "position": {
@@ -4137,10 +4137,16 @@
       "last_entry_price": 124.88
     },
     "SKYUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1795053600000,
-      "last_entry_price": 0.04909
+      "position": {
+        "entry_price": 0.042,
+        "entry_time": 1795363200000,
+        "signal_bar_time": 1795359600000,
+        "signal_price": 0.04149,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795359600000,
+      "last_entry_price": 0.042
     },
     "SMCIBUSDT": {
       "position": {
@@ -5227,7 +5233,9 @@
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
-    "PROMUSDT": [],
+    "PROMUSDT": [
+      1795359600000
+    ],
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -5279,7 +5287,9 @@
     "SIGNUSDT": [],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
-    "SKYUSDT": [],
+    "SKYUSDT": [
+      1795359600000
+    ],
     "SLPUSDT": [],
     "SMCIBUSDT": [],
     "SMHBUSDT": [],
@@ -5480,7 +5490,9 @@
     "BICOUSDT": [],
     "BIGTIMEUSDT": [],
     "BIOUSDT": [],
-    "BLURUSDT": [],
+    "BLURUSDT": [
+      1795359600000
+    ],
     "BMNRBUSDT": [],
     "BMTUSDT": [],
     "BNBUSDT": [],
@@ -5735,9 +5747,7 @@
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
-    "PROMUSDT": [
-      1795356000000
-    ],
+    "PROMUSDT": [],
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -5876,9 +5886,7 @@
     "XPLUSDT": [],
     "XRPUSDT": [],
     "XTZUSDT": [],
-    "XVGUSDT": [
-      1795356000000
-    ],
+    "XVGUSDT": [],
     "XVSUSDT": [],
     "YBUSDT": [],
     "YFIUSDT": [],
@@ -7974,7 +7982,8 @@
     "PROMUSDT": [
       1794376800000,
       1795233600000,
-      1795345200000
+      1795345200000,
+      1795359600000
     ],
     "PROVEUSDT": [
       1794171600000,
@@ -8289,7 +8298,8 @@
     "SKYUSDT": [
       1794171600000,
       1794672000000,
-      1795053600000
+      1795053600000,
+      1795359600000
     ],
     "SLPUSDT": [
       1794171600000,
@@ -11296,9 +11306,6 @@
     ]
   },
   "sent": [
-    "buy:TKOUSDT:1795204800000:1",
-    "buy:TLMUSDT:1795204800000:2",
-    "buy:TREEUSDT:1795204800000:1",
     "buy:TUSDT:1795204800000:2",
     "buy:USDEBUSDT:1795204800000:3",
     "buy:VETUSDT:1795204800000:2",
@@ -11695,11 +11702,14 @@
     "buy:PROMUSDT:1795345200000:1",
     "exit:BERAUSDT:1795348800000",
     "exit:PROMUSDT:1795356000000",
-    "exit:XVGUSDT:1795356000000"
+    "exit:XVGUSDT:1795356000000",
+    "exit:BLURUSDT:1795359600000",
+    "buy:PROMUSDT:1795359600000:1",
+    "buy:SKYUSDT:1795359600000:1"
   ],
-  "cycles": 792,
-  "messages_sent": 2641,
-  "last_cycle_ms": 1795365206491,
+  "cycles": 793,
+  "messages_sent": 2644,
+  "last_cycle_ms": 1795367007189,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
