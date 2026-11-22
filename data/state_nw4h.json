@@ -2379,14 +2379,8 @@
       "last_entry_price": 0.0
     },
     "NIGHTUSDT": {
-      "position": {
-        "entry_price": 0.04735,
-        "entry_time": 1794859200000,
-        "signal_bar_time": 1794844800000,
-        "signal_price": 0.0434,
-        "entry_count": 4
-      },
-      "entry_count": 4,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795233600000,
       "last_entry_price": 0.03983
     },
@@ -4530,7 +4524,9 @@
     "DEXEUSDT": [],
     "DGBUSDT": [],
     "DIAUSDT": [],
-    "DODOUSDT": [],
+    "DODOUSDT": [
+      1795348800000
+    ],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -4681,7 +4677,9 @@
     "NEWTUSDT": [],
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [],
+    "NIGHTUSDT": [
+      1795348800000
+    ],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -6937,11 +6935,12 @@
     "buy:JSTUSDT:1795248000000:1",
     "buy:LUNCUSDT:1795248000000:3",
     "exit:SAPIENUSDT:1795248000000",
-    "buy:TKOUSDT:1795248000000:2"
+    "buy:TKOUSDT:1795248000000:2",
+    "exit:NIGHTUSDT:1795348800000"
   ],
-  "cycles": 105,
-  "messages_sent": 341,
-  "last_cycle_ms": 1795362679541,
+  "cycles": 106,
+  "messages_sent": 342,
+  "last_cycle_ms": 1795377814850,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-21",
     "reported_trade_keys": [
