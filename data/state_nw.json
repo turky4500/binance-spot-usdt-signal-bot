@@ -5663,7 +5663,9 @@
     "EIGENUSDT": [],
     "ENAUSDT": [],
     "ENJUSDT": [],
-    "ENSOUSDT": [],
+    "ENSOUSDT": [
+      1795305600000
+    ],
     "ENSUSDT": [],
     "ERAUSDT": [],
     "ESPUSDT": [],
@@ -11791,9 +11793,9 @@
     "buy:SAPIENUSDT:1795294800000:1",
     "exit:JUVUSDT:1795298400000"
   ],
-  "cycles": 761,
+  "cycles": 762,
   "messages_sent": 2610,
-  "last_cycle_ms": 1795311148041,
+  "last_cycle_ms": 1795313014878,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
