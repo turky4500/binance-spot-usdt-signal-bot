@@ -4921,9 +4921,7 @@
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
-    "AIGENSYNUSDT": [
-      1795348800000
-    ],
+    "AIGENSYNUSDT": [],
     "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
@@ -4998,7 +4996,9 @@
     "BREVUSDT": [],
     "BROCCOLI714USDT": [],
     "BTCUSDT": [],
-    "BTTCUSDT": [],
+    "BTTCUSDT": [
+      1795352400000
+    ],
     "C98USDT": [],
     "CAKEUSDT": [],
     "CATIUSDT": [],
@@ -5490,9 +5490,7 @@
     "BEAMXUSDT": [],
     "BEBUSDT": [],
     "BELUSDT": [],
-    "BERAUSDT": [
-      1795348800000
-    ],
+    "BERAUSDT": [],
     "BICOUSDT": [],
     "BIGTIMEUSDT": [],
     "BIOUSDT": [],
@@ -5540,7 +5538,9 @@
     "CTSIUSDT": [],
     "CUSDT": [],
     "CVCUSDT": [],
-    "CVXUSDT": [],
+    "CVXUSDT": [
+      1795352400000
+    ],
     "CYBERUSDT": [],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
@@ -5663,9 +5663,7 @@
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
-    "LISTAUSDT": [
-      1795348800000
-    ],
+    "LISTAUSDT": [],
     "LITEBUSDT": [],
     "LLYBUSDT": [],
     "LPTUSDT": [],
@@ -5713,7 +5711,9 @@
     "NEWTUSDT": [],
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [],
+    "NIGHTUSDT": [
+      1795352400000
+    ],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -9492,7 +9492,8 @@
       1795186800000,
       1795201200000,
       1795230000000,
-      1795341600000
+      1795341600000,
+      1795352400000
     ],
     "C98USDT": [
       1794664800000,
@@ -11710,9 +11711,9 @@
     "buy:PROMUSDT:1795345200000:1",
     "exit:BERAUSDT:1795348800000"
   ],
-  "cycles": 788,
+  "cycles": 789,
   "messages_sent": 2639,
-  "last_cycle_ms": 1795358005829,
+  "last_cycle_ms": 1795359804989,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
