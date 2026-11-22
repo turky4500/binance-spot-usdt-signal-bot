@@ -1400,11 +1400,11 @@
         "entry_time": 1794175200000,
         "signal_bar_time": 1794171600000,
         "signal_price": 2.125,
-        "entry_count": 6
+        "entry_count": 7
       },
-      "entry_count": 6,
-      "last_buy_bar": 1795204800000,
-      "last_entry_price": 1.613
+      "entry_count": 7,
+      "last_buy_bar": 1795312800000,
+      "last_entry_price": 1.515
     },
     "STRAXUSDT": {
       "position": {
@@ -5356,9 +5356,7 @@
     "QQQBUSDT": [],
     "QTUMUSDT": [],
     "RADUSDT": [],
-    "RAREUSDT": [
-      1795309200000
-    ],
+    "RAREUSDT": [],
     "RAYUSDT": [],
     "RDDTBUSDT": [],
     "REDUSDT": [],
@@ -5413,7 +5411,9 @@
     "SPKUSDT": [],
     "SPYBUSDT": [],
     "SQQQBUSDT": [],
-    "SSVUSDT": [],
+    "SSVUSDT": [
+      1795312800000
+    ],
     "STEEMUSDT": [],
     "STOUSDT": [],
     "STRAXUSDT": [],
@@ -5533,9 +5533,7 @@
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
-    "AIGENSYNUSDT": [
-      1795309200000
-    ],
+    "AIGENSYNUSDT": [],
     "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
@@ -8491,7 +8489,8 @@
       1794672000000,
       1794704400000,
       1795186800000,
-      1795204800000
+      1795204800000,
+      1795312800000
     ],
     "STEEMUSDT": [
       1794171600000,
@@ -11395,7 +11394,6 @@
     ]
   },
   "sent": [
-    "buy:NEOUSDT:1795204800000:2",
     "buy:NEWTUSDT:1795204800000:6",
     "buy:NFLXBUSDT:1795204800000:4",
     "buy:NOKBUSDT:1795204800000:1",
@@ -11794,11 +11792,12 @@
     "buy:SAPIENUSDT:1795294800000:1",
     "exit:JUVUSDT:1795298400000",
     "exit:AIGENSYNUSDT:1795309200000",
-    "buy:RAREUSDT:1795309200000:1"
+    "buy:RAREUSDT:1795309200000:1",
+    "buy:SSVUSDT:1795312800000:7"
   ],
-  "cycles": 765,
-  "messages_sent": 2612,
-  "last_cycle_ms": 1795318409309,
+  "cycles": 766,
+  "messages_sent": 2613,
+  "last_cycle_ms": 1795320205512,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
