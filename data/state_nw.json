@@ -4892,9 +4892,7 @@
     "AAOIBUSDT": [],
     "AAPLBUSDT": [],
     "AAVEUSDT": [],
-    "ACEUSDT": [
-      1795366800000
-    ],
+    "ACEUSDT": [],
     "ACHUSDT": [],
     "ACMUSDT": [],
     "ACTUSDT": [],
@@ -5223,9 +5221,7 @@
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
-    "PROMUSDT": [
-      1795366800000
-    ],
+    "PROMUSDT": [],
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -5520,9 +5516,7 @@
     "CRWVBUSDT": [],
     "CTKUSDT": [],
     "CTSIUSDT": [],
-    "CUSDT": [
-      1795366800000
-    ],
+    "CUSDT": [],
     "CVCUSDT": [],
     "CVXUSDT": [],
     "CYBERUSDT": [],
@@ -5534,9 +5528,7 @@
     "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
-    "DODOUSDT": [
-      1795366800000
-    ],
+    "DODOUSDT": [],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -5649,7 +5641,9 @@
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
-    "LISTAUSDT": [],
+    "LISTAUSDT": [
+      1795370400000
+    ],
     "LITEBUSDT": [],
     "LLYBUSDT": [],
     "LPTUSDT": [],
@@ -11700,9 +11694,9 @@
     "exit:CUSDT:1795366800000",
     "exit:DODOUSDT:1795366800000"
   ],
-  "cycles": 798,
+  "cycles": 799,
   "messages_sent": 2646,
-  "last_cycle_ms": 1795376011802,
+  "last_cycle_ms": 1795377812398,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
