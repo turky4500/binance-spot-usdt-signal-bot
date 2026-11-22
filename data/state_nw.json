@@ -5086,9 +5086,7 @@
     "BREVUSDT": [],
     "BROCCOLI714USDT": [],
     "BTCUSDT": [],
-    "BTTCUSDT": [
-      1795327200000
-    ],
+    "BTTCUSDT": [],
     "C98USDT": [],
     "CAKEUSDT": [],
     "CATIUSDT": [],
@@ -5130,7 +5128,9 @@
     "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
-    "DODOUSDT": [],
+    "DODOUSDT": [
+      1795330800000
+    ],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -9745,7 +9745,8 @@
     ],
     "DODOUSDT": [
       1795075200000,
-      1795086000000
+      1795086000000,
+      1795330800000
     ],
     "DOGEUSDT": [
       1794322800000,
@@ -11789,9 +11790,9 @@
     "buy:SSVUSDT:1795323600000:8",
     "buy:BTTCUSDT:1795327200000:4"
   ],
-  "cycles": 776,
+  "cycles": 777,
   "messages_sent": 2618,
-  "last_cycle_ms": 1795336413972,
+  "last_cycle_ms": 1795338215551,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
