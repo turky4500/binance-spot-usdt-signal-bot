@@ -1,9 +1,9 @@
 {
-  "last_processed_open_time": 1795132800000,
+  "last_processed_open_time": 1795219200000,
   "last_entry_bar_time": {
     "GTCUSDT": 1793404800000,
     "HUMAUSDT": 1793059200000,
-    "PROMUSDT": 1793145600000,
+    "PROMUSDT": 1795219200000,
     "币安人生USDT": 1794355200000,
     "ARKUSDT": 1793145600000,
     "AWEUSDT": 1793923200000,
@@ -83,7 +83,7 @@
     "RUNEUSDT": 1794182400000,
     "BATUSDT": 1794182400000,
     "BTCUSDT": 1793404800000,
-    "DODOUSDT": 1794528000000,
+    "DODOUSDT": 1795219200000,
     "NMRUSDT": 1793404800000,
     "RLCUSDT": 1793404800000,
     "WBTCUSDT": 1793404800000,
@@ -200,11 +200,47 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1795297920000,
+      "last_check_ms": 1795312440000,
       "peak_price": 0.14853,
       "last_stop_alert_price": 0.1365372,
       "stop_updates_count": 1,
       "halal_verdict": "⛔ غير مباح",
+      "silent": true
+    },
+    "DODOUSDT": {
+      "trade_id": "DODOUSDT-1795219200000",
+      "symbol": "DODOUSDT",
+      "entry_price": 0.03962,
+      "stop_price": 0.02965,
+      "pivot_stop": 0.02965,
+      "target_price": 0.05956000000000001,
+      "stop_dist_pct": 25.16405855628471,
+      "size_suggest_pct": 0.03973921765295887,
+      "entry_time": 1795305599999,
+      "entry_bar_open_time": 1795219200000,
+      "last_check_ms": 1795305659999,
+      "peak_price": 0.04366,
+      "last_stop_alert_price": 0.02965,
+      "stop_updates_count": 0,
+      "halal_verdict": "⛔ غير مباح",
+      "silent": true
+    },
+    "PROMUSDT": {
+      "trade_id": "PROMUSDT-1795219200000",
+      "symbol": "PROMUSDT",
+      "entry_price": 5.024,
+      "stop_price": 4.348,
+      "pivot_stop": 4.348,
+      "target_price": 6.376,
+      "stop_dist_pct": 13.455414012738856,
+      "size_suggest_pct": 0.07431952662721891,
+      "entry_time": 1795305599999,
+      "entry_bar_open_time": 1795219200000,
+      "last_check_ms": 1795305659999,
+      "peak_price": 5.117,
+      "last_stop_alert_price": 4.348,
+      "stop_updates_count": 0,
+      "halal_verdict": "✅ مباح",
       "silent": true
     }
   },
@@ -4378,6 +4414,16 @@
       "type": "exit_loss",
       "symbol": "RAYUSDT",
       "time_ms": 1795180379999
+    },
+    {
+      "type": "entry",
+      "symbol": "DODOUSDT",
+      "time_ms": 1795305599999
+    },
+    {
+      "type": "entry",
+      "symbol": "PROMUSDT",
+      "time_ms": 1795305599999
     }
   ],
   "daily_report": {
