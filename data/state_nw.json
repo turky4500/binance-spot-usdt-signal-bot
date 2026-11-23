@@ -4100,11 +4100,11 @@
         "entry_time": 1795363200000,
         "signal_bar_time": 1795359600000,
         "signal_price": 0.04149,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1795359600000,
-      "last_entry_price": 0.042
+      "entry_count": 2,
+      "last_buy_bar": 1795420800000,
+      "last_entry_price": 0.03918
     },
     "SMCIBUSDT": {
       "position": {
@@ -5191,9 +5191,7 @@
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
-    "PROMUSDT": [
-      1795417200000
-    ],
+    "PROMUSDT": [],
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -5245,7 +5243,9 @@
     "SIGNUSDT": [],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
-    "SKYUSDT": [],
+    "SKYUSDT": [
+      1795420800000
+    ],
     "SLPUSDT": [],
     "SMCIBUSDT": [],
     "SMHBUSDT": [],
@@ -5383,7 +5383,9 @@
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
-    "AIGENSYNUSDT": [],
+    "AIGENSYNUSDT": [
+      1795420800000
+    ],
     "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
@@ -5496,9 +5498,7 @@
     "DASHUSDT": [],
     "DCRUSDT": [],
     "DELLBUSDT": [],
-    "DEXEUSDT": [
-      1795417200000
-    ],
+    "DEXEUSDT": [],
     "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
@@ -5533,7 +5533,9 @@
     "FLNCBUSDT": [],
     "FLOKIUSDT": [],
     "FLOWUSDT": [],
-    "FLUXUSDT": [],
+    "FLUXUSDT": [
+      1795420800000
+    ],
     "FOGOUSDT": [],
     "FORMUSDT": [],
     "FRAXUSDT": [],
@@ -5586,7 +5588,7 @@
     "INTCBUSDT": [],
     "INTWBUSDT": [],
     "IOSTUSDT": [
-      1795417200000
+      1795420800000
     ],
     "IOTAUSDT": [],
     "IOTXUSDT": [],
@@ -5598,9 +5600,7 @@
     "JPMBUSDT": [],
     "JSTUSDT": [],
     "JTOUSDT": [],
-    "JUPUSDT": [
-      1795417200000
-    ],
+    "JUPUSDT": [],
     "JUVUSDT": [],
     "KAIAUSDT": [],
     "KAITOUSDT": [],
@@ -5656,7 +5656,9 @@
     "MSFTBUSDT": [],
     "MSTRBUSDT": [],
     "MTLUSDT": [],
-    "MUBARAKUSDT": [],
+    "MUBARAKUSDT": [
+      1795420800000
+    ],
     "MUBUSDT": [],
     "MUUBUSDT": [],
     "MVLLBUSDT": [],
@@ -5668,9 +5670,7 @@
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
     "NIGHTUSDT": [],
-    "NILUSDT": [
-      1795417200000
-    ],
+    "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
     "NOMUSDT": [],
@@ -8263,7 +8263,8 @@
       1794171600000,
       1794672000000,
       1795053600000,
-      1795359600000
+      1795359600000,
+      1795420800000
     ],
     "SLPUSDT": [
       1794171600000,
@@ -11277,7 +11278,6 @@
     ]
   },
   "sent": [
-    "buy:XLMUSDT:1795204800000:5",
     "buy:XVGUSDT:1795204800000:3",
     "buy:YGGUSDT:1795204800000:2",
     "buy:ZECUSDT:1795204800000:3",
@@ -11676,11 +11676,12 @@
     "exit:COTIUSDT:1795410000000",
     "exit:JUPUSDT:1795410000000",
     "buy:PROMUSDT:1795410000000:2",
-    "exit:DEXEUSDT:1795417200000"
+    "exit:DEXEUSDT:1795417200000",
+    "buy:SKYUSDT:1795420800000:2"
   ],
-  "cycles": 827,
-  "messages_sent": 2654,
-  "last_cycle_ms": 1795426409762,
+  "cycles": 828,
+  "messages_sent": 2655,
+  "last_cycle_ms": 1795428211411,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
