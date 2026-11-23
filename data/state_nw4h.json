@@ -4631,9 +4631,7 @@
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
-    "LISTAUSDT": [
-      1795377600000
-    ],
+    "LISTAUSDT": [],
     "LITEBUSDT": [],
     "LPTUSDT": [],
     "LQTYUSDT": [],
@@ -4677,9 +4675,7 @@
     "NEWTUSDT": [],
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [
-      1795377600000
-    ],
+    "NIGHTUSDT": [],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -6942,9 +6938,9 @@
     "buy:ACEUSDT:1795363200000:1",
     "exit:LISTAUSDT:1795377600000"
   ],
-  "cycles": 110,
+  "cycles": 111,
   "messages_sent": 344,
-  "last_cycle_ms": 1795411278409,
+  "last_cycle_ms": 1795421009062,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-22",
     "reported_trade_keys": [
