@@ -1743,14 +1743,8 @@
       "last_entry_price": 97.36
     },
     "ACEUSDT": {
-      "position": {
-        "entry_price": 0.0986,
-        "entry_time": 1794675600000,
-        "signal_bar_time": 1794672000000,
-        "signal_price": 0.0983,
-        "entry_count": 4
-      },
-      "entry_count": 4,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795237200000,
       "last_entry_price": 0.0844
     },
@@ -5394,7 +5388,9 @@
     "AAOIBUSDT": [],
     "AAPLBUSDT": [],
     "AAVEUSDT": [],
-    "ACEUSDT": [],
+    "ACEUSDT": [
+      1795392000000
+    ],
     "ACHUSDT": [],
     "ACMUSDT": [],
     "ACTUSDT": [],
@@ -5623,7 +5619,9 @@
     "KATUSDT": [],
     "KAVAUSDT": [],
     "KERNELUSDT": [],
-    "KGSTUSDT": [],
+    "KGSTUSDT": [
+      1795392000000
+    ],
     "KITEUSDT": [],
     "KMNOUSDT": [],
     "KNCUSDT": [],
@@ -5764,7 +5762,9 @@
     "SANTOSUSDT": [],
     "SAPIENUSDT": [],
     "SCRUSDT": [],
-    "SCUSDT": [],
+    "SCUSDT": [
+      1795392000000
+    ],
     "SECZBUSDT": [],
     "SEIUSDT": [],
     "SENTUSDT": [],
@@ -11285,7 +11285,6 @@
     ]
   },
   "sent": [
-    "buy:VIRTUALUSDT:1795204800000:6",
     "buy:VSTBUSDT:1795204800000:2",
     "buy:WALUSDT:1795204800000:2",
     "buy:WIFUSDT:1795204800000:4",
@@ -11684,11 +11683,12 @@
     "buy:SKYUSDT:1795359600000:1",
     "exit:CUSDT:1795366800000",
     "exit:DODOUSDT:1795366800000",
-    "exit:KERNELUSDT:1795384800000"
+    "exit:KERNELUSDT:1795384800000",
+    "exit:ACEUSDT:1795392000000"
   ],
-  "cycles": 810,
-  "messages_sent": 2647,
-  "last_cycle_ms": 1795397614141,
+  "cycles": 811,
+  "messages_sent": 2648,
+  "last_cycle_ms": 1795399415929,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
