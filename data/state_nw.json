@@ -387,14 +387,8 @@
       "last_entry_price": 32.35
     },
     "DCRUSDT": {
-      "position": {
-        "entry_price": 10.71,
-        "entry_time": 1794668400000,
-        "signal_bar_time": 1794664800000,
-        "signal_price": 10.64,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795186800000,
       "last_entry_price": 10.01
     },
@@ -1815,10 +1809,16 @@
       "last_entry_price": 5.69
     },
     "AIGENSYNUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1795248000000,
-      "last_entry_price": 0.01349
+      "position": {
+        "entry_price": 0.01534,
+        "entry_time": 1795435200000,
+        "signal_bar_time": 1795431600000,
+        "signal_price": 0.01519,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795431600000,
+      "last_entry_price": 0.01534
     },
     "AIUSDT": {
       "position": null,
@@ -4873,7 +4873,9 @@
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
-    "AIGENSYNUSDT": [],
+    "AIGENSYNUSDT": [
+      1795431600000
+    ],
     "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
@@ -4948,9 +4950,7 @@
     "BREVUSDT": [],
     "BROCCOLI714USDT": [],
     "BTCUSDT": [],
-    "BTTCUSDT": [
-      1795428000000
-    ],
+    "BTTCUSDT": [],
     "C98USDT": [],
     "CAKEUSDT": [],
     "CATIUSDT": [],
@@ -4976,9 +4976,7 @@
     "CRDOBUSDT": [],
     "CRMBUSDT": [],
     "CRVUSDT": [],
-    "CRWDBUSDT": [
-      1795428000000
-    ],
+    "CRWDBUSDT": [],
     "CRWVBUSDT": [],
     "CTKUSDT": [],
     "CTSIUSDT": [],
@@ -5009,7 +5007,9 @@
     "EIGENUSDT": [],
     "ENAUSDT": [],
     "ENJUSDT": [],
-    "ENSOUSDT": [],
+    "ENSOUSDT": [
+      1795431600000
+    ],
     "ENSUSDT": [],
     "ERAUSDT": [],
     "ESPUSDT": [],
@@ -5285,9 +5285,7 @@
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
-    "TKOUSDT": [
-      1795428000000
-    ],
+    "TKOUSDT": [],
     "TLMUSDT": [],
     "TNSRUSDT": [],
     "TOWNSUSDT": [],
@@ -5459,9 +5457,7 @@
     "BNTUSDT": [],
     "BOMEUSDT": [],
     "BONKUSDT": [],
-    "BREVUSDT": [
-      1795428000000
-    ],
+    "BREVUSDT": [],
     "BROCCOLI714USDT": [],
     "BTCUSDT": [],
     "BTTCUSDT": [],
@@ -5500,7 +5496,9 @@
     "CYBERUSDT": [],
     "CYPHBUSDT": [],
     "DASHUSDT": [],
-    "DCRUSDT": [],
+    "DCRUSDT": [
+      1795431600000
+    ],
     "DELLBUSDT": [],
     "DEXEUSDT": [],
     "DGBUSDT": [],
@@ -5628,9 +5626,7 @@
     "LTCUSDT": [],
     "LUMIAUSDT": [],
     "LUNAUSDT": [],
-    "LUNCUSDT": [
-      1795428000000
-    ],
+    "LUNCUSDT": [],
     "MAGICUSDT": [],
     "MANAUSDT": [],
     "MANTAUSDT": [],
@@ -5659,7 +5655,7 @@
     "MSTRBUSDT": [],
     "MTLUSDT": [],
     "MUBARAKUSDT": [
-      1795428000000
+      1795431600000
     ],
     "MUBUSDT": [],
     "MUUBUSDT": [],
@@ -5711,9 +5707,7 @@
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
-    "PROMUSDT": [
-      1795428000000
-    ],
+    "PROMUSDT": [],
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -5724,7 +5718,9 @@
     "QIUSDT": [],
     "QKCUSDT": [],
     "QNTBUSDT": [],
-    "QNTUSDT": [],
+    "QNTUSDT": [
+      1795431600000
+    ],
     "QQQBUSDT": [],
     "QTUMUSDT": [],
     "RADUSDT": [],
@@ -6020,7 +6016,8 @@
       1794686400000,
       1794704400000,
       1795237200000,
-      1795248000000
+      1795248000000,
+      1795431600000
     ],
     "AIUSDT": [
       1794542400000,
@@ -9698,7 +9695,8 @@
     ],
     "ENSOUSDT": [
       1794686400000,
-      1795345200000
+      1795345200000,
+      1795431600000
     ],
     "ENSUSDT": [
       1794679200000,
@@ -11285,8 +11283,6 @@
     ]
   },
   "sent": [
-    "buy:ZECUSDT:1795204800000:3",
-    "buy:ZRXUSDT:1795204800000:7",
     "buy:COINBUSDT:1795208400000:5",
     "buy:CRWDBUSDT:1795208400000:1",
     "exit:LUNCUSDT:1795212000000",
@@ -11684,11 +11680,13 @@
     "exit:DEXEUSDT:1795417200000",
     "buy:SKYUSDT:1795420800000:2",
     "exit:PROMUSDT:1795428000000",
-    "buy:TKOUSDT:1795428000000:1"
+    "buy:TKOUSDT:1795428000000:1",
+    "buy:AIGENSYNUSDT:1795431600000:1",
+    "exit:DCRUSDT:1795431600000"
   ],
-  "cycles": 833,
-  "messages_sent": 2657,
-  "last_cycle_ms": 1795436237740,
+  "cycles": 834,
+  "messages_sent": 2659,
+  "last_cycle_ms": 1795439014120,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
