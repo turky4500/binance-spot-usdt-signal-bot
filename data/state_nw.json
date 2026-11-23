@@ -5197,9 +5197,7 @@
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
-    "PROMUSDT": [
-      1795410000000
-    ],
+    "PROMUSDT": [],
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -5389,15 +5387,11 @@
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
-    "AIGENSYNUSDT": [
-      1795410000000
-    ],
+    "AIGENSYNUSDT": [],
     "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
-    "ALGOUSDT": [
-      1795410000000
-    ],
+    "ALGOUSDT": [],
     "ALICEUSDT": [],
     "ALLOUSDT": [],
     "ALPINEUSDT": [],
@@ -5488,9 +5482,7 @@
     "COINBUSDT": [],
     "COMPUSDT": [],
     "COOKIEUSDT": [],
-    "COTIUSDT": [
-      1795410000000
-    ],
+    "COTIUSDT": [],
     "COWUSDT": [],
     "CRCLBUSDT": [],
     "CRDOBUSDT": [],
@@ -5543,7 +5535,9 @@
     "FLNCBUSDT": [],
     "FLOKIUSDT": [],
     "FLOWUSDT": [],
-    "FLUXUSDT": [],
+    "FLUXUSDT": [
+      1795413600000
+    ],
     "FOGOUSDT": [],
     "FORMUSDT": [],
     "FRAXUSDT": [],
@@ -5606,16 +5600,16 @@
     "JPMBUSDT": [],
     "JSTUSDT": [],
     "JTOUSDT": [],
-    "JUPUSDT": [
-      1795410000000
-    ],
+    "JUPUSDT": [],
     "JUVUSDT": [],
     "KAIAUSDT": [],
     "KAITOUSDT": [],
     "KATUSDT": [],
     "KAVAUSDT": [],
     "KERNELUSDT": [],
-    "KGSTUSDT": [],
+    "KGSTUSDT": [
+      1795413600000
+    ],
     "KITEUSDT": [],
     "KMNOUSDT": [],
     "KNCUSDT": [],
@@ -5628,7 +5622,7 @@
     "LINEAUSDT": [],
     "LINKUSDT": [],
     "LISTAUSDT": [
-      1795410000000
+      1795413600000
     ],
     "LITEBUSDT": [],
     "LLYBUSDT": [],
@@ -5807,9 +5801,7 @@
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
-    "TKOUSDT": [
-      1795410000000
-    ],
+    "TKOUSDT": [],
     "TLMUSDT": [],
     "TNSRUSDT": [],
     "TOWNSUSDT": [],
@@ -11687,9 +11679,9 @@
     "exit:JUPUSDT:1795410000000",
     "buy:PROMUSDT:1795410000000:2"
   ],
-  "cycles": 823,
+  "cycles": 824,
   "messages_sent": 2653,
-  "last_cycle_ms": 1795419204405,
+  "last_cycle_ms": 1795420932490,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
