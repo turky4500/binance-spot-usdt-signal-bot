@@ -2529,14 +2529,8 @@
       "last_entry_price": 281.53
     },
     "DEXEUSDT": {
-      "position": {
-        "entry_price": 1.105,
-        "entry_time": 1795190400000,
-        "signal_bar_time": 1795186800000,
-        "signal_price": 1.096,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795237200000,
       "last_entry_price": 1.105
     },
@@ -5197,7 +5191,9 @@
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
-    "PROMUSDT": [],
+    "PROMUSDT": [
+      1795417200000
+    ],
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -5500,7 +5496,9 @@
     "DASHUSDT": [],
     "DCRUSDT": [],
     "DELLBUSDT": [],
-    "DEXEUSDT": [],
+    "DEXEUSDT": [
+      1795417200000
+    ],
     "DGBUSDT": [],
     "DIAUSDT": [],
     "DJTBUSDT": [],
@@ -5535,9 +5533,7 @@
     "FLNCBUSDT": [],
     "FLOKIUSDT": [],
     "FLOWUSDT": [],
-    "FLUXUSDT": [
-      1795413600000
-    ],
+    "FLUXUSDT": [],
     "FOGOUSDT": [],
     "FORMUSDT": [],
     "FRAXUSDT": [],
@@ -5589,7 +5585,9 @@
     "INJUSDT": [],
     "INTCBUSDT": [],
     "INTWBUSDT": [],
-    "IOSTUSDT": [],
+    "IOSTUSDT": [
+      1795417200000
+    ],
     "IOTAUSDT": [],
     "IOTXUSDT": [],
     "IOUSDT": [],
@@ -5600,16 +5598,16 @@
     "JPMBUSDT": [],
     "JSTUSDT": [],
     "JTOUSDT": [],
-    "JUPUSDT": [],
+    "JUPUSDT": [
+      1795417200000
+    ],
     "JUVUSDT": [],
     "KAIAUSDT": [],
     "KAITOUSDT": [],
     "KATUSDT": [],
     "KAVAUSDT": [],
     "KERNELUSDT": [],
-    "KGSTUSDT": [
-      1795413600000
-    ],
+    "KGSTUSDT": [],
     "KITEUSDT": [],
     "KMNOUSDT": [],
     "KNCUSDT": [],
@@ -5621,9 +5619,7 @@
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
-    "LISTAUSDT": [
-      1795413600000
-    ],
+    "LISTAUSDT": [],
     "LITEBUSDT": [],
     "LLYBUSDT": [],
     "LPTUSDT": [],
@@ -5672,7 +5668,9 @@
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
     "NIGHTUSDT": [],
-    "NILUSDT": [],
+    "NILUSDT": [
+      1795417200000
+    ],
     "NMRUSDT": [],
     "NOKBUSDT": [],
     "NOMUSDT": [],
@@ -10513,7 +10511,8 @@
     "PROMUSDT": [
       1794337200000,
       1795190400000,
-      1795366800000
+      1795366800000,
+      1795417200000
     ],
     "PROVEUSDT": [
       1794675600000,
@@ -11278,7 +11277,6 @@
     ]
   },
   "sent": [
-    "buy:XECUSDT:1795204800000:4",
     "buy:XLMUSDT:1795204800000:5",
     "buy:XVGUSDT:1795204800000:3",
     "buy:YGGUSDT:1795204800000:2",
@@ -11677,11 +11675,12 @@
     "exit:BREVUSDT:1795402800000",
     "exit:COTIUSDT:1795410000000",
     "exit:JUPUSDT:1795410000000",
-    "buy:PROMUSDT:1795410000000:2"
+    "buy:PROMUSDT:1795410000000:2",
+    "exit:DEXEUSDT:1795417200000"
   ],
-  "cycles": 825,
-  "messages_sent": 2653,
-  "last_cycle_ms": 1795422803560,
+  "cycles": 826,
+  "messages_sent": 2654,
+  "last_cycle_ms": 1795424609019,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
