@@ -2709,14 +2709,8 @@
       "last_entry_price": 0.044
     },
     "PROMUSDT": {
-      "position": {
-        "entry_price": 4.608,
-        "entry_time": 1795219200000,
-        "signal_bar_time": 1795204800000,
-        "signal_price": 4.565,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795406400000,
       "last_entry_price": 6.095
     },
@@ -4246,9 +4240,7 @@
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
-    "PROMUSDT": [
-      1795406400000
-    ],
+    "PROMUSDT": [],
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -4420,7 +4412,9 @@
     "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
-    "ALGOUSDT": [],
+    "ALGOUSDT": [
+      1795420800000
+    ],
     "ALICEUSDT": [],
     "ALLOUSDT": [],
     "ALPINEUSDT": [],
@@ -4715,7 +4709,9 @@
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
-    "PROMUSDT": [],
+    "PROMUSDT": [
+      1795420800000
+    ],
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -6940,11 +6936,12 @@
     "exit:NIGHTUSDT:1795348800000",
     "buy:ACEUSDT:1795363200000:1",
     "exit:LISTAUSDT:1795377600000",
-    "buy:PROMUSDT:1795406400000:2"
+    "buy:PROMUSDT:1795406400000:2",
+    "exit:PROMUSDT:1795420800000"
   ],
-  "cycles": 112,
-  "messages_sent": 345,
-  "last_cycle_ms": 1795435414556,
+  "cycles": 113,
+  "messages_sent": 346,
+  "last_cycle_ms": 1795449824206,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-22",
     "reported_trade_keys": [
