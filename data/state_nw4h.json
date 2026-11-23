@@ -87,10 +87,16 @@
       "last_entry_price": 94.95
     },
     "ACEUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.0781,
+        "entry_time": 1795377600000,
+        "signal_bar_time": 1795363200000,
+        "signal_price": 0.0721,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795363200000,
+      "last_entry_price": 0.0781
     },
     "ACHUSDT": {
       "position": null,
@@ -3938,7 +3944,9 @@
     "AAOIBUSDT": [],
     "AAPLBUSDT": [],
     "AAVEUSDT": [],
-    "ACEUSDT": [],
+    "ACEUSDT": [
+      1795363200000
+    ],
     "ACHUSDT": [],
     "ACMUSDT": [],
     "ACTUSDT": [],
@@ -4524,9 +4532,7 @@
     "DEXEUSDT": [],
     "DGBUSDT": [],
     "DIAUSDT": [],
-    "DODOUSDT": [
-      1795348800000
-    ],
+    "DODOUSDT": [],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -4677,9 +4683,7 @@
     "NEWTUSDT": [],
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [
-      1795348800000
-    ],
+    "NIGHTUSDT": [],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -4890,7 +4894,9 @@
       1795190400000,
       1795219200000
     ],
-    "ACEUSDT": [],
+    "ACEUSDT": [
+      1795363200000
+    ],
     "ACHUSDT": [],
     "ACMUSDT": [
       1794686400000,
@@ -6936,11 +6942,12 @@
     "buy:LUNCUSDT:1795248000000:3",
     "exit:SAPIENUSDT:1795248000000",
     "buy:TKOUSDT:1795248000000:2",
-    "exit:NIGHTUSDT:1795348800000"
+    "exit:NIGHTUSDT:1795348800000",
+    "buy:ACEUSDT:1795363200000:1"
   ],
-  "cycles": 107,
-  "messages_sent": 342,
-  "last_cycle_ms": 1795382861531,
+  "cycles": 108,
+  "messages_sent": 343,
+  "last_cycle_ms": 1795392219129,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-22",
     "reported_trade_keys": [
