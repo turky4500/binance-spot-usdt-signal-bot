@@ -2277,14 +2277,8 @@
       "last_entry_price": 2.04e-06
     },
     "BREVUSDT": {
-      "position": {
-        "entry_price": 0.0856,
-        "entry_time": 1795032000000,
-        "signal_bar_time": 1795028400000,
-        "signal_price": 0.0853,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795039200000,
       "last_entry_price": 0.0819
     },
@@ -4886,9 +4880,7 @@
     "AAOIBUSDT": [],
     "AAPLBUSDT": [],
     "AAVEUSDT": [],
-    "ACEUSDT": [
-      1795399200000
-    ],
+    "ACEUSDT": [],
     "ACHUSDT": [],
     "ACMUSDT": [],
     "ACTUSDT": [],
@@ -4974,7 +4966,9 @@
     "BREVUSDT": [],
     "BROCCOLI714USDT": [],
     "BTCUSDT": [],
-    "BTTCUSDT": [],
+    "BTTCUSDT": [
+      1795402800000
+    ],
     "C98USDT": [],
     "CAKEUSDT": [],
     "CATIUSDT": [],
@@ -5407,7 +5401,9 @@
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
-    "AIGENSYNUSDT": [],
+    "AIGENSYNUSDT": [
+      1795402800000
+    ],
     "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
@@ -5479,7 +5475,9 @@
     "BNTUSDT": [],
     "BOMEUSDT": [],
     "BONKUSDT": [],
-    "BREVUSDT": [],
+    "BREVUSDT": [
+      1795402800000
+    ],
     "BROCCOLI714USDT": [],
     "BTCUSDT": [],
     "BTTCUSDT": [],
@@ -5576,7 +5574,9 @@
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
-    "GPSUSDT": [],
+    "GPSUSDT": [
+      1795402800000
+    ],
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
@@ -5637,7 +5637,9 @@
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
-    "LISTAUSDT": [],
+    "LISTAUSDT": [
+      1795402800000
+    ],
     "LITEBUSDT": [],
     "LLYBUSDT": [],
     "LPTUSDT": [],
@@ -9470,7 +9472,8 @@
       1795201200000,
       1795230000000,
       1795341600000,
-      1795352400000
+      1795352400000,
+      1795402800000
     ],
     "C98USDT": [
       1794664800000,
@@ -11290,7 +11293,6 @@
     ]
   },
   "sent": [
-    "buy:WALUSDT:1795204800000:2",
     "buy:WIFUSDT:1795204800000:4",
     "buy:WOOUSDT:1795204800000:6",
     "buy:XAIUSDT:1795204800000:4",
@@ -11689,11 +11691,12 @@
     "exit:DODOUSDT:1795366800000",
     "exit:KERNELUSDT:1795384800000",
     "exit:ACEUSDT:1795392000000",
-    "buy:ACEUSDT:1795399200000:1"
+    "buy:ACEUSDT:1795399200000:1",
+    "exit:BREVUSDT:1795402800000"
   ],
-  "cycles": 817,
-  "messages_sent": 2649,
-  "last_cycle_ms": 1795408412928,
+  "cycles": 818,
+  "messages_sent": 2650,
+  "last_cycle_ms": 1795410207955,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
