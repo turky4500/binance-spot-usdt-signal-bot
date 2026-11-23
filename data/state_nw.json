@@ -3135,14 +3135,8 @@
       "last_entry_price": 0.06824
     },
     "KERNELUSDT": {
-      "position": {
-        "entry_price": 0.0432,
-        "entry_time": 1795258800000,
-        "signal_bar_time": 1795255200000,
-        "signal_price": 0.0429,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795255200000,
       "last_entry_price": 0.0432
     },
@@ -5628,7 +5622,9 @@
     "KAITOUSDT": [],
     "KATUSDT": [],
     "KAVAUSDT": [],
-    "KERNELUSDT": [],
+    "KERNELUSDT": [
+      1795384800000
+    ],
     "KGSTUSDT": [],
     "KITEUSDT": [],
     "KMNOUSDT": [],
@@ -5641,9 +5637,7 @@
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
-    "LISTAUSDT": [
-      1795381200000
-    ],
+    "LISTAUSDT": [],
     "LITEBUSDT": [],
     "LLYBUSDT": [],
     "LPTUSDT": [],
@@ -11293,7 +11287,6 @@
     ]
   },
   "sent": [
-    "buy:VETUSDT:1795204800000:2",
     "buy:VIRTUALUSDT:1795204800000:6",
     "buy:VSTBUSDT:1795204800000:2",
     "buy:WALUSDT:1795204800000:2",
@@ -11692,11 +11685,12 @@
     "buy:PROMUSDT:1795359600000:1",
     "buy:SKYUSDT:1795359600000:1",
     "exit:CUSDT:1795366800000",
-    "exit:DODOUSDT:1795366800000"
+    "exit:DODOUSDT:1795366800000",
+    "exit:KERNELUSDT:1795384800000"
   ],
-  "cycles": 807,
-  "messages_sent": 2646,
-  "last_cycle_ms": 1795391122380,
+  "cycles": 808,
+  "messages_sent": 2647,
+  "last_cycle_ms": 1795394012839,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
