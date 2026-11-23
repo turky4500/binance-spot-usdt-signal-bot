@@ -5248,7 +5248,9 @@
     "SAHARAUSDT": [],
     "SANDUSDT": [],
     "SANTOSUSDT": [],
-    "SAPIENUSDT": [],
+    "SAPIENUSDT": [
+      1795395600000
+    ],
     "SCRUSDT": [],
     "SCUSDT": [],
     "SECZBUSDT": [],
@@ -5388,9 +5390,7 @@
     "AAOIBUSDT": [],
     "AAPLBUSDT": [],
     "AAVEUSDT": [],
-    "ACEUSDT": [
-      1795392000000
-    ],
+    "ACEUSDT": [],
     "ACHUSDT": [],
     "ACMUSDT": [],
     "ACTUSDT": [],
@@ -5401,7 +5401,9 @@
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
-    "AIGENSYNUSDT": [],
+    "AIGENSYNUSDT": [
+      1795395600000
+    ],
     "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
@@ -5619,9 +5621,7 @@
     "KATUSDT": [],
     "KAVAUSDT": [],
     "KERNELUSDT": [],
-    "KGSTUSDT": [
-      1795392000000
-    ],
+    "KGSTUSDT": [],
     "KITEUSDT": [],
     "KMNOUSDT": [],
     "KNCUSDT": [],
@@ -5762,9 +5762,7 @@
     "SANTOSUSDT": [],
     "SAPIENUSDT": [],
     "SCRUSDT": [],
-    "SCUSDT": [
-      1795392000000
-    ],
+    "SCUSDT": [],
     "SECZBUSDT": [],
     "SEIUSDT": [],
     "SENTUSDT": [],
@@ -10687,7 +10685,9 @@
       1795186800000,
       1795201200000
     ],
-    "SAPIENUSDT": [],
+    "SAPIENUSDT": [
+      1795395600000
+    ],
     "SCRUSDT": [
       1795014000000
     ],
@@ -11686,9 +11686,9 @@
     "exit:KERNELUSDT:1795384800000",
     "exit:ACEUSDT:1795392000000"
   ],
-  "cycles": 813,
+  "cycles": 814,
   "messages_sent": 2648,
-  "last_cycle_ms": 1795401375885,
+  "last_cycle_ms": 1795403006262,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
