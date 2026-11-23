@@ -68,7 +68,8 @@
     "9543": 1795330800000,
     "2382": 1795071600000,
     "9541": 1795071600000,
-    "1030": 1795330800000
+    "1030": 1795330800000,
+    "4190": 1795417200000
   },
   "open_trades": {
     "2282": {
@@ -86,23 +87,6 @@
       "peak_price": 63.450001,
       "last_stop_alert_price": 58.37400092,
       "stop_updates_count": 2,
-      "halal_verdict": "ℹ️ لا يوجد حكم"
-    },
-    "4190": {
-      "trade_id": "4190-1792998000000",
-      "code": "4190",
-      "company": "Jarir Marketing Company",
-      "entry_price": 16.01,
-      "stop_price": 16.4772,
-      "pivot_stop": 15.02,
-      "target_price": 17.990000000000006,
-      "stop_dist_pct": 6.183635227982523,
-      "size_suggest_pct": 0.1617171717171714,
-      "entry_time": 1793016000000,
-      "entry_bar_open_time": 1792998000000,
-      "peak_price": 17.91,
-      "last_stop_alert_price": 16.468,
-      "stop_updates_count": 3,
       "halal_verdict": "ℹ️ لا يوجد حكم"
     },
     "6015": {
@@ -205,7 +189,7 @@
       "size_suggest_pct": 0.10999998076923446,
       "entry_time": 1793793600000,
       "entry_bar_open_time": 1793775600000,
-      "peak_price": 60.0,
+      "peak_price": 61.0,
       "last_stop_alert_price": 55.01599908,
       "stop_updates_count": 3,
       "halal_verdict": "ℹ️ لا يوجد حكم",
@@ -378,16 +362,16 @@
       "code": "9618",
       "company": "Al-Fakhera Men's Tailoring Company",
       "entry_price": 24.799999,
-      "stop_price": 24.472,
+      "stop_price": 26.588,
       "pivot_stop": 22.879999,
       "target_price": 28.639998999999996,
       "stop_dist_pct": 7.74193579604579,
       "size_suggest_pct": 0.12916666145833347,
       "entry_time": 1795089600000,
       "entry_bar_open_time": 1795071600000,
-      "peak_price": 28.9,
-      "last_stop_alert_price": 24.472,
-      "stop_updates_count": 1,
+      "peak_price": 29.98,
+      "last_stop_alert_price": 26.588,
+      "stop_updates_count": 2,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     },
@@ -1215,6 +1199,16 @@
       "type": "entry",
       "symbol": "8250",
       "time_ms": 1795348800000
+    },
+    {
+      "type": "exit_win",
+      "symbol": "4190",
+      "time_ms": 1795435200000
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "9618",
+      "time_ms": 1795435200000
     }
   ],
   "daily_report": {
@@ -1226,5 +1220,5 @@
   "weekly_report": {
     "last_reported_week_start": ""
   },
-  "last_processed_date": "2026-11-22"
+  "last_processed_date": "2026-11-23"
 }
