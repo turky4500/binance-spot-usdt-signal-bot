@@ -1989,14 +1989,8 @@
       "last_entry_price": 9.119
     },
     "LISTAUSDT": {
-      "position": {
-        "entry_price": 0.0652,
-        "entry_time": 1795233600000,
-        "signal_bar_time": 1795219200000,
-        "signal_price": 0.0637,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795219200000,
       "last_entry_price": 0.0652
     },
@@ -3944,9 +3938,7 @@
     "AAOIBUSDT": [],
     "AAPLBUSDT": [],
     "AAVEUSDT": [],
-    "ACEUSDT": [
-      1795363200000
-    ],
+    "ACEUSDT": [],
     "ACHUSDT": [],
     "ACMUSDT": [],
     "ACTUSDT": [],
@@ -4639,7 +4631,9 @@
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
-    "LISTAUSDT": [],
+    "LISTAUSDT": [
+      1795377600000
+    ],
     "LITEBUSDT": [],
     "LPTUSDT": [],
     "LQTYUSDT": [],
@@ -4683,7 +4677,9 @@
     "NEWTUSDT": [],
     "NEXOUSDT": [],
     "NFLXBUSDT": [],
-    "NIGHTUSDT": [],
+    "NIGHTUSDT": [
+      1795377600000
+    ],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
@@ -6943,11 +6939,12 @@
     "exit:SAPIENUSDT:1795248000000",
     "buy:TKOUSDT:1795248000000:2",
     "exit:NIGHTUSDT:1795348800000",
-    "buy:ACEUSDT:1795363200000:1"
+    "buy:ACEUSDT:1795363200000:1",
+    "exit:LISTAUSDT:1795377600000"
   ],
-  "cycles": 108,
-  "messages_sent": 343,
-  "last_cycle_ms": 1795392219129,
+  "cycles": 109,
+  "messages_sent": 344,
+  "last_cycle_ms": 1795406613034,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-22",
     "reported_trade_keys": [
