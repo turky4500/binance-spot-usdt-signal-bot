@@ -1112,11 +1112,11 @@
         "entry_time": 1795363200000,
         "signal_bar_time": 1795359600000,
         "signal_price": 4.679,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1795359600000,
-      "last_entry_price": 5.025
+      "entry_count": 2,
+      "last_buy_bar": 1795410000000,
+      "last_entry_price": 4.472
     },
     "PROVEUSDT": {
       "position": {
@@ -2427,14 +2427,8 @@
       "last_entry_price": 16.61
     },
     "COTIUSDT": {
-      "position": {
-        "entry_price": 0.00834,
-        "entry_time": 1794675600000,
-        "signal_bar_time": 1794672000000,
-        "signal_price": 0.00831,
-        "entry_count": 6
-      },
-      "entry_count": 6,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795237200000,
       "last_entry_price": 0.00766
     },
@@ -3075,14 +3069,8 @@
       "last_entry_price": 0.2195
     },
     "JUPUSDT": {
-      "position": {
-        "entry_price": 0.2547,
-        "entry_time": 1795118400000,
-        "signal_bar_time": 1795114800000,
-        "signal_price": 0.2531,
-        "entry_count": 3
-      },
-      "entry_count": 3,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795136400000,
       "last_entry_price": 0.2393
     },
@@ -5209,7 +5197,9 @@
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
-    "PROMUSDT": [],
+    "PROMUSDT": [
+      1795410000000
+    ],
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -5399,11 +5389,15 @@
     "AEVOUSDT": [],
     "AGLDUSDT": [],
     "AGPUBUSDT": [],
-    "AIGENSYNUSDT": [],
+    "AIGENSYNUSDT": [
+      1795410000000
+    ],
     "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
-    "ALGOUSDT": [],
+    "ALGOUSDT": [
+      1795410000000
+    ],
     "ALICEUSDT": [],
     "ALLOUSDT": [],
     "ALPINEUSDT": [],
@@ -5462,9 +5456,7 @@
     "BICOUSDT": [],
     "BIGTIMEUSDT": [],
     "BIOUSDT": [],
-    "BLURUSDT": [
-      1795406400000
-    ],
+    "BLURUSDT": [],
     "BMNRBUSDT": [],
     "BMTUSDT": [],
     "BNBUSDT": [],
@@ -5496,7 +5488,9 @@
     "COINBUSDT": [],
     "COMPUSDT": [],
     "COOKIEUSDT": [],
-    "COTIUSDT": [],
+    "COTIUSDT": [
+      1795410000000
+    ],
     "COWUSDT": [],
     "CRCLBUSDT": [],
     "CRDOBUSDT": [],
@@ -5612,7 +5606,9 @@
     "JPMBUSDT": [],
     "JSTUSDT": [],
     "JTOUSDT": [],
-    "JUPUSDT": [],
+    "JUPUSDT": [
+      1795410000000
+    ],
     "JUVUSDT": [],
     "KAIAUSDT": [],
     "KAITOUSDT": [],
@@ -5631,7 +5627,9 @@
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
-    "LISTAUSDT": [],
+    "LISTAUSDT": [
+      1795410000000
+    ],
     "LITEBUSDT": [],
     "LLYBUSDT": [],
     "LPTUSDT": [],
@@ -5809,7 +5807,9 @@
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
-    "TKOUSDT": [],
+    "TKOUSDT": [
+      1795410000000
+    ],
     "TLMUSDT": [],
     "TNSRUSDT": [],
     "TOWNSUSDT": [],
@@ -7956,7 +7956,8 @@
       1794376800000,
       1795233600000,
       1795345200000,
-      1795359600000
+      1795359600000,
+      1795410000000
     ],
     "PROVEUSDT": [
       1794171600000,
@@ -11285,9 +11286,6 @@
     ]
   },
   "sent": [
-    "buy:WIFUSDT:1795204800000:4",
-    "buy:WOOUSDT:1795204800000:6",
-    "buy:XAIUSDT:1795204800000:4",
     "buy:XECUSDT:1795204800000:4",
     "buy:XLMUSDT:1795204800000:5",
     "buy:XVGUSDT:1795204800000:3",
@@ -11684,11 +11682,14 @@
     "exit:KERNELUSDT:1795384800000",
     "exit:ACEUSDT:1795392000000",
     "buy:ACEUSDT:1795399200000:1",
-    "exit:BREVUSDT:1795402800000"
+    "exit:BREVUSDT:1795402800000",
+    "exit:COTIUSDT:1795410000000",
+    "exit:JUPUSDT:1795410000000",
+    "buy:PROMUSDT:1795410000000:2"
   ],
-  "cycles": 821,
-  "messages_sent": 2650,
-  "last_cycle_ms": 1795415605863,
+  "cycles": 822,
+  "messages_sent": 2653,
+  "last_cycle_ms": 1795417413695,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
