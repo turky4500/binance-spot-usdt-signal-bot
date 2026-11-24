@@ -6,11 +6,18 @@ name: Halal Academy Refresh
 #   ولا يحذف أي رمز موجود غاب عن الموقع.
 # • يكتب ملفين فقط: halal_academy.json و halal_academy_meta.json.
 # • GITHUB_TOKEN فقط، بلا PAT ولا Telegram ولا أي سر آخر؛ لا push trigger.
-# • [skip ci] في رسالة الكومِت + concurrency ⇒ لا تكرار ولا تشغيل للبوتات.
+# • نبض Signal Bot Cron احتياطي إن تأخرت جدولة GitHub؛ بوابة حداثة تمنع
+#   إعادة جلب الموقع إذا كان آخر فحص سليم منذ أقل من 30 دقيقة.
+# • الإطلاق اليدوي يتجاوز البوابة؛ concurrency يمنع تحديثين في آن واحد.
+# • [skip ci] في رسالة الكومِت ⇒ لا تشغيل للبوتات بسبب تحديث الأحكام.
 
 on:
   schedule:
     - cron: '*/30 * * * *'
+  workflow_run:
+    workflows: ["Signal Bot Cron"]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -36,10 +43,16 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Check whether a refresh is due
+        id: due
+        run: python tools/halal_refresh_gate.py
+
       - name: Install requests
+        if: steps.due.outputs.refresh == 'true'
         run: python -m pip install --quiet 'requests>=2.31.0'
 
       - name: Fetch site rulings and merge
+        if: steps.due.outputs.refresh == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
