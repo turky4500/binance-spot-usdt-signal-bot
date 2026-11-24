@@ -107,7 +107,7 @@
     "QIUSDT": 1793577600000,
     "STXUSDT": 1793491200000,
     "ZROUSDT": 1794441600000,
-    "BEAMXUSDT": 1793059200000,
+    "BEAMXUSDT": 1795478400000,
     "JUPUSDT": 1794787200000,
     "PEPEUSDT": 1793145600000,
     "PUMPUSDT": 1794268800000,
@@ -200,46 +200,28 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1795513560000,
+      "last_check_ms": 1795551840000,
       "peak_price": 0.14853,
       "last_stop_alert_price": 0.1365372,
       "stop_updates_count": 1,
       "halal_verdict": "⛔ غير مباح",
       "silent": true
     },
-    "BEAMXUSDT": {
-      "trade_id": "BEAMXUSDT-1795305600000",
-      "symbol": "BEAMXUSDT",
-      "entry_price": 0.0035,
-      "stop_price": 0.0033193600000000004,
-      "pivot_stop": 0.003153,
-      "target_price": 0.004194,
-      "stop_dist_pct": 9.914285714285716,
-      "size_suggest_pct": 0.10086455331412102,
-      "entry_time": 1795391999999,
-      "entry_bar_open_time": 1795305600000,
-      "last_check_ms": 1795513560000,
-      "peak_price": 0.003608,
-      "last_stop_alert_price": 0.00329268,
-      "stop_updates_count": 2,
-      "halal_verdict": "ℹ️ لا يوجد حكم",
-      "silent": true
-    },
     "WINUSDT": {
       "trade_id": "WINUSDT-1795305600000",
       "symbol": "WINUSDT",
       "entry_price": 5.543e-05,
-      "stop_price": 5.36636e-05,
+      "stop_price": 5.42156e-05,
       "pivot_stop": 5.243e-05,
       "target_price": 6.143000000000001e-05,
       "stop_dist_pct": 5.412231643514351,
       "size_suggest_pct": 0.18476666666666636,
       "entry_time": 1795391999999,
       "entry_bar_open_time": 1795305600000,
-      "last_check_ms": 1795513560000,
-      "peak_price": 5.833e-05,
-      "last_stop_alert_price": 5.36636e-05,
-      "stop_updates_count": 1,
+      "last_check_ms": 1795551840000,
+      "peak_price": 5.9e-05,
+      "last_stop_alert_price": 5.42156e-05,
+      "stop_updates_count": 2,
       "halal_verdict": "⛔ غير مباح",
       "silent": true
     }
@@ -4594,6 +4576,16 @@
       "type": "exit_loss",
       "symbol": "ZAMAUSDT",
       "time_ms": 1795471679999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "BEAMXUSDT",
+      "time_ms": 1795544339999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "WINUSDT",
+      "time_ms": 1795551599999
     }
   ],
   "daily_report": {
