@@ -3897,9 +3897,7 @@
     "API3USDT": [],
     "APTUSDT": [],
     "ARBUSDT": [],
-    "ARKMUSDT": [
-      1795471200000
-    ],
+    "ARKMUSDT": [],
     "ARKUSDT": [],
     "ARMBUSDT": [],
     "ARPAUSDT": [],
@@ -4007,9 +4005,7 @@
     "DYMUSDT": [],
     "EDENUSDT": [],
     "EDUUSDT": [],
-    "EGLDUSDT": [
-      1795471200000
-    ],
+    "EGLDUSDT": [],
     "EIGENUSDT": [],
     "ENAUSDT": [],
     "ENJUSDT": [],
@@ -4123,9 +4119,7 @@
     "LUNCUSDT": [],
     "MAGICUSDT": [],
     "MANAUSDT": [],
-    "MANTAUSDT": [
-      1795471200000
-    ],
+    "MANTAUSDT": [],
     "MANTRAUSDT": [],
     "MARSCOINUSDT": [],
     "MASKUSDT": [],
@@ -4237,18 +4231,14 @@
     "RVNUSDT": [],
     "RWUSDUSDT": [],
     "SAGAUSDT": [],
-    "SAHARAUSDT": [
-      1795471200000
-    ],
+    "SAHARAUSDT": [],
     "SANDUSDT": [],
     "SANTOSUSDT": [],
     "SAPIENUSDT": [],
     "SCRUSDT": [],
     "SCUSDT": [],
     "SECZBUSDT": [],
-    "SEIUSDT": [
-      1795471200000
-    ],
+    "SEIUSDT": [],
     "SENTUSDT": [],
     "SFPUSDT": [],
     "SHAZBUSDT": [],
@@ -4344,9 +4334,7 @@
     "XPLUSDT": [],
     "XRPUSDT": [],
     "XTZUSDT": [],
-    "XVGUSDT": [
-      1795471200000
-    ],
+    "XVGUSDT": [],
     "XVSUSDT": [],
     "YBUSDT": [],
     "YFIUSDT": [],
@@ -4360,9 +4348,7 @@
     "ZKPUSDT": [],
     "ZKUSDT": [],
     "ZMBUSDT": [],
-    "ZROUSDT": [
-      1795471200000
-    ],
+    "ZROUSDT": [],
     "ZRXUSDT": [],
     "币安人生USDT": [],
     "牛来USDT": [],
@@ -4374,9 +4360,7 @@
     "APPBUSDT": [],
     "BSPBUSDT": [],
     "GEVBUSDT": [],
-    "SKDDBUSDT": [
-      1795471200000
-    ],
+    "SKDDBUSDT": [],
     "SKUUBUSDT": []
   },
   "prev_sell_bars": {
@@ -4411,9 +4395,7 @@
     "ALPINEUSDT": [],
     "ALTUSDT": [],
     "AMATBUSDT": [],
-    "AMCBUSDT": [
-      1795471200000
-    ],
+    "AMCBUSDT": [],
     "AMDBUSDT": [],
     "AMPUSDT": [],
     "AMZNBUSDT": [],
@@ -4884,9 +4866,7 @@
     "TMFBUSDT": [],
     "VSTBUSDT": [],
     "APPBUSDT": [],
-    "BSPBUSDT": [
-      1795471200000
-    ],
+    "BSPBUSDT": [],
     "GEVBUSDT": [],
     "SKDDBUSDT": [],
     "SKUUBUSDT": []
@@ -10725,9 +10705,9 @@
     "buy:XVGUSDT:1795471200000:1",
     "buy:ZROUSDT:1795471200000:5"
   ],
-  "cycles": 858,
+  "cycles": 859,
   "messages_sent": 2846,
-  "last_cycle_ms": 1795481140833,
+  "last_cycle_ms": 1795484015800,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
