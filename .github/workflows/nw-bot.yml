@@ -8,8 +8,8 @@ name: NW 1H Bot (Nadaraya-Watson)
 # منذ 2026-11-06 يعمل على «Nadaraya-Watson Envelope [LuxAlgo]» الذي أرسله
 #          المستخدم: التسميات ▲/▼ تُقرأ كما يطبعها الكود على الشارت بالحرف
 #          (Repainting Mode Enabled)، ثم يُطبّق شرط «الشمعة التالية خضراء».
-# الدخول من المؤشر وحده: لا بوابة BTC. الإرسال يشمل كل أزواج USDT الفورية
-# بجميع أحكامها (الحكم يُعرض في الرسالة ولا يُستخدم كفلتر).
+# لا بوابة BTC؛ الدخول والتكرار يشترطان حكمًا مباحًا في ملف الأكاديمية
+# على main. متابعة وخروج المراكز المفتوحة لا يتوقفان بسبب حكم العملة.
 #
 # ⚠️ الإيقاف الصحيح: اضبط المتغيّر NW_ENABLED = false (أو Disable workflow).
 #    الحماية if على مستوى المهمة — لا تُستخدم خطوة `exit 0` كبوابة إطلاقًا
@@ -73,8 +73,8 @@ jobs:
       NW_REQUIRE_NEWEST_GREEN: "0" # لون الخط ليس شرطًا (قرار المستخدم)
       NW_COMMISSION_SIDE_PCT: "0.1"
       NW_SHOW_REPAINT_WARNING: "0"     # القالب المبسّط بلا سطر تحذير؛ 1 يعيده
-      # ── كل العملات بجميع أحكامها (قرار المستخدم 2026-11-06) ──
-      NW_INCLUDE_ALL: "1"                  # لا فلتر شرعي؛ 0 = المباح فقط (السلوك القديم)
+      # ── متابعة كل الأحكام للخروج؛ بوابة الدخول الإلزامية مستقلة ──
+      NW_INCLUDE_ALL: "1"
       NW_EXCLUDE_PEGGED_STABLES: "1"      # استثناء العملات المستقرة المربوطة (ضجيج، ليست عملات متقلبة)
       NW_EXCLUDE_TOKENIZED_STOCKS: "0"    # 1 = استثناء الأسهم المرمّزة
       NW_USE_EXCLUDE_FILE: "0"            # 1 = تفعيل config/zz_exclude.txt
@@ -161,6 +161,8 @@ jobs:
 
       - name: Run NW bot once
         if: steps.guard.outputs.proceed == 'true'
+        env:
+          NW_HALAL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           for attempt in 1 2 3; do
             if python run_nw1h_once_safe.py; then

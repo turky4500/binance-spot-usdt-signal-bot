@@ -76,6 +76,9 @@ class FakeTelegram:
 def make_bot(tmp_path, cfg, df=None, now_ms=NOW_11_05):
     tg = FakeTelegram()
     store = NWStateStore(str(tmp_path / "state.json"))
+    # حكم اصطناعي لهذا الاختبار فقط؛ لا يغيّر حكم العملة في الأكاديمية.
+    primary = tmp_path / "primary.json"
+    primary.write_text(json.dumps({"SNDKB": 0}), encoding="utf-8")
     bot = NWBot(
         client=FakeClient(df if df is not None else frame(now_ms), now_ms),
         telegram=tg,
@@ -83,6 +86,7 @@ def make_bot(tmp_path, cfg, df=None, now_ms=NOW_11_05):
         cfg=cfg,
         state_path=str(tmp_path / "state.json"),
         trade_log=str(tmp_path / "trades.csv"),
+        halal_primary=str(primary),
         show_repaint_warning=False,
     )
     return bot, tg, store

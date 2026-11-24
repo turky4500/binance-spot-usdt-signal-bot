@@ -4,8 +4,8 @@
 القواعد: ▲ + شمعة تالية خضراء ⇒ توصية دخول (شرطان فقط؛ **لون الخط مُلغي**)؛
          ▼ ⇒ إشارة خروج (مع سعر الدخول/الخروج والنتيجة ربحًا أو خسارةً)؛
          تكرار ▲ ⇒ «إشارة دخول ثانية». بلا أهداف ولا وقف.
-         **الدخول من المؤشر وحده** — لا بوابة BTC ولا أي فلتر شرعي؛
-         الإرسال يشمل كل أزواج USDT الفورية بجميع أحكامها، ويُعرض الحكم في الرسالة.
+         لا بوابة BTC؛ قبل كل توصية دخول أو تكرار يُشترط أن يصنّف ملف
+         الأكاديمية الأساسي العملة مباحة. الخروج للمراكز المفتوحة لا يُحجب.
 
 العزل:
   * الحالة: data/state_nw.json فقط · الدفتر: data/trades_log_nw.csv فقط
@@ -21,8 +21,9 @@ import json
 import logging
 import os
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
+from src.nw_halal_gate import AcademyPrimaryGate, Decision
 from src.nw_journal import append_trade
 from src.nw_messages import entry_message, exit_message, repeat_message
 from src.nw_signals import NWSignalConfig, candles_closed, evaluate_symbol
@@ -72,10 +73,11 @@ class NWBot:
         commission_side_pct: float = 0.1,
         show_repaint_warning: bool = False,  # القالب المبسّط بلا سطر تحذير
         interval: str = "1h",
-        include_all: bool = True,             # كل العملات بجميع أحكامها (قرار المستخدم)
+        include_all: bool = True,             # توسيع المتابعة، لا تعطيل بوابة الدخول
         exclude_pegged_stables: bool = True,  # ليست عملات متقلبة ⇒ إشارات ضجيج
         exclude_tokenized_stocks: bool = False,
         use_exclude_file: bool = False,       # قائمة الاستبعاد اليدوية معطّلة افتراضيًا
+        entry_check: Callable[[str], Decision] | None = None,
     ) -> None:
         self.client = client
         self.tg = telegram
@@ -95,8 +97,9 @@ class NWBot:
         self.exclude_pegged_stables = exclude_pegged_stables
         self.exclude_tokenized_stocks = exclude_tokenized_stocks
         self.use_exclude_file = use_exclude_file
+        self._entry_check = entry_check if entry_check is not None else AcademyPrimaryGate.from_environment(halal_primary)
         self.symbols: list[str] = []
-        self.verdicts: dict[str, int] = {}      # للتسمية فقط، لا كفلتر
+        self.verdicts: dict[str, int] = {}      # أحكام العرض؛ بوابة الدخول تقرأ المصدر الأساسي مباشرة
         self.last_summary: dict[str, Any] = {}
 
     # ── الأحكام الشرعية: تُقرأ للعرض في الرسائل فقط، لا لتصفية الكون ─────────
@@ -122,16 +125,21 @@ class NWBot:
                 try:
                     with p.open(encoding="utf-8") as f:
                         verdicts.update(_numeric(json.load(f)))
-                except (OSError, ValueError, TypeError):
+                except (OSError, ValueError, TypeError, OverflowError):
                     pass
-        primary = load_primary_verdicts(str(Path.cwd() / self.halal_primary))
+        # أحكام العرض ليست بوابة الدخول؛ تلف الملف هنا لا يجوز أن يوقف
+        # معالجة خروج المراكز. البوابة المستقلة تقرأ المصدر الأساسي بأمان.
+        try:
+            primary = load_primary_verdicts(str(Path.cwd() / self.halal_primary))
+        except (OSError, ValueError, TypeError, AttributeError, OverflowError):
+            primary = {}
         verdicts = merge_with_primary(verdicts, primary)
         if not primary:
             _LOG.warning("⚠️ ملف المصدر الأساسي للأحكام غير موجود: %s", self.halal_primary)
         self.verdicts = verdicts
         return verdicts
 
-    # ── الكون: كل أزواج USDT الفورية بجميع أحكامها (قرار المستخدم 2026-11-06) ──
+    # ── الكون: متابعة أزواج USDT؛ لا يغني عن بوابة إرسال الدخول ────────────
     def refresh_universe(self) -> list[str]:
         self._load_verdicts()
         excluded: set[str] = set()
@@ -147,6 +155,14 @@ class NWBot:
                         continue
                     (forced_keep if line.startswith("!") else excluded).add(line.lstrip("!"))
 
+        # حتى إن استُخدم فلتر الكون القديم، لا نحذف مركزًا مفتوحًا من
+        # المتابعة لمجرد تغيّر حكمه؛ بوابة الدخول الجديدة مستقلة عنه.
+        open_symbols: set[str] = set()
+        if not self.include_all:
+            items = self.store.load().get("symbols", {})
+            if isinstance(items, dict):
+                open_symbols = {sym for sym, item in items.items()
+                                if isinstance(item, dict) and item.get("position") is not None}
         symbols = []
         for sym in self.client.get_spot_usdt_symbols():
             if self.use_exclude_file and sym in excluded and sym not in forced_keep:
@@ -155,12 +171,13 @@ class NWBot:
                 continue
             if self.exclude_tokenized_stocks and _is_tokenized_stock(sym, forced_keep):
                 continue
-            # الافتراضي: لا فلتر شرعي إطلاقًا. إن عُطّل NW_INCLUDE_ALL يعود فلتر «المباح فقط».
-            if not self.include_all:
+            # فلتر الكون الاختياري لا يمنع متابعة المراكز المفتوحة؛ أما إرسال
+            # الدخول فيُفحص دائمًا من ملف الأكاديمية الأساسي داخل _apply.
+            if not self.include_all and sym not in open_symbols:
                 base = sym[:-4] if sym.endswith("USDT") else sym
                 if self.verdicts.get(base) != 0:
                     continue
-            # لا توجد أي بوابة مرتبطة بـ BTC: الدخول من المؤشر وحده (▲ + شمعة تالية خضراء فقط)
+            # لا توجد بوابة مرتبطة بـ BTC؛ شروط المؤشر نفسها لم تتغير.
             symbols.append(sym)
         self.symbols = sorted(symbols)
         _LOG.info(
@@ -184,7 +201,7 @@ class NWBot:
         return True
 
     # ── تطبيق شروط المستخدم على زوج واحد ────────────────────────────────────
-    def _apply(self, sym: str, res: dict, state: dict) -> dict:
+    def _apply(self, sym: str, res: dict, state: dict, *, allow_entries: bool = True) -> dict:
         from src.halal import verdict_label
 
         ruling = verdict_label(self.verdicts, sym)      # الحكم الفعلي، لا «مباح» ثابت
@@ -193,7 +210,8 @@ class NWBot:
         prev_sell = set(state["prev_sell_bars"].get(sym, []))
         hist = set(state["buy_history"].get(sym, []))
         cancelled = set(state["cancelled_buy_bars"].get(sym, []))
-        events = {"entry": 0, "repeat": 0, "exit": 0, "skipped_same_label": 0, "cancelled": 0}
+        events = {"entry": 0, "repeat": 0, "exit": 0, "skipped_same_label": 0,
+                  "cancelled": 0, "ruling_filtered": 0, "ruling_unavailable": 0}
 
         # ① الإلغاء النهائي: شمعة التأكيد أُغلقت حمراء ⇒ تُسجَّل ويُنتظر ▲ جديدة.
         for rec in res.get("cancelled_buy", []):
@@ -203,6 +221,8 @@ class NWBot:
                 events["cancelled"] += 1
 
         for rec in res["buy"]:
+            if not allow_entries:
+                continue                      # مركز أُضيف للخروج فقط، خارج الكون المختار
             B = rec["bar_time"]
             if B in cancelled:
                 events["skipped_same_label"] += 1
@@ -213,6 +233,25 @@ class NWBot:
             pos = item["position"]
             if B in hist and pos is None:
                 continue                      # عودة تسمية قديمة بعد إغلاق التوصية
+            # فحص حيّ للمصدر الأساسي قبل أي تعديل للمركز أو إرسال دخول/تكرار.
+            # الفشل أو الحكم غير المعروف يُحجب؛ الخروج أدناه يبقى مستقلًا.
+            try:
+                decision = self._entry_check(sym)
+                if not isinstance(decision, Decision):
+                    decision = Decision(False, "unavailable")
+            except Exception:
+                decision = Decision(False, "unavailable")
+            if decision.allowed is not True or decision.reason != "halal":
+                events["ruling_filtered"] += 1
+                if decision.reason == "unavailable":
+                    events["ruling_unavailable"] += 1
+                # إن وُجد خروج في الدورة نفسها فلا نعرض حكمًا أقدم متعارضًا.
+                ruling = {"haram": "⛔ غير مباح", "doubtful": "⚠️ مشبوه"}.get(
+                    decision.reason, "ℹ️ لا يوجد حكم")
+                _LOG.info("توصية NW محجوبة: %s (%s)", sym, decision.reason)
+                continue
+            # نعرض الحكم الذي تحقّقنا منه الآن، لا نسخة العرض القديمة.
+            ruling = "✅ مباح"
             count = int(item["entry_count"]) + 1
             if pos is None:
                 text = entry_message(sym, rec, ruling, self.show_repaint_warning)
@@ -286,15 +325,32 @@ class NWBot:
     # ── دورة واحدة ─────────────────────────────────────────────────────────
     def run_once(self, now_ms: int | None = None, universe: list[str] | None = None) -> dict:
         now_ms = int(now_ms if now_ms is not None else self.client.get_server_time())
+        begin_cycle = getattr(self._entry_check, "begin_cycle", None)
+        if callable(begin_cycle):
+            try:
+                begin_cycle()
+            except Exception:
+                _LOG.warning("تعذرت إعادة تهيئة بوابة الأحكام؛ متابعة الخروج بأمان")
         if universe is not None:
             self._load_verdicts()          # للأحكام حتى عند تمرير كون مخصّص (الاختبارات/التجربة)
-        symbols = universe if universe is not None else self.refresh_universe()
-        frames = self.client.get_klines_for_symbols(symbols, self.interval, self.kline_limit)
         state = self.store.load()
+        symbols = universe if universe is not None else self.refresh_universe()
+        entry_symbols = set(symbols)
+        # أي مركز مفتوح يبقى في المتابعة حتى لو غاب عن الكون المخصّص أو
+        # استُبعد بفلتر الكون. إن تعذّر جلب شموعه يُعامل كغير جاهز كالمعتاد.
+        items = state.get("symbols", {})
+        open_symbols = {
+            sym for sym, item in items.items()
+            if isinstance(sym, str) and sym.endswith("USDT") and isinstance(item, dict)
+            and item.get("position") is not None
+        } if isinstance(items, dict) else set()
+        symbols = sorted(set(symbols) | open_symbols)
+        frames = self.client.get_klines_for_symbols(symbols, self.interval, self.kline_limit)
         summary = {
             "now_ms": now_ms, "symbols": len(symbols), "evaluated": 0,
             "not_ready": 0, "ignored_retro": 0, "ignored_shallow": 0,
             "entry": 0, "repeat": 0, "exit": 0, "skipped_same_label": 0, "cancelled": 0,
+            "ruling_filtered": 0, "ruling_unavailable": 0,
         }
         for sym in sorted(symbols):
             o, c, t = candles_closed(frames.get(sym), now_ms)
@@ -305,8 +361,9 @@ class NWBot:
             summary["evaluated"] += 1
             summary["ignored_retro"] += res["ignored_retro"]
             summary["ignored_shallow"] += res["ignored_shallow"]
-            ev = self._apply(sym, res, state)
-            for key in ("entry", "repeat", "exit", "skipped_same_label", "cancelled"):
+            ev = self._apply(sym, res, state, allow_entries=sym in entry_symbols)
+            for key in ("entry", "repeat", "exit", "skipped_same_label", "cancelled",
+                        "ruling_filtered", "ruling_unavailable"):
                 summary[key] += ev[key]
 
         state["cycles"] = int(state["cycles"]) + 1
@@ -369,7 +426,7 @@ def build_nw_bot() -> NWBot:
         commission_side_pct=float(os.getenv("NW_COMMISSION_SIDE_PCT", "0.1")),
         # الرسائل بالقالب المبسّط: بلا سطر تحذير افتراضيًا (1 يعيده اختياريًا)
         show_repaint_warning=os.getenv("NW_SHOW_REPAINT_WARNING", "0").strip() in ("1", "true", "yes", "on"),
-        # «الإرسال يشمل كل العملات بجميع أحكامها» — لا فلتر شرعي ولا بوابة BTC
+        # متابعة كل الأحكام تحافظ على الخروج؛ بوابة الدخول مستقلة وإلزامية.
         include_all=os.getenv("NW_INCLUDE_ALL", "1").strip() not in ("0", "false", "no", "off"),
         exclude_pegged_stables=os.getenv("NW_EXCLUDE_PEGGED_STABLES", "1").strip() not in ("0", "false", "no", "off"),
         exclude_tokenized_stocks=os.getenv("NW_EXCLUDE_TOKENIZED_STOCKS", "0").strip() in ("1", "true", "yes", "on"),

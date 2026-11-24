@@ -6,7 +6,8 @@ name: NW 4H Bot (Nadaraya-Watson Envelope)
 # الشروط مطابقة حرفيًا لشروط فريم الساعة الحالية على main: التسميات ▲/▼ كما
 # يطبعها الكود على الشارت، شمعة تالية خضراء ⇒ توصية، حمراء ⇒ إلغاء نهائي،
 # ▼ ⇒ خروج مع سعري الدخول/الخروج والنسبة الصافية، تكرار ▲ ⇒ إشارة دخول ثانية.
-# لا أهداف ولا وقف ولا بوابة BTC ولا أي فلتر إضافي. كل أزواج USDT بجميع أحكامها.
+# لا أهداف ولا وقف ولا بوابة BTC؛ الدخول والتكرار للمباح وفق ملف الأكاديمية،
+# وتستمر متابعة وخروج المراكز المفتوحة بغض النظر عن حكمها.
 # الفرق الوحيد: interval=4h، state/trade log مستقلان، وسطر «🕐 فريم 4 ساعات
 # (4H) · Nadaraya» في الرسالة. يرسل توصيات فقط لا ينفّذ صفقات.
 #
@@ -68,7 +69,7 @@ jobs:
       NW_REQUIRE_NEWEST_GREEN: "0"
       NW_COMMISSION_SIDE_PCT: "0.1"
       NW_SHOW_REPAINT_WARNING: "0"
-      # ── كل العملات بجميع أحكامها (نفس 1H) ──
+      # ── متابعة كل الأحكام للخروج؛ بوابة الدخول مستقلة ──
       NW_INCLUDE_ALL: "1"
       NW_EXCLUDE_PEGGED_STABLES: "1"
       NW_EXCLUDE_TOKENIZED_STOCKS: "0"
@@ -140,6 +141,8 @@ jobs:
 
       - name: Run NW 4H bot once
         if: steps.guard.outputs.proceed == 'true'
+        env:
+          NW_HALAL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           for attempt in 1 2 3; do
             if python run_nw4h_once_safe.py; then

@@ -36,7 +36,7 @@ def test_live_telegram_is_enabled():
 
 def test_universe_covers_all_rulings_and_no_btc_gate():
     env = next(iter(_load(NEW)["jobs"].values()))["env"]
-    assert env["NW_INCLUDE_ALL"] == "1"          # لا فلتر شرعي
+    assert env["NW_INCLUDE_ALL"] == "1"          # لمتابعة الخروج؛ بوابة الدخول مستقلة
     assert env["NW_USE_EXCLUDE_FILE"] == "0"
     assert env["NW_EXCLUDE_PEGGED_STABLES"] == "1"
     assert env["NW_EXCLUDE_TOKENIZED_STOCKS"] == "0"

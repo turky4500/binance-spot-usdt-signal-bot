@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import json
+
 import numpy as np
 import pandas as pd
 
@@ -63,12 +65,16 @@ class FakeTelegram:
 def build(tmp_path, frame, now_ms):
     tg = FakeTelegram()
     store = NWStateStore(str(tmp_path / "state.json"))
+    # أحكام اصطناعية لعزل اختبار تدفق المؤشر عن الملف الحي.
+    primary = tmp_path / "primary.json"
+    primary.write_text(json.dumps({"BTC": 0}), encoding="utf-8")
     bot = NWBot(
         client=FakeClient(frame, now_ms),
         telegram=tg,
         state_store=store,
         state_path=str(tmp_path / "state.json"),
         trade_log=str(tmp_path / "trades.csv"),
+        halal_primary=str(primary),
         show_repaint_warning=False,
     )
     # هذا الاختبار لتدفّق الإشارات فقط؛ التقرير اليومي يُختبر في
@@ -143,15 +149,17 @@ def test_reappearing_same_label_also_counts_as_second_entry(tmp_path):
     assert len(tg.messages) == 2
 
 
-def test_ruling_is_taken_from_verdicts_and_shown_in_message(tmp_path):
-    """عملة «غير مباح» تُرسل إشارتها ويظهر حكمها الفعلي (لا تُستبعد)."""
+def test_primary_ruling_blocks_entry_despite_conflicting_display_verdict(tmp_path):
+    """الكاش/حكم العرض لا يجيز دخولًا رفضه ملف الأكاديمية."""
     frame = make_df("buy", base_time=0)
-    bot, tg, _ = build(tmp_path, frame, now_for(0))
-    bot.verdicts = {"BTC": 1}                    # ⛔ غير مباح
-    bot._load_verdicts = lambda: bot.verdicts   # يمنع إعادة التحميل من الملفات
+    bot, tg, store = build(tmp_path, frame, now_for(0))
+    (tmp_path / "primary.json").write_text(json.dumps({"BTC": 1}), encoding="utf-8")
+    bot.verdicts = {"BTC": 0}
+    bot._load_verdicts = lambda: bot.verdicts
     s = bot.run_once(universe=["BTCUSDT"])
-    assert s["entry"] == 1
-    assert "الحكم الشرعي: ⛔ غير مباح" in tg.messages[0]
+    assert s["entry"] == 0 and s["ruling_filtered"] == 1
+    assert tg.messages == []
+    assert store.load()["symbols"]["BTCUSDT"]["position"] is None
 
 
 def test_no_exit_when_no_open_recommendation(tmp_path):

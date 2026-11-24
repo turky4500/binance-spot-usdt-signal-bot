@@ -213,13 +213,8 @@ def test_15m_trigger_is_independent_and_uses_job_level_if():
         assert window in steps
 
 
-def test_1h_files_are_byte_identical_to_main():
-    """حماية من أي تعديل على ملفات المستخدم: لا أثر لـ 15m داخلها.
-
-    استثناءات مُصرَّح بها: دالة ``send_daily_report_if_due`` في ``nw_bot.py``
-    (2026-11-08)، وإصلاح جدولة فريم 1H في ``.github/workflows/nw-bot.yml``
-    (2026-11-09) مع تحديث اختبار الحماية هذا.
-    """
+def test_1h_protected_files_and_daily_report_remain_untouched():
+    """العزل باقٍ؛ تعديل بوابة دخول NW مشمول بطلب المستخدم الحالي."""
     import subprocess
 
     tracked = ["src/nw_messages.py", "src/nw_signals.py",
@@ -231,18 +226,19 @@ def test_1h_files_are_byte_identical_to_main():
                           cwd=ROOT, capture_output=True, text=True, check=True).stdout
     assert diff.strip() == "", f"ملفات المستخدم معدّلة: {diff}"
 
-    # nw_bot.py: يُسمح بتغيير جسم دالة التقرير فقط، لا أي شيء آخر.
+    # يُسمح بتعديل بوابة الدخول في النواة، لكن التقرير اليومي لا يُمس.
+    import ast
     head = subprocess.run(["git", "show", "HEAD:nw_bot.py"], cwd=ROOT,
                           capture_output=True, text=True, check=True).stdout
     current = (ROOT / "nw_bot.py").read_text(encoding="utf-8")
 
-    def strip_report(src: str) -> str:
-        start = src.index("    def send_daily_report_if_due(")
-        end = src.index("    def run_once(", start)
-        return src[:start] + "<REPORT>" + src[end:]
+    def report(src: str) -> str:
+        cls = next(n for n in ast.parse(src).body if isinstance(n, ast.ClassDef) and n.name == "NWBot")
+        method = next(n for n in cls.body if isinstance(n, ast.FunctionDef)
+                      and n.name == "send_daily_report_if_due")
+        return ast.get_source_segment(src, method)
 
-    assert strip_report(head) == strip_report(current), \
-        "تعديل خارج دالة التقرير اليومي في nw_bot.py"
+    assert report(head) == report(current), "تعديل غير مطلوب للتقرير اليومي"
 
 
 def test_15m_state_file_is_separate():
