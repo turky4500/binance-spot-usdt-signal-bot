@@ -4324,7 +4324,7 @@
     "WINUSDT": [],
     "WLDUSDT": [],
     "WLFIUSDT": [
-      1795489200000
+      1795492800000
     ],
     "WOOUSDT": [],
     "WUSDT": [],
@@ -4433,7 +4433,7 @@
     "AXTIBUSDT": [],
     "BABABUSDT": [],
     "BABYUSDT": [
-      1795489200000
+      1795492800000
     ],
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
@@ -4534,7 +4534,9 @@
     "FFUSDT": [],
     "FIDAUSDT": [],
     "FILUSDT": [],
-    "FLNCBUSDT": [],
+    "FLNCBUSDT": [
+      1795492800000
+    ],
     "FLOKIUSDT": [],
     "FLOWUSDT": [],
     "FLUXUSDT": [],
@@ -4619,9 +4621,7 @@
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
-    "LISTAUSDT": [
-      1795489200000
-    ],
+    "LISTAUSDT": [],
     "LITEBUSDT": [],
     "LLYBUSDT": [],
     "LPTUSDT": [],
@@ -4649,9 +4649,7 @@
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
-    "MMTUSDT": [
-      1795489200000
-    ],
+    "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
     "MOVRUSDT": [],
@@ -4741,7 +4739,9 @@
     "ROBOUSDT": [],
     "RONINUSDT": [],
     "ROSEUSDT": [],
-    "RPLUSDT": [],
+    "RPLUSDT": [
+      1795492800000
+    ],
     "RSRUSDT": [],
     "RUNEUSDT": [],
     "RVNUSDT": [],
@@ -10152,7 +10152,8 @@
     ],
     "WLFIUSDT": [
       1795485600000,
-      1795489200000
+      1795489200000,
+      1795492800000
     ],
     "WOOUSDT": [
       1794679200000,
@@ -10719,9 +10720,9 @@
     "buy:JSTUSDT:1795485600000:1",
     "exit:MMTUSDT:1795485600000"
   ],
-  "cycles": 867,
+  "cycles": 868,
   "messages_sent": 2850,
-  "last_cycle_ms": 1795498416568,
+  "last_cycle_ms": 1795500207535,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
