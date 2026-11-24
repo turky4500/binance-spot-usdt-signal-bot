@@ -4412,9 +4412,7 @@
     "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
-    "ALGOUSDT": [
-      1795420800000
-    ],
+    "ALGOUSDT": [],
     "ALICEUSDT": [],
     "ALLOUSDT": [],
     "ALPINEUSDT": [],
@@ -4709,9 +4707,7 @@
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
-    "PROMUSDT": [
-      1795420800000
-    ],
+    "PROMUSDT": [],
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -6939,9 +6935,9 @@
     "buy:PROMUSDT:1795406400000:2",
     "exit:PROMUSDT:1795420800000"
   ],
-  "cycles": 114,
+  "cycles": 115,
   "messages_sent": 346,
-  "last_cycle_ms": 1795463113922,
+  "last_cycle_ms": 1795478617442,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-23",
     "reported_trade_keys": [
