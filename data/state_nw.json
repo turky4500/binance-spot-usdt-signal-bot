@@ -2229,10 +2229,16 @@
       "last_entry_price": 0.7
     },
     "GPSUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1795237200000,
-      "last_entry_price": 0.00855
+      "position": {
+        "entry_price": 0.0091,
+        "entry_time": 1795482000000,
+        "signal_bar_time": 1795478400000,
+        "signal_price": 0.00899,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795478400000,
+      "last_entry_price": 0.0091
     },
     "GSBUSDT": {
       "position": {
@@ -4046,7 +4052,9 @@
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
-    "GPSUSDT": [],
+    "GPSUSDT": [
+      1795478400000
+    ],
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
@@ -6055,7 +6063,8 @@
     "GPSUSDT": [
       1794171600000,
       1794967200000,
-      1795237200000
+      1795237200000,
+      1795478400000
     ],
     "GRAMUSDT": [
       1794171600000,
@@ -10304,7 +10313,6 @@
     ]
   },
   "sent": [
-    "buy:PENDLEUSDT:1795237200000:6",
     "buy:PENGUUSDT:1795237200000:4",
     "buy:PEOPLEUSDT:1795237200000:6",
     "buy:PHAUSDT:1795237200000:2",
@@ -10703,11 +10711,12 @@
     "buy:SEIUSDT:1795471200000:1",
     "buy:SKDDBUSDT:1795471200000:1",
     "buy:XVGUSDT:1795471200000:1",
-    "buy:ZROUSDT:1795471200000:5"
+    "buy:ZROUSDT:1795471200000:5",
+    "buy:GPSUSDT:1795478400000:1"
   ],
-  "cycles": 859,
-  "messages_sent": 2846,
-  "last_cycle_ms": 1795484015800,
+  "cycles": 860,
+  "messages_sent": 2847,
+  "last_cycle_ms": 1795485814921,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
