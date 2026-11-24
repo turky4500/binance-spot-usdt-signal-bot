@@ -2049,14 +2049,8 @@
       "last_entry_price": 0.0315
     },
     "LUNCUSDT": {
-      "position": {
-        "entry_price": 4.396e-05,
-        "entry_time": 1795204800000,
-        "signal_bar_time": 1795190400000,
-        "signal_price": 4.203e-05,
-        "entry_count": 3
-      },
-      "entry_count": 3,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795248000000,
       "last_entry_price": 4.064e-05
     },
@@ -4341,9 +4335,7 @@
     "WIFUSDT": [],
     "WINUSDT": [],
     "WLDUSDT": [],
-    "WLFIUSDT": [
-      1795478400000
-    ],
+    "WLFIUSDT": [],
     "WOOUSDT": [],
     "WUSDT": [],
     "XAIUSDT": [],
@@ -4392,7 +4384,9 @@
     "AEROUSDT": [],
     "AEVOUSDT": [],
     "AGLDUSDT": [],
-    "AIGENSYNUSDT": [],
+    "AIGENSYNUSDT": [
+      1795492800000
+    ],
     "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
@@ -4417,7 +4411,9 @@
     "ARPAUSDT": [],
     "ARUSDT": [],
     "ASMLBUSDT": [],
-    "ASRUSDT": [],
+    "ASRUSDT": [
+      1795492800000
+    ],
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
@@ -4436,7 +4432,9 @@
     "AXSUSDT": [],
     "AXTIBUSDT": [],
     "BABABUSDT": [],
-    "BABYUSDT": [],
+    "BABYUSDT": [
+      1795492800000
+    ],
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
     "BANDUSDT": [],
@@ -4617,7 +4615,9 @@
     "LTCUSDT": [],
     "LUMIAUSDT": [],
     "LUNAUSDT": [],
-    "LUNCUSDT": [],
+    "LUNCUSDT": [
+      1795492800000
+    ],
     "MAGICUSDT": [],
     "MANAUSDT": [],
     "MANTAUSDT": [],
@@ -4634,7 +4634,9 @@
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
-    "MMTUSDT": [],
+    "MMTUSDT": [
+      1795492800000
+    ],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
     "MOVRUSDT": [],
@@ -4683,9 +4685,7 @@
     "PEPEUSDT": [],
     "PHAUSDT": [],
     "PIXELUSDT": [],
-    "PLTRBUSDT": [
-      1795478400000
-    ],
+    "PLTRBUSDT": [],
     "PLUMEUSDT": [],
     "PNUTUSDT": [],
     "POLUSDT": [],
@@ -4727,9 +4727,7 @@
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "SAGAUSDT": [],
-    "SAHARAUSDT": [
-      1795478400000
-    ],
+    "SAHARAUSDT": [],
     "SANDUSDT": [],
     "SANTOSUSDT": [],
     "SAPIENUSDT": [],
@@ -6926,11 +6924,12 @@
     "exit:PROMUSDT:1795420800000",
     "exit:ALABBUSDT:1795464000000",
     "exit:ASRUSDT:1795464000000",
-    "exit:PLTRBUSDT:1795464000000"
+    "exit:PLTRBUSDT:1795464000000",
+    "exit:LUNCUSDT:1795492800000"
   ],
-  "cycles": 118,
-  "messages_sent": 349,
-  "last_cycle_ms": 1795507418730,
+  "cycles": 119,
+  "messages_sent": 350,
+  "last_cycle_ms": 1795521821818,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-23",
     "reported_trade_keys": [
