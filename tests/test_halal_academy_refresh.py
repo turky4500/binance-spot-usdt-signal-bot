@@ -223,14 +223,21 @@ def test_workflow_schedule_is_every_half_hour_and_has_no_push():
     assert "push:" not in text
 
 
-def test_workflow_uses_only_default_token_and_skips_ci():
+def test_workflow_scopes_telegram_to_the_report_and_uses_no_pat():
     doc, text = _workflow()
     assert (doc.get("permissions") or {}).get("contents") == "write"
     assert "${{ secrets.GITHUB_TOKEN }}" in text
-    # لا توكن شخصي: نفحص أنماط الاستخدام الفعلي لا مجرد ذكر الكلمة في تعليق
+    # لا توكن شخصي، وأسرار تيليجرام محصورة في خطوة التقرير لا جلب الأحكام.
     for forbidden in ("secrets.PAT", "secrets.GH_PAT", "secrets.GITHUB_PAT",
-                      "ghp_", "github_pat_", "secrets.TELEGRAM"):
+                      "ghp_", "github_pat_"):
         assert forbidden not in text, forbidden
+    steps = doc["jobs"]["refresh"]["steps"]
+    report = next(step for step in steps if step.get("name") == "Send daily Academy file report if due")
+    assert report["env"]["TELEGRAM_BOT_TOKEN"] == "${{ secrets.TELEGRAM_BOT_TOKEN }}"
+    assert report["env"]["TELEGRAM_CHAT_ID"] == "${{ secrets.TELEGRAM_CHAT_ID }}"
+    for step in steps:
+        if step is not report:
+            assert "secrets.TELEGRAM" not in yaml.safe_dump(step)
     script = (ROOT / "tools/update_halal_academy.py").read_text(encoding="utf-8")
     assert "[skip ci]" in script
     assert "merged = dict(current)" in script

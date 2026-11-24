@@ -153,9 +153,15 @@ def test_workflow_keeps_schedule_and_manual_adds_main_heartbeat_and_gate():
     install = next(step for step in steps if step.get("name") == "Install requests")
     fetch = next(step for step in steps if step.get("name") == "Fetch site rulings and merge")
     assert due["run"] == "python tools/halal_refresh_gate.py"
-    assert install["if"] == fetch["if"] == "steps.due.outputs.refresh == 'true'"
+    assert install["if"] == fetch["if"]
+    assert "steps.due.outputs.refresh == 'true'" in fetch["if"]
+    assert "inputs.report_bootstrap_only != true" in fetch["if"]
     assert fetch["run"] == "python tools/update_halal_academy.py"
-    assert steps.index(due) < steps.index(install) < steps.index(fetch)
+    report = next(step for step in steps if step.get("name") == "Send daily Academy file report if due")
+    assert report["run"] == "python tools/halal_daily_report.py"
+    assert "!cancelled()" in report["if"]
+    assert events["workflow_dispatch"]["inputs"]["report_bootstrap_only"]["default"] == "false"
+    assert steps.index(due) < steps.index(install) < steps.index(fetch) < steps.index(report)
 
 
 def test_queued_pulse_skips_after_first_successful_refresh():

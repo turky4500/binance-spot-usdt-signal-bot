@@ -4,8 +4,9 @@ name: Halal Academy Refresh
 # • يذهب للموقع: جدول الدليل ومقالات التصنيف 3181 عبر REST.
 # • يدمج فقط: يعدّل ما تغيّر، ويضيف العملات الجديدة/التي صار لها حكم،
 #   ولا يحذف أي رمز موجود غاب عن الموقع.
-# • يكتب ملفين فقط: halal_academy.json و halal_academy_meta.json.
-# • GITHUB_TOKEN فقط، بلا PAT ولا Telegram ولا أي سر آخر؛ لا push trigger.
+# • محدّث الأحكام يكتب halal_academy.json و halal_academy_meta.json فقط.
+# • تقرير منتصف الليل يستخدم أسرار Telegram الموجودة، ويحفظ حالة مستقلة
+#   في halal_academy_report_state.json دون تعديل الإشارات أو المراكز.
 # • نبض Signal Bot Cron احتياطي إن تأخرت جدولة GitHub؛ بوابة حداثة تمنع
 #   إعادة جلب الموقع إذا كان آخر فحص سليم منذ أقل من 30 دقيقة.
 # • الإطلاق اليدوي يتجاوز البوابة؛ concurrency يمنع تحديثين في آن واحد.
@@ -19,6 +20,12 @@ on:
     types: [completed]
     branches: [main]
   workflow_dispatch:
+    inputs:
+      report_bootstrap_only:
+        description: 'تهيئة نسخة المقارنة للتقرير فقط، دون جلب أو رسالة'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -33,12 +40,14 @@ jobs:
     timeout-minutes: 20
     steps:
       - name: Checkout main
+        id: checkout
         uses: actions/checkout@v4
         with:
           ref: main
           persist-credentials: false
 
       - name: Setup Python
+        id: setup_python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -48,12 +57,22 @@ jobs:
         run: python tools/halal_refresh_gate.py
 
       - name: Install requests
-        if: steps.due.outputs.refresh == 'true'
+        if: ${{ steps.due.outputs.refresh == 'true' && inputs.report_bootstrap_only != true }}
         run: python -m pip install --quiet 'requests>=2.31.0'
 
       - name: Fetch site rulings and merge
-        if: steps.due.outputs.refresh == 'true'
+        if: ${{ steps.due.outputs.refresh == 'true' && inputs.report_bootstrap_only != true }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: python tools/update_halal_academy.py
+
+      - name: Send daily Academy file report if due
+        if: ${{ !cancelled() && steps.checkout.outcome == 'success' && steps.setup_python.outcome == 'success' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          REPORT_BOOTSTRAP_ONLY: ${{ inputs.report_bootstrap_only }}
+        run: python tools/halal_daily_report.py
