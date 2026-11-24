@@ -681,14 +681,8 @@
       "last_entry_price": 0.0408
     },
     "MMTUSDT": {
-      "position": {
-        "entry_price": 0.2261,
-        "entry_time": 1795348800000,
-        "signal_bar_time": 1795345200000,
-        "signal_price": 0.2021,
-        "entry_count": 3
-      },
-      "entry_count": 3,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795453200000,
       "last_entry_price": 0.1916
     },
@@ -2415,10 +2409,16 @@
       "last_entry_price": 320.1
     },
     "JSTUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1795237200000,
-      "last_entry_price": 0.141
+      "position": {
+        "entry_price": 0.14512,
+        "entry_time": 1795489200000,
+        "signal_bar_time": 1795485600000,
+        "signal_price": 0.14392,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795485600000,
+      "last_entry_price": 0.14512
     },
     "JTOUSDT": {
       "position": null,
@@ -4086,7 +4086,9 @@
     "JASMYUSDT": [],
     "JOEUSDT": [],
     "JPMBUSDT": [],
-    "JSTUSDT": [],
+    "JSTUSDT": [
+      1795485600000
+    ],
     "JTOUSDT": [],
     "JUPUSDT": [],
     "JUVUSDT": [],
@@ -4119,7 +4121,9 @@
     "LUNCUSDT": [],
     "MAGICUSDT": [],
     "MANAUSDT": [],
-    "MANTAUSDT": [],
+    "MANTAUSDT": [
+      1795485600000
+    ],
     "MANTRAUSDT": [],
     "MARSCOINUSDT": [],
     "MASKUSDT": [],
@@ -4323,7 +4327,9 @@
     "WIFUSDT": [],
     "WINUSDT": [],
     "WLDUSDT": [],
-    "WLFIUSDT": [],
+    "WLFIUSDT": [
+      1795485600000
+    ],
     "WOOUSDT": [],
     "WUSDT": [],
     "XAIUSDT": [],
@@ -4416,9 +4422,7 @@
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
     "ATMUSDT": [],
-    "ATOMUSDT": [
-      1795482000000
-    ],
+    "ATOMUSDT": [],
     "ATUSDT": [],
     "AUCTIONUSDT": [],
     "AUDIOUSDT": [],
@@ -4645,7 +4649,9 @@
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
-    "MMTUSDT": [],
+    "MMTUSDT": [
+      1795485600000
+    ],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
     "MOVRUSDT": [],
@@ -4741,9 +4747,7 @@
     "RVNUSDT": [],
     "RWUSDUSDT": [],
     "SAGAUSDT": [],
-    "SAHARAUSDT": [
-      1795482000000
-    ],
+    "SAHARAUSDT": [],
     "SANDUSDT": [],
     "SANTOSUSDT": [],
     "SAPIENUSDT": [],
@@ -6280,7 +6284,8 @@
       1794693600000,
       1795186800000,
       1795194000000,
-      1795237200000
+      1795237200000,
+      1795485600000
     ],
     "JTOUSDT": [
       1794171600000,
@@ -9189,7 +9194,8 @@
     "MANTAUSDT": [
       1794664800000,
       1794686400000,
-      1794700800000
+      1794700800000,
+      1795485600000
     ],
     "MANTRAUSDT": [
       1794538800000,
@@ -10144,7 +10150,9 @@
       1795186800000,
       1795201200000
     ],
-    "WLFIUSDT": [],
+    "WLFIUSDT": [
+      1795485600000
+    ],
     "WOOUSDT": [
       1794679200000,
       1794686400000,
@@ -10309,8 +10317,6 @@
     ]
   },
   "sent": [
-    "buy:PEOPLEUSDT:1795237200000:6",
-    "buy:PHAUSDT:1795237200000:2",
     "buy:PIXELUSDT:1795237200000:4",
     "buy:PLUMEUSDT:1795237200000:5",
     "buy:PNUTUSDT:1795237200000:5",
@@ -10708,11 +10714,13 @@
     "buy:XVGUSDT:1795471200000:1",
     "buy:ZROUSDT:1795471200000:5",
     "buy:GPSUSDT:1795478400000:1",
-    "exit:SAHARAUSDT:1795482000000"
+    "exit:SAHARAUSDT:1795482000000",
+    "buy:JSTUSDT:1795485600000:1",
+    "exit:MMTUSDT:1795485600000"
   ],
-  "cycles": 863,
-  "messages_sent": 2848,
-  "last_cycle_ms": 1795491198919,
+  "cycles": 864,
+  "messages_sent": 2850,
+  "last_cycle_ms": 1795493012488,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
