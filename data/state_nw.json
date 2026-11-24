@@ -3573,14 +3573,8 @@
       "last_entry_price": 0.01067
     },
     "UVXYBUSDT": {
-      "position": {
-        "entry_price": 24.45,
-        "entry_time": 1795460400000,
-        "signal_bar_time": 1795456800000,
-        "signal_price": 24.19,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795456800000,
       "last_entry_price": 24.45
     },
@@ -3878,7 +3872,9 @@
     "AMCBUSDT": [],
     "AMDBUSDT": [],
     "AMPUSDT": [],
-    "AMZNBUSDT": [],
+    "AMZNBUSDT": [
+      1795525200000
+    ],
     "ANIMEUSDT": [],
     "ANKRUSDT": [],
     "APEUSDT": [],
@@ -4116,7 +4112,9 @@
     "MDBBUSDT": [],
     "MEGAUSDT": [],
     "MEMEUSDT": [],
-    "METABUSDT": [],
+    "METABUSDT": [
+      1795525200000
+    ],
     "METISUSDT": [],
     "METUSDT": [],
     "MEUSDT": [],
@@ -4192,12 +4190,12 @@
     "PYTHUSDT": [],
     "QCOMBUSDT": [],
     "QIUSDT": [],
-    "QKCUSDT": [
-      1795521600000
-    ],
+    "QKCUSDT": [],
     "QNTBUSDT": [],
     "QNTUSDT": [],
-    "QQQBUSDT": [],
+    "QQQBUSDT": [
+      1795525200000
+    ],
     "QTUMUSDT": [],
     "RADUSDT": [],
     "RAREUSDT": [],
@@ -4221,9 +4219,7 @@
     "RVNUSDT": [],
     "RWUSDUSDT": [],
     "SAGAUSDT": [],
-    "SAHARAUSDT": [
-      1795521600000
-    ],
+    "SAHARAUSDT": [],
     "SANDUSDT": [],
     "SANTOSUSDT": [],
     "SAPIENUSDT": [],
@@ -4255,7 +4251,9 @@
     "SPCXBUSDT": [],
     "SPELLUSDT": [],
     "SPKUSDT": [],
-    "SPYBUSDT": [],
+    "SPYBUSDT": [
+      1795525200000
+    ],
     "SQQQBUSDT": [],
     "SSVUSDT": [],
     "STEEMUSDT": [],
@@ -4340,9 +4338,7 @@
     "ZKPUSDT": [],
     "ZKUSDT": [],
     "ZMBUSDT": [],
-    "ZROUSDT": [
-      1795521600000
-    ],
+    "ZROUSDT": [],
     "ZRXUSDT": [],
     "币安人生USDT": [],
     "牛来USDT": [],
@@ -4405,9 +4401,7 @@
     "ARPAUSDT": [],
     "ARUSDT": [],
     "ASMLBUSDT": [],
-    "ASRUSDT": [
-      1795521600000
-    ],
+    "ASRUSDT": [],
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
@@ -4526,7 +4520,9 @@
     "FFUSDT": [],
     "FIDAUSDT": [],
     "FILUSDT": [],
-    "FLNCBUSDT": [],
+    "FLNCBUSDT": [
+      1795525200000
+    ],
     "FLOKIUSDT": [],
     "FLOWUSDT": [],
     "FLUXUSDT": [],
@@ -4611,9 +4607,7 @@
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
-    "LISTAUSDT": [
-      1795521600000
-    ],
+    "LISTAUSDT": [],
     "LITEBUSDT": [],
     "LLYBUSDT": [],
     "LPTUSDT": [],
@@ -4703,9 +4697,7 @@
     "POWRUSDT": [],
     "PROMUSDT": [],
     "PROVEUSDT": [],
-    "PSGUSDT": [
-      1795521600000
-    ],
+    "PSGUSDT": [],
     "PUMPUSDT": [],
     "PUNDIXUSDT": [],
     "PYPLBUSDT": [],
@@ -4739,7 +4731,9 @@
     "RVNUSDT": [],
     "RWUSDUSDT": [],
     "SAGAUSDT": [],
-    "SAHARAUSDT": [],
+    "SAHARAUSDT": [
+      1795525200000
+    ],
     "SANDUSDT": [],
     "SANTOSUSDT": [],
     "SAPIENUSDT": [],
@@ -4816,7 +4810,9 @@
     "USDEBUSDT": [],
     "USTCUSDT": [],
     "USUALUSDT": [],
-    "UVXYBUSDT": [],
+    "UVXYBUSDT": [
+      1795525200000
+    ],
     "VANAUSDT": [],
     "VETUSDT": [],
     "VIRTUALUSDT": [],
@@ -10319,7 +10315,6 @@
     ]
   },
   "sent": [
-    "buy:QNTUSDT:1795237200000:3",
     "buy:QTUMUSDT:1795237200000:4",
     "buy:RENDERUSDT:1795237200000:2",
     "buy:REQUSDT:1795237200000:2",
@@ -10718,11 +10713,12 @@
     "buy:GALAUSDT:1795514400000:1",
     "exit:PSGUSDT:1795514400000",
     "exit:ACMUSDT:1795518000000",
-    "buy:QKCUSDT:1795521600000:1"
+    "buy:QKCUSDT:1795521600000:1",
+    "exit:UVXYBUSDT:1795525200000"
   ],
-  "cycles": 884,
-  "messages_sent": 2859,
-  "last_cycle_ms": 1795530817583,
+  "cycles": 885,
+  "messages_sent": 2860,
+  "last_cycle_ms": 1795532613164,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
