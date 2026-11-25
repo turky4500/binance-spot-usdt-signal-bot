@@ -2066,11 +2066,11 @@
         "entry_time": 1794700800000,
         "signal_bar_time": 1794686400000,
         "signal_price": 0.04079,
-        "entry_count": 1
+        "entry_count": 2
       },
-      "entry_count": 1,
-      "last_buy_bar": 1794686400000,
-      "last_entry_price": 0.04113
+      "entry_count": 2,
+      "last_buy_bar": 1795564800000,
+      "last_entry_price": 0.03429
     },
     "MANTRAUSDT": {
       "position": {
@@ -4145,7 +4145,9 @@
     "LUNCUSDT": [],
     "MAGICUSDT": [],
     "MANAUSDT": [],
-    "MANTAUSDT": [],
+    "MANTAUSDT": [
+      1795564800000
+    ],
     "MANTRAUSDT": [],
     "MASKUSDT": [],
     "MAVUSDT": [],
@@ -4804,9 +4806,7 @@
     "WCTUSDT": [],
     "WDCBUSDT": [],
     "WIFUSDT": [],
-    "WINUSDT": [
-      1795550400000
-    ],
+    "WINUSDT": [],
     "WLDUSDT": [],
     "WLFIUSDT": [],
     "WOOUSDT": [],
@@ -5377,7 +5377,8 @@
     "MAGICUSDT": [],
     "MANAUSDT": [],
     "MANTAUSDT": [
-      1794686400000
+      1794686400000,
+      1795564800000
     ],
     "MANTRAUSDT": [
       1795176000000,
@@ -6947,11 +6948,12 @@
     "exit:PYPLBUSDT:1795521600000",
     "exit:RPLUSDT:1795521600000",
     "buy:PROMUSDT:1795536000000:1",
-    "exit:WINUSDT:1795550400000"
+    "exit:WINUSDT:1795550400000",
+    "buy:MANTAUSDT:1795564800000:2"
   ],
-  "cycles": 125,
-  "messages_sent": 358,
-  "last_cycle_ms": 1795579427387,
+  "cycles": 126,
+  "messages_sent": 359,
+  "last_cycle_ms": 1795593824277,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-24",
     "reported_trade_keys": [
