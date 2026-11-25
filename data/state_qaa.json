@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1795392000000,
+  "last_processed_open_time": 1795478400000,
   "last_entry_bar_time": {
     "GTCUSDT": 1793404800000,
     "HUMAUSDT": 1793059200000,
@@ -92,7 +92,8 @@
     "DASHUSDT": 1793923200000,
     "PARTIUSDT": 1793923200000,
     "HOTUSDT": 1794096000000,
-    "HAEDALUSDT": 1794355200000
+    "HAEDALUSDT": 1794355200000,
+    "MMTUSDT": 1795478400000
   },
   "last_exit_bar_time": {
     "GTCUSDT": 1793491200000,
@@ -115,7 +116,7 @@
     "SKYUSDT": 1793577600000,
     "WLDUSDT": 1792454400000,
     "ZECUSDT": 1794787200000,
-    "WINUSDT": 1794873600000,
+    "WINUSDT": 1795564800000,
     "METUSDT": 1793664000000,
     "QNTUSDT": 1795392000000,
     "SUPERUSDT": 1794528000000,
@@ -200,29 +201,29 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1795551840000,
+      "last_check_ms": 1795578000000,
       "peak_price": 0.14853,
       "last_stop_alert_price": 0.1365372,
       "stop_updates_count": 1,
       "halal_verdict": "⛔ غير مباح",
       "silent": true
     },
-    "WINUSDT": {
-      "trade_id": "WINUSDT-1795305600000",
-      "symbol": "WINUSDT",
-      "entry_price": 5.543e-05,
-      "stop_price": 5.42156e-05,
-      "pivot_stop": 5.243e-05,
-      "target_price": 6.143000000000001e-05,
-      "stop_dist_pct": 5.412231643514351,
-      "size_suggest_pct": 0.18476666666666636,
-      "entry_time": 1795391999999,
-      "entry_bar_open_time": 1795305600000,
-      "last_check_ms": 1795551840000,
-      "peak_price": 5.9e-05,
-      "last_stop_alert_price": 5.42156e-05,
-      "stop_updates_count": 2,
-      "halal_verdict": "⛔ غير مباح",
+    "MMTUSDT": {
+      "trade_id": "MMTUSDT-1795478400000",
+      "symbol": "MMTUSDT",
+      "entry_price": 0.2203,
+      "stop_price": 0.1861,
+      "pivot_stop": 0.1861,
+      "target_price": 0.2887,
+      "stop_dist_pct": 15.52428506581934,
+      "size_suggest_pct": 0.06441520467836256,
+      "entry_time": 1795564799999,
+      "entry_bar_open_time": 1795478400000,
+      "last_check_ms": 1795564859999,
+      "peak_price": 0.2749,
+      "last_stop_alert_price": 0.1861,
+      "stop_updates_count": 0,
+      "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     }
   },
@@ -4586,6 +4587,31 @@
       "type": "stop_alert",
       "symbol": "WINUSDT",
       "time_ms": 1795551599999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "WINUSDT",
+      "time_ms": 1795559579999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "WINUSDT",
+      "time_ms": 1795562219999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "WINUSDT",
+      "time_ms": 1795562339999
+    },
+    {
+      "type": "exit_win",
+      "symbol": "WINUSDT",
+      "time_ms": 1795570319999
+    },
+    {
+      "type": "entry",
+      "symbol": "MMTUSDT",
+      "time_ms": 1795564799999
     }
   ],
   "daily_report": {
