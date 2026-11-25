@@ -3627,14 +3627,8 @@
       "last_entry_price": 0.1315
     },
     "WINUSDT": {
-      "position": {
-        "entry_price": 5.4e-05,
-        "entry_time": 1795204800000,
-        "signal_bar_time": 1795190400000,
-        "signal_price": 5.398e-05,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795190400000,
       "last_entry_price": 5.4e-05
     },
@@ -3877,6 +3871,30 @@
       "entry_count": 0,
       "last_buy_bar": 0,
       "last_entry_price": 0.0
+    },
+    "CRWDBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "MRNABUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "SQQQBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
+    },
+    "STXBUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
     }
   },
   "prev_buy_bars": {
@@ -3930,9 +3948,7 @@
     "ASTSBUSDT": [],
     "ATMUSDT": [],
     "ATOMUSDT": [],
-    "ATUSDT": [
-      1795536000000
-    ],
+    "ATUSDT": [],
     "AUCTIONUSDT": [],
     "AUDIOUSDT": [],
     "AUSDT": [],
@@ -4200,9 +4216,7 @@
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
-    "PROMUSDT": [
-      1795536000000
-    ],
+    "PROMUSDT": [],
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -4348,7 +4362,11 @@
     "ZROUSDT": [],
     "ZRXUSDT": [],
     "币安人生USDT": [],
-    "DJTBUSDT": []
+    "DJTBUSDT": [],
+    "CRWDBUSDT": [],
+    "MRNABUSDT": [],
+    "SQQQBUSDT": [],
+    "STXBUSDT": []
   },
   "prev_sell_bars": {
     "0GUSDT": [],
@@ -4646,9 +4664,7 @@
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
-    "OPGUSDT": [
-      1795536000000
-    ],
+    "OPGUSDT": [],
     "OPNUSDT": [],
     "OPUSDT": [],
     "ORCAUSDT": [],
@@ -4788,7 +4804,9 @@
     "WCTUSDT": [],
     "WDCBUSDT": [],
     "WIFUSDT": [],
-    "WINUSDT": [],
+    "WINUSDT": [
+      1795550400000
+    ],
     "WLDUSDT": [],
     "WLFIUSDT": [],
     "WOOUSDT": [],
@@ -4817,7 +4835,11 @@
     "ZROUSDT": [],
     "ZRXUSDT": [],
     "币安人生USDT": [],
-    "DJTBUSDT": []
+    "DJTBUSDT": [],
+    "CRWDBUSDT": [],
+    "MRNABUSDT": [],
+    "SQQQBUSDT": [],
+    "STXBUSDT": []
   },
   "buy_history": {
     "0GUSDT": [],
@@ -5817,7 +5839,11 @@
     ],
     "ZRXUSDT": [],
     "币安人生USDT": [],
-    "DJTBUSDT": []
+    "DJTBUSDT": [],
+    "CRWDBUSDT": [],
+    "MRNABUSDT": [],
+    "SQQQBUSDT": [],
+    "STXBUSDT": []
   },
   "cancelled_buy_bars": {
     "0GUSDT": [],
@@ -6557,7 +6583,11 @@
     "币安人生USDT": [
       1795176000000
     ],
-    "DJTBUSDT": []
+    "DJTBUSDT": [],
+    "CRWDBUSDT": [],
+    "MRNABUSDT": [],
+    "SQQQBUSDT": [],
+    "STXBUSDT": []
   },
   "sent": [
     "buy:SIGNUSDT:1794182400000:1",
@@ -6916,11 +6946,12 @@
     "exit:PSGUSDT:1795521600000",
     "exit:PYPLBUSDT:1795521600000",
     "exit:RPLUSDT:1795521600000",
-    "buy:PROMUSDT:1795536000000:1"
+    "buy:PROMUSDT:1795536000000:1",
+    "exit:WINUSDT:1795550400000"
   ],
-  "cycles": 124,
-  "messages_sent": 357,
-  "last_cycle_ms": 1795576683645,
+  "cycles": 125,
+  "messages_sent": 358,
+  "last_cycle_ms": 1795579427387,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-24",
     "reported_trade_keys": [
