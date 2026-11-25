@@ -897,14 +897,8 @@
       "last_entry_price": 0.04671
     },
     "QKCUSDT": {
-      "position": {
-        "entry_price": 0.001888,
-        "entry_time": 1795525200000,
-        "signal_bar_time": 1795521600000,
-        "signal_price": 0.001849,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795521600000,
       "last_entry_price": 0.001888
     },
@@ -3879,13 +3873,13 @@
     "ARPAUSDT": [],
     "ARUSDT": [],
     "ASMLBUSDT": [],
-    "ASRUSDT": [
-      1795561200000
-    ],
+    "ASRUSDT": [],
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
-    "ATMUSDT": [],
+    "ATMUSDT": [
+      1795564800000
+    ],
     "ATOMUSDT": [],
     "ATUSDT": [],
     "AUCTIONUSDT": [],
@@ -4015,7 +4009,9 @@
     "GENIUSUSDT": [],
     "GIGGLEUSDT": [],
     "GLMRUSDT": [],
-    "GLMUSDT": [],
+    "GLMUSDT": [
+      1795564800000
+    ],
     "GLWBUSDT": [],
     "GMEBUSDT": [],
     "GMTUSDT": [],
@@ -4195,7 +4191,9 @@
     "RENDERUSDT": [],
     "REQUSDT": [],
     "RESOLVUSDT": [],
-    "REUSDT": [],
+    "REUSDT": [
+      1795564800000
+    ],
     "REZUSDT": [],
     "RIFUSDT": [],
     "RKLBBUSDT": [],
@@ -4209,7 +4207,9 @@
     "RVNUSDT": [],
     "RWUSDUSDT": [],
     "SAGAUSDT": [],
-    "SAHARAUSDT": [],
+    "SAHARAUSDT": [
+      1795564800000
+    ],
     "SANDUSDT": [],
     "SANTOSUSDT": [],
     "SAPIENUSDT": [],
@@ -4424,7 +4424,9 @@
     "BELUSDT": [],
     "BERAUSDT": [],
     "BICOUSDT": [],
-    "BIGTIMEUSDT": [],
+    "BIGTIMEUSDT": [
+      1795564800000
+    ],
     "BIOUSDT": [],
     "BLURUSDT": [],
     "BMNRBUSDT": [],
@@ -4690,7 +4692,9 @@
     "PYTHUSDT": [],
     "QCOMBUSDT": [],
     "QIUSDT": [],
-    "QKCUSDT": [],
+    "QKCUSDT": [
+      1795564800000
+    ],
     "QNTBUSDT": [],
     "QNTUSDT": [],
     "QQQBUSDT": [],
@@ -4733,7 +4737,9 @@
     "SIGNUSDT": [],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
-    "SKYUSDT": [],
+    "SKYUSDT": [
+      1795564800000
+    ],
     "SLPUSDT": [],
     "SMCIBUSDT": [],
     "SMHBUSDT": [],
@@ -8830,7 +8836,8 @@
       1794794400000
     ],
     "GLMUSDT": [
-      1795201200000
+      1795201200000,
+      1795564800000
     ],
     "GLWBUSDT": [
       1795190400000,
@@ -9704,7 +9711,8 @@
       1795233600000
     ],
     "SAHARAUSDT": [
-      1794171600000
+      1794171600000,
+      1795564800000
     ],
     "SANDUSDT": [
       1794538800000,
@@ -10342,7 +10350,6 @@
     ]
   },
   "sent": [
-    "buy:STXUSDT:1795237200000:3",
     "buy:SUNUSDT:1795237200000:6",
     "buy:SUPERUSDT:1795237200000:7",
     "buy:SUSDT:1795237200000:4",
@@ -10741,11 +10748,12 @@
     "buy:PAXGUSDT:1795543200000:1",
     "buy:XAUTUSDT:1795543200000:1",
     "buy:FLUXUSDT:1795546800000:1",
-    "exit:WINUSDT:1795550400000"
+    "exit:WINUSDT:1795550400000",
+    "exit:QKCUSDT:1795564800000"
   ],
-  "cycles": 907,
-  "messages_sent": 2878,
-  "last_cycle_ms": 1795570414239,
+  "cycles": 908,
+  "messages_sent": 2879,
+  "last_cycle_ms": 1795572211306,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
