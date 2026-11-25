@@ -567,14 +567,8 @@
       "last_entry_price": 0.000531
     },
     "IOTAUSDT": {
-      "position": {
-        "entry_price": 0.0308,
-        "entry_time": 1795539600000,
-        "signal_bar_time": 1795536000000,
-        "signal_price": 0.0302,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795536000000,
       "last_entry_price": 0.0308
     },
@@ -801,14 +795,8 @@
       "last_entry_price": 0.0339
     },
     "PAXGUSDT": {
-      "position": {
-        "entry_price": 3552.43,
-        "entry_time": 1795546800000,
-        "signal_bar_time": 1795543200000,
-        "signal_price": 3550.57,
-        "entry_count": 3
-      },
-      "entry_count": 3,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795618800000,
       "last_entry_price": 3465.97
     },
@@ -885,14 +873,8 @@
       "last_entry_price": 132.76
     },
     "QTUMUSDT": {
-      "position": {
-        "entry_price": 0.608,
-        "entry_time": 1795615200000,
-        "signal_bar_time": 1795611600000,
-        "signal_price": 0.602,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795611600000,
       "last_entry_price": 0.608
     },
@@ -1221,14 +1203,8 @@
       "last_entry_price": 0.00499
     },
     "XAUTUSDT": {
-      "position": {
-        "entry_price": 3549.98,
-        "entry_time": 1795546800000,
-        "signal_bar_time": 1795543200000,
-        "signal_price": 3548.68,
-        "entry_count": 3
-      },
-      "entry_count": 3,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795618800000,
       "last_entry_price": 3464.31
     },
@@ -1239,14 +1215,8 @@
       "last_entry_price": 4.84e-06
     },
     "XLMUSDT": {
-      "position": {
-        "entry_price": 0.1244,
-        "entry_time": 1795539600000,
-        "signal_bar_time": 1795536000000,
-        "signal_price": 0.1228,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795536000000,
       "last_entry_price": 0.1244
     },
@@ -1371,14 +1341,8 @@
       "last_entry_price": 33.72
     },
     "AAPLBUSDT": {
-      "position": {
-        "entry_price": 349.21,
-        "entry_time": 1795107600000,
-        "signal_bar_time": 1795104000000,
-        "signal_price": 348.72,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795204800000,
       "last_entry_price": 344.54
     },
@@ -2553,14 +2517,8 @@
       "last_entry_price": 0.0336
     },
     "MAVUSDT": {
-      "position": {
-        "entry_price": 0.0068,
-        "entry_time": 1794708000000,
-        "signal_bar_time": 1794704400000,
-        "signal_price": 0.00654,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795186800000,
       "last_entry_price": 0.00642
     },
@@ -3381,14 +3339,8 @@
       "last_entry_price": 48.22
     },
     "TRUMPUSDT": {
-      "position": {
-        "entry_price": 0.979,
-        "entry_time": 1794675600000,
-        "signal_bar_time": 1794672000000,
-        "signal_price": 0.977,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795186800000,
       "last_entry_price": 0.837
     },
@@ -4138,7 +4090,9 @@
     "SPELLUSDT": [],
     "SPKUSDT": [],
     "SPYBUSDT": [],
-    "SQQQBUSDT": [],
+    "SQQQBUSDT": [
+      1795636800000
+    ],
     "SSVUSDT": [],
     "STEEMUSDT": [],
     "STOUSDT": [],
@@ -4246,15 +4200,17 @@
     "1MBABYDOGEUSDT": [],
     "2ZUSDT": [],
     "AAOIBUSDT": [],
-    "AAPLBUSDT": [],
+    "AAPLBUSDT": [
+      1795636800000
+    ],
     "AAVEUSDT": [],
     "ACEUSDT": [],
-    "ACHUSDT": [
-      1795633200000
-    ],
+    "ACHUSDT": [],
     "ACMUSDT": [],
     "ACTUSDT": [],
-    "ADAUSDT": [],
+    "ADAUSDT": [
+      1795636800000
+    ],
     "ADBEBUSDT": [],
     "ADXUSDT": [],
     "AEROUSDT": [],
@@ -4263,9 +4219,7 @@
     "AGPUBUSDT": [],
     "AIGENSYNUSDT": [],
     "AIUSDT": [],
-    "AIXBTUSDT": [
-      1795633200000
-    ],
+    "AIXBTUSDT": [],
     "ALABBUSDT": [],
     "ALGOUSDT": [],
     "ALICEUSDT": [],
@@ -4295,9 +4249,7 @@
     "ASTSBUSDT": [],
     "ATMUSDT": [],
     "ATOMUSDT": [],
-    "ATUSDT": [
-      1795633200000
-    ],
+    "ATUSDT": [],
     "AUCTIONUSDT": [],
     "AUDIOUSDT": [],
     "AUSDT": [],
@@ -4306,16 +4258,18 @@
     "AVGOBUSDT": [],
     "AVNTUSDT": [],
     "AWEUSDT": [],
-    "AXLUSDT": [],
+    "AXLUSDT": [
+      1795636800000
+    ],
     "AXSUSDT": [],
     "AXTIBUSDT": [],
-    "BABABUSDT": [],
+    "BABABUSDT": [
+      1795636800000
+    ],
     "BABYUSDT": [],
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
-    "BANDUSDT": [
-      1795633200000
-    ],
+    "BANDUSDT": [],
     "BANKUSDT": [],
     "BARDUSDT": [],
     "BARUSDT": [],
@@ -4323,13 +4277,11 @@
     "BBBUSDT": [],
     "BBUSDT": [],
     "BCHUSDT": [
-      1795633200000
+      1795636800000
     ],
     "BEAMXUSDT": [],
     "BEBUSDT": [],
-    "BELUSDT": [
-      1795633200000
-    ],
+    "BELUSDT": [],
     "BERAUSDT": [],
     "BICOUSDT": [],
     "BIGTIMEUSDT": [],
@@ -4348,32 +4300,34 @@
     "BTCUSDT": [],
     "BTTCUSDT": [],
     "C98USDT": [],
-    "CAKEUSDT": [],
-    "CATIUSDT": [],
+    "CAKEUSDT": [
+      1795636800000
+    ],
+    "CATIUSDT": [
+      1795636800000
+    ],
     "CBRSBUSDT": [],
-    "CELOUSDT": [],
+    "CELOUSDT": [
+      1795636800000
+    ],
     "CELRUSDT": [],
     "CETUSUSDT": [],
-    "CFGUSDT": [
-      1795633200000
-    ],
+    "CFGUSDT": [],
     "CFXUSDT": [],
     "CGPTUSDT": [],
     "CHIPUSDT": [],
-    "CHRUSDT": [
-      1795633200000
-    ],
+    "CHRUSDT": [],
     "CHZUSDT": [],
     "CITYUSDT": [],
     "CKBUSDT": [],
     "COHRBUSDT": [],
     "COINBUSDT": [],
-    "COMPUSDT": [],
+    "COMPUSDT": [
+      1795636800000
+    ],
     "COOKIEUSDT": [],
     "COTIUSDT": [],
-    "COWUSDT": [
-      1795633200000
-    ],
+    "COWUSDT": [],
     "CRCLBUSDT": [],
     "CRDOBUSDT": [],
     "CRMBUSDT": [],
@@ -4438,21 +4392,17 @@
     "GIGGLEUSDT": [],
     "GLMRUSDT": [],
     "GLMUSDT": [
-      1795633200000
+      1795636800000
     ],
     "GLWBUSDT": [],
     "GMEBUSDT": [],
     "GMTUSDT": [],
-    "GMXUSDT": [
-      1795633200000
-    ],
+    "GMXUSDT": [],
     "GNOUSDT": [],
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
-    "GPSUSDT": [
-      1795633200000
-    ],
+    "GPSUSDT": [],
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
@@ -4462,13 +4412,9 @@
     "HAEDALUSDT": [],
     "HBARUSDT": [],
     "HEIUSDT": [],
-    "HEMIUSDT": [
-      1795633200000
-    ],
+    "HEMIUSDT": [],
     "HIMSBUSDT": [],
-    "HIVEUSDT": [
-      1795633200000
-    ],
+    "HIVEUSDT": [],
     "HMSTRUSDT": [],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
@@ -4477,7 +4423,9 @@
     "HPEBUSDT": [],
     "HUMAUSDT": [],
     "HYPERUSDT": [],
-    "HYPEUSDT": [],
+    "HYPEUSDT": [
+      1795636800000
+    ],
     "IBMBUSDT": [],
     "ICPUSDT": [],
     "IDUSDT": [],
@@ -4485,10 +4433,16 @@
     "IMXUSDT": [],
     "INITUSDT": [],
     "INJUSDT": [],
-    "INTCBUSDT": [],
+    "INTCBUSDT": [
+      1795636800000
+    ],
     "INTWBUSDT": [],
-    "IOSTUSDT": [],
-    "IOTAUSDT": [],
+    "IOSTUSDT": [
+      1795636800000
+    ],
+    "IOTAUSDT": [
+      1795636800000
+    ],
     "IOTXUSDT": [],
     "IOUSDT": [],
     "IQUSDT": [],
@@ -4505,10 +4459,14 @@
     "KATUSDT": [],
     "KAVAUSDT": [],
     "KERNELUSDT": [],
-    "KGSTUSDT": [],
+    "KGSTUSDT": [
+      1795636800000
+    ],
     "KITEUSDT": [],
     "KMNOUSDT": [],
-    "KNCUSDT": [],
+    "KNCUSDT": [
+      1795636800000
+    ],
     "KORUBUSDT": [],
     "KSMUSDT": [],
     "LAUSDT": [],
@@ -4516,30 +4474,28 @@
     "LAZIOUSDT": [],
     "LDOUSDT": [],
     "LINEAUSDT": [],
-    "LINKUSDT": [
-      1795633200000
-    ],
+    "LINKUSDT": [],
     "LISTAUSDT": [],
     "LITEBUSDT": [],
     "LLYBUSDT": [],
     "LPTUSDT": [],
     "LQTYUSDT": [],
     "LSKUSDT": [],
-    "LTCUSDT": [
-      1795633200000
-    ],
+    "LTCUSDT": [],
     "LUMIAUSDT": [],
     "LUNAUSDT": [],
     "LUNCUSDT": [],
-    "MAGICUSDT": [
-      1795633200000
+    "MAGICUSDT": [],
+    "MANAUSDT": [
+      1795636800000
     ],
-    "MANAUSDT": [],
     "MANTAUSDT": [],
     "MANTRAUSDT": [],
     "MARSCOINUSDT": [],
     "MASKUSDT": [],
-    "MAVUSDT": [],
+    "MAVUSDT": [
+      1795636800000
+    ],
     "MBLUSDT": [],
     "MDBBUSDT": [],
     "MEGAUSDT": [],
@@ -4548,9 +4504,7 @@
     "METISUSDT": [],
     "METUSDT": [],
     "MEUSDT": [],
-    "MINAUSDT": [
-      1795633200000
-    ],
+    "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
     "MMTUSDT": [],
@@ -4560,32 +4514,26 @@
     "MRNABUSDT": [],
     "MRVLBUSDT": [],
     "MSFTBUSDT": [],
-    "MSTRBUSDT": [
-      1795633200000
-    ],
+    "MSTRBUSDT": [],
     "MTLUSDT": [],
     "MUBARAKUSDT": [],
     "MUBUSDT": [],
     "MUUBUSDT": [],
     "MVLLBUSDT": [],
     "NBISBUSDT": [],
-    "NEARUSDT": [],
-    "NEIROUSDT": [],
-    "NEOUSDT": [
-      1795633200000
+    "NEARUSDT": [
+      1795636800000
     ],
+    "NEIROUSDT": [],
+    "NEOUSDT": [],
     "NEWTUSDT": [],
     "NEXOUSDT": [],
-    "NFLXBUSDT": [
-      1795633200000
-    ],
+    "NFLXBUSDT": [],
     "NIGHTUSDT": [],
     "NILUSDT": [],
     "NMRUSDT": [],
     "NOKBUSDT": [],
-    "NOMUSDT": [
-      1795633200000
-    ],
+    "NOMUSDT": [],
     "NOTUSDT": [],
     "NVDABUSDT": [],
     "NXPCUSDT": [],
@@ -4604,7 +4552,9 @@
     "ORDIUSDT": [],
     "OSMOUSDT": [],
     "PARTIUSDT": [],
-    "PAXGUSDT": [],
+    "PAXGUSDT": [
+      1795636800000
+    ],
     "PDDBUSDT": [],
     "PENDLEUSDT": [],
     "PENGBUSDT": [],
@@ -4614,9 +4564,7 @@
     "PHAUSDT": [],
     "PIXELUSDT": [],
     "PLTRBUSDT": [],
-    "PLUMEUSDT": [
-      1795633200000
-    ],
+    "PLUMEUSDT": [],
     "PNUTUSDT": [],
     "POLUSDT": [],
     "POLYXUSDT": [],
@@ -4627,9 +4575,7 @@
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
-    "PUNDIXUSDT": [
-      1795633200000
-    ],
+    "PUNDIXUSDT": [],
     "PYPLBUSDT": [],
     "PYTHUSDT": [],
     "QCOMBUSDT": [],
@@ -4637,11 +4583,17 @@
     "QKCUSDT": [],
     "QNTBUSDT": [],
     "QNTUSDT": [],
-    "QQQBUSDT": [],
-    "QTUMUSDT": [],
+    "QQQBUSDT": [
+      1795636800000
+    ],
+    "QTUMUSDT": [
+      1795636800000
+    ],
     "RADUSDT": [],
     "RAREUSDT": [],
-    "RAYUSDT": [],
+    "RAYUSDT": [
+      1795636800000
+    ],
     "RDDTBUSDT": [],
     "REDUSDT": [],
     "RENDERUSDT": [],
@@ -4650,16 +4602,16 @@
     "REUSDT": [],
     "REZUSDT": [],
     "RIFUSDT": [],
-    "RKLBBUSDT": [
-      1795633200000
-    ],
+    "RKLBBUSDT": [],
     "RLCUSDT": [],
     "ROBOUSDT": [],
     "RONINUSDT": [],
     "ROSEUSDT": [],
     "RPLUSDT": [],
     "RSRUSDT": [],
-    "RUNEUSDT": [],
+    "RUNEUSDT": [
+      1795636800000
+    ],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
     "SAGAUSDT": [],
@@ -4692,18 +4644,14 @@
     "SOPHUSDT": [],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
-    "SPCXBUSDT": [
-      1795633200000
-    ],
+    "SPCXBUSDT": [],
     "SPELLUSDT": [],
     "SPKUSDT": [],
     "SPYBUSDT": [],
     "SQQQBUSDT": [],
     "SSVUSDT": [],
     "STEEMUSDT": [],
-    "STOUSDT": [
-      1795633200000
-    ],
+    "STOUSDT": [],
     "STRAXUSDT": [],
     "STRKUSDT": [],
     "STXBUSDT": [],
@@ -4712,9 +4660,7 @@
     "SUNUSDT": [],
     "SUPERUSDT": [],
     "SUSDT": [],
-    "SUSHIUSDT": [
-      1795633200000
-    ],
+    "SUSHIUSDT": [],
     "SXTUSDT": [],
     "SYNUSDT": [],
     "SYRUPUSDT": [],
@@ -4730,7 +4676,9 @@
     "TQQQBUSDT": [],
     "TRBUSDT": [],
     "TREEUSDT": [],
-    "TRUMPUSDT": [],
+    "TRUMPUSDT": [
+      1795636800000
+    ],
     "TRXUSDT": [],
     "TSLABUSDT": [],
     "TSMBUSDT": [],
@@ -4748,9 +4696,7 @@
     "USUALUSDT": [],
     "UVXYBUSDT": [],
     "VANAUSDT": [],
-    "VETUSDT": [
-      1795633200000
-    ],
+    "VETUSDT": [],
     "VIRTUALUSDT": [],
     "VTHOUSDT": [],
     "WALUSDT": [],
@@ -4760,16 +4706,22 @@
     "WCTUSDT": [],
     "WDCBUSDT": [],
     "WENBUSDT": [],
-    "WIFUSDT": [],
+    "WIFUSDT": [
+      1795636800000
+    ],
     "WINUSDT": [],
     "WLDUSDT": [],
     "WLFIUSDT": [],
     "WOOUSDT": [],
     "WUSDT": [],
     "XAIUSDT": [],
-    "XAUTUSDT": [],
+    "XAUTUSDT": [
+      1795636800000
+    ],
     "XECUSDT": [],
-    "XLMUSDT": [],
+    "XLMUSDT": [
+      1795636800000
+    ],
     "XNOUSDT": [],
     "XPLUSDT": [],
     "XRPUSDT": [],
@@ -4778,7 +4730,9 @@
     "XVSUSDT": [],
     "YBUSDT": [],
     "YFIUSDT": [],
-    "YGGUSDT": [],
+    "YGGUSDT": [
+      1795636800000
+    ],
     "ZAMAUSDT": [],
     "ZBTUSDT": [],
     "ZECUSDT": [],
@@ -4798,9 +4752,7 @@
     "TMFBUSDT": [],
     "VSTBUSDT": [],
     "APPBUSDT": [],
-    "BSPBUSDT": [
-      1795633200000
-    ],
+    "BSPBUSDT": [],
     "GEVBUSDT": [],
     "SKDDBUSDT": [],
     "SKUUBUSDT": []
@@ -10345,14 +10297,6 @@
     ]
   },
   "sent": [
-    "exit:LQTYUSDT:1795255200000",
-    "exit:PROMUSDT:1795255200000",
-    "buy:ATUSDT:1795258800000:2",
-    "buy:BLURUSDT:1795258800000:3",
-    "exit:VANAUSDT:1795258800000",
-    "exit:1MBABYDOGEUSDT:1795266000000",
-    "exit:AAVEUSDT:1795266000000",
-    "exit:ACHUSDT:1795266000000",
     "exit:AIXBTUSDT:1795266000000",
     "exit:ANIMEUSDT:1795266000000",
     "exit:API3USDT:1795266000000",
@@ -10744,11 +10688,19 @@
     "exit:PLUMEUSDT:1795633200000",
     "exit:PUNDIXUSDT:1795633200000",
     "exit:STOUSDT:1795633200000",
-    "exit:VETUSDT:1795633200000"
+    "exit:VETUSDT:1795633200000",
+    "exit:AAPLBUSDT:1795636800000",
+    "exit:IOTAUSDT:1795636800000",
+    "exit:MAVUSDT:1795636800000",
+    "exit:PAXGUSDT:1795636800000",
+    "exit:QTUMUSDT:1795636800000",
+    "exit:TRUMPUSDT:1795636800000",
+    "exit:XAUTUSDT:1795636800000",
+    "exit:XLMUSDT:1795636800000"
   ],
-  "cycles": 948,
-  "messages_sent": 2914,
-  "last_cycle_ms": 1795642419173,
+  "cycles": 949,
+  "messages_sent": 2922,
+  "last_cycle_ms": 1795644214380,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
