@@ -2073,14 +2073,8 @@
       "last_entry_price": 0.03429
     },
     "MANTRAUSDT": {
-      "position": {
-        "entry_price": 0.00182,
-        "entry_time": 1795190400000,
-        "signal_bar_time": 1795176000000,
-        "signal_price": 0.0018,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795219200000,
       "last_entry_price": 0.00179
     },
@@ -4145,9 +4139,7 @@
     "LUNCUSDT": [],
     "MAGICUSDT": [],
     "MANAUSDT": [],
-    "MANTAUSDT": [
-      1795564800000
-    ],
+    "MANTAUSDT": [],
     "MANTRAUSDT": [],
     "MASKUSDT": [],
     "MAVUSDT": [],
@@ -4390,7 +4382,9 @@
     "AEROUSDT": [],
     "AEVOUSDT": [],
     "AGLDUSDT": [],
-    "AIGENSYNUSDT": [],
+    "AIGENSYNUSDT": [
+      1795579200000
+    ],
     "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
@@ -4449,7 +4443,9 @@
     "BELUSDT": [],
     "BERAUSDT": [],
     "BICOUSDT": [],
-    "BIGTIMEUSDT": [],
+    "BIGTIMEUSDT": [
+      1795579200000
+    ],
     "BIOUSDT": [],
     "BLURUSDT": [],
     "BMNRBUSDT": [],
@@ -4607,7 +4603,9 @@
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
-    "LISTAUSDT": [],
+    "LISTAUSDT": [
+      1795579200000
+    ],
     "LITEBUSDT": [],
     "LPTUSDT": [],
     "LQTYUSDT": [],
@@ -4615,11 +4613,15 @@
     "LTCUSDT": [],
     "LUMIAUSDT": [],
     "LUNAUSDT": [],
-    "LUNCUSDT": [],
+    "LUNCUSDT": [
+      1795579200000
+    ],
     "MAGICUSDT": [],
     "MANAUSDT": [],
     "MANTAUSDT": [],
-    "MANTRAUSDT": [],
+    "MANTRAUSDT": [
+      1795579200000
+    ],
     "MASKUSDT": [],
     "MAVUSDT": [],
     "MBLUSDT": [],
@@ -4800,7 +4802,9 @@
     "VIRTUALUSDT": [],
     "VTHOUSDT": [],
     "WALUSDT": [],
-    "WAXPUSDT": [],
+    "WAXPUSDT": [
+      1795579200000
+    ],
     "WBETHUSDT": [],
     "WBTCUSDT": [],
     "WCTUSDT": [],
@@ -6949,11 +6953,12 @@
     "exit:RPLUSDT:1795521600000",
     "buy:PROMUSDT:1795536000000:1",
     "exit:WINUSDT:1795550400000",
-    "buy:MANTAUSDT:1795564800000:2"
+    "buy:MANTAUSDT:1795564800000:2",
+    "exit:MANTRAUSDT:1795579200000"
   ],
-  "cycles": 126,
-  "messages_sent": 359,
-  "last_cycle_ms": 1795593824277,
+  "cycles": 127,
+  "messages_sent": 360,
+  "last_cycle_ms": 1795608224707,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-24",
     "reported_trade_keys": [
