@@ -3879,7 +3879,9 @@
     "ARPAUSDT": [],
     "ARUSDT": [],
     "ASMLBUSDT": [],
-    "ASRUSDT": [],
+    "ASRUSDT": [
+      1795561200000
+    ],
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
@@ -4083,9 +4085,7 @@
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
-    "LISTAUSDT": [
-      1795557600000
-    ],
+    "LISTAUSDT": [],
     "LITEBUSDT": [],
     "LLYBUSDT": [],
     "LPTUSDT": [],
@@ -4426,9 +4426,7 @@
     "BICOUSDT": [],
     "BIGTIMEUSDT": [],
     "BIOUSDT": [],
-    "BLURUSDT": [
-      1795557600000
-    ],
+    "BLURUSDT": [],
     "BMNRBUSDT": [],
     "BMTUSDT": [],
     "BNBUSDT": [],
@@ -4583,9 +4581,7 @@
     "KATUSDT": [],
     "KAVAUSDT": [],
     "KERNELUSDT": [],
-    "KGSTUSDT": [
-      1795557600000
-    ],
+    "KGSTUSDT": [],
     "KITEUSDT": [],
     "KMNOUSDT": [],
     "KNCUSDT": [],
@@ -8208,7 +8204,8 @@
       1794682800000,
       1794686400000,
       1795186800000,
-      1795201200000
+      1795201200000,
+      1795561200000
     ],
     "ASTERUSDT": [
       1794171600000,
@@ -10746,9 +10743,9 @@
     "buy:FLUXUSDT:1795546800000:1",
     "exit:WINUSDT:1795550400000"
   ],
-  "cycles": 906,
+  "cycles": 907,
   "messages_sent": 2878,
-  "last_cycle_ms": 1795568363539,
+  "last_cycle_ms": 1795570414239,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
