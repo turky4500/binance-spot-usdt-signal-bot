@@ -483,10 +483,16 @@
       "last_entry_price": 0.00686
     },
     "GLMUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1795230000000,
-      "last_entry_price": 0.0835
+      "position": {
+        "entry_price": 0.0869,
+        "entry_time": 1795575600000,
+        "signal_bar_time": 1795572000000,
+        "signal_price": 0.0868,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795572000000,
+      "last_entry_price": 0.0869
     },
     "GMTUSDT": {
       "position": null,
@@ -3873,9 +3879,7 @@
     "ARPAUSDT": [],
     "ARUSDT": [],
     "ASMLBUSDT": [],
-    "ASRUSDT": [
-      1795568400000
-    ],
+    "ASRUSDT": [],
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
@@ -3924,9 +3928,7 @@
     "BREVUSDT": [],
     "BROCCOLI714USDT": [],
     "BTCUSDT": [],
-    "BTTCUSDT": [
-      1795568400000
-    ],
+    "BTTCUSDT": [],
     "C98USDT": [],
     "CAKEUSDT": [],
     "CATIUSDT": [],
@@ -3990,7 +3992,9 @@
     "ETCUSDT": [],
     "ETHFIUSDT": [],
     "ETHUSDT": [],
-    "EULUSDT": [],
+    "EULUSDT": [
+      1795572000000
+    ],
     "EWYBUSDT": [],
     "FETUSDT": [],
     "FFUSDT": [],
@@ -4011,7 +4015,9 @@
     "GENIUSUSDT": [],
     "GIGGLEUSDT": [],
     "GLMRUSDT": [],
-    "GLMUSDT": [],
+    "GLMUSDT": [
+      1795572000000
+    ],
     "GLWBUSDT": [],
     "GMEBUSDT": [],
     "GMTUSDT": [],
@@ -4081,9 +4087,7 @@
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
-    "LISTAUSDT": [
-      1795568400000
-    ],
+    "LISTAUSDT": [],
     "LITEBUSDT": [],
     "LLYBUSDT": [],
     "LPTUSDT": [],
@@ -4095,9 +4099,7 @@
     "LUNCUSDT": [],
     "MAGICUSDT": [],
     "MANAUSDT": [],
-    "MANTAUSDT": [
-      1795568400000
-    ],
+    "MANTAUSDT": [],
     "MANTRAUSDT": [],
     "MARSCOINUSDT": [],
     "MASKUSDT": [],
@@ -4299,9 +4301,7 @@
     "WDCBUSDT": [],
     "WENBUSDT": [],
     "WIFUSDT": [],
-    "WINUSDT": [
-      1795568400000
-    ],
+    "WINUSDT": [],
     "WLDUSDT": [],
     "WLFIUSDT": [],
     "WOOUSDT": [],
@@ -4332,7 +4332,9 @@
     "ZRXUSDT": [],
     "币安人生USDT": [],
     "牛来USDT": [],
-    "BOTBUSDT": [],
+    "BOTBUSDT": [
+      1795572000000
+    ],
     "BRKBBUSDT": [],
     "KSTRBUSDT": [],
     "TMFBUSDT": [],
@@ -4395,7 +4397,9 @@
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
-    "ATMUSDT": [],
+    "ATMUSDT": [
+      1795572000000
+    ],
     "ATOMUSDT": [],
     "ATUSDT": [],
     "AUCTIONUSDT": [],
@@ -4428,9 +4432,7 @@
     "BICOUSDT": [],
     "BIGTIMEUSDT": [],
     "BIOUSDT": [],
-    "BLURUSDT": [
-      1795568400000
-    ],
+    "BLURUSDT": [],
     "BMNRBUSDT": [],
     "BMTUSDT": [],
     "BNBUSDT": [],
@@ -5990,7 +5992,8 @@
       1794686400000,
       1794704400000,
       1795186800000,
-      1795230000000
+      1795230000000,
+      1795572000000
     ],
     "GLWBUSDT": [
       1794315600000,
@@ -10351,7 +10354,6 @@
     ]
   },
   "sent": [
-    "buy:SUPERUSDT:1795237200000:7",
     "buy:SUSDT:1795237200000:4",
     "buy:SUSHIUSDT:1795237200000:1",
     "buy:SYRUPUSDT:1795237200000:3",
@@ -10750,11 +10752,12 @@
     "buy:FLUXUSDT:1795546800000:1",
     "exit:WINUSDT:1795550400000",
     "exit:QKCUSDT:1795564800000",
-    "buy:MANTAUSDT:1795568400000:9"
+    "buy:MANTAUSDT:1795568400000:9",
+    "buy:GLMUSDT:1795572000000:1"
   ],
-  "cycles": 911,
-  "messages_sent": 2880,
-  "last_cycle_ms": 1795577613379,
+  "cycles": 912,
+  "messages_sent": 2881,
+  "last_cycle_ms": 1795579419059,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
