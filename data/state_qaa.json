@@ -187,43 +187,26 @@
     "ARUSDT": 1794096000000,
     "DASHUSDT": 1794096000000,
     "HOTUSDT": 1794182400000,
-    "HAEDALUSDT": 1794528000000
+    "HAEDALUSDT": 1794528000000,
+    "MMTUSDT": 1795564800000
   },
   "open_trades": {
     "JSTUSDT": {
       "trade_id": "JSTUSDT-1793577600000",
       "symbol": "JSTUSDT",
       "entry_price": 0.14037,
-      "stop_price": 0.1366476,
+      "stop_price": 0.13666599999999998,
       "pivot_stop": 0.13515,
       "target_price": 0.15081,
       "stop_dist_pct": 3.7187433212224854,
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1795578000000,
-      "peak_price": 0.14853,
+      "last_check_ms": 1795613460000,
+      "peak_price": 0.14855,
       "last_stop_alert_price": 0.1365372,
       "stop_updates_count": 1,
       "halal_verdict": "⛔ غير مباح",
-      "silent": true
-    },
-    "MMTUSDT": {
-      "trade_id": "MMTUSDT-1795478400000",
-      "symbol": "MMTUSDT",
-      "entry_price": 0.2203,
-      "stop_price": 0.1861,
-      "pivot_stop": 0.1861,
-      "target_price": 0.2887,
-      "stop_dist_pct": 15.52428506581934,
-      "size_suggest_pct": 0.06441520467836256,
-      "entry_time": 1795564799999,
-      "entry_bar_open_time": 1795478400000,
-      "last_check_ms": 1795564859999,
-      "peak_price": 0.2749,
-      "last_stop_alert_price": 0.1861,
-      "stop_updates_count": 0,
-      "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     }
   },
@@ -4612,6 +4595,11 @@
       "type": "entry",
       "symbol": "MMTUSDT",
       "time_ms": 1795564799999
+    },
+    {
+      "type": "exit_loss",
+      "symbol": "MMTUSDT",
+      "time_ms": 1795564919999
     }
   ],
   "daily_report": {
