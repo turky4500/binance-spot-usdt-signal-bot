@@ -2679,10 +2679,16 @@
       "last_entry_price": 0.044
     },
     "PROMUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1795406400000,
-      "last_entry_price": 6.095
+      "position": {
+        "entry_price": 4.579,
+        "entry_time": 1795550400000,
+        "signal_bar_time": 1795536000000,
+        "signal_price": 4.49,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795536000000,
+      "last_entry_price": 4.579
     },
     "PROVEUSDT": {
       "position": {
@@ -3903,9 +3909,7 @@
     "ALPINEUSDT": [],
     "ALTUSDT": [],
     "AMATBUSDT": [],
-    "AMDBUSDT": [
-      1795521600000
-    ],
+    "AMDBUSDT": [],
     "AMPUSDT": [],
     "AMZNBUSDT": [],
     "ANIMEUSDT": [],
@@ -3926,7 +3930,9 @@
     "ASTSBUSDT": [],
     "ATMUSDT": [],
     "ATOMUSDT": [],
-    "ATUSDT": [],
+    "ATUSDT": [
+      1795536000000
+    ],
     "AUCTIONUSDT": [],
     "AUDIOUSDT": [],
     "AUSDT": [],
@@ -4194,7 +4200,9 @@
     "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
-    "PROMUSDT": [],
+    "PROMUSDT": [
+      1795536000000
+    ],
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
@@ -4255,9 +4263,7 @@
     "SOPHUSDT": [],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
-    "SPCXBUSDT": [
-      1795521600000
-    ],
+    "SPCXBUSDT": [],
     "SPELLUSDT": [],
     "SPKUSDT": [],
     "SPYBUSDT": [],
@@ -4315,9 +4321,7 @@
     "WIFUSDT": [],
     "WINUSDT": [],
     "WLDUSDT": [],
-    "WLFIUSDT": [
-      1795521600000
-    ],
+    "WLFIUSDT": [],
     "WOOUSDT": [],
     "WUSDT": [],
     "XAIUSDT": [],
@@ -4642,7 +4646,9 @@
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
-    "OPGUSDT": [],
+    "OPGUSDT": [
+      1795536000000
+    ],
     "OPNUSDT": [],
     "OPUSDT": [],
     "ORCAUSDT": [],
@@ -4667,14 +4673,10 @@
     "POWRUSDT": [],
     "PROMUSDT": [],
     "PROVEUSDT": [],
-    "PSGUSDT": [
-      1795521600000
-    ],
+    "PSGUSDT": [],
     "PUMPUSDT": [],
     "PUNDIXUSDT": [],
-    "PYPLBUSDT": [
-      1795521600000
-    ],
+    "PYPLBUSDT": [],
     "PYTHUSDT": [],
     "QCOMBUSDT": [],
     "QIUSDT": [],
@@ -4698,9 +4700,7 @@
     "ROBOUSDT": [],
     "RONINUSDT": [],
     "ROSEUSDT": [],
-    "RPLUSDT": [
-      1795521600000
-    ],
+    "RPLUSDT": [],
     "RSRUSDT": [],
     "RUNEUSDT": [],
     "RVNUSDT": [],
@@ -5518,7 +5518,8 @@
     ],
     "PROMUSDT": [
       1795204800000,
-      1795406400000
+      1795406400000,
+      1795536000000
     ],
     "PROVEUSDT": [
       1794614400000
@@ -5887,7 +5888,9 @@
     "ASTSBUSDT": [],
     "ATMUSDT": [],
     "ATOMUSDT": [],
-    "ATUSDT": [],
+    "ATUSDT": [
+      1795536000000
+    ],
     "AUCTIONUSDT": [],
     "AUDIOUSDT": [],
     "AUSDT": [],
@@ -6912,11 +6915,12 @@
     "buy:HMSTRUSDT:1795507200000:1",
     "exit:PSGUSDT:1795521600000",
     "exit:PYPLBUSDT:1795521600000",
-    "exit:RPLUSDT:1795521600000"
+    "exit:RPLUSDT:1795521600000",
+    "buy:PROMUSDT:1795536000000:1"
   ],
-  "cycles": 122,
-  "messages_sent": 356,
-  "last_cycle_ms": 1795550611299,
+  "cycles": 123,
+  "messages_sent": 357,
+  "last_cycle_ms": 1795565013126,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-24",
     "reported_trade_keys": [
