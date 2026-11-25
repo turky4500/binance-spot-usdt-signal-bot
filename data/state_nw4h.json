@@ -6956,9 +6956,9 @@
     "buy:MANTAUSDT:1795564800000:2",
     "exit:MANTRAUSDT:1795579200000"
   ],
-  "cycles": 127,
+  "cycles": 128,
   "messages_sent": 360,
-  "last_cycle_ms": 1795608224707,
+  "last_cycle_ms": 1795614541262,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-24",
     "reported_trade_keys": [
