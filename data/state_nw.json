@@ -3800,9 +3800,7 @@
     "GNSUSDT": [],
     "GOOGLBUSDT": [],
     "GPROBUSDT": [],
-    "GPSUSDT": [
-      1795669200000
-    ],
+    "GPSUSDT": [],
     "GRAMUSDT": [],
     "GRTUSDT": [],
     "GSBUSDT": [],
@@ -3863,9 +3861,7 @@
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
-    "LISTAUSDT": [
-      1795669200000
-    ],
+    "LISTAUSDT": [],
     "LITEBUSDT": [],
     "LLYBUSDT": [],
     "LPTUSDT": [],
@@ -4367,9 +4363,7 @@
     "KNCUSDT": [],
     "KORUBUSDT": [],
     "KSMUSDT": [],
-    "LAUSDT": [
-      1795669200000
-    ],
+    "LAUSDT": [],
     "LAYERUSDT": [],
     "LAZIOUSDT": [],
     "LDOUSDT": [],
@@ -4405,7 +4399,9 @@
     "MITOUSDT": [],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
-    "MOVEUSDT": [],
+    "MOVEUSDT": [
+      1795672800000
+    ],
     "MOVRUSDT": [],
     "MRNABUSDT": [],
     "MRVLBUSDT": [],
@@ -4467,9 +4463,7 @@
     "PROVEUSDT": [],
     "PSGUSDT": [],
     "PUMPUSDT": [],
-    "PUNDIXUSDT": [
-      1795669200000
-    ],
+    "PUNDIXUSDT": [],
     "PYPLBUSDT": [],
     "PYTHUSDT": [],
     "QCOMBUSDT": [],
@@ -4526,9 +4520,7 @@
     "SNXXBUSDT": [],
     "SOLUSDT": [],
     "SOLVUSDT": [],
-    "SOMIUSDT": [
-      1795669200000
-    ],
+    "SOMIUSDT": [],
     "SOPHUSDT": [],
     "SOXLBUSDT": [],
     "SOXSBUSDT": [],
@@ -4539,9 +4531,7 @@
     "SQQQBUSDT": [],
     "SSVUSDT": [],
     "STEEMUSDT": [],
-    "STOUSDT": [
-      1795669200000
-    ],
+    "STOUSDT": [],
     "STRAXUSDT": [],
     "STRKUSDT": [],
     "STXBUSDT": [],
@@ -4600,7 +4590,9 @@
     "WLFIUSDT": [],
     "WOOUSDT": [],
     "WUSDT": [],
-    "XAIUSDT": [],
+    "XAIUSDT": [
+      1795672800000
+    ],
     "XAUTUSDT": [],
     "XECUSDT": [],
     "XLMUSDT": [],
@@ -10585,9 +10577,9 @@
     "exit:SEIUSDT:1795662000000",
     "buy:GPSUSDT:1795669200000:1"
   ],
-  "cycles": 968,
+  "cycles": 969,
   "messages_sent": 2936,
-  "last_cycle_ms": 1795678414266,
+  "last_cycle_ms": 1795680220038,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
