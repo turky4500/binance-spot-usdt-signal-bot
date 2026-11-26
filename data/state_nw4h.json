@@ -4071,7 +4071,9 @@
     "HEIUSDT": [],
     "HEMIUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [],
+    "HMSTRUSDT": [
+      1795680000000
+    ],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -4117,7 +4119,7 @@
     "LINEAUSDT": [],
     "LINKUSDT": [],
     "LISTAUSDT": [
-      1795665600000
+      1795680000000
     ],
     "LITEBUSDT": [],
     "LPTUSDT": [],
@@ -4143,9 +4145,7 @@
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
-    "MMTUSDT": [
-      1795665600000
-    ],
+    "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
     "MOVRUSDT": [],
@@ -4225,7 +4225,9 @@
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
-    "RIFUSDT": [],
+    "RIFUSDT": [
+      1795680000000
+    ],
     "RKLBBUSDT": [],
     "RLCUSDT": [],
     "ROBOUSDT": [],
@@ -4399,9 +4401,7 @@
     "ARPAUSDT": [],
     "ARUSDT": [],
     "ASMLBUSDT": [],
-    "ASRUSDT": [
-      1795665600000
-    ],
+    "ASRUSDT": [],
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
@@ -4486,9 +4486,7 @@
     "DEXEUSDT": [],
     "DGBUSDT": [],
     "DIAUSDT": [],
-    "DODOUSDT": [
-      1795665600000
-    ],
+    "DODOUSDT": [],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -4562,7 +4560,9 @@
     "IDUSDT": [],
     "ILVUSDT": [],
     "IMXUSDT": [],
-    "INITUSDT": [],
+    "INITUSDT": [
+      1795680000000
+    ],
     "INJUSDT": [],
     "INTCBUSDT": [],
     "INTWBUSDT": [],
@@ -4616,7 +4616,9 @@
     "METABUSDT": [],
     "METISUSDT": [],
     "METUSDT": [],
-    "MEUSDT": [],
+    "MEUSDT": [
+      1795680000000
+    ],
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
@@ -4757,7 +4759,9 @@
     "SYNUSDT": [],
     "SYRUPUSDT": [],
     "TAOUSDT": [],
-    "TFUELUSDT": [],
+    "TFUELUSDT": [
+      1795680000000
+    ],
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
@@ -6128,7 +6132,9 @@
     "HIVEUSDT": [
       1795219200000
     ],
-    "HMSTRUSDT": [],
+    "HMSTRUSDT": [
+      1795680000000
+    ],
     "HOLOUSDT": [],
     "HOMEUSDT": [
       1794628800000,
@@ -6188,7 +6194,8 @@
     "LINEAUSDT": [],
     "LINKUSDT": [],
     "LISTAUSDT": [
-      1795665600000
+      1795665600000,
+      1795680000000
     ],
     "LITEBUSDT": [],
     "LPTUSDT": [],
@@ -6376,7 +6383,8 @@
     ],
     "REZUSDT": [],
     "RIFUSDT": [
-      1795190400000
+      1795190400000,
+      1795680000000
     ],
     "RKLBBUSDT": [
       1795176000000
@@ -6947,9 +6955,9 @@
     "exit:SSVUSDT:1795608000000",
     "exit:LAYERUSDT:1795651200000"
   ],
-  "cycles": 134,
+  "cycles": 135,
   "messages_sent": 363,
-  "last_cycle_ms": 1795694625221,
+  "last_cycle_ms": 1795709008033,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-25",
     "reported_trade_keys": [
