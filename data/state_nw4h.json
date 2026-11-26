@@ -4116,7 +4116,9 @@
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
-    "LISTAUSDT": [],
+    "LISTAUSDT": [
+      1795665600000
+    ],
     "LITEBUSDT": [],
     "LPTUSDT": [],
     "LQTYUSDT": [],
@@ -4141,7 +4143,9 @@
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
-    "MMTUSDT": [],
+    "MMTUSDT": [
+      1795665600000
+    ],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
     "MOVRUSDT": [],
@@ -4395,7 +4399,9 @@
     "ARPAUSDT": [],
     "ARUSDT": [],
     "ASMLBUSDT": [],
-    "ASRUSDT": [],
+    "ASRUSDT": [
+      1795665600000
+    ],
     "ASTERUSDT": [],
     "ASTRUSDT": [],
     "ASTSBUSDT": [],
@@ -4480,7 +4486,9 @@
     "DEXEUSDT": [],
     "DGBUSDT": [],
     "DIAUSDT": [],
-    "DODOUSDT": [],
+    "DODOUSDT": [
+      1795665600000
+    ],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -4582,9 +4590,7 @@
     "KORUBUSDT": [],
     "KSMUSDT": [],
     "LAUSDT": [],
-    "LAYERUSDT": [
-      1795651200000
-    ],
+    "LAYERUSDT": [],
     "LAZIOUSDT": [],
     "LDOUSDT": [],
     "LINEAUSDT": [],
@@ -4616,9 +4622,7 @@
     "MITOUSDT": [],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
-    "MOVEUSDT": [
-      1795651200000
-    ],
+    "MOVEUSDT": [],
     "MOVRUSDT": [],
     "MRVLBUSDT": [],
     "MSFTBUSDT": [],
@@ -6183,7 +6187,9 @@
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
-    "LISTAUSDT": [],
+    "LISTAUSDT": [
+      1795665600000
+    ],
     "LITEBUSDT": [],
     "LPTUSDT": [],
     "LQTYUSDT": [],
@@ -6219,7 +6225,8 @@
     "MIRAUSDT": [],
     "MITOUSDT": [],
     "MMTUSDT": [
-      1795262400000
+      1795262400000,
+      1795665600000
     ],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
@@ -6940,9 +6947,9 @@
     "exit:SSVUSDT:1795608000000",
     "exit:LAYERUSDT:1795651200000"
   ],
-  "cycles": 133,
+  "cycles": 134,
   "messages_sent": 363,
-  "last_cycle_ms": 1795680217471,
+  "last_cycle_ms": 1795694625221,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-25",
     "reported_trade_keys": [
