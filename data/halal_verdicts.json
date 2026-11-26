@@ -88,6 +88,8 @@
     "WAXP": 0,
     "SSV": 2,
     "BAND": 0,
-    "TFUEL": 0
+    "TFUEL": 0,
+    "SEI": 0,
+    "TKO": 1
   }
 }
