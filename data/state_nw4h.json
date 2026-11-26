@@ -2169,10 +2169,16 @@
       "last_entry_price": 0.0
     },
     "MMTUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 0,
-      "last_entry_price": 0.0
+      "position": {
+        "entry_price": 0.2069,
+        "entry_time": 1795708800000,
+        "signal_bar_time": 1795694400000,
+        "signal_price": 0.2036,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795694400000,
+      "last_entry_price": 0.2069
     },
     "MORPHOUSDT": {
       "position": {
@@ -2955,14 +2961,8 @@
       "last_entry_price": 0.0
     },
     "SEIUSDT": {
-      "position": {
-        "entry_price": 0.03866,
-        "entry_time": 1794700800000,
-        "signal_bar_time": 1794686400000,
-        "signal_price": 0.03766,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794686400000,
       "last_entry_price": 0.03866
     },
@@ -3899,7 +3899,9 @@
     "AEROUSDT": [],
     "AEVOUSDT": [],
     "AGLDUSDT": [],
-    "AIGENSYNUSDT": [],
+    "AIGENSYNUSDT": [
+      1795694400000
+    ],
     "AIUSDT": [],
     "AIXBTUSDT": [],
     "ALABBUSDT": [],
@@ -4009,7 +4011,9 @@
     "DEXEUSDT": [],
     "DGBUSDT": [],
     "DIAUSDT": [],
-    "DODOUSDT": [],
+    "DODOUSDT": [
+      1795694400000
+    ],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -4071,9 +4075,7 @@
     "HEIUSDT": [],
     "HEMIUSDT": [],
     "HIVEUSDT": [],
-    "HMSTRUSDT": [
-      1795680000000
-    ],
+    "HMSTRUSDT": [],
     "HOLOUSDT": [],
     "HOMEUSDT": [],
     "HOODBUSDT": [],
@@ -4118,9 +4120,7 @@
     "LDOUSDT": [],
     "LINEAUSDT": [],
     "LINKUSDT": [],
-    "LISTAUSDT": [
-      1795680000000
-    ],
+    "LISTAUSDT": [],
     "LITEBUSDT": [],
     "LPTUSDT": [],
     "LQTYUSDT": [],
@@ -4145,7 +4145,9 @@
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
-    "MMTUSDT": [],
+    "MMTUSDT": [
+      1795694400000
+    ],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
     "MOVRUSDT": [],
@@ -4225,9 +4227,7 @@
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
-    "RIFUSDT": [
-      1795680000000
-    ],
+    "RIFUSDT": [],
     "RKLBBUSDT": [],
     "RLCUSDT": [],
     "ROBOUSDT": [],
@@ -4560,9 +4560,7 @@
     "IDUSDT": [],
     "ILVUSDT": [],
     "IMXUSDT": [],
-    "INITUSDT": [
-      1795680000000
-    ],
+    "INITUSDT": [],
     "INJUSDT": [],
     "INTCBUSDT": [],
     "INTWBUSDT": [],
@@ -4616,9 +4614,7 @@
     "METABUSDT": [],
     "METISUSDT": [],
     "METUSDT": [],
-    "MEUSDT": [
-      1795680000000
-    ],
+    "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
@@ -4719,7 +4715,9 @@
     "SAPIENUSDT": [],
     "SCRUSDT": [],
     "SCUSDT": [],
-    "SEIUSDT": [],
+    "SEIUSDT": [
+      1795694400000
+    ],
     "SENTUSDT": [],
     "SFPUSDT": [],
     "SHELLUSDT": [],
@@ -4759,9 +4757,7 @@
     "SYNUSDT": [],
     "SYRUPUSDT": [],
     "TAOUSDT": [],
-    "TFUELUSDT": [
-      1795680000000
-    ],
+    "TFUELUSDT": [],
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
@@ -5397,7 +5393,9 @@
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
-    "MMTUSDT": [],
+    "MMTUSDT": [
+      1795694400000
+    ],
     "MORPHOUSDT": [
       1794686400000,
       1795176000000
@@ -6043,7 +6041,8 @@
     "DGBUSDT": [],
     "DIAUSDT": [],
     "DODOUSDT": [
-      1795075200000
+      1795075200000,
+      1795694400000
     ],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
@@ -6953,11 +6952,13 @@
     "exit:MANTRAUSDT:1795579200000",
     "buy:SHELLUSDT:1795608000000:2",
     "exit:SSVUSDT:1795608000000",
-    "exit:LAYERUSDT:1795651200000"
+    "exit:LAYERUSDT:1795651200000",
+    "buy:MMTUSDT:1795694400000:1",
+    "exit:SEIUSDT:1795694400000"
   ],
-  "cycles": 136,
-  "messages_sent": 363,
-  "last_cycle_ms": 1795716229125,
+  "cycles": 137,
+  "messages_sent": 365,
+  "last_cycle_ms": 1795723416135,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-25",
     "reported_trade_keys": [
