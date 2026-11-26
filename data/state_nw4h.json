@@ -1917,14 +1917,8 @@
       "last_entry_price": 0.0
     },
     "LAYERUSDT": {
-      "position": {
-        "entry_price": 0.044,
-        "entry_time": 1794700800000,
-        "signal_bar_time": 1794686400000,
-        "signal_price": 0.0432,
-        "entry_count": 2
-      },
-      "entry_count": 2,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795176000000,
       "last_entry_price": 0.041
     },
@@ -4588,7 +4582,9 @@
     "KORUBUSDT": [],
     "KSMUSDT": [],
     "LAUSDT": [],
-    "LAYERUSDT": [],
+    "LAYERUSDT": [
+      1795651200000
+    ],
     "LAZIOUSDT": [],
     "LDOUSDT": [],
     "LINEAUSDT": [],
@@ -4620,7 +4616,9 @@
     "MITOUSDT": [],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
-    "MOVEUSDT": [],
+    "MOVEUSDT": [
+      1795651200000
+    ],
     "MOVRUSDT": [],
     "MRVLBUSDT": [],
     "MSFTBUSDT": [],
@@ -6939,11 +6937,12 @@
     "buy:MANTAUSDT:1795564800000:2",
     "exit:MANTRAUSDT:1795579200000",
     "buy:SHELLUSDT:1795608000000:2",
-    "exit:SSVUSDT:1795608000000"
+    "exit:SSVUSDT:1795608000000",
+    "exit:LAYERUSDT:1795651200000"
   ],
-  "cycles": 132,
-  "messages_sent": 362,
-  "last_cycle_ms": 1795674650805,
+  "cycles": 133,
+  "messages_sent": 363,
+  "last_cycle_ms": 1795680217471,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-25",
     "reported_trade_keys": [
