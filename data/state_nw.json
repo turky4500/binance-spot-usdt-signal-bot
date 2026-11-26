@@ -1221,10 +1221,16 @@
       "last_entry_price": 0.01783
     },
     "ZECUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1795237200000,
-      "last_entry_price": 736.24
+      "position": {
+        "entry_price": 701.56,
+        "entry_time": 1795705200000,
+        "signal_bar_time": 1795701600000,
+        "signal_price": 693.73,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795701600000,
+      "last_entry_price": 701.56
     },
     "ZENUSDT": {
       "position": null,
@@ -3835,7 +3841,7 @@
     "JOEUSDT": [],
     "JPMBUSDT": [],
     "JSTUSDT": [
-      1795698000000
+      1795701600000
     ],
     "JTOUSDT": [],
     "JUPUSDT": [],
@@ -4091,7 +4097,9 @@
     "YGGUSDT": [],
     "ZAMAUSDT": [],
     "ZBTUSDT": [],
-    "ZECUSDT": [],
+    "ZECUSDT": [
+      1795701600000
+    ],
     "ZENUSDT": [],
     "ZILUSDT": [],
     "ZKCUSDT": [],
@@ -4120,7 +4128,9 @@
     "1000SATSUSDT": [],
     "1INCHUSDT": [],
     "1MBABYDOGEUSDT": [],
-    "2ZUSDT": [],
+    "2ZUSDT": [
+      1795701600000
+    ],
     "AAOIBUSDT": [],
     "AAPLBUSDT": [],
     "AAVEUSDT": [],
@@ -4488,7 +4498,9 @@
     "RUNEUSDT": [],
     "RVNUSDT": [],
     "RWUSDUSDT": [],
-    "SAGAUSDT": [],
+    "SAGAUSDT": [
+      1795701600000
+    ],
     "SAHARAUSDT": [],
     "SANDUSDT": [],
     "SANTOSUSDT": [],
@@ -4520,7 +4532,9 @@
     "SOXSBUSDT": [],
     "SPCXBUSDT": [],
     "SPELLUSDT": [],
-    "SPKUSDT": [],
+    "SPKUSDT": [
+      1795701600000
+    ],
     "SPYBUSDT": [],
     "SQQQBUSDT": [],
     "SSVUSDT": [],
@@ -4539,9 +4553,7 @@
     "SYNUSDT": [],
     "SYRUPUSDT": [],
     "TAOUSDT": [],
-    "TFUELUSDT": [
-      1795698000000
-    ],
+    "TFUELUSDT": [],
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
@@ -7644,7 +7656,8 @@
       1794542400000,
       1795204800000,
       1795230000000,
-      1795237200000
+      1795237200000,
+      1795701600000
     ],
     "ZENUSDT": [
       1794171600000,
@@ -8873,7 +8886,8 @@
       1794700800000,
       1794848400000,
       1795201200000,
-      1795698000000
+      1795698000000,
+      1795701600000
     ],
     "JTOUSDT": [],
     "JUPUSDT": [
@@ -10179,7 +10193,6 @@
     ]
   },
   "sent": [
-    "exit:DOGEUSDT:1795266000000",
     "exit:ETHFIUSDT:1795266000000",
     "exit:ETHUSDT:1795266000000",
     "exit:GLMUSDT:1795266000000",
@@ -10578,11 +10591,12 @@
     "exit:SEIUSDT:1795662000000",
     "buy:GPSUSDT:1795669200000:1",
     "buy:HMSTRUSDT:1795680000000:2",
-    "exit:TFUELUSDT:1795680000000"
+    "exit:TFUELUSDT:1795680000000",
+    "buy:ZECUSDT:1795701600000:1"
   ],
-  "cycles": 984,
-  "messages_sent": 2938,
-  "last_cycle_ms": 1795707215539,
+  "cycles": 985,
+  "messages_sent": 2939,
+  "last_cycle_ms": 1795709012141,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
