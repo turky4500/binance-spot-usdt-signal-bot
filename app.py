@@ -559,15 +559,21 @@ class SpotSignalBot:
             self.store.save(self.state)
 
         klines_map = self.binance.get_klines_for_symbols(self.symbols, self.config.interval, self.config.kline_limit)
-        try:
-            sample = next(iter(klines_map.values()))
-            if sample is None or sample.empty:
-                self.logger.warning("No klines data; skipping cycle")
-                return
-            last_in_data = int(sample.iloc[-1]["open_time"])
-            close_time_of_last = int(sample.iloc[-1].get("close_time", last_in_data + self.interval_ms - 1))
-        except StopIteration:
+        failed = list(getattr(self.binance, "last_failed_symbols", []) or [])
+        if self.symbols and len(failed) / len(self.symbols) > 0.05:
+            self.logger.warning(
+                "Too many klines failures (%s/%s); skipping cycle, will retry",
+                len(failed), len(self.symbols),
+            )
             return
+        # الشمعة المرجعية: أحدث open_time بين الرموز التي رجعت ببيانات (لا أول عنصر عشوائي)
+        ok_frames = [d for d in klines_map.values() if d is not None and not d.empty]
+        if not ok_frames:
+            self.logger.warning("No klines data; skipping cycle")
+            return
+        sample = max(ok_frames, key=lambda d: int(d.iloc[-1]["open_time"]))
+        last_in_data = int(sample.iloc[-1]["open_time"])
+        close_time_of_last = int(sample.iloc[-1].get("close_time", last_in_data + self.interval_ms - 1))
 
         # الشمعة المغلقة فعلًا = آخر شمعة انتهى زمنها
         if close_time_of_last >= server_time:

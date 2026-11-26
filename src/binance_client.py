@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import logging
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Iterable
 
@@ -26,6 +28,7 @@ class BinanceClient:
         self.base_url = base_url.rstrip("/")
         self.session = requests.Session()
         self._price_ticks: dict[str, str] | None = None
+        self.last_failed_symbols: list[str] = []
 
         retry = Retry(
             total=3,
@@ -196,16 +199,40 @@ class BinanceClient:
         return combined
 
     def get_klines_for_symbols(self, symbols: Iterable[str], interval: str = "4h", limit: int = 260) -> dict[str, pd.DataFrame]:
+        """يجلب شموع كل الرموز؛ يعيد محاولة الفاشلة مرة واحدة ويسجّل الفشل (لا صمت).
+
+        الرموز التي ظلّت فاشلة تُعاد بـ DataFrame فارغ، وتُحفظ في ``last_failed_symbols``
+        ليتمكن المستدعي من تجاوز الدورة إن كانت النسبة كبيرة.
+        """
+        log = logging.getLogger("binance")
+        symbols = list(symbols)
         results: dict[str, pd.DataFrame] = {}
-        with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
-            future_map = {
-                executor.submit(self.get_klines, symbol, interval, limit): symbol
-                for symbol in symbols
-            }
-            for future in as_completed(future_map):
-                symbol = future_map[future]
-                try:
-                    results[symbol] = future.result()
-                except Exception:
-                    results[symbol] = pd.DataFrame()
+        failed: list[str] = list(symbols)
+        for attempt in (1, 2):
+            if not failed:
+                break
+            if attempt > 1:
+                time.sleep(2.0)
+            still_failed: list[str] = []
+            with ThreadPoolExecutor(max_workers=self.max_workers) as executor:
+                future_map = {
+                    executor.submit(self.get_klines, symbol, interval, limit): symbol
+                    for symbol in failed
+                }
+                for future in as_completed(future_map):
+                    symbol = future_map[future]
+                    try:
+                        df = future.result()
+                        if df is None or df.empty:
+                            raise ValueError("empty klines")
+                        results[symbol] = df
+                    except Exception as exc:
+                        log.warning("klines failed for %s (attempt %s): %s", symbol, attempt, exc)
+                        still_failed.append(symbol)
+            failed = still_failed
+        for symbol in failed:
+            results[symbol] = pd.DataFrame()
+        self.last_failed_symbols = failed
+        if failed:
+            log.error("klines still failing for %s/%s symbols", len(failed), len(symbols))
         return results
