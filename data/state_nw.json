@@ -903,10 +903,16 @@
       "last_entry_price": 0.0404
     },
     "RIFUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1795237200000,
-      "last_entry_price": 0.0463
+      "position": {
+        "entry_price": 0.0412,
+        "entry_time": 1795744800000,
+        "signal_bar_time": 1795741200000,
+        "signal_price": 0.0391,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795741200000,
+      "last_entry_price": 0.0412
     },
     "RLCUSDT": {
       "position": {
@@ -1059,10 +1065,16 @@
       "last_entry_price": 0.6552
     },
     "TFUELUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1795237200000,
-      "last_entry_price": 0.00625
+      "position": {
+        "entry_price": 0.00715,
+        "entry_time": 1795744800000,
+        "signal_bar_time": 1795741200000,
+        "signal_price": 0.00698,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795741200000,
+      "last_entry_price": 0.00715
     },
     "THETAUSDT": {
       "position": null,
@@ -3891,9 +3903,7 @@
     "MITOUSDT": [],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
-    "MOVEUSDT": [
-      1795737600000
-    ],
+    "MOVEUSDT": [],
     "MOVRUSDT": [],
     "MRNABUSDT": [],
     "MRVLBUSDT": [],
@@ -3975,7 +3985,9 @@
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
-    "RIFUSDT": [],
+    "RIFUSDT": [
+      1795741200000
+    ],
     "RKLBBUSDT": [],
     "RLCUSDT": [],
     "ROBOUSDT": [],
@@ -4037,7 +4049,9 @@
     "SYNUSDT": [],
     "SYRUPUSDT": [],
     "TAOUSDT": [],
-    "TFUELUSDT": [],
+    "TFUELUSDT": [
+      1795741200000
+    ],
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
@@ -4202,7 +4216,9 @@
     "BELUSDT": [],
     "BERAUSDT": [],
     "BICOUSDT": [],
-    "BIGTIMEUSDT": [],
+    "BIGTIMEUSDT": [
+      1795741200000
+    ],
     "BIOUSDT": [],
     "BLURUSDT": [],
     "BMNRBUSDT": [],
@@ -4395,9 +4411,7 @@
     "METABUSDT": [],
     "METISUSDT": [],
     "METUSDT": [],
-    "MEUSDT": [
-      1795737600000
-    ],
+    "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
@@ -6877,7 +6891,8 @@
       1794171600000,
       1794704400000,
       1795212000000,
-      1795237200000
+      1795237200000,
+      1795741200000
     ],
     "RKLBBUSDT": [
       1793646000000,
@@ -7262,7 +7277,8 @@
       1794704400000,
       1794765600000,
       1795230000000,
-      1795237200000
+      1795237200000,
+      1795741200000
     ],
     "THETAUSDT": [
       1794171600000,
@@ -10192,8 +10208,6 @@
     ]
   },
   "sent": [
-    "exit:ETHUSDT:1795266000000",
-    "exit:GLMUSDT:1795266000000",
     "exit:GMXUSDT:1795266000000",
     "exit:GPSUSDT:1795266000000",
     "exit:GRTUSDT:1795266000000",
@@ -10591,11 +10605,13 @@
     "buy:HMSTRUSDT:1795680000000:2",
     "exit:TFUELUSDT:1795680000000",
     "buy:ZECUSDT:1795701600000:1",
-    "buy:HMSTRUSDT:1795705200000:3"
+    "buy:HMSTRUSDT:1795705200000:3",
+    "buy:RIFUSDT:1795741200000:1",
+    "buy:TFUELUSDT:1795741200000:1"
   ],
-  "cycles": 1007,
-  "messages_sent": 2940,
-  "last_cycle_ms": 1795747619918,
+  "cycles": 1008,
+  "messages_sent": 2942,
+  "last_cycle_ms": 1795750418127,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
