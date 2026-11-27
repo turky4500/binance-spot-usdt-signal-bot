@@ -519,14 +519,8 @@
       "last_entry_price": 0.0
     },
     "BABABUSDT": {
-      "position": {
-        "entry_price": 103.96,
-        "entry_time": 1794283200000,
-        "signal_bar_time": 1794268800000,
-        "signal_price": 103.38,
-        "entry_count": 3
-      },
-      "entry_count": 3,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794873600000,
       "last_entry_price": 87.66
     },
@@ -2553,14 +2547,8 @@
       "last_entry_price": 0.0
     },
     "PAXGUSDT": {
-      "position": {
-        "entry_price": 3885.46,
-        "entry_time": 1794499200000,
-        "signal_bar_time": 1794484800000,
-        "signal_price": 3870.63,
-        "entry_count": 5
-      },
-      "entry_count": 5,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795219200000,
       "last_entry_price": 3523.51
     },
@@ -3657,14 +3645,8 @@
       "last_entry_price": 0.00558
     },
     "XAUTUSDT": {
-      "position": {
-        "entry_price": 3881.29,
-        "entry_time": 1794499200000,
-        "signal_bar_time": 1794484800000,
-        "signal_price": 3867.35,
-        "entry_count": 4
-      },
-      "entry_count": 4,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795219200000,
       "last_entry_price": 3520.06
     },
@@ -4015,7 +3997,9 @@
     "DEXEUSDT": [],
     "DGBUSDT": [],
     "DIAUSDT": [],
-    "DODOUSDT": [],
+    "DODOUSDT": [
+      1795752000000
+    ],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -4264,9 +4248,7 @@
     "SOMIUSDT": [],
     "SOPHUSDT": [],
     "SOXLBUSDT": [],
-    "SOXSBUSDT": [
-      1795737600000
-    ],
+    "SOXSBUSDT": [],
     "SPCXBUSDT": [],
     "SPELLUSDT": [],
     "SPKUSDT": [],
@@ -4355,9 +4337,7 @@
     "DJTBUSDT": [],
     "CRWDBUSDT": [],
     "MRNABUSDT": [],
-    "SQQQBUSDT": [
-      1795737600000
-    ],
+    "SQQQBUSDT": [],
     "STXBUSDT": [],
     "MARSCOINUSDT": []
   },
@@ -4424,7 +4404,9 @@
     "AXLUSDT": [],
     "AXSUSDT": [],
     "AXTIBUSDT": [],
-    "BABABUSDT": [],
+    "BABABUSDT": [
+      1795752000000
+    ],
     "BABYUSDT": [],
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
@@ -4440,9 +4422,7 @@
     "BELUSDT": [],
     "BERAUSDT": [],
     "BICOUSDT": [],
-    "BIGTIMEUSDT": [
-      1795737600000
-    ],
+    "BIGTIMEUSDT": [],
     "BIOUSDT": [],
     "BLURUSDT": [],
     "BMNRBUSDT": [],
@@ -4550,9 +4530,7 @@
     "GTCUSDT": [],
     "GUNUSDT": [],
     "GUSDT": [],
-    "HAEDALUSDT": [
-      1795737600000
-    ],
+    "HAEDALUSDT": [],
     "HBARUSDT": [],
     "HEIUSDT": [],
     "HEMIUSDT": [],
@@ -4623,9 +4601,7 @@
     "METABUSDT": [],
     "METISUSDT": [],
     "METUSDT": [],
-    "MEUSDT": [
-      1795737600000
-    ],
+    "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
@@ -4671,7 +4647,9 @@
     "ORDIUSDT": [],
     "OSMOUSDT": [],
     "PARTIUSDT": [],
-    "PAXGUSDT": [],
+    "PAXGUSDT": [
+      1795752000000
+    ],
     "PENDLEUSDT": [],
     "PENGUUSDT": [],
     "PEOPLEUSDT": [],
@@ -4715,9 +4693,7 @@
     "ROBOUSDT": [],
     "RONINUSDT": [],
     "ROSEUSDT": [],
-    "RPLUSDT": [
-      1795737600000
-    ],
+    "RPLUSDT": [],
     "RSRUSDT": [],
     "RUNEUSDT": [],
     "RVNUSDT": [],
@@ -4752,9 +4728,7 @@
     "SPCXBUSDT": [],
     "SPELLUSDT": [],
     "SPKUSDT": [],
-    "SPYBUSDT": [
-      1795737600000
-    ],
+    "SPYBUSDT": [],
     "SSVUSDT": [],
     "STEEMUSDT": [],
     "STOUSDT": [],
@@ -4813,7 +4787,9 @@
     "WOOUSDT": [],
     "WUSDT": [],
     "XAIUSDT": [],
-    "XAUTUSDT": [],
+    "XAUTUSDT": [
+      1795752000000
+    ],
     "XECUSDT": [],
     "XLMUSDT": [],
     "XNOUSDT": [],
@@ -4822,7 +4798,9 @@
     "XTZUSDT": [],
     "XVGUSDT": [],
     "XVSUSDT": [],
-    "YBUSDT": [],
+    "YBUSDT": [
+      1795752000000
+    ],
     "YFIUSDT": [],
     "YGGUSDT": [],
     "ZAMAUSDT": [],
@@ -6971,11 +6949,14 @@
     "exit:SSVUSDT:1795608000000",
     "exit:LAYERUSDT:1795651200000",
     "buy:MMTUSDT:1795694400000:1",
-    "exit:SEIUSDT:1795694400000"
+    "exit:SEIUSDT:1795694400000",
+    "exit:BABABUSDT:1795752000000",
+    "exit:PAXGUSDT:1795752000000",
+    "exit:XAUTUSDT:1795752000000"
   ],
-  "cycles": 141,
-  "messages_sent": 365,
-  "last_cycle_ms": 1795766628946,
+  "cycles": 142,
+  "messages_sent": 368,
+  "last_cycle_ms": 1795781031824,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-26",
     "reported_trade_keys": [
