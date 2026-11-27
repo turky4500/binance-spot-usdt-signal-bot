@@ -4264,7 +4264,9 @@
     "SOMIUSDT": [],
     "SOPHUSDT": [],
     "SOXLBUSDT": [],
-    "SOXSBUSDT": [],
+    "SOXSBUSDT": [
+      1795737600000
+    ],
     "SPCXBUSDT": [],
     "SPELLUSDT": [],
     "SPKUSDT": [],
@@ -4353,7 +4355,9 @@
     "DJTBUSDT": [],
     "CRWDBUSDT": [],
     "MRNABUSDT": [],
-    "SQQQBUSDT": [],
+    "SQQQBUSDT": [
+      1795737600000
+    ],
     "STXBUSDT": [],
     "MARSCOINUSDT": []
   },
@@ -4436,7 +4440,9 @@
     "BELUSDT": [],
     "BERAUSDT": [],
     "BICOUSDT": [],
-    "BIGTIMEUSDT": [],
+    "BIGTIMEUSDT": [
+      1795737600000
+    ],
     "BIOUSDT": [],
     "BLURUSDT": [],
     "BMNRBUSDT": [],
@@ -4544,7 +4550,9 @@
     "GTCUSDT": [],
     "GUNUSDT": [],
     "GUSDT": [],
-    "HAEDALUSDT": [],
+    "HAEDALUSDT": [
+      1795737600000
+    ],
     "HBARUSDT": [],
     "HEIUSDT": [],
     "HEMIUSDT": [],
@@ -4615,15 +4623,15 @@
     "METABUSDT": [],
     "METISUSDT": [],
     "METUSDT": [],
-    "MEUSDT": [],
+    "MEUSDT": [
+      1795737600000
+    ],
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
-    "MOVEUSDT": [
-      1795723200000
-    ],
+    "MOVEUSDT": [],
     "MOVRUSDT": [],
     "MRVLBUSDT": [],
     "MSFTBUSDT": [],
@@ -4707,7 +4715,9 @@
     "ROBOUSDT": [],
     "RONINUSDT": [],
     "ROSEUSDT": [],
-    "RPLUSDT": [],
+    "RPLUSDT": [
+      1795737600000
+    ],
     "RSRUSDT": [],
     "RUNEUSDT": [],
     "RVNUSDT": [],
@@ -4742,7 +4752,9 @@
     "SPCXBUSDT": [],
     "SPELLUSDT": [],
     "SPKUSDT": [],
-    "SPYBUSDT": [],
+    "SPYBUSDT": [
+      1795737600000
+    ],
     "SSVUSDT": [],
     "STEEMUSDT": [],
     "STOUSDT": [],
@@ -4758,9 +4770,7 @@
     "SYNUSDT": [],
     "SYRUPUSDT": [],
     "TAOUSDT": [],
-    "TFUELUSDT": [
-      1795723200000
-    ],
+    "TFUELUSDT": [],
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
@@ -6963,9 +6973,9 @@
     "buy:MMTUSDT:1795694400000:1",
     "exit:SEIUSDT:1795694400000"
   ],
-  "cycles": 140,
+  "cycles": 141,
   "messages_sent": 365,
-  "last_cycle_ms": 1795752224378,
+  "last_cycle_ms": 1795766628946,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-26",
     "reported_trade_keys": [
