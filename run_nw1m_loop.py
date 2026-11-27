@@ -38,7 +38,13 @@ def build():
     bot.state_path = os.environ["NW_STATE_FILE"]
     bot.store = NWStateStore(bot.state_path)
     bot.trade_log = os.environ["NW_TRADE_LOG"]
-    bot.send_daily_report_if_due = lambda now_ms: None   # لا تقرير يومي
+    def daily(now_ms):
+        # تقرير يومي عبر تيليجرام 12:00 AM الرياض، بدالة المستودع نفسها ومفتاح حالة مستقل
+        from src.nw_daily_report import send_daily_report_if_due
+        send_daily_report_if_due(bot, now_ms, frame_label="NW 1M · HBARUSDT",
+                                 state_key="daily_report_nw1m", interval_ms=60_000)
+
+    bot.send_daily_report_if_due = daily
     original = bot._send_once
 
     def send_once(state, key, text):
