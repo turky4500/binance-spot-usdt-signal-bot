@@ -1,5 +1,5 @@
 {
-  "last_processed_open_time": 1795564800000,
+  "last_processed_open_time": 1795651200000,
   "last_entry_bar_time": {
     "GTCUSDT": 1793404800000,
     "HUMAUSDT": 1793059200000,
@@ -28,7 +28,7 @@
     "PHAUSDT": 1792972800000,
     "PUMPUSDT": 1794182400000,
     "QIUSDT": 1793491200000,
-    "QNTUSDT": 1795305600000,
+    "QNTUSDT": 1795651200000,
     "RAYUSDT": 1794700800000,
     "SKYUSDT": 1793404800000,
     "SOLUSDT": 1792368000000,
@@ -93,7 +93,8 @@
     "PARTIUSDT": 1793923200000,
     "HOTUSDT": 1794096000000,
     "HAEDALUSDT": 1794355200000,
-    "MMTUSDT": 1795478400000
+    "MMTUSDT": 1795478400000,
+    "KITEUSDT": 1795651200000
   },
   "last_exit_bar_time": {
     "GTCUSDT": 1793491200000,
@@ -202,11 +203,47 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1795734300000,
+      "last_check_ms": 1795755480000,
       "peak_price": 0.14975,
       "last_stop_alert_price": 0.1365372,
       "stop_updates_count": 1,
       "halal_verdict": "⛔ غير مباح",
+      "silent": true
+    },
+    "KITEUSDT": {
+      "trade_id": "KITEUSDT-1795651200000",
+      "symbol": "KITEUSDT",
+      "entry_price": 0.1438,
+      "stop_price": 0.1325,
+      "pivot_stop": 0.1325,
+      "target_price": 0.16640000000000002,
+      "stop_dist_pct": 7.858136300417248,
+      "size_suggest_pct": 0.12725663716814156,
+      "entry_time": 1795737599999,
+      "entry_bar_open_time": 1795651200000,
+      "last_check_ms": 1795737659999,
+      "peak_price": 0.1463,
+      "last_stop_alert_price": 0.1325,
+      "stop_updates_count": 0,
+      "halal_verdict": "ℹ️ لا يوجد حكم",
+      "silent": true
+    },
+    "QNTUSDT": {
+      "trade_id": "QNTUSDT-1795651200000",
+      "symbol": "QNTUSDT",
+      "entry_price": 147.93,
+      "stop_price": 135.19,
+      "pivot_stop": 135.19,
+      "target_price": 173.41000000000003,
+      "stop_dist_pct": 8.612181437166234,
+      "size_suggest_pct": 0.11611459968602818,
+      "entry_time": 1795737599999,
+      "entry_bar_open_time": 1795651200000,
+      "last_check_ms": 1795737659999,
+      "peak_price": 152.17,
+      "last_stop_alert_price": 135.19,
+      "stop_updates_count": 0,
+      "halal_verdict": "✅ مباح",
       "silent": true
     }
   },
@@ -4600,6 +4637,16 @@
       "type": "exit_loss",
       "symbol": "MMTUSDT",
       "time_ms": 1795564919999
+    },
+    {
+      "type": "entry",
+      "symbol": "KITEUSDT",
+      "time_ms": 1795737599999
+    },
+    {
+      "type": "entry",
+      "symbol": "QNTUSDT",
+      "time_ms": 1795737599999
     }
   ],
   "daily_report": {
