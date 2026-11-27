@@ -203,7 +203,7 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1795755480000,
+      "last_check_ms": 1795790760000,
       "peak_price": 0.14975,
       "last_stop_alert_price": 0.1365372,
       "stop_updates_count": 1,
@@ -214,17 +214,17 @@
       "trade_id": "KITEUSDT-1795651200000",
       "symbol": "KITEUSDT",
       "entry_price": 0.1438,
-      "stop_price": 0.1325,
+      "stop_price": 0.13459600000000002,
       "pivot_stop": 0.1325,
       "target_price": 0.16640000000000002,
       "stop_dist_pct": 7.858136300417248,
       "size_suggest_pct": 0.12725663716814156,
       "entry_time": 1795737599999,
       "entry_bar_open_time": 1795651200000,
-      "last_check_ms": 1795737659999,
+      "last_check_ms": 1795790760000,
       "peak_price": 0.1463,
-      "last_stop_alert_price": 0.1325,
-      "stop_updates_count": 0,
+      "last_stop_alert_price": 0.13459600000000002,
+      "stop_updates_count": 1,
       "halal_verdict": "ℹ️ لا يوجد حكم",
       "silent": true
     },
@@ -232,17 +232,17 @@
       "trade_id": "QNTUSDT-1795651200000",
       "symbol": "QNTUSDT",
       "entry_price": 147.93,
-      "stop_price": 135.19,
+      "stop_price": 139.9964,
       "pivot_stop": 135.19,
       "target_price": 173.41000000000003,
       "stop_dist_pct": 8.612181437166234,
       "size_suggest_pct": 0.11611459968602818,
       "entry_time": 1795737599999,
       "entry_bar_open_time": 1795651200000,
-      "last_check_ms": 1795737659999,
+      "last_check_ms": 1795790760000,
       "peak_price": 152.17,
-      "last_stop_alert_price": 135.19,
-      "stop_updates_count": 0,
+      "last_stop_alert_price": 139.9964,
+      "stop_updates_count": 1,
       "halal_verdict": "✅ مباح",
       "silent": true
     }
@@ -4647,6 +4647,16 @@
       "type": "entry",
       "symbol": "QNTUSDT",
       "time_ms": 1795737599999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "KITEUSDT",
+      "time_ms": 1795737719999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "QNTUSDT",
+      "time_ms": 1795737719999
     }
   ],
   "daily_report": {
