@@ -2,15 +2,22 @@ name: NW 1M HBAR (حلقة كل دقيقة لين 11 مساء)
 
 # ملف جديد بالتوازي: ما يلمس أي workflow موجود ولا ملفات الحالة الأخرى.
 # يشغّل نظام NW (Nadaraya-Watson Envelope) على HBARUSDT فريم 1 دقيقة، بنفس
-# شروط الريبو، في حلقة داخل job واحد كل ~60 ثانية، ويوقف نفسه الساعة 23:00
-# بتوقيت الرياض. تشغيله يدوي فقط (Run workflow)، بلا cron وبلا commits.
-# الإيقاف المبكر: Actions > هذا التشغيل > Cancel workflow.
+# شروط الريبو، في حلقة داخل job واحد كل ~60 ثانية. مفتوح بلا موعد نهاية: كل
+# تشغيل يعمل 5 ساعات ثم يطلق التشغيل التالي تلقائيًا (حد GitHub 6 ساعات).
+# الحالة (المركز المفتوح) تنتقل عبر actions/cache، بلا commits.
+# الإيقاف: Actions > افتح التشغيل الجاري > Cancel workflow (الإلغاء يوقف السلسلة).
 
 on:
   workflow_dispatch:
+    inputs:
+      seed_entry:
+        description: 'مركز مفتوح اختياري: سعر,زمن_التأكيد_ms,زمن_الإشارة_ms'
+        required: false
+        default: ''
 
 permissions:
   contents: read
+  actions: write   # لإعادة تشغيل المراقب تلقائيًا بعد كل جولة
 
 concurrency:
   group: nw-1m-hbar
@@ -19,7 +26,7 @@ concurrency:
 jobs:
   watch:
     runs-on: ubuntu-latest
-    timeout-minutes: 300
+    timeout-minutes: 340
     env:
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -52,7 +59,8 @@ jobs:
       # بوابة الحكم الشرعي على GitHub Actions تقرأ الملف عبر هذا التوكن (بدونه تُحجب كل التوصيات الجديدة بصمت)
       NW_HALAL_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       NW1M_SYMBOL: HBARUSDT
-      NW1M_END_HOUR: "23"
+      NW1M_RUN_MINUTES: "300"
+      NW1M_SEED_ENTRY: ${{ github.event.inputs.seed_entry }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -65,5 +73,39 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: NW 1M loop until 23:00 Riyadh
+      - name: Restore state (open position carry-over)
+        uses: actions/cache/restore@v4
+        with:
+          path: data/state_nw1m.json
+          key: nw1m-state-restore-${{ github.run_id }}
+          restore-keys: |
+            nw1m-state-
+
+      - name: NW 1M loop (5h per run)
         run: python run_nw1m_loop.py
+
+      - name: Save state
+        if: ${{ success() }}
+        uses: actions/cache/save@v4
+        with:
+          path: data/state_nw1m.json
+          key: nw1m-state-${{ github.run_id }}-${{ github.run_attempt }}
+
+      - name: Chain next run (open-ended)
+        if: ${{ success() }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          for attempt in 1 2 3 4 5; do
+            CODE=$(curl -s -o /tmp/chain.out -w "%{http_code}" -X POST \
+              -H "Authorization: Bearer $GH_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/$REPO/actions/workflows/nw-bot-1m-hbar.yml/dispatches" \
+              -d '{"ref":"main"}')
+            echo "chain dispatch HTTP $CODE (attempt $attempt)"
+            [ "$CODE" = "204" ] && exit 0
+            sleep $((attempt * 10))
+          done
+          echo "::warning::could not start the next run; start it manually."
