@@ -3997,9 +3997,7 @@
     "DEXEUSDT": [],
     "DGBUSDT": [],
     "DIAUSDT": [],
-    "DODOUSDT": [
-      1795752000000
-    ],
+    "DODOUSDT": [],
     "DOGEUSDT": [],
     "DOGSUSDT": [],
     "DOLOUSDT": [],
@@ -4404,9 +4402,7 @@
     "AXLUSDT": [],
     "AXSUSDT": [],
     "AXTIBUSDT": [],
-    "BABABUSDT": [
-      1795752000000
-    ],
+    "BABABUSDT": [],
     "BABYUSDT": [],
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
@@ -4647,9 +4643,7 @@
     "ORDIUSDT": [],
     "OSMOUSDT": [],
     "PARTIUSDT": [],
-    "PAXGUSDT": [
-      1795752000000
-    ],
+    "PAXGUSDT": [],
     "PENDLEUSDT": [],
     "PENGUUSDT": [],
     "PEOPLEUSDT": [],
@@ -4661,7 +4655,9 @@
     "PNUTUSDT": [],
     "POLUSDT": [],
     "POLYXUSDT": [],
-    "PORTALUSDT": [],
+    "PORTALUSDT": [
+      1795766400000
+    ],
     "PORTOUSDT": [],
     "POWRUSDT": [],
     "PROMUSDT": [],
@@ -4672,7 +4668,9 @@
     "PYPLBUSDT": [],
     "PYTHUSDT": [],
     "QCOMBUSDT": [],
-    "QIUSDT": [],
+    "QIUSDT": [
+      1795766400000
+    ],
     "QKCUSDT": [],
     "QNTBUSDT": [],
     "QNTUSDT": [],
@@ -4787,9 +4785,7 @@
     "WOOUSDT": [],
     "WUSDT": [],
     "XAIUSDT": [],
-    "XAUTUSDT": [
-      1795752000000
-    ],
+    "XAUTUSDT": [],
     "XECUSDT": [],
     "XLMUSDT": [],
     "XNOUSDT": [],
@@ -4798,9 +4794,7 @@
     "XTZUSDT": [],
     "XVGUSDT": [],
     "XVSUSDT": [],
-    "YBUSDT": [
-      1795752000000
-    ],
+    "YBUSDT": [],
     "YFIUSDT": [],
     "YGGUSDT": [],
     "ZAMAUSDT": [],
@@ -6954,9 +6948,9 @@
     "exit:PAXGUSDT:1795752000000",
     "exit:XAUTUSDT:1795752000000"
   ],
-  "cycles": 143,
+  "cycles": 144,
   "messages_sent": 368,
-  "last_cycle_ms": 1795785943416,
+  "last_cycle_ms": 1795795431061,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-26",
     "reported_trade_keys": [
