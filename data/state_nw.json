@@ -3891,7 +3891,9 @@
     "MITOUSDT": [],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
-    "MOVEUSDT": [],
+    "MOVEUSDT": [
+      1795737600000
+    ],
     "MOVRUSDT": [],
     "MRNABUSDT": [],
     "MRVLBUSDT": [],
@@ -4393,7 +4395,9 @@
     "METABUSDT": [],
     "METISUSDT": [],
     "METUSDT": [],
-    "MEUSDT": [],
+    "MEUSDT": [
+      1795737600000
+    ],
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
@@ -10589,9 +10593,9 @@
     "buy:ZECUSDT:1795701600000:1",
     "buy:HMSTRUSDT:1795705200000:3"
   ],
-  "cycles": 1004,
+  "cycles": 1005,
   "messages_sent": 2940,
-  "last_cycle_ms": 1795743212289,
+  "last_cycle_ms": 1795745011138,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
