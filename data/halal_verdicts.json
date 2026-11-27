@@ -102,6 +102,10 @@
     "THETA": 0,
     "DUSK": 0,
     "POLYX": 0,
-    "QKC": 0
+    "QKC": 0,
+    "AUCTION": 1,
+    "AVA": 0,
+    "CVC": 0,
+    "GAS": 0
   }
 }
