@@ -81,6 +81,14 @@ jobs:
           restore-keys: |
             nw1m-state-
 
+      - name: Restore trade log (for the daily report)
+        uses: actions/cache/restore@v4
+        with:
+          path: data/trades_log_nw1m.csv
+          key: nw1m-log-restore-${{ github.run_id }}
+          restore-keys: |
+            nw1m-log-
+
       - name: NW 1M loop (5h per run)
         run: python run_nw1m_loop.py
 
@@ -90,6 +98,13 @@ jobs:
         with:
           path: data/state_nw1m.json
           key: nw1m-state-${{ github.run_id }}-${{ github.run_attempt }}
+
+      - name: Save trade log
+        if: ${{ success() }}
+        uses: actions/cache/save@v4
+        with:
+          path: data/trades_log_nw1m.csv
+          key: nw1m-log-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: Chain next run (open-ended)
         if: ${{ success() }}
