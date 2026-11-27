@@ -1,0 +1,67 @@
+name: NW 1M HBAR (حلقة كل دقيقة لين 11 مساء)
+
+# ملف جديد بالتوازي: ما يلمس أي workflow موجود ولا ملفات الحالة الأخرى.
+# يشغّل نظام NW (Nadaraya-Watson Envelope) على HBARUSDT فريم 1 دقيقة، بنفس
+# شروط الريبو، في حلقة داخل job واحد كل ~60 ثانية، ويوقف نفسه الساعة 23:00
+# بتوقيت الرياض. تشغيله يدوي فقط (Run workflow)، بلا cron وبلا commits.
+# الإيقاف المبكر: Actions > هذا التشغيل > Cancel workflow.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nw-1m-hbar
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TELEGRAM_MUTE: "0"
+      TELEGRAM_MIN_INTERVAL_SECONDS: "1.05"
+      TIMEZONE: Asia/Riyadh
+      BINANCE_BASE_URL: https://data-api.binance.vision
+      BINANCE_QUOTE_ASSET: USDT
+      REQUEST_TIMEOUT: "20"
+      MAX_WORKERS: "4"
+      LOG_LEVEL: INFO
+      NW_STATE_FILE: data/state_nw1m.json
+      NW_TRADE_LOG: data/trades_log_nw1m.csv
+      NW_HALAL_PRIMARY: data/daily_trend/halal_academy.json
+      NW_HALAL_EXTRA: data/daily_trend/halal_extra.json
+      NW_HALAL_CACHE: data/zigzag/halal_verdicts.json
+      NW_EXCLUDE_FILE: config/zz_exclude.txt
+      NW_BANDWIDTH: "8"
+      NW_WINDOW: "500"
+      NW_MODE: "envelope"
+      NW_MULT: "3"
+      NW_KLINE_LIMIT: "560"
+      NW_REQUIRE_NEWEST_GREEN: "0"
+      NW_COMMISSION_SIDE_PCT: "0.1"
+      NW_SHOW_REPAINT_WARNING: "0"
+      NW_INCLUDE_ALL: "1"
+      NW_EXCLUDE_PEGGED_STABLES: "1"
+      NW_EXCLUDE_TOKENIZED_STOCKS: "0"
+      NW_USE_EXCLUDE_FILE: "0"
+      NW1M_SYMBOL: HBARUSDT
+      NW1M_END_HOUR: "23"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: NW 1M loop until 23:00 Riyadh
+        run: python run_nw1m_loop.py
