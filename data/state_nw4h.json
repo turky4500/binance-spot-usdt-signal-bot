@@ -3877,6 +3877,12 @@
       "entry_count": 0,
       "last_buy_bar": 0,
       "last_entry_price": 0.0
+    },
+    "MARSCOINUSDT": {
+      "position": null,
+      "entry_count": 0,
+      "last_buy_bar": 0,
+      "last_entry_price": 0.0
     }
   },
   "prev_buy_bars": {
@@ -4221,9 +4227,7 @@
     "RESOLVUSDT": [],
     "REUSDT": [],
     "REZUSDT": [],
-    "RIFUSDT": [
-      1795708800000
-    ],
+    "RIFUSDT": [],
     "RKLBBUSDT": [],
     "RLCUSDT": [],
     "ROBOUSDT": [],
@@ -4350,7 +4354,8 @@
     "CRWDBUSDT": [],
     "MRNABUSDT": [],
     "SQQQBUSDT": [],
-    "STXBUSDT": []
+    "STXBUSDT": [],
+    "MARSCOINUSDT": []
   },
   "prev_sell_bars": {
     "0GUSDT": [],
@@ -4610,15 +4615,15 @@
     "METABUSDT": [],
     "METISUSDT": [],
     "METUSDT": [],
-    "MEUSDT": [
-      1795708800000
-    ],
+    "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
     "MITOUSDT": [],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
-    "MOVEUSDT": [],
+    "MOVEUSDT": [
+      1795723200000
+    ],
     "MOVRUSDT": [],
     "MRVLBUSDT": [],
     "MSFTBUSDT": [],
@@ -4650,9 +4655,7 @@
     "ONGUSDT": [],
     "ONTUSDT": [],
     "OPENUSDT": [],
-    "OPGUSDT": [
-      1795708800000
-    ],
+    "OPGUSDT": [],
     "OPNUSDT": [],
     "OPUSDT": [],
     "ORCAUSDT": [],
@@ -4755,7 +4758,9 @@
     "SYNUSDT": [],
     "SYRUPUSDT": [],
     "TAOUSDT": [],
-    "TFUELUSDT": [],
+    "TFUELUSDT": [
+      1795723200000
+    ],
     "THETAUSDT": [],
     "THEUSDT": [],
     "TIAUSDT": [],
@@ -4825,7 +4830,8 @@
     "CRWDBUSDT": [],
     "MRNABUSDT": [],
     "SQQQBUSDT": [],
-    "STXBUSDT": []
+    "STXBUSDT": [],
+    "MARSCOINUSDT": []
   },
   "buy_history": {
     "0GUSDT": [],
@@ -5833,7 +5839,8 @@
     "CRWDBUSDT": [],
     "MRNABUSDT": [],
     "SQQQBUSDT": [],
-    "STXBUSDT": []
+    "STXBUSDT": [],
+    "MARSCOINUSDT": []
   },
   "cancelled_buy_bars": {
     "0GUSDT": [],
@@ -6586,7 +6593,8 @@
     "CRWDBUSDT": [],
     "MRNABUSDT": [],
     "SQQQBUSDT": [],
-    "STXBUSDT": []
+    "STXBUSDT": [],
+    "MARSCOINUSDT": []
   },
   "sent": [
     "buy:SIGNUSDT:1794182400000:1",
@@ -6955,9 +6963,9 @@
     "buy:MMTUSDT:1795694400000:1",
     "exit:SEIUSDT:1795694400000"
   ],
-  "cycles": 139,
+  "cycles": 140,
   "messages_sent": 365,
-  "last_cycle_ms": 1795747037820,
+  "last_cycle_ms": 1795752224378,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-26",
     "reported_trade_keys": [
