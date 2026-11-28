@@ -203,7 +203,7 @@
       "size_suggest_pct": 0.26890804597701135,
       "entry_time": 1793663999999,
       "entry_bar_open_time": 1793577600000,
-      "last_check_ms": 1795840800000,
+      "last_check_ms": 1795873080000,
       "peak_price": 0.14975,
       "last_stop_alert_price": 0.1365372,
       "stop_updates_count": 1,
@@ -221,7 +221,7 @@
       "size_suggest_pct": 0.12725663716814156,
       "entry_time": 1795737599999,
       "entry_bar_open_time": 1795651200000,
-      "last_check_ms": 1795840800000,
+      "last_check_ms": 1795873080000,
       "peak_price": 0.1463,
       "last_stop_alert_price": 0.13459600000000002,
       "stop_updates_count": 1,
@@ -239,7 +239,7 @@
       "size_suggest_pct": 0.11611459968602818,
       "entry_time": 1795737599999,
       "entry_bar_open_time": 1795651200000,
-      "last_check_ms": 1795840800000,
+      "last_check_ms": 1795873080000,
       "peak_price": 152.17,
       "last_stop_alert_price": 139.9964,
       "stop_updates_count": 1,
@@ -250,17 +250,17 @@
       "trade_id": "DODOUSDT-1795737600000",
       "symbol": "DODOUSDT",
       "entry_price": 0.04058,
-      "stop_price": 0.03824,
+      "stop_price": 0.039201200000000005,
       "pivot_stop": 0.03824,
       "target_price": 0.04525999999999999,
       "stop_dist_pct": 5.7663873829472525,
       "size_suggest_pct": 0.17341880341880378,
       "entry_time": 1795823999999,
       "entry_bar_open_time": 1795737600000,
-      "last_check_ms": 1795824059999,
-      "peak_price": 0.0415,
-      "last_stop_alert_price": 0.03824,
-      "stop_updates_count": 0,
+      "last_check_ms": 1795873080000,
+      "peak_price": 0.04261,
+      "last_stop_alert_price": 0.039201200000000005,
+      "stop_updates_count": 2,
       "halal_verdict": "⛔ غير مباح",
       "silent": true
     }
@@ -4680,6 +4680,16 @@
       "type": "entry",
       "symbol": "DODOUSDT",
       "time_ms": 1795823999999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "DODOUSDT",
+      "time_ms": 1795850159999
+    },
+    {
+      "type": "stop_alert",
+      "symbol": "DODOUSDT",
+      "time_ms": 1795859699999
     }
   ],
   "daily_report": {
