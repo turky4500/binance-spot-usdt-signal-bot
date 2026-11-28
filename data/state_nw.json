@@ -3887,7 +3887,9 @@
     "CTKUSDT": [],
     "CTSIUSDT": [],
     "CUSDT": [],
-    "CVCUSDT": [],
+    "CVCUSDT": [
+      1795838400000
+    ],
     "CVXUSDT": [],
     "CYBERUSDT": [],
     "CYPHBUSDT": [],
@@ -3957,7 +3959,9 @@
     "GTCUSDT": [],
     "GUNUSDT": [],
     "GUSDT": [],
-    "HAEDALUSDT": [],
+    "HAEDALUSDT": [
+      1795838400000
+    ],
     "HBARUSDT": [],
     "HEIUSDT": [],
     "HEMIUSDT": [],
@@ -4169,9 +4173,7 @@
     "SPKUSDT": [],
     "SPYBUSDT": [],
     "SQQQBUSDT": [],
-    "SSVUSDT": [
-      1795834800000
-    ],
+    "SSVUSDT": [],
     "STEEMUSDT": [],
     "STOUSDT": [],
     "STRAXUSDT": [],
@@ -4229,7 +4231,9 @@
     "WIFUSDT": [],
     "WINUSDT": [],
     "WLDUSDT": [],
-    "WLFIUSDT": [],
+    "WLFIUSDT": [
+      1795838400000
+    ],
     "WOOUSDT": [],
     "WUSDT": [],
     "XAIUSDT": [],
@@ -8619,7 +8623,8 @@
       1794686400000
     ],
     "CVCUSDT": [
-      1794686400000
+      1794686400000,
+      1795838400000
     ],
     "CVXUSDT": [
       1794686400000,
@@ -8930,7 +8935,8 @@
       1794686400000
     ],
     "HAEDALUSDT": [
-      1794542400000
+      1794542400000,
+      1795838400000
     ],
     "HBARUSDT": [
       1794538800000,
@@ -10246,7 +10252,8 @@
       1795492800000,
       1795780800000,
       1795788000000,
-      1795820400000
+      1795820400000,
+      1795838400000
     ],
     "WOOUSDT": [
       1794679200000,
@@ -10823,9 +10830,9 @@
     "exit:WAXPUSDT:1795827600000",
     "buy:SSVUSDT:1795834800000:1"
   ],
-  "cycles": 1061,
+  "cycles": 1062,
   "messages_sent": 3007,
-  "last_cycle_ms": 1795844012516,
+  "last_cycle_ms": 1795845819719,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
