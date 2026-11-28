@@ -87,14 +87,8 @@
       "last_entry_price": 94.95
     },
     "ACEUSDT": {
-      "position": {
-        "entry_price": 0.0781,
-        "entry_time": 1795377600000,
-        "signal_bar_time": 1795363200000,
-        "signal_price": 0.0721,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795363200000,
       "last_entry_price": 0.0781
     },
@@ -111,14 +105,8 @@
       "last_entry_price": 0.201
     },
     "ACTUSDT": {
-      "position": {
-        "entry_price": 0.00918,
-        "entry_time": 1794254400000,
-        "signal_bar_time": 1794240000000,
-        "signal_price": 0.00901,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1794240000000,
       "last_entry_price": 0.00918
     },
@@ -3948,9 +3936,7 @@
     "BICOUSDT": [],
     "BIGTIMEUSDT": [],
     "BIOUSDT": [],
-    "BLURUSDT": [
-      1795780800000
-    ],
+    "BLURUSDT": [],
     "BMNRBUSDT": [],
     "BMTUSDT": [],
     "BNBUSDT": [],
@@ -4307,9 +4293,7 @@
     "WIFUSDT": [],
     "WINUSDT": [],
     "WLDUSDT": [],
-    "WLFIUSDT": [
-      1795780800000
-    ],
+    "WLFIUSDT": [],
     "WOOUSDT": [],
     "WUSDT": [],
     "XAIUSDT": [],
@@ -4354,10 +4338,14 @@
     "AAOIBUSDT": [],
     "AAPLBUSDT": [],
     "AAVEUSDT": [],
-    "ACEUSDT": [],
+    "ACEUSDT": [
+      1795809600000
+    ],
     "ACHUSDT": [],
     "ACMUSDT": [],
-    "ACTUSDT": [],
+    "ACTUSDT": [
+      1795809600000
+    ],
     "ADAUSDT": [],
     "ADXUSDT": [],
     "AEROUSDT": [],
@@ -4501,9 +4489,7 @@
     "FFUSDT": [],
     "FIDAUSDT": [],
     "FILUSDT": [],
-    "FLNCBUSDT": [
-      1795780800000
-    ],
+    "FLNCBUSDT": [],
     "FLOKIUSDT": [],
     "FLOWUSDT": [],
     "FLUXUSDT": [],
@@ -4532,11 +4518,11 @@
     "GTCUSDT": [],
     "GUNUSDT": [],
     "GUSDT": [],
-    "HAEDALUSDT": [],
-    "HBARUSDT": [],
-    "HEIUSDT": [
-      1795780800000
+    "HAEDALUSDT": [
+      1795809600000
     ],
+    "HBARUSDT": [],
+    "HEIUSDT": [],
     "HEMIUSDT": [],
     "HIVEUSDT": [],
     "HMSTRUSDT": [],
@@ -4671,9 +4657,7 @@
     "PSGUSDT": [],
     "PUMPUSDT": [],
     "PUNDIXUSDT": [],
-    "PYPLBUSDT": [
-      1795780800000
-    ],
+    "PYPLBUSDT": [],
     "PYTHUSDT": [],
     "QCOMBUSDT": [],
     "QIUSDT": [],
@@ -4709,14 +4693,18 @@
     "SCRUSDT": [],
     "SCUSDT": [],
     "SEIUSDT": [],
-    "SENTUSDT": [],
+    "SENTUSDT": [
+      1795809600000
+    ],
     "SFPUSDT": [],
     "SHELLUSDT": [],
     "SHIBUSDT": [],
     "SIGNUSDT": [],
     "SKHYBUSDT": [],
     "SKLUSDT": [],
-    "SKYUSDT": [],
+    "SKYUSDT": [
+      1795809600000
+    ],
     "SLPUSDT": [],
     "SMCIBUSDT": [],
     "SMHBUSDT": [],
@@ -6955,11 +6943,13 @@
     "exit:SEIUSDT:1795694400000",
     "exit:BABABUSDT:1795752000000",
     "exit:PAXGUSDT:1795752000000",
-    "exit:XAUTUSDT:1795752000000"
+    "exit:XAUTUSDT:1795752000000",
+    "exit:ACEUSDT:1795809600000",
+    "exit:ACTUSDT:1795809600000"
   ],
-  "cycles": 146,
-  "messages_sent": 368,
-  "last_cycle_ms": 1795823545431,
+  "cycles": 147,
+  "messages_sent": 370,
+  "last_cycle_ms": 1795838615160,
   "daily_report_nw4h": {
     "last_report_day": "2026-11-27",
     "reported_trade_keys": [
