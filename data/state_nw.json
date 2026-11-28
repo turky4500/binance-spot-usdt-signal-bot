@@ -519,14 +519,8 @@
       "last_entry_price": 0.0503
     },
     "GALAUSDT": {
-      "position": {
-        "entry_price": 0.001304,
-        "entry_time": 1795518000000,
-        "signal_bar_time": 1795514400000,
-        "signal_price": 0.001289,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795514400000,
       "last_entry_price": 0.001304
     },
@@ -1527,14 +1521,8 @@
       "last_entry_price": 97.36
     },
     "ACEUSDT": {
-      "position": {
-        "entry_price": 0.0722,
-        "entry_time": 1795536000000,
-        "signal_bar_time": 1795532400000,
-        "signal_price": 0.0698,
-        "entry_count": 1
-      },
-      "entry_count": 1,
+      "position": null,
+      "entry_count": 0,
       "last_buy_bar": 1795532400000,
       "last_entry_price": 0.0722
     },
@@ -4302,7 +4290,9 @@
     "AAOIBUSDT": [],
     "AAPLBUSDT": [],
     "AAVEUSDT": [],
-    "ACEUSDT": [],
+    "ACEUSDT": [
+      1795816800000
+    ],
     "ACHUSDT": [],
     "ACMUSDT": [],
     "ACTUSDT": [],
@@ -4349,7 +4339,9 @@
     "AUCTIONUSDT": [],
     "AUDIOUSDT": [],
     "AUSDT": [],
-    "AVAUSDT": [],
+    "AVAUSDT": [
+      1795816800000
+    ],
     "AVAXUSDT": [],
     "AVGOBUSDT": [],
     "AVNTUSDT": [],
@@ -4362,9 +4354,7 @@
     "BANANAS31USDT": [],
     "BANANAUSDT": [],
     "BANDUSDT": [],
-    "BANKUSDT": [
-      1795813200000
-    ],
+    "BANKUSDT": [],
     "BARDUSDT": [],
     "BARUSDT": [],
     "BATUSDT": [],
@@ -4470,7 +4460,9 @@
     "FTTUSDT": [],
     "FUSDT": [],
     "FWDIBUSDT": [],
-    "GALAUSDT": [],
+    "GALAUSDT": [
+      1795816800000
+    ],
     "GASUSDT": [],
     "GENIUSUSDT": [],
     "GIGGLEUSDT": [],
@@ -4572,9 +4564,7 @@
     "MEUSDT": [],
     "MINAUSDT": [],
     "MIRAUSDT": [],
-    "MITOUSDT": [
-      1795813200000
-    ],
+    "MITOUSDT": [],
     "MMTUSDT": [],
     "MORPHOUSDT": [],
     "MOVEUSDT": [],
@@ -10442,8 +10432,6 @@
     ]
   },
   "sent": [
-    "exit:ATMUSDT:1795280400000",
-    "exit:BARUSDT:1795280400000",
     "exit:GASUSDT:1795280400000",
     "exit:NIGHTUSDT:1795280400000",
     "exit:QNTUSDT:1795280400000",
@@ -10841,11 +10829,13 @@
     "exit:SCRUSDT:1795795200000",
     "exit:GUNUSDT:1795802400000",
     "exit:MITOUSDT:1795806000000",
-    "exit:THEUSDT:1795806000000"
+    "exit:THEUSDT:1795806000000",
+    "exit:ACEUSDT:1795816800000",
+    "exit:GALAUSDT:1795816800000"
   ],
-  "cycles": 1049,
-  "messages_sent": 3001,
-  "last_cycle_ms": 1795822425165,
+  "cycles": 1050,
+  "messages_sent": 3003,
+  "last_cycle_ms": 1795824246830,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
