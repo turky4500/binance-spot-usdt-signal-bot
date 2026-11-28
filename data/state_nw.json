@@ -1173,10 +1173,16 @@
       "last_entry_price": 0.002
     },
     "SSVUSDT": {
-      "position": null,
-      "entry_count": 0,
-      "last_buy_bar": 1795323600000,
-      "last_entry_price": 1.505
+      "position": {
+        "entry_price": 2.634,
+        "entry_time": 1795838400000,
+        "signal_bar_time": 1795834800000,
+        "signal_price": 2.571,
+        "entry_count": 1
+      },
+      "entry_count": 1,
+      "last_buy_bar": 1795834800000,
+      "last_entry_price": 2.634
     },
     "STRAXUSDT": {
       "position": {
@@ -4090,9 +4096,7 @@
     "PNUTUSDT": [],
     "POLUSDT": [],
     "POLYXUSDT": [],
-    "PORTALUSDT": [
-      1795831200000
-    ],
+    "PORTALUSDT": [],
     "PORTOUSDT": [],
     "POWRUSDT": [],
     "PROMUSDT": [],
@@ -4165,7 +4169,9 @@
     "SPKUSDT": [],
     "SPYBUSDT": [],
     "SQQQBUSDT": [],
-    "SSVUSDT": [],
+    "SSVUSDT": [
+      1795834800000
+    ],
     "STEEMUSDT": [],
     "STOUSDT": [],
     "STRAXUSDT": [],
@@ -4183,9 +4189,7 @@
     "TAOUSDT": [],
     "TFUELUSDT": [],
     "THETAUSDT": [],
-    "THEUSDT": [
-      1795831200000
-    ],
+    "THEUSDT": [],
     "TIAUSDT": [],
     "TKOUSDT": [],
     "TLMUSDT": [],
@@ -4257,9 +4261,7 @@
     "BOTBUSDT": [],
     "BRKBBUSDT": [],
     "KSTRBUSDT": [],
-    "TMFBUSDT": [
-      1795831200000
-    ],
+    "TMFBUSDT": [],
     "VSTBUSDT": [],
     "APPBUSDT": [],
     "BSPBUSDT": [],
@@ -4431,9 +4433,7 @@
     "EULUSDT": [],
     "EWYBUSDT": [],
     "FETUSDT": [],
-    "FFUSDT": [
-      1795831200000
-    ],
+    "FFUSDT": [],
     "FIDAUSDT": [],
     "FILUSDT": [],
     "FLNCBUSDT": [],
@@ -7331,7 +7331,8 @@
       1795186800000,
       1795204800000,
       1795312800000,
-      1795323600000
+      1795323600000,
+      1795834800000
     ],
     "STEEMUSDT": [
       1794171600000,
@@ -10421,7 +10422,6 @@
     ]
   },
   "sent": [
-    "exit:FLOWUSDT:1795287600000",
     "exit:COOKIEUSDT:1795294800000",
     "buy:SAPIENUSDT:1795294800000:1",
     "exit:JUVUSDT:1795298400000",
@@ -10820,11 +10820,12 @@
     "exit:GALAUSDT:1795816800000",
     "exit:ROBOUSDT:1795824000000",
     "exit:TFUELUSDT:1795824000000",
-    "exit:WAXPUSDT:1795827600000"
+    "exit:WAXPUSDT:1795827600000",
+    "buy:SSVUSDT:1795834800000:1"
   ],
-  "cycles": 1060,
-  "messages_sent": 3006,
-  "last_cycle_ms": 1795841632897,
+  "cycles": 1061,
+  "messages_sent": 3007,
+  "last_cycle_ms": 1795844012516,
   "sent_legacy_repaint": [
     "buy:REZUSDT:1793908800000:1",
     "buy:TURTLEUSDT:1793923200000:1",
